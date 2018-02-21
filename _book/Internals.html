@@ -1,0 +1,626 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Internals · Theia</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Commands_Keybindings.html" />
+    
+    
+    <link rel="prev" href="Authoring_Extensions.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Architecture.html">
+            
+                <a href="Architecture.html">
+            
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Authoring_Extensions.html">
+            
+                <a href="Authoring_Extensions.html">
+            
+                    
+                    Developing an extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="Internals.html">
+            
+                <a href="Internals.html">
+            
+                    
+                    Internals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Commands_Keybindings.html">
+            
+                <a href="Commands_Keybindings.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Preferences.html">
+            
+                <a href="Preferences.html">
+            
+                    
+                    Preferences
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Internals</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>This file contains information about the internals of Theia. It assumes
+you already know the basics about Theia&apos;s architecture as described in:
+<a href="https://github.com/theia-ide/theia/blob/master/doc/Architecture.md" target="_blank">Architecture.md</a>.</p>
+<ul>
+<li><a href="#backendfrontend">How create a backend service and connect to it over JSON-RPC</a>.</li>
+<li><a href="#contribution-providers">Contribution Providers</a>.</li>
+<li><a href="#events">Events</a>.</li>
+<li><a href="Preferences.html">Preferences</a></li>
+<li><a href="Commands_Keybindings.html">Commands And Keybindings</a></li>
+</ul>
+<h1 id="how-create-a-backend-service-and-connect-to-it-over-json-rpc"><a name="backendfrontend"></a>How create a backend service and connect to it over JSON-RPC</h1>
+<p>In this section I will explain how you can create a backend service and
+then connect to it over JSON-RPC.</p>
+<p>I will use the debug logging system as a small example of that.</p>
+<h2 id="overview">Overview</h2>
+<p>This works by creating a service exposed by the express framework and
+then connecting to that over a websocket connection.</p>
+<h2 id="registering-a-service">Registering a service</h2>
+<p>So the first thing you will want to do is expose your service so that the
+frontend can connect to it.</p>
+<p>You will need to create backend server module file similar to this (logger-server-module.ts):</p>
+<pre><code class="lang-typescript">
+<span class="hljs-keyword">import</span> { ContainerModule } from <span class="hljs-string">&apos;inversify&apos;</span>;
+<span class="hljs-keyword">import</span> { ConnectionHandler, JsonRpcConnectionHandler } from <span class="hljs-string">&quot;../../messaging/common&quot;</span>;
+<span class="hljs-keyword">import</span> { ILoggerServer, ILoggerClient } from <span class="hljs-string">&apos;../../application/common/logger-protocol&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> loggerServerModule = <span class="hljs-keyword">new</span> ContainerModule(bind =&gt; {
+    bind(ConnectionHandler).toDynamicValue(ctx =&gt;
+        <span class="hljs-keyword">new</span> JsonRpcConnectionHandler&lt;ILoggerClient&gt;(<span class="hljs-string">&quot;/services/logger&quot;</span>, client =&gt; {
+            <span class="hljs-keyword">const</span> loggerServer = ctx.container.get&lt;ILoggerServer&gt;(ILoggerServer);
+            loggerServer.setClient(client);
+            <span class="hljs-keyword">return</span> loggerServer;
+        })
+    ).inSingletonScope()
+});
+</code></pre>
+<p>Let&apos;s go over that in detail:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { ConnectionHandler, JsonRpcConnectionHandler } from <span class="hljs-string">&quot;../../messaging/common&quot;</span>;
+</code></pre>
+<p>This imports the <code>JsonRpcConnectionHandler</code>, this factory enables you to create
+a connection handler that onConnection creates proxy object to the object that
+is called in the backend over JSON-RPC and expose a local object to JSON-RPC.</p>
+<p>We&apos;ll see more on how this is done as we go.</p>
+<p>The <code>ConnectionHandler</code> is a simple interface that specifies the path of the
+connection and what happens on connection creation.</p>
+<p>It looks like this:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { MessageConnection } from <span class="hljs-string">&quot;vscode-jsonrpc&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ConnectionHandler = Symbol(<span class="hljs-string">&apos;ConnectionHandler&apos;</span>);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ConnectionHandler {
+    readonly path: <span class="hljs-built_in">string</span>;
+    onConnection(connection: MessageConnection): <span class="hljs-built_in">void</span>;
+}
+</code></pre>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { ILoggerServer, ILoggerClient } from <span class="hljs-string">&apos;../../application/common/logger-protocol&apos;</span>;
+</code></pre>
+<p>The logger-protocol.ts file contains the interfaces that the server and the
+client need to implement.</p>
+<p>The server here means the backend object that will be called over JSON-RPC
+and the client is a client object that can receive notifications from the
+backend object.</p>
+<p>I&apos;ll get more into that later.</p>
+<pre><code class="lang-typescript">    bind&lt;ConnectionHandler&gt;(ConnectionHandler).toDynamicValue(ctx =&gt; {
+</code></pre>
+<p>Here a bit of magic happens, at first glance we&apos;re just saying here&apos;s an
+implementation of a ConnectionHandler.</p>
+<p>The magic here is that this ConnectionHandler type is bound to a
+ContributionProvider in messaging-module.ts</p>
+<p>So as the MessagingContribution starts (onStart is called) it creates a
+websocket connection for all bound ConnectionHandlers.</p>
+<p>like so (from messaging-module.ts):</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">constructor</span>( @inject(ContributionProvider) @named(ConnectionHandler) protected readonly handlers: ContributionProvider&lt;ConnectionHandler&gt;) {
+    }
+
+    onStart(server: http.Server): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> handler of <span class="hljs-keyword">this</span>.handlers.getContributions()) {
+            <span class="hljs-keyword">const</span> path = handler.path;
+            <span class="hljs-keyword">try</span> {
+                createServerWebSocketConnection({
+                    server,
+                    path
+                }, connection =&gt; handler.onConnection(connection));
+            } <span class="hljs-keyword">catch</span> (error) {
+                <span class="hljs-built_in">console</span>.error(error)
+            }
+        }
+    }
+</code></pre>
+<p>To dig more into ContributionProvider see this <a href="#contribution-providers">section</a>.</p>
+<p>So now:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">new</span> JsonRpcConnectionHandler&lt;ILoggerClient&gt;(<span class="hljs-string">&quot;/services/logger&quot;</span>, client =&gt; {
+</code></pre>
+<p>This does a few things if we look at this class implementation:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> JsonRpcConnectionHandler&lt;T extends object&gt; <span class="hljs-keyword">implements</span> ConnectionHandler {
+    <span class="hljs-keyword">constructor</span>(
+        readonly path: string,
+        readonly targetFactory: (proxy: JsonRpcProxy&lt;T&gt;) =&gt; any
+    ) { }
+
+    onConnection(connection: MessageConnection): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">const</span> factory = <span class="hljs-keyword">new</span> JsonRpcProxyFactory&lt;T&gt;(<span class="hljs-keyword">this</span>.path);
+        <span class="hljs-keyword">const</span> proxy = factory.createProxy();
+        factory.target = <span class="hljs-keyword">this</span>.targetFactory(proxy);
+        factory.listen(connection);
+    }
+}
+</code></pre>
+<p>We see that a websocket connection is created on path: &quot;logger&quot; by the extension of the ConnectionHandler class with the path attribute set to &quot;logger&quot;.</p>
+<p>And let&apos;s look at what it does onConnection : </p>
+<pre><code class="lang-typescript">    onConnection(connection: MessageConnection): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">const</span> factory = <span class="hljs-keyword">new</span> JsonRpcProxyFactory&lt;T&gt;(<span class="hljs-keyword">this</span>.path);
+        <span class="hljs-keyword">const</span> proxy = factory.createProxy();
+        factory.target = <span class="hljs-keyword">this</span>.targetFactory(proxy);
+        factory.listen(connection);
+</code></pre>
+<p>Let&apos;s go over this line by line:</p>
+<pre><code class="lang-typescript">    <span class="hljs-keyword">const</span> factory = <span class="hljs-keyword">new</span> JsonRpcProxyFactory&lt;T&gt;(<span class="hljs-keyword">this</span>.path);
+</code></pre>
+<p>This creates a JsonRpcProxy on path &quot;logger&quot;.</p>
+<pre><code class="lang-typescript">    <span class="hljs-keyword">const</span> proxy = factory.createProxy();
+</code></pre>
+<p>Here we create a proxy object from the factory, this will be used to call
+the other end of the JSON-RPC connection using the ILoggerClient interface.</p>
+<pre><code class="lang-typescript">    factory.target = <span class="hljs-keyword">this</span>.targetFactory(proxy);
+</code></pre>
+<p>This will call the function we&apos;ve passed in parameter so:</p>
+<pre><code class="lang-typescript">        client =&gt; { 
+            <span class="hljs-keyword">const</span> loggerServer = ctx.container.get&lt;ILoggerServer&gt;(ILoggerServer);
+            loggerServer.setClient(client);
+            <span class="hljs-keyword">return</span> loggerServer;
+        }
+</code></pre>
+<p>This sets the client on the loggerServer, in this case this is used to
+send notifications to the frontend about a log level change.</p>
+<p>And it returns the loggerServer as the object that will be exposed over JSON-RPC.</p>
+<pre><code class="lang-typescript"> factory.listen(connection);
+</code></pre>
+<p>This connects the factory to the connection.</p>
+<p>The endpoints with <code>services/*</code> path are served by the webpack dev server, see <code>webpack.config.js</code>:</p>
+<pre><code class="lang-javascript">    <span class="hljs-string">&apos;/services/*&apos;</span>: {
+        target: <span class="hljs-string">&apos;ws://localhost:3000&apos;</span>,
+        ws: <span class="hljs-literal">true</span>
+    },
+</code></pre>
+<h2 id="connecting-to-a-service">Connecting to a service</h2>
+<p>So now that we have a backend service let&apos;s see how to connect to it from
+the frontend.</p>
+<p>To do that you will need something like this:</p>
+<p>(From logger-frontend-module.ts)</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { ContainerModule, Container } from <span class="hljs-string">&apos;inversify&apos;</span>;
+<span class="hljs-keyword">import</span> { WebSocketConnectionProvider } from <span class="hljs-string">&apos;../../messaging/browser/connection&apos;</span>;
+<span class="hljs-keyword">import</span> { ILogger, LoggerFactory, LoggerOptions, Logger } from <span class="hljs-string">&apos;../common/logger&apos;</span>;
+<span class="hljs-keyword">import</span> { ILoggerServer } from <span class="hljs-string">&apos;../common/logger-protocol&apos;</span>;
+<span class="hljs-keyword">import</span> { LoggerWatcher } from <span class="hljs-string">&apos;../common/logger-watcher&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> loggerFrontendModule = <span class="hljs-keyword">new</span> ContainerModule(bind =&gt; {
+    bind(ILogger).to(Logger).inSingletonScope();
+    bind(LoggerWatcher).toSelf().inSingletonScope();
+    bind(ILoggerServer).toDynamicValue(ctx =&gt; {
+        <span class="hljs-keyword">const</span> loggerWatcher = ctx.container.get(LoggerWatcher);
+        <span class="hljs-keyword">const</span> connection = ctx.container.get(WebSocketConnectionProvider);
+        <span class="hljs-keyword">return</span> connection.createProxy&lt;ILoggerServer&gt;(<span class="hljs-string">&quot;/services/logger&quot;</span>, loggerWatcher.getLoggerClient());
+    }).inSingletonScope();
+});
+</code></pre>
+<p>The important bit here are those lines: </p>
+<pre><code class="lang-typescript">    bind(ILoggerServer).toDynamicValue(ctx =&gt; {
+        <span class="hljs-keyword">const</span> loggerWatcher = ctx.container.get(LoggerWatcher);
+        <span class="hljs-keyword">const</span> connection = ctx.container.get(WebSocketConnectionProvider);
+        <span class="hljs-keyword">return</span> connection.createProxy&lt;ILoggerServer&gt;(<span class="hljs-string">&quot;/services/logger&quot;</span>, loggerWatcher.getLoggerClient());
+    }).inSingletonScope();
+</code></pre>
+<p>Let&apos;s go line by line:</p>
+<pre><code class="lang-typescript">        <span class="hljs-keyword">const</span> loggerWatcher = ctx.container.get(LoggerWatcher);
+</code></pre>
+<p>Here we&apos;re creating a watcher, this is used to get notified about events
+from the backend by using the loggerWatcher client
+(loggerWatcher.getLoggerClient())</p>
+<p>See more information about how events work in theia <a href="#events">here</a>.</p>
+<pre><code class="lang-typescript">        <span class="hljs-keyword">const</span> connection = ctx.container.get(WebSocketConnectionProvider);
+</code></pre>
+<p>Here we&apos;re getting the websocket connection, this will be used to create a proxy from.</p>
+<pre><code class="lang-typescript">        <span class="hljs-keyword">return</span> connection.createProxy&lt;ILoggerServer&gt;(<span class="hljs-string">&quot;/services/logger&quot;</span>, loggerWatcher.getLoggerClient());
+</code></pre>
+<p>As the second argument, we pass a local object to handle JSON-RPC messages from the remote object.
+Sometimes the local object depends on the proxy and cannot be instantiated before the proxy is instantiated.
+In such cases, the proxy interface should implement <code>JsonRpcServer</code> and the local object should be provided as a client.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> JsonRpcServer&lt;Client&gt; = Disposable &amp; {
+    setClient(client: Client | <span class="hljs-literal">undefined</span>): <span class="hljs-built_in">void</span>;
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ILoggerServer <span class="hljs-keyword">extends</span> JsonRpcServery&lt;ILoggerClient&gt; {
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">const</span> serverProxy = connection.createProxy&lt;ILoggerServer&gt;(<span class="hljs-string">&quot;/services/logger&quot;</span>);
+<span class="hljs-keyword">const</span> client = loggerWatcher.getLoggerClient();
+serverProxy.setClient(client);
+</code></pre>
+<p>So here at the last line we&apos;re binding the ILoggerServer interface to a
+JsonRpc proxy.</p>
+<p>Note that his under the hood calls:</p>
+<pre><code class="lang-typescript"> createProxy&lt;T extends object&gt;(path: <span class="hljs-built_in">string</span>, target?: object, options?: WebSocketOptions): T {
+        <span class="hljs-keyword">const</span> factory = <span class="hljs-keyword">new</span> JsonRpcProxyFactory&lt;T&gt;(path, target);
+        <span class="hljs-keyword">this</span>.listen(factory, options);
+        <span class="hljs-keyword">return</span> factory.createProxy();
+    }
+</code></pre>
+<p>So it&apos;s very similar to the backend example.</p>
+<p>Maybe you&apos;ve noticed too but as far as the connection is concerned the frontend
+is the server and the backend is the client. But that doesn&apos;t really
+matter in our logic.</p>
+<p>So again there&apos;s multiple things going on here what this does is that:</p>
+<ul>
+<li>it creates a JsonRpc Proxy on path &quot;logger&quot;.</li>
+<li>it exposes the loggerWatcher.getLoggerClient() object.</li>
+<li>it returns a proxy of type ILoggerServer.</li>
+</ul>
+<p>So now instances of ILoggerServer are proxied over JSON-RPC to the
+backend&apos;s LoggerServer object.</p>
+<h2 id="loading-the-modules-in-the-example-backend-and-frontend">Loading the modules in the example backend and frontend</h2>
+<p>So now that we have these modules we need to wire them into the example.
+We will use the browser example for this, note that it&apos;s the same code for
+the electron example.</p>
+<h3 id="backend">Backend</h3>
+<p>In examples/browser/src/backend/main.ts you will need something like:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { loggerServerModule } from <span class="hljs-string">&apos;theia-core/lib/application/node/logger-server-module&apos;</span>;
+</code></pre>
+<p>And than load that into the main container:</p>
+<pre><code class="lang-typescript">container.load(loggerServerModule);
+</code></pre>
+<h3 id="frontend">Frontend</h3>
+<p>In examples/browser/src/frontend/main.ts you will need something like:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { loggerFrontendModule } from <span class="hljs-string">&apos;theia-core/lib/application/browser/logger-frontend-module&apos;</span>;
+</code></pre>
+<pre><code class="lang-typescript">container.load(frontendLanguagesModule);
+</code></pre>
+<h2 id="complete-example">Complete example</h2>
+<p>If you wish to see the complete implementation of what I referred too in
+this documentation see <a href="https://github.com/theia-ide/theia/commit/99d191f19bd2a3e93098470ca1bb7b320ab344a1" target="_blank">this commit</a>.</p>
+<h1 id="contribution-providers">Contribution Providers</h1>
+<p>A contribution provider is basically a container for contributions where
+contributions are instances of a bound type.</p>
+<p>It is very generic.</p>
+<p>To bind a type to a contribution provider you can do like this:</p>
+<p>(From messaging-module.ts)</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> messagingModule = <span class="hljs-keyword">new</span> ContainerModule(bind =&gt; {
+    bind&lt;BackendApplicationContribution&gt;(BackendApplicationContribution).to(MessagingContribution);
+    bindContributionProvider(bind, ConnectionHandler)
+});
+</code></pre>
+<p>The last line will bind a ContributionProvider to one that contains all
+ConnectionHandler bound instances.</p>
+<p>It is used as such:</p>
+<p>(From messaging-module.ts)</p>
+<pre><code class="lang-typescript">    <span class="hljs-keyword">constructor</span>( @inject(ContributionProvider) @named(ConnectionHandler) protected readonly handlers: ContributionProvider&lt;ConnectionHandler&gt;) {
+    }
+</code></pre>
+<p>So here we&apos;re injecting a ContributionProvider with the named
+ConnectionHandler value that was bound before by <code>bindContributionProvider</code>.</p>
+<p>This enables anyone to bind a ConnectionHandler and now when the
+messagingModule is started all the ConnectionHandlers will be initiated.</p>
+<h1 id="events">Events</h1>
+<p>Events in Theia can be confusing, hopefully we can clarify things.</p>
+<p>Let&apos;s consider this code:</p>
+<p>(From logger-watcher.ts)</p>
+<pre><code class="lang-typescript">@injectable()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LoggerWatcher {
+
+    getLoggerClient(): ILoggerClient {
+        <span class="hljs-keyword">const</span> emitter = <span class="hljs-keyword">this</span>.onLogLevelChangedEmitter
+        <span class="hljs-keyword">return</span> {
+            onLogLevelChanged(event: ILogLevelChangedEvent) {
+                emitter.fire(event)
+            }
+        }
+    }
+
+    <span class="hljs-keyword">private</span> onLogLevelChangedEmitter = <span class="hljs-keyword">new</span> Emitter&lt;ILogLevelChangedEvent&gt;();
+
+    <span class="hljs-keyword">get</span> onLogLevelChanged(): Event&lt;ILogLevelChangedEvent&gt; {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.onLogLevelChangedEmitter.event;
+    }
+}
+</code></pre>
+<p>Let&apos;s start with:</p>
+<pre><code class="lang-typescript">    <span class="hljs-keyword">private</span> onLogLevelChangedEmitter = <span class="hljs-keyword">new</span> Emitter&lt;ILogLevelChangedEvent&gt;();
+</code></pre>
+<p>So first what is an <code>Emitter</code>?</p>
+<p>An Emitter is an event handler container,
+it allows for event handlers to be registered on it and triggered with an
+event of type X in this case an ILogLevelChangedEvent.</p>
+<p>So here we just create an <code>Emitter</code> that will have events of type ILogLevelChangedEvent;</p>
+<p>Next we want to be able to register an event handler on this <code>Emitter</code> to
+do so we do this:</p>
+<pre><code class="lang-typescript">    <span class="hljs-keyword">get</span> onLogLevelChanged(): Event&lt;ILogLevelChangedEvent&gt; {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.onLogLevelChangedEmitter.event;
+    }
+</code></pre>
+<p>What this actually returns is a function that will register an event
+handler so you just pass it your event handler function and it will
+register it so that it&apos;s called when the event fires.</p>
+<p>so you can call:</p>
+<p>(From logger.ts)</p>
+<pre><code class="lang-typescript"> <span class="hljs-comment">/* Update the root logger log level if it changes in the backend. */</span>
+        loggerWatcher.onLogLevelChanged(event =&gt; {
+            <span class="hljs-keyword">this</span>.id.then(id =&gt; {
+                <span class="hljs-keyword">if</span> (id === <span class="hljs-keyword">this</span>.rootLoggerId) {
+                    <span class="hljs-keyword">this</span>._logLevel = Promise.resolve(event.newLogLevel);
+                }
+            });
+        });
+</code></pre>
+<p>This registers the anonymous function passed as param on this emitter.</p>
+<p>Next we will need to trigger this event handler by firing an event:</p>
+<pre><code class="lang-typescript"> onLogLevelChanged(event: ILogLevelChangedEvent) {
+                emitter.fire(event)
+            }
+</code></pre>
+<p>When calling this function, the emitter fires and all the event handlers
+are called.</p>
+<p>So if you need to trigger events in theia:</p>
+<ul>
+<li>Create an emitter</li>
+<li>Register events with the emitter.event function</li>
+<li>Fire events with emitter.fire(event)</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Authoring_Extensions.html" class="navigation navigation-prev " aria-label="Previous page: Developing an extension">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Commands_Keybindings.html" class="navigation navigation-next " aria-label="Next page: Commands">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Internals","level":"1.4","depth":1,"next":{"title":"Commands","level":"1.5","depth":1,"path":"Commands_Keybindings.md","ref":"Commands_Keybindings.md","articles":[]},"previous":{"title":"Developing an extension","level":"1.3","depth":1,"path":"Authoring_Extensions.md","ref":"Authoring_Extensions.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"./doc","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Theia","gitbook":"*","description:":"bla und blub"},"file":{"path":"Internals.md","mtime":"2018-02-16T09:30:34.916Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-19T08:08:33.123Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

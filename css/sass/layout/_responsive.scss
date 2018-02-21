@@ -1,0 +1,58 @@
+/*-------------------------------------------------------*/
+/* Responsive Styles
+/*-------------------------------------------------------*/
+
+@media (max-width: 1199px) {
+
+  .works-grid.grid-5-col .work-item {
+    width: 25%;
+  }
+
+  .rev_slider_wrapper.container {
+    padding: 0;
+  }
+}
+
+
+@media (max-width: 991px) {
+
+  h1 {font-size: 28px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 19px; }
+
+  .section-wrap {
+    padding: 80px 0;
+    background-attachment: scroll !important;
+    background-position: 50% 50% !important;
+  }
+
+}
+
+
+@media (max-width: 767px) {
+
+
+}
+
+
+@media (max-width: 639px) {
+
+  .col-xxs-12 {
+    width: 100%;
+  }
+
+  .col-xxs-6 {
+    width: 50%;
+  }
+
+}
+
+
+@media (max-width: 479px) {
+
+  .page-404 h1 {
+    font-size: 100px;
+  }
+
+}

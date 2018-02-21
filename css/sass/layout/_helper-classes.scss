@@ -1,0 +1,27 @@
+/*-------------------------------------------------------*/
+/* Helper classes
+/*-------------------------------------------------------*/
+.clear { clear: both; }
+.oh { overflow: hidden; }
+.ov { overflow: visible; }
+.relative { position: relative; }
+.mobile section { background-attachment: scroll !important; }
+.bg-dark { background-color: $bg-dark; }
+.bg-light { background-color: $bg-light; }
+.bg-white { background-color: #fff; }
+.bg-color { background-color: $main-color; }
+.bg-green { background-color: #6acfa8; }
+.bg-blue { background-color: #287ac7; }
+.bg-pattern { background-image: url(../img/pattern.jpg); background-attachment: scroll !important; background-size: auto !important; }
+.white { color: #fff; }
+.static { position: static; }
+.block { display: block; }
+.left { float: left; }
+.right { float: right; }
+.valign { position: absolute; top: 50%; @include transform (translateY(-50%)); }
+.img-full-width { width: 100%; }
+.uppercase { text-transform: uppercase; letter-spacing: 0.02em; }
+.last { margin-bottom: 0 !important; }
+.hidden-xxs { @media (max-width: 640px) { display: none; } }
+img.alignleft {float: left;margin: 10px 20px 10px 0;}
+img.alignright { float: right; margin: 10px 0 10px 20px; }

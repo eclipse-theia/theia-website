@@ -1,0 +1,482 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Developing an extension · Theia</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Internals.html" />
+    
+    
+    <link rel="prev" href="Architecture.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Architecture.html">
+            
+                <a href="Architecture.html">
+            
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="Authoring_Extensions.html">
+            
+                <a href="Authoring_Extensions.html">
+            
+                    
+                    Developing an extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Internals.html">
+            
+                <a href="Internals.html">
+            
+                    
+                    Internals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Commands_Keybindings.html">
+            
+                <a href="Commands_Keybindings.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Preferences.html">
+            
+                <a href="Preferences.html">
+            
+                    
+                    Preferences
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Developing an extension</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="authoring-theia-extensions">Authoring Theia Extensions</h1>
+<p>As an example, we are going to add a menu item <em>Say hello</em> that displays a notification &quot;Hello world!&quot;. This article is guiding you through all the necessary steps.</p>
+<h2 id="theias-architecture">Theia&#x2019;s Architecture</h2>
+<p>A Theia app is composed of so called <em>extensions</em>. An extension provides a set of widgets, commands, handlers, etc. for a specific functionality. Theia itself ships a number of extensions, e.g. for editors, terminals, the project view etc. Each extension resides in its own npm package.</p>
+<p>Theia defines a plethora of contribution interfaces that allow extensions to add their behaviour to various aspects of the application. Just search for interfaces with the name <code>*Contribution</code> to get an idea. An extension implements the contribution interfaces belonging to the functionality it wants to deliver. In this example, we are going to implement a <code>CommandContribution</code> and a <code>MenuContribution</code>. Other ways for extensions to interact with a Theia application are via one of the various <em>services</em> or <em>managers</em>.</p>
+<p>In Theia, everything is wired up via <a href="Architecture.html#dependency-injection-di">dependency injection</a>. An extension defines one or more dependency injection modules. This is where it binds its contribution implementations to the respective contribution interface. The modules are listed in the <code>package.json</code> of the extension package. An extension can contribute to the frontend, e.g. providing a UI extension, as well as to the backend, e.g. contributing a language server. When the application starts, the union of all these modules is used to configure a single, global dependency injection container on each, the frontend and the backend. The runtime will then collect all contributions of a specific kind by means of a multi-inject.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You&#x2019;ll need node in version 8:</p>
+<pre><code class="lang-bash">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+nvm install 8
+</code></pre>
+<p>and yarn</p>
+<pre><code>npm install -g yarn
+</code></pre><p>Also make sure your <code>python --version</code> points to a Python 2.x installation.</p>
+<h2 id="project-layout">Project Layout</h2>
+<p>We are going to create a monorepo (a repository containing multiple npm packages) named <code>theia-hello-world-extension</code> containing three packages: <code>hello-world-extension</code>, <code>browser-app</code> and <code>electron-app</code>. The first contains our extension, the latter two the Theia applications to run our extension in browser and electron mode.  We are going to use <code>yarn</code> instead of <code>npm</code>, because it allows to structure such monorepos into workspaces. In our case, each workspace contains its own <code>npm</code> package. Common dependencies of these packages are &apos;hoisted&apos; by <code>yarn</code> to their common root directory. We are also going to use <code>lerna</code> to run scripts across workspaces.</p>
+<p>To ease the setup of such a repository we have created a <a href="https://www.npmjs.com/package/generator-theia-extension" target="_blank">code generator</a> to scaffold the project. It will also generate the <code>hello-world</code> example. Run it using</p>
+<pre><code class="lang-bash">npm install -g yo generator-theia-extension
+mkdir theia-hello-world-extension
+<span class="hljs-built_in">cd</span> theia-hello-world-extension
+yo theia-extension hello-world
+</code></pre>
+<p>Let&apos;s have look at the generated code now. The root <code>package.json</code> defines the workspaces, the dependency to <code>lerna</code> and some scripts to rebuild the native packages for browser or electron.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;private&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;prepare&quot;</span>: <span class="hljs-string">&quot;lerna run prepare&quot;</span>,
+    <span class="hljs-string">&quot;rebuild:browser&quot;</span>: <span class="hljs-string">&quot;theia rebuild:browser&quot;</span>,
+    <span class="hljs-string">&quot;rebuild:electron&quot;</span>: <span class="hljs-string">&quot;theia rebuild:electron&quot;</span>
+  },
+  <span class="hljs-string">&quot;devDependencies&quot;</span>: {
+    <span class="hljs-string">&quot;lerna&quot;</span>: <span class="hljs-string">&quot;2.4.0&quot;</span>
+  },
+  <span class="hljs-string">&quot;workspaces&quot;</span>: [
+    <span class="hljs-string">&quot;hello-world-extension&quot;</span>, <span class="hljs-string">&quot;browser-app&quot;</span>, <span class="hljs-string">&quot;electron-app&quot;</span>
+  ]
+}
+</code></pre>
+<p>We also got a <code>lerna.json</code> file to configure <code>lerna</code>:</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;lerna&quot;</span>: <span class="hljs-string">&quot;2.4.0&quot;</span>,
+  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.1.0&quot;</span>,
+  <span class="hljs-string">&quot;useWorkspaces&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;npmClient&quot;</span>: <span class="hljs-string">&quot;yarn&quot;</span>,
+  <span class="hljs-string">&quot;command&quot;</span>: {
+    <span class="hljs-string">&quot;run&quot;</span>: {
+      <span class="hljs-string">&quot;stream&quot;</span>: <span class="hljs-literal">true</span>
+    }
+  }
+}
+</code></pre>
+<h2 id="implementing-the-extension">Implementing the Extension</h2>
+<p>Next let&apos;s look at the generated code for our extension in the <code>hello-world-extension</code> folder. Let&#x2019;s start with the <code>package.json</code>. It specifies the package&#x2019;s metadata, its dependencies to the (bleeding edge) Theia core package, a few scripts and dev dependencies, and the theia-extensions.</p>
+<p>The keyword <code>theia-extension</code> is important: It allows a Theia app to identify and install Theia extensions from <code>npm</code>.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;hello-world-extension&quot;</span>,     
+  <span class="hljs-string">&quot;keywords&quot;</span>: [
+    <span class="hljs-string">&quot;theia-extension&quot;</span>
+  ],
+  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.1.0&quot;</span>,
+  <span class="hljs-string">&quot;files&quot;</span>: [
+    <span class="hljs-string">&quot;lib&quot;</span>,
+    <span class="hljs-string">&quot;src&quot;</span>
+  ],
+  <span class="hljs-string">&quot;dependencies&quot;</span>: {     
+    <span class="hljs-string">&quot;@theia/core&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>
+  },
+  <span class="hljs-string">&quot;devDependencies&quot;</span>: {     
+    <span class="hljs-string">&quot;rimraf&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;typescript&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>
+  },
+  <span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;prepare&quot;</span>: <span class="hljs-string">&quot;yarn run clean &amp;&amp; yarn run build&quot;</span>,
+    <span class="hljs-string">&quot;clean&quot;</span>: <span class="hljs-string">&quot;rimraf lib&quot;</span>,
+    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;tsc&quot;</span>,
+    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;tsc -w&quot;</span>
+  },
+  <span class="hljs-string">&quot;theiaExtensions&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;frontend&quot;</span>: <span class="hljs-string">&quot;lib/browser/hello-world-frontend-module&quot;</span>
+    }
+  ]
+}
+</code></pre>
+<p>The last property <code>theiaExtensions</code> is where we list the JavaScript modules that export the DI modules defining the contribution bindings of our extension. In our case, we only provide a frontend capability (a command and a menu entry). Analogously, you could also define contributions to the backend, e.g. a language contribution with a language server.</p>
+<p>In the frontend module we export a default object that is a <a href="https://github.com/inversify/InversifyJS/blob/master/wiki/container_modules.md" target="_blank">InversifyJS <code>ContainerModule</code></a> with bindings for a command contribution and a menu contribution.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> ContainerModule(bind =&gt; {
+    <span class="hljs-comment">// add your contribution bindings here</span>
+    bind(CommandContribution).to(HelloWorldCommandContribution);
+    bind(MenuContribution).to(HelloWorldMenuContribution);
+});
+</code></pre>
+<p>A command is a plain data structure defining an ID and a label. The behaviour of a command is implemented by registering a handler to its ID in a command contribution. The generator has already added a command and a handler that shows a &quot;Hello World!&quot; message. </p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> HelloWorldCommand = {
+    id: <span class="hljs-string">&apos;HelloWorld.command&apos;</span>,
+    label: <span class="hljs-string">&quot;Shows a message&quot;</span>
+};
+
+@injectable()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HelloWorldCommandContribution <span class="hljs-keyword">implements</span> CommandContribution {
+
+    <span class="hljs-keyword">constructor</span>(
+        @inject(MessageService) private readonly messageService: MessageService,
+    ) { }
+
+    registerCommands(registry: CommandRegistry): <span class="hljs-built_in">void</span> {
+        registry.registerCommand(HelloWorldCommand, {
+            execute: () =&gt; <span class="hljs-keyword">this</span>.messageService.info(<span class="hljs-string">&apos;Hello World!&apos;</span>)
+        });
+    }
+}
+...
+</code></pre>
+<p>Note how we use <code>@inject</code> in the constructor to get the <code>MessageService</code> as a property, and how we use that later in the implementation of the handler. This is the elegance of dependency injection: As a client, we neither care where these dependencies come from nor what their lifecycle is.</p>
+<p>To make it accessible by the UI, we implement a <code>MenuContribution</code>, adding an item to the Search/Replace section of the edit menu in the menu bar.</p>
+<pre><code class="lang-typescript">...
+@injectable()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HelloWorldMenuContribution <span class="hljs-keyword">implements</span> MenuContribution {
+
+    registerMenus(menus: MenuModelRegistry): <span class="hljs-built_in">void</span> {
+        menus.registerMenuAction(CommonMenus.EDIT_FIND, {
+                commandId: HelloWorldCommand.id,
+                label: <span class="hljs-string">&apos;Say Hello&apos;</span>
+            });
+    }
+}
+</code></pre>
+<h2 id="executing-the-extension-in-the-browser">Executing the Extension In the Browser</h2>
+<p>Now we want to see our extension in action. For this purpose, the generator has created a <code>package.json</code> in the folder <code>browser-app</code>. It defines a Theia browser application with a couple of statically included extensions, including our <code>hello-world-extension</code>. All remaining files in this directory have been auto-generated by <code>yarn</code> calling the <code>theia-cli</code> tool during the build, as defined in the scripts section.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;browser-app&quot;</span>,
+  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.1.0&quot;</span>,
+  <span class="hljs-string">&quot;dependencies&quot;</span>: {
+    <span class="hljs-string">&quot;@theia/core&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/filesystem&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/workspace&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/preferences&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/navigator&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/process&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/terminal&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/editor&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/languages&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/markers&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/monaco&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/typescript&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;@theia/messages&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>,
+    <span class="hljs-string">&quot;hello-world-extension&quot;</span>: <span class="hljs-string">&quot;0.1.0&quot;</span>
+  },
+  <span class="hljs-string">&quot;devDependencies&quot;</span>: {
+    <span class="hljs-string">&quot;@theia/cli&quot;</span>: <span class="hljs-string">&quot;latest&quot;</span>
+  },
+  <span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;prepare&quot;</span>: <span class="hljs-string">&quot;theia build&quot;</span>,    
+    <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;theia start&quot;</span>,
+    <span class="hljs-string">&quot;watch&quot;</span>: <span class="hljs-string">&quot;theia build --watch&quot;</span>
+  },
+  <span class="hljs-string">&quot;theia&quot;</span>: {
+    <span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;browser&quot;</span>
+  }
+}
+</code></pre>
+<p>Now we have all pieces together to build and run the application. 
+To run the browser app, enter:</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> browser-app
+yarn start &lt;path to workspace&gt;
+</code></pre>
+<p>and point your browser to <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>. Then choose <em>Edit &gt; Say Hello</em> from the menu: A message &quot;Hello World!&quot; should pop up.</p>
+<h2 id="executing-the-extension-in-electron">Executing the Extension In Electron</h2>
+<p>The <code>package.json</code> for the Electron app looks almost the same, except for the name and the target property.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;electron-app&quot;</span>,
+  ...
+  <span class="hljs-string">&quot;theia&quot;</span>: {
+    <span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;electron&quot;</span>
+  }
+}
+</code></pre>
+<p>Before running the electron app, you additionally have to rebuild some native modules:</p>
+<pre><code class="lang-bash">yarn rebuild:electron
+<span class="hljs-built_in">cd</span> electron-app
+yarn start &lt;path to workspace&gt;
+</code></pre>
+<h2 id="deploying-the-extension">Deploying the Extension</h2>
+<p>If you want to make your extension publicly available, we recommend to publish it to npm. This can be achieved by calling <code>yarn publish</code> from the extension package&apos;s directory. Of course you need a valid account for that. </p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Architecture.html" class="navigation navigation-prev " aria-label="Previous page: Architecture">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Internals.html" class="navigation navigation-next " aria-label="Next page: Internals">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Developing an extension","level":"1.3","depth":1,"next":{"title":"Internals","level":"1.4","depth":1,"path":"Internals.md","ref":"Internals.md","articles":[]},"previous":{"title":"Architecture","level":"1.2","depth":1,"path":"Architecture.md","ref":"Architecture.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"./doc","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Theia","gitbook":"*","description:":"bla und blub"},"file":{"path":"Authoring_Extensions.md","mtime":"2018-02-16T09:30:34.915Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-19T08:08:33.123Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
