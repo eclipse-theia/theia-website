@@ -12,7 +12,8 @@
     "gitbook-cli": "^2.3.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gitbook build",
+    "serve": "gitbook serve"
   },
   "repository": {
     "type": "git",
