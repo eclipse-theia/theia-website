@@ -12,8 +12,8 @@
     "gitbook-cli": "^2.3.2"
   },
   "scripts": {
-    "build": "gitbook build",
-    "serve": "gitbook serve"
+    "build": "gitbook build doc site/doc",
+    "serve": "gitbook serve doc site/doc"
   },
   "repository": {
     "type": "git",
