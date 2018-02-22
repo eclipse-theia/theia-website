@@ -1,3 +1,5 @@
+# Commands and Keybindings
+
 Theia can be extended in a number of different ways. Commands allow packages to contribute unique commands that can then be called by other packages. It's also possible to add keybindings and contexts to these commands, so that they can only be called under certain conditions (window focus, current selection etc.).
 
 ## Adding commands to Theia command registry

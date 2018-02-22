@@ -32,20 +32,6 @@ Here you can find guides and examples for common scenarios:
 - [Run Theia IDE for Web Developers with Docker](https://github.com/theia-ide/theia-apps#theia-docker)
 - [Package a desktop Theia application with Electron](https://github.com/theia-ide/yangster-electron)
 
-## Documentation
-
-There are guides to get familiar with Theia architecture and internals:
-- [**Architecture**](doc/Architecture.md#architecture)
-  - [**Dependency Injection**](doc/Architecture.md#dependency-injection-di)
-  - [**Extensions**](doc/Architecture.md#extensions)
-  - [**Services**](doc/Architecture.md#services)
-  - [**Contributions**](doc/Architecture.md#contribution-points)
-- [**Developing an extension**](doc/Authoring_Extensions.md)
-  - [**Frontend-backend communications**](doc/Internals.md#backendfrontend)
-  - [**Events**](doc/Internals.md#events)
-  - [**Commands**](doc/Commands_Keybindings.md)
-  - [**Preferences**](doc/Preferences.md)
-
 ## Contributing
 
 Read below to learn how to take part in improving Theia:
