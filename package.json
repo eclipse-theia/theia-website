@@ -5,8 +5,7 @@
   "directories": {
     "doc": "doc"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "http-server": "^0.11.1",
     "gitbook-cli": "^2.3.2",
