@@ -14,4 +14,4 @@ To run a local http-server to browser the documentation type
 ```bash
 npm run serve
 ```
-and point your broswer to `localhost:4000`.
+and point your broswer to `localhost:8080`.

@@ -6,21 +6,26 @@
     "doc": "doc"
   },
   "dependencies": {
-    "http-server": "^0.11.1"
   },
   "devDependencies": {
-    "gitbook-cli": "^2.3.2"
+    "http-server": "^0.11.1",
+    "gitbook-cli": "^2.3.2",
+    "concurrently": "^3.5.1",
+    "npm-watch": "^0.3.0"
+  },
+  "watch": {
+    "build": "doc/**/*.*"
   },
   "scripts": {
     "build": "gitbook build doc site/doc",
-    "serve": "gitbook serve doc site/doc"
+    "watch": "npm-watch",
+    "serve": "concurrently \"npm run watch\" \"npx http-server site\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theia-ide/theia-website.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "TypeFox",
   "bugs": {
     "url": "https://github.com/theia-ide/theia-website/issues"
   },
