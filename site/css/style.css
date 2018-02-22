@@ -425,7 +425,7 @@ address {
 /* Grid
 /*-------------------------------------------------------*/
 .section-wrap {
-  padding: 70px 0;
+  padding: 40px 0;
   overflow: hidden;
   background-size: cover;
   background-position: center; }
@@ -434,7 +434,7 @@ address {
   .section-wrap--lg {
     padding: 100px 0; }
   .section-wrap--sm {
-    padding: 65px 0; }
+    padding: 30px 0; }
 
 .container-semi-fluid {
   padding: 0 50px; }
@@ -2087,7 +2087,7 @@ img.mfp-img {
   width: 100%;
   overflow: hidden;
   display: block;
-  padding: 110px 0;
+  padding: 60px 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top; }
@@ -3007,7 +3007,7 @@ header .flex-child.flex-right {
 /* Footer Widgets
 -------------------------------------------------------*/
 .footer__widgets {
-  padding: 100px 0; }
+  padding: 30px 0; }
   .footer__widgets .widget-title {
     font-size: 16px; }
   .footer__widgets a {
