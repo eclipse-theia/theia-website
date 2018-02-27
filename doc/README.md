@@ -10,27 +10,12 @@ Theia is an extensible platform to develop full-fledged multi-language Cloud & D
 
 ![Theia](https://user-images.githubusercontent.com/372735/33182625-0f6575f0-d075-11e7-8ec7-53801e3892bd.jpg)
 
-- [**Scope**](#scope)
-- [**Getting Started**](#getting-started)
-- [**Documentation**](#documentation)
-- [**Contributing**](#contributing)
-- [**Feedback**](#feedback)
-- [**Roadmap**](#roadmap)
-- [**License**](#license)
-
 ## Scope
 - Establish a platform to build IDE-like products
 - Provide the end-user with a full-fledged multi-language IDE  (not just a smart editor)
 - Support equally the paradigm of Cloud IDE and Desktop IDE
 - Provide support for multiple languages via the language and debug server protocols
 - Provide modern GUI with javascript UI libraries
-
-## Getting Started
-Here you can find guides and examples for common scenarios:
-- [Develop a new Theia extension](doc/Authoring_Extensions.md)
-- Develop a new Theia application for [Cloud](examples/browser/package.json) or [Desktop](examples/electron/package.json) with [Theia CLI](dev-packages/cli/README.md)
-- [Run Theia IDE for Web Developers with Docker](https://github.com/theia-ide/theia-apps#theia-docker)
-- [Package a desktop Theia application with Electron](https://github.com/theia-ide/yangster-electron)
 
 ## Contributing
 
@@ -51,40 +36,6 @@ Read below how to engage with Theia community:
 - Star the repository to show your support.
 - Follow Theia on [Twitter](https://twitter.com/theia_ide).
 
-## Roadmap
-During the first half of 2018, the team is focusing on the following features:
- 
- - __Debugging__ 
-   
-   A visual debugger leveraging the Debug Server Protocol defined by the VS Code team.
-
- - __Workbench Improvements__
-
-   Theia's workbench shell will be improved, such that the user can drag and drop widgets from the side bar to the main area and vice-versa.
-
- - __Search__
-
-   Theia already can search files by name (<kbd>CMD</kbd> + <kbd>P</kbd>). In early 2018 a full text search shall be developed and added.
- 
- - __More Git Support__
-
-   In addition to the already present commit staging view, the team will add a git history and git diff view to better visualize the different states of git repositories. 
-
- - __Navigator Improvements__
-
-   The file navigator shall support decorations, which are to be used by the git and the problems view extensions. It will allow to signal on a file whether there are git changes resp. diagnostics.
-
- - __Better Markdown Support__ 
-
-   The Markdown support shall be improved to allow better preview that syncs scrolling. Also rendering plug-ins based on `markdown-it` shall be supported and tools like linters and dead link checkers shall be integrated.
-
- - __Robustness and Improved UX__
-   We will further work on simplifying Theia and its UI / UX, improve the performance and keep working on bug reports that are rolling in.
-
- - __More__
-
-   Any contributors might want to work on additional things. At least this happened in 2017 and is likely to increase with a growing community. :) 
-
 ## License
 
-[Apache-2.0](LICENSE)
+[Apache-2.0](https://github.com/theia-ide/theia/blob/master/LICENSE)

@@ -6,7 +6,7 @@ the DI container.
 
 _At the moment an extension is consumed by adding a dependency to the
 npm-package and then referencing the exposed DI modules in the startup script
-(see [main.ts](../examples/browser/src/client/main.ts)). In the future, we will
+(see [main.ts](https://github.com/theia-ide/theia/blob/master/examples/browser/src/client/main.ts)). In the future, we will
 automate the creation of the application, based on metadata in the
 `package.json` of an extension. Extensions can be installed/uninstalled at
 runtime, which will trigger a recompilation and restart._

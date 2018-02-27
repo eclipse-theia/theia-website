@@ -98,8 +98,8 @@ Theia repository has multiple folders:
 
  - `packages` folder contains runtime packages, as the core package and extensions to it
  - `dev-packages` folder contains devtime packages
-    - [@theia/cli](../dev-packages/cli/README.md) is a command line tool to manage Theia applications
-    - [@theia/ext-scripts](../dev-packages/ext-scripts/README.md) is a command line tool to share scripts between Theia runtime packages
+    - [@theia/cli](https://github.com/theia-ide/theia/tree/master/dev-packages/cli/README.md) is a command line tool to manage Theia applications
+    - [@theia/ext-scripts](https://github.com/theia-ide/theia/tree/master/dev-packages/ext-scripts/README.md) is a command line tool to share scripts between Theia runtime packages
  - `examples` folder contains example applications, both Electron-based and browser-based
  - `doc` folder provides documentation about how Theia works
  - `scripts` folder contains JavaScript scripts used by npm scripts when
@@ -114,7 +114,7 @@ You can download dependencies and build it using:
     yarn
 
 This command downloads dev dependencies, links and builds all packages.
-To learn more and understand precisely what's going on, please look at scripts in [package.json](../package.json).
+To learn more and understand precisely what's going on, please look at scripts in [package.json](https://github.com/theia-ide/theia/tree/master/package.json).
 
 ## Build extension packages individually
 
@@ -128,7 +128,7 @@ From the package:
 
 ## Run the browser-based example application
 
-We can start the application from the [examples/browser](../examples/browser) directory with:
+We can start the application from the [examples/browser](https://github.com/theia-ide/theia/tree/master/examples/browser) directory with:
 
     yarn run start
 
@@ -148,7 +148,7 @@ From the root directory run:
 This command rebuilds native Node.js packages against the version of Node.js
 used by Electron.
 
-It can also be started from the [examples/electron](../examples/electron) directory with:
+It can also be started from the [examples/electron](https://github.com/theia-ide/theia/tree/master/examples/electron) directory with:
 
     yarn run start
 

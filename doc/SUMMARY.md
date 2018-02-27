@@ -5,17 +5,18 @@
 ## Architecture
 
 * [Overview](Architecture.md)
-* [Dependency Injection](Dependency_Injection.md)
 * [Extensions](Extensions.md)
-* [Services](Services.md)
-* [Contributions](Contributions.md)
+* [Services and Contributions](Services_and_Contributions.md)
 
 ## Using Theia
-* [Developing an extension](Authoring_Extensions.md)
+* [Composing a Theia Application](Authoring_Applications.md)
+* [Authoring an Extension](Developing_Extensions.md)
+* [Developing Theia](Developing.md)
+* [Testing](Testing.md)
+* [Publishing](Publishing.md)
 
-## Important APIs
+## Concepts APIs
 
-* [Contribution Providers](Contribution_Providers.md)
 * [Commands and Keybindings](Commands_Keybindings.md)
 * [Preferences](Preferences.md)
 * [Events](Events.md)
