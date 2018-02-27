@@ -387,8 +387,10 @@ p {
   margin: 0 0 10px; }
 
 .lead {
-  font-size: 18px;
-  line-height: 30px; }
+  font-size: 22px;
+  line-height: 34px; 
+  color: #5a6472
+}
 
 address {
   font-style: normal; }

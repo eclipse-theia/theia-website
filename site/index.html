@@ -83,12 +83,19 @@
                 </li>
                 <li>
                   <a href="doc/index.html">Documentation</a>
-                </li>            
+                </li> 
+                <li>
+                  <iframe src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="24px" style="padding-top:4px; padding-left: 17px"></iframe>          
+                </li>
+                <li>
+                  <iframe src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=fork&count=true" frameborder="0" scrolling="0" width="90px" height="24px" style="padding-top:4px; padding-right: 0px"></iframe>
+                </li>
               </ul> <!-- end menu -->
-
+              <!--
               <div class="nav__btn-holder">
                 <a href="https://github.com/theia-ide/theia" class="btn btn--sm btn--color rounded"><span>View on GitHub</span></a>
               </div>
+            -->
             </nav> <!-- end nav-wrap -->         
         
           </div> <!-- end flex-parent -->
@@ -109,10 +116,13 @@
             <div class="col-md-5">
               <h1 class="hero__title hero--boxed">Theia -</br>A Cloud and Desktop</br>IDE Framework</h1>
               <div class="hero__btn-holder mt-30">
-                <div class="play-btn__wrap">
+                <!--
+                  <div class="play-btn__wrap">
                   <a href="https://www.youtube.com/watch?v=nVzVohG304A?autoplay=1" class="play-btn play-btn--sm play-btn--white single-video-lightbox"></a>
                   <span class="play-btn__text">How it Works</span>
-                </div>                
+                </div>  
+              -->
+                <a href="https://github.com/theia-ide/theia" class="btn btn--sm btn--color rounded"><span>View on GitHub</span></a>
               </div>                  
             </div>
             <div class="col-md-7 text-right hidden-sm hidden-xs">
@@ -130,7 +140,7 @@
           <div class="page-title__outer">
             <div class="page-title__inner">
               <div class="page-title__holder">
-                <h1 class="page-title__title">Theia - VSCode in the Cloud</h1>
+                <!--<h1 class="page-title__title">Theia - VSCode in the Cloud</h1>-->
                 <p class="page-title__subtitle lead">
                   Theia is an extensible open-source platform to develop full-fledged, 
                   multi-language IDE-like products for the cloud and the desktop 
@@ -144,6 +154,47 @@
 
       <!-- Feature -->
       <a name="features" />
+      <section class="section-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="feature">
+                <a href="#" class="feature__icon-holder">
+                  <i class="ui-computer-network feature__icon feature__icon--gradient"></i>
+                </a>
+                <div class="feature__text">
+                  <h3 class="feature__title">Cloud and Desktop IDE</h3>
+                  <p class="feature__paragraph feature__paragraph--padding-right">
+                    Theia is entirely written in TypeScript and clearly separates the 
+                    UI frontend from the backend. The same code can be run as 
+                    thin-client Cloud IDE or as a classical 
+                    <a href="http://typefox.io/theia-vs-code-in-the-cloud">Desktop application using 
+                    Electron</a> with either local or remote backends.
+                  </p>
+                </div>
+              </div> <!-- end feature item -->  
+            </div>   
+            <div class="col-sm-6 mb-sm-40">
+              <div class="feature">
+                <a href="#" class="feature__icon-holder">
+                  <i class="ui-cog feature__icon feature__icon--gradient"></i>
+                </a>
+                <div class="feature__text">
+                  <h3 class="feature__title">Extension System</h3>
+                  <p class="feature__paragraph feature__paragraph--padding-right">
+                      A Theia app consists of multiple extensions. 
+                      <a href="https://github.com/theia-ide/theia-apps">Composing 
+                      a custom IDE-like product</a> is as easy as listing the all needed 
+                      extensions in a package.json file. And you can add new 
+                      functionality by <a href="http://www.theia-ide.org/doc/Authoring_Extensions.html">
+                      implementing your own extensions</a>. 
+                  </p>
+                </div>
+              </div> <!-- end feature item -->
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="section-wrap">
         <div class="container">
           <div class="row">
@@ -164,67 +215,23 @@
                 </div>
               </div> <!-- end feature item -->
             </div>
-
             <div class="col-sm-6">
               <div class="feature">
                 <a href="#" class="feature__icon-holder">
-                  <i class="ui-computer-network feature__icon feature__icon--gradient"></i>
+                  <i class="ui-layers feature__icon feature__icon--gradient"></i>
                 </a>
                 <div class="feature__text">
-                  <h3 class="feature__title">Cloud and Desktop IDE</h3>
+                  <h3 class="feature__title">LSP and DSP</h3>
                   <p class="feature__paragraph feature__paragraph--padding-right">
-                    Theia is entirely written in TypeScript and clearly separates the 
-                    UI frontend from the backend. The same code can be run as 
-                    thin-client Cloud IDE or as a classical 
-                    <a href="http://typefox.io/theia-vs-code-in-the-cloud">Desktop application using 
-                    Electron</a> with either local or remote backends.
+                      Built on the <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>, 
+                      Theia benefits from a growing ecosystem of projects to deliver intelligent editing support 
+                      for many programming languages. The Debug Server Protocol brings 
+                      the same for debugging.
                   </p>
                 </div>
               </div> <!-- end feature item -->  
-            </div>    
-          </div>
-        </div>
-      </section>
-      <section class="section-wrap">
-        <div class="container">
-          <div class="row">
-              <div class="col-sm-6 mb-sm-40">
-                <div class="feature">
-                  <a href="#" class="feature__icon-holder">
-                    <i class="ui-cog feature__icon feature__icon--gradient"></i>
-                  </a>
-                  <div class="feature__text">
-                    <h3 class="feature__title">Extension System</h3>
-                    <p class="feature__paragraph feature__paragraph--padding-right">
-                        A Theia app consists of multiple extensions. 
-                        <a href="https://github.com/theia-ide/theia-apps">Composing 
-                        a custom IDE-like product</a> is as easy as listing the all needed 
-                        extensions in a package.json file. And you can add new 
-                        functionality by <a href="http://www.theia-ide.org/doc/Authoring_Extensions.html">
-                        implementing your own extensions</a>. 
-                    </p>
-                  </div>
-                </div> <!-- end feature item -->
-              </div>
-  
-              <div class="col-sm-6">
-                <div class="feature">
-                  <a href="#" class="feature__icon-holder">
-                    <i class="ui-layers feature__icon feature__icon--gradient"></i>
-                  </a>
-                  <div class="feature__text">
-                    <h3 class="feature__title">LSP and DSP</h3>
-                    <p class="feature__paragraph feature__paragraph--padding-right">
-                        Built on the <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>, 
-                        Theia benefits from a growing ecosystem of projects to deliver intelligent editing support 
-                        for many programming languages. The Debug Server Protocol brings 
-                        the same for debugging.
-                    </p>
-                  </div>
-                </div> <!-- end feature item -->  
-              </div>
-  
             </div>
+          </div>
         </div>
       </section>
 
