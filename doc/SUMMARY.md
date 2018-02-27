@@ -10,7 +10,7 @@
 
 ## Using Theia
 * [Composing a Theia Application](Authoring_Applications.md)
-* [Authoring an Extension](Developing_Extensions.md)
+* [Authoring an Extension](Authoring_Extensions.md)
 * [Developing Theia](Developing.md)
 * [Testing](Testing.md)
 * [Publishing](Publishing.md)

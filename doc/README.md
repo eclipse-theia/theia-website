@@ -20,8 +20,8 @@ Theia is an extensible platform to develop full-fledged multi-language Cloud & D
 ## Contributing
 
 Read below to learn how to take part in improving Theia:
-- Fork the repository and [run the examples from source](doc/Developing.md#quick-start)
-- Get familiar with [the development workflow](doc/Developing.md), [Coding Guidelines](https://github.com/theia-ide/theia/wiki/Coding-Guidelines), [Code of Conduct](CODE_OF_CONDUCT.md) and [learn how to sign your work](CONTRIBUTING.md#sign-your-work)
+- Fork the repository and [run the examples from source](Developing.md#quick-start)
+- Get familiar with [the development workflow](Developing.md), [Coding Guidelines](https://github.com/theia-ide/theia/wiki/Coding-Guidelines), [Code of Conduct](https://github.com/theia-ide/theia/tree/master/CODE_OF_CONDUCT.md) and [learn how to sign your work](https://github.com/theia-ide/theia/tree/master/CONTRIBUTING.md#sign-your-work)
 - Find an issue to work on and submit a pull request
   - First time contributing to open source? Pick a [good first issue](https://github.com/theia-ide/theia/labels/good%20first%20issue) to get you familiar with GitHub contributing process.
   - First time contributing to Theia? Pick a [beginner friendly issue](https://github.com/theia-ide/theia/labels/beginners) to get you familiar with codebase and our contributing process.
