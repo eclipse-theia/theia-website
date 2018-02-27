@@ -1,0 +1,21 @@
+language: node_js
+node_js: '8'
+git:
+  depth: 1
+cache:
+  directories:
+  - node_modules
+script:
+  - npm install
+  - npm run build
+  - npm run do-serve &
+  - npm run do-check 
+after-script:
+  - kill -9 `jobs -p "%npm run do-serve"`
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/c42ddc125fe6bbfccb48
+    on_success: change
+    on_failure: always
+    on_start: never

@@ -10,7 +10,8 @@
     "http-server": "^0.11.1",
     "gitbook-cli": "^2.3.2",
     "concurrently": "^3.5.1",
-    "npm-watch": "^0.3.0"
+    "npm-watch": "^0.3.0",
+    "broken-link-checker": "^0.7.7"
   },
   "watch": {
     "build": "doc/**/*.*"
@@ -18,7 +19,9 @@
   "scripts": {
     "build": "gitbook build doc site/doc",
     "watch": "npm-watch",
-    "serve": "concurrently \"npm run watch\" \"npx http-server site\""
+    "do-check": "blc http://localhost:8080 -ro --exclude http://localhost:3000 --exclude https://localhost:3000",
+    "do-serve": "npx http-server site",
+    "serve": "concurrently \"npm run watch\" \"npm run do-serve\""
   },
   "repository": {
     "type": "git",
