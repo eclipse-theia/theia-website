@@ -3,7 +3,6 @@ node_js: '8'
 git:
   depth: 1
 script:
-  - npm install
   - npm run build
   - npm run do-serve &
   - npm run do-check 
