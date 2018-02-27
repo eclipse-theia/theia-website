@@ -1,6 +1,6 @@
 # Theia's Website
 
-The website and online documentation for the [Theia IDE Framework](https://github.com/theia-ide/theia).
+The source for the [website](http://www.theia-ide.org) and [online documentation](http://www.theia-ide.org/doc) for the [Theia IDE Framework](https://github.com/theia-ide/theia).
 
 ## Documentation Generation
 
@@ -14,4 +14,14 @@ To run a local http-server to browser the documentation type
 ```bash
 npm run serve
 ```
-and point your broswer to `localhost:8080`.
+and point your broswer to `localhost:8080`. The contents are automatically built and updated.
+
+When the server is running, you can check for dangling links via
+```bash
+npm run check
+```
+
+## CI
+
+The website is automatically build at and deployed to netlify. 
+A [Travis build](https://travis-ci.org/theia-ide/theia-website) checks for missing links ant posts build results to [Gitter](https://gitter.im/theia-ide/theia).

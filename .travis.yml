@@ -5,7 +5,7 @@ git:
 script:
   - npm run build
   - npm run do-serve &
-  - npm run do-check 
+  - npm run check 
 after-script:
   - kill -9 `jobs -p "%npm run do-serve"`
 notifications:

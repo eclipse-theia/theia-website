@@ -19,7 +19,7 @@
   "scripts": {
     "build": "gitbook build doc site/doc",
     "watch": "npm-watch",
-    "do-check": "blc http://localhost:8080 -ro --exclude http://localhost:3000 --exclude https://localhost:3000",
+    "check": "blc http://localhost:8080 -ro --exclude http://localhost:3000 --exclude https://localhost:3000",
     "do-serve": "npx http-server site",
     "serve": "concurrently \"npm run watch\" \"npm run do-serve\""
   },
