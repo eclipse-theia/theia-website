@@ -9,7 +9,7 @@
 * [Services and Contributions](Services_and_Contributions.md)
 
 ## Using Theia
-* [Composing a Theia Application](Authoring_Applications.md)
+* [Composing a Theia Application](Composing_Applications.md)
 * [Authoring an Extension](Authoring_Extensions.md)
 * [Developing Theia](Developing.md)
 * [Testing](Testing.md)
