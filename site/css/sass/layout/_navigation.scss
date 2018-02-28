@@ -51,6 +51,12 @@
       }
     }
 
+    & > li > .github-button {
+      margin-top: 4px;
+      height: 20px;
+      width: 90px;
+    }
+
     & > .active > a {
       color: $secondary-color;
     }
@@ -335,10 +341,10 @@ header .flex-child.flex-right {
     }
 
     .nav__menu > li > a {
-      color: #fff;
+      color: #000;
 
       &:hover {
-        color: rgba(#fff, .9);
+        color: rgba(#000, .9);
       }
     }
 
@@ -385,7 +391,7 @@ header .flex-child.flex-right {
   padding-left: 30px;
 
   .btn--transparent {
-    border-color: rgba(#fff,.55);
+    border-color: rgba(#000,.55);
 
     &:hover {
       border-color: transparent;

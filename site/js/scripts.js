@@ -12,6 +12,7 @@
     $(window).trigger("resize");
     initScrollReveal();
 
+    new Cocoen(document.querySelector('.cocoen'));
   });
 
 

@@ -102,6 +102,12 @@ $browser-context: 15;
   }
 }
 
+@mixin bp-lg-up {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
 @mixin bp-md-down {
   @media only screen and (max-width: 991px) {
     @content;
