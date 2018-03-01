@@ -18,7 +18,7 @@
 /* Footer Widgets
 -------------------------------------------------------*/
 .footer__widgets {
-  padding: 100px 0;
+  padding: 50px 0;
 
   .widget-title {
     font-size: 16px;
@@ -31,12 +31,6 @@
       color: $heading-color;
     }
   }
-
-  @include bp-md-down {
-    .row > div:not(:last-child) {
-      margin-bottom: 60px;
-    }
-  }  
 }
 
 .widget-title {

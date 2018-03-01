@@ -14,6 +14,7 @@
   <!-- Css -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/font-icons.css" />
+  <link rel="stylesheet" href="css/cocoen.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Favicons -->
@@ -60,7 +61,6 @@
               <div class="logo-wrap">
                 <a href="index.html" class="logo__link">
                   <img class="logo logo--dark" src="img/logo-dark.png" alt="logo">
-                  <img class="logo logo--light" src="img/logo-light.png" alt="logo">
                 </a>
               </div>
 
@@ -85,10 +85,10 @@
                   <a href="doc/index.html">Documentation</a>
                 </li> 
                 <li>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="24px" style="padding-top:4px; padding-left: 17px"></iframe>          
+                  <iframe class="github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameborder="0" scrolling="0"></iframe>
                 </li>
                 <li>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=fork&count=true" frameborder="0" scrolling="0" width="90px" height="24px" style="padding-top:4px; padding-right: 0px"></iframe>
+                  <iframe class="github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=fork&count=true" frameborder="0" scrolling="0"></iframe>
                 </li>
               </ul> <!-- end menu -->
               <!--
@@ -108,155 +108,209 @@
     <div class="content-wrapper oh">
 
       <!-- Hero -->
-      <section class="hero bg-img bg-gradient white-text" style="background-image: url(img/hero/hero_1.jpg);">
+      <section class="hero bg-img" style="background-image: url(img/hero/hero_1.jpg);">
 
-        <div class="container  hero__container container-full-height">
+        <div class="container hero__container container-full-height">
 
           <div class="row hero__outer flex-vertical-align-center">
-            <div class="col-md-5">
-              <h1 class="hero__title hero--boxed">Theia -</br>A Cloud and Desktop</br>IDE Framework</h1>
-              <div class="hero__btn-holder mt-30">
-                <!--
-                  <div class="play-btn__wrap">
-                  <a href="https://www.youtube.com/watch?v=nVzVohG304A?autoplay=1" class="play-btn play-btn--sm play-btn--white single-video-lightbox"></a>
-                  <span class="play-btn__text">How it Works</span>
-                </div>  
-              -->
+            <div class="col-md-5 hero__leftpane col-sm-12 col-xs-12">
+              <img class="hero__title" max-wdith="200px" src="img/logo-dark.svg" alt="logo">
+              <h1 class="hero__title">Cloud &amp; Desktop IDE</h1>
+              <div class="hero__title hero__btn-holder mt-30">
                 <a href="https://github.com/theia-ide/theia" class="btn btn--sm btn--color rounded"><span>View on GitHub</span></a>
-              </div>                  
+              </div>
             </div>
             <div class="col-md-7 text-right hidden-sm hidden-xs">
-              <img src="img/hero/app.jpg" alt="">
+                <div class="cocoen">
+                    <img src="img/hero/app-1.png" alt="theia browser">
+                    <img src="img/hero/app-2.png" alt="theia desktop">
+                  </div>
             </div>
           </div>              
          
         </div>
-      </section> <!-- end hero -->
-      
-      <!-- Page Title -->
-      <section class="page-title bottom-divider text-center">
-        <div class="container">
 
-          <div class="page-title__outer">
-            <div class="page-title__inner">
-              <div class="page-title__holder">
-                <!--<h1 class="page-title__title">Theia - VSCode in the Cloud</h1>-->
-                <p class="page-title__subtitle lead">
-                  Theia is an extensible open-source platform to develop full-fledged, 
-                  multi-language IDE-like products for the cloud and the desktop 
-                  using state-of-the-art web technologies.</p>
-              </div>              
+        <section class="partners text-center" style="background-color: rgba(256, 256, 256, 0.8);">
+            <div class="container">
+              <div class="row">
+                  <div class="col-sm-12 hidden-xs">
+                      Contributors
+                    </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4ths col-xs-3 col-xxs-6">
+                  <a href="https://typefox.io">
+                    <img src="img/typefox_logo.png" alt="Typefox.io">
+                  </a>
+                </div>
+                <div class="col-sm-4ths col-xs-3 col-xxs-6">
+                  <a href="https://www.ericsson.com">
+                    <img src="img/ericsson_logo.svg" alt="Ericsson">
+                  </a>
+                </div>
+                <div class="col-sm-4ths col-xs-3 col-xxs-6">
+                  <a href="https://www.redhat.com">
+                    <img src="img/red_hat_logo.svg" alt="RedHat">
+                  </a>
+                </div>
+                <div class="col-sm-4ths col-xs-3 col-xxs-6">
+                  <a href="https://www.ibm.com">
+                    <img src="img/ibm_logo.svg" alt="IBM">
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>          
-          
-        </div>
-      </section> <!-- end page title -->
+          </section>
 
-      <!-- Feature -->
+          <!-- Feature -->
       <a name="features" />
-      <section class="section-wrap">
+      <section class="section-wrap" style="background-color: #fff;">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="feature">
                 <a href="#" class="feature__icon-holder">
                   <i class="ui-computer-network feature__icon feature__icon--gradient"></i>
                 </a>
                 <div class="feature__text">
-                  <h3 class="feature__title">Cloud and Desktop IDE</h3>
+                  <h3 class="feature__title">Cloud and Desktop</h3>
                   <p class="feature__paragraph feature__paragraph--padding-right">
                     Theia is entirely written in TypeScript and clearly separates the 
-                    UI frontend from the backend. The same code can be run as 
-                    thin-client Cloud IDE or as a classical 
-                    <a href="http://typefox.io/theia-vs-code-in-the-cloud">Desktop application using 
-                    Electron</a> with either local or remote backends.
+                    UI frontend from the backend. The frontend runs in modern 
+                    browsers or as a 
+                    <a href="http://typefox.io/theia-vs-code-in-the-cloud">Desktop app using 
+                    Electron</a> with either local or remote (cloud) backends.
                   </p>
                 </div>
               </div> <!-- end feature item -->  
             </div>   
-            <div class="col-sm-6 mb-sm-40">
+            <div class="col-sm-4 mb-sm-40">
               <div class="feature">
                 <a href="#" class="feature__icon-holder">
                   <i class="ui-cog feature__icon feature__icon--gradient"></i>
                 </a>
                 <div class="feature__text">
-                  <h3 class="feature__title">Extension System</h3>
+                  <h3 class="feature__title">Extensible</h3>
                   <p class="feature__paragraph feature__paragraph--padding-right">
-                      A Theia app consists of multiple extensions. 
+                      Theia applications consist of extensions.
                       <a href="https://github.com/theia-ide/theia-apps">Composing 
-                      a custom IDE-like product</a> is as easy as listing the all needed 
-                      extensions in a package.json file. And you can add new 
+                      a custom IDE-like product</a> is as easy as listing all needed 
+                      extensions in a package.json file. Adding new 
                       functionality by <a href="http://www.theia-ide.org/doc/Authoring_Extensions.html">
-                      implementing your own extensions</a>. 
+                      implementing your own extensions</a> is easy. 
                   </p>
                 </div>
               </div> <!-- end feature item -->
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="section-wrap">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6 mb-sm-40">
-              <div class="feature">
-                <a href="#" class="feature__icon-holder">
-                  <img src="img/vscode.svg" class="feature__icon feature__icon--gradient" />
-                </a>
-                <div class="feature__text">
-                  <h3 class="feature__title">Like VSCode</h3>
-                  <p class="feature__paragraph feature__paragraph--padding-right">
-                    Theia not only reuses the state-of-the-art editor widget Monaco; 
-                    it also provides a terminal, a file navigator, a command palette, 
-                    sophisticated git integration and many more things, yielding an 
-                    <a href="http://typefox.io/theia-vs-code-in-the-cloud">IDE experience 
-                    like Visual Studio Code</a>. 
-                  </p>
-                </div>
-              </div> <!-- end feature item -->
-            </div>
-            <div class="col-sm-6">
-              <div class="feature">
-                <a href="#" class="feature__icon-holder">
-                  <i class="ui-layers feature__icon feature__icon--gradient"></i>
-                </a>
-                <div class="feature__text">
-                  <h3 class="feature__title">LSP and DSP</h3>
-                  <p class="feature__paragraph feature__paragraph--padding-right">
-                      Built on the <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>, 
-                      Theia benefits from a growing ecosystem of projects to deliver intelligent editing support 
-                      for many programming languages. The Debug Server Protocol brings 
-                      the same for debugging.
-                  </p>
-                </div>
-              </div> <!-- end feature item -->  
+            <div class="col-sm-4 mb-sm-40">
+                <div class="feature">
+                  <a href="#" class="feature__icon-holder">
+                    <img src="img/vscode.svg" class="feature__icon feature__icon--gradient" />
+                  </a>
+                  <div class="feature__text">
+                    <h3 class="feature__title">VS Code Powered</h3>
+                    <p class="feature__paragraph feature__paragraph--padding-right">
+                      Theia provides the <a href="http://typefox.io/theia-vs-code-in-the-cloud">VS Code experience in the browser</a>. 
+                      Developers familiar with Microsoft's great editor will find many familiar features and concepts, to minimze the gap 
+                      when switching between desktop and cloud environment. 
+                    </p>
+                  </div>
+                </div> <!-- end feature item -->
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Footer -->
-      <footer class="footer bg-img bg-overlay white-text relative section-wrap" style="background-image: url(img/newsletter/newsletter_bg.jpg);">
-        <div class="container">
-          <div class="footer__widgets">
-            <div class="row">
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="footer__socials">
-                  <div class="social-icons social-icons--nobase">
-                    <a href="https://twitter.com/theia_ide" target="_blank"><i class="ui-twitter"></i></a>
+        <section style="background-color: rgb(0,0,0,0.5);">
+            <div class="container">
+              <div class="page-title__outer">
+                <div class="page-title__inner">
+                  <div class="page-title__holder">
+                    <p class="page-title__title lead">
+                      <e>Theia</e> is an extensible open-source framework to develop 
+                      multi-language IDEs for the cloud and desktop 
+                      using state-of-the-art web technologies.</p>
+                  </div>              
+                </div>
+              </div>        
+            </div>
+          </section>
+      </section> <!-- end hero -->
+
+
+      
+      <section class="section-wrap promo-section bottom-divider pb-100">
+          <div class="container ">
+            <div class="row flex-parent flex-vertical-align-center flex-sm-collapse">
+              <div class="col-md-5 col-sm-12">
+                <div class="promo-section__description">
+                  <h2 class="promo-section__title">Supports JavaScript, Java, Python and many more</h2>
+                  <p class="lead">Built on the <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>, 
+                    Theia benefits from a growing ecosystem of <e>over 60 available language servers</e>, delivering intelligent editing support 
+                    for all major programming languages.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-md-offset-1 col-sm-12">
+                <img src="img/completion.gif" alt="" class="promo-section__img">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-wrap promo-section bottom-divider pb-100">
+            <div class="container ">
+              <div class="row flex-parent flex-vertical-align-center flex-sm-collapse">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <img src="img/terminal.gif" alt="" class="promo-section__img">
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-sm-12">
+                  <div class="promo-section__description">
+                    <h2 class="promo-section__title">Integrated Terminal</h2>
+                    <p class="lead">Theia integrates a full featured terminal, that reconnects on browser reload keeping the full history.</p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="widget widget-links text-center">
+            </div> 
+          </section>
+        
+          <section class="section-wrap promo-section bottom-divider pb-100">
+              <div class="container ">
+                <div class="row flex-parent flex-vertical-align-center flex-sm-collapse">
+                  <div class="col-md-5 col-sm-12">
+                    <div class="promo-section__description">
+                      <h2 class="promo-section__title">Flexible Layout</h2>
+                      <p class="lead">Theia's shell is based on <a href="https://phosphorjs.github.io/">PhosporJS</a>, 
+                        which provides a solid foundation for dragable dock layouts.</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-md-offset-1 col-sm-12">
+                    <img src="img/layout.gif" alt="" class="promo-section__img">
+                  </div>
+                </div>
+              </div>
+            </section>
+      <!-- Footer -->
+      <footer class="footer relative" style="background-image: url(img/hero/hero_1.jpg); background-position-y: 1500px;">
+        <section style="background-color: rgb(0,0,0,0.5)">
+          <div class="container">
+            <div class="footer__widgets">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <div class="footer__socials">
+                      <a href="https://twitter.com/theia_ide?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="false">Follow @Theia_IDE</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <div class="widget widget-links text-center">
                     <span class="copyright">
                       &copy; 2018 by <a href="http://www.typefox.io" target="_blank">TypeFox</a>
                     </span>
+                  </div> 
                 </div> 
               </div> 
             </div> 
           </div> 
-        </div> 
+        </section>
       </footer> <!-- end footer -->
       <div id="back-to-top">
         <a href="#top"><i class="ui-arrow-up"></i></a>
@@ -268,6 +322,8 @@
   <!-- jQuery Scripts -->
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/cocoen-jquery.min.js"></script>
+  <script type="text/javascript" src="js/cocoen.min.js"></script>
   <script type="text/javascript" src="js/plugins.js"></script>  
   <script type="text/javascript" src="js/scripts.js"></script>
     
