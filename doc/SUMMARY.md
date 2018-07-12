@@ -11,6 +11,7 @@
 ## Using Theia
 * [Composing a Theia Application](Composing_Applications.md)
 * [Authoring an Extension](Authoring_Extensions.md)
+* [Authoring Plug-ins](Authoring_Plugins.md)
 
 ## Concepts APIs
 
