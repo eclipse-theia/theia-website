@@ -9,7 +9,7 @@
 * [Services and Contributions](Services_and_Contributions.md)
 
 ## Using Theia
-* [Composing a Theia Application](Composing_Applications.md)
+* [Build your own IDE](Composing_Applications.md)
 * [Authoring an Extension](Authoring_Extensions.md)
 
 ## Concepts APIs
