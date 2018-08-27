@@ -47,6 +47,8 @@ Instructions for getting Theia are available from [Theia repository](https://git
 
 We are going to create a new project and for this we will create a folder named `theia-hello-world-plugin` that will contain the source code of the project.
 
+This new folder can be created in any directories, it is independent of Theia source code.
+
 To ease the setup of such a repository, a [Yeoman code generator](https://www.npmjs.com/package/@theia/generator-plugin) exists and can be installed to scaffold the project.
 
 Generator can be installed and executed with the following commands. Note that these commands can be entered from a new terminal inside your running Theia instance.
