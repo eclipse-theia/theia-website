@@ -52,14 +52,14 @@ To ease the setup of such a repository, a [Yeoman code generator](https://www.np
 Generator can be installed and executed with the following commands. Note that these commands can be entered from a new terminal inside your running Theia instance.
 
 ```bash
-npm install -g yo @theia/generator-theia-plugin
+npm install -g yo @theia/generator-plugin
 mkdir theia-hello-world-plugin
 cd theia-hello-world-plugin
 yo @theia/plugin
 ```
 
 In the previous commands:
-- `npm install -g yo @theia/generator-theia-plugin` command install globally the theia generator.
+- `npm install -g yo @theia/generator-plugin` command install globally the Theia generator.
 - `yo @theia/plugin` is calling the yeoman generator asking to use for templating the Theia's plug-in generator.
 
 
