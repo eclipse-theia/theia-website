@@ -1053,9 +1053,9 @@ label {
       background-color: #fa9529;
       border-color: transparent; }
   .btn--color {
-    background-color: #fa9529; }
+    background-color: #1b95e0; }
     .btn--color:hover, .btn--color:focus {
-      background-color: #f98910; }
+      background-color: #1090d0; }
   .btn--secondary-color {
     background-color: #3f48c4; }
     .btn--secondary-color:hover, .btn--secondary-color:focus {
@@ -2104,7 +2104,7 @@ img.mfp-img {
 /*-------------------------------------------------------*/
 /* Sliders
 /*-------------------------------------------------------*/
-/* 
+/*
  *  Core Owl Carousel CSS File
  *  v1.3.3
  */
