@@ -1,3 +1,6 @@
+[![Gitpod - Code Now](https://img.shields.io/badge/Gitpod-code%20now-blue.svg?longCache=true)](https://gitpod.io#https://github.com/theia-ide/theia-website)
+[![Build Status](https://travis-ci.org/theia-ide/typescript-language-server.svg?branch=master)](https://travis-ci.org/theia-ide/theia-website)
+
 # Theia's Website
 
 The source for the [website](http://www.theia-ide.org) and [online documentation](http://www.theia-ide.org/doc) for the [Theia IDE Framework](https://github.com/theia-ide/theia).
@@ -23,5 +26,5 @@ npm run check
 
 ## CI
 
-The website is automatically build at and deployed to netlify. 
+The website is automatically build at and deployed to netlify.
 A [Travis build](https://travis-ci.org/theia-ide/theia-website) checks for missing links ant posts build results to [Gitter](https://gitter.im/theia-ide/theia).
