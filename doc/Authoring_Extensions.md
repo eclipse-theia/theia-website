@@ -37,7 +37,7 @@ To ease the setup of such a repository we have created a [code generator](https:
 npm install -g yo generator-theia-extension
 mkdir theia-hello-world-extension
 cd theia-hello-world-extension
-yo theia-extension hello-world
+yo theia-extension hello-world-extension
 ```
 
 Let's have look at the generated code now. The root `package.json` defines the workspaces, the dependency to `lerna` and some scripts to rebuild the native packages for browser or electron.
@@ -77,7 +77,7 @@ We also got a `lerna.json` file to configure `lerna`:
 
 ## Implementing the Extension
 
-Next let's look at the generated code for our extension in the `hello-world-extension` folder. Let’s start with the `package.json`. It specifies the package’s metadata, its dependencies to the (bleeding edge) Theia core package, a few scripts and dev dependencies, and the theia-extensions.
+Next let's look at the generated code for our extension in the `hello-world` folder. Let’s start with the `package.json`. It specifies the package’s metadata, its dependencies to the (bleeding edge) Theia core package, a few scripts and dev dependencies, and the theia-extensions.
 
 The keyword `theia-extension` is important: It allows a Theia app to identify and install Theia extensions from `npm`.
 
