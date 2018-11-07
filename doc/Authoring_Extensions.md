@@ -37,7 +37,7 @@ To ease the setup of such a repository we have created a [code generator](https:
 npm install -g yo generator-theia-extension
 mkdir theia-hello-world-extension
 cd theia-hello-world-extension
-yo theia-extension hello-world
+yo theia-extension hello-world-extension
 ```
 
 Let's have look at the generated code now. The root `package.json` defines the workspaces, the dependency to `lerna` and some scripts to rebuild the native packages for browser or electron.
