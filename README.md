@@ -27,4 +27,4 @@ npm run check
 ## CI
 
 The website is automatically build at and deployed to netlify.
-A [Travis build](https://travis-ci.org/theia-ide/theia-website) checks for missing links ant posts build results to [Gitter](https://gitter.im/theia-ide/theia).
+A [Travis build](https://travis-ci.org/theia-ide/theia-website) checks for missing links.
