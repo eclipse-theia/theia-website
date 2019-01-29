@@ -4,7 +4,7 @@ This guide will teach you how to build your own Theia application.
 
 ## Requirements
 
-You’ll need node in version 8:
+You'll need node in version 8:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
@@ -102,3 +102,42 @@ In the terminal, you should see that Theia application is up and listening:
 <img src="https://user-images.githubusercontent.com/3082655/44617667-1c053000-a867-11e8-8eba-750daeb295a9.png" height="182px" />
 
 Open the application by entering the printed address in a new browser page.
+
+## Troubleshooting
+
+### Building native dependencies behind a proxy
+
+If you run the `yarn` command behind a proxy you may encounter issues in building native dependencies (like `oniguruma`), in the last part of the build, with the following error stack:
+
+    [4/4] Building fresh packages...
+    [1/9]  XXXXX
+    [2/9]  XXXXX
+    [3/9]  XXXXX
+    [4/9]  XXXXX
+    error /theiaide/node_modules/XXXXX: Command failed.
+    Exit code: 1
+    Command: node-gyp rebuild
+    Arguments:
+    Directory: /theiaide/node_modules/XXXXX
+    Output:
+    gyp info it worked if it ends with ok
+    gyp info using node-gyp@3.8.0
+    gyp info using node@8.15.0 | linux | x64
+    gyp http GET https://nodejs.org/download/release/v8.15.0/node-v8.15.0-headers.tar.gz
+    gyp WARN install got an error, rolling back install
+    gyp ERR! configure error
+    gyp ERR! stack Error: read ECONNRESET
+    gyp ERR! stack at TLSWrap.onread (net.js:622:25)
+    gyp ERR! System Linux 3.10.0-862.11.6.el7.x86_64
+    gyp ERR! command "/usr/bin/node" "/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
+    gyp ERR! cwd /theiaide/node_modules/XXXXX
+    gyp ERR! node -v v8.15.0
+    
+This happens because node-gyp does not rely on system/NPM proxy settings. In that case, download the `node-headers` file using the link provided in the error stack 
+(in the example above `https://nodejs.org/download/release/v8.15.0/node-v8.15.0-headers.tar.gz`) and run the build with the following command:
+
+     npm_config_tarball=/path/to/node-v8.15.0-headers.tar.gz yarn install
+     
+
+    
+
