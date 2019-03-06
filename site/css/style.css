@@ -2060,6 +2060,12 @@ img.mfp-img {
       margin-top: 30px;
       font-size: 28px; } }
 
+.promo-section__video {
+  height: initial;
+  width: initial;
+  max-width: 100%;
+}
+
 /*-------------------------------------------------------*/
 /* Page Title
 /*-------------------------------------------------------*/

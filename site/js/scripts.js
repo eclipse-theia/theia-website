@@ -13,9 +13,6 @@
     initScrollReveal();
 
     new Cocoen(document.querySelector('.cocoen'));
-    
-    $('#layoutgif').attr('src','img/layout.gif');
-    $('#completiongif').attr('src','img/completion.gif');
   });
 
 
