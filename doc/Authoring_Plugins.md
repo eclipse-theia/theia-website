@@ -32,7 +32,7 @@ A Theia app is composed of a core providing a set of widgets, commands, handlers
 Theia defines a runtime API allowing plug-ins to customize the IDE and add their behaviour to various aspects of the application. 
 
 In Theia, a plug-in has access to the API through an object named `theia` which is available in all plug-ins.
-[More details on API](https://github.com/theia-ide/theia/blob/master/packages/plugin/API.md).
+[More details on API](https://github.com/theia-ide/theia/blob/master/packages/plugin/README.md).
 
 There are two natures of plug-ins:
  - Backend plug-in. If you're familiar with VS Code extensions, it's very close. The plug-in's code is running in its own process on the server side. API is called and it's the API that will send some actions on user's browser/UI to register new commands, etc. All the callbacks are executed on the server side on a dedicated process.
@@ -188,3 +188,9 @@ Then you'll only have to refresh the tab of the `Development Host` instance, the
 
 Note: you may use watch mode as well.
 
+## API of plug-ins
+[Browse typedoc of plug-ins](https://theia-ide.github.io/theia/docs/next/modules/plugin.__theia_plugin_-1.html)
+
+## VS Code implementation
+Theia is providing VS Code API. Check the following link to get the current status of what is implemented.
+[Compare Theia vs VS Code API](https://che-incubator.github.io/vscode-theia-comparator/status.html)
