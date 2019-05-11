@@ -65,7 +65,7 @@ Let's have a look at the created package:
   - We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
     - Some extensions require additional tooling installed,
     For instance, [@theia/python](https://www.npmjs.com/package/@theia/python) requires 
-    [the Python Language Server](https://github.com/sourcegraph/python-langserver) to be installed.
+    [the Python Language Server](https://github.com/palantir/python-language-server) to be installed.
     In such cases, please consult the corresponding extension documentation.
     - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) too see all published extensions.
   - We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
