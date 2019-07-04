@@ -12,11 +12,11 @@ In Theia, everything is wired up via [dependency injection](Services_and_Contrib
 
 ## Prerequisites
 
-You’ll need node in version 8:
+You’ll need node in version 10:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-nvm install 8
+nvm install 10
 ```
 
 and yarn
@@ -83,7 +83,7 @@ The keyword `theia-extension` is important: It allows a Theia app to identify an
 
 ```json
 {
-  "name": "hello-world-extension",     
+  "name": "hello-world-extension",
   "keywords": [
     "theia-extension"
   ],
@@ -92,10 +92,10 @@ The keyword `theia-extension` is important: It allows a Theia app to identify an
     "lib",
     "src"
   ],
-  "dependencies": {     
+  "dependencies": {
     "@theia/core": "latest"
   },
-  "devDependencies": {     
+  "devDependencies": {
     "rimraf": "latest",
     "typescript": "latest"
   },
@@ -125,7 +125,7 @@ export default new ContainerModule(bind => {
 });
 ```
 
-A command is a plain data structure defining an ID and a label. The behaviour of a command is implemented by registering a handler to its ID in a command contribution. The generator has already added a command and a handler that shows a "Hello World!" message. 
+A command is a plain data structure defining an ID and a label. The behaviour of a command is implemented by registering a handler to its ID in a command contribution. The generator has already added a command and a handler that shows a "Hello World!" message.
 
 ```typescript
 export const HelloWorldCommand = {
@@ -195,7 +195,7 @@ Now we want to see our extension in action. For this purpose, the generator has 
     "@theia/cli": "latest"
   },
   "scripts": {
-    "prepare": "theia build",    
+    "prepare": "theia build",
     "start": "theia start",
     "watch": "theia build --watch"
   },
@@ -205,7 +205,7 @@ Now we want to see our extension in action. For this purpose, the generator has 
 }
 ```
 
-Now we have all pieces together to build and run the application. 
+Now we have all pieces together to build and run the application.
 To run the browser app, enter:
 
 ```bash
@@ -239,4 +239,4 @@ yarn start <path to workspace>
 
 ## Deploying the Extension
 
-If you want to make your extension publicly available, we recommend to publish it to npm. This can be achieved by calling `yarn publish` from the extension package's directory. Of course you need a valid account for that. 
+If you want to make your extension publicly available, we recommend to publish it to npm. This can be achieved by calling `yarn publish` from the extension package's directory. Of course you need a valid account for that.
