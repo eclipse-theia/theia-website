@@ -4,11 +4,11 @@ This guide will teach you how to build your own Theia application.
 
 ## Requirements
 
-You'll need node in version 8:
+You'll need node in version 10:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-nvm install 8
+nvm install 10
 ```
 
 and yarn
@@ -56,15 +56,15 @@ Create `package.json` in this directory:
 }
 ```
 
-In a nutshell, Theia applications and extensions are [Node.js packages](https://nodesource.com/blog/the-basics-of-package-json-in-node-js-and-npm/). Each package has a `package.json` file that manifests package metadata, 
+In a nutshell, Theia applications and extensions are [Node.js packages](https://nodesource.com/blog/the-basics-of-package-json-in-node-js-and-npm/). Each package has a `package.json` file that manifests package metadata,
 like `name`, `version`, its runtime and build time dependencies and so on.
 
 Let's have a look at the created package:
-  - Its `name` and `version` are omitted since we are not going to use it as a dependency, and 
+  - Its `name` and `version` are omitted since we are not going to use it as a dependency, and
     it's marked as `private` since it is not going to be published as a Node.js package on its own.
   - We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
     - Some extensions require additional tooling installed,
-    For instance, [@theia/python](https://www.npmjs.com/package/@theia/python) requires 
+    For instance, [@theia/python](https://www.npmjs.com/package/@theia/python) requires
     [the Python Language Server](https://github.com/palantir/python-language-server) to be installed.
     In such cases, please consult the corresponding extension documentation.
     - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) too see all published extensions.
@@ -82,7 +82,7 @@ Second, use Theia CLI to build the application.
 
 `yarn` looks up `theia` executable provided by `@theia/cli` in the context of our application
 and then executes the `build` command with `theia`.
-This can take a while since the application is built in production mode by default, 
+This can take a while since the application is built in production mode by default,
 i.e. obfuscated and minified.
 
 ## Running
@@ -132,12 +132,12 @@ If you run the `yarn` command behind a proxy you may encounter issues in buildin
     gyp ERR! command "/usr/bin/node" "/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
     gyp ERR! cwd /theiaide/node_modules/XXXXX
     gyp ERR! node -v v8.15.0
-    
-This happens because node-gyp does not rely on system/NPM proxy settings. In that case, download the `node-headers` file using the link provided in the error stack 
+
+This happens because node-gyp does not rely on system/NPM proxy settings. In that case, download the `node-headers` file using the link provided in the error stack
 (in the example above `https://nodejs.org/download/release/v8.15.0/node-v8.15.0-headers.tar.gz`) and run the build with the following command:
 
      npm_config_tarball=/path/to/node-v8.15.0-headers.tar.gz yarn install
-     
 
-    
+
+
 
