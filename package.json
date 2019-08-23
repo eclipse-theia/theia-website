@@ -1,38 +1,41 @@
 {
-  "name": "theia-website",
-  "version": "1.0.0",
-  "description": "Website for the Theia IDE",
-  "directories": {
-    "doc": "doc"
+  "name": "Theia-Website",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
-    "broken-link-checker": "^0.7.8",
-    "concurrently": "^3.5.1",
-    "gitbook-cli": "^2.3.2",
-    "http-server": "^0.11.1",
-    "node-sass": "^4.9.0",
-    "npm-watch": "^0.3.0"
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
+    "@mdx-js/mdx": "^1.3.0",
+    "@mdx-js/react": "^1.3.0",
+    "gatsby": "^2.13.3",
+    "gatsby-plugin-emotion": "^4.1.0",
+    "gatsby-plugin-mdx": "^1.0.24",
+    "gatsby-plugin-react-helmet": "^3.1.0",
+    "gatsby-remark-external-links": "0.0.4",
+    "gatsby-source-filesystem": "^2.1.9",
+    "gatsby-transformer-remark": "^2.6.14",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-tweet-embed": "^1.2.2",
+    "react-twitter-embed": "^2.0.8"
   },
-  "devDependencies": {},
-  "watch": {
-    "build": "doc/**/*.*"
-  },
-  "scripts": {
-    "build": "gitbook build doc site/doc",
-    "watch": "npm-watch",
-    "check": "blc http://localhost:8080 -ro --exclude http://localhost:3000 --exclude https://localhost:3000",
-    "do-serve": "npx http-server -c-1 site",
-    "serve": "concurrently \"npm run watch\" \"npm run do-serve\"",
-    "build:sass": "node-sass --recursive --output site/css --source-map true --source-map-contents site/css/sass",
-    "watch:sass": "node-sass --watch --recursive --output site/css --source-map true --source-map-contents site/css/sass"
+  "devDependencies": {
+    "prettier": "^1.18.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theia-ide/theia-website.git"
+    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
   },
-  "author": "TypeFox",
   "bugs": {
-    "url": "https://github.com/theia-ide/theia-website/issues"
-  },
-  "homepage": "https://github.com/theia-ide/theia-website#readme"
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
 }
