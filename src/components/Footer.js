@@ -41,7 +41,7 @@ const StyledFooter = styled.div`
 const Footer = ({background}) => (
     <StyledFooter>
         <footer className="footer" style={{background: background ? `url(${Background})` : null}}>
-            <p>Any questions, feedback or requests? Please, get in touch...</p>
+            <p>Join the community!</p>
             <div className="footer__icons">
                 <a href="https://twitter.com/theia_ide" target="_blank" className="footer__link">
                     <img src={TwitterLogo} alt="Twitter Logo" className="footer__icon" />
@@ -53,7 +53,7 @@ const Footer = ({background}) => (
                     <img src={SpectrumLogo} alt="Spectrum Logo" className="footer__icon" />
                 </a>
             </div>
-            <p className="footer__copyright"><a target="_blank" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" href="http://www.eclipse.org/legal/copyright.php">Copy Right Agent</a></p>
+            <p className="footer__copyright"><a target="_blank" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
             <p>© 2019 by <a href="https://typefox.io" target="_blank">Typefox</a></p>
         </footer>
     </StyledFooter>

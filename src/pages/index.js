@@ -17,7 +17,7 @@ import EricssonLogo from '../resources/ericsson.svg'
 import SAPLogo from '../resources/sap.svg'
 import IconExtension from '../resources/icon-extension.svg'
 import IconCloudScreen from '../resources/icon-cloud-screen.svg'
-import IconVSCode from '../resources/vscode.svg'
+import IconOpenSource from '../resources/icon-open-source.svg'
 import TheiaLogoEdited from '../resources/theia-logo-edited.svg'
 import CompletionVideo from '../resources/completion.mp4'
 import TermianlVideo from '../resources/terminal.mp4'
@@ -41,11 +41,11 @@ const Index = styled.div`
         }
 
         &__logo-box {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         &__logo {
-            height: 2.8rem;
+            height: 4rem;
         }
 
         h1 {
@@ -75,6 +75,10 @@ const Index = styled.div`
 
         &__screenshot {
 
+        }
+
+        .heading-tertiary {
+            padding-bottom: 40px;
         }
     }
 
@@ -165,8 +169,9 @@ const Index = styled.div`
             margin: 2rem 0 4rem;
         }
 
-        p {
+        & > p {
             margin: 0 auto;
+            margin-bottom: 1rem;
             max-width: 45rem;
         }
 
@@ -180,7 +185,7 @@ const Index = styled.div`
     /* ------------------------------------------ */
 
     .banner {
-        margin-top: 10rem;
+        margin-top: 5rem;
         display: flex;
 
         @media(max-width: ${breakpoints.md}) {
@@ -188,14 +193,29 @@ const Index = styled.div`
             margin-top: 5rem;
         }
 
+        p {
+            margin-bottom: 2rem;
+        }
+
+        li {
+            margin-left: 2rem;
+        }
+
+        strong {
+            font-weight: 500;
+        }
+
         img {
             display: block;
             height: 26rem;
-            transform: translateX(-18rem) translateY(-5rem);
+            transform: translateX(-18rem) translateY(-0rem);
         }
 
         div {
-            width: 40%;
+            width: 50%;
+            max-width: 45rem;
+            margin: 0 auto;
+
             @media(max-width: ${breakpoints.md}) {
                 width: 100%;
                 img {
@@ -206,14 +226,14 @@ const Index = styled.div`
             }
         }
 
-        h2 {
-            font-size: 2.6rem;
-            width: 60%;
+        h3 {
+            margin-bottom: 2rem;
             @media(max-width: ${breakpoints.md}) {
                 width: 100%;
                 max-width: 60rem;
-                font-size: 2rem;
                 margin: 0 auto;
+                margin-bottom: 2rem;
+                text-align: center;
             }
         }
     }
@@ -285,8 +305,11 @@ export default () => {
                                 <img className="header__logo" src={TheiaLogoDark} alt="theia logo" />
                             </div>
                             <h1 className="heading-primary">
-                                Cloud and Desktop IDE
+                                Cloud & Desktop IDE
                             </h1>
+                            <h2 className="heading-tertiary">
+                                Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
+                            </h2>
                             <a className="btn" href="https://github.com/theia-ide/theia" target="_blank">View on GitHub</a>
                             <a className="btn" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank">Try in Gitpod</a>
                         </div>
@@ -303,7 +326,7 @@ export default () => {
                         {/* ***** Contributors ***** */}
 
                         <section className="contributors">
-                            <h3 className="heading-tertiary">Contributors</h3>
+                            <h3 className="heading-tertiary">Contributors & Adopters</h3>
                             <div className="contributors__images">
                                 <div className="contributors__image-container">
                                     <a target="_blank" href="https://typefox.io">
@@ -356,15 +379,27 @@ export default () => {
                             <div className="feature">
                                 <div>
                                     <img src={IconCloudScreen} alt="Cloud Screen" />
-                                    <h3 className="heading-tertiary">Cloud and Desktop</h3>
+                                    <h3 className="heading-tertiary">Cloud & Desktop</h3>
                                 </div>
                                 <p>
-                                    Eclipse Theia is entirely written in TypeScript and clearly separates the
-                                    UI frontend from the backend. The frontend runs in modern
-                                    browsers or as a Fit
-                                        <a href="http://typefox.io/theia-vs-code-in-the-cloud" target="_blank"> Desktop app using
-                                        Electron</a> with either local or remote (cloud) backends.
-                                    </p>
+                                    Not sure whether you need a web or desktop version or both?
+                                </p>
+                                <p>
+                                    With Theia you can develop one IDE and run it in browsers or native desktop application from a single source.
+                                </p>
+                            </div>
+                            <div className="feature">
+                                <div>
+                                    <img src={IconOpenSource} alt="Vendor Neutral Open Source" />
+                                    <h3 className="heading-tertiary">Vendor Neutral</h3>
+                                </div>
+                                <p>
+                                    The Theia project is hosted at the Eclipse Foundation, a not-for-profit corporation, and is developed by a diverse community.
+                                </p>
+                                <p>
+                                    Unlike other "open-source" projects, projects hosted at an Open-Source Foundation are protected against single-vendor decisions against the interest of the diverse community.
+                                    Learn more <a href="https://www.eclipse.org/projects/dev_process/">here</a>.
+                                </p>
                             </div>
                             <div className="feature">
                                 <div>
@@ -372,24 +407,14 @@ export default () => {
                                     <h3 className="heading-tertiary">Extensible</h3>
                                 </div>
                                 <p>
-                                    Theia applications consist of extensions.
-                                        <a href="https://github.com/theia-ide/theia-apps" target="_blank"> Composing
-                                        a custom IDE-like product</a> is as easy as listing all needed
-                                extensions in a package.json file. Adding new
-                                        functionality by implementing <Link to='/docs/authoring_extensions'>
-                                        your own extensions</Link> or plug-ins is easy.
-                                    </p>
-                            </div>
-                            <div className="feature">
-                                <div>
-                                    <img src={IconVSCode} alt="VS Code Logo" />
-                                    <h3 className="heading-tertiary">Cloud and Desktop</h3>
-                                </div>
+                                    Theia is designed in a modular way to allow extenders and adopters customizing and extending every aspect of it.
+                                </p>
                                 <p>
-                                    Theia provides the <a href="http://typefox.io/theia-vs-code-in-the-cloud" target="_blank"> VS Code experience in the browser</a>.
-                                    Developers familiar with Microsoft's great editor will find many familiar features and concepts, to minimze the gap
-                                    when switching between desktop and cloud environment.
-                                    </p>
+                                    Composing a custom IDE-like product is as easy as listing all needed
+                                    extensions in a package.json file. Adding new
+                                    functionality by implementing <Link to='/docs/authoring_extensions'>
+                                    your own extensions</Link> is easy, too and provides all the flexibility you need.
+                                </p>
                             </div>
                         </div>
                     </section>
@@ -400,7 +425,17 @@ export default () => {
                         <div>
                             <img src={TheiaLogoEdited} alt="Theia Logo" />
                         </div>
-                        <h2>Theia is an extensible open-source framework to develop multi-language IDEs for the cloud and desktop using state-of-the-art web technologies.</h2>
+                        <div>
+                            <h3 className="heading-tertiary">Theia vs. VS Code</h3>
+                            <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
+                            <p>The most significant differences are:
+                            <ul>
+                                <li><strong>Theia's architecture is more modular</strong> and allows for way more customizations,</li>
+                                <li>Theia is <strong>designed from the ground to run on Desktop and Cloud</strong>, and</li>
+                                <li>Theia is developed under a <strong>vendor-neutral Open-Source Foundation</strong>.</li>
+                            </ul>
+                            </p>
+                        </div>
                     </section>
 
                     {/* ***** Section Promo ***** */}
