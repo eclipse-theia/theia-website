@@ -428,13 +428,13 @@ export default () => {
                         <div>
                             <h3 className="heading-tertiary">Theia vs. VS Code</h3>
                             <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
-                            <p>The most significant differences are:
-                            <ul>
-                                <li><strong>Theia's architecture is more modular</strong> and allows for way more customizations,</li>
-                                <li>Theia is <strong>designed from the ground to run on Desktop and Cloud</strong>, and</li>
-                                <li>Theia is developed under a <strong>vendor-neutral Open-Source Foundation</strong>.</li>
-                            </ul>
-                            </p>
+                            <div style={{width: '100%', margin: '2rem 0', maxWidth: 'auto'}}>The most significant differences are:
+                                <ul>
+                                    <li><strong>Theia's architecture is more modular</strong> and allows for way more customizations,</li>
+                                    <li>Theia is <strong>designed from the ground to run on Desktop and Cloud</strong>, and</li>
+                                    <li>Theia is developed under a <strong>vendor-neutral Open-Source Foundation</strong>.</li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
 
