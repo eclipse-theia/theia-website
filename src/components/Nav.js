@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
-import { breakpoints, colors } from '../utils/variables'
+import { breakpoints } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
 import Mutliply from '../resources/multiply.svg'
 
@@ -136,13 +136,13 @@ class Nav extends React.Component {
                                 <Link to="/docs" className="nav__link" activeClassName="active">Documentation</Link>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://spectrum.chat/theia" target="_blank" className="nav__link">Community</a>
+                                <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank">Support</a>
+                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener noreferrer">Support</a>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank">Training</a>
+                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener noreferrer">Training</a>
                             </li>
                         </ul>
                     }
