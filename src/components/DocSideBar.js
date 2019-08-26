@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { breakpoints, colors } from '../utils/variables'
-import useDocs from '../hooks/use-docs'
+import { breakpoints } from '../utils/variables'
 import { Link } from 'gatsby'
 import Background from '../resources/background-image.png'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
