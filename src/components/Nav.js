@@ -87,12 +87,15 @@ const StyledNav = styled.div`
 class Nav extends React.Component {
 
     state = {
-        isNavRendered: true,
+        isNavRendered: false,
     }
 
-    componentDidMount() {
-        if (window.innerWidth <= 543) {
-            this.toggleNavigation()
+    handleResize = () => {
+        console.log('Resized to: ', window.innerWidth)
+        if (window.innerWidth < 800) {
+            this.setState({isNavRendered: false})
+        } else {
+            this.setState({isNavRendered: true})
         }
     }
 
@@ -100,8 +103,16 @@ class Nav extends React.Component {
         this.setState({ isNavRendered: !this.state.isNavRendered })
     }
 
+        componentDidMount() {
+        window.addEventListener('resize', this.handleResize)
+        if (window.innerWidth >= 800) {
+           this.toggleNavigation()
+        }
+    }
+
+
     render() {
-        const event = (typeof window !== 'undefined' && window.innerWidth <= 543) ? this.toggleNavigation : null
+        const event = (typeof window !== 'undefined' && window.innerWidth <= 800) ? this.toggleNavigation : null
         return (
             <StyledNav>
                 <nav className="nav">
@@ -111,7 +122,7 @@ class Nav extends React.Component {
                             aria-label="Navigation Toggle"
                             onClick={this.toggleNavigation}
                         >
-                            { this.state.isNavRendered ? <img src={Mutliply} alt="close menu icon"/> : <img src={Hamburger} alt="hamburger menu icon"/> }
+                            {this.state.isNavRendered ? <img src={Mutliply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
 
                         </button>
                     </div>
@@ -119,7 +130,7 @@ class Nav extends React.Component {
                         this.state.isNavRendered &&
                         <ul className="nav__items">
                             <li className="nav__item" onClick={event}>
-                                <a href="/#features" className="nav__link">Features</a>
+                                <Link to="/#features" className="nav__link">Features</Link>
                             </li>
                             <li className="nav__item" onClick={event}>
                                 <Link to="/docs" className="nav__link" activeClassName="active">Documentation</Link>
