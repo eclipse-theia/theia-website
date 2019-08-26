@@ -4,6 +4,7 @@ slug: authoring_plugins
 ---
 
 import DocArrowNavigators from 'components/DocArrowNavigators'
+import DocImage from 'components/DocImage'
 
 #  Authoring Theia Plug-ins
 
@@ -73,7 +74,8 @@ In the previous commands:
 
 
 here is animated screenshot of the generator running.
-![Yeoman plugin output](images/plug-ins/yeoman-plugin.gif "Yeoman plugin output")
+
+<DocImage name="yeoman-plugin.gif" alt="Yeoman plugin output" shadow={true}/>
 
 Pick up default values for each questions.
 
@@ -161,23 +163,23 @@ Now we want to see the plug-in in action. For this purpose, there is a mode call
 First, be sure that you've opened the folder where is the generated plug-in inside Theia. (It needs to be part of your workspace)
 Then, bring command palette (hiting the F1 key for example) and search for `Hosted mode: start instance` and select this command.
 
-![Hosted mode: start instance](images/plug-ins/hosted-plugin-start-instance.png "Hosted mode: start instance")
-
+<DocImage name="hosted-plugin-start-instance.png" alt="Hosted mode: start instance" shadow={true} />
 
 Browse the workspace and select the folder of the plug-in (that contains `package.json` file).
-![select path of Hosted mode: start instance](images/plug-ins/hosted-plugin-start-instance-select-path.png "Hosted mode: start instance: select path")
+
+<DocImage name="hosted-plugin-start-instance-select-path.png" alt="Hosted mode: start instance: select path" shadow={true} width="50rem"/>
 
 It will spawn a new theia instance on port `3030`. A new tab will be opened (maybe you'll need to validate it) and you've a new instance running as `Development host` (in status bar you can check that name)
 
-![select path of Hosted mode: development host](images/plug-ins/hosted-plugin-development-host.png "Hosted mode: development host")
+<DocImage name="hosted-plugin-development-host.png" alt="Hosted mode: development host" shadow={true} width="30rem" />
 
 Inside the `Development Host` instance, bring command palette (F1 key) and then search for `Hello World` command.
 
-![command palette hello world](images/plug-ins/command-palette-hello-world.png "command palette hello world")
+<DocImage name="command-palette-hello-world.png" alt="Command Palette" shadow={true} width="70rem" styles={{minWidth: '50rem'}}/>
 
  Select it and you'll see a notification `Hello World` on the screen.
 
-![Hello World notification](images/plug-ins/hello-world-notification.png "Hello World notification")
+<DocImage name="hello-world-notification.png" alt="Hello World notification" shadow={true} width="60rem"/>
 
 
 ## Developing the Plug-in
