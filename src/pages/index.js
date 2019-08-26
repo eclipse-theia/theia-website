@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import { breakpoints } from '../utils/variables'
 import Layout from '../layouts/layout'
 import Nav from '../components/Nav'
-import Screenshot from '../components/Screenshot'
+import DocImage from '../components/DocImage'
 import Footer from '../components/Footer'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
 import Background from '../resources/background-image.png'
@@ -319,7 +319,7 @@ export default () => {
                         </div>
                     </div>
 
-                    <Screenshot />
+                    <DocImage name="theia-screenshot.png" alt="Theia IDE Screenshot" />
 
                     <div className="row">
 
