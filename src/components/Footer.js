@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Link } from 'gatsby'
 import Background from '../resources/background-image.png'
 import TwitterLogo from '../resources/twitter.svg'
 import GithubLogo from '../resources/github.svg'
@@ -43,18 +42,18 @@ const Footer = ({background}) => (
         <footer className="footer" style={{background: background ? `url(${Background})` : null}}>
             <p>Join the community!</p>
             <div className="footer__icons">
-                <a href="https://twitter.com/theia_ide" target="_blank" className="footer__link">
+                <a href="https://twitter.com/theia_ide" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={TwitterLogo} alt="Twitter Logo" className="footer__icon" />
                 </a>
-                <a href="https://github.com/theia-ide/theia" target="_blank" className="footer__link">
+                <a href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={GithubLogo} alt="Github Logo" className="footer__icon" />
                 </a>
-                <a href="https://spectrum.chat/theia" target="_blank" className="footer__link">
+                <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={SpectrumLogo} alt="Spectrum Logo" className="footer__icon" />
                 </a>
             </div>
-            <p className="footer__copyright"><a target="_blank" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
-            <p>© 2019 by <a href="https://typefox.io" target="_blank">Typefox</a></p>
+            <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
+            <p>© 2019 by <a href="https://typefox.io" target="_blank" rel="noopener noreferrer">Typefox</a></p>
         </footer>
     </StyledFooter>
 )
