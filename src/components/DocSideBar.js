@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { breakpoints, colors } from '../utils/variables'
-import useDocs from '../hooks/use-docs'
+import { breakpoints } from '../utils/variables'
 import { Link } from 'gatsby'
 import Background from '../resources/background-image.png'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
@@ -74,7 +73,9 @@ const DocSideBar = () => {
                 <li><Link activeClassName='active' to="/docs/authoring_extensions">Authoring an Extension</Link></li>
                 <li><Link activeClassName='active' to="/docs/authoring_plugins">Authoring Plug-ins</Link></li>
                 <li><Link activeClassName='active' to="/docs/language_support">Adding Language Support</Link>
-                        <li style={{marginLeft: '2rem', marginTop: '.8rem'}}><Link activeClassName='active' to="/docs/textmate">TextMate Coloring</Link></li>
+                    <ul>
+                        <li style={{ marginLeft: '2rem', marginTop: '.8rem' }}><Link activeClassName='active' to="/docs/textmate">TextMate Coloring</Link></li>
+                    </ul>
                 </li>
 
 

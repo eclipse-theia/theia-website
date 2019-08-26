@@ -105,11 +105,11 @@ const onSelectTopic = (e) => {
 
 const DocTopicChooser = () => (
     <Styled>
-        <select onChange={onSelectTopic}>
-            <option value='#' selected={true}>Select A Topic</option>
-            {data.map(m => {
+        <select onChange={onSelectTopic} defaultValue="Select A Topic">
+             <option value='#' selected={true}>Select A Topic</option>
+            {data.map((m, i) => {
                 return <>
-                    <option key={m.slug} value={`/docs/${m.slug}`} disabled={!m.slug} >{m.title}</option>
+                    <option key={i} value={`/docs/${m.slug}`} disabled={!m.slug} >{m.title}</option>
                 </>
             })}
         </select>
