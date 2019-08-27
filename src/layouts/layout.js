@@ -31,10 +31,10 @@ const Layout = ({ children, canonical }) => {
                 }
 
                 body {
-                    font-family: 'Open sans', sans-serif;
+                    font-family: 'Montserrat','Work Sans', sans-serif;
                     font-size: ${fontSizes.default};
                     color: ${colors.greyOne};
-                    line-height: 1.5;
+                    line-height: 1.6;
                     box-sizing: border-box;
                     overflow-x: hidden;
                 }
@@ -105,6 +105,7 @@ const Layout = ({ children, canonical }) => {
                     border: 2px solid;
                     border-radius: 10rem;
                     transition: all .3s;
+                    font-weight: 500;
 
                     &:hover,
                     &:active,
@@ -139,9 +140,8 @@ const Layout = ({ children, canonical }) => {
                 {
                     canonical ? <link rel="canonical" href={canonical} /> : null
                 }
-	            <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-                <link rel="shortcut icon" href={Favicon} />
+                <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap" rel="stylesheet" />
             </Helmet>
             <>
                 {children}
