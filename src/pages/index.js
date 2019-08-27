@@ -357,7 +357,7 @@ export default () => {
                             <div className="contributors__images">
                                 <div className="contributors__image-container">
                                     <a target="_blank" rel="noopener noreferrer" href="https://typefox.io">
-                                        <img className="contributors__image" src={TypeFoxLogo} alt="Typefox Logo" />
+                                        <img className="contributors__image" src={TypeFoxLogo} alt="TypeFox Logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
