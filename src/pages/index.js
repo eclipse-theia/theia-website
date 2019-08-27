@@ -45,7 +45,7 @@ const Index = styled.div`
         }
 
         &__logo {
-            height: 4rem;
+            height: 3rem;
         }
 
         h1 {
@@ -89,7 +89,7 @@ const Index = styled.div`
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-top: 3rem;
+            margin-top: 1rem;
 
             @media(max-width: 50rem) {
                 text-align: center;
@@ -102,7 +102,7 @@ const Index = styled.div`
             object-fit: contain;
 
             &-container {
-                height: 4.4rem;
+                height: 4rem;
 
                 @media(max-width: 50rem) {
                     width: 40%;
@@ -303,7 +303,7 @@ export default () => {
                             <h1 className="heading-primary">
                                 Cloud & Desktop IDE
                             </h1>
-                            <h2 className="heading-tertiary">
+                            <h2 className="heading-tertiary" style={{fontSize: '2.2rem'}}>
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
                             <a className="btn" href="https://github.com/theia-ide/theia" target="_blank"  rel="noopener noreferrer">View on GitHub</a>
