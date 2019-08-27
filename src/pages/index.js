@@ -69,10 +69,6 @@ const Index = styled.div`
             width: 11rem;
         }
 
-        &__screenshot {
-
-        }
-
         .heading-tertiary {
             padding-bottom: 40px;
         }
@@ -84,12 +80,12 @@ const Index = styled.div`
 
     .contributors {
         padding-bottom: 5rem;
+        margin-top: 4rem;
 
         &__images {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-top: 1rem;
 
             @media(max-width: 50rem) {
                 text-align: center;
