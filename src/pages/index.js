@@ -45,7 +45,7 @@ const Index = styled.div`
         }
 
         &__logo {
-            height: 4rem;
+            height: 3rem;
         }
 
         h1 {
@@ -65,12 +65,8 @@ const Index = styled.div`
         }
 
         iframe {
-            max-width: 9.5rem;
-            max-height: 2rem;
-
-            &:not(:last-child) {
-                margin-right: 2rem;
-            }
+            height: 2.5rem;
+            width: 11rem;
         }
 
         &__screenshot {
@@ -93,7 +89,7 @@ const Index = styled.div`
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-top: 3rem;
+            margin-top: 1rem;
 
             @media(max-width: 50rem) {
                 text-align: center;
@@ -106,7 +102,7 @@ const Index = styled.div`
             object-fit: contain;
 
             &-container {
-                height: 4.4rem;
+                height: 4rem;
 
                 @media(max-width: 50rem) {
                     width: 40%;
@@ -271,11 +267,26 @@ const Index = styled.div`
         }
 
         &__media {
+            position: relative;
             width: 50%;
+            z-index: -1000;
 
             @media(max-width: ${breakpoints.md}) {
                 width: 100%;
                 max-width: 60rem;
+            }
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #8c9bae;
+                z-index: 1000;
+                opacity: .1;
             }
         }
 
@@ -285,6 +296,12 @@ const Index = styled.div`
 
         p {
             margin-top: 3rem;
+        }
+
+        &--diff {
+            @media(max-width: ${breakpoints.md}) {
+                flex-direction: column-reverse;
+            }
         }
     }
 
@@ -307,7 +324,7 @@ export default () => {
                             <h1 className="heading-primary">
                                 Cloud & Desktop IDE
                             </h1>
-                            <h2 className="heading-tertiary">
+                            <h2 className="heading-tertiary" style={{fontSize: '2.2rem'}}>
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
                             <a className="btn" href="https://github.com/theia-ide/theia" target="_blank"  rel="noopener noreferrer">View on GitHub</a>
@@ -426,7 +443,7 @@ export default () => {
                             <img src={TheiaLogoEdited} alt="Theia Logo" />
                         </div>
                         <div>
-                            <h3 className="heading-tertiary">Theia vs. VS Code</h3>
+                            <h3 className="heading-tertiary">Theia versus VS Code</h3>
                             <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
                             <div style={{width: '100%', margin: '2rem 0', maxWidth: 'auto'}}>The most significant differences are:
                                 <ul>
@@ -455,7 +472,7 @@ export default () => {
                                     </video>
                                 </div>
                             </div>
-                            <div className="promo">
+                            <div className="promo promo--diff">
                                 <div className="promo__media">
                                     <video autoPlay loop muted playsInline className="promo__video">
                                         <source src={TermianlVideo} type="video/mp4" />

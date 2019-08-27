@@ -10,7 +10,7 @@ const Styled = styled.div`
 
     .arrow {
         display: inline-block;
-        height: 7rem;
+        height: 6rem;
 
         &--left {
             transform: rotate(90deg);
