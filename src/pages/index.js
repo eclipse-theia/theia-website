@@ -422,7 +422,7 @@ export default () => {
                             <img src={TheiaLogoEdited} alt="Theia Logo" />
                         </div>
                         <div>
-                            <h3 className="heading-tertiary">Theia vs. VS Code</h3>
+                            <h3 className="heading-tertiary">Theia versus VS Code</h3>
                             <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
                             <div style={{width: '100%', margin: '2rem 0', maxWidth: 'auto'}}>The most significant differences are:
                                 <ul>
