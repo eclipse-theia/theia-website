@@ -267,11 +267,26 @@ const Index = styled.div`
         }
 
         &__media {
+            position: relative;
             width: 50%;
+            z-index: -1000;
 
             @media(max-width: ${breakpoints.md}) {
                 width: 100%;
                 max-width: 60rem;
+            }
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #8c9bae;
+                z-index: 1000;
+                opacity: .1;
             }
         }
 
