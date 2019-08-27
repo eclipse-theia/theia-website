@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
-import { breakpoints } from '../utils/variables'
+import { breakpoints, colors } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
 import Mutliply from '../resources/multiply.svg'
 
@@ -76,11 +76,36 @@ const StyledNav = styled.div`
         }
 
         &__link {
+            position: relative;
             width: 100%;
             text-decoration: none;
-            color: inherit;
+            color: ${colors.greyOne};
             display: block;
+            padding-bottom: .8rem;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                right: 100%;
+                left: 0;
+                border-bottom: 2px solid ${colors.greyOne};
+                transition: all .4s cubic-bezier(0,.5,0, 1);
+            }
+
+            &:hover,
+            &:focus {
+                color: ${colors.blue};
+                &::after {
+                    right: 0;
+                    border-color: ${colors.blue};
+                }
+            }
         }
+    }
+
+    .active {
+        color: ${colors.blue};
     }
 `
 

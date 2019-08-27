@@ -74,17 +74,7 @@ const DocContainer = styled.div`
         background: #f4f4f4;
         overflow-x: scroll;
         font-size: 90%;
-
-        span {
-            color: royalblue;
-        }
     }
-
-    .active {
-        color: #5a87d0;
-    }
-
-
 `
 
 const DocsLayout = ({children, canonical}) => (

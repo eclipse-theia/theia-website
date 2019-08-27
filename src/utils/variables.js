@@ -1,5 +1,7 @@
 export const colors = {
-    greyOne: '#383838'
+    greyOne: '#383838',
+    blue: '#0074D9',
+    lightBlue: '#5a87d0'
 }
 
 export const fontSizes = {

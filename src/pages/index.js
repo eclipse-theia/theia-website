@@ -54,7 +54,7 @@ const Index = styled.div`
 
         .btn {
             &:not(:last-child) {
-                margin-right: 3rem;
+                margin-right: 2.5rem;
             }
         }
 
@@ -324,7 +324,7 @@ export default () => {
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
                             <a className="btn" href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                            <a className="btn" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">Try in Gitpod</a>
+                            <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">Try in Gitpod</a>
                         </div>
                         <div className="header__github-details">
                             <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />

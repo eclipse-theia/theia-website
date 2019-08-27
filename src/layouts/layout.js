@@ -41,7 +41,12 @@ const Layout = ({ children, canonical }) => {
 
                 a {
                     text-decoration: none;
-                    color: #6692d4;
+                    color: ${colors.lightBlue};
+                    transition: all .2s;
+
+                    &:hover {
+                        color: ${colors.blue};
+                    }
                 }
 
                 a,
@@ -94,11 +99,35 @@ const Layout = ({ children, canonical }) => {
 
                 .btn {
                     display: inline-block;
-                    padding: .8rem 1.6rem;
+                    padding: 1.3rem 3rem;
                     color: inherit;
                     text-decoration: none;
                     border: 2px solid;
-                    border-radius: 3px;
+                    border-radius: 10rem;
+                    transition: all .3s;
+
+                    &:hover,
+                    &:active,
+                    &--cta {
+                        color: #fff;
+                        background: ${colors.greyOne};
+                        border-color: ${colors.greyOne};
+                    }
+
+                    &:hover,
+                    &:focus {
+                        transform: translateY(-3px);
+                        box-shadow: 0 .8rem 1.6rem rgba(0,0,0, .2);
+                    }
+
+                    &:active {
+                        transform: translateY(-1px);
+                        box-shadow: 0 .4rem .8rem rgba(0,0,0, .2);
+                    }
+
+                    &--cta {
+                        box-shadow: 0 .3rem .6rem rgba(0,0,0, .2);
+                    }
                 }
             `} />
             <Helmet>

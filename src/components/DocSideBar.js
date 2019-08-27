@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { breakpoints } from '../utils/variables'
+import { breakpoints, colors } from '../utils/variables'
 import { Link } from 'gatsby'
 import Background from '../resources/background-image.png'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
@@ -33,7 +33,7 @@ const Styled = styled.div`
     .logo {
         display: block;
         height: 2.8rem;
-        margin: 0 auto 12rem auto;
+        margin: 0 auto 13rem auto;
     }
 
     .links {
@@ -60,6 +60,15 @@ const Styled = styled.div`
     a {
         text-decoration: none;
         color: inherit;
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+            color: ${colors.blue};
+            background: #f6f6f6;
+            padding: .2rem 0 .4rem;
+            border-bottom: 1px dashed #9dc7d9;
+        }
     }
 
     .caption {
@@ -70,6 +79,13 @@ const Styled = styled.div`
         &:not(:first-of-type) {
             margin-top: 3rem;
         }
+    }
+
+    .active {
+        color: ${colors.blue};
+        // background: #f6f6f6;
+        padding: .2rem 0 .4rem;
+        border-bottom: 1px dashed #9dc7d9;
     }
 `
 
