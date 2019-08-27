@@ -297,6 +297,12 @@ const Index = styled.div`
         p {
             margin-top: 3rem;
         }
+
+        &--diff {
+            @media(max-width: ${breakpoints.md}) {
+                flex-direction: column-reverse;
+            }
+        }
     }
 
 `
@@ -466,7 +472,7 @@ export default () => {
                                     </video>
                                 </div>
                             </div>
-                            <div className="promo">
+                            <div className="promo promo--diff">
                                 <div className="promo__media">
                                     <video autoPlay loop muted playsInline className="promo__video">
                                         <source src={TermianlVideo} type="video/mp4" />
