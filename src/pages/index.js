@@ -65,12 +65,8 @@ const Index = styled.div`
         }
 
         iframe {
-            max-width: 9.5rem;
-            max-height: 2rem;
-
-            &:not(:last-child) {
-                margin-right: 2rem;
-            }
+            height: 2.5rem;
+            width: 11rem;
         }
 
         &__screenshot {
