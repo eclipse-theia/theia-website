@@ -22,7 +22,7 @@ const StyledDocImage = styled.div`
 const DocImage = ({ name, alt, shadow, width , styles}) => (
     <StyledDocImage width={width}>
         <div className="docimage-container">
-            <img className="docimage" src={require(`../resources/${name}`)} alt={alt} style={{boxShadow: shadow ? "0 1.5rem 3rem rgba(0,0,0, .2)" : null, ...styles}}/>
+            <img className="docimage" src={require(`../resources/${name}`)} alt={alt} style={{boxShadow: shadow ? "0 1.5rem 3rem rgba(0,0,0, .25)" : null, ...styles}}/>
         </div>
     </StyledDocImage>
 )

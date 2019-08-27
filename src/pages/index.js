@@ -324,11 +324,11 @@ export default () => {
                             <h1 className="heading-primary">
                                 Cloud & Desktop IDE
                             </h1>
-                            <h2 className="heading-tertiary" style={{fontSize: '2.2rem'}}>
+                            <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
-                            <a className="btn" href="https://github.com/theia-ide/theia" target="_blank"  rel="noopener noreferrer">View on GitHub</a>
-                            <a className="btn" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank"  rel="noopener noreferrer">Try in Gitpod</a>
+                            <a className="btn" href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                            <a className="btn" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">Try in Gitpod</a>
                         </div>
                         <div className="header__github-details">
                             <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
@@ -336,7 +336,9 @@ export default () => {
                         </div>
                     </div>
 
-                    <DocImage name="theia-screenshot.png" alt="Theia IDE Screenshot" />
+                    <div className="row">
+                        <DocImage name="theia-screenshot.jpg" alt="Theia IDE Screenshot" shadow={true} />
+                    </div>
 
                     <div className="row">
 
@@ -346,37 +348,37 @@ export default () => {
                             <h3 className="heading-tertiary">Contributors & Adopters</h3>
                             <div className="contributors__images">
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://typefox.io">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://typefox.io">
                                         <img className="contributors__image" src={TypeFoxLogo} alt="Typefox Logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://www.redhat.com">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.redhat.com">
                                         <img className="contributors__image" src={RedHatLogo} alt="Redhat Logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://www.ibm.com">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ibm.com">
                                         <img className="contributors__image contributors__image--ibm" src={IBMLogo} alt="IBM logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://google.com">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://google.com">
                                         <img className="contributors__image contributors__image--google" src={GoogleLogo} alt="Google logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://www.arm.com">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.arm.com">
                                         <img className="contributors__image contributors__image--arm" src={ARMLogo} alt="ARM logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://www.ericsson.com">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ericsson.com">
                                         <img className="contributors__image contributors__image--ericsson" src={EricssonLogo} alt="Ericsson logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank"  rel="noopener noreferrer" href="https://www.sap.com/">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.sap.com/">
                                         <img className="contributors__image contributors__image--sap" src={SAPLogo} alt="Sap logo" />
                                     </a>
                                 </div>
@@ -430,7 +432,7 @@ export default () => {
                                     Composing a custom IDE-like product is as easy as listing all needed
                                     extensions in a package.json file. Adding new
                                     functionality by implementing <Link to='/docs/authoring_extensions'>
-                                    your own extensions</Link> is easy, too and provides all the flexibility you need.
+                                        your own extensions</Link> is easy, too and provides all the flexibility you need.
                                 </p>
                             </div>
                         </div>
@@ -445,7 +447,7 @@ export default () => {
                         <div>
                             <h3 className="heading-tertiary">Theia versus VS Code</h3>
                             <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
-                            <div style={{width: '100%', margin: '2rem 0', maxWidth: 'auto'}}>The most significant differences are:
+                            <div style={{ width: '100%', margin: '2rem 0', maxWidth: 'auto' }}>The most significant differences are:
                                 <ul>
                                     <li><strong>Theia's architecture is more modular</strong> and allows for way more customizations,</li>
                                     <li>Theia is <strong>designed from the ground to run on Desktop and Cloud</strong>, and</li>
@@ -462,7 +464,7 @@ export default () => {
                             <div className="promo">
                                 <div className="promo__text">
                                     <h3 className="heading-tertiary">Supports JavaScript, Java, Python and many more</h3>
-                                    <p>Built on the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank"  rel="noopener noreferrer">Language Server Protocol</a>,
+                                    <p>Built on the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer">Language Server Protocol</a>,
                             Theia benefits from a growing ecosystem of <e>over 60 available language servers</e>, delivering intelligent editing support
                             for all major programming languages.</p>
                                 </div>
