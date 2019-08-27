@@ -33,7 +33,7 @@ const Styled = styled.div`
     .logo {
         display: block;
         height: 2.8rem;
-        margin: 0 auto 10rem auto;
+        margin: 0 auto 12rem auto;
     }
 
     .links {
