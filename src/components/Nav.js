@@ -164,10 +164,10 @@ class Nav extends React.Component {
                                 <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener noreferrer">Support</a>
+                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener">Support</a>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener noreferrer">Training</a>
+                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener">Training</a>
                             </li>
                         </ul>
                     }
