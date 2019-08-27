@@ -56,6 +56,18 @@ const Index = styled.div`
             &:not(:last-child) {
                 margin-right: 2.5rem;
             }
+
+            @media(max-width: 385px) {
+                &:not(:last-child) {
+                    margin-right: 0;
+                }
+            }
+
+            @media(max-width: 410px) {
+                &:not(:last-child) {
+                    margin-bottom: 2rem;
+                }
+            }
         }
 
         &__github-details {
@@ -158,7 +170,7 @@ const Index = styled.div`
         }
 
         h3 {
-            margin: 2rem 0 4rem;
+            margin: 2rem 0 3rem;
         }
 
         & > p {
@@ -168,7 +180,7 @@ const Index = styled.div`
         }
 
         img {
-            height: 10rem;
+            height: 7rem;
         }
     }
 
@@ -200,7 +212,7 @@ const Index = styled.div`
         img {
             display: block;
             height: 26rem;
-            transform: translateX(-18rem) translateY(-0rem);
+            transform: translateX(-18rem) translateY(4rem);
         }
 
         div {
@@ -324,7 +336,7 @@ export default () => {
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
                             <a className="btn" href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                            <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">Try in Gitpod</a>
+                            <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
                         </div>
                         <div className="header__github-details">
                             <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
