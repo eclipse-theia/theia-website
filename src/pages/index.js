@@ -454,7 +454,7 @@ export default () => {
                         </div>
                         <div>
                             <h3 className="heading-tertiary">Theia versus VS Code</h3>
-                            <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
+                            <p>We believe <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
                             <div style={{ width: '100%', margin: '2rem 0', maxWidth: 'auto' }}>The most significant differences are:
                                 <ul>
                                     <li><strong>Theia's architecture is more modular</strong> and allows for way more customizations,</li>
@@ -497,7 +497,7 @@ export default () => {
                                 <div className="promo__text">
                                     <h3 className="heading-tertiary">Flexible Layout</h3>
                                     <p>Theia's shell is based on <a href="https://phosphorjs.github.io/" target="blank">PhosphorJS</a>,
-                            which provides a solid foundation for dragable dock layouts.</p>
+                            which provides a solid foundation for draggable dock layouts.</p>
                                 </div>
                                 <div className="promo__media">
                                     <video autoPlay loop muted playsInline className="promo__video">
