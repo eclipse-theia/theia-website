@@ -91,11 +91,20 @@ const StyledNav = styled.div`
                 left: 0;
                 border-bottom: 2px solid ${colors.greyOne};
                 transition: all .4s cubic-bezier(0,.5,0, 1);
+
+                @media(max-width: ${breakpoints.xmd}) {
+                    display: none;
+                }
             }
 
             &:hover,
             &:focus {
                 color: ${colors.blue};
+
+                @media(max-width: ${breakpoints.xmd}) {
+                    transform: scale(1.2);
+                }
+
                 &::after {
                     right: 0;
                     border-color: ${colors.blue};
