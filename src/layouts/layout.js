@@ -46,6 +46,7 @@ const Layout = ({ children, canonical }) => {
 
                     &:hover {
                         color: ${colors.blue};
+                        text-decoration: underline;
                     }
                 }
 
