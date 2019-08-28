@@ -65,7 +65,6 @@ const Styled = styled.div`
         &:hover,
         &:focus {
             color: ${colors.blue};
-            background: #f6f6f6;
             padding: .2rem 0 .4rem;
             border-bottom: 1px dashed #9dc7d9;
         }
@@ -83,7 +82,6 @@ const Styled = styled.div`
 
     .active {
         color: ${colors.blue};
-        // background: #f6f6f6;
         padding: .2rem 0 .4rem;
         border-bottom: 1px dashed #9dc7d9;
     }
