@@ -336,7 +336,7 @@ export default () => {
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
                             <a className="btn" href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                            <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
+                            <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
                         </div>
                         <div className="header__github-details">
                             <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
@@ -356,8 +356,8 @@ export default () => {
                             <h3 className="heading-tertiary">Contributors & Adopters</h3>
                             <div className="contributors__images">
                                 <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://typefox.io">
-                                        <img className="contributors__image" src={TypeFoxLogo} alt="Typefox Logo" />
+                                    <a target="_blank" rel="noopener" href="https://typefox.io">
+                                        <img className="contributors__image" src={TypeFoxLogo} alt="TypeFox Logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
@@ -454,7 +454,7 @@ export default () => {
                         </div>
                         <div>
                             <h3 className="heading-tertiary">Theia versus VS Code</h3>
-                            <p>We belief <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
+                            <p>We believe <strong>VS Code is an excellent product</strong>. That is why Theia embraces many of the design decisions and even directly supports VS Code extensions.</p>
                             <div style={{ width: '100%', margin: '2rem 0', maxWidth: 'auto' }}>The most significant differences are:
                                 <ul>
                                     <li><strong>Theia's architecture is more modular</strong> and allows for way more customizations,</li>
@@ -497,7 +497,7 @@ export default () => {
                                 <div className="promo__text">
                                     <h3 className="heading-tertiary">Flexible Layout</h3>
                                     <p>Theia's shell is based on <a href="https://phosphorjs.github.io/" target="blank">PhosphorJS</a>,
-                            which provides a solid foundation for dragable dock layouts.</p>
+                            which provides a solid foundation for draggable dock layouts.</p>
                                 </div>
                                 <div className="promo__media">
                                     <video autoPlay loop muted playsInline className="promo__video">

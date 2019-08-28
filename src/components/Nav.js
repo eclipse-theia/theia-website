@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { breakpoints, colors } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
-import Mutliply from '../resources/multiply.svg'
+import Multiply from '../resources/multiply.svg'
 
 const StyledNav = styled.div`
 
@@ -147,7 +147,7 @@ class Nav extends React.Component {
                             aria-label="Navigation Toggle"
                             onClick={this.toggleNavigation}
                         >
-                            {this.state.isNavRendered ? <img src={Mutliply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
+                            {this.state.isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
 
                         </button>
                     </div>
@@ -164,10 +164,10 @@ class Nav extends React.Component {
                                 <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener noreferrer">Support</a>
+                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener">Support</a>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener noreferrer">Training</a>
+                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener">Training</a>
                             </li>
                         </ul>
                     }
