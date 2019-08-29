@@ -27,7 +27,8 @@ module.exports = {
                 plugins: [
                     {
                         resolve: "gatsby-remark-external-links",
-                    }
+                    },
+                    'gatsby-remark-prismjs',
                 ]
             }
         }
