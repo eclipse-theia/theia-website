@@ -3,8 +3,10 @@ import { Global, css } from '@emotion/core'
 import Helmet from 'react-helmet'
 import useSiteMetadata from '../hooks/use-site-metadata'
 import { fontSizes, colors, grid, breakpoints } from '../utils/variables'
-import Favicon from '../resources/favicon.png'
-import TheiaLogo from '../resources/theia-logo-black-textless.svg'
+import Favicon from '../resources/theia-favicon.svg'
+import Favicon196 from '../resources/theia-favicon-196x196.png'
+import AppleTouchIcon from '../resources/apple-touch-icon.png'
+
 
 const Layout = ({ children, canonical }) => {
     const { title, description } = useSiteMetadata()
@@ -143,8 +145,9 @@ const Layout = ({ children, canonical }) => {
                 {
                     canonical ? <link rel="canonical" href={canonical} /> : null
                 }
-                <link rel="icon" type="image/svg+xml" href={TheiaLogo} sizes="any" />
-                <link rel="icon" type="image/png" href={Favicon} sizes="96x96" />
+                <link rel="apple-touch-icon" type="image/png" href={AppleTouchIcon} sizes="180x180"/>
+                <link rel="icon" type="image/png" href={Favicon196} sizes="196x196"/>
+                <link rel="icon" type="image/svg+xml" href={Favicon} sizes="any"/>
                 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap" rel="stylesheet" />
             </Helmet>
