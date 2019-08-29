@@ -7,6 +7,7 @@ import Favicon from '../resources/theia-favicon.svg'
 import Favicon196 from '../resources/theia-favicon-196x196.png'
 import AppleTouchIcon from '../resources/apple-touch-icon.png'
 
+
 const Layout = ({ children, canonical }) => {
     const { title, description } = useSiteMetadata()
     return (
