@@ -1,7 +1,7 @@
 # Theia's Website
 [![setup automated](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 
-The source for the [website](http://www.theia-ide.org) and [online documentation](http://www.theia-ide.org/docs) for the [Theia IDE Framework](https://github.com/theia-ide/theia).
+The source for the [website](http://www.theia-ide.org) and [online documentation](http://www.theia-ide.org/docs) for the [Theia IDE Framework](https://github.com/eclipse-theia/theia).
 
 ## How to contribute
 
@@ -17,4 +17,4 @@ npm install && npm run start --host 0.0.0.0
 
 ## CI
 
-The website is automatically build at and deployed to netlify. 
+The website is automatically build at and deployed to netlify.
