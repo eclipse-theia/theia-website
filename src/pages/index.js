@@ -339,8 +339,8 @@ export default () => {
                             <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
                         </div>
                         <div className="header__github-details">
-                            <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
-                            <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
+                            <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
+                            <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                         </div>
                     </div>
 
