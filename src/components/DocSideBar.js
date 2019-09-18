@@ -94,26 +94,26 @@ const DocSideBar = () => {
                 <Link to='/'><img className="logo" src={TheiaLogoDark} alt="theia logo" /></Link>
                 <ul className="links">
                     <li className="caption">Architecture</li>
-                    <li><Link activeClassName='active' to="/docs/architecture">Overview</Link></li>
-                    <li><Link activeClassName='active' to="/docs/extensions">Extensions</Link></li>
-                    <li><Link activeClassName='active' to="/docs/services_and_contributions">Services and Contributions</Link></li>
+                    <li><Link activeClassName='active' to="/docs/architecture/">Overview</Link></li>
+                    <li><Link activeClassName='active' to="/docs/extensions/">Extensions</Link></li>
+                    <li><Link activeClassName='active' to="/docs/services_and_contributions/">Services and Contributions</Link></li>
 
                     <li className="caption">Using Theia</li>
-                    <li><Link activeClassName='active' to="/docs/composing_applications">Build your own IDE</Link></li>
-                    <li><Link activeClassName='active' to="/docs/authoring_extensions">Authoring an Extension</Link></li>
-                    <li><Link activeClassName='active' to="/docs/authoring_plugins">Authoring Plug-ins</Link></li>
-                    <li><Link activeClassName='active' to="/docs/language_support">Adding Language Support</Link>
+                    <li><Link activeClassName='active' to="/docs/composing_applications/">Build your own IDE</Link></li>
+                    <li><Link activeClassName='active' to="/docs/authoring_extensions/">Authoring an Extension</Link></li>
+                    <li><Link activeClassName='active' to="/docs/authoring_plugins/">Authoring Plug-ins</Link></li>
+                    <li><Link activeClassName='active' to="/docs/language_support/">Adding Language Support</Link>
                         <ul>
-                            <li style={{ marginLeft: '1.5rem', marginTop: '1rem' }}><Link activeClassName='active' to="/docs/textmate">TextMate Coloring</Link></li>
+                            <li style={{ marginLeft: '1.5rem', marginTop: '1rem' }}><Link activeClassName='active' to="/docs/textmate/">TextMate Coloring</Link></li>
                         </ul>
                     </li>
 
 
                     <li className="caption">Concepts Apis</li>
-                    <li><Link activeClassName='active' to="/docs/commands_keybindings">Commands and Keybindings</Link></li>
-                    <li><Link activeClassName='active' to="/docs/preferences">Preferences</Link></li>
-                    <li><Link activeClassName='active' to="/docs/events">Events</Link></li>
-                    <li><Link activeClassName='active' to="/docs/json_rpc">Communication via JSON-RPC</Link></li>
+                    <li><Link activeClassName='active' to="/docs/commands_keybindings/">Commands and Keybindings</Link></li>
+                    <li><Link activeClassName='active' to="/docs/preferences/">Preferences</Link></li>
+                    <li><Link activeClassName='active' to="/docs/events/">Events</Link></li>
+                    <li><Link activeClassName='active' to="/docs/json_rpc/">Communication via JSON-RPC</Link></li>
                 </ul>
             </div>
         </Styled>
