@@ -361,18 +361,8 @@ export default () => {
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.redhat.com">
-                                        <img className="contributors__image" src={RedHatLogo} alt="Redhat Logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ibm.com">
-                                        <img className="contributors__image contributors__image--ibm" src={IBMLogo} alt="IBM logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://google.com">
-                                        <img className="contributors__image contributors__image--google" src={GoogleLogo} alt="Google logo" />
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ericsson.com">
+                                        <img className="contributors__image contributors__image--ericsson" src={EricssonLogo} alt="Ericsson logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
@@ -381,8 +371,18 @@ export default () => {
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ericsson.com">
-                                        <img className="contributors__image contributors__image--ericsson" src={EricssonLogo} alt="Ericsson logo" />
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.redhat.com">
+                                        <img className="contributors__image" src={RedHatLogo} alt="Redhat Logo" />
+                                    </a>
+                                </div>
+                                <div className="contributors__image-container">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://google.com">
+                                        <img className="contributors__image contributors__image--google" src={GoogleLogo} alt="Google logo" />
+                                    </a>
+                                </div>
+                                <div className="contributors__image-container">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ibm.com">
+                                        <img className="contributors__image contributors__image--ibm" src={IBMLogo} alt="IBM logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
