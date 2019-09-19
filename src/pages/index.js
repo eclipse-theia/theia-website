@@ -335,12 +335,12 @@ export default () => {
                             <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
                                 Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                             </h2>
-                            <a className="btn" href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                            <a className="btn btn--cta" href="https://gitpod.io#https://github.com/theia-ide/theia" target="_blank" rel="noopener">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
+                            <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                            <a className="btn btn--cta" href="https://gitpod.io/#https://github.com/eclipse-theia/theia" target="_blank" rel="noopener">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
                         </div>
                         <div className="header__github-details">
-                            <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
-                            <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=theia-ide&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
+                            <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
+                            <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                         </div>
                     </div>
 
@@ -361,18 +361,8 @@ export default () => {
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.redhat.com">
-                                        <img className="contributors__image" src={RedHatLogo} alt="Redhat Logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ibm.com">
-                                        <img className="contributors__image contributors__image--ibm" src={IBMLogo} alt="IBM logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://google.com">
-                                        <img className="contributors__image contributors__image--google" src={GoogleLogo} alt="Google logo" />
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ericsson.com">
+                                        <img className="contributors__image contributors__image--ericsson" src={EricssonLogo} alt="Ericsson logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
@@ -381,8 +371,18 @@ export default () => {
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ericsson.com">
-                                        <img className="contributors__image contributors__image--ericsson" src={EricssonLogo} alt="Ericsson logo" />
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.redhat.com">
+                                        <img className="contributors__image" src={RedHatLogo} alt="Redhat Logo" />
+                                    </a>
+                                </div>
+                                <div className="contributors__image-container">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://google.com">
+                                        <img className="contributors__image contributors__image--google" src={GoogleLogo} alt="Google logo" />
+                                    </a>
+                                </div>
+                                <div className="contributors__image-container">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ibm.com">
+                                        <img className="contributors__image contributors__image--ibm" src={IBMLogo} alt="IBM logo" />
                                     </a>
                                 </div>
                                 <div className="contributors__image-container">

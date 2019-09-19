@@ -167,7 +167,7 @@ class Nav extends React.Component {
                                 <Link to="/#features" className="nav__link">Features</Link>
                             </li>
                             <li className="nav__item" onClick={event}>
-                                <Link to="/docs" className="nav__link" activeClassName="active">Documentation</Link>
+                                <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
                             </li>
                             <li className="nav__item" onClick={event}>
                                 <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
