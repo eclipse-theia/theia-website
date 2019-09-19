@@ -61,6 +61,10 @@ const data = [
     {
         title: "Communication via JSON-RPC",
         slug: "json_rpc"
+    },
+    {
+        title: "Views",
+        slug: "views"
     }
 ]
 
