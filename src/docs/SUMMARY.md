@@ -22,3 +22,4 @@
 * [Preferences](Preferences.md)
 * [Events](Events.md)
 * [Communication via JSON-RPC](Json_Rpc.md)
+* [Views](Views.md)
