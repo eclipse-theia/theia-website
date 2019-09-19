@@ -39,7 +39,7 @@ const StyledFooter = styled.div`
 
 const Footer = ({background}) => (
     <StyledFooter>
-        <footer className="footer" style={{background: background ? `url(${Background})` : null}}>
+        <footer className="footer" role="contentinfo" style={{background: background ? `url(${Background})` : null}}>
             <p>Join the community!</p>
             <div className="footer__icons">
                 <a href="https://twitter.com/theia_ide" target="_blank" rel="noopener noreferrer" className="footer__link">
