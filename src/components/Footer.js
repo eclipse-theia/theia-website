@@ -39,13 +39,13 @@ const StyledFooter = styled.div`
 
 const Footer = ({background}) => (
     <StyledFooter>
-        <footer className="footer" style={{background: background ? `url(${Background})` : null}}>
+        <footer className="footer" role="contentinfo" style={{background: background ? `url(${Background})` : null}}>
             <p>Join the community!</p>
             <div className="footer__icons">
                 <a href="https://twitter.com/theia_ide" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={TwitterLogo} alt="Twitter Logo" className="footer__icon" />
                 </a>
-                <a href="https://github.com/theia-ide/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
+                <a href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={GithubLogo} alt="Github Logo" className="footer__icon" />
                 </a>
                 <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
