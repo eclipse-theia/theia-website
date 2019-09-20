@@ -103,8 +103,8 @@ const DocSideBar = () => {
                     <li><Link activeClassName='active' to="/docs/authoring_extensions/">Authoring an Extension</Link></li>
                     <li><Link activeClassName='active' to="/docs/authoring_plugins/">Authoring Plug-ins</Link></li>
                     <li><Link activeClassName='active' to="/docs/language_support/">Adding Language Support</Link>
-                        <ul>
-                            <li style={{ marginLeft: '.6rem', marginTop: '1rem' }}><Link activeClassName='active' to="/docs/textmate/">&rarr; &nbsp;TextMate Coloring</Link></li>
+                        <ul style={{listStyle: 'circle', listStylePosition: 'inside'}}>
+                            <li style={{ marginLeft: '.6rem', marginTop: '1rem' }}><Link activeClassName='active' to="/docs/textmate/">TextMate Coloring</Link></li>
                         </ul>
                     </li>
 
