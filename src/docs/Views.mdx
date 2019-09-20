@@ -1,0 +1,249 @@
+---
+title: Views
+slug: views
+---
+
+# Views and Dialogs
+
+Theia does not enforce you to use any specific UI library. For most of Theia's current UI elements either plain DOM modifications or React is being used. In this article we'll show you how to implement UI elements with both of these techniques.
+
+## Creating a plain HTML Dialog
+Especially non-complex dialogs can be easily implemented without an UI library. For example, Theia's "About" dialog is an example for this category. Let's start by defining the Menu Contribution and add a new Menu item in the "Help" category. To achieve this, we need to create a `dialog.ts` file where we'll specify our dialog. A common base clase for dialogs is `AbstractDialog`, we're going to inherit from it. The constructor of AbstractDialog expects an instance of `DialogProps` which is carrying the dialogs title.
+We'll later set the dialog title with dependency injection - we also can't declare the title in our local `DialogPropsLocal` instance as the property title is readonly.
+
+The dialog itself is pretty basic: We annotate a single method with `@postConstruct`. This method is responsible for creating the UI elements by using plain DOM modifications. In this example we'll display a header, a paragraph, a list and a button to close the dialog.
+
+```typescript
+import { inject, injectable, postConstruct } from 'inversify';
+import { AbstractDialog, DialogProps } from '@theia/core/lib/browser/dialogs';
+
+@injectable()
+export class DialogPropsLocal extends DialogProps {
+    constructor() {
+        super();
+    }
+}
+
+@injectable()
+export class Dialog extends AbstractDialog<void> {
+
+    constructor(
+        @inject(DialogPropsLocal) protected readonly props: DialogPropsLocal
+    ) {
+        super({
+            title: props.title
+        });
+    }
+
+    @postConstruct()
+    protected async init(): Promise<void> {
+        const messageNode = document.createElement('div');
+
+        const extensionInfoTitle = document.createElement('h3');
+        extensionInfoTitle.textContent = 'Hello World';
+        messageNode.appendChild(extensionInfoTitle);
+
+        const paragraph = document.createElement('p');
+        paragraph.textContent = 'This extension offers the following functionalities: ';
+        messageNode.appendChild(paragraph);
+
+        const features:string[] = ['Hello','World','Theia','!'];
+
+        const featureInfoContent = document.createElement('ol');
+        messageNode.appendChild(featureInfoContent);
+
+        features.forEach(feature => {
+            const featureInfo = document.createElement('li');
+            featureInfo.textContent = feature;
+            featureInfoContent.appendChild(featureInfo);
+        });
+
+        this.appendAcceptButton('Close');
+    }
+
+    get value(): undefined { return undefined; }
+}
+```
+
+Afterwards, create a constant to store the information about a new command to open our dialog in your extension-name-contribution.ts
+
+```typescript
+export const OpenDialog = {
+    id: 'OpenDialog',
+    label: "Open Dialog"
+};
+```
+
+Inject a dialog instance in your CommandContribution class.
+
+```typescript
+@injectable()
+export class YourExtensionCommandContribution implements CommandContribution {
+
+    constructor(
+        @inject(Dialog) protected readonly dialog: Dialog,
+    ) { }
+
+}
+```
+Register the command which opens the dialog.
+
+```typescript
+registerCommands(registry: CommandRegistry): void {
+ registry.registerCommand(OpenDialog, {
+            execute: () => this.openDialog()
+        });
+}
+```
+
+We also need to add a menu contribution so we can easily open our dialog in the "Help" menu path.
+
+```typescript
+@injectable()
+export class YourExtensionMenuContribution implements MenuContribution {
+
+    registerMenus(menus: MenuModelRegistry): void {
+        menus.registerMenuAction(CommonMenus.HELP, {
+            commandId: OpenDialog.id
+        });
+```
+
+## Using Theia styles
+Running this will work but actually it won't look pleasing. Our text is black and therefore hard to read with the dark theme. Theia is making use of CSS variables to define common colors, fonts and styles. The dark and light theme respectively declare these variables. So by using these common variables, we ensure that our UI looks good in both the dark and light theme (and possible further themes which declare these variables). There are two ways of adding CSS to our DOM elements: either by directly manipulating the DOM or by using a custom stylesheet. We'll use the first approach in this example and the latter one is being used in the view example.
+
+Let's add the base font and color to our root div element:
+```typescript
+    messageNode.setAttribute('style', 'font-family: var(--theia-ui-font-family); color: var(--theia-ui-font-color1);');
+```
+Now our Dialog is readable and we could further enhance it's appearance by adding custom CSS.
+
+For reference, you can find all the variables in [variables-dark.useable.css](https://github.com/theia-ide/theia/blob/master/packages/core/src/browser/style/variables-dark.useable.css) (or the respective css of the light theme).
+
+## Creating a plain HTML View
+The base class for widgets in PhosphorJS is Widget, which can be subclassed to create custom widgets.
+
+Create a file view-widget.ts containing your widget implementation.
+For Widgets to render you need to override method onAfterAttach. In this method, we'll add some basic text to the DOM.
+
+```typescript
+@injectable()
+export class ViewWidget extends Widget {
+
+    static ID = 'view_widget_id';
+
+    @postConstruct()
+    protected init(): void {
+        this.id = ViewWidget.ID;
+        this.title.label = 'Some View';
+        this.title.caption = this.title.label;
+        this.title.closable = true;
+        this.title.iconClass = 'fa fa-sliders'; // display preference slider icon in view header
+    }
+
+    protected onAfterAttach(msg: Message) : void {
+        const contentNode = document.createElement('div');
+        this.node.appendChild(contentNode);
+
+        const title = document.createElement('h1');
+        title.innerHTML = 'A View';
+        contentNode.appendChild(title);
+    }
+}
+```
+
+Next we need to define a ViewContribution in a new typescript file, let's call it view-contribution.ts.
+
+```typescript
+@injectable()
+export class ViewContribution extends AbstractViewContribution<ViewWidget> {
+
+    constructor() {
+        super({
+            widgetId: ViewWidget.ID,
+            widgetName: 'View',
+            defaultWidgetOptions: { area: 'main' }
+        });
+    }
+
+}
+```
+As for the dialog, we could now add a command and a menu contribution to open our view.
+
+## Creating a react.js based View
+ReactWidget is the base class in Theia to create React based Widgets. For react, there's two ways to create DOM elements: either by using JSX or the React.createElement API.
+
+In this case, let's use JSX and therefore create a file react-widget.tsx.
+
+```typescript
+
+@injectable()
+export class ReactWidgetTest extends ReactWidget {
+
+    FrontendApplicationConfig applicationConfig = FrontendApplicationConfigProvider.get();
+
+    @inject(CorePreferences) protected readonly corePreferences: CorePreferences;
+
+    constructor(
+    ) {
+        super();
+        this.id = REACT_WIDGET_ID;
+        this.title.label = LABEL;
+        this.title.caption = LABEL;
+        this.title.closable = true;
+        this.title.iconClass = 'navigator-tab-icon';
+        this.addClass('theia-extension-detail');
+        this.update(); // TODO: needed
+
+    }
+
+    protected render(): React.ReactNode {
+    return <React.Fragment>
+            <div className=''>
+                <h2 className=''>Test</h2>
+            </div>
+            <div className=''>
+                    {this.renderVersion()}
+                </div>
+           </React.Fragment>;
+    }
+
+    // taken from the getting started widget
+    protected renderVersion(): React.ReactNode {
+        return <div className='gs-section'>
+            <div className='gs-action-container'>
+                <p className='gs-sub-header' >
+                    {this.applicationConfig.applicationName.applicationInfo ? 'Version ' + this.applicationConfig.applicationName.applicationInfo.version : ''}
+                </p>
+            </div>
+        </div>;
+    }
+}
+```
+
+As for the previous sample, let's create a view contribution for the react widget.
+
+```typescript
+@injectable()
+export class ReactViewContribution extends AbstractViewContribution<ReactWidgetTest> {
+    constructor() {
+        super({
+            widgetId: REACT_WIDGET_ID,
+            widgetName: 'React View',
+            defaultWidgetOptions: { area: 'main' }
+        });
+    }
+}
+```
+
+In the frontend module file, bind the specific implementations with Inversify.
+
+```typescript
+    bindViewContribution(bind, ReactViewContribution);
+    bind(ReactWidgetTest).toSelf();
+    bind(WidgetFactory).toDynamicValue(({ container }) => ({
+        id: REACT_WIDGET_ID,
+        createWidget: () => container.get(ReactWidgetTest)
+    }));
+```
+
+<DocArrowNavigators prev="json_rpc" />

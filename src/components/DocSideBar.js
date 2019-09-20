@@ -114,6 +114,7 @@ const DocSideBar = () => {
                     <li><Link activeClassName='active' to="/docs/preferences/">Preferences</Link></li>
                     <li><Link activeClassName='active' to="/docs/events/">Events</Link></li>
                     <li><Link activeClassName='active' to="/docs/json_rpc/">Communication via JSON-RPC</Link></li>
+                    <li><Link activeClassName='active' to="/docs/views">Views</Link></li>
                 </ul>
             </div>
         </Styled>
