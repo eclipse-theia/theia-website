@@ -356,7 +356,7 @@ export default () => {
                             <h3 className="heading-tertiary">Contributors & Adopters</h3>
                             <div className="contributors__images">
                                 <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener" href="https://typefox.io">
+                                    <a target="_blank" rel="noopener" href="https://www.typefox.io">
                                         <img className="contributors__image" src={TypeFoxLogo} alt="TypeFox Logo" />
                                     </a>
                                 </div>
