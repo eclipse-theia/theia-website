@@ -15,6 +15,7 @@ import GoogleLogo from '../resources/google.svg'
 import ARMLogo from '../resources/arm.svg'
 import EricssonLogo from '../resources/ericsson.svg'
 import SAPLogo from '../resources/sap.svg'
+import Arduino from '../resources/arduino.svg'
 import IconExtension from '../resources/icon-extension.svg'
 import IconCloudScreen from '../resources/icon-cloud-screen.svg'
 import IconOpenSource from '../resources/icon-open-source.svg'
@@ -99,6 +100,12 @@ const Index = styled.div`
             justify-content: space-between;
             flex-wrap: wrap;
 
+                @media(min-width: 768px) {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-row-gap: 80px;
+                }
+
             @media(max-width: 50rem) {
                 text-align: center;
             }
@@ -112,9 +119,18 @@ const Index = styled.div`
             &-container {
                 height: 4rem;
 
+                @media(min-width: 768px) {
+                    height: 4.5rem;
+                    text-align: center;
+                }
+
                 @media(max-width: 50rem) {
                     width: 40%;
                     margin-bottom: 4rem;
+                }
+
+                @media(max-width: 30rem) {
+                    width: 100%;
                 }
             }
 
@@ -388,6 +404,11 @@ export default () => {
                                 <div className="contributors__image-container">
                                     <a target="_blank" rel="noopener noreferrer" href="https://www.sap.com/">
                                         <img className="contributors__image contributors__image--sap" src={SAPLogo} alt="Sap logo" />
+                                    </a>
+                                </div>
+                                <div className="contributors__image-container">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.arduino.cc/">
+                                        <img className="contributors__image contributors__image--sap" src={Arduino} alt="Arduino logo" />
                                     </a>
                                 </div>
                             </div>
