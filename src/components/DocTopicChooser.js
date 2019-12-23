@@ -71,6 +71,10 @@ const Styled = styled.div`
     transform: translate(-50%, -2rem);
     z-index: 100;
 
+    @media(max-width: 360px) {
+        top: 9rem;
+    }
+
     @media(min-width: ${breakpoints.xmd}) {
         display: none;
     }

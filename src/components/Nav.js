@@ -29,12 +29,20 @@ const StyledNav = styled.div`
 
             &-container {
                 position: absolute;
-                top: 2rem;
+                top: 2.3rem;
                 right: 2rem;
+
+                @media(max-width: 360px) {
+                    top: 1.5rem;
+                }
             }
 
             img {
-                height: 4rem;
+                height: 3.5rem;
+
+                @media(max-width: ${breakpoints.sm}) {
+                    height: 3rem;
+                }
             }
 
             @media(min-width: ${breakpoints.xmd}) {
@@ -142,7 +150,6 @@ class Nav extends React.Component {
            this.toggleNavigation()
         }
     }
-
 
     render() {
         const event = (typeof window !== 'undefined' && window.innerWidth <= 800) ? this.toggleNavigation : null
