@@ -15,7 +15,11 @@ const DocContainer = styled.div`
         overflow-x: hidden;
 
         @media(max-width: ${breakpoints.xmd}) {
-            padding: 5rem 3rem;
+            padding: 5rem 3rem ;
+        }
+
+        @media(max-width: 360px) {
+            padding: 10rem 3rem 0;
         }
 
         @media(min-width: ${breakpoints.xmd}) {
@@ -74,7 +78,7 @@ const DocContainer = styled.div`
         font-size: 80%;
         padding: 0 1rem;
         background: #f9f9f9;
-        color: #F15E7D;
+        color: #dc2a2a;
         border: 1px dashed rgba(0,0,0, .2);
         box-shadow: 0 .1rem .2rem rgba(0,0,0, .05);
     }
@@ -86,9 +90,7 @@ const DocContainer = styled.div`
         font-size: 90%;
         border: 1px solid rgba(0,0,0, .1);
         font-size: 90%;
-        color: #667799;
         box-shadow: 0 .3rem .6rem #00000029;
-
 
         & code {
             font-size: inherit;
