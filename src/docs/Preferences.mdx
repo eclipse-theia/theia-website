@@ -42,7 +42,7 @@ export interface PreferenceContribution {
 }
 ```
 
-For instance, the filesystem binds it like so : 
+For instance, the filesystem binds it like so:
 ```typescript
 export const filesystemPreferenceSchema: PreferenceSchema = {
     "type": "object",
@@ -57,8 +57,8 @@ export const filesystemPreferenceSchema: PreferenceSchema = {
 };
 
 bind(PreferenceContribution).toConstantValue(
-{ 
-    schema: filesystemPreferenceSchema 
+{
+    schema: filesystemPreferenceSchema
 });
 ```
 
@@ -180,7 +180,7 @@ In the case of the filesystem, one would use the same proxied config as above to
     if (this.prefService['preferenceName']) {
     ...
     }
-    
+
     if (this.prefService['preferenceName2']) {
     ...
     }
@@ -194,4 +194,4 @@ This works because, as we have seen it above, the proxy will simply call prefSer
 * Add autocomplete/description when modifying the settings.json from within theia
 
 
-<DocArrowNavigators prev="commands_keybindings" next="events"/>
+<DocArrowNavigators prev="commands_keybindings" prevTitle="Commands & Keybindings" next="events" nextTitle="Events"/>
