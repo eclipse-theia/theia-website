@@ -49,7 +49,7 @@ const Footer = ({background}) => (
                     <img src={GithubLogo} alt="Github Logo" className="footer__icon" />
                 </a>
                 <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
-                    <img src={SpectrumLogo} alt="Spectrum Logo" className="footer__icon" style={{transform: 'scale(1.2)'}}/>
+                    <img src={SpectrumLogo} alt="Spectrum Logo" className="footer__icon" style={{height: '3.2rem'}}/>
                 </a>
             </div>
             <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>

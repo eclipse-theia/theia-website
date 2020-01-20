@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { breakpoints, colors } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
 import Multiply from '../resources/multiply.svg'
+import TheiaLogoDark from '../resources/theia-logo-dark.svg'
 
 const StyledNav = styled.div`
 
@@ -23,9 +24,28 @@ const StyledNav = styled.div`
             padding-top: 0;
         }
 
+        .logo {
+            height: 2.7rem;
+            color: transparent;
+
+            &-container {
+                position: absolute;
+                
+                @media(max-width: 800px) {
+                    top: 3rem;
+                    left: 2rem;
+                }
+
+                @media(max-width: 360px) {
+                    top: 1.8rem;
+                }
+            }
+        }
+
         &__button {
             border: none;
             background: #fff;
+            color: transparent;
 
             &-container {
                 position: absolute;
@@ -132,7 +152,6 @@ class Nav extends React.Component {
     }
 
     handleResize = () => {
-        console.log('Resized to: ', window.innerWidth)
         if (window.innerWidth < 800) {
             this.setState({isNavRendered: false})
         } else {
@@ -153,6 +172,7 @@ class Nav extends React.Component {
 
     render() {
         const event = (typeof window !== 'undefined' && window.innerWidth <= 800) ? this.toggleNavigation : null
+        const { shouldRenderLogo } = this.props
         return (
             <StyledNav>
                 <nav className="nav">
@@ -166,6 +186,11 @@ class Nav extends React.Component {
 
                         </button>
                     </div>
+                    { shouldRenderLogo ?        
+                        <Link to="/" className="logo-container">
+                            <img className="logo" src={TheiaLogoDark} alt="theia logo" />
+                        </Link>: null
+                    }
                     {
                         this.state.isNavRendered &&
                         <ul className="nav__items">
