@@ -7,54 +7,55 @@ import Multiply from '../resources/multiply.svg'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
 
 const StyledNav = styled.div`
-
-    @media(max-width: ${breakpoints.xmd}) {
+     @media(max-width: ${breakpoints.xmd}) {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-    }
+        z-index: 10000000;
+     }
 
     .nav {
+        display: flex;
         position: relative;
         padding-top: 5rem;
         margin-bottom: 7rem;
 
         @media(max-width: ${breakpoints.xmd}) {
+            flex-direction: column;
             padding-top: 0;
+
+            .navIsRendered {
+                display: flex;
+            }
+
+            .navIsNotRendered {
+                display: none;
+            }
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                flex: 1;
+                padding: 3rem 2rem;
+            }
+
         }
 
         .logo {
             height: 2.7rem;
             color: transparent;
-
-            &-container {
-                position: absolute;
-                
-                @media(max-width: 800px) {
-                    top: 3rem;
-                    left: 2rem;
-                }
-
-                @media(max-width: 360px) {
-                    top: 1.8rem;
-                }
-            }
         }
 
         &__button {
             border: none;
             background: #fff;
             color: transparent;
+            transition: all .2s;
 
-            &-container {
-                position: absolute;
-                top: 2.3rem;
-                right: 2rem;
-
-                @media(max-width: 360px) {
-                    top: 1.5rem;
-                }
+            &:hover,
+            &:focus {
+                transform: scale(1.1);
             }
 
             img {
@@ -78,17 +79,16 @@ const StyledNav = styled.div`
             z-index: 1000;
 
             @media(max-width: ${breakpoints.xmd}) {
+                height: 95vh;
                 flex-direction: column;
                 text-align: center;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
                 background: white;
             }
         }
 
         &__item {
-
             margin-bottom: 3rem;
 
             @media(min-width: ${breakpoints.xmd}) {
@@ -151,66 +151,48 @@ class Nav extends React.Component {
         isNavRendered: false,
     }
 
-    handleResize = () => {
-        if (window.innerWidth < 800) {
-            this.setState({isNavRendered: false})
-        } else {
-            this.setState({isNavRendered: true})
-        }
-    }
-
     toggleNavigation = () => {
         this.setState({ isNavRendered: !this.state.isNavRendered })
     }
 
-        componentDidMount() {
-        window.addEventListener('resize', this.handleResize)
-        if (window.innerWidth >= 800) {
-           this.toggleNavigation()
-        }
-    }
-
     render() {
-        const event = (typeof window !== 'undefined' && window.innerWidth <= 800) ? this.toggleNavigation : null
         const { shouldRenderLogo } = this.props
         return (
             <StyledNav>
-                <nav className="nav">
-                    <div className="nav__button-container">
-                        <button
-                            className="nav__button"
-                            aria-label="Navigation Toggle"
-                            onClick={this.toggleNavigation}
-                        >
-                            {this.state.isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
-
-                        </button>
+                <nav className="nav" style={ this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {} }>
+                    <div className="nav__header">
+                        { shouldRenderLogo ?        
+                            <Link to="/" className="logo-container">
+                                <img className="logo" src={TheiaLogoDark} alt="theia logo" />
+                            </Link>: <span aria-hidden={true}>&nbsp;</span>
+                        }
+                        <div className="nav__button-container">
+                            <button
+                                className="nav__button"
+                                aria-label="Navigation Toggle"
+                                onClick={this.toggleNavigation}
+                            >
+                                {this.state.isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
+                            </button>
+                        </div>
                     </div>
-                    { shouldRenderLogo ?        
-                        <Link to="/" className="logo-container">
-                            <img className="logo" src={TheiaLogoDark} alt="theia logo" />
-                        </Link>: null
-                    }
-                    {
-                        this.state.isNavRendered &&
-                        <ul className="nav__items">
-                            <li className="nav__item" onClick={event}>
-                                <Link to="/#features" className="nav__link">Features</Link>
-                            </li>
-                            <li className="nav__item" onClick={event}>
-                                <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
-                            </li>
-                            <li className="nav__item" onClick={event}>
-                                <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
-                            </li>
-                            <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener">Support</a>
-                            </li>
-                            <li className="nav__item" onClick={event}>
-                                <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener">Training</a>
-                            </li>
-                        </ul>
-                    }
+                    <ul className={`nav__items ${this.state.isNavRendered ? 'navIsRendered' : 'navIsNotRendered' }`}>
+                        <li className="nav__item">
+                            <Link to="/#features" className="nav__link">Features</Link>
+                        </li>
+                        <li className="nav__item">
+                            <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
+                        </li>
+                        <li className="nav__item">
+                            <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="https://www.typefox.io/trainings/" className="nav__link" target="_blank" rel="noopener">Training</a>
+                        </li>
+                    </ul>
                 </nav>
             </StyledNav>
         )
