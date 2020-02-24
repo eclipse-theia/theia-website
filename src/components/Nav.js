@@ -190,7 +190,7 @@ class Nav extends React.Component {
                             <a href="https://typefox.io/eclipse-theia" className="nav__link" target="_blank" rel="noopener">Support</a>
                         </li>
                         <li className="nav__item">
-                            <a href="https://typefox.io/trainings-2" className="nav__link" target="_blank" rel="noopener">Training</a>
+                            <a href="https://www.typefox.io/trainings/" className="nav__link" target="_blank" rel="noopener">Training</a>
                         </li>
                     </ul>
                 </nav>
