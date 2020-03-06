@@ -8,14 +8,6 @@ import DocImage from '../components/DocImage'
 import Footer from '../components/Footer'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
 import Background from '../resources/background-image.png'
-import TypeFoxLogo from '../resources/typefox.png'
-import RedHatLogo from '../resources/redhat.svg'
-import IBMLogo from '../resources/ibm.svg'
-import GoogleLogo from '../resources/google.svg'
-import ARMLogo from '../resources/arm.svg'
-import EricssonLogo from '../resources/ericsson.svg'
-import SAPLogo from '../resources/sap.svg'
-import Arduino from '../resources/arduino.svg'
 import IconExtension from '../resources/icon-extension.svg'
 import IconCloudScreen from '../resources/icon-cloud-screen.svg'
 import IconOpenSource from '../resources/icon-open-source.svg'
@@ -23,6 +15,7 @@ import TheiaLogoEdited from '../resources/theia-logo-edited.svg'
 import CompletionVideo from '../resources/completion.mp4'
 import TermianlVideo from '../resources/terminal.mp4'
 import LayoutVideo from '../resources/layout.mp4'
+import ContributorsAndAdopters from '../components/ContributorsAndAdopters'
 
 const Index = styled.div`
 
@@ -84,73 +77,6 @@ const Index = styled.div`
 
         .heading-tertiary {
             padding-bottom: 40px;
-        }
-    }
-
-    /* ------------------------------------------ */
-    /* ----- Contributors ----- */
-    /* ------------------------------------------ */
-
-    .contributors {
-        padding-bottom: 5rem;
-        margin-top: 4rem;
-
-        &__images {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-
-                @media(min-width: 768px) {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    grid-row-gap: 80px;
-                }
-
-            @media(max-width: 50rem) {
-                text-align: center;
-            }
-        }
-
-        &__image {
-            height: 100%;
-            max-width: 17rem;
-            object-fit: contain;
-
-            &-container {
-                height: 4rem;
-
-                @media(min-width: 768px) {
-                    height: 4.5rem;
-                    text-align: center;
-                }
-
-                @media(max-width: 50rem) {
-                    width: 40%;
-                    margin-bottom: 4rem;
-                }
-
-                @media(max-width: 30rem) {
-                    width: 100%;
-                }
-            }
-
-            &--ericsson {
-                transform: scale(1.3);
-            }
-
-            &--ibm {
-                transform: scale(.8);
-            }
-
-            &--arm {
-                transform: scale(.6);
-            }
-
-            &--sap {
-                @media(min-width: ${breakpoints.md}) {
-                    transform: translateX(2.5rem);
-                }
-            }
         }
     }
 
@@ -364,56 +290,8 @@ export default () => {
                         <DocImage name="theia-screenshot.jpg" alt="Theia IDE Screenshot" shadow={true} />
                     </div>
 
-                    <div className="row">
+                    <ContributorsAndAdopters />
 
-                        {/* ***** Contributors ***** */}
-
-                        <section className="contributors">
-                            <h3 className="heading-tertiary">Contributors & Adopters</h3>
-                            <div className="contributors__images">
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener" href="https://www.typefox.io">
-                                        <img className="contributors__image" src={TypeFoxLogo} alt="TypeFox Logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ericsson.com">
-                                        <img className="contributors__image contributors__image--ericsson" src={EricssonLogo} alt="Ericsson logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.arm.com">
-                                        <img className="contributors__image contributors__image--arm" src={ARMLogo} alt="ARM logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.redhat.com">
-                                        <img className="contributors__image" src={RedHatLogo} alt="Redhat Logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://google.com">
-                                        <img className="contributors__image contributors__image--google" src={GoogleLogo} alt="Google logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.ibm.com">
-                                        <img className="contributors__image contributors__image--ibm" src={IBMLogo} alt="IBM logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.sap.com/">
-                                        <img className="contributors__image contributors__image--sap" src={SAPLogo} alt="Sap logo" />
-                                    </a>
-                                </div>
-                                <div className="contributors__image-container">
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.arduino.cc/">
-                                        <img className="contributors__image contributors__image--sap" src={Arduino} alt="Arduino logo" />
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
                 </header>
 
                 {/* ***** Main ***** */}
