@@ -1,8 +1,8 @@
 import React from 'react'
 
 import styled from '@emotion/styled'
-import { contributorsAndAdopters } from '../utils/data'
-import { breakpoints } from '../utils/variables'
+import { contributorsAndAdopters } from '../../utils/data'
+import { breakpoints } from '../../utils/variables'
 
 const Styled = styled.div`
      .contributors {
