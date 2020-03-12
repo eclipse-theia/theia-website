@@ -109,6 +109,7 @@ An example `package.json` may look like the following:
     "prepare": "yarn run clean && yarn build && yarn run download:plugins",
     "clean": "theia clean",
     "build": "theia build --mode development",
+    "start": "theia start --plugins=local-dir:plugins",
     "download:plugins": "theia download:plugins"
   },
   "theiaPluginsDir": "plugins",
@@ -145,13 +146,13 @@ i.e. obfuscated and minified.
 
 After the build is finished, we can start the application:
 
-    yarn theia start
+    yarn start
 
 You can provide a workspace path to open as a first argument
 and `--hostname`, `--port` options to deploy the application on specific network interfaces and ports,
 e.g. to open `/workspace` on all interfaces and port `8080`:
 
-    yarn theia start /my-workspace --hostname 0.0.0.0 --port 8080
+    yarn start /my-workspace --hostname 0.0.0.0 --port 8080
 
 In the terminal, you should see that Theia application is up and listening:
 
@@ -160,6 +161,14 @@ In the terminal, you should see that Theia application is up and listening:
 Open the application by entering the printed address in a new browser page.
 
 ## Troubleshooting
+
+### Plugins not appearing
+
+If no plugins are available in the running Theia instance, it may be that you need to tell Theia where to find the downloaded plugins.
+The example above sets the `--plugins` switch in the `start` command which should be sufficient.
+However if running `theia start` directly, you can alternatively set an environment variable to achieve the same thing:
+
+    export THEIA_DEFAULT_PLUGINS=local-dir:plugins
 
 ### Building native dependencies behind a proxy
 
