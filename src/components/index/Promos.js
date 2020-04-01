@@ -24,12 +24,12 @@ const promos = [
     },
     {
         title: "Integrated Terminal",
-        para: <p>Theia integrates a full featured terminal, that reconnects on browser reload keeping the full history.</p>,
+        para: <p>Theia integrates a full-featured terminal that reconnects on browser reload, keeping the full history.</p>,
         videoSrc: TermianlVideo
     },
     {
         title: "Flexible Layout",
-        para: <p>Theia's shell is based on <a href="https://phosphorjs.github.io/" target="blank">PhosphorJS</a>, which provides a solid foundation for draggable dock layouts.</p>,
+        para: <p>Theia's shell is composed of lightweight modular widgets that provide a solid foundation for draggable dock layouts.</p>,
         videoSrc: LayoutVideo
     }
 ]
