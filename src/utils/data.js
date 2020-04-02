@@ -8,6 +8,7 @@ import SAPLogo from '../resources/sap.svg'
 import Arduino from '../resources/arduino.svg'
 import ToroC from '../resources/toro-r.svg'
 import EclipseSource from '../resources/eclipse-source.svg'
+import Huawei from '../resources/huawei.svg'
 
 export const contributorsAndAdopters = [
     {
@@ -31,9 +32,9 @@ export const contributorsAndAdopters = [
         alt: "RedHat Logo"
     },
     {
-        href: "https://google.com",
+        href: "https://about.google/",
         src: GoogleLogo,
-        alt: "Google Cloud Logo"
+        alt: "Google Logo"
     },
     {
         href: "https://www.ibm.com",
@@ -59,5 +60,10 @@ export const contributorsAndAdopters = [
         href: "https://eclipsesource.com/",
         src: EclipseSource,
         alt: "EclipseSource logo"
-    }
+    },
+    {
+        href: "https://www.huawei.com/",
+        src: Huawei,
+        alt: "Huawei logo"
+    },
 ]
