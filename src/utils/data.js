@@ -7,6 +7,7 @@ import EricssonLogo from '../resources/ericsson.svg'
 import SAPLogo from '../resources/sap.svg'
 import Arduino from '../resources/arduino.svg'
 import ToroC from '../resources/toro-r.svg'
+import EclipseSource from '../resources/eclipse-source.svg'
 
 export const contributorsAndAdopters = [
     {
@@ -53,5 +54,10 @@ export const contributorsAndAdopters = [
         href: "https://www.torocloud.com/",
         src: ToroC,
         alt: "ToroCloud logo"
-    }, 
+    },
+    {
+        href: "https://eclipsesource.com/",
+        src: EclipseSource,
+        alt: "EclipseSource logo"
+    }
 ]
