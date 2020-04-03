@@ -16,7 +16,7 @@ const Styled = styled.div`
 
                 @media(min-width: 768px) {
                     display: grid;
-                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-columns: repeat(4, 1fr);
                     grid-row-gap: 80px;
                 }
 
