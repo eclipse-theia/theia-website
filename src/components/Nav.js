@@ -7,13 +7,12 @@ import Multiply from '../resources/multiply.svg'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
 
 const StyledNav = styled.div`
-     @media(max-width: ${breakpoints.xmd}) {
+    @media(max-width: ${breakpoints.xmd}) {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        z-index: 10000000;
-     }
+    }
 
     .nav {
         display: flex;
@@ -184,7 +183,7 @@ class Nav extends React.Component {
                             <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
                         </li>
                         <li className="nav__item">
-                            <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
+                            <a href="https://spectrum.chat/theia" target="_blank" rel="noopener" className="nav__link">Community</a>
                         </li>
                         <li className="nav__item">
                             <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>

@@ -1,9 +1,6 @@
 ---
 title: Overview
-slug: architecture
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # Architecture Overview
 
@@ -60,5 +57,3 @@ by platform:
 For a high level overview of Theia's Architecture, see this document:
 
 [Multi-Language IDE Implemented in JS - Scope and Architecture](https://docs.google.com/document/d/1aodR1LJEF_zu7xBis2MjpHRyv7JKJzW7EWI9XRYCt48)
-
-<DocArrowNavigators prev='index' prevTitle="Intro" next='extensions' nextTitle='Extensions'/>

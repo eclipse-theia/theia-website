@@ -3,66 +3,7 @@ import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
 import { breakpoints } from '../utils/variables'
 import DropDownArrow from '../resources/drop-down-arrow.svg';
-
-const data = [
-    {
-        title: "Architecture"
-    },
-    {
-        title: "Overview",
-        slug: "architecture"
-    },
-    {
-        title: "Extensions",
-        slug: "extensions"
-    },
-    {
-        title: "Services and Contributions",
-        slug: "services_and_contributions"
-    },
-    {
-        title: "Using Theia",
-    },
-    {
-        title: "Build your own IDE",
-        slug: "composing_applications"
-    },
-    {
-        title: "Authoring an Extension",
-        slug: "authoring_extensions"
-    },
-    {
-        title: "Authoring Plug-ins",
-        slug: "authoring_plugins"
-    },
-    {
-        title: "Adding Language Support",
-        slug: "language_support"
-    },
-    {
-        title: "TextMate Coloring",
-        slug: "textmate"
-    },
-    {
-        title: "Concept APIs"
-    },
-    {
-        title: "Commands and Keybindings",
-        slug: "commands_keybindings"
-    },
-    {
-        title: "preferences",
-        slug: "preferences"
-    },
-    {
-        title: "Events",
-        slug: "events"
-    },
-    {
-        title: "Communication via JSON-RPC",
-        slug: "json_rpc"
-    }
-]
+import { MENU } from '../docs/menu'
 
 const Styled = styled.div`
     position: absolute;
@@ -111,11 +52,11 @@ const DocTopicChooser = () => (
     <Styled>
         <select onChange={onSelectTopic} defaultValue="Select A Topic">
              <option value='#' selected={true}>Select A Topic</option>
-            {data.map((m, i) => {
-                return <>
-                    <option key={i} value={`/docs/${m.slug}`} disabled={!m.slug} >{m.title}</option>
-                </>
-            })}
+            {MENU.map((m, i) => (
+                <option key={i} value={m.path} disabled={!m.path}>
+                    {m.title}
+                </option>
+            ))}
         </select>
     </Styled>
 )

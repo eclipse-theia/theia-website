@@ -1,9 +1,6 @@
 ---
 title: Events
-slug: events
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 ## Events
 
@@ -92,5 +89,3 @@ So if you need to trigger events in theia:
  - Create an emitter
  - Register events with the emitter.event function
  - Fire events with emitter.fire(event)
-
-<DocArrowNavigators prev="preferences" prevTitle="Preferences" next="json_rpc" nextTitle="Communication via JSON-RPC"/>

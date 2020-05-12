@@ -1,10 +1,7 @@
 ---
 title: Build your own IDE
-slug: composing_applications
 ---
 
-import DocArrowNavigators from 'components/DocArrowNavigators'
-import DocImage from 'components/DocImage'
 
 # Build your own IDE
 
@@ -156,7 +153,7 @@ e.g. to open `/workspace` on all interfaces and port `8080`:
 
 In the terminal, you should see that Theia application is up and listening:
 
-<DocImage name="docs-terminal.png" alt="Terminal" shadow={true} width="75rem"/>
+<img class="doc-image" src="/docs-terminal.png" alt="Terminal" style="max-width: 750px">
 
 Open the application by entering the printed address in a new browser page.
 
@@ -203,4 +200,3 @@ This happens because node-gyp does not rely on system/NPM proxy settings. In tha
 
      npm_config_tarball=/path/to/node-v8.15.0-headers.tar.gz yarn install
 
-<DocArrowNavigators prev="services_and_contributions" prevTitle="Services and Contributions" next="authoring_extensions" nextTitle="Authoring Theia Extensions"/>

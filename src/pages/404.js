@@ -55,7 +55,7 @@ const NotFoundPage = () => (
                     <Nav shouldRenderLogo={true}/>
                     <main>
                         <div>
-                            <img src={Error404} alt="404 Image."/>
+                            <img src={Error404} alt="404"/>
                             <h1>Oops!</h1>
                             <p>We can't find the page you're looking for</p>
                             <Link to="/" className="btn">Back to Home &nbsp;&rarr;</Link>

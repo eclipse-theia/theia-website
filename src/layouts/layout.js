@@ -135,6 +135,15 @@ const Layout = ({ children, canonical }) => {
                         box-shadow: 0 .3rem .6rem rgba(0,0,0, .2);
                     }
                 }
+
+                /* --------------------------------------------- */
+                /* ----- Images ----- */
+                /* --------------------------------------------- */
+
+                img {
+                    object-fit: contain;
+                }
+
             `} />
             <Helmet>
                 <html lang='en' />
@@ -143,7 +152,7 @@ const Layout = ({ children, canonical }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="theme-color" content="#FFFFFF" />
                 {
-                    canonical ? <link rel="canonical" href={canonical} /> : null
+                    canonical ? <link rel="canonical" href={`https://theia-ide.org${canonical}`} /> : null
                 }
                 <link rel="apple-touch-icon" type="image/png" href={AppleTouchIcon} sizes="180x180"/>
                 <link rel="icon" type="image/png" href={Favicon196} sizes="196x196"/>

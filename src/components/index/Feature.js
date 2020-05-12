@@ -34,19 +34,14 @@ const StyledFeature = styled.div`
     }
 `
 
-const Feature = ({ img, title, paragraphs }, i) => (
-    <StyledFeature key={i} className="feature">
+const Feature = ({ img, title, paragraphs }) => (
+    <StyledFeature className="feature">
         <div>
             {img}
             <h3 className="heading-tertiary">{title}</h3>
         </div>
         {
-            paragraphs.map(p => {
-                let id = i + Math.random(1, 1000)
-                return typeof p == 'string' ? (
-                    <p key={id}>{p}</p>
-                ) : p
-            })
+            paragraphs.map((p, i) => <p key={`${i}${title}`}>{p}</p>)
         }
     </StyledFeature>
 )

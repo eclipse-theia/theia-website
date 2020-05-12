@@ -78,7 +78,7 @@ const ContributorsAndAdopters = () => (
                     {
                         contributorsAndAdopters.map((item, i) => (
                             <div key={i} className="contributors__image-container">
-                                <a target="_blank" rel="noopener" href={item.href}>
+                                <a target="_blank" rel="noopener noreferrer" href={item.href}>
                                     <img className="contributors__image" src={item.src} alt={item.alt} />
                                 </a>
                             </div>

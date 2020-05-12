@@ -1,10 +1,6 @@
 ---
 title: Communication via JSON-RPC
-slug: json_rpc
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
-
 
 # Communication via JSON-RPC
 
@@ -346,7 +342,4 @@ container.load(frontendLanguagesModule);
 
 If you wish to see the complete implementation of what I referred too in
 this documentation see [this commit](https://github.com/eclipse-theia/theia/commit/99d191f19bd2a3e93098470ca1bb7b320ab344a1).
-
-
-<DocArrowNavigators prev="events" prevTitle="Events"/>
 

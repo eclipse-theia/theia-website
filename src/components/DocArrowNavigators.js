@@ -27,10 +27,10 @@ const DocArrowNavigators = ({prev, next, prevTitle, nextTitle}) => {
     const nTitle = `Go to next page ${nextTitle ? `: ${nextTitle}` : ""}`
     return (
     <Styled>
-        <Link to={`/docs/${prev}`} title={pTitle} aria-label={pTitle} style={{pointerEvents: !prev && 'none' }}>
+        <Link to={prev} title={pTitle} aria-label={pTitle} style={{pointerEvents: !prev && 'none' }}>
             <img src={Arrow} alt={pTitle} className="arrow arrow--left" style={{opacity: !prev ? '.3' : 1}}/>
         </Link>
-        <Link to={`/docs/${next}`} title={nTitle} aria-label={nTitle} style={{pointerEvents: !next && 'none' }}>
+        <Link to={next} title={nTitle} aria-label={nTitle} style={{pointerEvents: !next && 'none' }}>
             <img src={Arrow} alt={nTitle} className="arrow arrow--right" style={{opacity: !next ? '.3' : 1}} />
         </Link>
     </Styled>

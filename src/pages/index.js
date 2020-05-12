@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 
 export default () => {
     return (
-        <Layout canonical='https://theia-ide.org/'>
+        <Layout canonical='/'>
             <Header />
             <main role="main">
                 <Features />

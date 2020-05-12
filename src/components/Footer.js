@@ -53,7 +53,7 @@ const Footer = ({background}) => (
                 </a>
             </div>
             <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
-            <p>© {(new Date()).getFullYear()} by <a href="https://typefox.io" target="_blank" rel="noopener">TypeFox</a></p>
+            <p>© {(new Date()).getFullYear()} by <a href="https://www.typefox.io/" target="_blank" rel="noopener">TypeFox</a></p>
         </footer>
     </StyledFooter>
 )

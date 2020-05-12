@@ -1,10 +1,6 @@
 ---
 title: Authoring Plug-ins
-slug: authoring_plugins
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
-import DocImage from 'components/DocImage'
 
 #  Authoring Theia Plug-ins
 
@@ -75,7 +71,7 @@ In the previous commands:
 
 here is animated screenshot of the generator running.
 
-<DocImage name="yeoman-plugin.gif" alt="Yeoman plugin output" shadow={true}/>
+<img src="/yeoman-plugin.gif" class="doc-image" alt="Yeoman plugin output">
 
 Pick up default values for each questions.
 
@@ -163,23 +159,23 @@ Now we want to see the plug-in in action. For this purpose, there is a mode call
 First, be sure that you've opened the folder where is the generated plug-in inside Theia. (It needs to be part of your workspace)
 Then, bring command palette (hiting the F1 key for example) and search for `Hosted mode: start instance` and select this command.
 
-<DocImage name="hosted-plugin-start-instance.png" alt="Hosted mode: start instance" shadow={true} />
+<img class="doc-image" src="/hosted-plugin-start-instance.png" alt="Hosted mode: start instance" style="max-width: 800px">
 
 Browse the workspace and select the folder of the plug-in (that contains `package.json` file).
 
-<DocImage name="hosted-plugin-start-instance-select-path.png" alt="Hosted mode: start instance: select path" shadow={true} width="50rem"/>
+<img class="doc-image" src="/hosted-plugin-start-instance-select-path.png" alt="Hosted mode: start instance: select path" style="max-width: 500px">
 
 It will spawn a new theia instance on port `3030`. A new tab will be opened (maybe you'll need to validate it) and you've a new instance running as `Development host` (in status bar you can check that name)
 
-<DocImage name="hosted-plugin-development-host.png" alt="Hosted mode: development host" shadow={true} width="30rem" />
+<img class="doc-image" src="/hosted-plugin-development-host.png" alt="Hosted mode: development host" style="max-width: 300px">
 
 Inside the `Development Host` instance, bring command palette (F1 key) and then search for `Hello World` command.
 
-<DocImage name="command-palette-hello-world.png" alt="Command Palette" shadow={true} width="70rem" styles={{minWidth: '50rem'}}/>
+<img class="doc-image" src="/command-palette-hello-world.png" alt="Command Palette" style="max-width: 700px">
 
- Select it and you'll see a notification `Hello World` on the screen.
+Select it and you'll see a notification `Hello World` on the screen.
 
-<DocImage name="hello-world-notification.png" alt="Hello World notification" shadow={true} width="60rem"/>
+<img class="doc-image" src="/hello-world-notification.png" alt="Hello World notification" style="max-width: 600px">
 
 
 ## Developing the Plug-in
@@ -204,5 +200,3 @@ Note: you may use watch mode as well.
 Theia is providing VS Code API. Check the following link to get the current status of what is implemented.
 [Compare Theia vs VS Code API](https://che-incubator.github.io/vscode-theia-comparator/status.html)
 
-
-<DocArrowNavigators prev="authoring_extensions" prevTitle="Authoring Extensions" next="language_support" nextTitle="Adding Language Support"/>

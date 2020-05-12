@@ -1,9 +1,6 @@
 ---
 title: Authoring an Extension
-slug: authoring_extensions
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 #  Authoring Theia Extensions
 
@@ -233,5 +230,3 @@ yarn start <path to workspace>
 ## Deploying the Extension
 
 If you want to make your extension publicly available, we recommend to publish it to npm. This can be achieved by calling `yarn publish` from the extension package's directory. Of course you need a valid account for that.
-
-<DocArrowNavigators prev="composing_applications" prevTitle="Build your own IDE" next="authoring_plugins" nextTitle="Authoring Plug-ins"/>
