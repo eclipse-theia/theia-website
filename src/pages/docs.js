@@ -1,25 +1,29 @@
 import React from 'react'
 import DocsLayout from '../layouts/docs-layout'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 export const query = graphql`
-  query {
-        mdx(frontmatter: {slug: {eq: "index"}}) {
+    query {
+        markdownRemark(fields: {slug: {eq: "index"}}) {
             frontmatter {
                 title
+            }
+            html
+            fields {
                 slug
             }
-            body
         }
     }
 `
 
-const Docs = ({ data: { mdx: doc } }) => (
-    <DocsLayout canonical='https://theia-ide.org/docs/'>
-        <h1>{doc.title}</h1>
-        <MDXRenderer>{doc.body}</MDXRenderer>
-    </DocsLayout>
-)
+const Docs = ({ data }) => {
+    const context =  { next: "/docs/architecture/", nextTitle: "Architecture Overview" }
+
+    return (
+        <DocsLayout canonical={`/docs/`} context={context}>
+            <div dangerouslySetInnerHTML={{__html: data.markdownRemark.html}}/>
+        </DocsLayout>
+    )
+}
 
 export default Docs

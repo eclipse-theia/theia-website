@@ -1,9 +1,6 @@
 ---
 title: Preferences
-slug: preferences
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # Preferences
 
@@ -194,4 +191,3 @@ This works because, as we have seen it above, the proxy will simply call prefSer
 * Add autocomplete/description when modifying the settings.json from within theia
 
 
-<DocArrowNavigators prev="commands_keybindings" prevTitle="Commands & Keybindings" next="events" nextTitle="Events"/>

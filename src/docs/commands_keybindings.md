@@ -1,9 +1,6 @@
 ---
 title: Commands and Keybindings
-slug: commands_keybindings
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # Commands and Keybindings
 
@@ -123,4 +120,3 @@ export default new ContainerModule(bind => {
 });
 
 ```
-<DocArrowNavigators prev="textmate" prevTitle="TextMate Coloring" next="preferences" nextTitle="Preferences"/>

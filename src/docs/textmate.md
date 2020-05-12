@@ -1,9 +1,7 @@
 ---
 title: TextMate Coloring
-slug: textmate
 ---
 
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # TextMate Support in Theia
 
@@ -101,4 +99,3 @@ export class YourContribution implements LanguageGrammarDefinitionContribution {
     }
 }
 ```
-<DocArrowNavigators prev="language_support" prevTitle="Language Support" next="commands_keybindings" nextTitle="Commands and Keybindings"/>

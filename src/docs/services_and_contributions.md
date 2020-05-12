@@ -1,9 +1,6 @@
 ---
 title: Services and Contributions
-slug: services_and_contributions
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # Services and Contributions
 
@@ -93,5 +90,3 @@ ConnectionHandler value that was bound before by `bindContributionProvider`.
 
 This enables anyone to bind a ConnectionHandler and now when the
 messagingModule is started all the ConnectionHandlers will be initiated.
-
-<DocArrowNavigators prev="extensions" prevTitle="Extensions" next="composing_applications" nextTitle="Build your own IDE"/>

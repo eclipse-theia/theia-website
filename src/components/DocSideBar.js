@@ -4,6 +4,7 @@ import { breakpoints, colors } from '../utils/variables'
 import { Link } from 'gatsby'
 import Background from '../resources/background-image.png'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
+import { MENU } from '../docs/menu'
 
 const Styled = styled.div`
     width: 30%;
@@ -93,27 +94,25 @@ const DocSideBar = () => {
             <div className="container">
                 <Link to='/'><img className="logo" src={TheiaLogoDark} alt="theia logo" /></Link>
                 <ul className="links">
-                    <li className="caption">Architecture</li>
-                    <li><Link activeClassName='active' to="/docs/architecture/">Overview</Link></li>
-                    <li><Link activeClassName='active' to="/docs/extensions/">Extensions</Link></li>
-                    <li><Link activeClassName='active' to="/docs/services_and_contributions/">Services and Contributions</Link></li>
+                    {
+                        MENU.map((m,i) => (
+                            <li 
+                                key={`${m.title}+${i}`} 
+                                className={m.path ? '' : 'caption'}
+                                style={ m.indented ? { marginLeft: '3rem', marginTop: '1rem', listStyle: 'circle', listStylePosition: 'inside' } : {} }
 
-                    <li className="caption">Using Theia</li>
-                    <li><Link activeClassName='active' to="/docs/composing_applications/">Build your own IDE</Link></li>
-                    <li><Link activeClassName='active' to="/docs/authoring_extensions/">Authoring an Extension</Link></li>
-                    <li><Link activeClassName='active' to="/docs/authoring_plugins/">Authoring Plug-ins</Link></li>
-                    <li><Link activeClassName='active' to="/docs/language_support/">Adding Language Support</Link>
-                        <ul style={{listStyle: 'circle', listStylePosition: 'inside'}}>
-                            <li style={{ marginLeft: '.6rem', marginTop: '1rem' }}><Link activeClassName='active' to="/docs/textmate/">TextMate Coloring</Link></li>
-                        </ul>
-                    </li>
-
-
-                    <li className="caption">Concepts Apis</li>
-                    <li><Link activeClassName='active' to="/docs/commands_keybindings/">Commands and Keybindings</Link></li>
-                    <li><Link activeClassName='active' to="/docs/preferences/">Preferences</Link></li>
-                    <li><Link activeClassName='active' to="/docs/events/">Events</Link></li>
-                    <li><Link activeClassName='active' to="/docs/json_rpc/">Communication via JSON-RPC</Link></li>
+                            >
+                                {
+                                    m.path ? <Link 
+                                    to={m.path}
+                                    activeClassName="active"
+                                    >
+                                    {m.title}
+                                </Link> : m.title
+                                }
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         </Styled>

@@ -6,6 +6,7 @@ import DocTopicChooser from '../components/DocTopicChooser'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { breakpoints } from '../utils/variables'
+import DocArrowNavigators from '../components/DocArrowNavigators'
 
 const DocContainer = styled.div`
     display: flex;
@@ -13,13 +14,8 @@ const DocContainer = styled.div`
     .main {
         position: relative;
         overflow-x: hidden;
-
         @media(max-width: ${breakpoints.xmd}) {
-            padding: 5rem 3rem ;
-        }
-
-        @media(max-width: 360px) {
-            padding: 10rem 3rem 0;
+            padding: 15rem 3rem ;
         }
 
         @media(min-width: ${breakpoints.xmd}) {
@@ -33,7 +29,7 @@ const DocContainer = styled.div`
 
     .docs-row {
         width: 85%;
-        max-wdith: 96rem;
+        max-width: 100rem;
         margin: 0 auto;
         padding-bottom: 10rem;
 
@@ -73,36 +69,20 @@ const DocContainer = styled.div`
         margin-top: .8rem;
     }
 
-    code {
-        display: inline-block;
-        font-size: 80%;
-        padding: 0 1rem;
-        background: #f9f9f9;
-        color: #dc2a2a;
-        border: 1px dashed rgba(0,0,0, .2);
-        box-shadow: 0 .1rem .2rem rgba(0,0,0, .05);
+    code,
+    pre {
+        max-width: 100%;
     }
 
-    pre {
-        padding: 1.5rem 2.5rem;
-        background: rgba(0,0,0, .02);
-        overflow-x: scroll;
-        font-size: 90%;
-        border: 1px solid rgba(0,0,0, .1);
-        font-size: 90%;
-        box-shadow: 0 .3rem .6rem #00000029;
-
-        & code {
-            font-size: inherit;
-            color: inherit;
-            padding: none;
-            border: none;
-            box-shadow: none;
-        }
+    .doc-image {
+        width: 100%;
+        margin: 2rem 0;
+        margin-right: auto;
+        box-shadow: 0 1.5rem 3rem rgba(0,0,0, .25);
     }
 `
 
-const DocsLayout = ({children, canonical}) => (
+const DocsLayout = ({children, canonical, context}) => (
     <Layout canonical={canonical}>
         <DocContainer>
             <DocSideBar />
@@ -112,6 +92,7 @@ const DocsLayout = ({children, canonical}) => (
                     <div className="docs-row">
                         <Nav />
                         {children}
+                        <DocArrowNavigators {...context} />
                     </div>
                     <Footer />
                 </div>

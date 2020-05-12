@@ -17,7 +17,7 @@ const promos = [
         title: "Supports JavaScript, Java, Python and many more",
         para: <p>
             Built on the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer">Language Server Protocol</a>,
-            Theia benefits from a growing ecosystem of <e>over 60 available language servers</e>, delivering intelligent editing support
+            Theia benefits from a growing ecosystem of <strong>over 60 available language servers</strong>, delivering intelligent editing support
             for all major programming languages.
         </p>,
         videoSrc: CompletionVideo

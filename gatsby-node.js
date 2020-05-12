@@ -1,41 +1,50 @@
 const path = require('path')
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
+exports.onCreateNode = ({ node, actions }) => {
+    const { createNodeField } = actions
+
+    if (node.internal.type === 'MarkdownRemark') {
+        const slug = path.basename(node.fileAbsolutePath, '.md')
+
+        createNodeField({
+            node,
+            name: 'slug',
+            value: slug
+        })
+    }
+} 
+
+exports.createPages = async ({ graphql, reporter, actions }) => {
+    const { createPage } = actions
+    const DocsTemplate = path.resolve('./src/templates/doc.js')
+
     const result = await graphql(`
         query {
-            allMdx {
-                nodes {
-                    frontmatter {
-                        slug
+            allMarkdownRemark {
+                edges {
+                    node {
+                        fields {
+                            slug
+                        }
                     }
                 }
             }
         }
-  `)
+    `)
 
-    if (result.errors) {
-        reporter.panic('failed to create docs', result.errors)
+    if(result.errors) {
+        reporter.panic("Failed to create Docs.", result.errors)
     }
 
-    const docs = result.data.allMdx.nodes
+    const docs = result.data.allMarkdownRemark.edges
 
-    console.log(docs)
-
-    docs.forEach(doc => {
-        actions.createPage({
-            path: `/docs/${doc.frontmatter.slug}`,
-            component: require.resolve('./src/templates/doc.js'),
+    docs.forEach((doc) => {
+        createPage({
+            component: DocsTemplate,
+            path: `/docs/${doc.node.fields.slug}`,
             context: {
-                slug: doc.frontmatter.slug,
-            },
+                slug: doc.node.fields.slug
+            }
         })
     })
-}
-
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      modules: [path.resolve(__dirname, "src"), "node_modules"]
-    }
-  })
 }

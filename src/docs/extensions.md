@@ -1,9 +1,6 @@
 ---
 title: Extensions
-slug: extensions
 ---
-
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # Extensions
 
@@ -18,5 +15,3 @@ runtime, which will trigger a recompilation and restart.
 
 Through a DI module, the extension can provide bindings from types to concrete
 implementations, i.e. provide services and contributions.
-
-<DocArrowNavigators prev='architecture' prevTitle="Architecture Overview" next='services_and_contributions' nextTitle="Services and Contributions"/>

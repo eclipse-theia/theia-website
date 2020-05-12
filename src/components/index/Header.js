@@ -72,7 +72,7 @@ const Header = () => (
                     <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
                         Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
                         <br/>
-                        <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0">Learn about the 1.0 Release!</a>
+                        <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
                     </h2>
 
                     <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>

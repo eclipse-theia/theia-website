@@ -7,7 +7,6 @@ const StyledDocImage = styled.div`
         width: ${({width}) => width ? width : '100%'};
         min-width: 30rem;
         margin: 2rem 0;
-        object-fit: contain;
         &-container {
             max-width: 114.5rem;
             margin: 0 auto;
@@ -22,7 +21,7 @@ const StyledDocImage = styled.div`
 const DocImage = ({ name, alt, shadow, width , styles}) => (
     <StyledDocImage width={width}>
         <div className="docimage-container">
-            <img className="docimage" src={require(`../resources/${name}`)} alt={alt} style={{boxShadow: shadow ? "0 1.5rem 3rem rgba(0,0,0, .25)" : null, ...styles}}/>
+            <img className="docimage" src={`/${name}`} alt={alt} style={{boxShadow: shadow ? "0 1.5rem 3rem rgba(0,0,0, .25)" : null, ...styles}}/>
         </div>
     </StyledDocImage>
 )

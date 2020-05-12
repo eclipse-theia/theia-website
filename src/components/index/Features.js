@@ -20,7 +20,6 @@ const StyledFeatures = styled.div`
             flex-direction: column;
         }
     }
-
 `
 
 const features = [
@@ -32,20 +31,20 @@ const features = [
     {
         img: <img src={IconOpenSource} alt="Vendor Neutral Open Source" />,
         title: "Vendor Neutral",
-        paragraphs: ['The Theia project is hosted at the Eclipse Foundation, a not-for-profit corporation, and is developed by a diverse community.', <p>
+        paragraphs: ['The Theia project is hosted at the Eclipse Foundation, a not-for-profit corporation, and is developed by a diverse community.', <>
             Unlike other "open-source" projects, projects hosted at an Open-Source Foundation are protected against single-vendor decisions against the interest of the diverse community.
             Learn more <a href="https://www.eclipse.org/projects/dev_process/">here</a>.
-        </p>]
+        </>]
     },
     {
         img: <img src={IconExtension} alt="Icon Extension" />,
         title: "Extensible",
         paragraphs: ['Theia is designed in a modular way to allow extenders and adopters customizing and extending every aspect of it.', 
-        <p>
+        <>
             Composing a custom IDE-like product is as easy as listing all needed extensions in a package.json file. Adding new
             functionality by implementing <Link to='/docs/authoring_extensions'>
             your own extensions</Link> is easy, too and provides all the flexibility you need.
-        </p>]
+        </>]
     }
 ]
 
@@ -53,9 +52,9 @@ const Features = () => (
     <StyledFeatures>
         <section className="features" id="features">
             <div className="row feature__container">
-                {
-                    features.map((feature, i) => <Feature {...feature} id={i}/>)
-                }
+                {features.map(
+                    (feature, i) => <Feature key={`${i}+${feature.title}`} {...feature} />
+                )}
             </div>
         </section>
     </StyledFeatures>

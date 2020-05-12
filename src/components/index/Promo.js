@@ -7,7 +7,7 @@ const StyledPromo = styled.div`
     display: flex;
     border: 2px solid #ebebeb;
 
-    &:nth-child(2n) {
+    &:nth-of-type(2n) {
         flex-direction: row-reverse;
 
         @media(max-width: ${breakpoints.md}) {

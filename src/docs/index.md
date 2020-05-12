@@ -1,10 +1,6 @@
 ---
 title: README
-slug: index
 ---
-
-import DocImage from 'components/DocImage'
-import DocArrowNavigators from 'components/DocArrowNavigators'
 
 # Theia - Cloud & Desktop IDE
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/help%20wanted)
@@ -15,7 +11,7 @@ import DocArrowNavigators from 'components/DocArrowNavigators'
 
 Theia is an extensible platform to develop full-fledged multi-language Cloud & Desktop IDE-like products with state-of-the-art web technologies.
 
-<DocImage name="theia-screenshot.jpg" alt="Theia IDE Screenshot" shadow={true}/>
+<img src="/theia-screenshot.jpg" alt="Theia IDE Screenshot" class="doc-image">
 
 ## Scope
 - Establish a platform to build IDE-like products
@@ -46,5 +42,3 @@ Read below how to engage with Theia community:
 ## License
 
 [EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0](https://github.com/eclipse-theia/theia/blob/master/LICENSE)
-
-<DocArrowNavigators next='architecture' nextTitle="Architecture Overview"/>

@@ -7,14 +7,6 @@ module.exports = {
         'gatsby-plugin-emotion',
         'gatsby-plugin-react-helmet',
         {
-            resolve: 'gatsby-plugin-mdx',
-            options: {
-                defaultLayouts: {
-                    default: require.resolve('./src/layouts/layout.js')
-                }
-            }
-        },
-        {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'docs',
@@ -25,9 +17,8 @@ module.exports = {
             resolve: `gatsby-transformer-remark`,
             options: {
                 plugins: [
-                    {
-                        resolve: "gatsby-remark-external-links",
-                    }
+                    "gatsby-remark-external-links",
+                    "gatsby-remark-prismjs"
                 ]
             }
         }
