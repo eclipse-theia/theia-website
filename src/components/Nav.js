@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
-import { Global, css } from '@emotion/core'
 import { breakpoints, colors } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
 import Multiply from '../resources/multiply.svg'
@@ -159,13 +158,6 @@ class Nav extends React.Component {
         const { shouldRenderLogo } = this.props
         return (
             <StyledNav>
-                <Global 
-                    styles={css`
-                        html {
-                            overflow-y: ${this.state.isNavRendered ? 'hidden' : 'scroll'};
-                        }
-                    `}
-                />
                 <nav className="nav" style={ this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {} }>
                     <div className="nav__header">
                         { shouldRenderLogo ?        
