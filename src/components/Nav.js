@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
+ import { Global, css } from '@emotion/core'
 import { breakpoints, colors } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
 import Multiply from '../resources/multiply.svg'
@@ -12,6 +13,10 @@ const StyledNav = styled.div`
         top: 0;
         left: 0;
         right: 0;
+
+        .white {
+            background: #fff;
+        }
     }
 
     .nav {
@@ -23,15 +28,6 @@ const StyledNav = styled.div`
         @media(max-width: ${breakpoints.xmd}) {
             flex-direction: column;
             padding-top: 0;
-
-            .navIsRendered {
-                display: flex;
-            }
-
-            .navIsNotRendered {
-                display: none;
-            }
-
             &__header {
                 display: flex;
                 justify-content: space-between;
@@ -76,6 +72,10 @@ const StyledNav = styled.div`
             list-style: none;
             width: 100%;
             z-index: 1000;
+
+            @media(min-width: ${breakpoints.xmd}) {
+                padding-top: 2.5rem;
+            }
 
             @media(max-width: ${breakpoints.xmd}) {
                 height: 95vh;
@@ -142,60 +142,93 @@ const StyledNav = styled.div`
     .active {
         color: ${colors.blue};
     }
+
+    @media(max-width: ${breakpoints.xmd}) {
+        .shown {
+            display: flex;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    }
 `
 
-class Nav extends React.Component {
+const Nav = ({ shouldRenderLogo }) => {
+    const [isNavRendered, setIsNavRendered] = useState(false)
 
-    state = {
-        isNavRendered: false,
+    const unLock = () => {
+        if(window.innerWidth <= '700') {
+                setIsNavRendered(false)
+        }
     }
 
-    toggleNavigation = () => {
-        this.setState({ isNavRendered: !this.state.isNavRendered })
+    useEffect(() => {
+        window.addEventListener('resize', unLock)
+
+        return () => {
+            window.removeEventListener('resize', unLock)
+        }
+    })
+
+    const toggleNavigation = () => {
+        setIsNavRendered(!isNavRendered)
     }
 
-    render() {
-        const { shouldRenderLogo } = this.props
-        return (
-            <StyledNav>
-                <nav className="nav" style={ this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {} }>
-                    <div className="nav__header">
-                        { shouldRenderLogo ?        
-                            <Link to="/" className="logo-container">
-                                <img className="logo" src={TheiaLogoDark} alt="theia logo" />
-                            </Link>: <span aria-hidden={true}>&nbsp;</span>
+    return (
+        <StyledNav>
+            <Global
+                styles={css`
+                        html {
+                            overflow-y: ${isNavRendered ? 'hidden' : 'scroll'};
                         }
-                        <div className="nav__button-container">
-                            <button
-                                className="nav__button"
-                                aria-label="Navigation Toggle"
-                                onClick={this.toggleNavigation}
-                            >
-                                {this.state.isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
-                            </button>
-                        </div>
+                    `}
+            />
+            <nav className={`${isNavRendered ? 'white' : ''}`}>
+                <div className="nav__header">
+                    {shouldRenderLogo ?
+                        <Link to="/" className="logo-container">
+                            <img className="logo" src={TheiaLogoDark} alt="theia logo" />
+                        </Link> : <span aria-hidden={true}>&nbsp;</span>
+                    }
+                    <div className="nav__button-container">
+                        <button
+                            className="nav__button"
+                            aria-label="Navigation Toggle"
+                            onClick={toggleNavigation}
+                        >
+                            {isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
+                        </button>
                     </div>
-                    <ul className={`nav__items ${this.state.isNavRendered ? 'navIsRendered' : 'navIsNotRendered' }`}>
-                        <li className="nav__item">
-                            <Link to="/#features" className="nav__link">Features</Link>
-                        </li>
-                        <li className="nav__item">
-                            <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
-                        </li>
-                        <li className="nav__item">
-                            <a href="https://spectrum.chat/theia" target="_blank" rel="noopener" className="nav__link">Community</a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="https://www.typefox.io/trainings/" className="nav__link" target="_blank" rel="noopener">Training</a>
-                        </li>
-                    </ul>
-                </nav>
-            </StyledNav>
-        )
-    }
+                </div>
+                <ul className={`nav__items ${isNavRendered ? 'shown' : 'hidden'}`}>
+                    <li className="nav__item">
+                        <Link 
+                            to="/#features" 
+                            className="nav__link"
+                            onClick={() => {
+                                setIsNavRendered(false)
+                            }}
+                        >
+                            Features
+                        </Link>
+                    </li>
+                    <li className="nav__item">
+                        <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
+                    </li>
+                    <li className="nav__item">
+                        <a href="https://spectrum.chat/theia" target="_blank" rel="noopener" className="nav__link">Community</a>
+                    </li>
+                    <li className="nav__item">
+                        <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>
+                    </li>
+                    <li className="nav__item">
+                        <a href="https://www.typefox.io/trainings/" className="nav__link" target="_blank" rel="noopener">Training</a>
+                    </li>
+                </ul>
+            </nav>
+        </StyledNav>
+    )
 }
 
 export default Nav
