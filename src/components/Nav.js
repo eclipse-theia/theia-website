@@ -183,7 +183,7 @@ class Nav extends React.Component {
                             <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
                         </li>
                         <li className="nav__item">
-                            <a href="https://spectrum.chat/theia" target="_blank" rel="noopener" className="nav__link">Community</a>
+                            <a href="https://community.theia-ide.org/" target="_blank" rel="noopener" className="nav__link">Community</a>
                         </li>
                         <li className="nav__item">
                             <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>

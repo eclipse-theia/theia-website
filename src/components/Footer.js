@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import Background from '../resources/background-image.png'
 import TwitterLogo from '../resources/twitter.svg'
 import GithubLogo from '../resources/github.svg'
-import SpectrumLogo from '../resources/spectrum.svg'
+import DiscourseLogo from '../resources/discourse.svg'
 
 const StyledFooter = styled.div`
     .footer {
@@ -48,8 +48,8 @@ const Footer = ({background}) => (
                 <a href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={GithubLogo} alt="Github Logo" className="footer__icon" />
                 </a>
-                <a href="https://spectrum.chat/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
-                    <img src={SpectrumLogo} alt="Spectrum Logo" className="footer__icon" style={{height: '3.2rem'}}/>
+                <a href="https://community.theia-ide.org/" target="_blank" rel="noopener noreferrer" className="footer__link">
+                    <img src={DiscourseLogo} alt="Discourse Logo" className="footer__icon" style={{height: '3.2rem'}}/>
                 </a>
             </div>
             <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
