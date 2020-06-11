@@ -4,7 +4,7 @@ title: README
 
 # Theia - Cloud & Desktop IDE
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/help%20wanted)
-[![Community](https://img.shields.io/badge/chat-on%20spectrum-blue.svg)](https://spectrum.chat/theia)
+[![Discourse status](https://img.shields.io/discourse/status?color=blue&label=Community&server=https%3A%2F%2Fcommunity.theia-ide.org%2F)](https://community.theia-ide.org/)
 [![Build Status](https://travis-ci.org/eclipse-theia/theia.svg?branch=master)](https://travis-ci.org/eclipse-theia/theia)
 [![Open questions](https://img.shields.io/badge/Open-questions-pink.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/question)
 [![Open bugs](https://img.shields.io/badge/Open-bugs-red.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/bug)
@@ -34,7 +34,7 @@ Read below to learn how to take part in improving Theia:
 ## Feedback
 
 Read below how to engage with Theia community:
-- Join the discussion on [Spectrum](https://spectrum.chat/theia).
+- Join the discussion on [Discourse](https://community.theia-ide.org/).
 - Ask a question, request a new feature and file a bug with [GitHub issues](https://github.com/eclipse-theia/theia/issues/new).
 - Star the repository to show your support.
 - Follow Theia on [Twitter](https://twitter.com/theia_ide).
