@@ -28,6 +28,7 @@ const DocContainer = styled.div`
     }
 
     .docs-row {
+        position: relative;
         width: 85%;
         max-width: 100rem;
         margin: 0 auto;

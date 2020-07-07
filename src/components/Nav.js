@@ -5,6 +5,9 @@ import { breakpoints, colors } from '../utils/variables'
 import Hamburger from '../resources/hamburger.svg'
 import Multiply from '../resources/multiply.svg'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { useRef } from 'react'
 
 const StyledNav = styled.div`
     @media(max-width: ${breakpoints.xmd}) {
@@ -12,6 +15,12 @@ const StyledNav = styled.div`
         top: 0;
         left: 0;
         right: 0;
+    }
+
+    &.fixed {
+        position: fixed;
+        background: #fff;
+        width: 100%;
     }
 
     .nav {
@@ -144,58 +153,66 @@ const StyledNav = styled.div`
     }
 `
 
-class Nav extends React.Component {
+const Nav = ({ shouldRenderLogo }) => {
+    const [isNavRendered, setIsNavRendered] = useState(false)
+    const navRef = useRef(null) 
 
-    state = {
-        isNavRendered: false,
+    const toggleNavigation = () => {
+        setIsNavRendered(!isNavRendered)
     }
 
-    toggleNavigation = () => {
-        this.setState({ isNavRendered: !this.state.isNavRendered })
+    const handleScroll = () => {
+        if (window.scrollY > 200) {
+            navRef.current.classList.add('fixed')
+        }
     }
 
-    render() {
-        const { shouldRenderLogo } = this.props
-        return (
-            <StyledNav>
-                <nav className="nav" style={ this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {} }>
-                    <div className="nav__header">
-                        { shouldRenderLogo ?        
-                            <Link to="/" className="logo-container">
-                                <img className="logo" src={TheiaLogoDark} alt="theia logo" />
-                            </Link>: <span aria-hidden={true}>&nbsp;</span>
-                        }
-                        <div className="nav__button-container">
-                            <button
-                                className="nav__button"
-                                aria-label="Navigation Toggle"
-                                onClick={this.toggleNavigation}
-                            >
-                                {this.state.isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
-                            </button>
-                        </div>
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+
+        }
+    })
+
+    return (
+        <StyledNav ref={navRef}>
+            <nav className="nav" style={isNavRendered ? { background: '#fff', height: '100vh' } : {}}>
+                <div className="nav__header">
+                    {shouldRenderLogo ?
+                        <Link to="/" className="logo-container">
+                            <img className="logo" src={TheiaLogoDark} alt="theia logo" />
+                        </Link> : <span aria-hidden={true}>&nbsp;</span>
+                    }
+                    <div className="nav__button-container">
+                        <button
+                            className="nav__button"
+                            aria-label="Navigation Toggle"
+                            onClick={toggleNavigation}
+                        >
+                            {isNavRendered ? <img src={Multiply} alt="close menu icon" /> : <img src={Hamburger} alt="hamburger menu icon" />}
+                        </button>
                     </div>
-                    <ul className={`nav__items ${this.state.isNavRendered ? 'navIsRendered' : 'navIsNotRendered' }`}>
-                        <li className="nav__item">
-                            <Link to="/#features" className="nav__link">Features</Link>
-                        </li>
-                        <li className="nav__item">
-                            <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
-                        </li>
-                        <li className="nav__item">
-                            <a href="https://community.theia-ide.org/" target="_blank" rel="noopener" className="nav__link">Community</a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="https://www.typefox.io/trainings/" className="nav__link" target="_blank" rel="noopener">Training</a>
-                        </li>
-                    </ul>
-                </nav>
-            </StyledNav>
-        )
-    }
+                </div>
+                <ul className={`nav__items ${isNavRendered ? 'navIsRendered' : 'navIsNotRendered'}`}>
+                    <li className="nav__item">
+                        <Link to="/#features" className="nav__link">Features</Link>
+                    </li>
+                    <li className="nav__item">
+                        <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
+                    </li>
+                    <li className="nav__item">
+                        <a href="https://community.theia-ide.org/" target="_blank" rel="noopener" className="nav__link">Community</a>
+                    </li>
+                    <li className="nav__item">
+                        <a href="https://www.typefox.io/theia/" className="nav__link" target="_blank" rel="noopener">Support</a>
+                    </li>
+                    <li className="nav__item">
+                        <a href="https://www.typefox.io/trainings/" className="nav__link" target="_blank" rel="noopener">Training</a>
+                    </li>
+                </ul>
+            </nav>
+        </StyledNav>
+    )
 }
 
 export default Nav
