@@ -9,6 +9,7 @@ import Arduino from '../resources/arduino.svg'
 import ToroC from '../resources/toro-r.svg'
 import EclipseSource from '../resources/eclipse-source.svg'
 import Huawei from '../resources/huawei.svg'
+import Acquia from '../resources/acquia.svg'
 
 export const contributorsAndAdopters = [
     {
@@ -66,4 +67,9 @@ export const contributorsAndAdopters = [
         src: Huawei,
         alt: "Huawei logo"
     },
+    {
+        href: "https://www.acquia.com/products/drupal-cloud/cloud-ide",
+        src: Acquia,
+        alt: "Acquia Logo"
+    }
 ]
