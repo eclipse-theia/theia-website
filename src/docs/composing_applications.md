@@ -9,20 +9,8 @@ This guide will teach you how to build your own Theia application.
 
 ## Requirements
 
-You'll need node in version 10:
-
-```bash
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-nvm install 10
-```
-
-and yarn
-
-```
-npm install -g yarn
-```
-
-Also make sure your `python --version` points to a Python 2.x installation.
+The detailed list of prerequisites is located at the main Theia repository:
+- [Prerequisites](https://github.com/eclipse-theia/theia/blob/master/doc/Developing.md#prerequisites)
 
 ## Setup
 
