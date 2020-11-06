@@ -18,3 +18,13 @@ npm install && npm run start --host 0.0.0.0
 ## CI
 
 The website is automatically build at and deployed to netlify.
+
+## License
+
+- [Eclipse Public License 2.0](LICENSE)
+- [一 (Secondary) GNU General Public License, version 2 with the GNU Classpath Exception](LICENSE)
+
+## Trademark
+
+"Theia" is a trademark of the Eclipse Foundation
+https://www.eclipse.org/theia
