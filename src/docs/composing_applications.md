@@ -56,7 +56,7 @@ Let's have a look at the created package:
     For instance, [@theia/python](https://www.npmjs.com/package/@theia/python) requires
     [the Python Language Server](https://github.com/palantir/python-language-server) to be installed.
     In such cases, please consult the corresponding extension documentation.
-    - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) too see all published extensions.
+    - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) to see all published extensions.
   - We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
 
 ## Consuming VS Code Extensions
