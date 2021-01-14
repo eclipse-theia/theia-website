@@ -80,6 +80,13 @@ export const MENU = [
     M(
         'Communication via JSON-RPC',
         'json_rpc'
+    ),
+    {
+        title: 'Blueprint Product'
+    },
+    M(
+        'Download',
+        'blueprint_download'
     )
 ]
 
