@@ -26,3 +26,4 @@
 ## Blueprint
 
 * [Download](blueprint_download.md)
+* [Documentation](blueprint_documentation.md)

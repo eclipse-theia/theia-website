@@ -46,4 +46,4 @@ The source code of the Eclipse Theia Blueprint product is available on [Github](
 
 ## Documentation
 
-Please see [here](https://theia-ide.org/docs/) for documentation how to customize the Eclipse Theia Blueprint product. 
+Please see [here](../blueprint_documentation) for documentation how to customize the Eclipse Theia Blueprint product.

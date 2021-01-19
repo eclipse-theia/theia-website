@@ -87,6 +87,10 @@ export const MENU = [
     M(
         'Download',
         'blueprint_download'
+    ),
+    M(
+        'Documentation',
+        'blueprint_documentation'
     )
 ]
 
