@@ -82,7 +82,7 @@ export const MENU = [
         'json_rpc'
     ),
     {
-        title: 'Blueprint Product'
+        title: 'Theia Blueprint'
     },
     M(
         'Download',

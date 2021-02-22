@@ -93,7 +93,7 @@ const Header = () => (
 
                     <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                     <a className="btn btn--cta" href="https://gitpod.io/#https://github.com/eclipse-theia/theia" target="_blank" rel="noopener">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
-                    <a className="btn btn--cta" href="https://theia-ide.org/docs/blueprint_download/" target="_blank" rel="noopener">Try on Desktop &nbsp;&nbsp;&rarr;</a>
+                    <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on Desktop &nbsp;&nbsp;&rarr;</a>
                 </div>
                 <div className="header__github-details">
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
