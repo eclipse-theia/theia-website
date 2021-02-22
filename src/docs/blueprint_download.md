@@ -1,18 +1,18 @@
 ---
-title: Eclipse Theia Blueprint Product
+title: Eclipse Theia Blueprint
 ---
 
-# Eclipse Theia Blueprint Product
+# Eclipse Theia Blueprint
 
 <img src="/theia-logo-blueprint.png" alt="Theia Logo Blue" style="max-width: 525px">
 
-## What is this?
+## What is Eclipse Theia Blueprint?
 
-Theia Blueprint product is a **template** to showcase the capabilities of Theia as well as how to build desktop-based products based on the platform. Theia Blueprint assembles a selected subset of existing Theia features and extensions. We provide installers for Theia Blueprint to be downloaded (see below) as well as documentation on how to customize this template to build a product and installers for your own Theia-based product.
+Eclipse Theia Blueprint is a **template** for building desktop-based products based on the Eclipse Theia platform, as well as to showcase Eclipse Theia capabilities. TIt is made up of a  subset of existing Eclipse Theia features and extensions and can be easily downloaded and installed on all major operating system platforms (see below). Documentation is available to help you customize and build your own Eclipse Theia-based product.
 
 ## What is it not?
 
-Theia Blueprint product is ***not*** **a production-ready product**. Therefore, it is also not a replacement for Visual Studio Code or any other IDE.
+Eclipse Theia Blueprint is ***not*** **a production-ready product**. Therefore, it is also not meant to be a replacement for Visual Studio Code or any other IDE.
 
 ## Downloads
 
@@ -23,7 +23,7 @@ Theia Blueprint product is ***not*** **a production-ready product**. Therefore, 
     <tr>
       <th>Windows</th>
       <th>Linux</th>
-      <th>MacOS</th>
+      <th>macOS</th>
     </tr>
   </thead>
   <tbody>
@@ -35,15 +35,15 @@ Theia Blueprint product is ***not*** **a production-ready product**. Therefore, 
   </tbody>
 </table>
 
-## Reporting feature requests and bugs
+## Reporting Feature Requests and Bugs
 
-The features in the Theia Blueprint product are based on Theia and the included extensions/plugins. For more details please see the [Eclipse Theia Github Repository](https://github.com/eclipse-theia/theia). 
-Theia Blueprint product only packages existing functionality into a product and installers for the product. If you believe there is a mistake in packaging, something needs to be added to the packaging or the installers do not work properly, please [open an issue on Github](https://github.com/eclipse-theia/theia-blueprint/issues/new/choose) to let us know.
+The features found in Eclipse Theia Blueprint are based on Eclipse Theia and the available extensions/plugins. For more details please see the [Eclipse Theia Github Repository](https://github.com/eclipse-theia/theia). 
+Eclipse Theia Blueprint only packages existing Eclipse Theia functionality and installers. If you believe there is a mistake in packaging, something needs to be added to the packaging or the installers do not work properly, please [open an issue on Github](https://github.com/eclipse-theia/theia-blueprint/issues/new/choose) to let us know.
 
 ## Source Code
 
-The Theia Blueprint source code is available on [Github](https://github.com/eclipse-theia/theia-blueprint).
+The source code for Eclipse Theia Blueprint is available on [Github](https://github.com/eclipse-theia/theia-blueprint).
 
 ## Documentation
 
-Please see [here](../blueprint_documentation) for documentation on how to customize the Theia Blueprint product.
+Please see [here](../blueprint_documentation) for documentation on how to customize Eclipse Theia Blueprint.
