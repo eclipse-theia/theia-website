@@ -14,13 +14,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import React from 'react'
-
-import Nav from '../Nav'
-import TheiaLogoDark from '../../resources/theia-logo-dark.svg'
+import Background from '../../resources/background-image.png'
 import ContributorsAndAdopters from './ContributorsAndAdopters'
 import DocImage from '../DocImage'
-import Background from '../../resources/background-image.png'
+import Nav from '../Nav'
+import React from 'react'
+import TheiaLogoDark from '../../resources/theia-logo-dark.svg'
 import { breakpoints } from '../../utils/variables'
 import styled from '@emotion/styled'
 
@@ -93,7 +92,7 @@ const Header = () => (
 
                     <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                     <a className="btn btn--cta" href="https://gitpod.io/#https://github.com/eclipse-theia/theia" target="_blank" rel="noopener">Try in Gitpod &nbsp;&nbsp;&rarr;</a>
-                    <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on Desktop &nbsp;&nbsp;&rarr;</a>
+                    {/* <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on Desktop &nbsp;&nbsp;&rarr;</a> */}
                 </div>
                 <div className="header__github-details">
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />

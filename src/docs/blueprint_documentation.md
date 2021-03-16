@@ -65,8 +65,7 @@ Alternatively, you can remove the whole `electron-app/plugins` folder and execut
 
 ### Extension sources
 
-While you can technically install extensions directly from [Microsoft’s VS Code Marketplace](https://marketplace.visualstudio.com/), you should check the Terms of Use to ensure compliance as Microsoft typically restricts usage to only VS Code.
-For this reason, we use the [Open VSX Registry](https://open-vsx.org/) of the Eclipse Foundation.
+We use the [Open VSX Registry](https://open-vsx.org/) of the Eclipse Foundation to install extensions.
 It is an open and community-driven VS Code extension marketplace.
 More information can be found at [eclipse.org](https://www.eclipse.org/legal/open-vsx-registry-faq/).
 
