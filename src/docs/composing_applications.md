@@ -129,13 +129,13 @@ i.e. obfuscated and minified.
 
 After the build is finished, we can start the application:
 
-    yarn start
+    yarn theia start
 
 You can provide a workspace path to open as a first argument
 and `--hostname`, `--port` options to deploy the application on specific network interfaces and ports,
 e.g. to open `/workspace` on all interfaces and port `8080`:
 
-    yarn start /my-workspace --hostname 0.0.0.0 --port 8080
+    yarn theia start /my-workspace --hostname 0.0.0.0 --port 8080
 
 In the terminal, you should see that Theia application is up and listening:
 
