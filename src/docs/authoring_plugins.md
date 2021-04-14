@@ -194,7 +194,7 @@ Then you'll only have to refresh the tab of the `Development Host` instance, the
 Note: you may use watch mode as well.
 
 ## API of plug-ins
-[Browse typedoc of plug-ins](https://eclipse-theia.github.io/theia/docs/next/modules/plugin.__theia_plugin_-1.html)
+[Browse typedoc of plug-ins](https://eclipse-theia.github.io/theia/docs/next/modules/plugin._plugin_-1.html)
 
 ## VS Code implementation
 Theia is providing VS Code API. Check the following link to get the current status of what is implemented.
