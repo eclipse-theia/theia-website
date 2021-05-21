@@ -26,7 +26,7 @@ import Feature from './Feature'
 
 const StyledFeatures = styled.div`
     .features {
-        padding: 12rem 0;
+        padding: 1rem 0;
     }
 
     .feature__container {

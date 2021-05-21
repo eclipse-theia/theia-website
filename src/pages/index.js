@@ -22,13 +22,18 @@ import Features from '../components/index/Features'
 import Banner from '../components/index/Banner'
 import Promos from '../components/index/Promos'
 import Footer from '../components/Footer'
+import ContributorsAndAdopters from '../components/index/ContributorsAndAdopters'
+import Products from '../components/index/Products'
+
 
 export default () => {
     return (
         <Layout canonical='/'>
             <Header />
             <main role="main">
+                <Products />
                 <Features />
+                <ContributorsAndAdopters />
                 <Banner />
                 <Promos />
             </main>
