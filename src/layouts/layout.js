@@ -104,6 +104,7 @@ const Layout = ({ children, canonical }) => {
                 /* --------------------------------------------- */
 
                 .row {
+                    position: relative;
                     max-width: ${grid.maxWidth};
                     width: 80%;
                     margin: 0 auto;
