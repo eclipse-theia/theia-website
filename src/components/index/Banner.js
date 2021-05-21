@@ -45,8 +45,10 @@ const StyledBanner = styled.div`
 
         img {
             display: block;
-            height: 26rem;
-            transform: translateX(-18rem) translateY(4rem);
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
         }
 
         div {
@@ -65,12 +67,11 @@ const StyledBanner = styled.div`
         }
 
         h3 {
-            margin-bottom: 2rem;
             @media(max-width: ${breakpoints.md}) {
                 width: 100%;
                 max-width: 60rem;
-                margin: 0 auto;
-                margin-bottom: 2rem;
+                margin-left: auto;
+                margin-right: auto;
                 text-align: center;
             }
         }
