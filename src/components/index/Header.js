@@ -15,7 +15,6 @@
  ********************************************************************************/
 
 import Background from '../../resources/background-image.png'
-import ContributorsAndAdopters from './ContributorsAndAdopters'
 import DocImage from '../DocImage'
 import Nav from '../Nav'
 import React from 'react'
@@ -99,12 +98,6 @@ const Header = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
             </div>
-
-            <div className="row">
-                <DocImage name="theia-screenshot.jpg" alt="Theia IDE Screenshot" shadow={true} />
-            </div>
-
-            <ContributorsAndAdopters />
 
         </header>
     </StyledHeader>
