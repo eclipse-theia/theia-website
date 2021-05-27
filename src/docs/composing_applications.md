@@ -97,15 +97,15 @@ An example `package.json` may look like the following:
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
-    "vscode-builtin-css": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/css-1.39.1-prel.vsix",
-    "vscode-builtin-html": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/html-1.39.1-prel.vsix",
-    "vscode-builtin-javascript": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/javascript-1.39.1-prel.vsix",
-    "vscode-builtin-json": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/json-1.39.1-prel.vsix",
-    "vscode-builtin-markdown": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/markdown-1.39.1-prel.vsix",
-    "vscode-builtin-npm": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/npm-1.39.1-prel.vsix",
-    "vscode-builtin-scss": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/scss-1.39.1-prel.vsix",
-    "vscode-builtin-typescript": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-1.39.1-prel.vsix",
-    "vscode-builtin-typescript-language-features": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-language-features-1.39.1-prel.vsix"
+    "vscode-builtin-css": "https://open-vsx.org/api/vscode/css/1.50.0/file/vscode.css-1.50.0.vsix",
+    "vscode-builtin-html": "https://open-vsx.org/api/vscode/html/1.50.0/file/vscode.html-1.50.0.vsix",
+    "vscode-builtin-javascript": "https://open-vsx.org/api/vscode/javascript/1.50.0/file/vscode.javascript-1.50.0.vsix",
+    "vscode-builtin-json": "https://open-vsx.org/api/vscode/json/1.50.0/file/vscode.json-1.50.0.vsix",
+    "vscode-builtin-markdown": "https://open-vsx.org/api/vscode/markdown/1.50.0/file/vscode.markdown-1.50.0.vsix",
+    "vscode-builtin-npm": "https://open-vsx.org/api/vscode/npm/1.50.0/file/vscode.npm-1.50.0.vsix",
+    "vscode-builtin-scss": "https://open-vsx.org/api/vscode/scss/1.50.0/file/vscode.scss-1.50.0.vsix",
+    "vscode-builtin-typescript": "https://open-vsx.org/api/vscode/typescript/1.50.0/file/vscode.typescript-1.50.0.vsix",
+    "vscode-builtin-typescript-language-features": "https://open-vsx.org/api/vscode/typescript-language-features/1.45.1/file/vscode.typescript-language-features-1.45.1.vsix"
   }
 }
 ```
