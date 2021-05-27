@@ -30,7 +30,7 @@ Eclipse Theia Blueprint is ***not*** **a production-ready product**. Therefore, 
     <tr>
       <td><a href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/windows/TheiaBlueprint.exe&r=1" download>Download latest</a></td>
       <td><a href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/linux/TheiaBlueprint.AppImage&r=1" download>Download latest</a></td>
-      <td><a href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/macos/TheiaBlueprint.pkg&r=1" download>Download latest</a></td>
+      <td><a href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/macos/TheiaBlueprint.dmg&r=1" download>Download latest</a></td>
     </tr>
   </tbody>
 </table>
