@@ -41,6 +41,7 @@ const StyledHeader = styled.div`
         }
         h1 {
             margin-bottom: 3rem;
+            font-size: 3.4rem;
         }
         .btn {
             &:not(:last-child) {
@@ -82,10 +83,10 @@ const Header = () => (
                         <img className="header__logo" src={TheiaLogoDark} alt="theia logo" />
                     </div>
                     <h1 className="heading-primary">
-                        Cloud & Desktop IDE Platform
+                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                 </h1>
                     <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
-                        Eclipse Theia is an extensible platform to develop multi-language Cloud & Desktop IDEs with state-of-the-art web technologies.
+                    Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
                         <br/>
                         <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
                     </h2>
