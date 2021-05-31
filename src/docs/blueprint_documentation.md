@@ -28,7 +28,7 @@ You can also directly run the unpackaged application, e.g. to test it during dev
 With `yarn electron package`, you package the application into an executable file for your current operating system.
 The packaged application will be located in `applications/electron/dist`.
 The folder `applications/electron/dist/<OS>-unpackaged` will contain the files that are bundled into the final packaged executable.
-For Linux, this is an executable `.AppImage`, for Windows a `.exe` installer, and a `.pkg` installer for macOS.
+For Linux, this is an executable `.AppImage`, for Windows a `.exe` installer, and a `.dmg` disk image for macOS.
 
 You can also just create the unpackaged content by running `yarn electron package:preview`.
 This is useful to see the bundled files and saves time compared to a full package.
