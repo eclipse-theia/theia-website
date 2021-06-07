@@ -160,6 +160,23 @@ const Layout = ({ children, canonical }) => {
                     object-fit: contain;
                 }
 
+                /* --------------------------------------------- */
+                /* ----- Pop Up ----- */
+                /* --------------------------------------------- */
+                .popup-content {
+                    width: 60%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between,
+                }
+                @media(max-width: ${breakpoints.md}){
+                    .popup-content{
+                        width: 80%;
+                    }
+                }
+                
+
             `} />
             <Helmet>
                 <html lang='en' />

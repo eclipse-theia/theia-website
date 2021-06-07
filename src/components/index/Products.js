@@ -19,29 +19,23 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { products } from '../../utils/data'
 import { breakpoints } from '../../utils/variables'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
+import "swiper/components/pagination/pagination.min.css"
+import SwiperCore, {
+  Autoplay
+} from 'swiper/core';
+
+SwiperCore.use([Autoplay]);
 
 const Styled = styled.div`
      .contributors {
         padding-bottom: 5rem;
         margin-top: 4rem;
 
-        &__images {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-
-                @media(min-width: 768px) {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    grid-row-gap: 80px;
-                }
-
-            @media(max-width: 50rem) {
-                text-align: center;
-            }
-        }
-
-        &__image {
+        &__thumb {
             height: 100%;
             max-width: 42rem;
             object-fit: contain;
@@ -92,15 +86,43 @@ const Products = () => (
             <section className="contributors" >
                 <h3 className="heading-tertiary">Selected Tools based on Eclipse Theia</h3>
                 <div className="contributors__images">
-                    {
+                    <Swiper
+                        spaceBetween={10}
+                        slidesPerView={2}
+                        centeredSlides={false}
+                        breakpoints={{
+                            "800": {
+                                "slidesPerView": 3,
+                                "spaceBetween": 20,
+                                "centeredSlides": true
+                            }
+                        }}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        pagination={{ "clickable": true }}
+                        loop={true}
+                        autoplay={{
+                            "delay": 4000,
+                            "disableOnInteraction": false
+                        }}
+                    >
+                        {
                         products.map((item, i) => (
-                            <div key={i} className="contributors__image-container">
-                                <a target="_blank" rel="noopener noreferrer" href={item.href}>
-                                    <img className="contributors__image" src={item.src} alt={item.alt} />
-                                </a>
-                            </div>
+                            <SwiperSlide key={i} className="contributors__thumb-container">
+                                <Popup
+                                    trigger={<img className="contributors__thumb" src={item.src} alt={item.alt} />} modal>
+                                    
+                                    <h2>{item.alt}</h2>
+                                    <img style={{ width: '100%', margin: '2rem' }} src={item.src} alt={item.alt} />
+                                    <a className="btn" href={item.href} target="_blank" rel="noopener noreferrer">More information</a>
+                                    
+                                </Popup>
+                            </SwiperSlide>
                         ))
                     }
+                        
+                    </Swiper>
+                    
                 </div>
             </section>
         </Styled>

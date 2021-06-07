@@ -30,7 +30,9 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-tweet-embed": "^1.2.2",
-    "react-twitter-embed": "^2.0.8"
+    "react-twitter-embed": "^2.0.8",
+    "reactjs-popup": "^2.0.4",
+    "swiper": "*"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
