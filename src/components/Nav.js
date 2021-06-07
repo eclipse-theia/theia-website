@@ -34,7 +34,7 @@ const StyledNav = styled.div`
         display: flex;
         position: relative;
         padding-top: 5rem;
-        margin-bottom: 7rem;
+        margin-bottom: 2rem;
 
         @media(max-width: ${breakpoints.xmd}) {
             flex-direction: column;
@@ -91,7 +91,6 @@ const StyledNav = styled.div`
             justify-content: flex-end;
             list-style: none;
             width: 100%;
-            z-index: 1000;
 
             @media(max-width: ${breakpoints.xmd}) {
                 height: 95vh;
