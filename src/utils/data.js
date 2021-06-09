@@ -30,6 +30,7 @@
  import CodeReady from '../resources/screenshots/redhat-crw-ss.png'
  import CoffeeEditor from '../resources/screenshots/coffeeditor.gif'
  import LogiCloud from '../resources/screenshots/logicloud.png'
+ import BluePrint from '../resources/screenshots/blueprint.png'
  
  export const contributorsAndAdopters = [
      {
@@ -96,23 +97,28 @@
  
  export const products = [
      {
-         href: "https://www.typefox.io",
+         href: "https://os.mbed.com/studio/",
          src: MbedStudio,
-         alt: "Mbed Studio"
+         alt: "Mbed Studio by Arm"
      },
      {
-        href: "https://www.ericsson.com",
+        href: "https://www.eclipse.org/emfcloud/#coffeeeditoroverview",
         src: CoffeeEditor,
-        alt: "Coffee Editor Example"
+        alt: "Coffee Editor Example by EclipseSource"
     },
     {
-        href: "https://www.ericsson.com",
+        href: "https://developers.redhat.com/products/codeready-workspaces/overview",
         src: CodeReady,
-        alt: "CodeReady Workpaces"
+        alt: "Red Hat CodeReady Workpaces"
     },
     {
-        href: "https://www.ericsson.com",
+        href: "https://www.logicals.com/en/news/100-logi-cals-makes-engineering-cloud-enabled",
         src: LogiCloud,
-        alt: "Logi.cloud"
+        alt: "logi.cloud by logi.cals"
+    },
+    {
+        href: "https://theia-ide.org/docs/blueprint_download",
+        src: BluePrint,
+        alt: "Theia Blueprint"
     },
  ]
