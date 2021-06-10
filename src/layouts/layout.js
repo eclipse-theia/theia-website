@@ -126,6 +126,7 @@ const Layout = ({ children, canonical }) => {
                     border-radius: 10rem;
                     transition: all .3s;
                     font-weight: 500;
+                    outline: none;
 
                     &:hover,
                     &:active,

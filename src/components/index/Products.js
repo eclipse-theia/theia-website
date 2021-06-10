@@ -37,14 +37,14 @@ const Styled = styled.div`
 
         &__thumb {
             height: 100%;
-            max-width: 42rem;
-            object-fit: contain;
+            max-width: 100%;
+            object-fit: fill;
 
             &-container {
                 height: 18rem;
+                padding: 2px;
 
                 @media(min-width: 768px) {
-                    height: 18rem;
                     text-align: center;
                 }
 
@@ -55,26 +55,10 @@ const Styled = styled.div`
 
                 @media(max-width: 30rem) {
                     width: 100%;
-                }
-                padding: 2px;
+                } 
             }
-
-            &--ericsson {
-                transform: scale(1.3);
-            }
-
-            &--ibm {
-                transform: scale(.8);
-            }
-
-            &--arm {
-                transform: scale(.5);
-            }
-
-            &--sap {
-                @media(min-width: ${breakpoints.md}) {
-                    transform: translateX(2.5rem);
-                }
+            &-popup {
+                height: 100%
             }
         }
     }
@@ -89,18 +73,13 @@ const Products = () => (
                     <Swiper
                         spaceBetween={10}
                         slidesPerView={2}
-                        centeredSlides={false}
                         breakpoints={{
                             "800": {
                                 "slidesPerView": 3,
                                 "spaceBetween": 20,
-                                "centeredSlides": true
                             }
                         }}
-                        onSlideChange={() => console.log('slide change')}
-                        onSwiper={(swiper) => console.log(swiper)}
                         pagination={{ "clickable": true }}
-                        loop={true}
                         autoplay={{
                             "delay": 4000,
                             "disableOnInteraction": false
@@ -109,20 +88,21 @@ const Products = () => (
                         {
                         products.map((item, i) => (
                             <SwiperSlide key={i} className="contributors__thumb-container">
-                                <Popup
-                                    trigger={<img className="contributors__thumb" src={item.src} alt={item.alt} />} modal>
+                                <Popup key={i}
+                                    trigger={
+                                    <div className="contributors__thumb-popup">
+                                        <img className="contributors__thumb" src={item.thumb} alt={item.alt} />
+                                    </div>
                                     
+                                    } modal>
                                     <h2>{item.alt}</h2>
                                     <img style={{ width: '100%', margin: '2rem' }} src={item.src} alt={item.alt} />
                                     <a className="btn" href={item.href} target="_blank" rel="noopener noreferrer">More information</a>
-                                    
                                 </Popup>
                             </SwiperSlide>
                         ))
                     }
-                        
                     </Swiper>
-                    
                 </div>
             </section>
         </Styled>
