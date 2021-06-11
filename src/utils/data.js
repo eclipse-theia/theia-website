@@ -27,10 +27,15 @@
  import Huawei from '../resources/huawei.svg'
  import Acquia from '../resources/acquia.svg' 
  import MbedStudio from '../resources/screenshots/arm_mbedstudio-ss.png'
+ import MbedStudioMin from '../resources/screenshots/thumbnails/arm_mbedstudio-ss-min.png'
  import CodeReady from '../resources/screenshots/redhat-crw-ss.png'
+ import CodeReadyMin from '../resources/screenshots/thumbnails/redhat-crw-ss-min.png'
  import CoffeeEditor from '../resources/screenshots/coffeeditor.gif'
+ import CoffeeEditorMin from '../resources/screenshots/thumbnails/coffeeditor-min.gif'
  import LogiCloud from '../resources/screenshots/logicloud.png'
+ import LogiCloudMin from '../resources/screenshots/thumbnails/logicloud-min.png'
  import BluePrint from '../resources/screenshots/blueprint.png'
+ import BluePrintMin from '../resources/screenshots/thumbnails/blueprint-min.png'
  
  export const contributorsAndAdopters = [
      {
@@ -99,26 +104,31 @@
      {
          href: "https://os.mbed.com/studio/",
          src: MbedStudio,
+         thumb: MbedStudioMin,
          alt: "Mbed Studio by Arm"
      },
      {
         href: "https://www.eclipse.org/emfcloud/#coffeeeditoroverview",
         src: CoffeeEditor,
+        thumb: CoffeeEditorMin,
         alt: "Coffee Editor Example by EclipseSource"
     },
     {
         href: "https://developers.redhat.com/products/codeready-workspaces/overview",
         src: CodeReady,
+        thumb: CodeReadyMin,
         alt: "Red Hat CodeReady Workpaces"
     },
     {
         href: "https://www.logicals.com/en/news/100-logi-cals-makes-engineering-cloud-enabled",
         src: LogiCloud,
+        thumb: LogiCloudMin,
         alt: "logi.cloud by logi.cals"
     },
     {
         href: "https://theia-ide.org/docs/blueprint_download",
         src: BluePrint,
+        thumb: BluePrintMin,
         alt: "Theia Blueprint"
     },
  ]

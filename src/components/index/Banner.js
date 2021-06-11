@@ -45,8 +45,10 @@ const StyledBanner = styled.div`
 
         img {
             display: block;
-            height: 26rem;
-            transform: translateX(-18rem) translateY(4rem);
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
         }
 
         div {
