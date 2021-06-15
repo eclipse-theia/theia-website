@@ -43,9 +43,6 @@ const StyledHeader = styled.div`
             font-size: 3.4rem;
         }
         .btn {
-            &:not(:last-child) {
-                margin-bottom: 1rem;
-            }
             max-width: 20rem;
             @media(max-width: 385px) {
                 &:not(:last-child) {
@@ -60,39 +57,23 @@ const StyledHeader = styled.div`
         }
         &__github-details {
             position: absolute;
-            top: 11rem;
+            top: 10rem;
             right: 2rem;
-        }
-        &__sub-text-box {
-            padding-bottom: 2rem;
-            display: flex;
-            flex-grow: 1;
-            flex-basis: 0;
-            @media(max-width: 800px){
-                display: block;
-            }
         }
         &__buttons {
             display:flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
             text-align: center;
-            padding: 0 3rem;
-            flex: 1 1 0px;
+            padding: 3rem 10vw;
             @media(max-width: 800px){
-                display: block;
+                padding: 3rem 0;
             }
+            
         }
         iframe {
             height: 2.5rem;
             width: 12rem;
-        }
-        .heading-tertiary {
-            flex: 3 1 0px;
-            @media(max-width: 800px) {
-                padding-bottom: 2rem;
-            }
         }
     }
 `
@@ -110,22 +91,17 @@ const Header = () => (
                     <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                     </h1>
-                    <div className="header__sub-text-box">
-                        <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
+                    <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
                         Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
-                            <br/>
-                            <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
-                        </h2>
-                        <div className="header__buttons">
-                            <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                            <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
-                        </div>
+                        <br/>
+                        <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
+                    </h2>
+                    <div className="header__buttons">
+                        <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
                     </div>
-                    
                 </div>
-                
             </div>
-
         </header>
     </StyledHeader>
 )
