@@ -40,6 +40,8 @@ const Styled = styled.div`
             max-width: 100%;
             object-fit: fill;
             cursor: pointer;
+            display: block;
+            margin: auto;
 
             &-container {
                 height: 18rem;
@@ -72,10 +74,12 @@ const Products = () => (
                 <h3 className="heading-tertiary">Selected Tools based on Eclipse Theia</h3>
                 <div className="contributors__images">
                     <Swiper
-                        spaceBetween={10}
-                        slidesPerView={2}
+                        slidesPerView={1}
                         breakpoints={{
-                            "800": {
+                            "560": {
+                                "slidesPerView": 2,
+                            },
+                            "900": {
                                 "slidesPerView": 3,
                                 "spaceBetween": 20,
                             }
