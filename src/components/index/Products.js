@@ -39,6 +39,7 @@ const Styled = styled.div`
             height: 100%;
             max-width: 100%;
             object-fit: fill;
+            cursor: pointer;
 
             &-container {
                 height: 18rem;
