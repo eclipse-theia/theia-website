@@ -67,12 +67,11 @@ const StyledBanner = styled.div`
         }
 
         h3 {
-            margin-bottom: 2rem;
             @media(max-width: ${breakpoints.md}) {
                 width: 100%;
                 max-width: 60rem;
-                margin: 0 auto;
-                margin-bottom: 2rem;
+                margin-left: auto;
+                margin-right: auto;
                 text-align: center;
             }
         }

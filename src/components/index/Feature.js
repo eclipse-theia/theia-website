@@ -36,7 +36,7 @@ const StyledFeature = styled.div`
     }
 
     h3 {
-        margin: 2rem 0 3rem;
+        margin-top: 2rem;
     }
 
     & > p {

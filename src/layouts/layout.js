@@ -97,6 +97,7 @@ const Layout = ({ children, canonical }) => {
 
                 .heading-tertiary {
                     font-size: 2.5rem;
+                    margin-bottom: 1.5rem;
                 }
 
                 /* --------------------------------------------- */
