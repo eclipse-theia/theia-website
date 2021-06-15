@@ -91,7 +91,7 @@ const Header = () => (
                     <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                     </h1>
-                    <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
+                    <h2 style={{ fontSize: '2.2rem' }}>
                         Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
                         <br/>
                         <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>

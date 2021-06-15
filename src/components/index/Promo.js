@@ -78,10 +78,6 @@ const StyledPromo = styled.div`
     .promo__video {
         width: 100%;
     }
-
-    p {
-        margin-top: 3rem;
-    }
 `
 
 const Promo = ({ 
