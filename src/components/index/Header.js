@@ -15,7 +15,6 @@
  ********************************************************************************/
 
 import Background from '../../resources/background-image.png'
-import ContributorsAndAdopters from './ContributorsAndAdopters'
 import DocImage from '../DocImage'
 import Nav from '../Nav'
 import React from 'react'
@@ -40,35 +39,41 @@ const StyledHeader = styled.div`
             height: 3rem;
         }
         h1 {
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             font-size: 3.4rem;
         }
         .btn {
-            &:not(:last-child) {
-                margin-right: 2.5rem;
-            }
+            max-width: 20rem;
             @media(max-width: 385px) {
                 &:not(:last-child) {
                     margin-right: 0;
                 }
             }
-            @media(max-width: 410px) {
+            @media(max-width: 800px) {
                 &:not(:last-child) {
-                    margin-bottom: 2rem;
+                    margin-right: 2rem;
                 }
             }
         }
         &__github-details {
-            display: flex;
-            justify-content: flex-end;
-            margin: 5rem 0 0;
+            position: absolute;
+            top: 10rem;
+            right: 2rem;
+        }
+        &__buttons {
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 10vw;
+            @media(max-width: 800px){
+                padding: 3rem 0;
+            }
+            
         }
         iframe {
             height: 2.5rem;
-            width: 11rem;
-        }
-        .heading-tertiary {
-            padding-bottom: 40px;
+            width: 12rem;
         }
     }
 `
@@ -77,35 +82,26 @@ const Header = () => (
     <StyledHeader>
         <header className='header' role="banner">
             <div className="row">
-                <Nav />
-                <div className="header__text-box">
-                    <div className="header__logo-box">
-                        <img className="header__logo" src={TheiaLogoDark} alt="theia logo" />
-                    </div>
-                    <h1 className="heading-primary">
-                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
-                </h1>
-                    <h2 className="heading-tertiary" style={{ fontSize: '2.2rem' }}>
-                    Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
-                        <br/>
-                        <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
-                    </h2>
-
-                    <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
-                </div>
+                <Nav shouldRenderLogo={true} />
                 <div className="header__github-details">
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
+                <div className="header__text-box">
+                    <h1 className="heading-primary">
+                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
+                    </h1>
+                    <h2 style={{ fontSize: '2.2rem' }}>
+                        Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
+                        <br/>
+                        <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
+                    </h2>
+                    <div className="header__buttons">
+                        <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
+                    </div>
+                </div>
             </div>
-
-            <div className="row">
-                <DocImage name="theia-screenshot.jpg" alt="Theia IDE Screenshot" shadow={true} />
-            </div>
-
-            <ContributorsAndAdopters />
-
         </header>
     </StyledHeader>
 )
