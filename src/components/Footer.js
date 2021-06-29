@@ -68,8 +68,8 @@ const Footer = ({background}) => (
                     <img src={DiscourseLogo} alt="Discourse Logo" className="footer__icon" style={{height: '3.2rem'}}/>
                 </a>
             </div>
-            <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
-            <p>© {(new Date()).getFullYear()} by <a href="https://www.typefox.io/" target="_blank" rel="noopener">TypeFox</a></p>
+            <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href="https://projects.eclipse.org/projects/ecd.theia/">About</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
+            <p>© {(new Date()).getFullYear()} by <a href="https://www.eclipse.org/org/" target="_blank" rel="noopener">Eclipse Foundation</a></p>
         </footer>
     </StyledFooter>
 )
