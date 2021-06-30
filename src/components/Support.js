@@ -73,6 +73,12 @@ const StyledSupport = styled.div`
             flex-direction: column;
         }
     }
+    .reverse {
+        flex-direction: row-reverse;
+        @media(max-width: ${breakpoints.md}) {
+            flex-direction: column-reverse;
+        }
+    }
     .supporter {
         flex: 1;
 
@@ -138,9 +144,9 @@ const Support = () => (
             <h1 className="heading-primary">
                 Professional Support
             </h1>
-            <div className="support__container">
+            <div className={`support__container${Math.random() < 0.5 ? ' reverse' : ''}`}>
                 {
-                    supporters.sort(function () { return 0.5 - Math.random() }).map(
+                    supporters.map(
                         ({title, img, text},i) => {
                             return(
                             <div key={`${i}_${title}`} className="supporter">
