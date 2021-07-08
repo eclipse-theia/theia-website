@@ -111,13 +111,13 @@ const StyledSupport = styled.div`
 const supporters = [
     {
         img: EclipseSourceLogo,
-        title: 'EclipseSource',
-        text: 'Eclipse Description'
+        support: 'https://eclipsesource.com/technology/eclipse-theia/',
+        training: 'https://eclipsesource.com/technology/eclipse-theia/#training'
     },
     {
         img: TypeFoxLogo,
-        title: 'TypeFox',
-        text: 'TypeFox Description'
+        support: 'https://www.typefox.io/theia/',
+        training: 'https://www.typefox.io/trainings/'
     }
 ]
 
@@ -142,19 +142,19 @@ const Support = () => (
         </header>
         <section className="support row" id="support">
             <h1 className="heading-primary">
-                Professional Support
+                Professional Support for Theia is provided by
             </h1>
             <div className={`support__container${Math.random() < 0.5 ? ' reverse' : ''}`}>
                 {
                     supporters.map(
-                        ({title, img, text},i) => {
+                        ({title, img, training, support},i) => {
                             return(
                             <div key={`${i}_${title}`} className="supporter">
                                 <div>
                                     <img src={img} alt={`${title} Logo`} />
-                                    <h3 className="heading-tertiary">{title}</h3>
+                                    <h3 className="heading-tertiary"><a href={support}>Support</a></h3>
+                                    <h3 className="heading-tertiary"><a href={training}>Training</a></h3>
                                 </div>
-                                <p>{text}</p>
                             </div>)
                         }
                     )
