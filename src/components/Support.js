@@ -22,42 +22,42 @@ import EclipseSourceLogo from '../resources/eclipse-source.svg'
 import TypeFoxLogo from '../resources/typefox.png'
 
 const StyledSupport = styled.div`
-     .header {
-        position: relative;
-        @media(max-width: ${breakpoints.xmd}) {
-            padding-top: 15rem;
-        }
-        &__logo-box {
-            margin-bottom: 3rem;
-        }
-        &__logo {
-            height: 3rem;
-        }
-        .btn {
-            max-width: 20rem;
-            @media(max-width: 385px) {
-                &:not(:last-child) {
-                    margin-right: 0;
-                }
-            }
-            @media(max-width: 800px) {
-                &:not(:last-child) {
-                    margin-right: 2rem;
-                }
+.header {
+    position: relative;
+    @media(max-width: ${breakpoints.xmd}) {
+        padding-top: 15rem;
+    }
+    &__logo-box {
+        margin-bottom: 3rem;
+    }
+    &__logo {
+        height: 3rem;
+    }
+    .btn {
+        max-width: 20rem;
+        @media(max-width: 385px) {
+            &:not(:last-child) {
+                margin-right: 0;
             }
         }
-        &__buttons {
-            display:flex;
-            justify-content: space-evenly;
-            align-items: center;
-            text-align: center;
-            padding: 3rem 10vw;
-            @media(max-width: 800px){
-                padding: 3rem 0;
+        @media(max-width: 800px) {
+            &:not(:last-child) {
+                margin-right: 2rem;
             }
-            
         }
     }
+    &__buttons {
+        display:flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 10vw;
+        @media(max-width: 800px){
+            padding: 3rem 0;
+        }
+        
+    }
+}
     h1 {
         margin-bottom: 1rem;
         font-size: 3.4rem;
@@ -111,11 +111,15 @@ const StyledSupport = styled.div`
 const supporters = [
     {
         img: EclipseSourceLogo,
+        title: 'EclipseSource',
+        link: 'https://eclipsesource.com/technology/eclipse-theia/',
         support: 'https://eclipsesource.com/technology/eclipse-theia/',
         training: 'https://eclipsesource.com/technology/eclipse-theia/#training'
     },
     {
         img: TypeFoxLogo,
+        title: 'TypeFox',
+        link: 'https://typefox.io',
         support: 'https://www.typefox.io/theia/',
         training: 'https://www.typefox.io/trainings/'
     }
@@ -126,32 +130,23 @@ const Support = () => (
         <header className='header' role="banner">
             <div className="row">
                 <Nav shouldRenderLogo={true} />
-                <div className="header__text-box">
-                    <h1 className="heading-primary">
-                    Community Support
-                    </h1>
-                    <p>
-                        Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
-                    </p>
-                    <div className="header__buttons">
-                        <a className="btn" href="" rel="noopener">Button 1</a>
-                        <a className="btn" href="" rel="noopener">Button 2</a>
-                    </div>
-                </div>
             </div>
         </header>
         <section className="support row" id="support">
             <h1 className="heading-primary">
-                Professional Support for Theia is provided by
+                Professional Support
             </h1>
+            <p>
+                The following contributing companies provide professional support and training for Eclipse Theia:
+            </p>
             <div className={`support__container${Math.random() < 0.5 ? ' reverse' : ''}`}>
                 {
                     supporters.map(
-                        ({title, img, training, support},i) => {
+                        ({title ,link, img, training, support},i) => {
                             return(
                             <div key={`${i}_${title}`} className="supporter">
                                 <div>
-                                    <img src={img} alt={`${title} Logo`} />
+                                    <a href={link}><img src={img} alt={`${title} Logo`} /></a>
                                     <h3 className="heading-tertiary"><a href={support}>Support</a></h3>
                                     <h3 className="heading-tertiary"><a href={training}>Training</a></h3>
                                 </div>
