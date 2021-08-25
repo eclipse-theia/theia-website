@@ -30,7 +30,7 @@ export const MENU = [
         'architecture'
     ),
     M(
-        'Extensions',
+        'Extensions and Plugins',
         'extensions'
     ),
     M(
