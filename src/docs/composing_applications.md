@@ -83,7 +83,8 @@ An example `package.json` may look like the following:
     "@theia/preferences": "next",
     "@theia/preview": "next",
     "@theia/search-in-workspace": "next",
-    "@theia/terminal": "next"
+    "@theia/terminal": "next",
+    "@theia/vsx-registry": "next"
   },
   "devDependencies": {
     "@theia/cli": "next"
@@ -97,16 +98,14 @@ An example `package.json` may look like the following:
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
-    "vscode-builtin-css": "https://open-vsx.org/api/vscode/css/1.50.0/file/vscode.css-1.50.0.vsix",
-    "vscode-builtin-html": "https://open-vsx.org/api/vscode/html/1.50.0/file/vscode.html-1.50.0.vsix",
-    "vscode-builtin-javascript": "https://open-vsx.org/api/vscode/javascript/1.50.0/file/vscode.javascript-1.50.0.vsix",
-    "vscode-builtin-json": "https://open-vsx.org/api/vscode/json/1.50.0/file/vscode.json-1.50.0.vsix",
-    "vscode-builtin-markdown": "https://open-vsx.org/api/vscode/markdown/1.50.0/file/vscode.markdown-1.50.0.vsix",
-    "vscode-builtin-npm": "https://open-vsx.org/api/vscode/npm/1.50.0/file/vscode.npm-1.50.0.vsix",
-    "vscode-builtin-scss": "https://open-vsx.org/api/vscode/scss/1.50.0/file/vscode.scss-1.50.0.vsix",
-    "vscode-builtin-typescript": "https://open-vsx.org/api/vscode/typescript/1.50.0/file/vscode.typescript-1.50.0.vsix",
-    "vscode-builtin-typescript-language-features": "https://open-vsx.org/api/vscode/typescript-language-features/1.45.1/file/vscode.typescript-language-features-1.45.1.vsix"
-  }
+    "vscode-builtin-extensions-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix"
+  },
+  "theiaPluginsExcludeIds": [
+    "vscode.extension-editing",
+    "vscode.git",
+    "vscode.git-ui",
+    "vscode.github"
+  ]
 }
 ```
 
@@ -129,13 +128,17 @@ i.e. obfuscated and minified.
 
 After the build is finished, we can start the application:
 
-    yarn theia start
+    yarn theia start --plugins=local-dir:plugins
+
+or rely on the `start` script from `package.json`:
+
+    yarn start
 
 You can provide a workspace path to open as a first argument
 and `--hostname`, `--port` options to deploy the application on specific network interfaces and ports,
 e.g. to open `/workspace` on all interfaces and port `8080`:
 
-    yarn theia start /my-workspace --hostname 0.0.0.0 --port 8080
+    yarn start /my-workspace --hostname 0.0.0.0 --port 8080
 
 In the terminal, you should see that Theia application is up and listening:
 
