@@ -76,7 +76,6 @@ An example `package.json` may look like the following:
     "@theia/git": "next",
     "@theia/markers": "next",
     "@theia/messages": "next",
-    "@theia/mini-browser": "next",
     "@theia/navigator": "next",
     "@theia/outline-view": "next",
     "@theia/plugin-ext-vscode": "next",
@@ -104,7 +103,8 @@ An example `package.json` may look like the following:
     "vscode.extension-editing",
     "vscode.git",
     "vscode.git-ui",
-    "vscode.github"
+    "vscode.github",
+    "vscode.markdown-language-features"
   ]
 }
 ```
