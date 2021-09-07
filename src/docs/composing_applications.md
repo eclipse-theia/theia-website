@@ -104,10 +104,16 @@ An example `package.json` may look like the following:
     "vscode.git",
     "vscode.git-ui",
     "vscode.github",
-    "vscode.markdown-language-features"
+    "vscode.markdown-language-features",
+    "vscode.microsoft-authentication"
   ]
 }
 ```
+
+The following properties are used to consume builtin plugins (bundled extensions):
+- `theiaPluginsDir`: the relative path to deploy plugins into
+- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, Github Releases, etc.)
+- `theiaPluginsExcludeIds`: the list of plugin `ids` to exclude when resolving extension-packs
 
 ## Building
 
