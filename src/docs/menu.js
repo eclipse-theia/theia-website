@@ -66,7 +66,7 @@ export const MENU = [
         title: 'Concepts APIs'
     },
     M(
-        'Commands and Keybindings',
+        'Commands/Menus/Keybindings',
         'commands_keybindings'
     ),
     M(
