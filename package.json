@@ -32,7 +32,7 @@
     "react-tweet-embed": "^1.2.2",
     "react-twitter-embed": "^2.0.8",
     "reactjs-popup": "^2.0.4",
-    "swiper": "*"
+    "swiper": "^6.0.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
