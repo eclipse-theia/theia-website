@@ -38,7 +38,7 @@ const StyledHeader = styled.div`
         &__logo {
             height: 3rem;
         }
-        .header_banner {
+        .banner {
             padding: 15px;
             text-align: center;
         }
