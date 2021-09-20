@@ -88,7 +88,6 @@ const Header = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <div className="header__text-box">
-                    <img className="banner_image" src="https://images-ext-2.discordapp.net/external/PGBSHV_GI3pdo80klmOXMJ1HDxb0fy_Ip0VudA_f3y8/https/lh5.googleusercontent.com/rYzgav3AjXGZctmse2MXMZb75T_moKq9rScNd_oRFKtDX8dB0MUSJ0KPu2E6rrISs4jwOtX8ESkFCnXwZYTY2BScU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ%3Dw1600?width=600&height=150"
                     <div className="header_banner" style="padding:15px; text-align:center;">
                         <div className="banner">
                             <img className="banner_image" src="https://lh5.googleusercontent.com/rYzgav3AjXGZctms…cU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ=w1600" alt="image_1" style="width:100%"></img>
