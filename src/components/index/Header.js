@@ -89,17 +89,26 @@ const Header = () => (
                 </div>
                 <div className="header__text-box">
                     <img className="banner_image" src="https://images-ext-2.discordapp.net/external/PGBSHV_GI3pdo80klmOXMJ1HDxb0fy_Ip0VudA_f3y8/https/lh5.googleusercontent.com/rYzgav3AjXGZctmse2MXMZb75T_moKq9rScNd_oRFKtDX8dB0MUSJ0KPu2E6rrISs4jwOtX8ESkFCnXwZYTY2BScU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ%3Dw1600?width=600&height=150"
-                    <h1 className="banner_text">
-                    The Call for Presentations is now OPEN for the 2021 TheiaCon Event!
-                    <\h1>
-                    <h2 className="heading-primary">
+                    <div className="header_banner" style="padding:15px; text-align:center;">
+                        <div className="banner">
+                            <img className="banner_image" src="https://lh5.googleusercontent.com/rYzgav3AjXGZctms…cU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ=w1600" alt="image_1" style="width:100%"></img>
+                            <h1>
+                            The Call for Presentations is now OPEN for the 2021 TheiaCon Event!
+                            Submit your proposal today to be a speaker at the largest Theia event of the year!
+                            </h1>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGtLyd3ZYflIdo7n6sfCSpp65m6Ya9l9hhbeGqLvUakOUUBA/viewform" className="banner_button">
+                                Submit
+                            </a>
+                        </div>
+                    </div>
+                    <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
-                    </h2>
-                    <h3 style={{ fontSize: '2.2rem' }}>
+                    </h1>
+                    <h2 style={{ fontSize: '2.2rem' }}>
                         Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
                         <br/>
                         <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
-                    </h3>
+                    </h2>
                     <div className="header__buttons">
                         <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                         <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
