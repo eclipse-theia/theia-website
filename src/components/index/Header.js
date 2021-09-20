@@ -88,14 +88,18 @@ const Header = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <div className="header__text-box">
-                    <h1 className="heading-primary">
+                    <img className="banner_image" src="https://images-ext-2.discordapp.net/external/PGBSHV_GI3pdo80klmOXMJ1HDxb0fy_Ip0VudA_f3y8/https/lh5.googleusercontent.com/rYzgav3AjXGZctmse2MXMZb75T_moKq9rScNd_oRFKtDX8dB0MUSJ0KPu2E6rrISs4jwOtX8ESkFCnXwZYTY2BScU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ%3Dw1600?width=600&height=150"
+                    <h1 className="banner_text">
+                    The Call for Presentations is now OPEN for the 2021 TheiaCon Event!
+                    <\h1>
+                    <h2 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
-                    </h1>
-                    <h2 style={{ fontSize: '2.2rem' }}>
+                    </h2>
+                    <h3 style={{ fontSize: '2.2rem' }}>
                         Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
                         <br/>
                         <a href="https://dev.to/svenefftinge/theia-1-0-finally-a-good-browser-ide-3ok0" rel="noopener noreferrer">Learn about the 1.0 Release!</a>
-                    </h2>
+                    </h3>
                     <div className="header__buttons">
                         <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                         <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
