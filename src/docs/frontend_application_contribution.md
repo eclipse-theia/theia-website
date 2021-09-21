@@ -25,7 +25,8 @@ Note that this method is only called if there is no previously stored workbench 
 
 ``` typescript
 @injectable()
-export class MyViewContribution extends AbstractViewContribution<MyViewWidget> implements FrontendApplicationContribution {
+export class MyViewContribution extends AbstractViewContribution<MyViewWidget>
+    implements FrontendApplicationContribution {
    …
    async initializeLayout(app: FrontendApplication): Promise<void> {
        await this.openView();
@@ -39,7 +40,8 @@ As these methods are invoked even before the application shell is attached or me
 
 ``` typescript
 @injectable()
-export class MyViewContribution extends AbstractViewContribution<MyViewWidget> implements FrontendApplicationContribution {
+export class MyViewContribution extends AbstractViewContribution<MyViewWidget>
+    implements FrontendApplicationContribution {
    …
    @inject(FrontendApplicationStateService)
    protected readonly stateService: FrontendApplicationStateService;
