@@ -94,7 +94,7 @@ const Header = () => (
                 <div className="header__text-box">
                     <div className="header_banner">
                         <div className="banner">
-                            <img className="banner_image" src="https://lh5.googleusercontent.com/rYzgav3AjXGZctms…cU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ=w1600" alt="image_1" style={{ width: '100%' }}></img>
+                            <img className="banner_image" src="https://lh5.googleusercontent.com/rYzgav3AjXGZctmse2MXMZb75T_moKq9rScNd_oRFKtDX8dB0MUSJ0KPu2E6rrISs4jwOtX8ESkFCnXwZYTY2BScU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ=w1600" alt="image_1" style={{ width: '100%' }}></img>
                             <h1 style={{ fontSize: '2.2rem' }}>
                             The Call for Presentations is now OPEN for the 2021 TheiaCon Event!
                             Submit your proposal today to be a speaker at the largest Theia event of the year!
