@@ -78,6 +78,10 @@ export const MENU = [
         'events'
     ),
     M(
+        'Frontend Application Contributions',
+        'frontend_application_contribution'
+    ),
+    M(
         'Communication via JSON-RPC',
         'json_rpc'
     ),
