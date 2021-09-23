@@ -37,7 +37,7 @@ Finally, we will contribute a custom task runner that executes our provided task
 
 Task providers and task resolvers are contributed via an implementation of `TaskContribution`.
 Like all contributions, it must be bound in the respective front end module as shown below.
-If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on Services and Contributions.
+If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/).
 
 ``` typescript
 export default new ContainerModule(bind => {
@@ -115,7 +115,7 @@ export class MyTaskRunnerContribution implements TaskRunnerContribution {
 Task runners need to implement the interface `TaskRunner`.
 The function `run`receives the `TaskConfiguration` when a task is triggered and is responsible for actually running the operation.
 In our example, we instantiate a custom implementation of `Task` called `MyTask` and execute it with the current configuration.
-Using the existing interface `Task` allows us to connect the task to the `TaskManager` which will show visual feedback in the workbench during taks execution (see screenshot below).
+Using the existing interface `Task` allows us to connect the task to the `TaskManager` which will show visual feedback in the workbench during tasks execution (see screenshot below).
 
 ``` typescript
 @injectable()
@@ -164,7 +164,7 @@ root INFO Finished running custom task: 42
 
 ## Task Definitions
 
-Extensions can also omit  contributing a task provider, but only contribute a runner (and optionally a resolver).
+Extensions can also omit contributing a task provider, but only contribute a runner (and optionally a resolver).
 As a consequence, those custom tasks are not provided automatically to users, but users can still configure tasks based on these custom task types in their `tasks.json` file.
 To support users in the creation of such user-defined task configurations for custom task types, Theia provides a dedicated contribution point for *task definitions*.
 A task definition essentially specifies a JSON schema defining the properties that can or need to be specified for a task of a certain custom type.
