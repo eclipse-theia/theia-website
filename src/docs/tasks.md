@@ -4,11 +4,11 @@ title: Tasks
 
 # Tasks
 
-Eclipse Theia users can execute tasks in the context of a workspace to automate certain steps in their workflow.
+Eclipse Theia users can execute tasks to automate certain steps in their workflow.
 Tasks can be invoked via the main menu *Terminal* or via the command palette.
 Every task is defined by a task configuration, which specifies among other properties the task type, a label, optionally a description, whether it is a background task or not, whether it is a build or test task, its dependencies to other tasks, etc.
 Tasks in Eclipse Theia are structurally compatible with Visual Studio Code tasks.
-Similar to [Visual Studio Code](https://code.visualstudio.com/docs/editor/tasks), users can define tasks in a file named `tasks.json` file in the workspace.
+Similar to [Visual Studio Code](https://code.visualstudio.com/docs/editor/tasks), users can define tasks in a file named `tasks.json` file in the workspace or on user level.
 
 ## TaskProviders, TaskResolvers and TaskRunners
 
