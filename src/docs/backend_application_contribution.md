@@ -35,7 +35,7 @@ export class MemoryTracker implements BackendApplicationContribution {
    protected memoryUsed = 0;
 
    initialize(): MaybePromise<void> {
-       this.logTimer = setInterval(() => this.logMemory(), 2000);   
+       this.logTimer = setInterval(() => this.logMemory(), 2000);
    }
 
    protected logMemory(): void {
@@ -66,7 +66,7 @@ Once this backend application contribution is registered and the backend is star
 
 ```
 root INFO Theia app listening on http://localhost:3000.
-root INFO Configuration directory URI: 'file:///home/philip/.theia'
+root INFO Configuration directory URI: 'file:///home/foobar/.theia'
 root INFO [Fri, 20 Aug 2021 12:20:43 GMT] PID 46590 uses 18.14 MB (+18.14)
 root INFO [Fri, 20 Aug 2021 12:20:47 GMT] PID 46590 uses 18.94 MB (+0.80)
 root INFO [Fri, 20 Aug 2021 12:20:51 GMT] PID 46590 uses 15.25 MB (-3.69)
