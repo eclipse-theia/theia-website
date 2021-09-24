@@ -113,7 +113,7 @@ export class MyTaskRunnerContribution implements TaskRunnerContribution {
 ```
 
 Task runners need to implement the interface `TaskRunner`.
-The function `run`receives the `TaskConfiguration` when a task is triggered and is responsible for actually running the operation.
+The function `run` receives the `TaskConfiguration` when a task is triggered and is responsible for actually running the operation.
 In our example, we instantiate a custom implementation of `Task` called `MyTask` and execute it with the current configuration.
 Using the existing interface `Task` allows us to connect the task to the `TaskManager` which will show visual feedback in the workbench during tasks execution (see screenshot below).
 
@@ -155,7 +155,7 @@ As you can see in the screenshot below, our custom task is running for 5000 ms (
 
 <img src="/running-custom-task.gif" alt="Running custom task" style="max-width: 702px">
 
-As can be seen in console output, the task starts and finishes 5000 ms later and it prints the custom variable that has been added by the custom resolver.
+As can be seen in the console output, the task starts and finishes 5000 ms later and it prints the custom variable that has been added by the custom resolver.
 
 ```
 root INFO Start running custom task: 42
