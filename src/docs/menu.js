@@ -74,6 +74,10 @@ export const MENU = [
         'preferences'
     ),
     M(
+        'Label Provider',
+        'label_provider'
+    ),
+    M(
         'Events',
         'events'
     ),
