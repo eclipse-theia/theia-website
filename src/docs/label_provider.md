@@ -6,7 +6,7 @@ title: Label Provider
 
 A label provider in Eclipse Theia is responsible for the way elements/nodes are presented in the UI. The label provider determines the icon and the text for elements displayed in trees, lists or other locations such as view headers. A good example is the file explorer: file and directory nodes retrieve their icon and text from the label provider. Another example for the usage of a label provider is the header of an open editor. Please also see the [LabelProvider TypeDoc](https://eclipse-theia.github.io/theia/docs/next/classes/core.labelprovider-1.html).
 
-The default label provider in Theia browses registered label provider contributions to determine the best fitting one for an element/node. The label provider will delegate the calls for a specific node to the best fitting label provider contribution. Eclipse Theia provides default label provider contributions for common types, e.g. for files. By providing your own label provider contributions, you can extend or adapt the look of specific nodes, based on specific criteria.
+The default label provider in Theia browses registered label provider contributions to determine the best fitting one for an element/node. The label provider will delegate the calls for a specific node to the contribution which can best handle the element. Eclipse Theia provides default label provider contributions for common types, e.g. for files. By providing your own label provider contributions, you can extend or adapt the look of specific nodes, based on specific criteria.
 
 In this article we will describe how to customize the label and icon of a custom file type (.my) in Eclipse Theia, as  seen in the screenshot below. 
 
