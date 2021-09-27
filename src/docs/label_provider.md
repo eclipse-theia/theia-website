@@ -26,7 +26,7 @@ To contribute a custom label provider contribution you provide a `LabelProviderC
 export class LabelproviderLabelProviderContribution extends FileTreeLabelProvider
 ```
 
-The function `canHandle` determines whether the label provider contribution is responsible for a specific node (in our example for .my files). Therefore it can check any condition on the respective file, e.g. the file extension. The return value of the function is an integer representing the priority of the label provider contribution, the label provider contribution with the highest priority will be used by the label provider. This way, you can override the default label provider contributions on custom files by returning a higher priority.
+The function `canHandle` determines whether the label provider contribution is responsible for a specific node (in our example for ".my" files). Therefore it can check any condition on the respective file, e.g. the file extension. The return value of the function is an integer representing the priority of the label provider contribution, the label provider contribution with the highest priority will be used by the label provider. This way, you can override the default label provider contributions on custom files by returning a higher priority.
 
 The `canHandle` function receives an object representing the file handed in as a parameter (for the file tree a `FileStatNode`). Please see an example implementation for canHandle below, which will register a label provider contribution for the file extension “.my”:
 
