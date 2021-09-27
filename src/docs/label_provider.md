@@ -18,7 +18,7 @@ All the following code examples are from the [Theia extension generator](https:/
 
 ## Contributing a Label Provider
 
-To contribute a custom label provider contirubtion you provide a `LabelProviderContribution`, i.e. a class implementing this interface. In this example, instead of directly implementing the interface, we extend the default implementation for files: `FileTreeLabelProvider`. This allows us to only override the behavior we want to customize.
+To contribute a custom label provider contribution you provide a `LabelProviderContribution`, i.e. a class implementing this interface. In this example, instead of directly implementing the interface, we extend the default implementation for files: `FileTreeLabelProvider`. This allows us to only override the behavior we want to customize.
 
 **labelprovider-contribution.ts**
 ```typescript
