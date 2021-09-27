@@ -70,6 +70,10 @@ export const MENU = [
         'commands_keybindings'
     ),
     M(
+        'Widgets',
+        'widgets'
+    ),
+    M(
         'Preferences',
         'preferences'
     ),
