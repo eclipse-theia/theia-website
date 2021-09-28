@@ -12,7 +12,7 @@ Furthermore, a widget will receive events from the surrounding workbench, e.g. o
 
 In a nutshell, a widget is a frame to embed some custom (HTML-based) UI into the Theia workbench (see diagram below)
 
-<img src="/widget-architecture.png" alt="Widget Achitecture" style="max-width: 525px">
+<img src="/widget-architecture.png" alt="Widget Architecture" style="max-width: 525px">
 
 In this article we will describe how to contribute a custom widget to the Theia workbench. We will focus on a simple view (in contrast to an editor) and use React to implement the UI. 
 
