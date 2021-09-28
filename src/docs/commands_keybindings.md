@@ -101,7 +101,7 @@ export default new ContainerModule(bind => {
 
 ```
 
-Please note that you also contribute menu items without a command which allows you to create custom top level menus and sub menus. To achive this, contribute a menu item without a command and then reference the id of this menu item as a `MenuPath` in other contributes. This will add menu items to your custom menu.
+Please note that you also contribute menu items without a command which allows you to create custom top level menus and sub menus. To achieve this, contribute a menu item without a command and then reference the id of this menu item as a `MenuPath` in other contributes. This will add menu items to your custom menu.
 
 ## Contributing Keybindings
 
