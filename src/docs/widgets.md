@@ -4,7 +4,7 @@ title: Widgets
 
 # Widgets
 
-A widget is a part that will be displayed within the Theia workbench, e.g. a view or an editor. Examples for existing widgets in Theia are the file explorer, the code editor or the problems view. By contributing custom widgets, you can place your own custom UI in a Theia-based application. The Theia workbench provides a frame so that you can embed custom UI into a so-called widget. Your custom UI will behave the same as other widgets in terms of the window layouting including the title tab, resizing, dragging and opening/closing (see screenshot below). 
+A widget is a part that will be displayed within the Theia workbench, e.g. a view or an editor. Examples for existing widgets in Theia are the file explorer, the code editor or the problems view. By contributing custom widgets, you can place your own custom UI in a Theia-based application. The Theia workbench provides a frame so that you can embed custom UI into a so-called widget. Your custom UI will behave the same as other widgets in terms of window layouting including the title tab, resizing, dragging and opening/closing (see screenshot below). 
 
 <img src="/widget-example.gif" alt="Widget Example" style="max-width: 525px">
 
