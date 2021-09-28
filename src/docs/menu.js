@@ -66,12 +66,16 @@ export const MENU = [
         title: 'Concepts APIs'
     },
     M(
-        'Commands and Keybindings',
+        'Commands/Menus/Keybindings',
         'commands_keybindings'
     ),
     M(
         'Preferences',
         'preferences'
+    ),
+    M(
+        'Label Provider',
+        'label_provider'
     ),
     M(
         'Events',
@@ -82,8 +86,16 @@ export const MENU = [
         'frontend_application_contribution'
     ),
     M(
+        'Backend Application Contributions',
+        'backend_application_contribution'
+    ),
+    M(
         'Communication via JSON-RPC',
         'json_rpc'
+    ),
+    M(
+        'Tasks',
+        'tasks'
     ),
     {
         title: 'Theia Blueprint'
