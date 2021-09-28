@@ -82,6 +82,10 @@ export const MENU = [
         'events'
     ),
     M(
+        'Frontend Application Contributions',
+        'frontend_application_contribution'
+    ),
+    M(
         'Backend Application Contributions',
         'backend_application_contribution'
     ),
