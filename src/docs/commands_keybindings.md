@@ -129,7 +129,7 @@ export class HelloworldKeybindingContribution implements KeybindingContribution 
 }
 ```
 
-The syntax for the “when” clause follows the [VS Code terminology](https://code.visualstudio.com/docs/getstarted/keybindings#_when-clause-contexts). Modifiers are platform independent, so `Modifier.M1` is Command on OS X and CTRL on Windows/Linux. Key string constants are defined in [keys.ts](https://github.com/eclipse-theia/theia/blob/master/packages/core/src/browser/keyboard/keys.ts).
+The syntax for the “when” clause follows the [VS Code terminology](https://code.visualstudio.com/docs/getstarted/keybindings#_when-clause-contexts). Modifiers are platform independent, so [`Modifier.M1`](https://eclipse-theia.github.io/theia/docs/next/enums/core.keymodifier-2.html#ctrlcmd) is Command on OS X and CTRL on Windows/Linux. Key string constants can be viewed in [`Key` documentation](https://eclipse-theia.github.io/theia/docs/next/modules/core.key-2.html).
 
 Just as you needed to bind the contributions before, keybinding contributions also need to be bound to the symbol `KeybindingContribution` to make them accessible for Theia.
 
