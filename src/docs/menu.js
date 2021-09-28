@@ -89,6 +89,10 @@ export const MENU = [
         'Communication via JSON-RPC',
         'json_rpc'
     ),
+    M(
+        'Tasks',
+        'tasks'
+    ),
     {
         title: 'Theia Blueprint'
     },
