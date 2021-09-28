@@ -72,7 +72,7 @@ const DocContainer = styled.div`
     }
 
     ul {
-        margin-bottom: 7rem;
+        margin-bottom: 3rem;
         list-style-position: inside;
 
         ul {
