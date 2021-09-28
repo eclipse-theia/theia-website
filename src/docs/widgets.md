@@ -124,6 +124,7 @@ bind(WidgetFactory).toDynamicValue(ctx => ({
 Now you could already open a widget manually via using the widget manager API. However, for most use cases, you want to add a view to the view menu and also provide a respective command. This can be conveniently done using a widget contribution as described in the next section.
 
 ### Widget Contribution
+
 Widget contributions allow you to wire a widget into the Theia workbench, more precisely to add them to the view menu and the quick command bar. Theia provides a convenient base class `AbstractViewContribution` to inherit from, which already implements the most common feature set (see example code below). For the initialization, you only need to specify the following parameters:
 
 * `widgetID`: The ID of the widget, used to open it via the widget manager
