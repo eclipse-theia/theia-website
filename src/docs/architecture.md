@@ -6,6 +6,11 @@ title: Overview
 
 This section describes the overall architecture of Theia.
 
+* This is a
+   * Test nested list
+   * It is broken
+* The first bulle is rendered incorrectly
+
 Theia is designed to work as a native desktop application as well as in the
 context of a browser and a remote server. To support both situations with a
 single source, Theia runs in two separate processes. Those processes are called
