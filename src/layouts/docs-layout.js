@@ -85,6 +85,10 @@ const DocContainer = styled.div`
         margin-top: .8rem;
     }
 
+    li > p {
+        display: inline;
+    }
+
     code,
     pre {
         max-width: 100%;
