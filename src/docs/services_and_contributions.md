@@ -4,42 +4,84 @@ title: Services and Contributions
 
 # Services and Contributions
 
-In this section we describe how extensions can use services from other extensions
-and how they can contribute to the Theia workbench.
+In this section we describe how [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions) can use services provided by the platform and by other extensions. Furthermore, we describe how extensions can contribute to the Theia workbench via contribution points.
+
+A **service** provides functionality by implementing an interface (the service API) to be used by service consumers. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
+
+**Contribution points** define hooks, which allow to extend something. Contribution points are defined by an interface that the contributor is expected to implement, e.g. a `CommandContribution`. The extension defining the contribution point will then pick up the contribution, e.g. adding the contributed command to the Theia workbench.
+
+Contribution points, like services, can be contributed to and defined by any extension. The Theia platform defines a set of default contribution points, e.g. to add commands or menus to the Theia workbench. However, you can also define your own ones.
+
+The usage of services and contribution points requires communication between extensions. To avoid direct dependencies on the implementation classes, Theia uses dependency injection.
+
+<img src="/dependency-injection.png" alt="Dependency Injection Overview" style="max-width: 525px">
+
+In the following sections, we provide a quick overview of dependency injection, services, contributions and how to define contribution points.
 
 ## Dependency Injection (DI)
 
-Theia uses the DI framework [Inversify.js](http://inversify.io/) to wire up the
-different components.
+Theia uses the DI framework [InversifyJS](http://inversify.io/) to wire up the different components including services and contribution points.
 
-DI decouples a component from creating its dependencies. Instead, it gets them
-injected on creation (as parameters of a constructor). A DI container does the
-creation for you, based on some configuration you provide on startup through
-so-called container modules.
+Theia uses the DI framework InversifyJS to wire up the different components including services and contribution points.
+DI decouples the consumers of services -- i.e. the dependencies of those consumers -- from the actual creation and retrieval of those services. As an example, if you want to use a service, you neither have to instantiate it, nor do you need to manually retrieve it from somewhere. Instead, the DI container injects the services on creation of your component. The DI container resolves the dependency for you and, if necessary, even instanciates it on the fly. With that, the consumer of services doesn’t need to worry where they come from and you can easily exchange the actual implementations of services later on without having to change the consumers. The DI container works based on some configuration you provide on startup through so-called container modules.
 
-For instance, the `Navigator` widget needs access to a `FileSystem` to present
-folders and files in a tree. With DI the concretion of that `FileSystem`
-interface is not important to the `Navigator` widget. It can safely assume that
-an object consistent with the `FileSystem` interface is ready to use. In Theia,
-the used `FileSystem` concretion is just a proxy sending JSON-RPC messages to
-the backend, so it needs a particular configuration and treatment. The
-navigator doesn't need to care as it will get injected a fully working
-`FileSystem` instance.
-
-Moreover, this decoupling of construction and use, allows extensions to provide
-their very specific implementations of e.g. a `FileSystem` if needed. Still
-without touching any users of the `FileSystem` interface.
+We will provide examples on how to use dependency injection in the sections “Services” and “Contributing to contribution points” below.
 
 DI is an integral part of Theia. Therefore, we highly recommend learning at
-least the basics of [Inversify.js](http://inversify.io/).
+least the basics of [InversifyJS](http://inversify.io/). For more details, please also refer to [this article on how dependency injection works in Theia](https://eclipsesource.com/blogs/2018/11/28/how-to-inversify-in-eclipse-theia/)
 
-## Services
+## Using Services
 
-A service is just a binding for other components to use. For instance, one
-extension could expose the `SelectionService` so that others can get an
-instance injected and use it.
+To use a service in Theia, you can get it injected as a dependency using DI. Dependencies are usually specified via the interface of the service you want to retrieve. This way, you even avoid a dependency on any specific implementation, the caller just knows the interface. This allows the component providing the implementation to seamlessly replace the implementation of a service. You can even override the existing default implementation of a service without breaking any service consumers.
 
-## Contribution-Points
+Please note that InversifyJS technically uses Symbols to identify interfaces, because “Interface” is not a value in JavaScript. Therefore, service interfaces usually define a Symbol with exactly the same name as the interface itself.
+
+Services, or more generically, dependencies can be injected as fields, in the constructor or in initialization functions (see following code example).
+
+```typescript
+//Injection in the constructor
+constructor(@inject(MessageService) private readonly messageService: MessageService) { }
+ 
+//Injection as a field
+@inject(MessageService)
+protected readonly messageService!: MessageService;
+ 
+//Injection in an initialization function (will be called after the constructor and after injecting fields
+@postConstruct()
+protected async init(@inject(MessageService) private readonly messageService: MessageService) { }
+```
+
+Please note that injection will only work in components that are created by the DI container. Therefore, they must be marked with `@injectable` (see code example below). Further, they must be registered in the DI context (for an example see next section).
+
+```typescript
+@injectable()
+export class MyContribution implements SomeContributionInterface
+```
+
+## Contributing to Contribution Points
+
+Contribution Points in Theia define an interface to be implemented, e.g. `CommandContribution`. A contributing extension must provide an implementation of this interface and mark it with `@injectable`, e.g.:
+
+**mycommand-contribution.ts**
+```typescript
+@injectable()
+export class MyCommandContribution implements CommandContribution
+```
+
+Additionally, the contribution must be bound in the DI container, so that the contribution point provider can pick up our contribution, more precisely get it injected. The binding is done in the container module of an extension. It binds the implementation to the contribution interface, or to be technically correct, to the Symbol representing the interface (see example below).
+
+**helloworld-frontend-module.ts**
+```typescript
+export default new ContainerModule(bind => {
+   // add your contribution bindings here
+   bind(CommandContribution).to(HelloworldCommandContribution);
+...
+});
+```
+
+Please see [Commands/Menus/Keybindings](https://theia-ide.org/docs/commands_keybindings/) for a simple example for the usage of services and contribution points.
+
+## Defining Contribution-Points
 
 If an extension wants to provide a hook for others to contribute to, they
 should define a _contribution-point_. A _contribution-point_ is just an
