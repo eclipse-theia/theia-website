@@ -12,7 +12,14 @@ The easiest is to use Gitpod, which has everything readily setup to start workin
 ### Work locally
 
 ```bash
-npm install && npm run start --host 0.0.0.0
+npm install && npm run start
+```
+
+To build for production and serve, run:
+
+```bash
+npm run build
+npm run serve
 ```
 
 ## CI
