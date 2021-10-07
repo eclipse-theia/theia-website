@@ -108,7 +108,7 @@ Besides implementing the actual widget, you need to wire it with the Eclipse The
 
 Widgets in Theia are instantiated and managed by a central service, the `WidgetManager`. This allows the application to keep track of all created widgets. As an example, the `WidgetManager` supports the function `getOrCreate`, which will either return an existing widget, if it was already created, or create a new one if not.
 
-To make a custom widget instantiatable by the widget manager, you need to register a `WidgetFactory`.  A widget factory consists of an ID and a function that creates the actual widget. The widget manager will collect all contributed widget factories and pick the correct one for a respective widget by ID.
+To make a custom widget instantiatable by the widget manager, you need to register a `WidgetFactory`. A widget factory consists of an ID and a function that creates the actual widget. The widget manager will collect all contributed widget factories and pick the correct one for a respective widget by ID.
 
 In our example (see code below), we first bind our widget `MyWidget` to itself so that we can instantiate it in our factory using dependency injection. This is not necessarily required for all widgets if they do not use dependency injection inside. We are using dependency injection in our example above to retrieve the message service and for the @postConstruct event. Second, we bind a `WidgetFactory` defining the ID of the widget and the `createWidget` function. This function allows you to control the widget creation, e.g. to pass specific parameters to a custom widget if required. In our simple example, we just use the dependency injection context to instantiate our widget.
 
