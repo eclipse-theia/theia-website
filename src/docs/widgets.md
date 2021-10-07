@@ -36,7 +36,7 @@ Contributing a widget, in our example a view consists of three components:
 <li>A <b>widget contribution</b>, responsible for wiring the view with the Theia workbench so that the widget can be opened from within the Theia workbench, e.g. via the views menus</li>
 </ul>
 
-### Implementing a widget
+### Implementing a Widget
 
 For the implementation of custom widgets, Theia provides several base classes to inherit from. This enables you to focus on creating your custom UI only, as the base classes already implement most required functions. Theia does not depend on a specific UI technology, like React, Vue.js or Angular. However, it provides convenience support by providing respective base classes, e.g. for React. If in doubt, using React is the most common choice for implementing custom widgets at the moment. Below you find an excerpt of the class hierarchy. In case you want to implement a widget using react, choose `ReactWidget` as a base class. If you want to implement a widget that mainly displays a tree, use `TreeWidget`. If you do not want to use React, use `BaseWidget`. Browse the type hierarchy of `BaseWidget` to see other available options.
 
