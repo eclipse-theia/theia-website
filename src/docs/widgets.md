@@ -20,7 +20,7 @@ If you are not yet familiar with contribution points in Theia or the use of depe
 
 If you would like to have a look at the example code, please use the [Theia extension generator](https://github.com/eclipse-theia/generator-theia-extension). Install the generator, select the “Widget” example and enter “MyWidget” as a name for the extension.
 
-## Contributing a widget (a view)
+## Contributing a Widget (a View)
 
 Contributing a widget, in our example a view consists of three components:
 
