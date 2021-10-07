@@ -19,7 +19,7 @@ If you would like more guidance on which mechanism to use, please also refer to 
 
 ## VS Code Extensions
 
-VS Code extensions are the popular mechanism to extend VS Code with new language support and other features. VS Code extensions are simple to develop and they have access to a defined and restricted API. VS Code extensions can be pre-installed (built in), but also installed at runtime (e.g. by the user). Eclipse Theia provides the same extension API as VS Code, so extensions are compatible. Therefore, to develop your own extension, please refer to the [VS Code extension documentation](https://code.visualstudio.com/api). Please also refer to this [coverage report](https://theia-ide.org/docs/extensions/#vs-code-extensions), highlighting which API of VS Code is covered by Theia.
+VS Code extensions are the popular mechanism to extend VS Code with new language support and other features. VS Code extensions are simple to develop and they have access to a defined and restricted API. VS Code extensions can be pre-installed (built in), but also installed at runtime (e.g. by the user). Eclipse Theia provides the same extension API as VS Code, so extensions are compatible. Therefore, to develop your own extension, please refer to the [VS Code extension documentation](https://code.visualstudio.com/api). Please also refer to this [coverage report](https://che-incubator.github.io/vscode-theia-comparator/status.html), highlighting which API of VS Code is covered by Theia.
 Please also note that you can use existing VS Code extensions in Theia, too. A good source for installing or downloading extensions is the [Open VSX registry](https://open-vsx.org/).
 
 ## Theia Extensions
