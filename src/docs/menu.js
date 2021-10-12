@@ -78,6 +78,10 @@ export const MENU = [
         'label_provider'
     ),
     M(
+        'Message Service',
+        'message_service'
+    ),
+    M(
         'Events',
         'events'
     ),
