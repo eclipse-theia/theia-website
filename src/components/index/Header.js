@@ -96,12 +96,11 @@ const Header = () => (
                         <div className="banner">
                             <img className="banner_image" src="https://lh5.googleusercontent.com/rYzgav3AjXGZctmse2MXMZb75T_moKq9rScNd_oRFKtDX8dB0MUSJ0KPu2E6rrISs4jwOtX8ESkFCnXwZYTY2BScU0cOvwrlQsZdmbwH7fJA2M0VywmydZPTFFfsLm9XAQ=w1600" alt="image_1" style={{ width: '70%' }}></img>
                             <h1 style={{ fontSize: '2.2rem' }}>
-                            The Call for Presentations is now OPEN for the 2021 TheiaCon Event!
-                            Submit your proposal today to be a speaker at the largest Theia event of the year!
+                            TheiaCon is a virtual conference taking place on November 17-18 2021 focused around the Eclipse Theia IDE ecosystem. It brings together a diverse group of Theia developers, adopters, and other contributors. The program will feature a mix of full-length talks, expert panel discussions and short lightning talks focused on project contributor insights, adopter stories, and work being done in the broader ecosystem.
                             </h1>
                             <div className="header__buttons">
-                                <a className="btn btn--cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeGtLyd3ZYflIdo7n6sfCSpp65m6Ya9l9hhbeGqLvUakOUUBA/viewform" rel="noopener">
-                                Submit Proposal
+                                <a className="btn btn--cta" href="https://events.eclipse.org/2021/theiacon/" rel="noopener">
+                                Register
                                 </a>
                             </div>
                         </div>
