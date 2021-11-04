@@ -6,7 +6,7 @@ title: Services and Contributions
 
 In this section we describe how [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions) can use services provided by the platform and by other extensions. Furthermore, we describe how extensions can contribute to the Theia workbench via contribution points.
 
-A **service** provides functionality by implementing an interface (the service API) to be used by service consumers. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
+A **service** s an object that provides functionality to it's consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
 
 **Contribution points** define hooks, which allow to extend something. Contribution points are defined by an interface that the contributor is expected to implement, e.g. a `CommandContribution`. The extension defining the contribution point will then pick up the contribution, e.g. adding the contributed command to the Theia workbench.
 
@@ -20,14 +20,13 @@ In the following sections, we provide a quick overview of dependency injection, 
 
 ## Dependency Injection (DI)
 
-Theia uses the DI framework [InversifyJS](http://inversify.io/) to wire up the different components including services and contribution points.
+Theia uses the DI framework [InversifyJS](http://inversify.io/) to wire ups the difference services and contributions points.
 
-Theia uses the DI framework InversifyJS to wire up the different components including services and contribution points.
-DI decouples the consumers of services -- i.e. the dependencies of those consumers -- from the actual creation and retrieval of those services. As an example, if you want to use a service, you neither have to instantiate it, nor do you need to manually retrieve it from somewhere. Instead, the DI container injects the services on creation of your component. The DI container resolves the dependency for you and, if necessary, even instantiates it on the fly. With that, the consumer of services doesn’t need to worry where they come from and you can easily exchange the actual implementations of services later on without having to change the consumers. The DI container works based on some configuration you provide on startup through so-called container modules.
+Dependency injection decouples the consumers of services -- i.e. the dependencies of those consumers -- from the actual creation and retrieval of those services. As an example, if you want to use a service, you neither have to instantiate it, nor do you need to manually retrieve it from somewhere. Instead, the dependency injection container injects the services on creation of your component. The dependency injection container resolves the dependency for you and, if necessary, even instantiates it on the fly. With that, the consumer of services doesn’t need to worry where they come from and you can easily exchange the actual implementations of services later on without having to change the consumers. The dependency injection container works based on some configuration you provide on startup through so-called container modules.
 
 We will provide examples on how to use dependency injection in the sections “Services” and “Contributing to contribution points” below.
 
-DI is an integral part of Theia. Therefore, we highly recommend learning at
+Dependency injection is an integral part of Theia. Therefore, we highly recommend learning at
 least the basics of [InversifyJS](http://inversify.io/). For more details, please also refer to [this article on how dependency injection works in Theia](https://eclipsesource.com/blogs/2018/11/28/how-to-inversify-in-eclipse-theia/)
 
 ## Using Services
