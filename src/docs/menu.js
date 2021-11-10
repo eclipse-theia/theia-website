@@ -105,6 +105,10 @@ export const MENU = [
         'Tasks',
         'tasks'
     ),
+    M(
+        'Internationalization',
+        'i18n'
+    ),
     {
         title: 'Theia Blueprint'
     },
