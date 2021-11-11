@@ -26,6 +26,9 @@
  import EclipseSource from '../resources/eclipse-source.svg'
  import Huawei from '../resources/huawei.svg'
  import Acquia from '../resources/acquia.svg' 
+ import RecordEvolutionLogo from '../resources/record-evolution-logo.svg' 
+ import RecordEvolutionScreenshot from '../resources/screenshots/record-evolution-screenshot.png'
+ import RecordEvolutionScreenshotMin from '../resources/screenshots/thumbnails/record-evolution-screenshot-min.png'
  import MbedStudio from '../resources/screenshots/arm_mbedstudio-ss.png'
  import MbedStudioMin from '../resources/screenshots/thumbnails/arm_mbedstudio-ss-min.png'
  import CodeReady from '../resources/screenshots/redhat-crw-ss.png'
@@ -97,17 +100,22 @@
          href: "https://www.acquia.com/products/drupal-cloud/cloud-ide",
          src: Acquia,
          alt: "Acquia Logo"
+     },
+     {
+         href: "https://www.record-evolution.de",
+         src: RecordEvolutionLogo,
+         alt: "Record Evolution GmbH Logo"
      }
  ]
  
  export const products = [
-     {
-         href: "https://os.mbed.com/studio/",
-         src: MbedStudio,
-         thumb: MbedStudioMin,
-         alt: "Mbed Studio by Arm"
-     },
-     {
+    {
+        href: "https://os.mbed.com/studio/",
+        src: MbedStudio,
+        thumb: MbedStudioMin,
+        alt: "Mbed Studio by Arm"
+    },
+    {
         href: "https://www.eclipse.org/emfcloud/#coffeeeditoroverview",
         src: CoffeeEditor,
         thumb: CoffeeEditorMin,
@@ -131,5 +139,11 @@
         thumb: BluePrintMin,
         alt: "Theia Blueprint"
     },
+    {
+        href: "https://www.record-evolution.de/reswarm",
+        src: RecordEvolutionScreenshot,
+        thumb: RecordEvolutionScreenshotMin,
+        alt: "Record Evolution Screenshot"
+    }
  ]
  
