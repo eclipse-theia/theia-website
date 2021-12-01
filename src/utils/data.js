@@ -39,6 +39,9 @@
  import LogiCloudMin from '../resources/screenshots/thumbnails/logicloud-min.png'
  import BluePrint from '../resources/screenshots/blueprint.png'
  import BluePrintMin from '../resources/screenshots/thumbnails/blueprint-min.png'
+ import JonasHelming from '../resources/intros/jonas-helming.jpg'
+ import MarcDumais from '../resources/intros/marc-dumais.jpg'
+ import ThomasMader from '../resources/intros/thomas-mader.jpg'
  
  export const contributorsAndAdopters = [
      {
@@ -105,6 +108,27 @@
          href: "https://www.record-evolution.de",
          src: RecordEvolutionLogo,
          alt: "Record Evolution GmbH Logo"
+     }
+ ]
+
+ export const introsToTheia = [
+     {
+         title: "Why Eclipse Theia",
+         href: "https://youtu.be/xs0haWTulrY",
+         speaker: "Marc Dumais, Theia project lead and Software Developer at Ericsson AB",
+         src: MarcDumais,
+     },
+     {
+         title: "How to be an Eclipse Theia Adopter",
+         href: "https://youtu.be/SPO8pudgJak",
+         speaker: "Jonas Helming, Theia project lead and Principal Software Architect at EclipseSource",
+         src: JonasHelming,
+     },
+     {
+         title: "The Eclipse Theia Architecture",
+         href: "https://youtu.be/KN2JUsFuEhU",
+         speaker: "Thomas Mäder, Theia project lead and Principal Software Developer at Red Hat",
+         src: ThomasMader,
      }
  ]
  

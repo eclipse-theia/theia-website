@@ -24,6 +24,7 @@ import Promos from '../components/index/Promos'
 import Footer from '../components/Footer'
 import ContributorsAndAdopters from '../components/index/ContributorsAndAdopters'
 import Products from '../components/index/Products'
+import IntrosToTheia from '../components/index/IntrosToTheia'
 
 
 export default () => {
@@ -34,6 +35,7 @@ export default () => {
                 <Products />
                 <Features />
                 <ContributorsAndAdopters />
+                <IntrosToTheia />
                 <Banner />
                 <Promos />
             </main>
