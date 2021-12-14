@@ -27,6 +27,7 @@
  import Huawei from '../resources/huawei.svg'
  import Acquia from '../resources/acquia.svg' 
  import RecordEvolutionLogo from '../resources/record-evolution-logo.svg' 
+ import Logicals from '../resources/logicals.png'
  import RecordEvolutionScreenshot from '../resources/screenshots/record-evolution-screenshot.png'
  import RecordEvolutionScreenshotMin from '../resources/screenshots/thumbnails/record-evolution-screenshot-min.png'
  import MbedStudio from '../resources/screenshots/arm_mbedstudio-ss.png'
@@ -108,6 +109,11 @@
          href: "https://www.record-evolution.de",
          src: RecordEvolutionLogo,
          alt: "Record Evolution GmbH Logo"
+     },
+     {
+         href: "https://www.logicals.com",
+         src: Logicals,
+         alt: "logi.cals GmbH Logo"
      }
  ]
 
