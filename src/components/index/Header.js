@@ -92,18 +92,6 @@ const Header = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <div className="header__text-box">
-                    <div className="header_banner">
-                        <div className="banner">
-                            <h1 style={{ fontSize: '2.2rem' }}>
-                            We are happy to invite you to join the next Theia Hackathon! In this 2 hour event, Theia committers will guide new contributors through their first contribution. Please click below to register for the event.
-                            </h1>
-                            <div className="header__buttons">
-                                <a className="btn btn--cta" href="https://forms.gle/DKNGprHEK5B5LPR49" rel="noopener">
-                                Register
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                     <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                     </h1>
