@@ -198,5 +198,5 @@ Note: you may use watch mode as well.
 
 ## VS Code implementation
 Theia is providing VS Code API. Check the following link to get the current status of what is implemented.
-[Compare Theia vs VS Code API](https://che-incubator.github.io/vscode-theia-comparator/status.html)
+[Compare Theia vs VS Code API](https://eclipse-theia.github.io/vscode-theia-comparator/status.html)
 
