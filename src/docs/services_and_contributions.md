@@ -33,7 +33,7 @@ least the basics of [InversifyJS](http://inversify.io/). For more details, pleas
 
 To use a service in Theia, you can get it injected as a dependency using DI. Dependencies are usually specified via the interface of the service you want to retrieve. This way, you even avoid a dependency on any specific implementation, the caller just knows the interface. This allows the component providing the implementation to seamlessly replace the implementation of a service. You can even override the existing default implementation of a service without breaking any service consumers.
 
-Please note that InversifyJS technically uses Symbols to identify interfaces, because “Interface” is not a value in JavaScript. Therefore, service interfaces usually define a Symbol with exactly the same name as the interface itself.
+To get a parameter injected from the dependency injection container, you need to annotate it with an identifier (a string). Service providers on the other hand will publish the available services using an identifier, too. When a parameter with a specific identifier is requested via dependency injection, the dependency injection context will look it up and return an instance of the respective service. For conveniance service providers usually use a Symbol as an identifier that has exactly the same name as the respective service interface itself. The the following examples the '@inject(MessageService)' is the symbol (service identifier), while 'private readonly messageService: MessageService' is referring the interface of the service.
 
 Services, or more generically, dependencies can be injected as fields, in the constructor or in initialization functions (see following code example).
 
