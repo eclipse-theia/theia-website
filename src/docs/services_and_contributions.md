@@ -41,7 +41,7 @@ Services, or more generically, dependencies can be injected as fields, in the co
 //Injection in the constructor
 constructor(@inject(MessageService) private readonly messageService: MessageService) { }
  
-//Injection as a field
+// Injection as a field
 @inject(MessageService)
 protected readonly messageService!: MessageService;
  
