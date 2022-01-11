@@ -6,7 +6,7 @@ title: Services and Contributions
 
 In this section we describe how [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions) can use services provided by the platform and by other extensions. Furthermore, we describe how extensions can contribute to the Theia workbench via contribution points.
 
-A **service** s an object that provides functionality to it's consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
+A **service** is an object that provides functionality to it's consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
 
 **Contribution points** define hooks, which allow to extend something. Contribution points are defined by an interface that the contributor is expected to implement, e.g. a `CommandContribution`. The extension defining the contribution point will then pick up the contribution, e.g. adding the contributed command to the Theia workbench.
 
