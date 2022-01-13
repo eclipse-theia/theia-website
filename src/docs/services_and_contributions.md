@@ -38,19 +38,19 @@ To get a parameter injected from the dependency injection container, you need to
 Services, or more generically, dependencies can be injected as fields, in the constructor or in initialization functions (see following code example).
 
 ```typescript
-//Injection in the constructor
+// Injection in the constructor.
 constructor(@inject(MessageService) private readonly messageService: MessageService) { }
  
-// Injection as a field
+// Injection as a field.
 @inject(MessageService)
 protected readonly messageService!: MessageService;
  
-//Injection in an initialization function (will be called after the constructor and after injecting fields
+// Injection in an initialization function (will be called after the constructor and after injecting fields.
 @postConstruct()
 protected async init(@inject(MessageService) private readonly messageService: MessageService) { }
 ```
 
-Please note that injection will only work in components that are created by the DI container. Therefore, they must be marked with `@injectable` (see code example below). Further, they must be registered in the DI context (for an example see next section).
+Please note that injection will only work in components that are created by the DI container. Therefore, they must be marked with `@injectable` (see code example below). Furthermore, they must be registered in the DI context (for an example see next section).
 
 ```typescript
 @injectable()
