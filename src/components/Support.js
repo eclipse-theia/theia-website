@@ -114,7 +114,8 @@ const supporters = [
         title: 'EclipseSource',
         link: 'https://eclipsesource.com',
         support: 'https://eclipsesource.com/technology/eclipse-theia/',
-        training: 'https://eclipsesource.com/technology/eclipse-theia/#training'
+        training: 'https://eclipsesource.com/technology/eclipse-theia/#training',
+        sponsored: 'https://eclipsesource.com/technology/eclipse-theia/#sponsored'
     },
     {
         img: TypeFoxLogo,
@@ -144,13 +145,14 @@ const Support = () => (
             <div className={`support__container ${Math.random() < 0.5 && 'reverse'}`}>
                 {
                     supporters.map(
-                        ({title, link, img, training, support},i) => {
+                        ({title, link, img, training, support, sponsored},i) => {
                             return(
                             <div key={`${i}_${title}`} className="supporter">
                                 <div>
                                     <a href={link}><img src={img} alt={`${title} Logo`} /></a>
                                     <h3 className="heading-tertiary"><a href={support}>Support</a></h3>
                                     <h3 className="heading-tertiary"><a href={training}>Training</a></h3>
+                                    {(sponsored) && <h3 className="heading-tertiary"><a href={sponsored}>Sponsored Development</a></h3>}
                                 </div>
                             </div>)
                         }
