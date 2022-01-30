@@ -18,23 +18,22 @@ import React from 'react'
 
 import styled from '@emotion/styled'
 import { products } from '../../utils/data'
-import { breakpoints } from '../../utils/variables'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
-import "swiper/components/pagination/pagination.min.css"
+import 'swiper/components/navigation/navigation.min.css'
 import SwiperCore, {
-  Autoplay
+  Autoplay, Navigation
 } from 'swiper/core';
 
-SwiperCore.use([Autoplay]);
+SwiperCore.use([Autoplay, Navigation]);
 
 const Styled = styled.div`
-     .products {
+    .products {
         padding-bottom: 5rem;
         margin-top: 4rem;
-
+        position: relative;
         &__thumb {
             height: 100%;
             max-width: 100%;
@@ -46,23 +45,32 @@ const Styled = styled.div`
             &-container {
                 height: 18rem;
                 padding: 2px;
-
                 @media(min-width: 768px) {
                     text-align: center;
                 }
-
                 @media(max-width: 50rem) {
                     width: 40%;
                     margin-bottom: 4rem;
                 }
-
                 @media(max-width: 30rem) {
                     width: 100%;
-                } 
+                }
             }
             &-popup {
                 height: 100%
             }
+        }
+    }
+    .swiper-button-next, .swiper-button-prev {
+        color: black;
+        margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+    }
+    @media(min-width: 1120px) {
+        .swiper-button-next {
+            right: -6rem;
+        }
+        .swiper-button-prev {
+            left: -6rem;
         }
     }
 `
@@ -72,18 +80,23 @@ const Products = () => (
         <Styled>
             <section className="products" >
                 <h3 className="heading-tertiary">Selected Tools based on Eclipse Theia</h3>
+                <div class="swiper-button-prev"></div>
                 <Swiper
+                    modules={[Navigation]}
                     slidesPerView={1}
                     breakpoints={{
-                        "560": {
+                        "750": {
                             "slidesPerView": 2,
                         },
-                        "900": {
+                        "1120": {
                             "slidesPerView": 3,
                             "spaceBetween": 20,
                         }
                     }}
-                    pagination={{ "clickable": true }}
+                    navigation={{
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    }}
                     autoplay={{
                         "delay": 4000,
                         "disableOnInteraction": false
@@ -114,6 +127,7 @@ const Products = () => (
                     ))
                 }
                 </Swiper>
+                <div class="swiper-button-next"></div>
             </section>
         </Styled>
     </div>
