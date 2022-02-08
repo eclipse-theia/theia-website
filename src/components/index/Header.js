@@ -95,10 +95,12 @@ const Header = () => (
                     <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                     </h1>
-                    <h2 style={{ fontSize: '2.2rem' }}>
-                        Eclipse Theia helps you efficiently develop and deliver multi-language Cloud & Desktop IDEs and tools with modern, state-of-the-art web technologies.
+                    <h2 style={{ fontSize: '2.1rem' }}>
+                        Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies.
                         <br/>
                         <a href="https://eclipsesource.com/blogs/2022/02/07/eclipse-theia-1-22-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.22 Release!</a>
+                        <br/>
+                        Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                     </h2>
                     <div className="header__buttons">
                         <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
