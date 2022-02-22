@@ -29,6 +29,7 @@
  import RecordEvolutionLogo from '../resources/record-evolution-logo.svg' 
  import Logicals from '../resources/logicals.png'
  import Terapines from '../resources/terapines.png'
+ import STMicroelectronics from '../resources/stmicroelectronics.svg'
  import RecordEvolutionScreenshot from '../resources/screenshots/record-evolution-screenshot.png'
  import RecordEvolutionScreenshotMin from '../resources/screenshots/thumbnails/record-evolution-screenshot-min.png'
  import MbedStudio from '../resources/screenshots/arm_mbedstudio-ss.png'
@@ -120,7 +121,12 @@
          href: "https://www.terapines.com",
          src: Terapines,
          alt: "Terapines Logo"
-     }
+     },
+     {
+        href: "https://www.st.com",
+        src: STMicroelectronics,
+        alt: "STMicroelectronics Logo"
+    }     
  ]
 
  export const introsToTheia = [
