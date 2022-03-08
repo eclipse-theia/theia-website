@@ -75,49 +75,136 @@ heading-primary {
 
 const categories = [
     {
-        title: 'Category 1',
+        title: 'Release announcements',
         resources: [
             {
-                title: 'Article 1 about topic 1',
-                url: 'http://article.com',
+                title: 'Eclipse Theia 1.23 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2022/03/01/eclipse-theia-1-23-release-news-and-noteworthy/',
                 type: 'article'
-                
             },
             {
-                title: 'Article 2 about topic 1',
-                url: 'http://article2.com',
+                title: 'Eclipse Theia 1.22 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2022/02/07/eclipse-theia-1-22-release-news-and-noteworthy/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia 1.21 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2022/01/12/eclipse-theia-1-21-release-news-and-noteworthy/',
                 type: 'article'
             }
         ]
     },
     {
-        title: 'Category 2',
+        title: 'Introductions to Eclipse Theia',
         resources: [
             {
-                title: 'Video 1 about topic 2',
-                url: 'http://article.com',
+                title: 'Why Eclipse Theia',
+                url: 'https://youtu.be/xs0haWTulrY',
                 type: 'video'
+            },
+            {
+                title: 'What is Eclipse Theia?',
+                url: 'https://eclipsesource.com/blogs/2018/06/20/welcome-at-eclipse-theia/',
+                type: 'article'
                 
             },
             {
-                title: 'Article 3 about topic 2',
-                url: 'http://article3.com',
+                title: 'Eclipse Theia - FAQ',
+                url: 'https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/',
+                type: 'article'
+            },
+            {
+                title: '5 Reasons to Adopt Eclipse Theia',
+                url: 'https://blogs.eclipse.org/post/brian-king/5-reasons-adopt-eclipse-theia',
+                type: 'video'
+            },
+            {
+                title: 'The Eclipse Theia Architecture',
+                url: 'https://youtu.be/SPO8pudgJak',
+                type: 'video'
+            },
+            {
+                title: 'How to adopt Eclipse Theia',
+                url: 'https://youtu.be/KN2JUsFuEhU',
+                type: 'video'
+            },
+            {
+                title: 'Eclipse Theia Builds Momentum',
+                url: 'https://blogs.eclipse.org/post/brian-king/eclipse-theia-builds-momentum',
                 type: 'article'
             }
         ]
     },
     {
-        title: 'Category 3',
+        title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
-                title: 'Article 3 about topic 3',
-                url: 'http://article3.com',
+                title: 'logi.CLOUD, a modern engineering platform for industrial automation',
+                url: 'https://blogs.eclipse.org/post/paul-buck/theia-adopter-story-logicloud-modern-engineering-platform-industrial-automation',
                 type: 'article'
             },
             {
-                title: 'Video 1 about topic 3',
-                url: 'http://article.com',
+                title: 'A web-based modeling tool based on Eclipse Theia',
+                url: 'https://eclipsesource.com/blogs/2020/07/24/a-web-based-modeling-tool-based-on-eclipse-theia/',
+                type: 'article'
+            }
+        ]
+    },
+    {
+        title: 'Technical topics about Eclipse Theia',
+        resources: [
+            {
+                title: 'VS Code extensions vs. Theia extensions',
+                url: 'https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/',
+                type: 'article'
+            },
+            {
+                title: 'Theia Playwright - End-to-end testing Theia applications',
+                url: 'https://eclipsesource.com/blogs/2022/02/23/theia-playwright-end-to-end-testing-theia-applications/',
+                type: 'article'
+            },
+            {
+                title: 'Internationalization in Eclipse Theia',
+                url: 'https://ecdtools.eclipse.org/resources/blogs/2021-12-16-theia-i18n/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia - a platform for more than just code editors!',
+                url: 'https://youtu.be/9c4hyPux5DY',
                 type: 'video'
+            }
+        ]
+    },
+    {
+        title: 'Topics related to Eclipse Theia',
+        resources: [
+            {
+                title: 'Eclipse Theia compared to VS Code',
+                url: 'https://eclipsesource.com/blogs/2019/12/06/the-eclipse-theia-ide-vs-vs-code/',
+                type: 'article'
+                
+            },
+            {
+                title: 'Migrating Eclipse plugins to Eclipse Theia or VS Code',
+                url: 'https://eclipsesource.com/blogs/2021/05/27/migrating-eclipse-plugins-to-eclipse-theia-or-vs-code/',
+                type: 'article'
+            },
+            {
+                title: 'Building diagram editors in Eclipse Theia with GLSP',
+                url: 'https://eclipsesource.com/blogs/2021/03/03/building-diagram-editors-in-eclipse-theia-with-glsp/',
+                type: 'article'
+                
+            },
+            {
+                title: 'Eclipse Theia compared to Eclipse Che',
+                url: 'https://eclipsesource.com/blogs/2018/12/03/eclipse-che-vs-eclipse-theia/',
+                type: 'article'
+                
+            },
+            {
+                title: 'How to build a tree editor in Eclips Theia',
+                url: 'https://eclipsesource.com/blogs/2021/02/03/how-to-build-a-tree-editor-in-eclipse-theia/',
+                type: 'article'
                 
             }
         ]
