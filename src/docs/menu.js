@@ -30,6 +30,10 @@ export const MENU = [
         'architecture'
     ),
     M(
+        'Project Goals',
+        'project_goals'
+    ),
+    M(
         'Extensions and Plugins',
         'extensions'
     ),
