@@ -57,7 +57,11 @@ const Styled = styled.div`
                 }
             }
             &-popup {
-                height: 100%
+                height: 100%;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
             }
         }
     }
