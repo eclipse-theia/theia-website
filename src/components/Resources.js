@@ -60,16 +60,18 @@ heading-primary {
 }
 .icon {
     display: inline-block;
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     background-size: contain;
-    vertical-align: sub;
+    background-repeat: no-repeat;
 }
 .article {
-    background-image: url(${Article});    
+    background-image: url(${Article});
+    vertical-align: top;   
 }
 .video {
     background-image: url(${Video});
+    vertical-align: bottom;
 }
 `
 
