@@ -37,7 +37,7 @@ Theia provides the ability to host VS Code extensions. This allows adopters to b
 
 ## Use standards and don’t reinvent the wheel
 
-Theia uses/reuses industrial standard technologies and practices whenever applicable. This keeps the scope of the project minimal and decreases the maintenance cost. This applies to used frameworks, development tools, but also to general concepts such as UX.
+Theia uses/reuses industrial standard technologies and practices whenever applicable. This keeps the scope of the project minimal and decreases the maintenance cost. This applies to the use of frameworks and development tools as well as to general concepts such as UX.
 
 ## Product Templates
 
