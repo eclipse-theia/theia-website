@@ -17,7 +17,7 @@ The goal of the Eclipse Theia project is to provide a platform for efficiently d
 Tools and IDEs built on Theia can run as desktop applications or in the browser. The backend of Theia can run locally (for the desktop case) or as a remote service in the cloud. Both variants currently have an equal priority.
 
 ## Platform for IDEs and Tools
-Theia is targeted at building IDEs and tools. These tools can, but do not have to have similar feature sets compared to IDEs. Theia explicitly also targets tools that do not have a focus on textual input/editors or software development. Thus, Theia also puts tools in scope that include diagram editors or form-based UI. The Theia platform hence covers the typical application scenarios of the Eclipse rich-client platform (Eclipse RCP). As a consequence, the platform aims at making as few assumptions as possible about what adopters might want to build with Theia. It explicitly allows deviating from the standard workbench layout and also to remove all default features.
+Theia is targeted at building a variety of custom tools. Prominent examples of Theia-based products include IDE's, but Theia also explicitly targets tools that do not focus on textual input/editors or software development. Thus, Theia's scope also included diagram editors or form-based UI. The Theia platform hence covers the typical application scenarios of the Eclipse rich-client platform (Eclipse RCP). As a consequence, the platform aims at making as few assumptions as possible about what adopters might want to build with Theia. It explicitly allows deviation from the standard workbench layout and the removal of all default features.
 
 ## Basic Workbench Frame
 
