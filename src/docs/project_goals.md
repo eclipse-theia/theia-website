@@ -21,7 +21,7 @@ Theia is targeted at building a variety of custom tools. Prominent examples of T
 
 ## Basic Workbench Frame
 
-Theia provides a workbench frame, i.e., a window management system allowing to show views and editors, adapt the window layout, display menus, trigger commands, use key bindings and other concepts known from a desktop tool such as drag and drop.
+Theia provides a workbench frame, i.e., a window management system permitting the display of views, editors, and menus and makes available tools and interactions allowing the user to modify of the window layout, trigger commands, and use key bindings and other concepts known from a desktop tool such as drag and drop.
 
 ## Reusable Common Tool Features
 
