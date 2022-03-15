@@ -10,7 +10,7 @@ This section describes the overall goals of the Eclipse Theia project.
 
 ## An Open, Flexible and Extensible Tool Platform
 
-The goal of the Eclipse Theia project is to provide a platform for efficiently developing tools and IDEs based on a modern web technology stack. The primary target group for Theia are adopters implementing a custom tool. Adopters provide these custom tools to their end users. Therefore, end users are only an indirect secondary target group of Theia. As Theia-based products are typically customized, branded and labeled by its adopters, the actual end users may not even be aware of the Theia project they are using under the hood.
+The goal of the Eclipse Theia project is to provide a platform for efficiently developing tools and IDEs based on a modern web technology stack. The primary target group for Theia is developers implementing a custom tool for end users. As Theia-based products are typically customized, branded and labeled by its adopters, the actual end users may not even be aware of the Theia project they are using under the hood. Therefore, end users are only an indirect secondary target group of Theia. 
 
 ## Desktop & Browser, Local & Remote (Cloud)
 
