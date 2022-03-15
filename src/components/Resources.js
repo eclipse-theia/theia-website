@@ -204,7 +204,7 @@ const categories = [
                 
             },
             {
-                title: 'How to build a tree editor in Eclips Theia',
+                title: 'How to build a tree editor in Eclipse Theia',
                 url: 'https://eclipsesource.com/blogs/2021/02/03/how-to-build-a-tree-editor-in-eclipse-theia/',
                 type: 'article'
                 
