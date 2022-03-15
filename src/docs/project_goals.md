@@ -25,7 +25,7 @@ Theia provides a workbench frame, i.e., a window management system permitting th
 
 ## Reusable Common Tool Features
 
-Theia optionally provides common tool features as components to be reused by adopters. Common features are generic so that they are required in several tools. Examples for these common tool features include a file explorer, Git support and a code editor.
+Theia optionally provides common tool features as components to be reused by adopters. Common features are generic so that may be reused in several tools. Examples for these common tool features include a file explorer, Git support and a code editor.
 
 ## Extensibility and Adaptability
 
