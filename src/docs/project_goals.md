@@ -41,7 +41,7 @@ Theia uses/reuses industrial standard technologies and practices whenever applic
 
 ## Product Templates
 
-The Eclipse Theia project does not primarily aim at providing products for end users, but focuses on offering a platform for building products. However, the project provides product templates, a.k.a. “Blueprints”. These blueprints serve two purposes: First, they allow to consume example Theia-based products from the view point of an end user, which enables them to evaluate the underlying platform without first creating a product based on it. Second, the blueprints serve as templates to create custom products. Therefore, the template products contain documentation on how to customize them.
+The Eclipse Theia project does not primarily aim to provide products for end users but focuses on offering a platform for building products. However, the project provides product templates, a.k.a. “Blueprints”. These blueprints serve two purposes. First, they allow adopters to consume example Theia-based products from the view point of an end user, which enables them to evaluate the underlying platform without first creating a product based on it. Second, the blueprints serve as templates to create custom products. Therefore, the template products contain documentation on how to customize them.
 
 ## Open and Vendor Neutral Governance
 
