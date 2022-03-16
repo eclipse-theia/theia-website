@@ -17,6 +17,7 @@ The goal of the Eclipse Theia project is to provide a platform for efficiently d
 Tools and IDEs built on Theia can run as desktop applications or in the browser. The backend of Theia can run locally (for the desktop case) or as a remote service in the cloud. Both variants currently have an equal priority.
 
 ## Platform for IDEs and Tools
+
 Theia is targeted at building a variety of custom tools. Prominent examples of Theia-based products include IDE's, but Theia also explicitly targets tools that do not focus on textual input/editors or software development. Thus, Theia's scope also included diagram editors or form-based UI. The Theia platform hence covers the typical application scenarios of the Eclipse rich-client platform (Eclipse RCP). As a consequence, the platform aims at making as few assumptions as possible about what adopters might want to build with Theia. It explicitly allows deviation from the standard workbench layout and the removal of all default features.
 
 ## Basic Workbench Frame
@@ -35,7 +36,7 @@ Theia is an extensible and adaptable framework. Extensibility in this context me
 
 Theia provides the ability to host VS Code extensions. This allows adopters to benefit from features that are provided as VS Code extensions and make them part of their tool offering. It also allows end users of Theia-based tools to install additional features, if the adopter providing a tool allows users to do so. When applicable, the default Theia UX aligns with the VS Code UI, although adopters can deviate from this.
 
-## Use standards and don’t reinvent the wheel
+## Use Standards And Don’t Reinvent The Wheel
 
 Theia uses/reuses industrial standard technologies and practices whenever applicable. This keeps the scope of the project minimal and decreases the maintenance cost. This applies to the use of frameworks and development tools as well as to general concepts such as UX.
 
