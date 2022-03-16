@@ -31,7 +31,7 @@ Theia optionally provides common tool features as components to be reused by ado
 
 Theia is an extensible and adaptable framework. Extensibility in this context means that you can easily add new features to a product built on the Theia platform (including UI and backend functionality). These new features can either be provided by the Theia project itself (common features), by other projects (e.g. Eclipse GLSP) or be custom features that are developed by an adopter. Adaptable in this context means that the workbench and all common features that are provided by the Theia project can be customized and adapted to project-specific needs. This includes changing or removing existing features and adjusting the look and feel.
 
-## VS Code compatibility
+## VS Code Compatibility
 
 Theia provides the ability to host VS Code extensions. This allows adopters to benefit from features that are provided as VS Code extensions and make them part of their tool offering. It also allows end users of Theia-based tools to install additional features, if the adopter providing a tool allows users to do so. When applicable, the default Theia UX aligns with the VS Code UI, although adopters can deviate from this.
 
