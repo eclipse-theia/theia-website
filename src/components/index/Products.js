@@ -84,7 +84,7 @@ const Products = () => (
         <Styled>
             <section className="products" >
                 <h3 className="heading-tertiary">Selected Tools based on Eclipse Theia</h3>
-                <div class="swiper-button-prev"></div>
+                <div className="swiper-button-prev"></div>
                 <Swiper
                     modules={[Navigation]}
                     slidesPerView={1}
@@ -131,7 +131,7 @@ const Products = () => (
                     ))
                 }
                 </Swiper>
-                <div class="swiper-button-next"></div>
+                <div className="swiper-button-next"></div>
             </section>
         </Styled>
     </div>

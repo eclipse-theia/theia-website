@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import styled from '@emotion/styled'
 import { contributorsAndAdopters } from '../../utils/data'
@@ -85,25 +85,51 @@ const Styled = styled.div`
     }
 `
 
-const ContributorsAndAdopters = () => (
-    <div className="row">
-        <Styled>
-            <section className="contributors" >
-                <h3 className="heading-tertiary">Contributors & Adopters</h3>
-                <div className="contributors__images">
-                    {
-                        contributorsAndAdopters.map((item, i) => (
-                            <div key={i} className="contributors__image-container">
-                                <a target="_blank" rel="noopener noreferrer" href={item.href}>
-                                    <img className="contributors__image" src={item.src} alt={item.alt} />
-                                </a>
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
-        </Styled>
-    </div>
-)
+const ContributorsAndAdopters = () => {
+
+    const [adopters, setAdopters] = useState(contributorsAndAdopters);
+
+    useEffect(() => {
+        const fetchAdopters = async () => {
+            const response = await fetch('https://api.eclipse.org/adopters/projects/ecd.theia', {
+                method: 'GET',
+                headers: {
+                  accept: 'application/json',
+                }
+            });
+            const json = await response.json();
+            let newAdopters = json[0].adopters.concat(adopters);
+            newAdopters.sort((a,b) => {
+                if (a.name.toUpperCase() < b.name.toUpperCase())
+                    return -1
+                else
+                    return 1
+            })
+            setAdopters(newAdopters);
+        }
+        fetchAdopters();
+    }, []);
+    
+    return (
+        <div className="row">
+            <Styled>
+                <section className="contributors" >
+                    <h3 className="heading-tertiary">Contributors & Adopters</h3>
+                    <div className="contributors__images">
+                        {
+                            adopters.map((item, i) => (
+                                <div key={i} className="contributors__image-container">
+                                    <a target="_blank" rel="noopener noreferrer" href={item.homepage_url}>
+                                        <img className="contributors__image" src={(item.src) ? item.src : 'https://api.eclipse.org/adopters/assets/images/adopters/' + item.logo } alt={item.name} />
+                                    </a>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </section>
+            </Styled>
+        </div>
+    )
+}
 
 export default ContributorsAndAdopters
