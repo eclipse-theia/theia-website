@@ -152,10 +152,46 @@ const StyledNav = styled.div`
                 }
             }
         }
+        &__dropdown {
+            cursor: pointer;
+            
+            &:hover .dropdown-menu,
+            &:focus .dropdown-menu {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
     }
-
     .active {
         color: ${colors.blue};
+    }
+    .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        min-width: 15rem;
+        margin-top: 1rem;
+        position: relative;
+        background-color: #fff;
+        padding: 1rem 0;
+        z-index: 2;
+        @media(min-width: ${breakpoints.xmd}) {
+            box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+            left: -25%;
+        }
+    }
+    .dropdown-menu li {
+        padding: 0.5rem 1rem;
+        list-style: none;
+    }
+    .caret {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px dashed;
+        display: inline-block;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        width: 0;
     }
 `
 
@@ -202,6 +238,13 @@ class Nav extends React.Component {
                         </li>
                         <li className="nav__item">
                             <Link to="/support/" className="nav__link">Support</Link>
+                        </li>
+                        <li className="nav__item nav__dropdown">
+                            Resources <b className="caret"></b>
+                            <ul className="dropdown-menu">
+                                <li><Link to="/blogs/" className="nav__link">Blogs</Link></li>
+                                <li><Link to="/resources/" className="nav__link">Other Resources</Link></li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
