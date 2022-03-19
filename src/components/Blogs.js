@@ -134,8 +134,6 @@ const Blogs = () => {
                     })
                 }
             </section>
-            
-            {/* <solstice_rss_blog_list urls="https://planeteclipse.org/planet/ecdtools.xml,https://che.eclipseprojects.io/feed.xml"/> */}
         </StyledBlogs>
     );
 }
