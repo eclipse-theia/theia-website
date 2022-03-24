@@ -121,7 +121,7 @@ const supporters = [
         img: TypeFoxLogo,
         title: 'TypeFox',
         link: 'https://typefox.io',
-        support: 'https://www.typefox.io/theia/',
+        support: 'https://www.typefox.io/cloud-and-desktop-ides/',
         training: 'https://www.typefox.io/trainings/'
     }
 ]
