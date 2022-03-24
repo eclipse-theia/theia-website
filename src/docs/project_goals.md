@@ -6,7 +6,7 @@ title: Project Goals
 
 This section describes the overall goals of the Eclipse Theia project.
 
-## Eclipse Theia mission statement: A framework for building tools and IDEs based on web technologies
+**Eclipse Theia mission statement: A framework for building tools and IDEs based on web technologies.**
 
 ## An Open, Flexible and Extensible Tool Platform
 
