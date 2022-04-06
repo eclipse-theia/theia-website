@@ -91,21 +91,25 @@ const Blogs = () => {
     const [feed, setFeed] = useState({ title: '', items: []});
 
     useEffect(() => {
-        let parser = new Parser({
-            customFields: {
-                item: [
-                  ['category', 'categories', {keepArray: true}],
-                ]
-            }
-        });
-        parser.parseURL('https://planeteclipse.org/planet/ecdtools.xml', (err,feed) => {
-            if (err) throw err;
-            const regex = /theia/gi;
-            feed.items = feed.items.filter(item => {
-                return item.categories.some(cat => regex.test(cat.$.term));
-            })
-            setFeed(feed);
-        })
+        fetch('https://planeteclipse.org/planet/ecdtools.xml')
+            .then(response => response.text())
+            .then(str => {
+                let parser = new Parser({
+                    customFields: {
+                        item: [
+                          ['category', 'categories', {keepArray: true}],
+                        ]
+                    }
+                });
+                parser.parseString(str, (err,feed) => {
+                    if (err) throw err;
+                    const regex = /theia/gi;
+                    feed.items = feed.items.filter(item => {
+                        return item.categories.some(cat => regex.test(cat.$.term));
+                    })
+                    setFeed(feed);
+                })
+            });
     }, []);
 
     return (
