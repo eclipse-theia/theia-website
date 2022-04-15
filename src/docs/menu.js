@@ -86,6 +86,10 @@ export const MENU = [
         'message_service'
     ),
     M(
+        'Property View',
+        'property_view'
+    ),
+    M(
         'Events',
         'events'
     ),
