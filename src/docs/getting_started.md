@@ -7,7 +7,7 @@ title: Getting Started
 In this section, we provide a high level overview on how to get started with Eclipse Theia and link to respective sections to read.
 Eclipse Theia is a platform for building custom Cloud & Desktop IDEs and tools with modern web technologies. Eclipse Theia is not a tool itself, but there are many tools which are built upon Theia. Theia as a project provides a template tool called [Eclipse Blueprint](https://theia-ide.org/docs/blueprint_download/) to try Theia and get started with building your own tool. Please have a look at the project goals for more details!
 
-## Frequently asked questions
+## Frequently Asked Questions
 
 If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [this FAQ for Eclipse Theia](https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/).
 
