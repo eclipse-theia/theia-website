@@ -9,7 +9,7 @@ Eclipse Theia is a platform for building custom Cloud & Desktop IDEs and tools w
 
 ## Frequently Asked Questions
 
-If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [this FAQ for Eclipse Theia](https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/).
+If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [resource section](https://theia-ide.org/resources/).
 
 ## Try/Launch Eclipse Theia
 
