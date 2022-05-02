@@ -45,7 +45,7 @@ export const MENU = [
         title: 'Using Theia'
     },
     M(
-        'Build your own IDE',
+        'Build your own IDE/Tool',
         'composing_applications'
     ),
     M(

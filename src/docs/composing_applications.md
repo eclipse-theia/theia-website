@@ -1,11 +1,16 @@
 ---
-title: Build your own IDE
+title: Build your own IDE/Tool
 ---
 
 
-# Build your own IDE
+# Build your own IDE/Tool
 
-This guide will teach you how to build your own Theia application.
+This guide will teach you how to build your own Theia-based application.The guide will demonstrate how to configure your own application composed of existing or new Theia extensions, and any VS Code extensions you want bundled in your application by default. Please get familiar with the [extension mechanisms of Theia](https://theia-ide.org/docs/extensions/) in case you are not already.
+This guide describes the manual steps to build a Theia-based product, there are two ways to avoid this manual set-up:
+- [Theia Extension Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based products along with example extensions.
+- [Theia Blueprint](https://theia-ide.org/docs/blueprint_download/): A template tool for creating installable desktop applications based on Theia.
+
+We still recommend reading the manual guide first, it allows you to understand the structure of a Theia-based project. 
 
 ## Requirements
 
