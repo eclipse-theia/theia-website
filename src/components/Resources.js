@@ -1,18 +1,18 @@
 /********************************************************************************
-* Copyright (C) 2021 EclipseSource and others.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Eclipse Public License v. 2.0 which is available at
-* http://www.eclipse.org/legal/epl-2.0.
-*
-* This Source Code may also be made available under the following Secondary
-* Licenses when the conditions for such availability set forth in the Eclipse
-* Public License v. 2.0 are satisfied: GNU General Public License, version 2
-* with the GNU Classpath Exception which is available at
-* https://www.gnu.org/software/classpath/license.html.
-*
-* SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-********************************************************************************/
+ * Copyright (C) 2021 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
 
 import Nav from './Nav'
 import React from 'react'
@@ -24,56 +24,56 @@ import Video from '../resources/video.svg'
 
 
 const StyledResources = styled.div`
- .header {
-     position: relative;
-     background-image: url(${Background});
-     background-size: cover;
-     padding-bottom: 3rem;
-     border-bottom: 10px solid #f8f8f8;
-     @media(max-width: ${breakpoints.xmd}) {
-         padding-top: 15rem;
-     }
-     &__logo-box {
-         margin-bottom: 3rem;
-     }
-     &__logo {
-         height: 3rem;
-     }
- }
- heading-primary {
-     margin-bottom: 1rem;
-     font-size: 3.4rem;
- }
- .heading-secondary {
-     font-size: 3rem;
-     margin-bottom: 2rem;
- }
- .category {
-     margin-top: 2rem;
-     margin-bottom: 2rem;
- }
- .category:not(:last-child) {
-     border-bottom: 1px solid #ccc;
- }
- .resources {
-     padding: 3rem 0;
- }
- .icon {
-     display: inline-block;
-     width: 4rem;
-     height: 4rem;
-     background-size: contain;
-     background-repeat: no-repeat;
- }
- .article {
-     background-image: url(${Article});
-     vertical-align: top;   
- }
- .video {
-     background-image: url(${Video});
-     vertical-align: bottom;
- }
- `
+.header {
+    position: relative;
+    background-image: url(${Background});
+    background-size: cover;
+    padding-bottom: 3rem;
+    border-bottom: 10px solid #f8f8f8;
+    @media(max-width: ${breakpoints.xmd}) {
+        padding-top: 15rem;
+    }
+    &__logo-box {
+        margin-bottom: 3rem;
+    }
+    &__logo {
+        height: 3rem;
+    }
+}
+heading-primary {
+    margin-bottom: 1rem;
+    font-size: 3.4rem;
+}
+.heading-secondary {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+.category {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.category:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+.resources {
+    padding: 3rem 0;
+}
+.icon {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.article {
+    background-image: url(${Article});
+    vertical-align: top;
+}
+.video {
+    background-image: url(${Video});
+    vertical-align: bottom;
+}
+`
 
 const categories = [
     {
@@ -113,7 +113,6 @@ const categories = [
                 title: 'What is Eclipse Theia?',
                 url: 'https://eclipsesource.com/blogs/2018/06/20/welcome-at-eclipse-theia/',
                 type: 'article'
-
             },
             {
                 title: 'Eclipse Theia - FAQ',
@@ -141,7 +140,7 @@ const categories = [
                 type: 'article'
             },
             {
-                title: 'Eclipse Theia is the next generation Eclipse RCP?!                ',
+                title: 'Eclipse Theia is the next generation Eclipse RCP?!',
                 url: 'https://eclipsesource.com/blogs/2022/03/16/eclipse-theia-is-the-next-generation-eclipse-rcp/',
                 type: 'article'
             },
@@ -209,7 +208,6 @@ const categories = [
                 title: 'Eclipse Theia compared to VS Code',
                 url: 'https://eclipsesource.com/blogs/2019/12/06/the-eclipse-theia-ide-vs-vs-code/',
                 type: 'article'
-
             },
             {
                 title: 'Migrating Eclipse plugins to Eclipse Theia or VS Code',
@@ -220,19 +218,16 @@ const categories = [
                 title: 'Building diagram editors in Eclipse Theia with GLSP',
                 url: 'https://eclipsesource.com/blogs/2021/03/03/building-diagram-editors-in-eclipse-theia-with-glsp/',
                 type: 'article'
-
             },
             {
                 title: 'Eclipse Theia compared to Eclipse Che',
                 url: 'https://eclipsesource.com/blogs/2018/12/03/eclipse-che-vs-eclipse-theia/',
                 type: 'article'
-
             },
             {
                 title: 'How to build a tree editor in Eclipse Theia',
                 url: 'https://eclipsesource.com/blogs/2021/02/03/how-to-build-a-tree-editor-in-eclipse-theia/',
                 type: 'article'
-
             }
         ]
     },
