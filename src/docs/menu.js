@@ -23,10 +23,14 @@ const M = (title, path, subMenu, indented = false) => ({
 
 export const MENU = [
     {
-        title: 'Architecture'
+        title: 'Overview'
     },
     M(
-        'Overview',
+        'Getting Started',
+        'getting_started'
+    ),
+    M(
+        'Architecture Overview',
         'architecture'
     ),
     M(
