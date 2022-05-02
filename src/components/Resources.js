@@ -67,7 +67,7 @@ heading-primary {
 }
 .article {
     background-image: url(${Article});
-    vertical-align: top;   
+    vertical-align: top;
 }
 .video {
     background-image: url(${Video});
@@ -79,6 +79,11 @@ const categories = [
     {
         title: 'Release announcements',
         resources: [
+            {
+                title: 'Eclipse Theia 1.24 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2022/04/14/eclipse-theia-1-24-release-news-and-noteworthy/',
+                type: 'article'
+            },
             {
                 title: 'Eclipse Theia 1.23 Release: News and Noteworthy',
                 url: 'https://eclipsesource.com/blogs/2022/03/01/eclipse-theia-1-23-release-news-and-noteworthy/',
@@ -108,7 +113,6 @@ const categories = [
                 title: 'What is Eclipse Theia?',
                 url: 'https://eclipsesource.com/blogs/2018/06/20/welcome-at-eclipse-theia/',
                 type: 'article'
-                
             },
             {
                 title: 'Eclipse Theia - FAQ',
@@ -131,6 +135,21 @@ const categories = [
                 type: 'video'
             },
             {
+                title: 'Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools!',
+                url: 'https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia is the next generation Eclipse RCP?!',
+                url: 'https://eclipsesource.com/blogs/2022/03/16/eclipse-theia-is-the-next-generation-eclipse-rcp/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia is the next generation of Eclipse!',
+                url: 'https://eclipse-foundation.blog/2022/04/19/eclipse-theia-is-the-next-generation-of-eclipse/',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Theia Builds Momentum',
                 url: 'https://blogs.eclipse.org/post/brian-king/eclipse-theia-builds-momentum',
                 type: 'article'
@@ -140,6 +159,11 @@ const categories = [
     {
         title: 'Eclipse Theia Adopter Stories',
         resources: [
+            {
+                title: 'Theia Adopter Story: The new Arduino IDE 2.0',
+                url: 'https://blogs.eclipse.org/post/john-kellerman/theia-adopter-story-new-arduino-ide-20',
+                type: 'article'
+            },
             {
                 title: 'logi.CLOUD, a modern engineering platform for industrial automation',
                 url: 'https://blogs.eclipse.org/post/paul-buck/theia-adopter-story-logicloud-modern-engineering-platform-industrial-automation',
@@ -184,7 +208,6 @@ const categories = [
                 title: 'Eclipse Theia compared to VS Code',
                 url: 'https://eclipsesource.com/blogs/2019/12/06/the-eclipse-theia-ide-vs-vs-code/',
                 type: 'article'
-                
             },
             {
                 title: 'Migrating Eclipse plugins to Eclipse Theia or VS Code',
@@ -195,19 +218,16 @@ const categories = [
                 title: 'Building diagram editors in Eclipse Theia with GLSP',
                 url: 'https://eclipsesource.com/blogs/2021/03/03/building-diagram-editors-in-eclipse-theia-with-glsp/',
                 type: 'article'
-                
             },
             {
                 title: 'Eclipse Theia compared to Eclipse Che',
                 url: 'https://eclipsesource.com/blogs/2018/12/03/eclipse-che-vs-eclipse-theia/',
                 type: 'article'
-                
             },
             {
                 title: 'How to build a tree editor in Eclipse Theia',
                 url: 'https://eclipsesource.com/blogs/2021/02/03/how-to-build-a-tree-editor-in-eclipse-theia/',
                 type: 'article'
-                
             }
         ]
     },
@@ -220,30 +240,31 @@ const Resources = () => (
                 <Nav shouldRenderLogo={true} />
                 <div className="header__text-box">
                     <h1 className="heading-primary">
-                    Other resources
+                        Other resources
                     </h1>
                 </div>
             </div>
         </header>
-        {categories.map(({title, resources}, i) => {
+        {categories.map(({ title, resources }, i) => {
             return (
                 <section key={i} className="category row" id="resources">
                     <h2 className="heading-secondary">{title}</h2>
                     {resources.map(
-                        ({title, url, type},i) => {
-                            return(
-                            <div key={`${i}_${title}`} className="resource">
-                                <div>
-                                    <h3 className="heading-tertiary">
-                                        <span className={`icon ${type}`}></span>&nbsp;
-                                        <a href={url}>{title}</a>
-                                    </h3>
-                                </div>
-                            </div>)
+                        ({ title, url, type }, i) => {
+                            return (
+                                <div key={`${i}_${title}`} className="resource">
+                                    <div>
+                                        <h3 className="heading-tertiary">
+                                            <span className={`icon ${type}`}></span>&nbsp;
+                                            <a href={url}>{title}</a>
+                                        </h3>
+                                    </div>
+                                </div>)
                         }
                     )}
                 </section>
-            )}
+            )
+        }
         )}
     </StyledResources>
 )
