@@ -55,6 +55,12 @@ export const contributorsAndAdopters = [
 
 export const introsToTheia = [
     {
+        title: "Getting started with Eclipse Theia",
+        href: "https://youtu.be/KFmhzmPtAY0",
+        speaker: "Jonas Helming, Theia project lead and Principal Software Architect at EclipseSource",
+        src: JonasHelming,
+    },
+    {
         title: "Why Eclipse Theia",
         href: "https://youtu.be/xs0haWTulrY",
         speaker: "Marc Dumais, Theia project lead and Software Developer at Ericsson AB",
