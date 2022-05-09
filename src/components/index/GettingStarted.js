@@ -22,8 +22,6 @@ import LearnMore from '../../resources/learn-more.svg'
 import TryIt from '../../resources/try-it.svg'
 import AdoptIt from '../../resources/download.svg'
 import Contribute from '../../resources/contribute.svg'
-
-import { Link } from 'gatsby'
 import Feature from './Feature'
 
 const StyledFeatures = styled.div`
@@ -42,29 +40,29 @@ const StyledFeatures = styled.div`
 
 const features = [
     {
-        img: <img src={TryIt} alt="Try it!" />,
-        title: "Try it!",
+        img: <img src={TryIt} alt="Try it" />,
+        title: "Try it",
         paragraphs: [<>
         Eclipse Theia is a framework for building tools and IDEs. You can try it by <a href="https://theia-ide.org/docs/composing_applications/">building your own IDE/tools based on Theia</a> within minutes. Alternatively, you can <a href="https://theia-ide.org/docs/blueprint_download/">download and try Theia Blueprint</a>, a template tool based on Eclipse Theia.
         </>]
     },
     {
-        img: <img src={LearnMore} alt="Learn more!" />,
-        title: "Learn more!",
+        img: <img src={LearnMore} alt="Learn more" />,
+        title: "Learn more",
         paragraphs: [<>
             Learn more about Eclipse Theia, <a href="https://theia-ide.org/docs/getting_started/">how to get started with it</a>, <a href="https://theia-ide.org/docs/composing_applications/">how to build your own tool/IDE</a> and <a href="https://theia-ide.org/docs/project_goals/">about the project's goals</a>. Browse the <a href="https://theia-ide.org/docs/">documentation</a> and <a href="https://theia-ide.org/resources/">resource section</a>. Also, checkout the available introduction video below!
         </>]
     },
     {
-        img: <img src={AdoptIt} alt="Adopt it!" />,
-        title: "Adopt it!",
+        img: <img src={AdoptIt} alt="Adopt it" />,
+        title: "Adopt it",
         paragraphs: [ <>
            Checkout the <a href="https://github.com/eclipse-theia/theia/releases">available releases</a> including changelogs, migration guides and news and noteworthy articles. Browse the <a href="https://github.com/eclipse-theia/theia">project's sources</a> and consume/download Theia packages from the <a href="https://www.npmjs.com/search?q=keywords:theia-extension">npm registry</a>.
         </>]
     },
     {
-        img: <img src={Contribute} alt="Contribute to it!" />,
-        title: "Contribute!",
+        img: <img src={Contribute} alt="Contribute" />,
+        title: "Contribute",
         paragraphs: [<>
         Eclipse Theia is an open source project governed by the Eclipse Foundation. We are happy for any contributions! Please check out the <a href="https://github.com/eclipse-theia/theia/blob/master/CONTRIBUTING.md">contribution guide</a>, our <a href="https://github.com/eclipse-theia/theia/blob/master/CODE_OF_CONDUCT.md">code of conduct</a> and consider starting with <a href="https://github.com/eclipse-theia/theia/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">good first issues</a>.
         </>]
