@@ -16,7 +16,7 @@ Eclipse Theia Blueprint is ***not*** **a production-ready product**. Therefore, 
 
 ## Downloads
 
-<span style="color:red">Warning: Currently Eclipse Theia Blueprint is a **beta** version. Please consider the current versions as experimental. </span>
+NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback. Help us make Theia even better, by sharing your experience and suggestions [here](https://github.com/eclipse-theia/theia/discussions).
 
 <table cellspacing="25">
   <thead>
