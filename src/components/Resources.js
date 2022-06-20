@@ -105,6 +105,11 @@ const categories = [
         title: 'Introductions to Eclipse Theia',
         resources: [
             {
+                title: 'Gettig started with Eclipse Theia',
+                url: 'https://youtu.be/KFmhzmPtAY0',
+                type: 'video'
+            },
+            {
                 title: 'Why Eclipse Theia',
                 url: 'https://youtu.be/xs0haWTulrY',
                 type: 'video'
