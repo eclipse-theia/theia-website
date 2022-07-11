@@ -47,7 +47,7 @@ const StyledHeader = styled.div`
             font-size: 3.4rem;
         }
         .btn {
-            max-width: 20rem;
+            max-width: 21rem;
             @media(max-width: 385px) {
                 &:not(:last-child) {
                     margin-right: 0;
@@ -104,7 +104,8 @@ const Header = () => (
                     </h2>
                     <div className="header__buttons">
                         <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                        <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try now &nbsp;&nbsp;&rarr;</a>
+                        <a className="btn btn--cta" href="https://theia.cloud.34.141.62.32.nip.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
+                        <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on desktop &nbsp;&nbsp;&rarr;</a>
                     </div>
                 </div>
             </div>
