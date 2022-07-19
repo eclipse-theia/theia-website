@@ -25,6 +25,7 @@
     "gatsby-remark-prismjs": "^3.4.5",
     "gatsby-source-filesystem": "^2.1.9",
     "gatsby-transformer-remark": "^2.7.5",
+    "node-fetch": "^2.6.7",
     "prismjs": "^1.20.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
