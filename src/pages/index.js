@@ -28,14 +28,14 @@ import GettingStarted from '../components/index/GettingStarted'
 import IntrosToTheia from '../components/index/IntrosToTheia'
 
 
-export default () => {
+export default ({ pageContext }) => {
     return (
         <Layout canonical='/'>
             <Header />
             <main role="main">
                 <Products />
                 <Features />
-                <ContributorsAndAdopters />
+                <ContributorsAndAdopters adopters={pageContext.adopters}/>
                 <GettingStarted/>
                 <IntrosToTheia />
                 <Banner />

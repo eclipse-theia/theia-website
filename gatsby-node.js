@@ -1,4 +1,5 @@
 const path = require('path')
+const fetch = require('node-fetch')
 
 exports.onCreateNode = ({ node, actions }) => {
     const { createNodeField } = actions
@@ -12,7 +13,36 @@ exports.onCreateNode = ({ node, actions }) => {
             value: slug
         })
     }
-} 
+}
+
+exports.onCreatePage = async ({ page, reporter, actions }) => {
+    if (page.path === '/') {
+        try {
+            const response = await fetch(
+                'https://api.eclipse.org/adopters/projects/ecd.theia', {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                    }
+                })
+            const responseJson = await response.json()
+            const adopters = responseJson[0].adopters
+            actions.deletePage(page)
+            actions.createPage({
+                ...page,
+                context: {
+                    ...page.context,
+                    adopters,
+                },
+            })
+        } catch (error) {
+            reporter.panic(
+                'Failed to fetch Theia Adopters from "api.eclipse.org"',
+                error
+            )
+        }
+    }
+}
 
 exports.createPages = async ({ graphql, reporter, actions }) => {
     const { createPage } = actions
