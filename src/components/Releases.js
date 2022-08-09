@@ -19,9 +19,6 @@ import React from 'react'
 import { breakpoints } from '../utils/variables'
 import styled from '@emotion/styled'
 import Background from '../resources/background-image.png'
-import GLSP from '../resources/glsp.png'
-import EMFCLOUD from '../resources/emfcloud.png'
-
 
 const StyledResources = styled.div`
 .header {
@@ -69,14 +66,6 @@ heading-primary {
     background-size: contain;
     background-repeat: no-repeat;
 }
-.glsp {
-    background-image: url(${GLSP});
-    vertical-align: bottom;
-}
-.emfcloud {
-    background-image: url(${EMFCLOUD});
-    vertical-align: bottom;
-}
 `
 
 const communityReleases = [
@@ -88,14 +77,12 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.org/glsp/',
-                version: 'TBD',
-                icon: 'glsp'
+                version: 'TBD'
             },
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.org/emfcloud/',
-                version: 'TBD',
-                icon: 'emfcloud'
+                version: 'TBD'
             }
         ]
     }
@@ -125,19 +112,14 @@ const Releases = () => (
                     <p>Release Date: {releasedate}</p>
                     <p>Community Release Candidate Date: {releasecandidatedate}</p>
                     <br></br>
-                    <p><b>Compatible Technologies:</b></p>
-                    <br></br>
+                    <p><h3 className="heading-tertiary"><b>Compatible Technologies:</b></h3></p>
                     {frameworks.map(
                         ({ title, url, version, icon }, i) => {
                             return (
                                 <div key={`${i}_${title}`} className="framework">
-                                    <div>
-                                        <h3 className="heading-tertiary">
-                                            <span className={`icon ${icon}`}></span>&nbsp;
-                                            <a href={url}>{title}, Version: {version}</a>
-                                            
-                                        </h3>
-                                    </div>
+                                            <h3 className="heading-tertiary">
+                                                <a href={url}>{title}, Version: {version}</a>
+                                            </h3>
                                 </div>)
                         }
                     )}
