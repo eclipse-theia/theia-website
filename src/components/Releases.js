@@ -117,7 +117,7 @@ const Releases = () => (
                 <section key={i} className="category row" id="frameworks">
                     <h2 className="heading-secondary">{name}</h2>
                     <p>Release Date: {releasedate}</p>
-                    <p>Release Candidate Date: {releasecandidatedate}</p>
+                    <p>Community Release Candidate Date: {releasecandidatedate}</p>
                     <br></br>
                     <p><b>Compatible Technologies:</b></p>
                     <br></br>
