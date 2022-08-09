@@ -45,8 +45,8 @@ heading-primary {
     font-size: 3.4rem;
 }
 .heading-secondary {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 .category {
     margin-top: 2rem;
@@ -56,7 +56,7 @@ heading-primary {
     border-bottom: 1px solid #ccc;
 }
 .frameworks {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
 }
 .icon {
     display: inline-block;
@@ -107,7 +107,7 @@ const Releases = () => (
                     </h1>
                     <p>Eclipse Theia follows a monthly release cycle. You can find all releases including changelogs and breaking changes <a href="https://github.com/eclipse-theia/theia/releases">here</a></p>
                     <br></br>
-                    <p>In addition, Theia provides a "community release" every three month with extra focus on stability and compatibility. The list below shows all community releases including the next one planned. In addition, you can find technologies that integrate with Theia, including the respective version that is supposed to be compatible with the community release. This compatibility information is provided and ensured by the respective project and therefore not in scope for the Theia project team. If you find issues with a technology, please report them at the respective project. If you are interested in getting a technology listed, please open a PR to <a href="https://github.com/eclipse-theia/theia-website">this repo</a> to be listed.</p>
+                    <p>In addition, Theia provides a "community release" every three month with extra focus on stability and compatibility. The list below shows all community releases including the next planned. In addition, you find technologies that integrate with Theia including the respective version that is supposed to be compatible with the community release. This compatibility information is provided and ensured by the respective project and therefore not in scope for the Theia project team. If you find issues with a technology, please report at the respective project. If you are interested in getting a technology listed, please open a PR to <a href="https://github.com/eclipse-theia/theia-website">this repo</a> to be listed.</p>
 
                 </div>
             </div>
