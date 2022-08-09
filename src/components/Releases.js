@@ -45,8 +45,12 @@ heading-primary {
     font-size: 3.4rem;
 }
 .heading-secondary {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+.heading-tertiary {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 .category {
     margin-top: 2rem;
@@ -56,7 +60,7 @@ heading-primary {
     border-bottom: 1px solid #ccc;
 }
 .frameworks {
-    padding: 1.5rem 0;
+    padding: 0.5rem 0;
 }
 .icon {
     display: inline-block;
