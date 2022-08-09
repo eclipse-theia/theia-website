@@ -49,12 +49,12 @@ heading-primary {
     margin-bottom: 2rem;
 }
 .heading-tertiary {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 .category {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .category:not(:last-child) {
     border-bottom: 1px solid #ccc;
@@ -64,8 +64,8 @@ heading-primary {
 }
 .icon {
     display: inline-block;
-    width: 4rem;
-    height: 4rem;
+    width: 2rem;
+    height: 2rem;
     background-size: contain;
     background-repeat: no-repeat;
 }
