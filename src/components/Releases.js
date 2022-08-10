@@ -117,9 +117,9 @@ const Releases = () => (
                         ({ title, url, version, icon }, i) => {
                             return (
                                 <div key={`${i}_${title}`} className="framework">
-                                            <h3 className="heading-tertiary">
+                                            <h4 className="heading-tertiary">
                                                 <a href={url}>{title}, Version: {version}</a>
-                                            </h3>
+                                            </h4>
                                 </div>)
                         }
                     )}
