@@ -105,6 +105,7 @@ An example `package.json` may look like the following:
     "vscode-builtin-extensions-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix"
   },
   "theiaPluginsExcludeIds": [
+    "ms-vscode.js-debug-companion",
     "vscode.extension-editing",
     "vscode.git",
     "vscode.git-ui",
