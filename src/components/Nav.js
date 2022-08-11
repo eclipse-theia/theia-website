@@ -239,6 +239,9 @@ class Nav extends React.Component {
                         <li className="nav__item">
                             <Link to="/support/" className="nav__link">Support</Link>
                         </li>
+                        <li className="nav__item">
+                            <Link to="/releases/" className="nav__link">Releases</Link>
+                        </li>
                         <li className="nav__item nav__dropdown">
                             Resources <b className="caret"></b>
                             <ul className="dropdown-menu">
