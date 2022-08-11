@@ -96,7 +96,7 @@ const Releases = () => (
                     <h1 className="heading-primary">
                         Releases
                     </h1>
-                    <p>Eclipse Theia follows a monthly release cycle. You can find all releases including changelogs and breaking changes <a href="https://github.com/eclipse-theia/theia/releases">here</a></p>
+                    <p>Eclipse Theia follows a monthly release cycle. You can find all releases including changelogs and breaking changes <a href="https://github.com/eclipse-theia/theia/releases">here</a>.</p>
                     <br></br>
                     <p>In addition, Theia provides a "community release" every three month with extra focus on stability and compatibility.</p>
                     <p>The list below shows all community releases including the next one planned. In addition, you can find technologies that integrate with Theia, including the respective version that is supposed to be compatible with the community release.</p>
