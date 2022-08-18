@@ -57,10 +57,6 @@ export const MENU = [
         'authoring_extensions'
     ),
     M(
-        'Authoring Plug-ins',
-        'authoring_plugins'
-    ),
-    M(
         'Adding Language Support',
         'language_support'
     ),

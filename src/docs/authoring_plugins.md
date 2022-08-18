@@ -4,6 +4,8 @@ title: Authoring Plug-ins
 
 #  Authoring Theia Plug-ins
 
+This documentation is deprecated and needs to be updated. We currently recommend using VS Code extensions or Theia extensions instead of Theia Plugins. See the [extension overview](https://theia-ide.org/docs/extensions/) for more details.
+<!--
 Let's create our first Theia plug-in. As an example, we are going to register a command _Hello World_ that displays a notification "Hello world!". This article is guiding you through all the necessary steps.
 
 ## Theia’s Architecture
@@ -200,3 +202,4 @@ Note: you may use watch mode as well.
 Theia is providing VS Code API. Check the following link to get the current status of what is implemented.
 [Compare Theia vs VS Code API](https://eclipse-theia.github.io/vscode-theia-comparator/status.html)
 
+-->
