@@ -59,7 +59,7 @@ export class YourContribution implements LanguageGrammarDefinitionContribution {
     readonly id = 'languageId';
     readonly scopeName = 'source.yourLanguage';
 
-    registerTextmateLanguage(registry: TextmateRegisty) {
+    registerTextmateLanguage(registry: TextmateRegistry) {
         registry.registerTextmateGrammarScope(this.scopeName, {
             async getGrammarDefinition() {
                 return {
@@ -85,7 +85,7 @@ export class YourContribution implements LanguageGrammarDefinitionContribution {
     readonly id = 'languageId';
     readonly scopeName = 'source.yourLanguage';
 
-    registerTextmateLanguage(registry: TextmateRegisty) {
+    registerTextmateLanguage(registry: TextmateRegistry) {
         registry.registerTextmateGrammarScope(this.scopeName, {
             async getGrammarDefinition() {
                 const response = await fetch(require('../data/yourGrammar.plist'));

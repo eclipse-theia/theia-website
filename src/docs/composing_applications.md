@@ -10,7 +10,7 @@ This guide describes the manual steps to build a Theia-based product, there are 
 - [Theia Extension Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based products along with example extensions.
 - [Theia Blueprint](https://theia-ide.org/docs/blueprint_download/): A template tool for creating installable desktop applications based on Theia.
 
-We still recommend reading the manual guide first, it allows you to understand the structure of a Theia-based project. 
+We still recommend reading the manual guide first, it allows you to understand the structure of a Theia-based project.
 
 ## Requirements
 
