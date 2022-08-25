@@ -2,6 +2,8 @@
 title: TextMate Coloring
 ---
 
+# Note:
+`@theia/textmate-grammars` is now deprecated, language-specific features should be contributed as VS Code extensions.
 
 # TextMate Support in Theia
 
