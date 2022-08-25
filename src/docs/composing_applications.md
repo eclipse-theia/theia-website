@@ -57,10 +57,7 @@ Let's have a look at the created package:
   - Its `name` and `version` are omitted since we are not going to use it as a dependency, and
     it's marked as `private` since it is not going to be published as a Node.js package on its own.
   - We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
-    - Some extensions require additional tooling installed,
-    For instance, [@theia/python](https://www.npmjs.com/package/@theia/python) requires
-    [the Python Language Server](https://github.com/palantir/python-language-server) to be installed.
-    In such cases, please consult the corresponding extension documentation.
+    - Some extensions require additional tooling installed, in such cases, please consult the corresponding extension documentation.
     - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) to see all published extensions.
   - We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
 
