@@ -57,6 +57,10 @@ export const MENU = [
         'authoring_extensions'
     ),
     M(
+        'Authoring VS Code Extensions',
+        'authoring_vscode_extensions'
+    ),
+    M(
         'Adding Language Support',
         'language_support'
     ),
