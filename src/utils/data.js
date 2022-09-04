@@ -17,6 +17,7 @@
 import GoogleLogo from '../resources/google.svg'
 import ToroC from '../resources/toro-r.svg'
 import Huawei from '../resources/huawei.svg'
+import K2View from '../resources/k2view.svg'
 import VUEngineStudioScreenshot from '../resources/screenshots/vuengine-studio.png'
 import VUEngineStudioScreenshotMin from '../resources/screenshots/thumbnails/vuengine-studio-min.png'
 import RecordEvolutionScreenshot from '../resources/screenshots/record-evolution-screenshot.png'
@@ -50,6 +51,11 @@ export const contributorsAndAdopters = [
         homepage_url: "https://www.huawei.com/",
         src: Huawei,
         name: "Huawei logo"
+    },
+    {
+        homepage_url: "https://k2view.com",
+        src: K2View,
+        name: "K2View logo"
     }
 ]
 
