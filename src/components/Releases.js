@@ -101,6 +101,7 @@ const Releases = () => (
                     <p>In addition, Theia provides a "community release" every three month with extra focus on stability and compatibility.</p>
                     <p>The list below shows all community releases including the next one planned. In addition, you can find technologies that integrate with Theia, including the respective version that is supposed to be compatible with the community release.</p>
                     <p>This compatibility information is provided and ensured by the respective project and therefore not in scope for the Theia project team. If you find issues with a technology, please report them at the respective project. If you are interested in getting a technology listed, please open a PR to <a href="https://github.com/eclipse-theia/theia-website">this repo</a>.</p>
+                    <p>For more information, please refer to <a href="https://eclipsesource.com/blogs/2022/08/16/introducing-the-eclipse-theia-community-release/">this article about the Theia community release.</a></p>
 
                 </div>
             </div>
