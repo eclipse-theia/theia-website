@@ -80,6 +80,21 @@ const categories = [
         title: 'Release announcements',
         resources: [
             {
+                title: 'Eclipse Theia 1.29 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2022/09/09/eclipse-theia-1-29-release-news-and-noteworthy/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing the Eclipse Theia Community Release',
+                url: 'https://eclipsesource.com/blogs/2022/08/16/introducing-the-eclipse-theia-community-release/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia 1.28 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2022/08/09/eclipse-theia-1-28-release-news-and-noteworthy/',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Theia 1.27 Release: News and Noteworthy',
                 url: 'https://eclipsesource.com/blogs/2022/07/11/eclipse-theia-1-27-release-news-and-noteworthy/',
                 type: 'article'
