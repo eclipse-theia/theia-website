@@ -13,8 +13,6 @@
 * [Build your own IDE](Composing_Applications.md)
 * [Authoring an Extension](Authoring_Extensions.md)
 * [Authoring Plug-ins](Authoring_Plugins.md)
-<!-- * [Adding Language Support](Language_Support.md)
-  * [TextMate Coloring](TextMate.md) -->
 
 ## Concepts APIs
 
