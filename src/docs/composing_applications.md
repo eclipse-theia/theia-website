@@ -10,7 +10,7 @@ This guide describes the manual steps to build a Theia-based product, there are 
 - [Theia Extension Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based products along with example extensions.
 - [Theia Blueprint](https://theia-ide.org/docs/blueprint_download/): A template tool for creating installable desktop applications based on Theia.
 
-We still recommend reading the manual guide first, it allows you to understand the structure of a Theia-based project. 
+We still recommend reading the manual guide first, it allows you to understand the structure of a Theia-based project.
 
 ## Requirements
 
@@ -57,10 +57,7 @@ Let's have a look at the created package:
   - Its `name` and `version` are omitted since we are not going to use it as a dependency, and
     it's marked as `private` since it is not going to be published as a Node.js package on its own.
   - We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
-    - Some extensions require additional tooling installed,
-    For instance, [@theia/python](https://www.npmjs.com/package/@theia/python) requires
-    [the Python Language Server](https://github.com/palantir/python-language-server) to be installed.
-    In such cases, please consult the corresponding extension documentation.
+    - Some extensions require additional tooling installed, in such cases, please consult the corresponding extension documentation.
     - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) to see all published extensions.
   - We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
 
@@ -105,11 +102,12 @@ An example `package.json` may look like the following:
     "vscode-builtin-extensions-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix"
   },
   "theiaPluginsExcludeIds": [
+    "ms-vscode.js-debug-companion",
     "vscode.extension-editing",
     "vscode.git",
     "vscode.git-ui",
     "vscode.github",
-    "vscode.markdown-language-features",
+    "vscode.github-authentication",
     "vscode.microsoft-authentication"
   ]
 }

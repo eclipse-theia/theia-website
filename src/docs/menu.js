@@ -60,16 +60,6 @@ export const MENU = [
         'Authoring VS Code Extensions',
         'authoring_vscode_extensions'
     ),
-    M(
-        'Adding Language Support',
-        'language_support'
-    ),
-    M(
-        'TextMate Coloring',
-        'textmate',
-        null,
-        true
-    ),
     {
         title: 'Concepts APIs'
     },
@@ -122,6 +112,10 @@ export const MENU = [
         'i18n'
     ),
     M(
+        'Language Support',
+        'language_support'
+    ),
+    M(
         'Advanced Tips',
         'tips'
     ),
@@ -146,27 +140,27 @@ export function getMenuContext(slug, menu = MENU, context = {}) {
         return false
     })
     const prev =  menu[indexOfCurrent - 1] && menu[indexOfCurrent - 1].path ?
-        menu[indexOfCurrent - 1].path : menu[indexOfCurrent - 2] && 
+        menu[indexOfCurrent - 1].path : menu[indexOfCurrent - 2] &&
         menu[indexOfCurrent - 2].path && menu[indexOfCurrent - 2].path
 
     const prevTitle = menu[indexOfCurrent - 1] && menu[indexOfCurrent - 1].path ?
         menu[indexOfCurrent - 1].title :
-        menu[indexOfCurrent - 2] && menu[indexOfCurrent - 2].path && 
+        menu[indexOfCurrent - 2] && menu[indexOfCurrent - 2].path &&
         menu[indexOfCurrent - 2].title
-    
+
     const next = menu[indexOfCurrent + 1] && menu[indexOfCurrent + 1].path ?
-        menu[indexOfCurrent + 1].path : menu[indexOfCurrent + 2] && 
+        menu[indexOfCurrent + 1].path : menu[indexOfCurrent + 2] &&
         menu[indexOfCurrent + 2].path && menu[indexOfCurrent + 2].path
 
     const nextTitle = menu[indexOfCurrent + 1] && menu[indexOfCurrent + 1].path ?
         menu[indexOfCurrent + 1].title :
-        menu[indexOfCurrent + 2] && menu[indexOfCurrent + 2].path && 
+        menu[indexOfCurrent + 2] && menu[indexOfCurrent + 2].path &&
         menu[indexOfCurrent + 2].title
 
-    return { 
-        prev: prev, 
-        prevTitle, 
-        next: next, 
-        nextTitle 
+    return {
+        prev: prev,
+        prevTitle,
+        next: next,
+        nextTitle
     }
 }

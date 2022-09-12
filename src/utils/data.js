@@ -97,7 +97,7 @@ export const products = [
         href: "https://developers.redhat.com/products/codeready-workspaces/overview",
         src: CodeReady,
         thumb: CodeReadyMin,
-        alt: "Red Hat CodeReady Workpaces"
+        alt: "Red Hat CodeReady Workspaces"
     },
     {
         href: "https://www.logicals.com/en/news/100-logi-cals-makes-engineering-cloud-enabled",

@@ -159,7 +159,7 @@ There is an empty `stop()` method that could be used to do something when the pl
 Now we want to see the plug-in in action. For this purpose, there is a mode called `hosted mode` within Theia. When using this mode, we can develop the plug-in within one instance of Theia, and then we can deploy the plug-in in another instance of Theia. So it's very easy to spawn the plug-in and test it.
 
 First, be sure that you've opened the folder where is the generated plug-in inside Theia. (It needs to be part of your workspace)
-Then, bring command palette (hiting the F1 key for example) and search for `Hosted mode: start instance` and select this command.
+Then, bring command palette (hitting the F1 key for example) and search for `Hosted mode: start instance` and select this command.
 
 <img class="doc-image" src="/hosted-plugin-start-instance.png" alt="Hosted mode: start instance" style="max-width: 800px">
 
