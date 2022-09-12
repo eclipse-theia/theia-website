@@ -112,6 +112,10 @@ export const MENU = [
         'i18n'
     ),
     M(
+        'Language Support',
+        'language_support'
+    ),
+    M(
         'Advanced Tips',
         'tips'
     ),
