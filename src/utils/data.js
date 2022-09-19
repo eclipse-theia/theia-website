@@ -34,6 +34,8 @@ import BluePrintMin from '../resources/screenshots/thumbnails/blueprint-min.png'
 import JonasHelming from '../resources/intros/jonas-helming.jpg'
 import MarcDumais from '../resources/intros/marc-dumais.jpg'
 import ThomasMader from '../resources/intros/thomas-mader.jpg'
+import Smartface from '../resources/screenshots/smartface.gif'
+import SmartfaceMin from '../resources/screenshots/thumbnails/smartface-min.gif'
 
 export const contributorsAndAdopters = [
     {
@@ -122,5 +124,11 @@ export const products = [
         src: VUEngineStudioScreenshot,
         thumb: VUEngineStudioScreenshotMin,
         alt: "VUEngine Studio"
+    },
+    {
+        href: "https://smartface.io",
+        src: Smartface,
+        thumb: SmartfaceMin,
+        alt: "Smartface"
     }
 ]
