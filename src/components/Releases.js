@@ -73,6 +73,8 @@ const communityReleases = [
         name: 'Theia 1.29.x (September 2022) - planned',
         releasedate: 'September 29th, 2022',
         releasecandidatedate:'August 25th, 2022',
+        technologiesin:'October 6th, 2022',
+        releaseanouncement:'October 13, 2022',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
@@ -106,12 +108,14 @@ const Releases = () => (
                 </div>
             </div>
         </header>
-        {communityReleases.map(({ name, frameworks, releasedate, releasecandidatedate }, i) => {
+        {communityReleases.map(({ name, frameworks, releasedate, releasecandidatedate, technologiesin,releaseanouncement }, i) => {
             return (
                 <section key={i} className="category row" id="frameworks">
                     <h2 className="heading-secondary">{name}</h2>
-                    <p>Release Date: {releasedate}</p>
-                    <p>Community Release Candidate Date: {releasecandidatedate}</p>
+                    <p>Community Release Candidate: {releasecandidatedate}</p>
+                    <p>Community Release Available: {releasedate}</p>
+                    <p>Compatible Technolgies Listed: {technologiesin}</p>
+                    <p>Community Release Announcement: {releaseanouncement}</p>
                     <br></br>
                     <p><h3 className="heading-tertiary"><b>Compatible Technologies:</b></h3></p>
                     {frameworks.map(
