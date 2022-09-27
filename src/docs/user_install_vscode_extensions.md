@@ -4,7 +4,7 @@ title: Installing VS Code Extensions in Theia
 
 # Installing VS Code Extensions in Theia
 
-You can install VS Code extensions into Theia-based products via the [openVSX registry](https://open-vsx.org/), aka “Theia marketplace” or “Theia extension registry”.
+You can install VS Code extensions into Theia-based products via the [Open VSX Registry](https://open-vsx.org/), aka “Theia Marketplace” or “Theia Extension Registry”.
 
 *Note: To be able to install extensions, the creator of your Theia-based tool has to have enabled this option. The following documentation is based on Theia Blueprint, as a standard product based on Theia. This might slightly differ from the Theia-based product you are using, please contact the provider of your tool if there are uncertainties and also see [here](/docs/user_getting_started/). For tool creators, please see the end of this document.*
 
