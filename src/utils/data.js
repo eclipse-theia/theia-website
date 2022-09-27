@@ -36,6 +36,8 @@
  import ThomasMader from '../resources/intros/thomas-mader.jpg'
  import Smartface from '../resources/screenshots/smartface.gif'
  import SmartfaceMin from '../resources/screenshots/thumbnails/smartface-min.gif'
+ import CDTCloud from '../resources/screenshots/cdtcloudblueprint.gif'
+ import CDTCloudMin from '../resources/screenshots/thumbnails/cdtcloudblueprint-min.gif'
  
  export const contributorsAndAdopters = [
      {
@@ -88,6 +90,12 @@
          src: MbedStudio,
          thumb: MbedStudioMin,
          alt: "Mbed Studio by Arm"
+     },
+     {
+         href: "https://cdt-cloud.io/",
+         src: CDTCloud,
+         thumb: CDTCloudMin,
+         alt: "CDT.cloud Blueprint"
      },
      {
          href: "https://www.eclipse.org/emfcloud/#coffeeeditoroverview",
