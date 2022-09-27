@@ -112,10 +112,10 @@ const Releases = () => (
             return (
                 <section key={i} className="category row" id="frameworks">
                     <h2 className="heading-secondary">{name}</h2>
-                    <p>Community Release Candidate: {releasecandidatedate}</p>
-                    <p>Community Release Available: {releasedate}</p>
-                    <p>Compatible Technolgies Listed: {technologiesin}</p>
-                    <p>Community Release Announcement: {releaseanouncement}</p>
+                    <p>Community Release Candidate: <b>{releasecandidatedate}</b></p>
+                    <p>Community Release Available: <b>{releasedate}</b></p>
+                    <p>Compatible Technologies Listed: <b>{technologiesin}</b></p>
+                    <p>Community Release Announcement: <b>{releaseanouncement}</b></p>
                     <br></br>
                     <p><h3 className="heading-tertiary"><b>Compatible Technologies:</b></h3></p>
                     {frameworks.map(
