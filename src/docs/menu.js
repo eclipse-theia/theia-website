@@ -49,6 +49,17 @@ export const MENU = [
         title: 'Using Theia'
     },
     M(
+        'Getting Started',
+        'user_getting_started'
+    ),
+    M(
+        'Installing VS Code Extensions',
+        'user_install_vscode_extensions'
+    ),
+    {
+        title: 'Adopting Theia'
+    },
+    M(
         'Build your own IDE/Tool',
         'composing_applications'
     ),
