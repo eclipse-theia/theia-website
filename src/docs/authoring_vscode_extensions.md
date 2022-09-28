@@ -12,6 +12,9 @@ The [coverage report](https://eclipse-theia.github.io/vscode-theia-comparator/st
 While there are certain overlaps in which types of functionality can be contributed to a Theia application with a Theia extension or a VS Code extension, both have their unique advantages and disadvantages.
 Please refer to the overview on [extensions and plugins](https://theia-ide.org/docs/extensions) and an [in-depth comparison](https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/) for a more detailed discussion.
 
+In the remainder of this page, we guide you through the process of creating VS Code extensions and deploying them in Theia.
+The steps for deploying VS Code extensions apply not only to VS Code extensions you develop yourself, but also to third-party VS Code extensions from the [Theia marketplace](https://open-vsx.org/). If you use a third-party VS Code extension, you can skip the section "Creating VS Code Extensions" and "Developing VS Code Extensions in a Theia Project".
+
 ## Creating VS Code Extensions
 
 As VS Code extensions can be used in Theia without further modification, you can refer to the [documentation on extending VS Code](https://code.visualstudio.com/api) to learn more about creating extensions for VS Code as well as for Theia.
@@ -35,7 +38,7 @@ Please note that you can also create so-called extension packs with the VS Code 
 
 ## Prerequisites for Running VS Code Extensions in Theia
 
-To enable Theia's support for VS Code extensions, you'll need to add `@theia/plugin-ext-vscode` as a dependency.
+To enable Theia's support for VS Code extensions in order to use your own extensions or third-party VS Code extensions in your Theia application, you'll need to add `@theia/plugin-ext-vscode` as a dependency.
 Typically, this is done in your browser or electron application package.
 
 ```json
@@ -86,7 +89,7 @@ A common approach for Theia applications that include VS Code extensions is to a
 
 ## Consuming VS Code Extensions
 
-Once you've prepared your Theia application as described above and bundled your VS Code extension, you have two options on how to consume them in Theia.
+Once you've enabled VS Code extension support in your Theia application as described above and made available your or any third-party VS Code extensions that you'd like to use in your Theia application, you have two options on how to consume them:
 
   1. Pre-installing the VS Code extension in your Theia application
   2. Enabling your users to install your VS Code extensions at runtime

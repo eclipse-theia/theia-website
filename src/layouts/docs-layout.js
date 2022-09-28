@@ -81,6 +81,16 @@ const DocContainer = styled.div`
         }
     }
 
+    ol {
+        margin-bottom: 3rem;
+        list-style-position: inside;
+
+        ol {
+            margin-left: 3rem;
+            margin-bottom: 0;
+        }
+    }
+
     li {
         margin-top: .8rem;
     }
