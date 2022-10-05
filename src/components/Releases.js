@@ -79,7 +79,7 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.org/glsp/',
-                version: 'TBD'
+                version: '1.1.0-theia1.27'
             },
             {
                 title: 'Eclipse EMF.cloud',
