@@ -106,6 +106,15 @@ const communityReleases = [
                 modules: [
                     {modulename: 'sprotty-theia', url: 'https://www.npmjs.com/package/sprotty-theia/v/0.12.0'}
                 ]
+            },
+            {
+                title: 'Eclipse CDT.cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: '0.0.93',
+                modules: [
+                    {modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.93'},
+                    {modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.16-next.20220930230402.c653a9a.0'}
+                ]
             }
         ]
     }
