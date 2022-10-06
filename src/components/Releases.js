@@ -98,6 +98,14 @@ const communityReleases = [
                     {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr01'},
                     {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr01'}  
                 ]
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.org/sprotty/',
+                version: '0.12.0',
+                modules: [
+                    {modulename: 'sprotty-theia', url: 'https://www.npmjs.com/package/sprotty-theia/v/0.12.0'}
+                ]
             }
         ]
     }
