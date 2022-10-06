@@ -77,7 +77,7 @@ const communityReleases = [
         releasedate: 'September 29th, 2022',
         releasecandidatedate:'August 25th, 2022',
         technologiesin:'October 6th, 2022',
-        releaseanouncement:'October 13, 2022',
+        releaseanouncement:'October 18th, 2022',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
