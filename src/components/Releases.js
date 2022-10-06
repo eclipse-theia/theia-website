@@ -66,6 +66,9 @@ heading-primary {
     background-size: contain;
     background-repeat: no-repeat;
 }
+.module-listing {
+    margin-left: 3rem
+}
 `
 
 const communityReleases = [
@@ -84,7 +87,14 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.org/emfcloud/',
-                version: 'TBD'
+                version: '0.8.0-theia-cr01',
+                modules: [
+                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr01'},
+                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr01'},
+                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr01'},
+                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr01'},
+                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr01'}  
+                ]
             }
         ]
     }
@@ -119,11 +129,18 @@ const Releases = () => (
                     <br></br>
                     <p><h3 className="heading-tertiary"><b>Compatible Technologies:</b></h3></p>
                     {frameworks.map(
-                        ({ title, url, version, icon }, i) => {
+                        ({ title, url, version, icon, modules }, i) => {
                             return (
                                 <div key={`${i}_${title}`} className="framework">
                                             <h4 className="heading-tertiary">
                                                 <a href={url}>{title}, Version: {version}</a>
+                                                {modules &&
+                                                    <ul className="module-listing">
+                                                        {modules.map(({modulename, url}) => {
+                                                            return <li><a href={url}>{modulename}</a></li>
+                                                        })}
+                                                    </ul>
+                                                }
                                             </h4>
                                 </div>)
                         }
