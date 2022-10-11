@@ -19,6 +19,7 @@ import DocImage from '../DocImage'
 import Nav from '../Nav'
 import React from 'react'
 import TheiaLogoDark from '../../resources/theia-logo-dark.svg'
+import TheiaConLogo from '../../resources/theiacon-logo.svg'
 import { breakpoints } from '../../utils/variables'
 import styled from '@emotion/styled'
 
@@ -38,7 +39,10 @@ const StyledHeader = styled.div`
         &__logo {
             height: 3rem;
         }
-        .banner {
+        .banner__image {
+            height: 15rem;
+        }
+        &__banner {
             padding: 15px;
             text-align: center;
         }
@@ -91,24 +95,34 @@ const Header = () => (
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
-                <div className="header__text-box">
-                    <h1 className="heading-primary">
-                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
+                <div className="header__banner">
+                    <img className="banner__image" src={TheiaConLogo}></img>
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        The Call for Presentations is now OPEN for the <a href="https://events.eclipse.org/2022/theiacon/">2022 TheiaCon Event</a>!
+                        Submit your proposal today to be a speaker at the largest Theia event of the year!
                     </h1>
-                    <h2 style={{ fontSize: '2.1rem' }}>
+                    <div className="header__buttons">
+                         <a className="btn btn--cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfun5KseRuwUg0oBIYNxlkkEm1iKHAM1-1sCvfp79CSkhXanA/viewform" rel="noopener">
+                            Submit Proposal
+                        </a>
+                    </div>          
+                </div>
+                <h1 className="heading-primary">
+                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
+                </h1>
+                <h2 style={{ fontSize: '2.1rem' }}>
                         Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies.
                         <br/>
                         <a href="https://eclipsesource.com/blogs/2022/09/09/eclipse-theia-1-29-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.29 Release!</a>
                         <br/>
                         Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
-                    </h2>
-                    <div className="header__buttons">
+                </h2>
+                <div className="header__buttons">
                         <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                         <a className="btn btn--cta" href="https://theia.cloud.34.141.62.32.nip.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
                         <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on desktop &nbsp;&nbsp;&rarr;</a>
-                    </div>
+                 </div>
                 </div>
-            </div>
         </header>
     </StyledHeader>
 )
