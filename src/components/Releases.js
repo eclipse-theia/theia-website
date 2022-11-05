@@ -73,7 +73,7 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.29.x (September 2022) - planned',
+        name: 'Theia 1.29.x (September 2022) - published',
         releasedate: 'September 29th, 2022',
         releasecandidatedate:'August 25th, 2022',
         technologiesin:'October 6th, 2022',
@@ -83,7 +83,7 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.org/glsp/',
-                version: '1.0.0-theia1.27',
+                version: '1.0.0-theia1.27.0',
                 modules: [
                     {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.27.0'}
                 ]
