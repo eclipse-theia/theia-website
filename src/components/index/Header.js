@@ -98,14 +98,10 @@ const Header = () => (
                 <div className="header__banner">
                     <img className="banner__image" src={TheiaConLogo}></img>
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        The Call for Presentations is now OPEN for the <a href="https://events.eclipse.org/2022/theiacon/">2022 TheiaCon Event</a>!
-                        Submit your proposal today to be a speaker at the largest Theia event of the year!
-                    </h1>
-                    <div className="header__buttons">
-                         <a className="btn btn--cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfun5KseRuwUg0oBIYNxlkkEm1iKHAM1-1sCvfp79CSkhXanA/viewform" rel="noopener">
-                            Submit Proposal
-                        </a>
-                    </div>          
+                        Registration is OPEN for the <a href="https://events.eclipse.org/2022/theiacon/">2022 TheiaCon Event</a>!<br></br>
+                        (Virtual Conference | November 30 - December 1, 2022)<br></br>
+                        <a href="https://www.eventbrite.ca/e/435783258457">Get registered</a> today and join the largest Theia event of the year!
+                    </h1>       
                 </div>
                 <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
