@@ -73,7 +73,41 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.29.x (September 2022) - published',
+        name: 'Theia 1.33.x (2023-01) - planned',
+        releasedate: 'January 26th, 2023',
+        releasecandidatedate:'December 22nd, 2022',
+        technologiesin:'February 2nd, 2023',
+        releaseanouncement:'February 9th, 2023',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.org/glsp/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse EMF.cloud',
+                url: 'https://www.eclipse.org/emfcloud/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.org/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT.cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
+        name: 'Theia 1.29.x (2022-09) - published',
         releasedate: 'September 29th, 2022',
         releasecandidatedate:'August 25th, 2022',
         technologiesin:'October 6th, 2022',
