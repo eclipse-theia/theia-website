@@ -37,7 +37,7 @@ NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to m
 
 ## Try Theia Blueprint Online
 
-You can also [try the latest version of Theia Blueprint online](https://theia.cloud.34.141.62.32.nip.io/). The online test version is limited to 30 minutes per session and hosted via [Theia.cloud](https://github.com/eclipsesource/theia-cloud).
+You can also [try the latest version of Theia Blueprint online](https://try.theia-cloud.io/). The online test version is limited to 30 minutes per session and hosted via [Theia.cloud](https://github.com/eclipsesource/theia-cloud).
 
 ## Reporting Feature Requests and Bugs
 
