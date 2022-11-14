@@ -43,7 +43,7 @@ const features = [
         img: <img src={TryIt} alt="Try it" />,
         title: "Try it",
         paragraphs: [<>
-        Eclipse Theia is a framework for building tools and IDEs. You can try it by <a href="https://theia-ide.org/docs/composing_applications/">building your own IDE/tools based on Theia</a> within minutes. Alternatively, you can <a href="https://theia-ide.org/docs/blueprint_download/">download and try Theia Blueprint</a>, a template tool based on Eclipse Theia or <a href="https://theia.cloud.34.141.62.32.nip.io/">try it online</a>.
+        Eclipse Theia is a framework for building tools and IDEs. You can try it by <a href="https://theia-ide.org/docs/composing_applications/">building your own IDE/tools based on Theia</a> within minutes. Alternatively, you can <a href="https://theia-ide.org/docs/blueprint_download/">download and try Theia Blueprint</a>, a template tool based on Eclipse Theia or <a href="https://try.theia-cloud.io/">try it online</a>.
         </>]
     },
     {

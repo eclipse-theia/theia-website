@@ -115,7 +115,7 @@ const Header = () => (
                 </h2>
                 <div className="header__buttons">
                         <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                        <a className="btn btn--cta" href="https://theia.cloud.34.141.62.32.nip.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
+                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
                         <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on desktop &nbsp;&nbsp;&rarr;</a>
                  </div>
                 </div>
