@@ -28,6 +28,6 @@ Please note that a few parts of the VS Code extension API are only stubbed in Th
 
 For details about the compatibility of Theia for VS Code extensions can be found in [this report](https://eclipse-theia.github.io/vscode-theia-comparator/status.html). This includes unsupported as well as stubbed parts of the API for all recent Theia versions.
 
-If you are missing a specific VS Code extension or if you have issues with using a VS Code extension in Theia, please report this to the creator of your Theia-based Tool. If you are using Theia Blueprint or a variant of it, please report your issue [here](https://github.com/eclipse-theia/theia/issues/new?assignees=&labels=&template=bug_report.md). 
+If you are missing a specific VS Code extension or if you have issues with using a VS Code extension in Theia, please report this to the creator of your Theia-based Tool. If you are using Theia Blueprint or a variant of it, please report your issues [here](https://github.com/eclipse-theia/theia/issues/new?assignees=&labels=&template=bug_report.md). 
 
 For adopters: If you are building a Theia-based product, please have a look at our overview about [extensions and plugins](/docs/extensions/) as well as at the [documentation on authoring VS Code extensions in Theia](/docs/authoring_vscode_extensions/).
