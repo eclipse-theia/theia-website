@@ -103,6 +103,12 @@ const Header = () => (
                         <a href="https://www.eventbrite.ca/e/435783258457">Get registered</a> today and join the largest Theia event of the year!
                     </h1>       
                 </div>
+                <div className="header__banner">
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        Also, <a href="https://forms.gle/qwvoT5nhnkPudxpr7">get registered</a> for our Hackathon on December 14th 4-6pm CET to learn how to contribute to Theia!
+                    </h1>       
+                </div>
+
                 <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                 </h1>
