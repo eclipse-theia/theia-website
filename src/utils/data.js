@@ -110,7 +110,7 @@
          alt: "Red Hat CodeReady Workspaces"
      },
      {
-         href: "https://www.logicals.com/en/news/100-logi-cals-makes-engineering-cloud-enabled",
+         href: "https://www.neuron-automation.eu/engineering-toolkit/your-automation-toolchain/logi-cloud",
          src: LogiCloud,
          thumb: LogiCloudMin,
          alt: "logi.cloud by logi.cals"
