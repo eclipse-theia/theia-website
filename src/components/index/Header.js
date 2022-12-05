@@ -95,20 +95,6 @@ const Header = () => (
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
-                <div className="header__banner">
-                    <img className="banner__image" src={TheiaConLogo}></img>
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                        Registration is OPEN for the <a href="https://events.eclipse.org/2022/theiacon/">2022 TheiaCon Event</a>!<br></br>
-                        (Virtual Conference | November 30 - December 1, 2022)<br></br>
-                        <a href="https://www.eventbrite.ca/e/435783258457">Get registered</a> today and join the largest Theia event of the year!
-                    </h1>       
-                </div>
-                <div className="header__banner">
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                        Also, <a href="https://forms.gle/qwvoT5nhnkPudxpr7">get registered</a> for our Hackathon on December 14th 4-6pm CET to learn how to contribute to Theia!
-                    </h1>       
-                </div>
-
                 <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                 </h1>
@@ -124,6 +110,16 @@ const Header = () => (
                         <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
                         <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on desktop &nbsp;&nbsp;&rarr;</a>
                  </div>
+                </div>
+                <div className="header__banner">
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        <a href="https://forms.gle/qwvoT5nhnkPudxpr7">Get registered</a> for our Hackathon on December 14th 4-6pm CET to learn how to contribute to Theia!
+                    </h1>       
+                </div>
+                <div className="header__banner">
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        In case you missed TheiaCon 2022 (Nov 30th-Dec 1st), all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaRj46WedNTnAXLLHwuk3nro">here</a>!
+                    </h1>       
                 </div>
         </header>
     </StyledHeader>
