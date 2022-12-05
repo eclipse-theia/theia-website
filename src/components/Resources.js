@@ -85,6 +85,11 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'Eclipse Theia 2022-09 Community Release Celebration Video',
+                url: 'https://youtu.be/MUIZT2wOkmw',
+                type: 'video'
+            },
+            {
                 title: 'Eclipse Theia 2022-09 Community Release: News and Noteworthy',
                 url: 'https://eclipsesource.com/blogs/2022/10/18/the-eclipse-theia-community-release-2022-09/',
                 type: 'article'
