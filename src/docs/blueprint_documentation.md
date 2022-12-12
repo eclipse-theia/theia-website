@@ -143,6 +143,10 @@ isBound(AboutDialog) ? rebind(AboutDialog).to(TheiaBlueprintAboutDialog).inSingl
 
 To use another custom dialog widget, remove this code, extend Theia’s AboutDialog class, and (re)bind it as above.
 
+### Customizing the Preferences
+
+The default preferences directory in Eclipse Theia Blueprint is `.theia-blueprint` and is located as described in the [Preferences documentation](https://theia-ide.org/docs/preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
+
 ### Customizing the Installer
 
 The installers are created using [electron-builder](https://www.electron.build/).
