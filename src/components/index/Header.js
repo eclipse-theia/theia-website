@@ -113,7 +113,7 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        <a href="https://forms.gle/qwvoT5nhnkPudxpr7">Get registered</a> for our Hackathon on December 14th 4-6pm CET to learn how to contribute to Theia!
+                       Happy Birthday! <a href="https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/">Eclipse Theia celebrates its 5th anniversary!</a>
                     </h1>       
                 </div>
                 <div className="header__banner">
