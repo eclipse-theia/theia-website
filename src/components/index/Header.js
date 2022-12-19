@@ -113,7 +113,7 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h1 style={{ fontSize: '2.2rem' }}>
-                       Happy birthday! <a href="https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/">Eclipse Theia celebrates its 5th anniversary!</a>
+                       Happy Birthday! <a href="https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/">Eclipse Theia celebrates its 5th anniversary!</a>
                     </h1>       
                 </div>
                 <div className="header__banner">
