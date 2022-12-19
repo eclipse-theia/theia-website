@@ -260,6 +260,16 @@ const categories = [
         title: 'Topics related to Eclipse Theia',
         resources: [
             {
+                title: 'Happy Birthday, Eclipse Theia!',
+                url: 'https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia 5 Year Anniversary Celebration',
+                url: 'https://www.youtube.com/watch?v=Th1pC-yT1Ac&t=1s',
+                type: 'video'
+            },
+            {
                 title: 'Eclipse Theia compared to VS Code',
                 url: 'https://eclipsesource.com/blogs/2019/12/06/the-eclipse-theia-ide-vs-vs-code/',
                 type: 'article'
