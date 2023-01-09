@@ -56,6 +56,10 @@ export const MENU = [
         'Installing VS Code Extensions',
         'user_install_vscode_extensions'
     ),
+    M(
+        'Using the dynamic Toolbar',
+        'user_toolbar'
+    ),
     {
         title: 'Adopting Theia'
     },
@@ -125,6 +129,10 @@ export const MENU = [
     M(
         'Language Support',
         'language_support'
+    ),
+    M(
+        'Dynamic Toolbar',
+        'toolbar'
     ),
     M(
         'Advanced Tips',
