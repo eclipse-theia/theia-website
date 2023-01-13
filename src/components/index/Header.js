@@ -101,7 +101,7 @@ const Header = () => (
                 <h2 style={{ fontSize: '2.1rem' }}>
                         Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies.
                         <br/>
-                        <a href="https://eclipsesource.com/blogs/2022/12/07/eclipse-theia-1-32-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.32 Release</a> and <a href="https://eclipsesource.com/blogs/2022/10/18/the-eclipse-theia-community-release-2022-09/">the latest Community Release (2022-09)</a>.
+                        <a href="https://eclipsesource.com/blogs/2023/01/13/eclipse-theia-1-33-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.33 Release</a> and <a href="https://eclipsesource.com/blogs/2022/10/18/the-eclipse-theia-community-release-2022-09/">the latest Community Release (2022-09)</a>.
                         <br/>
                         Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                 </h2>
