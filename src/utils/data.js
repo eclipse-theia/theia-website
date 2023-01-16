@@ -60,7 +60,7 @@
  export const introsToTheia = [
      {
          title: "Getting started with Eclipse Theia",
-         href: "https://youtu.be/KFmhzmPtAY0",
+         href: "https://youtu.be/xhSOdAJyess",
          speaker: "Jonas Helming, Theia project lead and Principal Software Architect at EclipseSource",
          src: JonasHelming,
      },
