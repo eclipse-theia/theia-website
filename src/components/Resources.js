@@ -162,7 +162,7 @@ const categories = [
         ]
     },
     {
-        title: 'News around Eclipse',
+        title: 'News around Eclipse Theia',
         resources: [
             {
                 title: 'The Eclipse Theia Update 2022',
