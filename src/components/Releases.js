@@ -89,8 +89,14 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.org/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: '0.8.0-theia-cr02',
+                modules: [
+                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr02'},
+                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr02'},
+                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr02'},
+                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr02'},
+                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr02'}  
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
