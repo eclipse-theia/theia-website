@@ -35,7 +35,7 @@ const Styled = styled.div`
         margin-top: 4rem;
         position: relative;
         &__thumb {
-            height: 100%;
+            height: calc(100% - 1.5em);
             max-width: 100%;
             object-fit: fill;
             cursor: pointer;
@@ -113,6 +113,7 @@ const Products = () => (
                                 trigger={
                                 <div className="products__thumb-popup">
                                     <img className="products__thumb" src={item.thumb} alt={item.alt} />
+                                    <div>{item.alt}</div>
                                 </div>
                                 
                                 } modal>
