@@ -111,6 +111,12 @@ const communityReleases = [
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
                 version: 'TBD',
                 modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: '1.1.0',
+                modules: []
             }
         ]
     },
