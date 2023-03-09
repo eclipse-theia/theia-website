@@ -78,7 +78,7 @@ const communityReleases = [
         releasecandidatedate:'January 26th, 2023',
         technologiesin:'March 2nd, 2023',
         releaseanouncement:'March 9th, 2023',
-        announcementurl: '',
+        announcementurl: 'https://eclipsesource.com/blogs/2023/03/09/the-eclipse-theia-community-release-2023-02/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
