@@ -30,22 +30,22 @@ Create `package.json` in this directory:
 {
   "private": true,
   "dependencies": {
-    "@theia/callhierarchy": "next",
-    "@theia/file-search": "next",
-    "@theia/git": "next",
-    "@theia/markers": "next",
-    "@theia/messages": "next",
-    "@theia/mini-browser": "next",
-    "@theia/navigator": "next",
-    "@theia/outline-view": "next",
-    "@theia/plugin-ext-vscode": "next",
-    "@theia/preferences": "next",
-    "@theia/preview": "next",
-    "@theia/search-in-workspace": "next",
-    "@theia/terminal": "next"
+    "@theia/callhierarchy": "latest",
+    "@theia/file-search": "latest",
+    "@theia/git": "latest",
+    "@theia/markers": "latest",
+    "@theia/messages": "latest",
+    "@theia/mini-browser": "latest",
+    "@theia/navigator": "latest",
+    "@theia/outline-view": "latest",
+    "@theia/plugin-ext-vscode": "latest",
+    "@theia/preferences": "latest",
+    "@theia/preview": "latest",
+    "@theia/search-in-workspace": "latest",
+    "@theia/terminal": "latest"
   },
   "devDependencies": {
-    "@theia/cli": "next"
+    "@theia/cli": "latest"
   }
 }
 ```
@@ -73,22 +73,22 @@ An example `package.json` may look like the following:
 {
   "private": true,
   "dependencies": {
-    "@theia/callhierarchy": "next",
-    "@theia/file-search": "next",
-    "@theia/git": "next",
-    "@theia/markers": "next",
-    "@theia/messages": "next",
-    "@theia/navigator": "next",
-    "@theia/outline-view": "next",
-    "@theia/plugin-ext-vscode": "next",
-    "@theia/preferences": "next",
-    "@theia/preview": "next",
-    "@theia/search-in-workspace": "next",
-    "@theia/terminal": "next",
-    "@theia/vsx-registry": "next"
+    "@theia/callhierarchy": "latest",
+    "@theia/file-search": "latest",
+    "@theia/git": "latest",
+    "@theia/markers": "latest",
+    "@theia/messages": "latest",
+    "@theia/navigator": "latest",
+    "@theia/outline-view": "latest",
+    "@theia/plugin-ext-vscode": "latest",
+    "@theia/preferences": "latest",
+    "@theia/preview": "latest",
+    "@theia/search-in-workspace": "latest",
+    "@theia/terminal": "latest",
+    "@theia/vsx-registry": "latest"
   },
   "devDependencies": {
-    "@theia/cli": "next"
+    "@theia/cli": "latest"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn build && yarn run download:plugins",
