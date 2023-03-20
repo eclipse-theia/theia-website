@@ -72,7 +72,7 @@ All the following code examples are from the [Theia extension generator](https:/
 
 All menu items of a Theia application are managed in the `MenuModelRegistry`. To contribute menu items to the registry, modules must implement the ´MenuContribution´ interface (see code example below). 
 
-The registration of the command can be done in the function `registerMenus`, which will be called by the Theia framework. The function provides the `MenuModelRegistry` as a parameter. On this registry we can call `registerMenuAction`. It expects a `MenuPath` and a `MenuAction`. The `MenuPath` specifies the menu (and submenu) to place the menu item into. Please see [here for the paths of some common menus](https://eclipse-theia.github.io/theia/docs/next/modules/core.commonmenus-1.html).
+The registration of the command can be done in the function `registerMenus`, which will be called by the Theia framework. The function provides the `MenuModelRegistry` as a parameter. On this registry we can call `registerMenuAction`. It expects a `MenuPath` and a `MenuAction`. The `MenuPath` specifies the menu (and submenu) to place the menu item into. Please see [here for the paths of some common menus](https://eclipse-theia.github.io/theia/docs/next/modules/core.CommonMenus-1.html).
 
 The `MenuAction` consists of a command id, specifying which command to trigger, and an optional label, specifying the label of the menu item.
 
