@@ -21,7 +21,8 @@
 * [Events](Events.md)
 * [Communication via JSON-RPC](Json_Rpc.md)
 
-## Blueprint
+## Packaging as a Product
 
 * [Download](blueprint_download.md)
-* [Documentation](blueprint_documentation.md)
+* [Desktop](blueprint_desktop_documentation.md)
+* [Cloud](blueprint_cloud_documentation.md)
