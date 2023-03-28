@@ -33,7 +33,7 @@ export class CustomWidget extends ReactWidget implements NavigatableWidget {
 ```
 
 When this `CustomWidget` is opened, Theia will look for breadcrumbs contributions that return breadcrumbs for this URI.
-By default, it won't find any and thus won't show any breadcrums.
+By default, it won't find any and thus won't show any breadcrumbs.
 So let's add a breadcrumbs contribution that reacts to URIs with the scheme `resource` as used by our widget above.
 
 ```typescript
@@ -95,7 +95,7 @@ Once the breadcrumbs contribution is registered, Theia will show the following f
 
 Breadcrumbs contributions also must implement the method `attachPopupContent`.
 Theia invokes this method as soon as a user clicks on one of the breadcrumbs and passes a parent HTML element into which the breadcrumbs contribution can now add arbitrary HTML content, including trees, buttons, etc.
-This content is consequently being shown as a popup below the clicked breadcumbs element.
+This content is consequently being shown as a popup below the clicked breadcrumbs element.
 If this method returns a `Disposable`, Theia will call it, once the popup is closed, allowing to dispose resources that may have been allocated for the rendered content.
 
 As an example, let's just return add some simple HTML to the popup, as shown below.
