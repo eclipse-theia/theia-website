@@ -135,6 +135,10 @@ export const MENU = [
         'toolbar'
     ),
     M(
+        'Breadcrumbs',
+        'breadcrumbs'
+    ),
+    M(
         'Advanced Tips',
         'tips'
     ),
