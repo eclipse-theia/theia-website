@@ -139,6 +139,10 @@ export const MENU = [
         'breadcrumbs'
     ),
     M(
+        'Enhanced Tab Bar Preview',
+        'enhanced_tab_bar_preview'
+    ),
+    M(
         'Advanced Tips',
         'tips'
     ),
