@@ -4,29 +4,48 @@ title: Enhanced Tab Bar Preview
 
 # Enhanced Tab Bar Preview
 
-To get a better overview of the widget a tab opens Theia provides functionality for enhanced tab bar preview. With this the user will be presented more information when hovering on a tab.
-Since most widgets, containing a lot of information (editors for example), are opened in the main area of Theia the enhanced preview is applied to horizontal tab bars only.
+By default, Theia shows the value of a widget's `caption` property when users hover above a widget's tab (see also [widgets](/docs/widgets/)).
+In certain use cases, especially with custom editors, this information may however not be sufficient to give users sufficient overview about a widget's content before activating the tab.
 
-## Setting to enable this feature
+Therefore, Theia optionally provides an enhanced tab bar preview for widgets of the main or bottom area of Theia; that is, for horizontal tab bars.
+This enhanced preview offers more room for information for widgets to show when hovering above a widget's tab.
+Moreover, it can easily be styled according to the needs of a tool provider adopting Theia.
 
-In order to not break the default hover behavior of Theia this feature is enabled by a preference (`window.tabbar.enhancedPreview`).
+## Enabling the Enhanced Tab Bar Preview
+
+The enhanced tab bar preview is disabled by default and needs to be explicitly enabled with a via the preference `window.tabbar.enhancedPreview`.
 
 <img src="/enhanced-preview-setting.png" alt="A screenshot of the window.tabbar.enhancedPreview setting in Theia" style="max-width: 525px">
 
-After enabling the function the preview will look like this:
+After enabling the enhanced tab bar preview, users will see the following on hovering over a widget's tab:
 
 <img src="/enhanced-preview.png" alt="A screenshot of the enhanced preview in Theia" style="max-width: 525px">
 
-Note that the values are taken from the widget itself, meaning they can be easily customized. For more information about this take a look [here](#specify-caption-and-label-for-a-widget).
+## Specify caption and label for a widget
 
-## Adjusting the styling of the preview
+The values shown in the tab bar preview are taken from the widget's `title` and `caption` properties.
+These values can thus be easily provided by the widget implementation:
+
+```ts
+    @postConstruct()
+    protected async init(): Promise<void> {
+        this.id = GettingStartedWidget.ID;
+        this.title.label = GettingStartedWidget.LABEL;
+        this.title.caption = 'Home > Theia > Getting Started';
+        this.title.closable = true;
+```
+
+## Customization of the preview
+
+For custom products, the enhanced tab bar preview can be customized and styled according to the requirements of the respective product.
+Below we discuss the most relevant customization options.
 
 ### Styling of the outer element
 
-Adjusting the styling of the hover box (already provided by Theia) can be easily done via CSS.
+The styling of the hover box can easily be done with CSS.
 If all hovers should be styled (including ones that are unaffected by the `window.tabbar.enhancedPreview` setting) the `.theia-hover` CSS class can be adjusted.
-To only change the styling of the tab bars affected by the `window.tabbar.enhancedPreview` setting (horizontal ones) the `.theia-hover.extended-tab-preview` CSS class can be adjusted instead.
-By default the enhanced preview for horizontal tab bars has rounded corners. This is simply achieved by adding a `border-radius` to the `.theia-hover.extended-tab-preview` CSS class:
+To only change the styling of the enhanced tab bar previews, use the CSS selector `.theia-hover.extended-tab-preview` instead.
+By default, the enhanced tab bar preview for horizontal tab bars has rounded corners. This is defined by adding a `border-radius` to the `.theia-hover.extended-tab-preview` CSS class:
 
 ```css
 .theia-hover.extended-tab-preview {
@@ -36,15 +55,15 @@ By default the enhanced preview for horizontal tab bars has rounded corners. Thi
 
 ### Styling of the content element
 
-To style the elements inside of the preview, class names are assigned to the different components.
+To style the elements inside of the preview, class names are assigned to the different components of the preview.
 Those are:
 
 - `.theia-horizontal-tabBar-hover-div` (for the outer box)
 - `.theia-horizontal-tabBar-hover-title` (for the title)
 - `.theia-horizontal-tabBar-hover-caption` (for the caption).
 
-If, for example, the preview should be a fixed size. This can achieved by adding a `width` to the `.theia-horizontal-tabBar-hover-div` and a `max-width` to the other two rules.
-To then also ensure the text is not going over the boxes boundaries, `word-wrap: break-word` can be added to the latter two rules.
+If, for example, the preview should be a fixed size. This can bew achieved by adding a `width` to the `.theia-horizontal-tabBar-hover-div` and a `max-width` to the other two rules.
+To also ensure the text is not going over the boxes boundaries, the property `word-wrap: break-word` can be added to the latter two rules.
 
 ```css
 .theia-horizontal-tabBar-hover-div {
@@ -69,13 +88,13 @@ To then also ensure the text is not going over the boxes boundaries, `word-wrap:
 }
 ```
 
-After those rules are applied the preview will look like this:
+After those rules are applied the preview will look as shown below:
 
 <img src="/enhanced-preview-custom.png" alt="A screenshot of the customized enhanced preview in Theia" style="max-width: 525px">
 
 ### Changing the content element
 
-To change the content that is being rendered inside of the preview the `TabBarRenderer` can be extended and a overwritten `renderExtendedTabBarPreview` method can be provided.
+To change the actual content that is being rendered inside of the preview, the `TabBarRenderer` can be extended to overwrite the `renderExtendedTabBarPreview` method.
 If, for example, the preview should only render the caption, the following `CustomTabBarRenderer` could be created:
 
 ```ts
@@ -92,7 +111,7 @@ export class CustomTabBarRenderer extends TabBarRenderer {
 }
 ```
 
-Now only the `TabBarRendererFactory` has to be bound and the preview will render the way it was specified above.
+Now we need to bind our custom `TabBarRendererFactory` to active our customization and ensure the preview renders the information as defined in the implementation of `CustomTabBarRenderer.renderExtendedTabBarPreview()` above.
 
 ```ts
     bind(TabBarRendererFactory).toFactory(({ container }) => () => {
@@ -106,19 +125,3 @@ Now only the `TabBarRendererFactory` has to be bound and the preview will render
         return new CustomTabBarRenderer(contextMenuRenderer, tabBarDecoratorService, iconThemeService, selectionService, commandService, corePreferences, hoverService);
     });
 ```
-
-## Specify caption and label for a widget
-
-When the `window.tabbar.enhancedPreview` setting is enabled, the user is displayed, on hovering the tab, with the name (label) and some additional information (caption) about the tab.
-These values can be provided by the widget:
-
-```ts
-    @postConstruct()
-    protected async init(): Promise<void> {
-        this.id = GettingStartedWidget.ID;
-        this.title.label = GettingStartedWidget.LABEL;
-        this.title.caption = 'Home > Theia > Getting Started';
-        this.title.closable = true;
-```
-
-The provided values will be rendered by the enhanced preview.
