@@ -11,7 +11,7 @@ Therefore, Theia optionally provides an enhanced tab bar preview for widgets of 
 This enhanced preview offers more room for information for widgets to show when hovering above a widget's tab.
 Moreover, it can easily be styled according to the needs of a tool provider adopting Theia.
 
-## Enabling the Enhanced Tab Bar Preview
+## Enabling the enhanced tab bar preview
 
 The enhanced tab bar preview is disabled by default and needs to be explicitly enabled with a via the preference `window.tabbar.enhancedPreview`.
 
@@ -21,7 +21,7 @@ After enabling the enhanced tab bar preview, users will see the following on hov
 
 <img src="/enhanced-preview.png" alt="A screenshot of the enhanced preview in Theia" style="max-width: 525px">
 
-## Specify caption and label for a widget
+## Specifying the contents of the preview
 
 The values shown in the tab bar preview are taken from the widget's `title` and `caption` properties.
 These values can thus be easily provided by the widget implementation:
@@ -62,7 +62,7 @@ Those are:
 - `.theia-horizontal-tabBar-hover-title` (for the title)
 - `.theia-horizontal-tabBar-hover-caption` (for the caption).
 
-If, for example, the preview should be a fixed size. This can bew achieved by adding a `width` to the `.theia-horizontal-tabBar-hover-div` and a `max-width` to the other two rules.
+If, for example, the preview should have a fixed size, this can be achieved by specifying a `width` for the `.theia-horizontal-tabBar-hover-div` and a `max-width` to the other two rules.
 To also ensure the text is not going over the boxes boundaries, the property `word-wrap: break-word` can be added to the latter two rules.
 
 ```css
