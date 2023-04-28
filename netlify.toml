@@ -1,3 +1,13 @@
 redirects = [
     {from = "/doc", to = "/docs", status = 301},
     {from = "/doc/*", to = "/docs/:splat", status = 301}]
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    Content-Security-Policy = "base-uri 'self'; default-src 'self' 'unsafe-inline' https://ghbtns.com https://planeteclipse.org https://netlify-cdp-loader.netlify.app https://app.netlify.com https://sessions.bugsnag.com https://api.segment.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://api.eclipse.org https://img.shields.io https://github.com; font-src 'self' data: https://fonts.gstatic.com;"
