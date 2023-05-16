@@ -25,7 +25,7 @@ Error
 
 <img src="/message-service-error.png" alt="Message Service - error" style="max-width: 525px">
 
-By default, notifications will be displayed until the user closes them. You can optionally define a time out after which messages will be closed automatically:
+By default, notifications will be displayed until the user closes them. You can optionally define a time-out after which messages will be closed automatically:
 
 ```typescript
 this.messageService.info('Say Hello with timeout',{timeout: 3000})
@@ -82,8 +82,8 @@ this.messageService
    progress.cancel();
  })
 ```
- 
-Note that `progress.cancel` is also used to signal that a progress is complete.
+
+Note that `progress.cancel` is also used to signal that progress is complete.
 The code example above will be displayed like this:
 
 <img src="/message-service-progress-reporting.gif" alt="Message Service - progress reporting" style="max-width: 525px">

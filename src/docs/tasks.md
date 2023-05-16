@@ -155,7 +155,7 @@ As you can see in the screenshot below, our custom task is running for 5000 ms (
 
 <img src="/running-custom-task.gif" alt="Running custom task" style="max-width: 702px">
 
-As can be seen in the console output, the task starts and finishes 5000 ms later and it prints the custom variable that has been added by the custom resolver.
+As can be seen in the console output, the task starts and finishes 5000 ms later, and prints the custom variable that has been added by the custom resolver.
 
 ```
 root INFO Start running custom task: 42

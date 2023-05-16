@@ -111,7 +111,7 @@ export class CustomTabBarRenderer extends TabBarRenderer {
 }
 ```
 
-Now we need to bind our custom `TabBarRendererFactory` to active our customization and ensure the preview renders the information as defined in the implementation of `CustomTabBarRenderer.renderExtendedTabBarPreview()` above.
+Now, we need to bind our custom `TabBarRendererFactory` to activate our customization and ensure the preview renders the information as defined in the implementation of `CustomTabBarRenderer.renderExtendedTabBarPreview()` above.
 
 ```ts
     bind(TabBarRendererFactory).toFactory(({ container }) => () => {

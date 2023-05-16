@@ -7,6 +7,7 @@ title: Build your own IDE/Tool
 
 This guide will teach you how to build your own Theia-based application. The guide will demonstrate how to configure your own application composed of existing or new Theia extensions, and any VS Code extensions you want bundled in your application by default. Please get familiar with the [extension mechanisms of Theia](https://theia-ide.org/docs/extensions/) in case you are not already.
 This guide describes the manual steps to build a Theia-based product, there are two ways to avoid this manual set-up:
+
 - [Theia Extension Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based products along with example extensions.
 - [Theia Blueprint](https://theia-ide.org/docs/blueprint_download/): A template tool for creating installable desktop applications based on Theia.
 
@@ -15,6 +16,7 @@ We still recommend reading the manual guide first, it allows you to understand t
 ## Requirements
 
 The detailed list of prerequisites is located at the main Theia repository:
+
 - [Prerequisites](https://github.com/eclipse-theia/theia/blob/master/doc/Developing.md#prerequisites)
 
 ## Setup
@@ -54,12 +56,13 @@ In a nutshell, Theia applications and extensions are [Node.js packages](https://
 like `name`, `version`, its runtime and build time dependencies and so on.
 
 Let's have a look at the created package:
-  - Its `name` and `version` are omitted since we are not going to use it as a dependency, and
+
+- Its `name` and `version` are omitted since we are not going to use it as a dependency, and
     it's marked as `private` since it is not going to be published as a Node.js package on its own.
-  - We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
-    - Some extensions require additional tooling installed, in such cases, please consult the corresponding extension documentation.
-    - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) to see all published extensions.
-  - We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
+- We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
+  - Some extensions require additional tooling installed, in such cases, please consult the corresponding extension documentation.
+  - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) to see all published extensions.
+- We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
 
 ## Consuming VS Code Extensions
 
@@ -113,9 +116,10 @@ An example `package.json` may look like the following:
 }
 ```
 
-The following properties are used to consume builtin plugins (bundled extensions):
+The following properties are used to consume built-in plugins (bundled extensions):
+
 - `theiaPluginsDir`: the relative path to deploy plugins into
-- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, Github Releases, etc.)
+- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, GitHub Releases, etc.)
 - `theiaPluginsExcludeIds`: the list of plugin `ids` to exclude when resolving extension-packs
 
 ## Building
@@ -161,7 +165,7 @@ Open the application by entering the printed address in a new browser page.
 
 If no plugins are available in the running Theia instance, it may be that you need to tell Theia where to find the downloaded plugins.
 The example above sets the `--plugins` switch in the `start` command which should be sufficient.
-However if running `theia start` directly, you can alternatively set an environment variable to achieve the same thing:
+However, if running `theia start` directly, you can alternatively set an environment variable to achieve the same thing:
 
     export THEIA_DEFAULT_PLUGINS=local-dir:plugins
 
@@ -197,4 +201,3 @@ This happens because node-gyp does not rely on system/NPM proxy settings. In tha
 (in the example above `https://nodejs.org/download/release/v8.15.0/node-v8.15.0-headers.tar.gz`) and run the build with the following command:
 
      npm_config_tarball=/path/to/node-v8.15.0-headers.tar.gz yarn install
-

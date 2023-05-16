@@ -8,7 +8,7 @@ Theia has a preference service which allows modules to get preference values, co
 
 Preferences can be saved in the root of the workspace under `.theia/settings.json` or under `$HOME/.theia/settings.json` on Linux systems. For Windows systems, the user settings will by default be in the `%USERPROFILE%/.theia/settings.json` (something like `C:\Users\epatpol\.theia/settings.json`)
 
-As of right now the files must contain a valid a JSON containing the names and values of preferences (note that the following preference names are not official and only used as an example). You can also add comments to the settings.json file if needed i.e
+As of right now the files must contain a valid a JSON containing the names and values of preferences (note that the following preference names are not official and only used as an example). You can also add comments to the settings.json file if needed i.e.
 
 ```
 {
@@ -40,6 +40,7 @@ export interface PreferenceContribution {
 ```
 
 For instance, the filesystem binds it like so:
+
 ```typescript
 export const filesystemPreferenceSchema: PreferenceSchema = {
     "type": "object",
@@ -68,6 +69,7 @@ Here are some useful links for contributing a validation schema:
 ## Listening for a preference change via a configuration
 
 To use the value of a preference, simply get the injected PreferenceService from the container
+
 ```typescript
 const preferences = ctx.container.get(PreferenceService);
 ```
@@ -80,7 +82,7 @@ constructor(@inject(PreferenceService) protected readonly prefService: Preferenc
 	prefService.onPreferenceChanged(e => { callback }
 ```
 
-where the event received `e` is like this:
+Where the event received `e` is like this:
 
 ```typescript
 export interface PreferenceChangedEvent {
@@ -103,6 +105,7 @@ export function createPreferenceProxy<T extends Configuration>(preferences: Pref
     It basically forwards methods to the real object, i.e dispose/ready etc.
 }
 ```
+
 To use that proxy, simply bind it to a new type X = PreferenceProxy<CONFIGURATION_INTERFACE> and then bind(X) to a proxy using the method above.
 
 ```typescript
@@ -145,7 +148,6 @@ this.toDispose.push(preferences.onPreferenceChanged(e => {
 }));
 ```
 
-
 ```typescript
 constructor(...,
         @inject(FileSystemPreferences) protected readonly preferences: FileSystemPreferences) {
@@ -161,7 +163,7 @@ constructor(...,
 
 ## Preference flow when modifying a preference
 
-As of right now, when a settings.json is modified either in the ${workspace}/.theia/ or in the `os.homedir()`/.theia/, this will trigger an event from the JSON preference server. Currently, there's a CompoundPreferenceServer that manages the different servers (scopes) like workspace/user/defaults (provided via the contributions above). Next, the PreferenceService manages this server and adds a more convenient api on top of it (i.e getBoolean, getString etc.). It also allows clients to registers for preference changes. This PreferenceService can then be used either directly via injection in the modules, or via a more specific proxy (like the filesystem configuration from above).
+As of right now, when a settings.json is modified either in the ${workspace}/.theia/ or in the `os.homedir()`/.theia/, this will trigger an event from the JSON preference server. Currently, there's a CompoundPreferenceServer that manages the different servers (scopes) like workspace/user/defaults (provided via the contributions above). Next, the PreferenceService manages this server and adds a more convenient API on top of it (i.e. getBoolean, getString etc.). It also allows clients to registers for preference changes. This PreferenceService can then be used either directly via injection in the modules, or via a more specific proxy (like the filesystem configuration from above).
 
 In the case of the preference file being modified, the flow would then be:
 
@@ -187,7 +189,6 @@ In the case of the filesystem, one would use the same proxied config as above to
 This works because, as we have seen it above, the proxy will simply call prefService.get('preferenceName').
 
 ## TODO/FIXME for preferences
+
 * Add scopes with server priority in CompoundPreferenceServer
 * Add autocomplete/description when modifying the settings.json from within theia
-
-

@@ -92,7 +92,7 @@ ContributionProvider in messaging-module.ts
 So as the MessagingContribution starts (onStart is called) it creates a
 websocket connection for all bound ConnectionHandlers.
 
-like so (from messaging-module.ts):
+Like so (from messaging-module.ts):
 
 ``` typescript
 constructor( @inject(ContributionProvider) @named(ConnectionHandler) protected readonly handlers: ContributionProvider<ConnectionHandler>) {
@@ -150,7 +150,6 @@ And let's look at what it does onConnection :
         factory.target = this.targetFactory(proxy);
         factory.listen(connection);
 ```
-
 
 Let's go over this line by line:
 
@@ -299,9 +298,10 @@ is the server and the backend is the client. But that doesn't really
 matter in our logic.
 
 So again there's multiple things going on here what this does is that:
- - it creates a JsonRpc Proxy on path "logger".
- - it exposes the loggerWatcher.getLoggerClient() object.
- - it returns a proxy of type ILoggerServer.
+
+- It creates a JsonRpc Proxy on path "logger".
+- It exposes the loggerWatcher.getLoggerClient() object.
+- It returns a proxy of type ILoggerServer.
 
 So now instances of ILoggerServer are proxied over JSON-RPC to the
 backend's LoggerServer object.
@@ -320,7 +320,7 @@ In examples/browser/src/backend/main.ts you will need something like:
 import { loggerServerModule } from 'theia-core/lib/application/node/logger-server-module';
 ```
 
-And than load that into the main container:
+And then load that into the main container:
 
 ``` typescript
 container.load(loggerServerModule);
@@ -342,4 +342,3 @@ container.load(frontendLanguagesModule);
 
 If you wish to see the complete implementation of what I referred too in
 this documentation see [this commit](https://github.com/eclipse-theia/theia/commit/99d191f19bd2a3e93098470ca1bb7b320ab344a1).
-

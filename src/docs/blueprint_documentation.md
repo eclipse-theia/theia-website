@@ -9,7 +9,7 @@ Theia Blueprint assembles a selected subset of existing Theia features and exten
 We provide installers for Theia Blueprint to be downloaded (see links below).
 In the respective git repository you can also find the source code for Theia Blueprint and its installers.
 This documentation will use these sources as a template. We will explain
-how to customize this template so you can build your own custom Theia-based product including installers and packaging for installing the desktop-based version of your custom product on all major operating systems.
+how to customize this template so that you can build your own custom Theia-based product including installers and packaging for installing the desktop-based version of your custom product on all major operating systems.
 
 ## Building a product and installers
 
@@ -17,7 +17,7 @@ The Theia Blueprint build uses [electron-builder](https://www.electron.build/) t
 
 The product can be built and packaged with [yarn](https://yarnpkg.com/).
 Note that you usually can only package the product for the operating system you execute the build on.
-For more information see the [electron-builder documentation on multi platform builds](https://www.electron.build/multi-platform-build).
+For more information see the [electron-builder documentation on multi-platform builds](https://www.electron.build/multi-platform-build).
 
 The following commands may be run from the root directory of the repository.
 
