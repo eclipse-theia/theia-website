@@ -86,7 +86,7 @@ implementation of a `ConnectionHandler`.
 
 The magic here is that this `ConnectionHandler` type is bound to a
 ContributionProvider. A central `MessagingContribution` picks up all registered connection handlers
-an when this contribution is initialized it t creates a websocket channel for all bound `ConnectionHandlers`.
+an when this contribution is initialized it creates a websocket channel for all bound `ConnectionHandlers`.
 To save resources the hood all `MessagingContributions` are routed over one
 websocket connection (multiplexing).
 
@@ -253,6 +253,21 @@ serverProxy.setClient(client);
 
 So here at the last line we're binding the `TaskServer` interface to a
 RPC proxy.
+
+Note that his under the hood calls:
+
+``` typescript
+  createProxy<T extends object>(path: string, arg?: object): RpcProxy<T> {
+        const factory = arg instanceof RpcProxyFactory ? arg : new RpcProxyFactory<T>(arg);
+        this.listen({
+            path,
+            onConnection: c => factory.listen(c)
+        });
+        return factory.createProxy();
+    }
+```
+
+So it's very similar to the backend example.
 
 Maybe you've noticed too but as far as the connection is concerned the frontend
 is the server and the backend is the client. But that doesn't really
