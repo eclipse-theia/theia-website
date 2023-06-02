@@ -147,15 +147,19 @@ export const MENU = [
         'tips'
     ),
     {
-        title: 'Theia Blueprint'
+        title: 'Packaging as a Product'
     },
     M(
         'Download',
         'blueprint_download'
     ),
     M(
-        'Documentation',
-        'blueprint_documentation'
+        'Desktop',
+        'blueprint_desktop_documentation'
+    ),
+    M(
+        'Cloud',
+        'blueprint_cloud_documentation'
     )
 ]
 

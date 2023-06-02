@@ -8,7 +8,7 @@ title: Eclipse Theia Blueprint
 
 ## What is Eclipse Theia Blueprint?
 
-Eclipse Theia Blueprint is a **template** for building desktop-based products based on the Eclipse Theia platform, as well as to showcase Eclipse Theia capabilities. It is made up of a  subset of existing Eclipse Theia features and extensions and can be easily downloaded and installed on all major operating system platforms (see below). Documentation is available to help you customize and build your own Eclipse Theia-based product.
+Eclipse Theia Blueprint is a **template** for building desktop-based and cloud-based products based on the Eclipse Theia platform, as well as to showcase Eclipse Theia capabilities. It is made up of a  subset of existing Eclipse Theia features and extensions and can be easily downloaded and installed on all major operating system platforms (see below). Documentation is available to help you customize and build your own Eclipse Theia-based product.
 
 ## What is it not?
 
@@ -17,6 +17,8 @@ Eclipse Theia Blueprint is ***not*** **a production-ready product**. Therefore, 
 ## Downloads
 
 NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback. Help us make Theia even better, by sharing your experience and suggestions [here](https://github.com/eclipse-theia/theia/discussions).
+
+### Desktop Application
 
 <table cellspacing="25">
   <thead>
@@ -35,9 +37,15 @@ NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to m
   </tbody>
 </table>
 
+### Docker Image
+
+A docker image is available at `ghcr.io/eclipse-theia/theia-blueprint/blueprint`
+
+You may run this on your machine with `docker run -p=3000:3000 --rm ghcr.io/eclipse-theia/theia-blueprint/blueprint` and point your browser to http://localhost:3000.  
+
 ## Try Theia Blueprint Online
 
-You can also [try the latest version of Theia Blueprint online](https://try.theia-cloud.io/). The online test version is limited to 30 minutes per session and hosted via [Theia.cloud](https://github.com/eclipsesource/theia-cloud).
+You can also [try the latest version of Theia Blueprint online](https://try.theia-cloud.io/). The online test version is limited to 30 minutes per session and hosted via [Theia Cloud](https://theia-cloud.io/).
 
 ## Reporting Feature Requests and Bugs
 
