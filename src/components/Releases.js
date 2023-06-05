@@ -109,7 +109,7 @@ const communityReleases = [
             {
                 title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
-                version: 'TBD',
+                version: '0.0.98',
                 modules: []
             },
             {
