@@ -16,7 +16,7 @@ Eclipse Theia Blueprint is ***not*** **a production-ready product**. Therefore, 
 
 ## Downloads
 
-NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback. Help us make Theia even better, by sharing your experience and suggestions [here](https://github.com/eclipse-theia/theia/discussions).
+NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback. 
 
 <table cellspacing="25">
   <thead>
@@ -34,6 +34,8 @@ NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to m
     </tr>
   </tbody>
 </table>
+
+Already using Eclipse Theia Blueprint? Help us make Theia even better, by sharing your experience and suggestions [here](https://github.com/eclipse-theia/theia/discussions).
 
 ## Try Theia Blueprint Online
 
