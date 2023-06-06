@@ -10,13 +10,9 @@ title: Eclipse Theia Blueprint
 
 Eclipse Theia Blueprint is a **template** for building desktop-based products based on the Eclipse Theia platform, as well as to showcase Eclipse Theia capabilities. It is made up of a  subset of existing Eclipse Theia features and extensions and can be easily downloaded and installed on all major operating system platforms (see below). Documentation is available to help you customize and build your own Eclipse Theia-based product.
 
-## What is it not?
-
-Eclipse Theia Blueprint is ***not*** **a production-ready product**. Therefore, it is also not meant to be a replacement for Visual Studio Code or any other IDE.
-
 ## Downloads
 
-NOTE: Eclipse Theia Blueprint is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback. Help us make Theia even better, by sharing your experience and suggestions [here](https://github.com/eclipse-theia/theia/discussions).
+NOTE: Eclipse Theia Blueprint is **currently in beta**. While we are continuing to make improvements and add functionality, we welcome and value your feedback. Help us make Theia even better, by sharing your experience and suggestions [here](https://github.com/eclipse-theia/theia/discussions).
 
 <table cellspacing="25">
   <thead>
