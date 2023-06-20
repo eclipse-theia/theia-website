@@ -117,6 +117,16 @@ const communityReleases = [
                 url: 'https://langium.org/',
                 version: '1.2.0',
                 modules: []
+            },
+            {
+                title: 'Theia Trace Extension',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'since 0.2.0-next.20230613130240.a37bbf1.0',
+                modules: [
+                    {modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer'},
+                    {modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base'},
+                    {modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components'}
+                ]
             }
         ]
     },
