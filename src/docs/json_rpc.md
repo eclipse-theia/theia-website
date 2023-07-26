@@ -1,13 +1,13 @@
 ---
-title: Communication via JSON-RPC
+title: Communication via RPC
 ---
 
-# Communication via JSON-RPC
+# Communication via RPC
 
-In this section I will explain how you can create a backend service and
-then connect to it over JSON-RPC.
+In this section we will explain how you can create a backend service and
+then connect to it over RPC.
 
-I will use the debug logging system as a small example of that.
+We will use the task execution system as a small example of that.
 
 ## Overview
 
@@ -19,34 +19,32 @@ then connecting to that over a websocket connection.
 So the first thing you will want to do is expose your service so that the
 frontend can connect to it.
 
-You will need to create backend server module file similar to this (logger-server-module.ts):
+You will need to create backend server module file similar to this (`task-backend-module.ts`):
 
 ``` typescript
 
-import { ContainerModule } from 'inversify';
-import { ConnectionHandler, JsonRpcConnectionHandler } from "../../messaging/common";
-import { ILoggerServer, ILoggerClient } from '../../application/common/logger-protocol';
+import { ContainerModule } from '@theia/core/shared/inversify'';
+import { ConnectionHandler, RpcConnectionHandler } from '@theia/core/lib/common/messaging';
+import { TaskClient, TaskServer, taskPath } from '../common/task-protocol';
 
-export const loggerServerModule = new ContainerModule(bind => {
     bind(ConnectionHandler).toDynamicValue(ctx =>
-        new JsonRpcConnectionHandler<ILoggerClient>("/services/logger", client => {
-            const loggerServer = ctx.container.get<ILoggerServer>(ILoggerServer);
-            loggerServer.setClient(client);
-            return loggerServer;
+        new RpcConnectionHandler<TaskClient>(taskPath, client => {
+            const taskServer = ctx.container.get<TaskServer>(TaskServer);
+            taskServer.setClient(client);
+            return taskServer;
         })
-    ).inSingletonScope()
-});
+    ).inSingletonScope();
 ```
 
 Let's go over that in detail:
 
 ``` typescript
-import { ConnectionHandler, JsonRpcConnectionHandler } from "../../messaging/common";
+import { ConnectionHandler, RpcConnectionHandler } from '@theia/core/lib/common/messaging';
 ```
 
-This imports the `JsonRpcConnectionHandler`, this factory enables you to create
-a connection handler that onConnection creates proxy object to the object that
-is called in the backend over JSON-RPC and expose a local object to JSON-RPC.
+This imports the `RpcConnectionHandler`, this factory enables you to create
+a connection handler that `onConnection` creates a proxy object to the remote object that
+is called in the backend over RPC and optionally exposes a local object to RPC.
 
 We'll see more on how this is done as we go.
 
@@ -56,82 +54,62 @@ connection and what happens on connection creation.
 It looks like this:
 
 ``` typescript
-import { MessageConnection } from "vscode-jsonrpc";
+import { Channel } from '../message-rpc/channel';
 
 export const ConnectionHandler = Symbol('ConnectionHandler');
 
 export interface ConnectionHandler {
     readonly path: string;
-    onConnection(connection: MessageConnection): void;
+    onConnection(connection: Channel): void;
 }
 ```
 
 ``` typescript
-import { ILoggerServer, ILoggerClient } from '../../application/common/logger-protocol';
+import { TaskClient, TaskServer, taskPath } from '../common/task-protocol';
 ```
 
-The logger-protocol.ts file contains the interfaces that the server and the
+The `task-protocol.ts` file contains the interfaces that the server and the
 client need to implement.
 
-The server here means the backend object that will be called over JSON-RPC
+The server here means the backend object that will be called over RPC
 and the client is a client object that can receive notifications from the
 backend object.
 
-I'll get more into that later.
+We will get more into that later.
 
 ``` typescript
     bind<ConnectionHandler>(ConnectionHandler).toDynamicValue(ctx => {
 ```
 
-Here a bit of magic happens, at first glance we're just saying here's an
-implementation of a ConnectionHandler.
+Here a bit of magic happens, at first glance we're just saying here is an
+implementation of a `ConnectionHandler`.
 
-The magic here is that this ConnectionHandler type is bound to a
-ContributionProvider in messaging-module.ts
-
-So as the MessagingContribution starts (onStart is called) it creates a
-websocket connection for all bound ConnectionHandlers.
-
-Like so (from messaging-module.ts):
-
-``` typescript
-constructor( @inject(ContributionProvider) @named(ConnectionHandler) protected readonly handlers: ContributionProvider<ConnectionHandler>) {
-    }
-
-    onStart(server: http.Server): void {
-        for (const handler of this.handlers.getContributions()) {
-            const path = handler.path;
-            try {
-                createServerWebSocketConnection({
-                    server,
-                    path
-                }, connection => handler.onConnection(connection));
-            } catch (error) {
-                console.error(error)
-            }
-        }
-    }
-```
+The magic here is that this `ConnectionHandler` type is bound to a
+ContributionProvider. A central `MessagingContribution` picks up all registered connection handlers
+an when this contribution is initialized it creates a websocket channel for all bound `ConnectionHandlers`.
+To save resources the hood all `MessagingContributions` are routed over one
+websocket connection (multiplexing).
 
 To dig more into ContributionProvider see this [section](Services_and_Contributions#contribution-providers).
 
 So now:
 
 ``` typescript
-new JsonRpcConnectionHandler<ILoggerClient>("/services/logger", client => {
+   new RpcConnectionHandler<TaskClient>(taskPath, client => {
 ```
 
 This does a few things if we look at this class implementation:
 
 ``` typescript
-export class JsonRpcConnectionHandler<T extends object> implements ConnectionHandler {
+export class RpcConnectionHandler<T extends object> implements ConnectionHandler {
     constructor(
         readonly path: string,
-        readonly targetFactory: (proxy: JsonRpcProxy<T>) => any
+        readonly targetFactory: (proxy: RpcProxy<T>) => any,
+        readonly factoryConstructor: new () => RpcProxyFactory<T> = RpcProxyFactory
     ) { }
 
-    onConnection(connection: MessageConnection): void {
-        const factory = new JsonRpcProxyFactory<T>(this.path);
+    onConnection(connection: Channel): void {
+        const factory = new this.factoryConstructor();
         const proxy = factory.createProxy();
         factory.target = this.targetFactory(proxy);
         factory.listen(connection);
@@ -139,66 +117,58 @@ export class JsonRpcConnectionHandler<T extends object> implements ConnectionHan
 }
 ```
 
-We see that a websocket connection is created on path: "logger" by the extension of the ConnectionHandler class with the path attribute set to "logger".
+We see that a websocket channel is created on the `taskPath` ("/services/task") by the extension of the `ConnectionHandler`.
 
-And let's look at what it does onConnection :
+And let's look at what it does `onConnection` :
 
 ``` typescript
-    onConnection(connection: MessageConnection): void {
-        const factory = new JsonRpcProxyFactory<T>(this.path);
+    onConnection(connection: Channel): void {
+        const factory = new this.factoryConstructor();
         const proxy = factory.createProxy();
         factory.target = this.targetFactory(proxy);
         factory.listen(connection);
+    }
 ```
 
 Let's go over this line by line:
 
 ``` typescript
-    const factory = new JsonRpcProxyFactory<T>(this.path);
+       const factory = new this.factoryConstructor();
 ```
 
-This creates a JsonRpcProxy on path "logger".
+This creates a `ProxyFactory` on path "services/task".
 
 ``` typescript
-    const proxy = factory.createProxy();
+        const proxy = factory.createProxy();
 ```
 
 Here we create a proxy object from the factory, this will be used to call
-the other end of the JSON-RPC connection using the ILoggerClient interface.
+the other end of the RPC channel using the `TaskClient` interface.
 
 ``` typescript
-    factory.target = this.targetFactory(proxy);
+        factory.target = this.targetFactory(proxy);
 ```
 
 This will call the function we've passed in parameter so:
 
 ``` typescript
-        client => {
-            const loggerServer = ctx.container.get<ILoggerServer>(ILoggerServer);
-            loggerServer.setClient(client);
-            return loggerServer;
+       client => {
+            const taskServer = ctx.container.get<TaskServer>(TaskServer);
+            taskServer.setClient(client);
+            return taskServer;
         }
 ```
 
-This sets the client on the loggerServer, in this case this is used to
-send notifications to the frontend about a log level change.
+This sets the client on the `taskServer`, in this case this is used to
+run asynchronous tasks (e.g. a terminal command) in the backend.
 
-And it returns the loggerServer as the object that will be exposed over JSON-RPC.
+And it returns the `taskServer` as the object that will be exposed over RPC.
 
 ``` typescript
- factory.listen(connection);
+ factory.listen(channel);
 ```
 
-This connects the factory to the connection.
-
-The endpoints with `services/*` path are served by the webpack dev server, see `webpack.config.js`:
-
-``` javascript
-    '/services/*': {
-        target: 'ws://localhost:3000',
-        ws: true
-    },
-```
+This connects the factory to the channel and establishes the RPC protocol.
 
 ## Connecting to a service
 
@@ -207,22 +177,19 @@ the frontend.
 
 To do that you will need something like this:
 
-(From logger-frontend-module.ts)
+(From `task-frontend-module`)
 
 ``` typescript
-import { ContainerModule, Container } from 'inversify';
-import { WebSocketConnectionProvider } from '../../messaging/browser/connection';
-import { ILogger, LoggerFactory, LoggerOptions, Logger } from '../common/logger';
-import { ILoggerServer } from '../common/logger-protocol';
-import { LoggerWatcher } from '../common/logger-watcher';
+import { ContainerModule } from '@theia/core/shared/inversify';
+import { WebSocketConnectionProvider } from '@theia/core/lib/browser/messaging';
+import { TaskServer, taskPath } from '../common/task-protocol';
+import { TaskWatcher } from '../common/task-watcher';
 
-export const loggerFrontendModule = new ContainerModule(bind => {
-    bind(ILogger).to(Logger).inSingletonScope();
-    bind(LoggerWatcher).toSelf().inSingletonScope();
-    bind(ILoggerServer).toDynamicValue(ctx => {
-        const loggerWatcher = ctx.container.get(LoggerWatcher);
+export default new ContainerModule(bind => {
+    bind(TaskServer).toDynamicValue(ctx => {
         const connection = ctx.container.get(WebSocketConnectionProvider);
-        return connection.createProxy<ILoggerServer>("/services/logger", loggerWatcher.getLoggerClient());
+        const taskWatcher = ctx.container.get(TaskWatcher);
+        return connection.createProxy<TaskServer>(taskPath, taskWatcher.getTaskClient());
     }).inSingletonScope();
 });
 ```
@@ -230,25 +197,15 @@ export const loggerFrontendModule = new ContainerModule(bind => {
 The important bit here are those lines:
 
 ``` typescript
-    bind(ILoggerServer).toDynamicValue(ctx => {
-        const loggerWatcher = ctx.container.get(LoggerWatcher);
+   bind(TaskServer).toDynamicValue(ctx => {
         const connection = ctx.container.get(WebSocketConnectionProvider);
-        return connection.createProxy<ILoggerServer>("/services/logger", loggerWatcher.getLoggerClient());
+        const taskWatcher = ctx.container.get(TaskWatcher);
+        return connection.createProxy<TaskServer>(taskPath, taskWatcher.getTaskClient());
     }).inSingletonScope();
 
 ```
 
 Let's go line by line:
-
-``` typescript
-        const loggerWatcher = ctx.container.get(LoggerWatcher);
-```
-
-Here we're creating a watcher, this is used to get notified about events
-from the backend by using the loggerWatcher client
-(loggerWatcher.getLoggerClient())
-
-See more information about how events work in theia [here](/docs/Events#events).
 
 ``` typescript
         const connection = ctx.container.get(WebSocketConnectionProvider);
@@ -257,36 +214,55 @@ See more information about how events work in theia [here](/docs/Events#events).
 Here we're getting the websocket connection, this will be used to create a proxy from.
 
 ``` typescript
-        return connection.createProxy<ILoggerServer>("/services/logger", loggerWatcher.getLoggerClient());
+        const taskWatcher = ctx.container.get(TaskWatcher);
 ```
 
-As the second argument, we pass a local object to handle JSON-RPC messages from the remote object.
+Here we're creating a watcher, this is used to get notified about events
+from the backend by using the `taskWatcher`'s client
+(`taskWatcher.getTaskClient()`)
+
+See more information about how events work in theia [here](/docs/Events#events).
+
+``` typescript
+        return connection.createProxy<TaskServer>(taskPath, taskWatcher.getTaskClient());
+```
+
+As the second argument, we pass a local object to handle RPC messages from the remote object.
 Sometimes the local object depends on the proxy and cannot be instantiated before the proxy is instantiated.
-In such cases, the proxy interface should implement `JsonRpcServer` and the local object should be provided as a client.
+In such cases, the proxy interface should implement `RpcServer` and the local object should be provided as a client.
 
 ```ts
-export type JsonRpcServer<Client> = Disposable & {
+export type RpcServer<Client> = Disposable & {
+    /**
+     * If this server is a proxy to a remote server then
+     * a client is used as a local object
+     * to handle RPC messages from the remote server.
+     */
     setClient(client: Client | undefined): void;
+    getClient?(): Client | undefined;
 };
 
-export interface ILoggerServer extends JsonRpcServery<ILoggerClient> {
+export interface TaskServer extends RpcServer<TaskClient>  {
     // ...
 }
 
-const serverProxy = connection.createProxy<ILoggerServer>("/services/logger");
-const client = loggerWatcher.getLoggerClient();
+const serverProxy = connection.createProxy<TaskServer>("/services/task");
+const client = taskWatcher.getTaskClient();
 serverProxy.setClient(client);
 ```
 
-So here at the last line we're binding the ILoggerServer interface to a
-JsonRpc proxy.
+So here at the last line we're binding the `TaskServer` interface to a
+RPC proxy.
 
 Note that his under the hood calls:
 
 ``` typescript
- createProxy<T extends object>(path: string, target?: object, options?: WebSocketOptions): T {
-        const factory = new JsonRpcProxyFactory<T>(path, target);
-        this.listen(factory, options);
+  createProxy<T extends object>(path: string, arg?: object): RpcProxy<T> {
+        const factory = arg instanceof RpcProxyFactory ? arg : new RpcProxyFactory<T>(arg);
+        this.listen({
+            path,
+            onConnection: c => factory.listen(c)
+        });
         return factory.createProxy();
     }
 ```
@@ -299,44 +275,13 @@ matter in our logic.
 
 So again there's multiple things going on here what this does is that:
 
-- It creates a JsonRpc Proxy on path "logger".
-- It exposes the loggerWatcher.getLoggerClient() object.
-- It returns a proxy of type ILoggerServer.
+- it creates a JsonRpc Proxy on path "services/task".
+- it exposes the `taskWatcher.getTaskClient()` object.
+- it returns a proxy of type `TaskServer`.
 
-So now instances of ILoggerServer are proxied over JSON-RPC to the
-backend's LoggerServer object.
+So now instances of `TaskServer` are proxied over RPC to the
+backend's `TaskServer` object.
 
-## Loading the modules in the example backend and frontend
-
-So now that we have these modules we need to wire them into the example.
-We will use the browser example for this, note that it's the same code for
-the electron example.
-
-### Backend
-
-In examples/browser/src/backend/main.ts you will need something like:
-
-``` typescript
-import { loggerServerModule } from 'theia-core/lib/application/node/logger-server-module';
-```
-
-And then load that into the main container:
-
-``` typescript
-container.load(loggerServerModule);
-```
-
-### Frontend
-
-In examples/browser/src/frontend/main.ts you will need something like:
-
-``` typescript
-import { loggerFrontendModule } from 'theia-core/lib/application/browser/logger-frontend-module';
-```
-
-``` typescript
-container.load(frontendLanguagesModule);
-```
 
 ## Complete example
 

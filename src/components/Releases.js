@@ -73,42 +73,118 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.37.x (2023-05) - planned',
-        releasedate: 'May 25th, 2023',
-        releasecandidatedate:'April 27th, 2023',
-        technologiesin:'May 4th, 2023',
-        releaseanouncement:'May 11th, 2023',
+        name: 'Theia 1.40.x (2023-08) - planned',
+        releasedate: 'August 31st, 2023',
+        releasecandidatedate:'July 27th, 2023',
+        technologiesin:'September 7th, 2023',
+        releaseanouncement:'September 14th, 2023',
         announcementurl: '',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.org/glsp/',
-                version: 'TBD',
-                modules: []
+                version: 'tbd',
+                modules: [
+                    {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
+                ]
             },
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.org/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: 'tbd',
+                modules: [
+                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr03'}
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
                 url: 'https://www.eclipse.org/sprotty/',
-                version: 'TBD',
+                version: 'tbd',
                 modules: []
             },
             {
                 title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
-                version: 'TBD',
+                version: 'tbd',
                 modules: []
             },
             {
                 title: 'Langium',
                 url: 'https://langium.org/',
-                version: 'TBD',
+                version: 'tbd',
                 modules: []
+            },
+            {
+                title: 'Theia Trace Extension',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'tbd',
+                modules: [
+                    {modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer'},
+                    {modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base'},
+                    {modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components'}
+                ]
+            }
+        ]
+    },
+    {
+        name: 'Theia 1.37.x (2023-05) - published',
+        releasedate: 'May 25th, 2023',
+        releasecandidatedate:'April 27th, 2023',
+        technologiesin:'June 1st, 2023',
+        releaseanouncement:'June 12th, 2023',
+        announcementurl: 'https://eclipsesource.com/blogs/2023/06/12/the-eclipse-theia-community-release-2023-05/',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.org/glsp/',
+                version: '1.0.0-theia1.34.0',
+                modules: [
+                    {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
+                ]
+            },
+            {
+                title: 'Eclipse EMF.cloud',
+                url: 'https://www.eclipse.org/emfcloud/',
+                version: '0.8.0-theia-cr03',
+                modules: [
+                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03'},
+                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr03'}  
+                ]
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.org/sprotty/',
+                version: '0.13.0',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: '0.0.98',
+                modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: '1.2.0',
+                modules: []
+            },
+            {
+                title: 'Theia Trace Extension',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'since 0.2.0-next.20230613130240.a37bbf1.0',
+                modules: [
+                    {modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer'},
+                    {modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base'},
+                    {modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components'}
+                ]
             }
         ]
     },
