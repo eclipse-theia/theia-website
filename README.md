@@ -34,4 +34,4 @@ The website is automatically build at and deployed to netlify.
 ## Trademark
 
 "Theia" is a trademark of the Eclipse Foundation
-https://www.eclipse.org/theia
+https://www.eclipse.dev/theia
