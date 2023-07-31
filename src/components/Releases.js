@@ -82,7 +82,7 @@ const communityReleases = [
         frameworks: [
             {
                 title: 'Eclipse GLSP',
-                url: 'https://www.eclipse.org/glsp/',
+                url: 'https://www.eclipse.dev/glsp/',
                 version: 'tbd',
                 modules: [
                     {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
@@ -90,7 +90,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse EMF.cloud',
-                url: 'https://www.eclipse.org/emfcloud/',
+                url: 'https://www.eclipse.dev/emfcloud/',
                 version: 'tbd',
                 modules: [
                     {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
@@ -102,7 +102,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse Sprotty',
-                url: 'https://www.eclipse.org/sprotty/',
+                url: 'https://www.eclipse.dev/sprotty/',
                 version: 'tbd',
                 modules: []
             },
@@ -140,7 +140,7 @@ const communityReleases = [
         frameworks: [
             {
                 title: 'Eclipse GLSP',
-                url: 'https://www.eclipse.org/glsp/',
+                url: 'https://www.eclipse.dev/glsp/',
                 version: '1.0.0-theia1.34.0',
                 modules: [
                     {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
@@ -148,7 +148,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse EMF.cloud',
-                url: 'https://www.eclipse.org/emfcloud/',
+                url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr03',
                 modules: [
                     {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
@@ -160,7 +160,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse Sprotty',
-                url: 'https://www.eclipse.org/sprotty/',
+                url: 'https://www.eclipse.dev/sprotty/',
                 version: '0.13.0',
                 modules: []
             },
@@ -198,7 +198,7 @@ const communityReleases = [
         frameworks: [
             {
                 title: 'Eclipse GLSP',
-                url: 'https://www.eclipse.org/glsp/',
+                url: 'https://www.eclipse.dev/glsp/',
                 version: '1.0.0-theia1.34.0',
                 modules: [
                     {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
@@ -206,7 +206,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse EMF.cloud',
-                url: 'https://www.eclipse.org/emfcloud/',
+                url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr02',
                 modules: [
                     {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr02'},
@@ -218,7 +218,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse Sprotty',
-                url: 'https://www.eclipse.org/sprotty/',
+                url: 'https://www.eclipse.dev/sprotty/',
                 version: '0.13.0',
                 modules: []
             },
@@ -249,7 +249,7 @@ const communityReleases = [
         frameworks: [
             {
                 title: 'Eclipse GLSP',
-                url: 'https://www.eclipse.org/glsp/',
+                url: 'https://www.eclipse.dev/glsp/',
                 version: '1.0.0-theia1.27.0',
                 modules: [
                     {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.27.0'}
@@ -257,7 +257,7 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse EMF.cloud',
-                url: 'https://www.eclipse.org/emfcloud/',
+                url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr01',
                 modules: [
                     {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr01'},
@@ -269,14 +269,14 @@ const communityReleases = [
             },
             {
                 title: 'Eclipse Sprotty',
-                url: 'https://www.eclipse.org/sprotty/',
+                url: 'https://www.eclipse.dev/sprotty/',
                 version: '0.12.0',
                 modules: [
                     {modulename: 'sprotty-theia', url: 'https://www.npmjs.com/package/sprotty-theia/v/0.12.0'}
                 ]
             },
             {
-                title: 'Eclipse CDT.cloud Debug Adapter',
+                title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
                 version: '0.0.93',
                 modules: [

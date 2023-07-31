@@ -92,13 +92,13 @@
          alt: "Mbed Studio by Arm"
      },
      {
-         href: "https://cdt-cloud.io/",
+         href: "https://eclipse.dev/cdt-cloud/",
          src: CDTCloud,
          thumb: CDTCloudMin,
-         alt: "CDT.cloud Blueprint"
+         alt: "CDT Cloud Blueprint"
      },
      {
-         href: "https://www.eclipse.org/emfcloud/#coffeeeditoroverview",
+         href: "https://www.eclipse.dev/emfcloud/#coffeeeditoroverview",
          src: CoffeeEditor,
          thumb: CoffeeEditorMin,
          alt: "Coffee Editor Example by EclipseSource"
