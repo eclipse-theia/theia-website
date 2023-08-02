@@ -80,7 +80,7 @@ Often such backend application contributions also provide methods that can be in
 Examples are database connections, REST services, etc.
 
 In addition to initializing backend services as early as the backend is started, backend application contributions can also configure and extend the HTTP server used by the Theia backend.
-Therefore the `BackendApplicationContribution` interface provides the three methods `configure(app: express.Application)`, `onStart(app: express.Application)`, and `onStop(app: express.Application)`.
+Therefore, the `BackendApplicationContribution` interface provides the three methods `configure(app: express.Application)`, `onStart(app: express.Application)`, and `onStop(app: express.Application)`.
 Thus, the HTTP server can be configured with custom settings and even extended with additional endpoints that need to be available for the respective Theia application.
 
 An example for configuring an additional endpoint named `/myendpoint` is given below.

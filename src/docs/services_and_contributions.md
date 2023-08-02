@@ -6,9 +6,9 @@ title: Services and Contributions
 
 In this section we describe how [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions) can use services provided by the platform and by other extensions. Furthermore, we describe how extensions can contribute to the Theia workbench via contribution points.
 
-A **service** is an object that provides functionality to it's consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
+A **service** is an object that provides functionality to its consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
 
-**Contribution points** define hooks, which allow to extend something. Contribution points are defined by an interface that the contributor is expected to implement, e.g. a `CommandContribution`. The extension defining the contribution point will then pick up the contribution, e.g. adding the contributed command to the Theia workbench.
+**Contribution points** define hooks, which allow extending something. Contribution points are defined by an interface that the contributor is expected to implement, e.g. a `CommandContribution`. The extension defining the contribution point will then pick up the contribution, e.g. adding the contributed command to the Theia workbench.
 
 Contribution points, like services, can be contributed to and defined by any extension. The Theia platform defines a set of default contribution points, e.g. to add commands or menus to the Theia workbench. However, you can also define your own ones.
 
@@ -22,7 +22,7 @@ In the following sections, we provide a quick overview of dependency injection, 
 
 Theia uses the DI framework [InversifyJS](http://inversify.io/) to wire ups the difference services and contributions points.
 
-Dependency injection decouples the consumers of services -- i.e. the dependencies of those consumers -- from the actual creation and retrieval of those services. As an example, if you want to use a service, you neither have to instantiate it, nor do you need to manually retrieve it from somewhere. Instead, the dependency injection container injects the services on creation of your component. The dependency injection container resolves the dependency for you and, if necessary, even instantiates it on the fly. With that, the consumer of services doesn’t need to worry where they come from and you can easily exchange the actual implementations of services later on without having to change the consumers. The dependency injection container works based on some configuration you provide on startup through so-called container modules.
+Dependency injection decouples the consumers of services -- i.e. the dependencies of those consumers -- from the actual creation and retrieval of those services. As an example, if you want to use a service, you neither have to instantiate it, nor do you need to manually retrieve it from somewhere. Instead, the dependency injection container injects the services on creation of your component. The dependency injection container resolves the dependency for you and, if necessary, even instantiates it on the fly. With that, the consumer of services doesn’t need to worry where they come from. You can easily exchange the actual implementations of services later on without having to change the consumers. The dependency injection container works based on some configuration you provide on startup through so-called container modules.
 
 We will provide examples on how to use dependency injection in the sections “Services” and “Contributing to contribution points” below.
 
@@ -40,11 +40,11 @@ Services, or more generically, dependencies can be injected as fields, in the co
 ```typescript
 // Injection in the constructor.
 constructor(@inject(MessageService) private readonly messageService: MessageService) { }
- 
+
 // Injection as a field.
 @inject(MessageService)
 protected readonly messageService!: MessageService;
- 
+
 // Injection in an initialization function (will be called after the constructor and after injecting fields.
 @postConstruct()
 protected async init(@inject(MessageService) private readonly messageService: MessageService) { }
@@ -62,6 +62,7 @@ export class MyContribution implements SomeContributionInterface
 Contribution Points in Theia define an interface to be implemented, e.g. `CommandContribution`. A contributing extension must provide an implementation of this interface and mark it with `@injectable`, e.g.:
 
 **mycommand-contribution.ts**
+
 ```typescript
 @injectable()
 export class MyCommandContribution implements CommandContribution
@@ -70,6 +71,7 @@ export class MyCommandContribution implements CommandContribution
 Additionally, the contribution must be bound in the DI container, so that the contribution point provider can pick up our contribution, more precisely get it injected. The binding is done in the container module of an extension. It binds the implementation to the contribution interface, or to be technically correct, to the Symbol representing the interface (see example below).
 
 **helloworld-frontend-module.ts**
+
 ```typescript
 export default new ContainerModule(bind => {
    // add your contribution bindings here
@@ -112,9 +114,9 @@ export const messagingModule = new ContainerModule(bind => {
     bindContributionProvider(bind, ConnectionHandler)
 });
 ```
+
 The last line will bind a ContributionProvider to one that contains all
 ConnectionHandler bound instances.
-
 
 It is used as such:
 

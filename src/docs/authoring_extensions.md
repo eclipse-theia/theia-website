@@ -2,13 +2,13 @@
 title: Authoring an Extension
 ---
 
-#  Authoring Theia Extensions
+# Authoring Theia Extensions
 
 As an example, we are going to add a menu item _Say hello_ that displays a notification "Hello world!". This article is guiding you through all the necessary steps.
 
 ## Theia’s Architecture
 
-A Theia app is composed of so called _extensions_. An extension provides a set of widgets, commands, handlers, etc. for a specific functionality. Theia itself ships a number of extensions, e.g. for editors, terminals, the project view etc. Each extension resides in its own npm package.
+A Theia app is composed of so-called _extensions_. An extension provides a set of widgets, commands, handlers, etc. for a specific functionality. Theia itself ships a number of extensions, e.g. for editors, terminals, the project view etc. Each extension resides in its own npm package.
 
 Theia defines a plethora of contribution interfaces that allow extensions to add their behaviour to various aspects of the application. Just search for interfaces with the name `*Contribution` to get an idea. An extension implements the contribution interfaces belonging to the functionality it wants to deliver. In this example, we are going to implement a `CommandContribution` and a `MenuContribution`. Other ways for extensions to interact with a Theia application are via one of the various _services_ or _managers_.
 
@@ -203,7 +203,7 @@ cd browser-app
 yarn start <path to workspace>
 ```
 
-and point your browser to http://localhost:3000. Then choose _Edit > Say Hello_ from the menu: A message "Hello World!" should pop up.
+Point your browser to <http://localhost:3000>. Then choose _Edit > Say Hello_ from the menu: A message "Hello World!" should pop up.
 
 ## Executing the Extension In Electron
 
@@ -229,4 +229,4 @@ yarn start <path to workspace>
 
 ## Deploying the Extension
 
-If you want to make your extension publicly available, we recommend to publish it to npm. This can be achieved by calling `yarn publish` from the extension package's directory. Of course you need a valid account for that.
+If you want to make your extension publicly available, we recommend publishing it to npm. This can be achieved by calling `yarn publish` from the extension package's directory. Of course, you need a valid account for that.

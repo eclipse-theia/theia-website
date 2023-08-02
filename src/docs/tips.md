@@ -40,6 +40,6 @@ if (vscode.env.appName === MY_THEIA_APP_NAME) {
 }
 ```
 
-An example of this technique can be seen seen here:
+An example of this technique can be seen here:
 
-https://github.com/thegecko/vscode-theia-extension
+<https://github.com/thegecko/vscode-theia-extension>

@@ -4,7 +4,7 @@ title: Widgets
 
 # Widgets
 
-A widget is a part displaying content within the Theia workbench, e.g. a view or an editor. Examples for existing widgets in Theia are the file explorer, the code editor or the problems view. By contributing custom widgets, you can place your own custom UI in a Theia-based application. Your custom UI will behave the same as other widgets in terms of window layouting including the title tab, resizing, dragging and opening/closing (see screenshot below). 
+A widget is a part displaying content within the Theia workbench, e.g. a view or an editor. Examples for existing widgets in Theia are the file explorer, the code editor or the problems view. By contributing custom widgets, you can place your own custom UI in a Theia-based application. Your custom UI will behave the same as other widgets in terms of window layouts including the title tab, resizing, dragging and opening/closing (see screenshot below).
 
 <img src="/widget-example.gif" alt="Widget Example" style="max-width: 525px">
 
@@ -14,7 +14,7 @@ In a nutshell, a widget is a frame to embed some custom (HTML-based) UI into the
 
 <img src="/widget-architecture.png" alt="Widget Architecture" style="max-width: 525px">
 
-In this article we will describe how to contribute a custom widget to the Theia workbench. We will focus on a simple view (in contrast to an editor) and use React to implement the UI. 
+In this article we will describe how to contribute a custom widget to the Theia workbench. We will focus on a simple view (in contrast to an editor) and use React to implement the UI.
 
 If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/).
 
@@ -62,6 +62,7 @@ In the following code examples, we use `ReactWidget` as a base class. As shown b
 * `iconClass`: The icon shown in the tab when the widget is opened.
 
 **mywidget-widget.ts**
+
 ```typescript
 @injectable()
 export class MyWidget extends ReactWidget {
@@ -80,9 +81,10 @@ protected async init(): Promise < void> {
 }
 ```
 
-When using the respective base class, the implementation of a widget can be really minimal and focussed on the custom UI part. In our example, we just implement the render function that will create our actual custom UI (using JSX/React). The example UI contains a button that will trigger the `displayMessage` function below.
+When using the respective base class, the implementation of a widget can be really minimal and focused on the custom UI part. In our example, we just implement the render function that will create our actual custom UI (using JSX/React). The example UI contains a button that will trigger the `displayMessage` function below.
 
 **mywidget-widget.ts**
+
 ```typescript
 protected render(): React.ReactNode {
     const header = `This is a sample widget which simply calls the messageService in order to display an info message to end users.`;
@@ -94,7 +96,7 @@ protected render(): React.ReactNode {
 
 @inject(MessageService)
 protected readonly messageService!: MessageService;
-  
+
 protected displayMessage(): void {
     this.messageService.info('Congratulations: My Widget Successfully Created!');
 }
@@ -113,6 +115,7 @@ To make a custom widget instantiatable by the widget manager, you need to regist
 In our example (see code below), we first bind our widget `MyWidget` to itself so that we can instantiate it in our factory using dependency injection. This is not necessarily required for all widgets if they do not use dependency injection inside. We are using dependency injection in our example above to retrieve the message service and for the @postConstruct event. Second, we bind a `WidgetFactory` defining the ID of the widget and the `createWidget` function. This function allows you to control the widget creation, e.g. to pass specific parameters to a custom widget if required. In our simple example, we just use the dependency injection context to instantiate our widget.
 
 **mywidget-frontend-module.ts**
+
 ```typescript
 bind(MyWidget).toSelf();
 bind(WidgetFactory).toDynamicValue(ctx => ({
@@ -134,6 +137,7 @@ Widget contributions allow you to wire a widget into the Theia workbench, more p
 Besides specifying these base parameters, you need to register the command to open the view. The base class implements the respective command contribution interface, so you just need to implement `registerCommands` to do so (see below).
 
 **mywidget-contribution.ts**
+
 ```typescript
 export const MyWidgetCommand: Command = { id: 'widget:command' };
 export class MyWidgetContribution extends AbstractViewContribution<MyWidget> {

@@ -2,14 +2,13 @@
 title: Authoring Plug-ins
 ---
 
-#  Authoring Theia Plug-ins
+# Authoring Theia Plug-ins
 
 This documentation is deprecated and needs to be updated. We currently recommend using VS Code extensions or Theia extensions instead of Theia Plugins. See the [extension overview](https://theia-ide.org/docs/extensions/) for more details.
 <!--
 Let's create our first Theia plug-in. As an example, we are going to register a command _Hello World_ that displays a notification "Hello world!". This article is guiding you through all the necessary steps.
 
 ## Theia’s Architecture
-
 
 ### Plug-in vs Extension
 
@@ -23,14 +22,12 @@ pros:
  + Reduce compilation time
  + Self-contained. A plug-in can be packaged into a single file and loaded directly after. No extra need to grab dependencies from npmjs, etc.
  + Simple API
-   + no need to learn inversify or any framework.
-   + single entry point, with code completion to see possible calls with associated JsDoc.
+   + No need to learn inversify or any framework.
+   + Single entry point, with code completion to see possible calls with associated JsDoc.
  + Upgrade easily from one theia version to another version as API is backward compliant.
 
 cons:
  - Need to stick to this pre-defined API. It's not possible to tweak something if contribution point is not provided through API. Note that current API can be extended to support more stuff ;-)
-
-
 
 ### Design
 A Theia app is composed of a core providing a set of widgets, commands, handlers, etc. for a specific functionality.
@@ -41,7 +38,7 @@ In Theia, a plug-in has access to the API through an object named `theia` which 
 [More details on API](https://github.com/eclipse-theia/theia/blob/master/packages/plugin/README.md).
 
 There are two natures of plug-ins:
- - Backend plug-in. If you're familiar with VS Code extensions, it's very close. The plug-in's code is running in its own process on the server side. API is called and it's the API that will send some actions on user's browser/UI to register new commands, etc. All the callbacks are executed on the server side on a dedicated process.
+ - Backend plug-in. If you're familiar with VS Code extensions, it's very close. The plug-in's code is running in its own process on the server side. The API is called and it will send some actions on user's browser/UI to register new commands, etc. All the callbacks are executed on the server side on a dedicated process.
  - Frontend plug-in. In that case, callbacks are executed in a worker thread on the UI/browser. These plug-ins are only authorized to use "browser compliant" modules. For example opening or writing to a file is impossible as all the code of the plug-in is running on the browser side. But this approach is helpful if you really want to have some stuff on the client side to avoid some network operations.
 
 ## Prerequisites
@@ -70,12 +67,11 @@ In the previous commands:
 - `npm install -g yo @theia/generator-plugin` command install globally the Theia generator.
 - `yo @theia/plugin` is calling the yeoman generator asking to use for templating the Theia's plug-in generator.
 
-
-here is animated screenshot of the generator running.
+Here is an animated screenshot of the generator running.
 
 <img src="/yeoman-plugin.gif" class="doc-image" alt="Yeoman plugin output">
 
-Pick up default values for each questions.
+Pick up default values for each question.
 
 At this step, in `theia-hello-world-plugin` folder there is a plug-in that is already built with associated source code.
 
@@ -119,10 +115,9 @@ There are three important parts in this `package.json` file
 
 2. Second, the `engines` section contains `theiaPlugin`. It allows to flag this node package as being runnable on top of a specific version of Theia.
 
-3. Third, the `theiaPlugin` section contains the entry-point of the plug-in. For a backend plug-in, it is `backend` key with the value being the path to the javascript path of the plug-in.
+3. Third, the `theiaPlugin` section contains the entry-point of the plug-in. For a backend plug-in, it is `backend` key with the value being the path to the JavaScript path of the plug-in.
 
 Let's have a look to the single source code file that has been generated. The path of this file is `src/theia-hello-world-plugin-backend-plugin.ts`. It contains TypeScript code.
-
 
 ```typescript
 import * as theia from '@theia/plugin';
@@ -179,18 +174,16 @@ Select it and you'll see a notification `Hello World` on the screen.
 
 <img class="doc-image" src="/hello-world-notification.png" alt="Hello World notification" style="max-width: 600px">
 
-
 ## Developing the Plug-in
 
 As previously said, Theia API is provided through TypeScript, then there is code completion and JsDoc available when developing.
 
-
 ## Updating the Plug-in
 
 Let say you want to change the information message from `Hello World` to `Hello Theia`. Let's go into the `Hosted Plugin: running` instance (status bar), edit the TypeScript file `src/theia-hello-world-plugin-backend-plugin.ts` and perform the following change.
-Replace `theia.window.showInformationMessage('Hello World!');` by  `theia.window.showInformationMessage('Hello Theia!');`
+Replace `theia.window.showInformationMessage('Hello World!');` by `theia.window.showInformationMessage('Hello Theia!');`
 
-Run the command `yarn build` from root folder of the plug-in so source code is recompiled.
+Run the command `yarn build` from root folder of the plug-in for source code to be recompiled.
 Then you'll only have to refresh the tab of the `Development Host` instance, the plugin will be reloaded again.
 
 Note: you may use watch mode as well.

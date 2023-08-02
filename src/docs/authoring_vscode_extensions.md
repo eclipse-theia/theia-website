@@ -101,7 +101,7 @@ In the following, we'll provide more details on each of those options.
 For pre-installing a certain set of VS Code extensions in your Theia application, all you need to do is to drop them, either as a `vsix` file or directly as a folder into the *plugins location* (see [prerequisites](#prerequisites-for-running-vs-code-extensions-in-theia)).
 On start-up of a user session, Theia will load all VS Code extensions from that location automatically.
 
-A more systematic approach, however, is to publish VS Code extensions, to [OpenVSX](https://open-vsx.org), Github Releases, or any other accessible location, and download them automatically at build time of the Theia application with the Theia CLI.
+A more systematic approach, however, is to publish VS Code extensions, to [OpenVSX](https://open-vsx.org), GitHub Releases, or any other accessible location, and download them automatically at build time of the Theia application with the Theia CLI.
 See [publishing extensions to OpenVSX](https://github.com/eclipse/openvsx/wiki/Publishing-Extensions) for more details.
 This approach avoids having to manually distribute VS Code extensions or adding them in the form of a build artifact to your git repository.
 

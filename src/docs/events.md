@@ -9,6 +9,7 @@ Events in Theia can be confusing, hopefully we can clarify things.
 Let's consider this code:
 
 (From logger-watcher.ts)
+
 ``` typescript
 @injectable()
 export class LoggerWatcher {
@@ -54,12 +55,13 @@ do so we do this:
 ```
 
 What this actually returns is a function that will register an event
-handler so you just pass it your event handler function and it will
+handler. Passing it your event handler function will
 register it so that it's called when the event fires.
 
-so you can call:
+So you can call:
 
 (From logger.ts)
+
 ``` typescript
  /* Update the root logger log level if it changes in the backend. */
         loggerWatcher.onLogLevelChanged(event => {
@@ -86,6 +88,6 @@ are called.
 
 So if you need to trigger events in theia:
 
- - Create an emitter
- - Register events with the emitter.event function
- - Fire events with emitter.fire(event)
+- Create an emitter
+- Register events with the emitter.event function
+- Fire events with emitter.fire(event)

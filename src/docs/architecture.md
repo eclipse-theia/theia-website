@@ -37,20 +37,20 @@ The startup of the backend application will first load the DI modules of all
 contributing extensions before it obtains an instance of `BackendApplication`
 and calls `start(portNumber)` on it.
 
-By default the backend's express server also serves the code for the frontend.
+By default, the backend's express server also serves the code for the frontend.
 
 ## Separation By Platform
 
 In an extension's top folder we have an additional layer of folders to separate
 by platform:
 
- - The `common` folder contains code that doesn't depend on any runtime.
- - The `browser` folder contains code requiring a modern browser as a platform
+- The `common` folder contains code that doesn't depend on any runtime.
+- The `browser` folder contains code requiring a modern browser as a platform
    (DOM API).
- - The `electron-browser` folder contains frontend code that requires DOM API
+- The `electron-browser` folder contains frontend code that requires DOM API
    as well as Electron renderer-process specific APIs.
- - The `node` folder contains (backend) code requiring Node.js as a platform.
- - The `node-electron` folder contains (backend) code specific for Electron.
+- The `node` folder contains (backend) code requiring Node.js as a platform.
+- The `node-electron` folder contains (backend) code specific for Electron.
 
 ## See also
 

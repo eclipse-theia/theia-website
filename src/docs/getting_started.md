@@ -21,4 +21,4 @@ The first step is to define a custom product based on Theia. Please check out th
 
 ## Need Help?
 
-Theia is an open community and we are glad to help you. You can ask questions using our [public community forum](https://community.theia-ide.org/), you can [report bugs and feature requests](https://github.com/eclipse-theia/theia/issues/new/choose) and you can get [professional support, consulting and implementation services](https://theia-ide.org/support/) for building products based on Theia.
+Theia is an open community, and we are glad to help you. You can ask questions using our [public community forum](https://community.theia-ide.org/), you can [report bugs and feature requests](https://github.com/eclipse-theia/theia/issues/new/choose), and you can get [professional support, consulting and implementation services](https://theia-ide.org/support/) for building products based on Theia.
