@@ -80,6 +80,16 @@ const categories = [
         title: 'Release announcements',
         resources: [
             {
+                title: 'Eclipse Theia 1.40 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2023/08/01/eclipse-theia-1-40-release-news-and-noteworthy/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Theia 1.39 Release: News and Noteworthy',
+                url: 'https://eclipsesource.com/blogs/2023/07/06/eclipse-theia-1-39-release-news-and-noteworthy/',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Theia 1.38 Release: News and Noteworthy',
                 url: 'https://eclipsesource.com/blogs/2023/06/05/eclipse-theia-1-38-release-news-and-noteworthy/',
                 type: 'article'
