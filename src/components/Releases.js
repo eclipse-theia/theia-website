@@ -91,7 +91,7 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'tbd',
+                version: '0.8.0-theia-cr03',
                 modules: [
                     {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
                     {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03'},
