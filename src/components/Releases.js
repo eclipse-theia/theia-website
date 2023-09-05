@@ -103,7 +103,7 @@ const communityReleases = [
             {
                 title: 'Eclipse Sprotty',
                 url: 'https://www.eclipse.dev/sprotty/',
-                version: 'tbd',
+                version: '0.14.0',
                 modules: []
             },
             {
@@ -115,7 +115,7 @@ const communityReleases = [
             {
                 title: 'Langium',
                 url: 'https://langium.org/',
-                version: 'tbd',
+                version: '2.0.0',
                 modules: []
             },
             {
