@@ -310,6 +310,11 @@ const categories = [
         title: 'Technical topics about Eclipse Theia',
         resources: [
             {
+                title: 'Eclipse Theia vs. VS Code OSS',
+                url: 'https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/',
+                type: 'article'
+            },
+            {
                 title: 'VS Code extensions vs. Theia extensions',
                 url: 'https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/',
                 type: 'article'
