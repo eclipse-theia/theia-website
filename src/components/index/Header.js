@@ -100,12 +100,12 @@ const Header = () => (
                         <img className="banner__image" src={TheiaConLogo}></img>
                     </a>
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        The Call for Presentations is now OPEN for the <a href="https://events.eclipse.org/2023/theiacon/">2023 TheiaCon Event</a>!
-                        Submit your proposal today to be a speaker at the largest Theia event of the year!
+                        <a href="https://events.eclipse.org/2023/theiacon/">TheiaCon 2023</a> is approaching! | VIRTUAL EVENT | November 15 - 16, 2023
+                        Get registered the largest Theia event of the year!
                     </h1>
                     <div className="header__buttons">
-                         <a className="btn btn--cta" href="https://docs.google.com/forms/d/e/1FAIpQLScj5BE1K_Yo6spy7eZKUEePluqFuF8QgLMnj57zmyBhH8-L-g/viewform" rel="noopener">
-                            Submit Proposal
+                         <a className="btn btn--cta" href="https://events.eclipse.org/2023/theiacon/" rel="noopener">
+                            Get registered
                         </a>
                     </div>
                 </div>
