@@ -122,7 +122,8 @@ const supporters = [
         title: 'TypeFox',
         link: 'https://typefox.io',
         support: 'https://www.typefox.io/cloud-and-desktop-ides/',
-        training: 'https://www.typefox.io/trainings/'
+        training: 'https://www.typefox.io/cloud-and-desktop-ides/',
+        sponsored: 'https://www.typefox.io/cloud-and-desktop-ides/'
     }
 ]
 
