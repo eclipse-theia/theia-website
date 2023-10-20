@@ -12,6 +12,8 @@ The easiest is to use Gitpod, which has everything readily setup to start workin
 
 ### Work locally
 
+Building locally requires node 14.x. Alternatively, you can use `npm i --legacy-peer-deps` to ignore conflicting peer dependencies.
+
 ```bash
 npm install && npm run start
 ```
