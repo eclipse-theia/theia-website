@@ -12,6 +12,8 @@ The easiest is to use Gitpod, which has everything readily setup to start workin
 
 ### Work locally
 
+Building locally requires node 14.x.
+
 ```bash
 npm install && npm run start
 ```
