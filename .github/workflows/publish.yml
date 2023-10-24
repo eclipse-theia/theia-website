@@ -1,0 +1,67 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: ["master"]
+  pull_request: # this is just for testing
+  workflow_dispatch:
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "publish"
+
+env:
+  WEBSITE_SOURCES_DIR: sources
+  WEBSITE_CONTENT_DIR: published
+  PREVIEW_FOLDER: ws-previews
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout website sources
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ env.WEBSITE_SOURCES_DIR }}
+
+      - name: Checkout content website
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ env.WEBSITE_CONTENT_DIR }}
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Build website
+        working-directory: ${{ env.WEBSITE_SOURCES_DIR }}
+        run: npm install && npm run build
+
+      - name: Prune current content
+        working-directory: ${{ env.WEBSITE_CONTENT_DIR }}
+        run: git rm -rf * && [ -f ${{ env.PREVIEW_FOLDER }} ] && git checkout HEAD -- ${{ env.PREVIEW_FOLDER }}
+
+      - name: Copy content of website
+        working-directory: ${{ env.WEBSITE_SOURCES_DIR }}
+        run: cp -a public/. ../${{ env.WEBSITE_CONTENT_DIR }}
+
+      - name: Check for content changes
+        id: git-check
+        working-directory: ${{ env.WEBSITE_CONTENT_DIR }}
+        run: |
+          git add -A
+          echo "modified=$(if git diff --cached --exit-code --quiet; then echo 'false'; else echo 'true'; fi)" >> $GITHUB_OUTPUT
+
+      - name: Push content changes
+        if: steps.git-check.outputs.modified == 'true' && github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ${{ env.WEBSITE_CONTENT_DIR }}

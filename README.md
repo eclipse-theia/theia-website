@@ -28,6 +28,10 @@ npm run serve
 ## CI
 
 The website is automatically built at and deployed to Netlify.
+A preview of each PR is deployed to Netlify.
+
+In addition, every commit on `master` is built and published to branch `gh-pages`, which will soon replace the deployment of Netlify.
+For more information, see [`publish.yml`](.github/workflows/publish.yml).
 
 ## License
 
