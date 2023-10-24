@@ -130,7 +130,7 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.dev/glsp/',
-                version: '2.0.0 (ETA September 15th, 20223)',
+                version: '2.0.0',
                 modules: [
                     {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.0.0'}
                 ]
