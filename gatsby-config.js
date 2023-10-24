@@ -1,4 +1,5 @@
 module.exports = {
+    pathPrefix: process.env.PATH_PREFIX,
     siteMetadata: {
         title: 'Theia - Cloud and Desktop IDE Platform',
         description: "Theia is an open-source cloud &nbsp; desktop IDE framework implemented in TypeScript."
