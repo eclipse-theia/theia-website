@@ -38,7 +38,7 @@ const StyledPromo = styled.div`
     }
 
     &:not(:last-child) {
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
     }
 
     .promo__text {

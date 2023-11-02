@@ -19,13 +19,13 @@
 import Layout from '../layouts/layout'
 import Header from '../components/index/Header'
 import Features from '../components/index/Features'
-import Banner from '../components/index/Banner'
-import Promos from '../components/index/Promos'
 import Footer from '../components/Footer'
 import ContributorsAndAdopters from '../components/index/ContributorsAndAdopters'
 import Products from '../components/index/Products'
 import GettingStarted from '../components/index/GettingStarted'
 import IntrosToTheia from '../components/index/IntrosToTheia'
+import TheiaIDEFeatures from '../components/index/TheiaIDEFeatures'
+import TheiaIDEHeader from '../components/index/TheiaIDEHeader'
 
 
 export default ({ pageContext }) => {
@@ -38,8 +38,8 @@ export default ({ pageContext }) => {
                 <ContributorsAndAdopters adopters={pageContext.adopters}/>
                 <GettingStarted/>
                 <IntrosToTheia />
-                <Banner />
-                <Promos />
+                <TheiaIDEHeader />
+                <TheiaIDEFeatures />
             </main>
             <Footer background={true} />
         </Layout>

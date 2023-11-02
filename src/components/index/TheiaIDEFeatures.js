@@ -16,48 +16,40 @@
 
 import React from 'react'
 
-import styled from '@emotion/styled'
 import CompletionVideo from '../../resources/completion.mp4'
 import TermianlVideo from '../../resources/terminal.mp4'
 import LayoutVideo from '../../resources/layout.mp4'
 import Promo from './Promo'
 
-const StyledPromos = styled.div`
-    .promos {
-        margin: 15rem 0;
-    }
-`
-
-const promos = [
+const features = [
     {
-        title: "Supports JavaScript, Java, Python and many more",
+        title: "Language Support",
         para: <p>
-            Built on the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer">Language Server Protocol</a>,
-            Theia benefits from a growing ecosystem of <strong>over 60 available language servers</strong>, delivering intelligent editing support
-            for all major programming languages.
+            Experience world-class code editing support in Theia IDE, integrated with the Language Server Protocol (LSP). This allows you to develop in almost any programming language, including Python, Java, JavaScript, C++, and more—all within one versatile environment.
         </p>,
         videoSrc: CompletionVideo
     },
     {
-        title: "Integrated Terminal",
-        para: <p>Theia integrates a full-featured terminal that reconnects on browser reload, keeping the full history.</p>,
+        title: "Modern UX",
+        para: <p>Elevate your development workflow with Theia IDE's flexible workbench layout and user experience. Featuring a dynamic toolbar, detachable views, and efficient tab management, our interface is designed to adapt to your needs, streamlining your projects for optimal productivity.</p>,
         videoSrc: TermianlVideo
     },
     {
-        title: "Flexible Layout",
-        para: <p>Theia's shell is composed of lightweight modular widgets that provide a solid foundation for draggable dock layouts.</p>,
+        title: "Extensible and Open",
+        para: <p>Unlock limitless possibilities with Theia IDE's seamless compatibility with the vast VS Code extension ecosystem. From robust linting tools to interactive notebook editors, customize your development experience like never before. Plus, enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Streamline your workflow, enrich your toolset, and code on your own terms.
+
+        </p>,
         videoSrc: LayoutVideo
     }
 ]
+ 
 
-const Promos = () => (
-    <StyledPromos>
+const TheiaIDEFeatures = () => (
         <section className="promos">
             <div className="row">
-                { promos.map((promo, i) => <Promo key={i} {...promo} />) }
+                { features.map((promo, i) => <Promo key={i} {...promo} />) }
             </div>
         </section>
-    </StyledPromos>
 )
 
-export default Promos
+export default TheiaIDEFeatures

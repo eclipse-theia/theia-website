@@ -109,8 +109,12 @@ const Header = () => (
                         </a>
                     </div>
                 </div>
+                <div className="header__buttons">
+                        <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">Theia Platform (you want to build a tool)</a>
+                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Theia IDE (you want to use an IDE)</a>
+                 </div>
                 <h1 className="heading-primary">
-                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
+                    The Eclipse Theia Platform
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
                         Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies.
@@ -126,14 +130,16 @@ const Header = () => (
                  </div>
                 </div>
                 <div className="header__banner">
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                       Happy Birthday! <a href="https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/">Eclipse Theia celebrates its 5th anniversary!</a>
-                    </h1>       
+                    <h2 style={{ fontSize: '2.1rem' }}>
+                    <a href="https://eclipsesource.com/blogs/2023/10/06/eclipse-theia-1-42-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.42 Release</a> and <a href="https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/">the latest Community Release (2023-08)</a>.
+                        <br/>
+                        Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
+                    </h2>
                 </div>
                 <div className="header__banner">
-                    <h1 style={{ fontSize: '2.2rem' }}>
+                    <h2 style={{ fontSize: '2.1rem' }}>
                         In case you missed TheiaCon 2022 (Nov 30th-Dec 1st), all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaRj46WedNTnAXLLHwuk3nro">here</a>!
-                    </h1>       
+                    </h2>       
                 </div>
         </header>
     </StyledHeader>
