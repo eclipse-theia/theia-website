@@ -15,11 +15,8 @@
  ********************************************************************************/
 
 import Background from '../../resources/background-image.png'
-import DocImage from '../DocImage'
 import Nav from '../Nav'
 import React from 'react'
-import TheiaLogoDark from '../../resources/theia-logo-dark.svg'
-import TheiaConLogo from '../../resources/theiacon-logo.svg'
 import { breakpoints } from '../../utils/variables'
 import styled from '@emotion/styled'
 
@@ -95,38 +92,16 @@ const Header = () => (
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
-                <div className="header__banner">
-                    <a href="https://events.eclipse.org/2023/theiacon/">
-                        <img className="banner__image" src={TheiaConLogo}></img>
-                    </a>
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                        <a href="https://events.eclipse.org/2023/theiacon/">TheiaCon 2023</a> is approaching! | VIRTUAL EVENT | November 15 - 16, 2023 | 
-                        Get registered for the largest Theia event of the year!
-                    </h1>
-                    <div className="header__buttons">
-                         <a className="btn btn--cta" href="https://events.eclipse.org/2023/theiacon/" rel="noopener">
-                            Get registered
-                        </a>
-                    </div>
-                </div>
-                <div className="header__buttons">
-                        <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">Theia Platform (you want to build a tool)</a>
-                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Theia IDE (you want to use an IDE)</a>
-                 </div>
                 <h1 className="heading-primary">
                     The Eclipse Theia Platform
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                        Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies.
-                        <br/>
-                        <a href="https://eclipsesource.com/blogs/2023/11/02/eclipse-theia-1-43-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.43 Release</a> and <a href="https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/">the latest Community Release (2023-08)</a>.
-                        <br/>
-                        Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
+                        An Open, Flexible and Extensible Cloud & Desktop IDE Platform Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
                 </h2>
                 <div className="header__buttons">
-                        <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
-                        <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on desktop &nbsp;&nbsp;&rarr;</a>
+                        <a className="btn" href="#gettingstarted" target="_blank" rel="noopener noreferrer">Get started with the Theia Platform</a>
+                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try Theia IDE online</a>
+                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="#theiaide" rel="noopener">Get Theia IDE for desktop</a>
                  </div>
                 </div>
                 <div className="header__banner">

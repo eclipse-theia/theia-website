@@ -4,16 +4,24 @@ title: Packaging Theia as a Desktop Product
 
 # Packaging Theia as a Desktop Product
 
-Eclipse Theia Blueprint is an example product used as a reference on how to build desktop IDE-like products based on the Eclipse Theia framework.
-Theia Blueprint assembles a selected subset of existing Theia features and extensions.
-We provide installers for Theia Blueprint to be downloaded (see links below).
-In the respective git repository you can also find the source code for Theia Blueprint and its installers.
+This guide provides an overview on how to extend and customize the Theia IDE to your own custom IDE or tool. In this scenario, the Eclipse Theia IDE is an example product used as a reference on how to build desktop IDE-like products based on the Eclipse Theia framework.
+The Theia IDE assembles a selected subset of existing Theia features and extensions.
+We provide installers for the Theia IDE to be downloaded (see links below).
+In the respective git repository you can also find the source code for the Theia IDE and its installers.
 This documentation will use these sources as a template. We will explain
-how to customize this template so that you can build your own custom Theia-based product including installers and packaging for installing the desktop-based version of your custom product on all major operating systems.
+how to customize this template so that you can build your own custom Theia-based product including installers and packaging for installing the desktop-based version of your custom product on all major operating systems. Please note that the technical name (e.g. in the source code) for the Theia IDE is "Theia Blueprint" to avoid confusion with the generic term "IDE".
+
+- [Building a product and installers](#building-a-product-and-installers)
+- [Signing](#signing)
+- [Adding/removing Features](#addingremoving-features)
+- [Updating Bundled VS Code Extensions](#updating-bundled-vs-code-extensions)
+- [Customizing Theia Extensions](#customizing-theia-extensions)
+- [Branding](#branding)
+- [Configure Publish and Update](#configure-publish-and-update)
 
 ## Building a product and installers
 
-The Theia Blueprint build uses [electron-builder](https://www.electron.build/) to package the product as a desktop application.
+The Theia IDE build uses [electron-builder](https://www.electron.build/) to package the product as a desktop application.
 
 The product can be built and packaged with [yarn](https://yarnpkg.com/).
 Note that you usually can only package the product for the operating system you execute the build on.
@@ -38,14 +46,18 @@ For more information on publishing also see section "Configure publish and updat
 ## Signing
 
 [Electron-builder](https://www.electron.build/) supports signing the packaged application on Windows and macOS.
-The current signing scripts for Theia Blueprint are located in `applications/electron/scripts`.
+The current signing scripts for the Theia IDE are located in `applications/electron/scripts`.
 The file `after-pack.js` is the current entry point for the configured signing via Eclipse infrastructure.
 
 However, as signing is highly dependent on your setup, see the [electron builder’s signing documentation](https://www.electron.build/code-signing) on how to properly set up your own signing.
 
+## Adding/Removing Features
+
+The Theia IDE is based on the Theia platform, which is a flexible and adaptable platform for build tools and IDEs. Therefore, you can adapt the feature set and general appearance of the Theia IDE to your custom requirements with almost no limits. The Theia platform provides two mechanism to add your custom extensions: VS Code extensions and Theia extensions. Please have a look at the [overview about Theia extension capabilities](docs/extensions/) for details. When assembling a product such as the Theia IDE, you can freely decide, which VS Code extensions and Theia extensions are part of it and thereby influence the feature set of your custom product. The following two sections describe how to modify which [VS Code Extensions](#updating-bundled-vs-code-extensions) and which [Theia extensions](#customizing-theia-extensions) are part of your product. Please also note that you can allow users of a Theia-based tool to [install VS Code extensions at runtime](/docs/user_install_vscode_extensions/).
+
 ## Updating Bundled VS Code Extensions
 
-All VS Code extensions that are already included in the product at start-up, are defined in `applications/electron/package.json`.
+All VS Code extensions that are already included in the product at start-up ("built-ins"), are defined in `applications/electron/package.json`.
 They are listed under the `theiaPlugins` property as key-value pairs.
 The keys can be freely chosen as long as they represent a valid folder name and are unique within the `theiaPlugins` property.
 We suggest using the extension’s unique identifier.
@@ -76,15 +88,15 @@ Like any other dependency, it will be installed via yarn.
 Similarly, removing an extension works by removing it from `dependencies`.
 For extensions already published on npm (or your private npm registry) this is all you need to do.
 
-An alternative approach is developing your extension inside Theia Blueprint’s mono repo.
+An alternative approach is developing your extension inside Theia IDE’s mono repo.
 The advantage of doing this is that you don’t need to publish the extension and can build the product with the local version of the extension.
-This is facilitated by the lerna build already configured in the Theia Blueprint’s repository.
+This is facilitated by the lerna build already configured in the Theia IDEs’s repository.
 It links the product and all extensions in the repository together during the build.
 
 The easiest way to create a new extension is to use the [official yeoman generator](https://www.npmjs.com/package/generator-theia-extension) for Theia extensions.
 Assuming you have [yeoman](https://yeoman.io/) globally installed on your system, simply create a new extension in the repository root with `yo theia-extension --standalone`.
-The `--standalone` flag is used to only create an extension but not a whole Theia application frame because it is already provided by the Theia Blueprint.
-After successfully generating the extension, add its folder name to the Theia Blueprint’s root `package.json` in the workspaces property.
+The `--standalone` flag is used to only create an extension but not a whole Theia application frame because it is already provided by the Theia IDE.
+After successfully generating the extension, add its folder name to the Theia IDEs’s root `package.json` in the workspaces property.
 After adding the extension to the dependencies in `applications/electron/package.json` as described above, the new extension will be part of the built product.
 
 ## Branding
@@ -114,7 +126,7 @@ They map as follows:
 ### Customizing the Welcome Page
 
 The Eclipse Theia welcome page can be customized by binding a custom `WidgetFactory` for Theia’s `GettingStartedWidget`.
-This is done with Theia Blueprint in the theia-blueprint-product extension.
+This is done with the Theia IDE in the theia-blueprint-product extension.
 The easiest way to customize the welcome page is to adapt the class `TheiaBlueprintGettingStartedWidget` in `theia-extensions/theia-blueprint-product/src/browser/theia-blueprint-getting-started-widget.tsx`.
 
 The widget is bound in `theia-extensions/theia-blueprint-product/src/browser/theia-blueprint-frontend-module.ts` like this:
@@ -132,7 +144,7 @@ To use another custom widget, remove this code and bind your widget correspondin
 ### Customizing the About Dialog
 
 The Eclipse Theia about dialog can be customized by binding a custom subclass of Theia’s `AboutDialog` class to `AboutDialog`.
-This is done with Theia Blueprint in the theia-blueprint-product extension.
+This is done with Theia IDE in the theia-blueprint-product extension.
 The easiest way to customize the about dialog is to adapt the class `TheiaBlueprintAboutDialog` in `theia-extensions/theia-blueprint-product/src/browser/theia-blueprint-about-dialog.tsx`.
 
 The widget is bound in `theia-extensions/theia-blueprint-product/src/browser/theia-blueprint-frontend-module.ts` like this:
@@ -145,7 +157,7 @@ To use another custom dialog widget, remove this code, extend Theia’s AboutDia
 
 ### Customizing the Preferences
 
-The default preferences directory in Eclipse Theia Blueprint is `.theia-blueprint` and is located as described in the [Preferences documentation](https://theia-ide.org/docs/preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
+The default preferences directory in Eclipse Theia IDE is `.theia-blueprint` and is located as described in the [Preferences documentation](https://theia-ide.org/docs/preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
 
 ### Customizing the Installer
 
@@ -158,7 +170,7 @@ The installer files’ base names are defined by the `productName` property in `
 
 #### Windows Installer
 
-As is typical for Windows applications, there is an installation wizard for the Windows version of Theia Blueprint.
+As is typical for Windows applications, there is an installation wizard for the Windows version of the Theia IDE.
 The installer is configured in the nsis section of the configuration file.
 Available customizations include settings such as:
 
@@ -174,7 +186,7 @@ This documentation also includes information about more advanced features such a
 
 ## Configure Publish and Update
 
-Theia Blueprint uses [electron-builder](https://www.electron.build/) to create and publish installers.
+The Theia IDE uses [electron-builder](https://www.electron.build/) to create and publish installers.
 It also uses [electron-updater](https://www.npmjs.com/package/electron-updater), developed by the electron-builder organization, to provide automatic updates of the installed application.
 
 There are various deployment targets which can be configured in the `applications/electron/package.json` and `applications/electron/electron-builder.yml` as documented [here](https://www.electron.build/configuration/publish) in the Electron Builder documentation.

@@ -30,23 +30,11 @@ export const MENU = [
         'getting_started'
     ),
     M(
-        'Architecture Overview',
-        'architecture'
-    ),
-    M(
         'Project Goals',
         'project_goals'
     ),
-    M(
-        'Extensions and Plugins',
-        'extensions'
-    ),
-    M(
-        'Services and Contributions',
-        'services_and_contributions'
-    ),
     {
-        title: 'Using Theia'
+        title: 'Using the Theia IDE'
     },
     M(
         'Getting Started',
@@ -60,15 +48,27 @@ export const MENU = [
         'Using the dynamic Toolbar',
         'user_toolbar'
     ),
+    M(
+        'Download',
+        'blueprint_download'
+    ),
     {
-        title: 'Adopting Theia'
+        title: 'Adopting the Theia Platform'
     },
     M(
         'Build your own IDE/Tool',
         'composing_applications'
     ),
     M(
-        'Authoring Extensions',
+        'Extending the Theia IDE',
+        'blueprint_documentation'
+    ),
+    M(
+        'Extensions and Plugins',
+        'extensions'
+    ),
+    M(
+        'Authoring Theia Extensions',
         'authoring_extensions'
     ),
     M(
@@ -76,8 +76,16 @@ export const MENU = [
         'authoring_vscode_extensions'
     ),
     {
-        title: 'Concepts APIs'
+        title: 'Platform Concepts & APIs'
     },
+    M(
+        'Services and Contributions',
+        'services_and_contributions'
+    ),
+    M(
+        'Architecture Overview',
+        'architecture'
+    ),
     M(
         'Commands/Menus/Keybindings',
         'commands_keybindings'
@@ -145,17 +153,6 @@ export const MENU = [
     M(
         'Advanced Tips',
         'tips'
-    ),
-    {
-        title: 'Theia Blueprint'
-    },
-    M(
-        'Download',
-        'blueprint_download'
-    ),
-    M(
-        'Documentation',
-        'blueprint_documentation'
     )
 ]
 

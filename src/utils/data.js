@@ -38,7 +38,16 @@
  import SmartfaceMin from '../resources/screenshots/thumbnails/smartface-min.gif'
  import CDTCloud from '../resources/screenshots/cdtcloudblueprint.gif'
  import CDTCloudMin from '../resources/screenshots/thumbnails/cdtcloudblueprint-min.gif'
- 
+ import Python from '../resources/extensions/python.png'
+ import Java from '../resources/extensions/java.png'
+ import GitHub from '../resources/extensions/github.png'
+ import GitLens from '../resources/extensions/gitlens.png'
+ import ESLint from '../resources/extensions/eslint.png'
+ import NPM from '../resources/extensions/npm.png'
+ import Docker from '../resources/extensions/docker.png'
+ import YAML from '../resources/extensions/yaml.png'
+ import Go from '../resources/extensions/go.png'
+
  export const contributorsAndAdopters = [
      {
          homepage_url: "https://about.google/",
@@ -140,4 +149,52 @@
          alt: "Smartface"
      }
  ]
+
+ export const extensions = [
+    {
+        href: "https://open-vsx.org/extension/ms-python/python",
+        thumb: Python,
+        alt: "Python"
+    },
+    {
+        href: "https://open-vsx.org/extension/redhat/java",
+        thumb: Java,
+        alt: "Language support for Java"
+    },
+    {
+        href: "https://open-vsx.org/extension/GitHub/vscode-pull-request-github",
+        thumb: GitHub,
+        alt: "GitHub Pull Requests and Issues"
+    },
+    {
+        href: "https://open-vsx.org/extension/eamodio/gitlens",
+        thumb: GitLens,
+        alt: "GitLens — Git supercharged"
+    },
+    {
+        href: "https://open-vsx.org/extension/dbaeumer/vscode-eslint",
+        thumb: ESLint,
+        alt: "ESLint"
+    },
+    {
+        href: "https://open-vsx.org/extension/vscode/npm",
+        thumb: NPM,
+        alt: "NPM Support"
+    },
+    {
+        href: "https://open-vsx.org/extension/ms-azuretools/vscode-docker",
+        thumb: Docker,
+        alt: "Docker"
+    },
+    {
+        href: "https://open-vsx.org/extension/redhat/vscode-yaml",
+        thumb: YAML,
+        alt: "YAML"
+    },
+    {
+        href: "https://open-vsx.org/extension/golang/Go",
+        thumb: Go,
+        alt: "Go"
+    }
+]
  

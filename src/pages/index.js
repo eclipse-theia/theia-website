@@ -26,6 +26,9 @@ import GettingStarted from '../components/index/GettingStarted'
 import IntrosToTheia from '../components/index/IntrosToTheia'
 import TheiaIDEFeatures from '../components/index/TheiaIDEFeatures'
 import TheiaIDEHeader from '../components/index/TheiaIDEHeader'
+import VSCodeExtensions from '../components/index/VSCodeExtensions'
+import TheiaIDEDownloads from '../components/index/TheiaIDEDownloads'
+import TheiaIDEExtensible from '../components/index/TheiaIDEExtensible'
 
 
 export default ({ pageContext }) => {
@@ -39,7 +42,10 @@ export default ({ pageContext }) => {
                 <GettingStarted/>
                 <IntrosToTheia />
                 <TheiaIDEHeader />
-                <TheiaIDEFeatures />
+                <VSCodeExtensions />
+                <TheiaIDEFeatures adopters={pageContext.adopters}/>
+                <TheiaIDEExtensible />
+                <TheiaIDEDownloads />
             </main>
             <Footer background={true} />
         </Layout>

@@ -16,40 +16,128 @@
 
 import React from 'react'
 
-import CompletionVideo from '../../resources/completion.mp4'
-import TermianlVideo from '../../resources/terminal.mp4'
-import LayoutVideo from '../../resources/layout.mp4'
-import Promo from './Promo'
+import CodeEditing from '../../resources/codeediting.mp4'
+import ModernUX from '../../resources/modernux.mp4'
+import styled from '@emotion/styled'
+import { breakpoints } from '../../utils/variables'
 
-const features = [
-    {
-        title: "Language Support",
-        para: <p>
-            Experience world-class code editing support in Theia IDE, integrated with the Language Server Protocol (LSP). This allows you to develop in almost any programming language, including Python, Java, JavaScript, C++, and more—all within one versatile environment.
-        </p>,
-        videoSrc: CompletionVideo
-    },
-    {
-        title: "Modern UX",
-        para: <p>Elevate your development workflow with Theia IDE's flexible workbench layout and user experience. Featuring a dynamic toolbar, detachable views, and efficient tab management, our interface is designed to adapt to your needs, streamlining your projects for optimal productivity.</p>,
-        videoSrc: TermianlVideo
-    },
-    {
-        title: "Extensible and Open",
-        para: <p>Unlock limitless possibilities with Theia IDE's seamless compatibility with the vast VS Code extension ecosystem. From robust linting tools to interactive notebook editors, customize your development experience like never before. Plus, enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Streamline your workflow, enrich your toolset, and code on your own terms.
+const StyledPromo = styled.div`
+    display: flex;
+    border: 2px solid #ebebeb;
 
-        </p>,
-        videoSrc: LayoutVideo
+    &:nth-of-type(2n) {
+        flex-direction: row-reverse;
+
+        @media(max-width: ${breakpoints.md}) {
+            flex-direction: column;
+        }
     }
-]
+
+    @media(max-width: ${breakpoints.md}) {
+        flex-direction: column;
+        max-width: 60rem;
+        margin: 0 auto;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    .promo__text {
+        width: 50%;
+        padding: 5rem 3rem;
+
+        @media(max-width: ${breakpoints.md}) {
+            width: 100%;
+            max-width: 60rem;
+        }
+    }
+
+    .promo__media {
+        position: relative;
+        width: 50%;
+        z-index: -1000;
+
+        @media(max-width: ${breakpoints.md}) {
+            width: 100%;
+            max-width: 60rem;
+        }
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #8c9bae;
+            z-index: 1000;
+            opacity: .1;
+        }
+    }
+
+    .promo__video {
+        width: 100%;
+    }
+`
+const LogoContainer = styled.div`
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: 0px solid #ddd; /* Optional: for visual boundary */
+`;
+
+const Logo = styled.img`
+    width: calc(15% - 10px); /* 4 logos per row */
+    height: 25%; /* 2 rows */
+    margin: 0px 0px 0px px; /* Adjust for spacing */
+    object-fit: contain;
+    scale: 0.7
+`;
  
 
-const TheiaIDEFeatures = () => (
-        <section className="promos">
-            <div className="row">
-                { features.map((promo, i) => <Promo key={i} {...promo} />) }
-            </div>
-        </section>
+const TheiaIDEFeatures = ({ adopters }) => (
+        
+    <div className="row">
+    <StyledPromo className="promo">
+        <div className="promo__text">
+            <h3 className="heading-tertiary">Language Support</h3>
+            <p>Experience world-class code editing support in Theia IDE, integrated with the Language Server Protocol (LSP). Develop in almost any programming language, including Python, Java, JavaScript, C++, and more—all within one environment.</p>
+        </div>
+        <div className="promo__media">
+            <video autoPlay loop muted playsInline className="promo__video">
+                <source src={CodeEditing} type="video/mp4" />
+            </video>
+        </div>
+    </StyledPromo>
+    <StyledPromo className="promo">
+        <div className="promo__text">
+            <h3 className="heading-tertiary">Open Source and Vendor Neutral</h3>
+            <p>The Theia IDE is backed by a diverse and healthy open source ecosystem. Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
+        </div>
+    <LogoContainer>
+        {adopters.map((item, i) => (
+                                <Logo key={i} src={'https://api.eclipse.org/adopters/assets/images/adopters/' + item.logo} alt={item.name}/>
+                                ))
+        }
+    </LogoContainer>
+    </StyledPromo>
+    <StyledPromo className="promo">
+        <div className="promo__text">
+            <h3 className="heading-tertiary">Modern UX</h3>
+            <p>Elevate your development workflow with Theia IDE's flexible workbench layout and user experience. Featuring theming support, a dynamic toolbar, detachable views, and efficient tab management, our web-based interface is designed to adapt to your needs, streamlining your projects for optimal productivity.</p>
+        </div>
+        <div className="promo__media">
+            <video autoPlay loop muted playsInline className="promo__video">
+                <source src={ModernUX} type="video/mp4" />
+            </video>
+        </div>
+    </StyledPromo>
+    </div>
+        
 )
 
 export default TheiaIDEFeatures
