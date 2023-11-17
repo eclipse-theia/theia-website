@@ -95,20 +95,6 @@ const Header = () => (
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
-                <div className="header__banner">
-                    <a href="https://events.eclipse.org/2023/theiacon/">
-                        <img className="banner__image" src={TheiaConLogo}></img>
-                    </a>
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                        <a href="https://events.eclipse.org/2023/theiacon/">TheiaCon 2023</a> is approaching! | VIRTUAL EVENT | November 15 - 16, 2023 | 
-                        Get registered for the largest Theia event of the year!
-                    </h1>
-                    <div className="header__buttons">
-                         <a className="btn btn--cta" href="https://events.eclipse.org/2023/theiacon/" rel="noopener">
-                            Get registered
-                        </a>
-                    </div>
-                </div>
                 <h1 className="heading-primary">
                     An Open, Flexible and Extensible Cloud & Desktop IDE Platform
                 </h1>
