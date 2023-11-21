@@ -118,7 +118,7 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        In case you missed TheiaCon 2022 (Nov 30th-Dec 1st), all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaRj46WedNTnAXLLHwuk3nro">here</a>!
+                        In case you missed TheiaCon 2023 (Nov 15th-Nov 17st), all talk recordings are available now, see <a href="https://www.youtube.com/watch?v=2rbMtztIHgw&list=PLy7t4z5SYNaQ0cajexl1uZhiZwiD93v9g">here</a>!
                     </h1>       
                 </div>
         </header>
