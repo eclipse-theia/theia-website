@@ -315,6 +315,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'How to get visible as a Theia adopter and contributor',
+                url: 'https://eclipsesource.com/blogs/2023/11/22/how-to-become-visible-theia-adopter/',
+                type: 'article'
+            },
+            {
                 title: 'Theia Adopter Story: The new Arduino IDE 2.0',
                 url: 'https://blogs.eclipse.org/post/john-kellerman/theia-adopter-story-new-arduino-ide-20',
                 type: 'article'
