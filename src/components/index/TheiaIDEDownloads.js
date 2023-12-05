@@ -107,7 +107,7 @@ const TheiaIDEDownloads = () => (
                 Help us make the Theia IDE even better, by sharing your experience and suggestions <a href="https://github.com/eclipse-theia/theia/discussions">here</a>.
                 The features found in the Eclipse Theia IDE are based on Eclipse Theia and the available extensions/plugins. For more details please see the <a href="https://github.com/eclipse-theia/theia">Eclipse Theia GitHub Repository</a>. The Eclipse Theia IDE only packages existing Eclipse Theia functionality and installers. If you believe there is a mistake in packaging, something needs to be added to the packaging or the installers do not work properly, please <a href="https://github.com/eclipse-theia/theia-blueprint/issues/new/choose">open an issue on GitHub</a> to let us know.
                 <h1>Support</h1>
-                Need help with Theia? To get support by the community go to the <a href="https://community.theia-ide.org/">Discourse Theia forum</a> or the <a href="https://github.com/eclipse-theia/theia/discussions">Discussions at GitHub</a>. To get professional support for Theia see the <a href="http://localhost:8000/support/">support page</a>.
+                Need help with Theia? To get support by the community go to the <a href="https://community.theia-ide.org/">Discourse Theia forum</a> or the <a href="https://github.com/eclipse-theia/theia/discussions">Discussions at GitHub</a>. To get professional support for Theia see the <a href="/support/">support page</a>.
             </div>
     
     </StyledHeader>
