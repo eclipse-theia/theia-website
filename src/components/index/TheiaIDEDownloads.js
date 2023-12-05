@@ -92,9 +92,9 @@ const TheiaIDEDownloads = () => (
                 NOTE: The Eclipse Theia IDE is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback (see below).
                 
                 <div className="header__buttons">
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/windows/TheiaBlueprint.exe&r=1" rel="noopener">Windows (latest)</a>
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/linux/TheiaBlueprint.AppImage&r=1" rel="noopener">Linux (latest)</a>
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/latest/macos/TheiaBlueprint.dmg&r=1" rel="noopener">MacOS (latest)</a>
+                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/windows/TheiaIDESetup.exe&r=1" rel="noopener">Windows (latest)</a>
+                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=1" rel="noopener">Linux (latest)</a>
+                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos/TheiaIDE.dmg&r=1" rel="noopener">MacOS (latest)</a>
                  </div>
                 
                  <center>

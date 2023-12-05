@@ -96,7 +96,7 @@ const Header = () => (
                     The Eclipse Theia Platform
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                        An Open, Flexible and Extensible Cloud & Desktop IDE Platform Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
+                        An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
                 </h2>
                 <div className="header__buttons">
                         <a className="btn" href="#gettingstarted" target="_blank" rel="noopener noreferrer">Get started with the Theia Platform</a>
@@ -112,9 +112,9 @@ const Header = () => (
                     </h2>
                 </div>
                 <div className="header__banner">
-                    <h2 style={{ fontSize: '2.1rem' }}>
-                        In case you missed TheiaCon 2022 (Nov 30th-Dec 1st), all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaRj46WedNTnAXLLHwuk3nro">here</a>!
-                    </h2>       
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        In case you missed TheiaCon 2023 (Nov 15th-Nov 16th), all talk recordings are available now, see <a href="https://www.youtube.com/watch?v=2rbMtztIHgw&list=PLy7t4z5SYNaQ0cajexl1uZhiZwiD93v9g">here</a>!
+                    </h1>       
                 </div>
         </header>
     </StyledHeader>

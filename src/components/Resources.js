@@ -77,158 +77,13 @@ heading-primary {
 
 const categories = [
     {
-        title: 'Release announcements',
-        resources: [
-            {
-                title: 'Eclipse Theia 1.43 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/11/02/eclipse-theia-1-43-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.42 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/10/06/eclipse-theia-1-42-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 2023-08 Community Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.41 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/09/05/eclipse-theia-1-41-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.40 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/08/01/eclipse-theia-1-40-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.39 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/07/06/eclipse-theia-1-39-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 2023-05 Community Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/06/12/the-eclipse-theia-community-release-2023-05/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.38 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/06/05/eclipse-theia-1-38-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.37 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/05/08/eclipse-theia-1-37-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.36 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/04/12/eclipse-theia-1-36-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 2023-02 Community Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/03/09/the-eclipse-theia-community-release-2023-02/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.35 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/03/02/eclipse-theia-1-35-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.34 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/02/02/eclipse-theia-1-34-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.33 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2023/01/13/eclipse-theia-1-33-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.32 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/12/07/eclipse-theia-1-32-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.31 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/11/14/eclipse-theia-1-31-1-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 2022-09 Community Release Celebration Video',
-                url: 'https://youtu.be/MUIZT2wOkmw',
-                type: 'video'
-            },
-            {
-                title: 'Eclipse Theia 2022-09 Community Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/10/18/the-eclipse-theia-community-release-2022-09/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.30 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/10/13/eclipse-theia-1-30-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.29 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/09/09/eclipse-theia-1-29-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Introducing the Eclipse Theia Community Release',
-                url: 'https://eclipsesource.com/blogs/2022/08/16/introducing-the-eclipse-theia-community-release/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.28 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/08/09/eclipse-theia-1-28-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.27 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/07/11/eclipse-theia-1-27-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.26 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/06/10/eclipse-theia-1-26-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.25 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/05/09/eclipse-theia-1-25-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.24 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/04/14/eclipse-theia-1-24-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.23 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/03/01/eclipse-theia-1-23-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.22 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/02/07/eclipse-theia-1-22-release-news-and-noteworthy/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 1.21 Release: News and Noteworthy',
-                url: 'https://eclipsesource.com/blogs/2022/01/12/eclipse-theia-1-21-release-news-and-noteworthy/',
-                type: 'article'
-            }
-        ]
-    },
-    {
         title: 'News around Eclipse Theia',
         resources: [
+            {
+                title: 'The Eclipse Theia Update 2023',
+                url: 'https://youtu.be/2rbMtztIHgw?si=3a1hw892rPT-lW6d',
+                type: 'video'
+            },
             {
                 title: 'The Eclipse Theia Update 2022',
                 url: 'https://eclipsesource.com/blogs/2022/12/20/the-eclipse-theia-update-2022/',
@@ -314,6 +169,11 @@ const categories = [
     {
         title: 'Eclipse Theia Adopter Stories',
         resources: [
+            {
+                title: 'How to get visible as a Theia adopter and contributor',
+                url: 'https://eclipsesource.com/blogs/2023/11/22/how-to-become-visible-theia-adopter/',
+                type: 'article'
+            },
             {
                 title: 'Theia Adopter Story: The new Arduino IDE 2.0',
                 url: 'https://blogs.eclipse.org/post/john-kellerman/theia-adopter-story-new-arduino-ide-20',

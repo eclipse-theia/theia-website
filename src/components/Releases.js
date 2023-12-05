@@ -75,9 +75,9 @@ const communityReleases = [
     {
         name: 'Theia 1.43.x (2023-11) - planned',
         releasedate: 'November 30th, 2023',
-        releasecandidatedate:'October 26th, 2023',
-        technologiesin:'December 7th, 2023',
-        releaseanouncement:'December 14th, 2023',
+        releasecandidatedate: 'October 26th, 2023',
+        technologiesin: 'December 7th, 2023',
+        releaseanouncement: 'December 14th, 2023',
         announcementurl: '',
         frameworks: [
             {
@@ -89,8 +89,10 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: '0.8.0-theia-cr03',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03' }
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
@@ -122,9 +124,9 @@ const communityReleases = [
     {
         name: 'Theia 1.40.x (2023-08) - published',
         releasedate: 'August 31st, 2023',
-        releasecandidatedate:'July 27th, 2023',
-        technologiesin:'September 7th, 2023',
-        releaseanouncement:'September 14th, 2023',
+        releasecandidatedate: 'July 27th, 2023',
+        technologiesin: 'September 7th, 2023',
+        releaseanouncement: 'September 14th, 2023',
         announcementurl: 'https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/',
         frameworks: [
             {
@@ -132,7 +134,7 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/glsp/',
                 version: '2.0.0',
                 modules: [
-                    {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.0.0'}
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.0.0' }
                 ]
             },
             {
@@ -140,11 +142,11 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr03',
                 modules: [
-                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr03'}
+                    { modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr03' }
                 ]
             },
             {
@@ -158,8 +160,8 @@ const communityReleases = [
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
                 version: '0.0.102',
                 modules: [
-                    {modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.102'},
-                    {modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.27'}
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.102' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.27' }
                 ]
             },
             {
@@ -173,9 +175,9 @@ const communityReleases = [
                 url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
                 version: 'since 0.2.0-next.20230908184630.abe6fad.0',
                 modules: [
-                    {modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer'},
-                    {modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base'},
-                    {modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components'}
+                    { modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer' },
+                    { modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base' },
+                    { modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components' }
                 ]
             }
         ]
@@ -183,9 +185,9 @@ const communityReleases = [
     {
         name: 'Theia 1.37.x (2023-05) - published',
         releasedate: 'May 25th, 2023',
-        releasecandidatedate:'April 27th, 2023',
-        technologiesin:'June 1st, 2023',
-        releaseanouncement:'June 12th, 2023',
+        releasecandidatedate: 'April 27th, 2023',
+        technologiesin: 'June 1st, 2023',
+        releaseanouncement: 'June 12th, 2023',
         announcementurl: 'https://eclipsesource.com/blogs/2023/06/12/the-eclipse-theia-community-release-2023-05/',
         frameworks: [
             {
@@ -193,7 +195,7 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/glsp/',
                 version: '1.0.0-theia1.34.0',
                 modules: [
-                    {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0' }
                 ]
             },
             {
@@ -201,11 +203,11 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr03',
                 modules: [
-                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03'},
-                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr03'}  
+                    { modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr03' },
+                    { modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr03' }
                 ]
             },
             {
@@ -231,9 +233,9 @@ const communityReleases = [
                 url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
                 version: 'since 0.2.0-next.20230613130240.a37bbf1.0',
                 modules: [
-                    {modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer'},
-                    {modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base'},
-                    {modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components'}
+                    { modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer' },
+                    { modulename: 'traceviewer-base', url: 'https://www.npmjs.com/package/traceviewer-base' },
+                    { modulename: 'traceviewer-react-components', url: 'https://www.npmjs.com/package/traceviewer-react-components' }
                 ]
             }
         ]
@@ -241,9 +243,9 @@ const communityReleases = [
     {
         name: 'Theia 1.34.x (2023-02) - published',
         releasedate: 'February 23rd, 2023',
-        releasecandidatedate:'January 26th, 2023',
-        technologiesin:'March 2nd, 2023',
-        releaseanouncement:'March 9th, 2023',
+        releasecandidatedate: 'January 26th, 2023',
+        technologiesin: 'March 2nd, 2023',
+        releaseanouncement: 'March 9th, 2023',
         announcementurl: 'https://eclipsesource.com/blogs/2023/03/09/the-eclipse-theia-community-release-2023-02/',
         frameworks: [
             {
@@ -251,7 +253,7 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/glsp/',
                 version: '1.0.0-theia1.34.0',
                 modules: [
-                    {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0'}
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.34.0' }
                 ]
             },
             {
@@ -259,11 +261,11 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr02',
                 modules: [
-                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr02'},
-                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr02'},
-                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr02'},
-                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr02'},
-                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr02'}  
+                    { modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr02' },
+                    { modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr02' },
+                    { modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr02' },
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr02' },
+                    { modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr02' }
                 ]
             },
             {
@@ -277,8 +279,8 @@ const communityReleases = [
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
                 version: '0.0.93',
                 modules: [
-                    {modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.95'},
-                    {modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.19'}
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.95' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.19' }
                 ]
             },
             {
@@ -292,9 +294,9 @@ const communityReleases = [
     {
         name: 'Theia 1.29.x (2022-09) - published',
         releasedate: 'September 29th, 2022',
-        releasecandidatedate:'August 25th, 2022',
-        technologiesin:'October 6th, 2022',
-        releaseanouncement:'October 18th, 2022',
+        releasecandidatedate: 'August 25th, 2022',
+        technologiesin: 'October 6th, 2022',
+        releaseanouncement: 'October 18th, 2022',
         announcementurl: 'https://eclipsesource.com/blogs/2022/10/18/the-eclipse-theia-community-release-2022-09/',
         frameworks: [
             {
@@ -302,7 +304,7 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/glsp/',
                 version: '1.0.0-theia1.27.0',
                 modules: [
-                    {modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.27.0'}
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/1.0.0-theia1.27.0' }
                 ]
             },
             {
@@ -310,11 +312,11 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.0-theia-cr01',
                 modules: [
-                    {modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr01'},
-                    {modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr01'},
-                    {modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr01'},
-                    {modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr01'},
-                    {modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr01'}  
+                    { modulename: '@eclipse-emfcloud/modelserver-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-theia/v/0.8.0-theia-cr01' },
+                    { modulename: '@eclipse-emfcloud/modelserver-client', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-client/v/0.8.0-theia-cr01' },
+                    { modulename: '@eclipse-emfcloud/modelserver-markers-theia', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-markers-theia/v/0.8.0-theia-cr01' },
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.0-theia-cr01' },
+                    { modulename: '@eclipse-emfcloud/modelserver-jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/modelserver-jsonforms-property-view/v/0.8.0-theia-cr01' }
                 ]
             },
             {
@@ -322,7 +324,7 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/sprotty/',
                 version: '0.12.0',
                 modules: [
-                    {modulename: 'sprotty-theia', url: 'https://www.npmjs.com/package/sprotty-theia/v/0.12.0'}
+                    { modulename: 'sprotty-theia', url: 'https://www.npmjs.com/package/sprotty-theia/v/0.12.0' }
                 ]
             },
             {
@@ -330,13 +332,133 @@ const communityReleases = [
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
                 version: '0.0.93',
                 modules: [
-                    {modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.93'},
-                    {modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.16-next.20220930230402.c653a9a.0'}
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.93' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.16-next.20220930230402.c653a9a.0' }
                 ]
             }
         ]
     }
 ]
+
+const monthlyReleases = [
+    {
+        title: 'Eclipse Theia 1.43 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/11/02/eclipse-theia-1-43-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.42 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/10/06/eclipse-theia-1-42-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 2023-08 Community Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/',
+    },
+    {
+        title: 'Eclipse Theia 1.41 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/09/05/eclipse-theia-1-41-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.40 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/08/01/eclipse-theia-1-40-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.39 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/07/06/eclipse-theia-1-39-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 2023-05 Community Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/06/12/the-eclipse-theia-community-release-2023-05/',
+    },
+    {
+        title: 'Eclipse Theia 1.38 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/06/05/eclipse-theia-1-38-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.37 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/05/08/eclipse-theia-1-37-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.36 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/04/12/eclipse-theia-1-36-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 2023-02 Community Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/03/09/the-eclipse-theia-community-release-2023-02/',
+    },
+    {
+        title: 'Eclipse Theia 1.35 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/03/02/eclipse-theia-1-35-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.34 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/02/02/eclipse-theia-1-34-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.33 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2023/01/13/eclipse-theia-1-33-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.32 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/12/07/eclipse-theia-1-32-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.31 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/11/14/eclipse-theia-1-31-1-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 2022-09 Community Release Celebration Video',
+        url: 'https://youtu.be/MUIZT2wOkmw',
+    },
+    {
+        title: 'Eclipse Theia 2022-09 Community Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/10/18/the-eclipse-theia-community-release-2022-09/',
+    },
+    {
+        title: 'Eclipse Theia 1.30 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/10/13/eclipse-theia-1-30-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.29 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/09/09/eclipse-theia-1-29-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Introducing the Eclipse Theia Community Release',
+        url: 'https://eclipsesource.com/blogs/2022/08/16/introducing-the-eclipse-theia-community-release/',
+    },
+    {
+        title: 'Eclipse Theia 1.28 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/08/09/eclipse-theia-1-28-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.27 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/07/11/eclipse-theia-1-27-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.26 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/06/10/eclipse-theia-1-26-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.25 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/05/09/eclipse-theia-1-25-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.24 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/04/14/eclipse-theia-1-24-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.23 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/03/01/eclipse-theia-1-23-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.22 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/02/07/eclipse-theia-1-22-release-news-and-noteworthy/',
+    },
+    {
+        title: 'Eclipse Theia 1.21 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2022/01/12/eclipse-theia-1-21-release-news-and-noteworthy/',
+    }
+]
+
 const Releases = () => (
     <StyledResources>
         <header className='header' role="banner">
@@ -346,7 +468,7 @@ const Releases = () => (
                     <h1 className="heading-primary">
                         Releases
                     </h1>
-                    <p>Eclipse Theia follows a monthly release cycle. You can find all releases including changelogs and breaking changes <a href="https://github.com/eclipse-theia/theia/releases">here</a>.</p>
+                    <p>Eclipse Theia follows a monthly release cycle. You can find all monthly releases including changelogs and breaking changes <a href="#monthlyreleases">here</a>.</p>
                     <br></br>
                     <p>In addition, Theia provides a "community release" every three month with extra focus on stability and compatibility.</p>
                     <p>The list below shows all community releases including the next one planned. In addition, you can find technologies that integrate with Theia, including the respective version that is supposed to be compatible with the community release.</p>
@@ -356,7 +478,10 @@ const Releases = () => (
                 </div>
             </div>
         </header>
-        {communityReleases.map(({ name, frameworks, releasedate, releasecandidatedate, technologiesin,releaseanouncement, announcementurl }, i) => {
+        <div className='row'>
+            <h1 className='heading-primary'>Community Releases</h1>
+        </div>
+        {communityReleases.map(({ name, frameworks, releasedate, releasecandidatedate, technologiesin, releaseanouncement, announcementurl }, i) => {
             return (
                 <section key={i} className="category row" id="frameworks">
                     <h2 className="heading-secondary">{name}</h2>
@@ -370,16 +495,16 @@ const Releases = () => (
                         ({ title, url, version, icon, modules }, i) => {
                             return (
                                 <div key={`${i}_${title}`} className="framework">
-                                            <h4 className="heading-tertiary">
-                                                <a href={url}>{title}, Version: {version}</a>
-                                                {modules &&
-                                                    <ul className="module-listing">
-                                                        {modules.map(({modulename, url}) => {
-                                                            return <li><a href={url}>{modulename}</a></li>
-                                                        })}
-                                                    </ul>
-                                                }
-                                            </h4>
+                                    <h4 className="heading-tertiary">
+                                        <a href={url}>{title}, Version: {version}</a>
+                                        {modules &&
+                                            <ul className="module-listing">
+                                                {modules.map(({ modulename, url }) => {
+                                                    return <li><a href={url}>{modulename}</a></li>
+                                                })}
+                                            </ul>
+                                        }
+                                    </h4>
                                 </div>)
                         }
                     )}
@@ -387,6 +512,23 @@ const Releases = () => (
             )
         }
         )}
+        <div className='row'>
+            <h1 className='heading-primary' id='monthlyreleases'>Monthly Releases</h1>
+        </div>
+        <div className='row'>
+        {monthlyReleases.map(
+                        ({ title, url }, i) => {
+                            return (
+                                <div key={`${i}_${title}`} className="resource">
+                                    <div>
+                                        <h3 className="heading-secondary">
+                                            <a href={url}>{title}</a>
+                                        </h3>
+                                    </div>
+                                </div>)
+                        }
+        )}
+        </div>
     </StyledResources>
 )
 export default Releases

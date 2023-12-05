@@ -109,6 +109,8 @@ const ContributorsAndAdopters = ({ adopters }) => {
                     </div>
                 </section>
             </Styled>
+            <center><a href="https://eclipsesource.com/blogs/2023/11/22/how-to-become-visible-theia-adopter/">How to get listed as an Eclipse Theia adopter/contributor</a></center>
+            <br></br>
         </div>
     )
 }
