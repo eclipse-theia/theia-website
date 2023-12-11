@@ -83,8 +83,10 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.dev/glsp/',
-                version: 'TBD',
-                modules: []
+                version: '2.0.0',
+                modules: [
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.0.0' }
+                ]
             },
             {
                 title: 'Eclipse EMF.cloud',
@@ -97,7 +99,7 @@ const communityReleases = [
             {
                 title: 'Eclipse Sprotty',
                 url: 'https://www.eclipse.dev/sprotty/',
-                version: 'TBD',
+                version: '1.0.0',
                 modules: []
             },
             {
