@@ -95,7 +95,7 @@ const communityReleases = [
             {
                 title: 'Eclipse Sprotty',
                 url: 'https://www.eclipse.dev/sprotty/',
-                version: '',
+                version: 'TBD',
                 modules: []
             },
             {
