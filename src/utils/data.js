@@ -38,7 +38,9 @@
  import SmartfaceMin from '../resources/screenshots/thumbnails/smartface-min.gif'
  import CDTCloud from '../resources/screenshots/cdtcloudblueprint.gif'
  import CDTCloudMin from '../resources/screenshots/thumbnails/cdtcloudblueprint-min.gif'
- 
+ import CodeRealTime from '../resources/screenshots/code_realtime_theia.png'
+ import CodeRealTimeMin from '../resources/screenshots/thumbnails/code_realtime_theia_min.png'
+
  export const contributorsAndAdopters = [
      {
          homepage_url: "https://about.google/",
@@ -138,6 +140,12 @@
          src: Smartface,
          thumb: SmartfaceMin,
          alt: "Smartface"
-     }
+     },
+     {
+        href: "https://secure-dev-ops.github.io/code-realtime",
+        src: CodeRealTime,
+        thumb: CodeRealTimeMin,
+        alt: "Code RealTime"
+    }
  ]
  
