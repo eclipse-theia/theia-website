@@ -47,6 +47,8 @@
  import Docker from '../resources/extensions/docker.png'
  import YAML from '../resources/extensions/yaml.png'
  import Go from '../resources/extensions/go.png'
+ import CodeRealTime from '../resources/screenshots/code_realtime_theia.png'
+ import CodeRealTimeMin from '../resources/screenshots/thumbnails/code_realtime_theia_min.png'
 
  export const contributorsAndAdopters = [
      {
@@ -147,7 +149,13 @@
          src: Smartface,
          thumb: SmartfaceMin,
          alt: "Smartface"
-     }
+     },
+     {
+        href: "https://secure-dev-ops.github.io/code-realtime",
+        src: CodeRealTime,
+        thumb: CodeRealTimeMin,
+        alt: "Code RealTime"
+    }
  ]
 
  export const extensions = [
