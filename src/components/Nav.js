@@ -228,7 +228,7 @@ class Nav extends React.Component {
                     </div>
                     <ul className={`nav__items ${this.state.isNavRendered ? 'navIsRendered' : 'navIsNotRendered' }`}>
                         <li className="nav__item">
-                            <Link to="/#features" className="nav__link">Features</Link>
+                            <Link to="https://github.com/eclipse-theia/theia" className="nav__link">Github</Link>
                         </li>
                         <li className="nav__item">
                             <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
@@ -249,6 +249,7 @@ class Nav extends React.Component {
                                 <li><Link to="/resources/" className="nav__link">Other Resources</Link></li>
                             </ul>
                         </li>
+
                     </ul>
                 </nav>
             </StyledNav>

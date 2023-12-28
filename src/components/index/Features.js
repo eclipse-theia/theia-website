@@ -23,7 +23,6 @@ import IconCloudScreen from '../../resources/icon-cloud-screen.svg'
 import IconOpenSource from '../../resources/icon-open-source.svg'
 import Html from '../../resources/icon-html.svg'
 
-import { Link } from 'gatsby'
 import Feature from './Feature'
 
 const StyledFeatures = styled.div`

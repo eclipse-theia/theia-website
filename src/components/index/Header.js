@@ -15,11 +15,8 @@
  ********************************************************************************/
 
 import Background from '../../resources/background-image.png'
-import DocImage from '../DocImage'
 import Nav from '../Nav'
 import React from 'react'
-import TheiaLogoDark from '../../resources/theia-logo-dark.svg'
-import TheiaConLogo from '../../resources/theiacon-logo.svg'
 import { breakpoints } from '../../utils/variables'
 import styled from '@emotion/styled'
 
@@ -96,25 +93,27 @@ const Header = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <h1 className="heading-primary">
-                    An Open, Flexible and Extensible Cloud & Desktop IDE Platform
+                    The Eclipse Theia Platform
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                        Efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies.
+                        An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
                         <br/>
                         <a href="https://eclipsesource.com/blogs/2023/12/05/eclipse-theia-1-44-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.44 Release</a> and <a href="https://eclipsesource.com/blogs/2023/12/14/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2023-11)</a>.
                         <br/>
                         Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                 </h2>
                 <div className="header__buttons">
-                        <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try online &nbsp;&nbsp;&rarr;</a>
-                        <a className="btn btn--cta" href="/docs/blueprint_download/" rel="noopener">Try on desktop &nbsp;&nbsp;&rarr;</a>
+                        <a className="btn" href="#gettingstarted" target="_blank" rel="noopener noreferrer">Get started with the Theia Platform</a>
+                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try Theia IDE online</a>
+                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="#theiaide" rel="noopener">Get Theia IDE for desktop</a>
                  </div>
                 </div>
                 <div className="header__banner">
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                       Happy Birthday! <a href="https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/">Eclipse Theia celebrates its 5th anniversary!</a>
-                    </h1>       
+                    <h2 style={{ fontSize: '2.1rem' }}>
+                    <a href="https://eclipsesource.com/blogs/2023/10/06/eclipse-theia-1-42-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.42 Release</a> and <a href="https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/">the latest Community Release (2023-08)</a>.
+                        <br/>
+                        Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
+                    </h2>
                 </div>
                 <div className="header__banner">
                     <h1 style={{ fontSize: '2.2rem' }}>

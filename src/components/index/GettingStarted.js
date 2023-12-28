@@ -43,7 +43,7 @@ const features = [
         img: <img src={TryIt} alt="Try it" />,
         title: "Try it",
         paragraphs: [<>
-        Eclipse Theia is a framework for building tools and IDEs. You can try it by <a href="https://theia-ide.org/docs/composing_applications/">building your own IDE/tools based on Theia</a> within minutes. Alternatively, you can <a href="https://theia-ide.org/docs/blueprint_download/">download and try Theia Blueprint</a>, a template tool based on Eclipse Theia or <a href="https://try.theia-cloud.io/">try it online</a>.
+        Eclipse Theia is a framework for building tools and IDEs. You can try it by <a href="https://theia-ide.org/docs/composing_applications/">building your own IDE/tools based on Theia</a> within minutes. Alternatively, you can <a href="#theiaide">download and use the Theia IDE</a>, a template tool based on Eclipse Theia or <a href="https://try.theia-cloud.io/">try it online</a>.
         </>]
     },
     {
@@ -72,7 +72,7 @@ const features = [
 const GettingStarted = () => (
     <StyledFeatures>
         <section className="row features" id="gettingstarted">
-            <h3 className="heading-tertiary">Getting started with Eclipse Theia</h3>
+            <h3 className="heading-tertiary">Getting started with the Eclipse Theia Platform</h3>
             <div className="feature__container">
                 {features.map(
                     (feature, i) => <Feature key={`${i}+${feature.title}`} {...feature} />

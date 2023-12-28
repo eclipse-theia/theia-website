@@ -4,7 +4,7 @@ title: Architecture Overview
 
 # Architecture Overview
 
-This section describes the overall architecture of Theia.
+This section describes the overall architecture of the Theia Platform.
 
 Theia is designed to work as a native desktop application as well as in the
 context of a browser and a remote server. To support both situations with a
