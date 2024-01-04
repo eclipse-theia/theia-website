@@ -97,10 +97,6 @@ const Header = () => (
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
                         An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
-                        <br/>
-                        <a href="https://eclipsesource.com/blogs/2023/12/29/eclipse-theia-1-45-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.45 Release</a> and <a href="https://eclipsesource.com/blogs/2023/12/14/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2023-11)</a>.
-                        <br/>
-                        Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                 </h2>
                 <div className="header__buttons">
                         <a className="btn" href="#gettingstarted" target="_blank" rel="noopener noreferrer">Get started with the Theia Platform</a>
@@ -110,7 +106,7 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h2 style={{ fontSize: '2.1rem' }}>
-                    <a href="https://eclipsesource.com/blogs/2023/10/06/eclipse-theia-1-42-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.42 Release</a> and <a href="https://eclipsesource.com/blogs/2023/09/15/the-eclipse-theia-community-release-2023-08/">the latest Community Release (2023-08)</a>.
+                        <a href="https://eclipsesource.com/blogs/2023/12/29/eclipse-theia-1-45-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.45 Release</a> and <a href="https://eclipsesource.com/blogs/2023/12/14/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2023-11)</a>.
                         <br/>
                         Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                     </h2>
