@@ -75,6 +75,10 @@ export const MENU = [
         'Authoring VS Code Extensions',
         'authoring_vscode_extensions'
     ),
+    M(
+        'Consuming Theia fixes without upgrading',
+        'consume_theia_fixes_master'
+    ),
     {
         title: 'Platform Concepts & APIs'
     },
