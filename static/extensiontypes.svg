@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="116 118 703 376" width="703" height="376">
+  <defs>
+    <filter id="Shadow" filterUnits="userSpaceOnUse" x="45.7" y="80.4">
+      <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+      <feOffset in="blur" result="offset" dx="3" dy="3"/>
+      <feFlood flood-color="black" flood-opacity=".33496944" result="flood"/>
+      <feComposite in="flood" in2="offset" operator="in" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient x1="0" x2="1" id="Gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2f76ed"/>
+      <stop offset="1" stop-color="#12408f"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient" xl:href="#Gradient" gradientTransform="translate(461 232) rotate(90) scale(168.5)"/>
+    <filter id="Shadow_2" filterUnits="userSpaceOnUse" x="45.7" y="80.4">
+      <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+      <feOffset in="blur" result="offset" dx="3" dy="3"/>
+      <feFlood flood-color="black" flood-opacity=".33" result="flood"/>
+      <feComposite in="flood" in2="offset" operator="in" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="Obj_Gradient_2" xl:href="#Gradient" gradientTransform="translate(597.75 232) rotate(90) scale(168.5)"/>
+    <linearGradient id="Obj_Gradient_3" xl:href="#Gradient" gradientTransform="translate(734.5 232) rotate(90) scale(168.5)"/>
+    <filter id="Shadow_3" filterUnits="userSpaceOnUse" x="45.7" y="80.4">
+      <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+      <feOffset in="blur" result="offset" dx="3" dy="3"/>
+      <feFlood flood-color="black" flood-opacity=".2" result="flood"/>
+      <feComposite in="flood" in2="offset" operator="in" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="Obj_Gradient_4" xl:href="#Gradient" gradientTransform="translate(349.75 186.5) rotate(90) scale(79)"/>
+    <filter id="Shadow_4" filterUnits="userSpaceOnUse" x="45.7" y="80.4">
+      <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.3030978"/>
+      <feOffset in="blur" result="offset" dx="3" dy="3"/>
+      <feFlood flood-color="black" flood-opacity=".33" result="flood"/>
+      <feComposite in="flood" in2="offset" operator="in" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="Obj_Gradient_5" xl:href="#Gradient" gradientTransform="translate(349.75 276.75) rotate(90) scale(79)"/>
+    <linearGradient id="Obj_Gradient_6" xl:href="#Gradient" gradientTransform="translate(349.75 367) rotate(90) scale(79)"/>
+    <linearGradient id="Obj_Gradient_7" xl:href="#Gradient" gradientTransform="translate(188.25 170) rotate(90) scale(79)"/>
+    <linearGradient id="Obj_Gradient_8" xl:href="#Gradient" gradientTransform="translate(188.25 276.75) rotate(90) scale(79)"/>
+    <linearGradient id="Obj_Gradient_9" xl:href="#Gradient" gradientTransform="translate(188.25 383.5) rotate(90) scale(79)"/>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-3 -3 7 6" markerWidth="7" markerHeight="6" color="black">
+      <g>
+        <path d="M 3 0 L -1.8 -1.8 L 0 0 L 0 0 L -1.8 1.8 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="SharpArrow_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-4 -3 7 6" markerWidth="7" markerHeight="6" color="black">
+      <g>
+        <path d="M -3 0 L 1.8 1.8 L 0 0 L 0 0 L 1.8 -1.8 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <g id="Canvas_1" stroke-opacity="1" stroke-dasharray="none" fill="none" stroke="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_3">
+        <path d="M 403 119 L 770 119 C 796.5097 119 818 140.49033 818 167 L 818 445 C 818 471.50967 796.5097 493 770 493 L 403 493 C 376.49033 493 355 471.50967 355 445 L 355 167 C 355 140.49033 376.49033 119 403 119 Z" fill="white"/>
+        <path d="M 403 119 L 770 119 C 796.5097 119 818 140.49033 818 167 L 818 445 C 818 471.50967 796.5097 493 770 493 L 403 493 C 376.49033 493 355 471.50967 355 445 L 355 167 C 355 140.49033 376.49033 119 403 119 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(360 149)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="20" fill="black" x="167.24" y="19">Eclipse Theia</tspan>
+        </text>
+      </g>
+      <g id="Graphic_2" filter="url(#Shadow)">
+        <path d="M 410 232 L 512 232 C 516.97056 232 521 236.02944 521 241 L 521 391.5 C 521 396.47056 516.97056 400.5 512 400.5 L 410 400.5 C 405.02944 400.5 401 396.47056 401 391.5 L 401 241 C 401 236.02944 405.02944 232 410 232 Z" fill="url(#Obj_Gradient)"/>
+        <text transform="translate(406 297.25)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="34.98828" y="15">Theia</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="20.753906" y="34">extension</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4" filter="url(#Shadow_2)">
+        <path d="M 546.75 232 L 648.75 232 C 653.7206 232 657.75 236.02944 657.75 241 L 657.75 391.5 C 657.75 396.47056 653.7206 400.5 648.75 400.5 L 546.75 400.5 C 541.77944 400.5 537.75 396.47056 537.75 391.5 L 537.75 241 C 537.75 236.02944 541.77944 232 546.75 232 Z" fill="url(#Obj_Gradient_2)"/>
+        <text transform="translate(542.75 297.25)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="34.98828" y="15">Theia</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="20.753906" y="34">extension</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5" filter="url(#Shadow_2)">
+        <path d="M 683.5 232 L 785.5 232 C 790.4706 232 794.5 236.02944 794.5 241 L 794.5 391.5 C 794.5 396.47056 790.4706 400.5 785.5 400.5 L 683.5 400.5 C 678.5294 400.5 674.5 396.47056 674.5 391.5 L 674.5 241 C 674.5 236.02944 678.5294 232 683.5 232 Z" fill="url(#Obj_Gradient_3)"/>
+        <path d="M 683.5 232 L 785.5 232 C 790.4706 232 794.5 236.02944 794.5 241 L 794.5 391.5 C 794.5 396.47056 790.4706 400.5 785.5 400.5 L 683.5 400.5 C 678.5294 400.5 674.5 396.47056 674.5 391.5 L 674.5 241 C 674.5 236.02944 678.5294 232 683.5 232 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,8.0" stroke-width="2"/>
+        <text transform="translate(679.5 287.75)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="38.835938" y="15">Your</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="34.98828" y="34">Theia</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="20.753906" y="53">extension</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6" filter="url(#Shadow_3)">
+        <path d="M 321.5 186.5 L 378 186.5 C 382.97056 186.5 387 190.52944 387 195.5 L 387 256.5 C 387 261.47056 382.97056 265.5 378 265.5 L 321.5 265.5 C 316.52944 265.5 312.5 261.47056 312.5 256.5 L 312.5 195.5 C 312.5 190.52944 316.52944 186.5 321.5 186.5 Z" fill="url(#Obj_Gradient_4)"/>
+        <text transform="translate(317.5 197.5)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="21.578125" y="15">VS</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="13.125" y="34">Code</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="19.355469" y="53">API</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7" filter="url(#Shadow_4)">
+        <path d="M 321.5 276.75 L 378 276.75 C 382.97056 276.75 387 280.77944 387 285.75 L 387 346.75 C 387 351.72056 382.97056 355.75 378 355.75 L 321.5 355.75 C 316.52944 355.75 312.5 351.72056 312.5 346.75 L 312.5 285.75 C 312.5 280.77944 316.52944 276.75 321.5 276.75 Z" fill="url(#Obj_Gradient_5)"/>
+        <text transform="translate(317.5 287.75)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="12.238281" y="15">Theia</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="10.011719" y="34">Plugin</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="19.355469" y="53">API</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8" filter="url(#Shadow_2)">
+        <path d="M 321.5 367 L 378 367 C 382.97056 367 387 371.02944 387 376 L 387 437 C 387 441.97056 382.97056 446 378 446 L 321.5 446 C 316.52944 446 312.5 441.97056 312.5 437 L 312.5 376 C 312.5 371.02944 316.52944 367 321.5 367 Z" fill="url(#Obj_Gradient_6)"/>
+        <path d="M 321.5 367 L 378 367 C 382.97056 367 387 371.02944 387 376 L 387 437 C 387 441.97056 382.97056 446 378 446 L 321.5 446 C 316.52944 446 312.5 441.97056 312.5 437 L 312.5 376 C 312.5 371.02944 316.52944 367 321.5 367 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,8.0" stroke-width="2"/>
+        <text transform="translate(317.5 378)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="16.085938" y="15">Your</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="4.6875" y="34">Custom</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="15.355469" y="53">APIs</tspan>
+        </text>
+      </g>
+      <g id="Graphic_9" filter="url(#Shadow_2)">
+        <path d="M 126 170 L 250.5 170 C 255.47056 170 259.5 174.02944 259.5 179 L 259.5 240 C 259.5 244.97056 255.47056 249 250.5 249 L 126 249 C 121.02944 249 117 244.97056 117 240 L 117 179 C 117 174.02944 121.02944 170 126 170 Z" fill="url(#Obj_Gradient_7)"/>
+        <path d="M 126 170 L 250.5 170 C 255.47056 170 259.5 174.02944 259.5 179 L 259.5 240 C 259.5 244.97056 255.47056 249 250.5 249 L 126 249 C 121.02944 249 117 244.97056 117 240 L 117 179 C 117 174.02944 121.02944 170 126 170 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,8.0" stroke-width="2"/>
+        <text transform="translate(122 181)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="50.08594" y="15">Your</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="34.23047" y="34">VS Code</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="31.117188" y="53">Extension</tspan>
+        </text>
+      </g>
+      <g id="Graphic_10" filter="url(#Shadow_2)">
+        <path d="M 126 276.75 L 250.5 276.75 C 255.47056 276.75 259.5 280.77944 259.5 285.75 L 259.5 346.75 C 259.5 351.72056 255.47056 355.75 250.5 355.75 L 126 355.75 C 121.02944 355.75 117 351.72056 117 346.75 L 117 285.75 C 117 280.77944 121.02944 276.75 126 276.75 Z" fill="url(#Obj_Gradient_8)"/>
+        <path d="M 126 276.75 L 250.5 276.75 C 255.47056 276.75 259.5 280.77944 259.5 285.75 L 259.5 346.75 C 259.5 351.72056 255.47056 355.75 250.5 355.75 L 126 355.75 C 121.02944 355.75 117 351.72056 117 346.75 L 117 285.75 C 117 280.77944 121.02944 276.75 126 276.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,8.0" stroke-width="2"/>
+        <text transform="translate(122 287.75)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="50.08594" y="15">Your</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="46.23828" y="34">Theia</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="44.01172" y="53">Plugin</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11" filter="url(#Shadow_2)">
+        <path d="M 126 383.5 L 250.5 383.5 C 255.47056 383.5 259.5 387.52944 259.5 392.5 L 259.5 453.5 C 259.5 458.47056 255.47056 462.5 250.5 462.5 L 126 462.5 C 121.02944 462.5 117 458.47056 117 453.5 L 117 392.5 C 117 387.52944 121.02944 383.5 126 383.5 Z" fill="url(#Obj_Gradient_9)"/>
+        <path d="M 126 383.5 L 250.5 383.5 C 255.47056 383.5 259.5 387.52944 259.5 392.5 L 259.5 453.5 C 259.5 458.47056 255.47056 462.5 250.5 462.5 L 126 462.5 C 121.02944 462.5 117 458.47056 117 453.5 L 117 392.5 C 117 387.52944 121.02944 383.5 126 383.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8.0,8.0" stroke-width="2"/>
+        <text transform="translate(122 394.5)" fill="white">
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="50.08594" y="15">Your</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="32.898438" y="34">Headless</tspan>
+          <tspan font-family="Helvetica" font-size="16" fill="white" x="44.01172" y="53">Plugin</tspan>
+        </text>
+      </g>
+      <g id="Line_12">
+        <line x1="269.75184" y1="217.82681" x2="303.24816" y2="221.24904" marker-end="url(#SharpArrow_Marker)" marker-start="url(#SharpArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_14">
+        <line x1="264.8884" y1="273.42265" x2="304.38163" y2="251.35292" marker-end="url(#SharpArrow_Marker)" marker-start="url(#SharpArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_15">
+        <line x1="269.8" y1="316.25" x2="303.2" y2="316.25" marker-end="url(#SharpArrow_Marker)" marker-start="url(#SharpArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Line_16">
+        <line x1="269.75184" y1="414.6732" x2="302.24816" y2="411.35313" marker-end="url(#SharpArrow_Marker)" marker-start="url(#SharpArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>
