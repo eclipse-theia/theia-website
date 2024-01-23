@@ -2,7 +2,7 @@
 title: Events
 ---
 
-## Events
+# Events
 
 Events in Theia can be confusing, hopefully we can clarify things.
 
