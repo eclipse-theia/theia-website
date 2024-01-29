@@ -83,8 +83,10 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.dev/glsp/',
-                version: 'TBD',
-                modules: []
+                version: '2.1.0',
+                modules: [
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.0.0' }
+                ]
             },
             {
                 title: 'Eclipse EMF.cloud',
@@ -101,8 +103,11 @@ const communityReleases = [
             {
                 title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
-                version: 'TBD',
-                modules: []
+                version: '0.0.108',
+                modules: [
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/0.0.108' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/0.0.32' }
+                ]
             },
             {
                 title: 'Langium',
