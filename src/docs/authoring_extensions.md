@@ -4,6 +4,8 @@ title: Authoring an Extension
 
 # Authoring Theia Extensions
 
+This guide will walk you through the process of creating Theia extensions and deploying them in your Theia-based application. Please make sure to be aware of the [different available extension mechanisms](docs/extensions/) of Theia (Plugins vs. Extensions) before you continue reading.
+
 As an example, we are going to add a menu item _Say hello_ that displays a notification "Hello world!". This article is guiding you through all the necessary steps.
 
 ## Theia’s Architecture
