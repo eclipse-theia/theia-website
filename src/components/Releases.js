@@ -73,6 +73,52 @@ heading-primary {
 
 const communityReleases = [
     {
+        name: 'Theia 1.49.x (2024-05) - planned',
+        releasedate: 'May 30th, 2024',
+        releasecandidatedate: 'April 25th, 2024',
+        technologiesin: 'June 6th, 2024',
+        releaseanouncement: 'June 13th, 2024',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse EMF.cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Theia Trace Extension',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
         name: 'Theia 1.45.x (2024-02) - published',
         releasedate: 'January 25th, 2024',
         releasecandidatedate: 'December 21th, 2023',
