@@ -106,7 +106,7 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h2 style={{ fontSize: '2.1rem' }}>
-                        <a href="https://eclipsesource.com/blogs/2024/02/09/eclipse-theia-1-46-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.46 Release</a> and <a href="https://eclipsesource.com/blogs/2024/02/08/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2024-02)</a>.
+                        <a href="https://eclipsesource.com/blogs/2024/03/07/eclipse-theia-1-47-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.47 Release</a> and <a href="https://eclipsesource.com/blogs/2024/02/08/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2024-02)</a>.
                         <br/>
                         Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                     </h2>
