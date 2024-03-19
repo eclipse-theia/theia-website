@@ -1,13 +1,17 @@
 ---
-title: Packaging Theia as a Desktop Product
+title: Extending/Adopting the Theia IDE
 ---
 
-# Packaging Theia as a Desktop Product
+# Extending/Adopting the Theia IDE
 
-This guide provides an overview on how to extend and customize the Theia IDE to your own custom IDE or tool. In this scenario, the Eclipse Theia IDE is an example product used as a reference on how to build desktop IDE-like products based on the Eclipse Theia framework.
+This guide provides an overview on how to extend and customize the Theia IDE to your own custom IDE or tool. In this scenario, the Eclipse Theia IDE is an example product used as a reference on how to build desktop IDE-like products based on the Eclipse Theia framework. If you just want to use the Theia IDE, see the [user guide](/docs/user_getting_started)
+
+Please note that adopting the Theia IDE as a basis is just one of several ways to get started with building a Theia-based application. We recommend reading the article "[Build your own IDE/Tool](/docs/composing_applications)" as a first step. Furthermore, this guide is focused on building a desktop app. We also provide an [experimental Docker version](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker-build) of the Theia IDE as an alternative.
+
 The Theia IDE assembles a selected subset of existing Theia features and extensions.
 We provide installers for the Theia IDE to be downloaded (see links below).
-In the respective git repository you can also find the source code for the Theia IDE and its installers.
+In the [respective git repository](https://github.com/eclipse-theia/theia-blueprint) you can also find the [source code for the Theia IDE and its installers](https://github.com/eclipse-theia/theia-blueprint).
+
 This documentation will use these sources as a template. We will explain
 how to customize this template so that you can build your own custom Theia-based product including installers and packaging for installing the desktop-based version of your custom product on all major operating systems. Please note that the technical name (e.g. in the source code) for the Theia IDE is "Theia Blueprint" to avoid confusion with the generic term "IDE".
 
