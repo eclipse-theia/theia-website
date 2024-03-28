@@ -7,61 +7,41 @@ on:
   workflow_dispatch:
 
 # Allow only one concurrent deployment
+# Do not cancel in progress as we want production deployments to complete.
 concurrency:
   group: "publish"
-
-env:
-  WEBSITE_SOURCES_DIR: sources
-  WEBSITE_CONTENT_DIR: published
-  PREVIEW_FOLDER: ws-previews
+  cancel-in-progress: false
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout website sources
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: ${{ env.WEBSITE_SOURCES_DIR }}
-
-      - name: Checkout content website
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: ${{ env.WEBSITE_CONTENT_DIR }}
-
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 #v3
         with:
           node-version: 14.x
           registry-url: 'https://registry.npmjs.org'
-
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d #v4
       - name: Build website
-        working-directory: ${{ env.WEBSITE_SOURCES_DIR }}
-        run: npm install && npm run build
-
-      - name: Prune current content
-        working-directory: ${{ env.WEBSITE_CONTENT_DIR }}
-        run: git rm -rf * && [ -f ${{ env.PREVIEW_FOLDER }} ] && git checkout HEAD -- ${{ env.PREVIEW_FOLDER }}
-
-      - name: Copy content of website
-        working-directory: ${{ env.WEBSITE_SOURCES_DIR }}
-        run: cp -a public/. ../${{ env.WEBSITE_CONTENT_DIR }}
-
-      - name: Check for content changes
-        id: git-check
-        working-directory: ${{ env.WEBSITE_CONTENT_DIR }}
         run: |
-          git add -A
-          echo "modified=$(if git diff --cached --exit-code --quiet; then echo 'false'; else echo 'true'; fi)" >> $GITHUB_OUTPUT
+          npm install
+          npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa #v3
+        with:
+          path: ./public
 
-      - name: Push content changes
-        if: steps.git-check.outputs.modified == 'true' && github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ${{ env.WEBSITE_CONTENT_DIR }}
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e #v4
