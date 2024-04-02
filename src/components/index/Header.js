@@ -113,9 +113,6 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        Join our <a href="https://github.com/eclipse-theia/theia/wiki/Theia-Community-Call">next community call</a> on March 14th, 4pm CET, to get a update about the Theia ecosystem!
-                    </h1>       
-                    <h1 style={{ fontSize: '2.2rem' }}>
                         In case you missed TheiaCon 2023 (Nov 15th-Nov 16th), all talk recordings are available now, see <a href="https://www.youtube.com/watch?v=2rbMtztIHgw&list=PLy7t4z5SYNaQ0cajexl1uZhiZwiD93v9g">here</a>!
                     </h1>       
                 </div>
