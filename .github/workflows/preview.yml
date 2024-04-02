@@ -17,7 +17,7 @@ defaults:
 
 jobs:
   build-preview:
-    if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
+    # if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js 14.x
