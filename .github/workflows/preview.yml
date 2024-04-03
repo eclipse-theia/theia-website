@@ -64,7 +64,7 @@ jobs:
           preview-branch: previews
           umbrella-dir: pr-previews
           deploy-repository: eclipse-theia/theia-website-previews
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.DEPLOY_PREVIEW_TOKEN }}
           action: auto
 
   # remove the preview page when the PR got closed
@@ -84,5 +84,5 @@ jobs:
           preview-branch: previews
           umbrella-dir: pr-previews
           deploy-repository: eclipse-theia/theia-website-previews
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.DEPLOY_PREVIEW_TOKEN }}
           action: auto
