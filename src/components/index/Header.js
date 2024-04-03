@@ -93,7 +93,7 @@ const Header = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <h1 className="heading-primary">
-                    The Eclipse Theia Platform
+                    The Eclipse Theia Platform -- DO NOT MERGE
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
                         An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
