@@ -3,7 +3,6 @@ name: Deploy Website
 on:
   push:
     branches: ["master"]
-  pull_request: # this is just for testing
   workflow_dispatch:
 
 # Allow only one concurrent deployment
