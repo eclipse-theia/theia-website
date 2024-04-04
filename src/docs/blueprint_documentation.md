@@ -161,7 +161,7 @@ To use another custom dialog widget, remove this code, extend Theia’s AboutDia
 
 ### Customizing the Preferences
 
-The default preferences directory in Eclipse Theia IDE is `.theia-blueprint` and is located as described in the [Preferences documentation](https://theia-ide.org/docs/preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
+The default preferences directory in Eclipse Theia IDE is `.theia-blueprint` and is located as described in the [Preferences documentation](../preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
 
 ### Customizing the Installer
 
