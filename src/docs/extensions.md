@@ -15,7 +15,7 @@ These are not scoped to frontend connections and have no access (directly) to fr
 
 The following diagram shows the high level architecture for all four options. VS Code extensions and Theia plugins run in a dedicated process per frontend connection, can be installed at runtime, and work against a defined API. Headless plugins similarly run in a dedicated process, but only one that is not associated with any frontend connection. Theia extensions are added during compile time and become a core part of your Theia application. They can access the full API of Theia.
 
-<img src="/extensiontypes.svg" alt="Block diagram of Theia extension types" style="max-width: 525px">
+<img src="../../extensiontypes.svg" alt="Block diagram of Theia extension types" style="max-width: 525px">
 
 If you would like more guidance on which mechanism to use, please also refer to [this detailed comparison between VS Code extensions and Theia extensions](https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/).
 

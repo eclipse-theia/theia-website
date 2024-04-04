@@ -10,7 +10,7 @@ The default label provider in Theia browses registered label provider contributi
 
 In this article we will describe how to customize the label and icon of a custom file type (.my) in Eclipse Theia, as seen in the screenshot below.
 
-<img src="/custom-label-provider.png" alt="A custom label provider" style="max-width: 525px">
+<img src="../../custom-label-provider.png" alt="A custom label provider" style="max-width: 525px">
 
 If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/).
 

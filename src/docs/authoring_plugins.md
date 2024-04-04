@@ -69,7 +69,7 @@ In the previous commands:
 
 Here is an animated screenshot of the generator running.
 
-<img src="/yeoman-plugin.gif" class="doc-image" alt="Yeoman plugin output">
+<img src="../../yeoman-plugin.gif" class="doc-image" alt="Yeoman plugin output">
 
 Pick up default values for each question.
 

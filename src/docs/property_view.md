@@ -150,4 +150,4 @@ Following these few steps should give the reader an idea on how to implement an 
 
 The resulting property view will be displayed like this:
 
-<img src="/custom-property-view.gif" alt="Property View - custom widget" style="max-width: 690px">
+<img src="../../custom-property-view.gif" alt="Property View - custom widget" style="max-width: 690px">

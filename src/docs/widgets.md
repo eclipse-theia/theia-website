@@ -6,13 +6,13 @@ title: Widgets
 
 A widget is a part displaying content within the Theia workbench, e.g. a view or an editor. Examples for existing widgets in Theia are the file explorer, the code editor or the problems view. By contributing custom widgets, you can place your own custom UI in a Theia-based application. Your custom UI will behave the same as other widgets in terms of window layouts including the title tab, resizing, dragging and opening/closing (see screenshot below).
 
-<img src="/widget-example.gif" alt="Widget Example" style="max-width: 525px">
+<img src="../../widget-example.gif" alt="Widget Example" style="max-width: 525px">
 
 Furthermore, a widget will receive events from the surrounding workbench, e.g. on application start, on resize or on detach. The implementation of the actual content of a widget, which is rendered in the provided frame is completely up to you, though. As an example, you can implement some custom UI using React within a widget.
 
 In a nutshell, a widget is a frame to embed some custom (HTML-based) UI into the Theia workbench (see diagram below)
 
-<img src="/widget-architecture.png" alt="Widget Architecture" style="max-width: 525px">
+<img src="../../widget-architecture.png" alt="Widget Architecture" style="max-width: 525px">
 
 In this article we will describe how to contribute a custom widget to the Theia workbench. We will focus on a simple view (in contrast to an editor) and use React to implement the UI.
 

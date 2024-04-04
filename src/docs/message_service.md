@@ -15,15 +15,15 @@ By default, Theia will display messages as toast notifications in the bottom rig
 
 Info
 
-<img src="/message-service-info.png" alt="Message Service - info" style="max-width: 525px">
+<img src="../../message-service-info.png" alt="Message Service - info" style="max-width: 525px">
 
 Warn
 
-<img src="/message-service-warn.png" alt="Message Service - warning" style="max-width: 525px">
+<img src="../../message-service-warn.png" alt="Message Service - warning" style="max-width: 525px">
 
 Error
 
-<img src="/message-service-error.png" alt="Message Service - error" style="max-width: 525px">
+<img src="../../message-service-error.png" alt="Message Service - error" style="max-width: 525px">
 
 By default, notifications will be displayed until the user closes them. You can optionally define a time-out after which messages will be closed automatically:
 
@@ -48,11 +48,11 @@ this.messageService
 
 The corresponding toast notification will look like this:
 
-<img src="/message-service-user-action.png" alt="Message Service - user action" style="max-width: 525px">
+<img src="../../message-service-user-action.png" alt="Message Service - user action" style="max-width: 525px">
 
 When the user selects “Say Hello again”, another toast notification will be shown:
 
-<img src="/message-service-hello-again.png" alt="Message Service - after user action" style="max-width: 525px">
+<img src="../../message-service-hello-again.png" alt="Message Service - after user action" style="max-width: 525px">
 
 ## Progress Reporting
 
@@ -86,4 +86,4 @@ this.messageService
 Note that `progress.cancel` is also used to signal that progress is complete.
 The code example above will be displayed like this:
 
-<img src="/message-service-progress-reporting.gif" alt="Message Service - progress reporting" style="max-width: 525px">
+<img src="../../message-service-progress-reporting.gif" alt="Message Service - progress reporting" style="max-width: 525px">

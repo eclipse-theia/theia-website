@@ -8,7 +8,7 @@ If enabled via the preferences, Theia can show a navigation bar, often referred 
 This interactive navigation bar indicates the location of the widget's content in the context of an overall structure, such as the filesystem.
 By default, Theia shows breadcrumbs for the location of files in the filesystem when a file is opened in the text editors.
 
-<img src="/breadcrumbs.png" alt="A screenshot of breadcrumbs in Theia" style="max-width: 525px">
+<img src="../../breadcrumbs.png" alt="A screenshot of breadcrumbs in Theia" style="max-width: 525px">
 
 However, Theia's breadcrumbs mechanism can also be used for any custom widget, too.
 Moreover, Theia allows showing a widget's content location in an arbitrary custom logical structure, such as a custom project structure.
@@ -89,7 +89,7 @@ export class CustomBreadcrumbsContribution implements BreadcrumbsContribution {
 
 Once the breadcrumbs contribution is registered, Theia will show the following for our custom widget.
 
-<img src="/breadcrumbs-custom.png" alt="A screenshot of custom breadcrumbs in Theia" style="max-width: 525px">
+<img src="../../breadcrumbs-custom.png" alt="A screenshot of custom breadcrumbs in Theia" style="max-width: 525px">
 
 ## Interactive Breadcrumbs
 
@@ -113,7 +113,7 @@ export class CustomBreadcrumbsContribution implements BreadcrumbsContribution {
 }
 ```
 
-<img src="/breadcrumbs-popup.png" alt="A screenshot of custom breadcrumbs with a popup in Theia" style="max-width: 525px">
+<img src="../../breadcrumbs-popup.png" alt="A screenshot of custom breadcrumbs with a popup in Theia" style="max-width: 525px">
 
 ## Priority of Breadcrumbs Contributions
 

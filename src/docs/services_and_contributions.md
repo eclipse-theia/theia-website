@@ -14,7 +14,7 @@ Contribution points, like services, can be contributed to and defined by any ext
 
 The usage of services and contribution points requires communication between extensions. To avoid direct dependencies on the implementation classes, Theia uses dependency injection.
 
-<img src="/dependency-injection.png" alt="Dependency Injection Overview" style="max-width: 525px">
+<img src="../../dependency-injection.png" alt="Dependency Injection Overview" style="max-width: 525px">
 
 In the following sections, we provide a quick overview of dependency injection, services, contributions and how to define contribution points.
 
