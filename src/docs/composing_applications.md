@@ -155,7 +155,7 @@ e.g. to open `/workspace` on all interfaces and port `8080`:
 
 In the terminal, you should see that Theia application is up and listening:
 
-<img class="doc-image" src="/docs-terminal.png" alt="Terminal" style="max-width: 750px">
+<img class="doc-image" src="../../docs-terminal.png" alt="Terminal" style="max-width: 750px">
 
 Open the application by entering the printed address in a new browser page.
 

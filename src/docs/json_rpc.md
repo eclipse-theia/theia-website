@@ -90,7 +90,7 @@ an when this contribution is initialized it creates a websocket channel for all 
 To save resources the hood all `MessagingContributions` are routed over one
 websocket connection (multiplexing).
 
-To dig more into ContributionProvider see this [section](../Services_and_Contributions#contribution-providers).
+To dig more into ContributionProvider see this [section](../services_and_contributions#contribution-providers).
 
 So now:
 
@@ -221,7 +221,7 @@ Here we're creating a watcher, this is used to get notified about events
 from the backend by using the `taskWatcher`'s client
 (`taskWatcher.getTaskClient()`)
 
-See more information about how events work in theia [here](../Events#events).
+See more information about how events work in theia [here](../events#events).
 
 ``` typescript
         return connection.createProxy<TaskServer>(taskPath, taskWatcher.getTaskClient());

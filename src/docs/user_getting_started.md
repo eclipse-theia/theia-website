@@ -19,4 +19,4 @@ The Theia IDE features and usability concept is heavily influences by VS Code. T
 - [Install VS Code extensions](../user_install_vscode_extensions/)
 - [Using the dynamic Toolbar](../user_toolbar/)
 
-Please note that you can also [use the Theia IDE as a basis to create your own custom product](blueprint_documentation/).
+Please note that you can also [use the Theia IDE as a basis to create your own custom product](../blueprint_documentation/).
