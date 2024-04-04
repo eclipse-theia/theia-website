@@ -90,7 +90,7 @@ To also ensure the text is not going over the boxes boundaries, the property `wo
 
 After those rules are applied the preview will look as shown below:
 
-<img src="../enhanced-preview-custom.png" alt="A screenshot of the customized enhanced preview in Theia" style="max-width: 525px">
+<img src="../../enhanced-preview-custom.png" alt="A screenshot of the customized enhanced preview in Theia" style="max-width: 525px">
 
 ### Changing the content element
 
