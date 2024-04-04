@@ -84,7 +84,7 @@ const TheiaIDEExtensible = () => (
         <Styled>
             <section className="products" >
                 <h2 className="heading-tertiary">Extensible and Open</h2>
-                <p>The Theia IDE is built upon the highly modular <a href="/">Theia platform</a>, enabling the integration of custom extensions and the creation of fully tailored tools (see examples below). <a href="/">Explore the Theia Platform</a> and learn how to create custom tool offerings with ease!</p>
+                <p>The Theia IDE is built upon the highly modular <a href="./">Theia platform</a>, enabling the integration of custom extensions and the creation of fully tailored tools (see examples below). <a href="./">Explore the Theia Platform</a> and learn how to create custom tool offerings with ease!</p>
                 <br></br>
                 <div className="swiper-button-prev"></div>
                 <Swiper
