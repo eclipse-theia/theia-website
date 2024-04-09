@@ -4,9 +4,9 @@ title: Services and Contributions
 
 # Services and Contributions
 
-In this section we describe how [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions) can use services provided by the platform and by other extensions. Furthermore, we describe how extensions can contribute to the Theia workbench via contribution points.
+In this section we describe how [Theia extensions](../extensions#theia-extensions) can use services provided by the platform and by other extensions. Furthermore, we describe how extensions can contribute to the Theia workbench via contribution points.
 
-A **service** is an object that provides functionality to its consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](https://theia-ide.org/docs/message_service/). However, you can provide and consume your own custom services, too.
+A **service** is an object that provides functionality to its consumers. The contract between a service and its consumers is described by an interface. Any implementation of a service must implement that interface according to the interface documentation. Any extension in Theia can provide and/or consume services. The extensions provided by the Theia platform provide a set of default services, e.g. the [`MessageService`](../message_service/). However, you can provide and consume your own custom services, too.
 
 **Contribution points** define hooks, which allow extending something. Contribution points are defined by an interface that the contributor is expected to implement, e.g. a `CommandContribution`. The extension defining the contribution point will then pick up the contribution, e.g. adding the contributed command to the Theia workbench.
 
@@ -14,7 +14,7 @@ Contribution points, like services, can be contributed to and defined by any ext
 
 The usage of services and contribution points requires communication between extensions. To avoid direct dependencies on the implementation classes, Theia uses dependency injection.
 
-<img src="/dependency-injection.png" alt="Dependency Injection Overview" style="max-width: 525px">
+<img src="../../dependency-injection.png" alt="Dependency Injection Overview" style="max-width: 525px">
 
 In the following sections, we provide a quick overview of dependency injection, services, contributions and how to define contribution points.
 
@@ -80,7 +80,7 @@ export default new ContainerModule(bind => {
 });
 ```
 
-Please see [Commands/Menus/Keybindings](https://theia-ide.org/docs/commands_keybindings/) for a simple example for the usage of services and contribution points.
+Please see [Commands/Menus/Keybindings](../commands_keybindings/) for a simple example for the usage of services and contribution points.
 
 ## Defining Contribution-Points
 

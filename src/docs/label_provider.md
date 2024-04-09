@@ -10,9 +10,9 @@ The default label provider in Theia browses registered label provider contributi
 
 In this article we will describe how to customize the label and icon of a custom file type (.my) in Eclipse Theia, as seen in the screenshot below.
 
-<img src="/custom-label-provider.png" alt="A custom label provider" style="max-width: 525px">
+<img src="../../custom-label-provider.png" alt="A custom label provider" style="max-width: 525px">
 
-If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/).
+If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](../services_and_contributions/).
 
 All the following code examples are from the [Theia extension generator](https://github.com/eclipse-theia/generator-theia-extension). You can get the same code set-up by installing the generator, selecting the “Label Provider” example (see [here](https://github.com/eclipse-theia/generator-theia-extension)) and choosing “labelProvider” as the name.
 
@@ -59,7 +59,7 @@ getName(fileStatNode: FileStatNode): string {
 }
 ```
 
-To make our `LabelProviderContribution` accessible to Theia, we need to bind the custom `LabelProviderLabelProviderContribution` to the respective contribution symbol `LabelProviderContribution`. This is done in the `labelprovider-frontend-module`, for more details see [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/).
+To make our `LabelProviderContribution` accessible to Theia, we need to bind the custom `LabelProviderLabelProviderContribution` to the respective contribution symbol `LabelProviderContribution`. This is done in the `labelprovider-frontend-module`, for more details see [Services and Contributions](../services_and_contributions/).
 
 **labelprovider-frontend-module.ts**
 

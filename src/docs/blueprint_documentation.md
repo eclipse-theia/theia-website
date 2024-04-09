@@ -4,9 +4,9 @@ title: Extending/Adopting the Theia IDE
 
 # Extending/Adopting the Theia IDE
 
-This guide provides an overview on how to extend and customize the Theia IDE to your own custom IDE or tool. In this scenario, the Eclipse Theia IDE is an example product used as a reference on how to build desktop IDE-like products based on the Eclipse Theia framework. If you just want to use the Theia IDE, see the [user guide](/docs/user_getting_started)
+This guide provides an overview on how to extend and customize the Theia IDE to your own custom IDE or tool. In this scenario, the Eclipse Theia IDE is an example product used as a reference on how to build desktop IDE-like products based on the Eclipse Theia framework. If you just want to use the Theia IDE, see the [user guide](../user_getting_started)
 
-Please note that adopting the Theia IDE as a basis is just one of several ways to get started with building a Theia-based application. We recommend reading the article "[Build your own IDE/Tool](/docs/composing_applications)" as a first step. Furthermore, this guide is focused on building a desktop app. We also provide an [experimental Docker version](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker-build) of the Theia IDE as an alternative.
+Please note that adopting the Theia IDE as a basis is just one of several ways to get started with building a Theia-based application. We recommend reading the article "[Build your own IDE/Tool](../composing_applications)" as a first step. Furthermore, this guide is focused on building a desktop app. We also provide an [experimental Docker version](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker-build) of the Theia IDE as an alternative.
 
 The Theia IDE assembles a selected subset of existing Theia features and extensions.
 We provide installers for the Theia IDE to be downloaded (see links below).
@@ -57,7 +57,7 @@ However, as signing is highly dependent on your setup, see the [electron builder
 
 ## Adding/Removing Features
 
-The Theia IDE is based on the Theia platform, which is a flexible and adaptable platform for build tools and IDEs. Therefore, you can adapt the feature set and general appearance of the Theia IDE to your custom requirements with almost no limits. The Theia platform provides two mechanism to add your custom extensions: VS Code extensions and Theia extensions. Please have a look at the [overview about Theia extension capabilities](/docs/extensions/) for details. When assembling a product such as the Theia IDE, you can freely decide, which VS Code extensions and Theia extensions are part of it and thereby influence the feature set of your custom product. The following two sections describe how to modify which [VS Code Extensions](#updating-bundled-vs-code-extensions) and which [Theia extensions](#customizing-theia-extensions) are part of your product. Please also note that you can allow users of a Theia-based tool to [install VS Code extensions at runtime](/docs/user_install_vscode_extensions/).
+The Theia IDE is based on the Theia platform, which is a flexible and adaptable platform for build tools and IDEs. Therefore, you can adapt the feature set and general appearance of the Theia IDE to your custom requirements with almost no limits. The Theia platform provides two mechanism to add your custom extensions: VS Code extensions and Theia extensions. Please have a look at the [overview about Theia extension capabilities](../extensions/) for details. When assembling a product such as the Theia IDE, you can freely decide, which VS Code extensions and Theia extensions are part of it and thereby influence the feature set of your custom product. The following two sections describe how to modify which [VS Code Extensions](#updating-bundled-vs-code-extensions) and which [Theia extensions](#customizing-theia-extensions) are part of your product. Please also note that you can allow users of a Theia-based tool to [install VS Code extensions at runtime](../user_install_vscode_extensions/).
 
 ## Updating Bundled VS Code Extensions
 
@@ -161,7 +161,7 @@ To use another custom dialog widget, remove this code, extend Theia’s AboutDia
 
 ### Customizing the Preferences
 
-The default preferences directory in Eclipse Theia IDE is `.theia-blueprint` and is located as described in the [Preferences documentation](https://theia-ide.org/docs/preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
+The default preferences directory in Eclipse Theia IDE is `.theia-blueprint` and is located as described in the [Preferences documentation](../preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
 
 ### Customizing the Installer
 

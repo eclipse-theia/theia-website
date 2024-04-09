@@ -16,7 +16,7 @@ In Eclipse Theia, tasks can also be provided from and executed by custom Theia e
 In particular, Theia offers the three main contribution points for tasks: `TaskProvider`, `TaskResolver` and `TaskRunner`.
 To better understand the purpose of those, let’s look at the flow, through the involved components, when a user selects and executes a task in the following figure.
 
-<img src="/tasks.png" alt="Task flow overview" style="max-width: 915px">
+<img src="../../tasks.png" alt="Task flow overview" style="max-width: 915px">
 
 Besides the user-defined task configurations, Eclipse Theia will also offer its users all task configurations collected from the registered task providers.
 When a user selects one of the provided task configurations and executes it, the configuration will be handed over to the task service, which will first resolve the selected task configuration using a resolver that is registered for the selected task configuration’s type.
@@ -37,7 +37,7 @@ Finally, we will contribute a custom task runner that executes our provided task
 
 Task providers and task resolvers are contributed via an implementation of `TaskContribution`.
 Like all contributions, it must be bound in the respective front end module as shown below.
-If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/).
+If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](../services_and_contributions/).
 
 ``` typescript
 export default new ContainerModule(bind => {
@@ -153,7 +153,7 @@ class MyTask extends Task {
 
 As you can see in the screenshot below, our custom task is running for 5000 ms (as we set a timeout in `MyTask`) and then it stops.
 
-<img src="/running-custom-task.gif" alt="Running custom task" style="max-width: 702px">
+<img src="../../running-custom-task.gif" alt="Running custom task" style="max-width: 702px">
 
 As can be seen in the console output, the task starts and finishes 5000 ms later, and prints the custom variable that has been added by the custom resolver.
 

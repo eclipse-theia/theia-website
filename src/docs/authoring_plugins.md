@@ -4,7 +4,7 @@ title: Authoring Plug-ins
 
 # Authoring Theia Plug-ins
 
-This documentation is deprecated and needs to be updated. We currently recommend using VS Code extensions or Theia extensions instead of Theia Plugins. See the [extension overview](https://theia-ide.org/docs/extensions/) for more details.
+This documentation is deprecated and needs to be updated. We currently recommend using VS Code extensions or Theia extensions instead of Theia Plugins. See the [extension overview](../extensions/) for more details.
 <!--
 Let's create our first Theia plug-in. As an example, we are going to register a command _Hello World_ that displays a notification "Hello world!". This article is guiding you through all the necessary steps.
 
@@ -69,7 +69,7 @@ In the previous commands:
 
 Here is an animated screenshot of the generator running.
 
-<img src="/yeoman-plugin.gif" class="doc-image" alt="Yeoman plugin output">
+<img src="../../yeoman-plugin.gif" class="doc-image" alt="Yeoman plugin output">
 
 Pick up default values for each question.
 

@@ -4,7 +4,7 @@ title: Enhanced Tab Bar Preview
 
 # Enhanced Tab Bar Preview
 
-By default, Theia shows the value of a widget's `caption` property when users hover above a widget's tab (see also [widgets](/docs/widgets/)).
+By default, Theia shows the value of a widget's `caption` property when users hover above a widget's tab (see also [widgets](../widgets/)).
 In certain use cases, especially with custom editors, this information may however not be sufficient to give users sufficient overview about a widget's content before activating the tab.
 
 Therefore, Theia optionally provides an enhanced tab bar preview for widgets of the main or bottom area of Theia; that is, for horizontal tab bars.
@@ -15,11 +15,11 @@ Moreover, it can easily be styled according to the needs of a tool provider adop
 
 The enhanced tab bar preview is disabled by default and needs to be explicitly enabled with a via the preference `window.tabbar.enhancedPreview`.
 
-<img src="/enhanced-preview-setting.png" alt="A screenshot of the window.tabbar.enhancedPreview setting in Theia" style="max-width: 525px">
+<img src="../../enhanced-preview-setting.png" alt="A screenshot of the window.tabbar.enhancedPreview setting in Theia" style="max-width: 525px">
 
 After enabling the enhanced tab bar preview, users will see the following on hovering over a widget's tab:
 
-<img src="/enhanced-preview.png" alt="A screenshot of the enhanced preview in Theia" style="max-width: 525px">
+<img src="../../enhanced-preview.png" alt="A screenshot of the enhanced preview in Theia" style="max-width: 525px">
 
 ## Specifying the contents of the preview
 
@@ -90,7 +90,7 @@ To also ensure the text is not going over the boxes boundaries, the property `wo
 
 After those rules are applied the preview will look as shown below:
 
-<img src="/enhanced-preview-custom.png" alt="A screenshot of the customized enhanced preview in Theia" style="max-width: 525px">
+<img src="../../enhanced-preview-custom.png" alt="A screenshot of the customized enhanced preview in Theia" style="max-width: 525px">
 
 ### Changing the content element
 
