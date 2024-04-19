@@ -20,7 +20,8 @@ module.exports = {
                 plugins: [
                     'gatsby-remark-autolink-headers',
                     "gatsby-remark-external-links",
-                    "gatsby-remark-prismjs"
+                    "gatsby-remark-prismjs",
+                    "gatsby-plugin-catch-links"
                 ]
             }
         }

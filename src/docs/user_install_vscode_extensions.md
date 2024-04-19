@@ -6,7 +6,7 @@ title: Installing VS Code Extensions in Theia
 
 You can install VS Code extensions into Theia-based products via the [Open VSX Registry](https://open-vsx.org/), aka “Theia Marketplace” or “Theia Extension Registry”.
 
-*Note: To be able to install extensions, the creator of your Theia-based tool needs to have enabled this option. The following documentation is based on the Theia IDE, a standard product based on Theia. This might slightly differ from the Theia-based product you are using, please contact the provider of your tool if there are uncertainties and also see [here](../user_getting_started/). For tool creators, please see the end of this document.*
+*Note: To be able to install extensions, the creator of your Theia-based tool needs to have enabled this option. The following documentation is based on the Theia IDE, a standard product based on Theia. This might slightly differ from the Theia-based product you are using, please contact the provider of your tool if there are uncertainties and also see [here](/docs/user_getting_started/). For tool creators, please see the end of this document.*
 
 To install new extensions into the Theia IDE, please open the Extensions View via the Menu "View => Extensions" or via the command “Toggle Extensions View”.
 
@@ -30,4 +30,4 @@ For details about the compatibility of Theia for VS Code extensions can be found
 
 If you are missing a specific VS Code extension or if you have issues with using a VS Code extension in Theia, please report this to the creator of your Theia-based Tool. If you are using the Theia IDE or a variant of it, please report your issues [here](https://github.com/eclipse-theia/theia/issues/new?assignees=&labels=&template=bug_report.md).
 
-For adopters: If you are building a Theia-based product, please have a look at our overview about [extensions and plugins](../extensions/) as well as at the [documentation on authoring VS Code extensions in Theia](../authoring_vscode_extensions/).
+For adopters: If you are building a Theia-based product, please have a look at our overview about [extensions and plugins](/docs/extensions/) as well as at the [documentation on authoring VS Code extensions in Theia](/docs/authoring_vscode_extensions/).
