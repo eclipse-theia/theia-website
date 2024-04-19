@@ -8,7 +8,7 @@ Commands are runnable actions defined by an ID and the function to be executed (
 
 The following sections provide details about how to contribute commands, keybindings and menu items. The sections will describe how to connect the different contributions and how to use the corresponding services for managing these items.
 
-If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](../services_and_contributions/).
+If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](/docs/services_and_contributions/).
 
 All the following code examples are from the [Theia extension generator](https://github.com/eclipse-theia/generator-theia-extension). You can get the same code set-up by installing the generator, selecting the “Hello World” example (see here) and choosing “helloworld” as the name.
 
@@ -50,7 +50,7 @@ Finally, by implementing `isToggle` a handler can optionally specify, whether me
 
 ### Binding the contribution to CommandContribution
 
-To make our `CommandContribution` accessible to Theia, we need to bind the custom `HelloworldCommandContribution` to the respective contribution symbol `CommandContribution`. This is done in the `helloworld-frontend-module`, for more details see [Services and Contributions](../services_and_contributions/).
+To make our `CommandContribution` accessible to Theia, we need to bind the custom `HelloworldCommandContribution` to the respective contribution symbol `CommandContribution`. This is done in the `helloworld-frontend-module`, for more details see [Services and Contributions](/docs/services_and_contributions/).
 
 **helloworld-frontend-module.ts**
 
@@ -93,7 +93,7 @@ export class HelloworldMenuContribution implements MenuContribution {
 }
 ```
 
-To make our `MenuContribution` accessible to Theia, we need to bind the custom `HelloWorldMenuContribution` to the respective contribution symbol `MenuContribution`. This is done in the `helloworld-frontend-module`, for more details see [Services and Contributions](../services_and_contributions/).
+To make our `MenuContribution` accessible to Theia, we need to bind the custom `HelloWorldMenuContribution` to the respective contribution symbol `MenuContribution`. This is done in the `helloworld-frontend-module`, for more details see [Services and Contributions](/docs/services_and_contributions/).
 
 **helloworld-contribution.ts**
 

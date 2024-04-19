@@ -5,8 +5,8 @@ title: Using Theia As An End User
 # Using the "Theia IDE" as an End User
 
 The Theia IDE is a modern and open IDE for cloud and desktop. The Theia IDE is based on the Theia platform.
-- [Learn more about the Theia IDE](../../#theiaide)
-- [Download the Theia IDE](../../#theiaidedownload)
+- [Learn more about the Theia IDE](/#theiaide)
+- [Download the Theia IDE](/#theiaidedownload)
 - [Try the Theia IDE online](https://try.theia-cloud.io/)
 - [Run the Theia IDE with Docker](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker-build)
 
@@ -16,7 +16,7 @@ This section is about using the Theia IDE from an end user point of view. Please
 
 The Theia IDE features and usability concept is heavily influences by VS Code. Therefore, for many use cases, we refer to the VS Code documentation. We still provide some selected documentation about use cases which are differing or not supported in VS Code:
 
-- [Install VS Code extensions](../user_install_vscode_extensions/)
-- [Using the dynamic Toolbar](../user_toolbar/)
+- [Install VS Code extensions](/docs/user_install_vscode_extensions/)
+- [Using the dynamic Toolbar](/docs/user_toolbar/)
 
-Please note that you can also [use the Theia IDE as a basis to create your own custom product](../blueprint_documentation/).
+Please note that you can also [use the Theia IDE as a basis to create your own custom product](/docs/blueprint_documentation/).

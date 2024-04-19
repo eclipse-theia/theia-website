@@ -4,7 +4,7 @@ title: Enhanced Tab Bar Preview
 
 # Enhanced Tab Bar Preview
 
-By default, Theia shows the value of a widget's `caption` property when users hover above a widget's tab (see also [widgets](../widgets/)).
+By default, Theia shows the value of a widget's `caption` property when users hover above a widget's tab (see also [widgets](/docs/widgets/)).
 In certain use cases, especially with custom editors, this information may however not be sufficient to give users sufficient overview about a widget's content before activating the tab.
 
 Therefore, Theia optionally provides an enhanced tab bar preview for widgets of the main or bottom area of Theia; that is, for horizontal tab bars.

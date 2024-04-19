@@ -37,7 +37,7 @@ Finally, we will contribute a custom task runner that executes our provided task
 
 Task providers and task resolvers are contributed via an implementation of `TaskContribution`.
 Like all contributions, it must be bound in the respective front end module as shown below.
-If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](../services_and_contributions/).
+If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](/docs/services_and_contributions/).
 
 ``` typescript
 export default new ContainerModule(bind => {

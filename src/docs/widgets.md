@@ -16,7 +16,7 @@ In a nutshell, a widget is a frame to embed some custom (HTML-based) UI into the
 
 In this article we will describe how to contribute a custom widget to the Theia workbench. We will focus on a simple view (in contrast to an editor) and use React to implement the UI.
 
-If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](../services_and_contributions/).
+If you are not yet familiar with contribution points in Theia or the use of dependency injection, please consider this guide on [Services and Contributions](/docs/services_and_contributions/).
 
 If you would like to have a look at the example code, please use the [Theia extension generator](https://github.com/eclipse-theia/generator-theia-extension). Install the generator, select the “Widget” example and enter “MyWidget” as a name for the extension.
 
