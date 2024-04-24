@@ -8,7 +8,7 @@ In this section we'll outline some advanced hints and tips to get the most out o
 
 ## Providing custom API to VS Code extensions in Eclipse Theia
 
-Theia allows running VS Code extension by providing a compatible API (see [this overview](https://theia-ide.org/docs/extensions/) for details).
+Theia allows running VS Code extension by providing a compatible API (see [this overview](/docs/extensions/) for details).
 It is possible to extend this API to allow VS Code extensions running in Theia to access additional functionality compared to when they run within VS Code.
 This allows you to provide a feature as a VS Code extension targeting VS Code and Theia. However, when running in Theia, the feature can be enhanced by using custom API only available in Theia.
 

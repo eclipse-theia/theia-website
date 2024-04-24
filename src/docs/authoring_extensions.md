@@ -4,7 +4,7 @@ title: Authoring an Extension
 
 # Authoring Theia Extensions
 
-This guide will walk you through the process of creating Theia extensions and deploying them in your Theia-based application. Please make sure to be aware of the [different available extension mechanisms](docs/extensions/) of Theia (Plugins vs. Extensions) before you continue reading.
+This guide will walk you through the process of creating Theia extensions and deploying them in your Theia-based application. Please make sure to be aware of the [different available extension mechanisms](/docs/extensions/) of Theia (Plugins vs. Extensions) before you continue reading.
 
 As an example, we are going to add a menu item _Say hello_ that displays a notification "Hello world!". This article is guiding you through all the necessary steps.
 
@@ -14,7 +14,7 @@ A Theia app is composed of so-called _extensions_. An extension provides a set o
 
 Theia defines a plethora of contribution interfaces that allow extensions to add their behaviour to various aspects of the application. Just search for interfaces with the name `*Contribution` to get an idea. An extension implements the contribution interfaces belonging to the functionality it wants to deliver. In this example, we are going to implement a `CommandContribution` and a `MenuContribution`. Other ways for extensions to interact with a Theia application are via one of the various _services_ or _managers_.
 
-In Theia, everything is wired up via [dependency injection](/docs/Services_and_Contributions#dependency-injection-di). An extension defines one or more dependency injection modules. This is where it binds its contribution implementations to the respective contribution interface. The modules are listed in the `package.json` of the extension package. An extension can contribute to the frontend, e.g. providing a UI extension, as well as to the backend, e.g. contributing a language server. When the application starts, the union of all these modules is used to configure a single, global dependency injection container on each, the frontend and the backend. The runtime will then collect all contributions of a specific kind by means of a multi-inject.
+In Theia, everything is wired up via [dependency injection](/docs/services_and_contributions#dependency-injection-di). An extension defines one or more dependency injection modules. This is where it binds its contribution implementations to the respective contribution interface. The modules are listed in the `package.json` of the extension package. An extension can contribute to the frontend, e.g. providing a UI extension, as well as to the backend, e.g. contributing a language server. When the application starts, the union of all these modules is used to configure a single, global dependency injection container on each, the frontend and the backend. The runtime will then collect all contributions of a specific kind by means of a multi-inject.
 
 ## Prerequisites
 

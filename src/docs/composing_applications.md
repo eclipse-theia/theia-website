@@ -5,7 +5,7 @@ title: Build your own IDE/Tool
 
 # Build your own IDE/Tool
 
-This guide will teach you how to build your own Theia-based application. The guide will demonstrate how to configure your own application composed of existing or new Theia extensions, and any VS Code extensions you want bundled in your application by default. Please get familiar with the [extension mechanisms of Theia](https://theia-ide.org/docs/extensions/) in case you are not already.
+This guide will teach you how to build your own Theia-based application. The guide will demonstrate how to configure your own application composed of existing or new Theia extensions, and any VS Code extensions you want bundled in your application by default. Please get familiar with the [extension mechanisms of Theia](/docs/extensions/) in case you are not already.
 This guide describes the manual steps to build a Theia-based product, there are two ways to avoid this manual set-up:
 
 - [Theia Extension Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based products along with example extensions.
@@ -155,7 +155,7 @@ e.g. to open `/workspace` on all interfaces and port `8080`:
 
 In the terminal, you should see that Theia application is up and listening:
 
-<img class="doc-image" src="/docs-terminal.png" alt="Terminal" style="max-width: 750px">
+<img class="doc-image" src="../../docs-terminal.png" alt="Terminal" style="max-width: 750px">
 
 Open the application by entering the printed address in a new browser page.
 

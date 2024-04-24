@@ -1,4 +1,5 @@
 module.exports = {
+    pathPrefix: process.env.PATH_PREFIX,
     siteMetadata: {
         title: 'Theia - Cloud and Desktop IDE Platform',
         description: "Theia is an open-source cloud &nbsp; desktop IDE framework implemented in TypeScript."
@@ -19,7 +20,8 @@ module.exports = {
                 plugins: [
                     'gatsby-remark-autolink-headers',
                     "gatsby-remark-external-links",
-                    "gatsby-remark-prismjs"
+                    "gatsby-remark-prismjs",
+                    "gatsby-plugin-catch-links"
                 ]
             }
         }

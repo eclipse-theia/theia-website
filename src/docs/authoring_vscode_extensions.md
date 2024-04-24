@@ -4,13 +4,13 @@ title: Authoring VS Code Extensions
 
 # Authoring VS Code Extensions
 
-Alongside [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions), VS Code extensions can also be used to enhance Theia applications with additional functionality, such as language support, commands, or tree views.
+Alongside [Theia extensions](/docs/extensions#theia-extensions), VS Code extensions can also be used to enhance Theia applications with additional functionality, such as language support, commands, or tree views.
 VS Code extensions contribute functionality through the dedicated VS Code API, which the Theia framework also supports.
 This means that extensions that have been developed for VS Code are also compatible with Theia, and vice versa.
 The [coverage report](https://eclipse-theia.github.io/vscode-theia-comparator/status.html) provides more details on the extent to which the VS Code API is supported by each Theia version.
 
 While there are certain overlaps in which types of functionality can be contributed to a Theia application with a Theia extension or a VS Code extension, both have their unique advantages and disadvantages.
-Please refer to the overview on [extensions and plugins](https://theia-ide.org/docs/extensions) and an [in-depth comparison](https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/) for a more detailed discussion.
+Please refer to the overview on [extensions and plugins](/docs/extensions) and an [in-depth comparison](https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/) for a more detailed discussion.
 
 In the remainder of this page, we guide you through the process of creating VS Code extensions and deploying them in Theia.
 The steps for deploying VS Code extensions apply not only to VS Code extensions you develop yourself, but also to third-party VS Code extensions from the [Theia marketplace](https://open-vsx.org/). If you use a third-party VS Code extension, you can skip the section "Creating VS Code Extensions" and "Developing VS Code Extensions in a Theia Project".
@@ -129,7 +129,7 @@ Therefore, you need to extend your `package.json` to
 ```
 
 As a result, running `yarn` will download any listed extensions and place them into the folder specified in `theiaPluginsDir` automatically.
-For more details, see also the documentation on [composing Theia applications](https://theia-ide.org/docs/composing_applications/#consuming-vs-code-extensions).
+For more details, see also the documentation on [composing Theia applications](/docs/composing_applications/#consuming-vs-code-extensions).
 
 ### Installing VS Code Extensions at Runtime
 
@@ -160,7 +160,7 @@ To make your VS Code extension available, you'll need to [publish](https://githu
 ## Developing VS Code Extensions in a Theia Project
 
 In certain scenarios, you may not want to develop your VS Code extension in isolation from your Theia application, but instead you may prefer to develop both your extensions and your application in project to keep update cycles short and immediate.
-This is particularly useful if you develop your extensions primarily to be part a specific Theia application, thus you want to develop, test and debug them directly in the context of your Theia app, potentially alongside other [Theia extensions](https://theia-ide.org/docs/extensions#theia-extensions).
+This is particularly useful if you develop your extensions primarily to be part a specific Theia application, thus you want to develop, test and debug them directly in the context of your Theia app, potentially alongside other [Theia extensions](/docs/extensions#theia-extensions).
 
 In those scenarios, you can also include VS Code extensions as part of your Theia application monorepo.
 While there are several possible configuration options, probably the most straightforward approach is to follow the steps below.

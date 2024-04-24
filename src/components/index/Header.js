@@ -106,15 +106,12 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h2 style={{ fontSize: '2.1rem' }}>
-                        <a href="https://eclipsesource.com/blogs/2024/03/07/eclipse-theia-1-47-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.47 Release</a> and <a href="https://eclipsesource.com/blogs/2024/02/08/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2024-02)</a>.
+                        <a href="https://eclipsesource.com/blogs/2024/04/09/eclipse-theia-1-47-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.48 Release</a> and <a href="https://eclipsesource.com/blogs/2024/02/08/the-eclipse-theia-community-release-2023-11/">the latest Community Release (2024-02)</a>.
                         <br/>
                         Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
                     </h2>
                 </div>
                 <div className="header__banner">
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                        Join our <a href="https://github.com/eclipse-theia/theia/wiki/Theia-Community-Call">next community call</a> on March 14th, 4pm CET, to get a update about the Theia ecosystem!
-                    </h1>       
                     <h1 style={{ fontSize: '2.2rem' }}>
                         In case you missed TheiaCon 2023 (Nov 15th-Nov 16th), all talk recordings are available now, see <a href="https://www.youtube.com/watch?v=2rbMtztIHgw&list=PLy7t4z5SYNaQ0cajexl1uZhiZwiD93v9g">here</a>!
                     </h1>       

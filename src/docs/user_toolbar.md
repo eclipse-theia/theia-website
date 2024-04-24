@@ -10,11 +10,11 @@ Eclipse Theia provides a dynamic toolbar allowing easy access to commonly used c
 
 As a user, you can control the default visibility of the Theia toolbar using the setting "Show Toolbar" (see screenshot below). Additionally, you can toggle the toolbar using "ALT+T" or via right-click on the toolbar => "Toggle Toolbar".
 
-<img src="/theia-toolbar-visibility.gif" alt="Theia Toolbar Visibility" style="max-width: 525px">
+<img src="../../theia-toolbar-visibility.gif" alt="Theia Toolbar Visibility" style="max-width: 525px">
 
 The toolbar will show some default commands, which are configured by the provider of your Theia-based tool. As a user, you can add and remove commands. Further, you can change their position in the toolbar. To remove an existing command, right-click the icon in the toolbar and select "Remove Command From Toolbar". To change the position of an existing command, simply drag it around. The toolbar supports three columns to visually structure commands ("Left", "Center" and "Right").
 To add a new command to the toolbar, right click and select "Add Command to Toolbar" (see screenshot below). This will open a wizard that first allows you to select the command you want to add. In the second step, you can specify and icon that is used to display the new command in the toolbar. Finally, you select the column the new command will be placed in (you can still move it around later).
 
-<img src="/theia-toolbar.gif" alt="Theia Toolbar" style="max-width: 525px">
+<img src="../../theia-toolbar.gif" alt="Theia Toolbar" style="max-width: 525px">
 
 To restore the default commands on the toolbar, right click and select "Restore Toolbar Defaults". Please note that this will delete all custom commands you might have added.

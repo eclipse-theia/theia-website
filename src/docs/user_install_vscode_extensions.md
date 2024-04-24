@@ -14,7 +14,7 @@ In the opened Extension View you can browse for available VS Code extensions usi
 
 The Extension View also presents recommendations to be installed, if any, as well as extensions that are already installed. Here, you can uninstall extensions by clicking “Uninstall”.
 
-<img src="/theia-marketplace.gif" alt="Theia Marketplace / Theia Registry" style="max-width: 525px">
+<img src="../../theia-marketplace.gif" alt="Theia Marketplace / Theia Registry" style="max-width: 525px">
 
 The last section, “Built-In” shows VS Code extensions that are a fix part of your Theia-based product. This means the creator of your tool has installed them already for you and you can also not uninstall them.
 

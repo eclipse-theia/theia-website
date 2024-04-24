@@ -27,7 +27,10 @@ npm run serve
 
 ## CI
 
-The website is automatically built at and deployed to Netlify.
+The website is automatically built with [Github workflows](.github/workflows/) and deployed on Github pages, which are reachable via [theia-ide.org](https://theia-ide.org/).
+
+A preview of every pull request is published at [eclipse-theia/theia-website-previews](https://github.com/eclipse-theia/theia-website-previews). You'll see a comment with the link to the preview once the build is finished.
+For more information, see [`publish.yml`](.github/workflows/publish.yml) and [`preview.yml`](.github/workflows/preview.yml).
 
 ## License
 

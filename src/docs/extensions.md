@@ -15,7 +15,7 @@ These are not scoped to frontend connections and have no access (directly) to fr
 
 The following diagram shows the high level architecture for all four options. VS Code extensions and Theia plugins run in a dedicated process per frontend connection, can be installed at runtime, and work against a defined API. Headless plugins similarly run in a dedicated process, but only one that is not associated with any frontend connection. Theia extensions are added during compile time and become a core part of your Theia application. They can access the full API of Theia.
 
-<img src="/extensiontypes.svg" alt="Block diagram of Theia extension types" style="max-width: 525px">
+<img src="../../extensiontypes.svg" alt="Block diagram of Theia extension types" style="max-width: 525px">
 
 If you would like more guidance on which mechanism to use, please also refer to [this detailed comparison between VS Code extensions and Theia extensions](https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/).
 
@@ -29,7 +29,7 @@ Please also note that you can use existing VS Code extensions in Theia, too. A g
 A Theia extension is a module that resides inside a Theia application and directly communicates with other modules (Theia extensions). The Theia project itself is composed of Theia extensions too. To create a Theia application, you can select a number of Theia extensions provided by the Theia project (core extensions), add your own custom Theia extensions and then compile and run the result. Your custom Theia extension will have access to the same API as the core extensions. This modularity allows you to extend, adapt or remove almost anything in Theia according to your requirements. Also, specific use cases, such as complex views are easier to develop with Theia extensions compared to VS Code extensions.
 Technically, an extension is an npm package that exposes any number of DI modules (`ContainerModule`) that contribute to the creation of the DI container.
 Extensions are consumed by declaring them as a `dependency` in the `package.json` of the application/extension, and are installed at compile time.
-See [this section](https://theia-ide.org/docs/authoring_extensions/) for more detail on how to author a Theia extension.
+See [this section](/docs/authoring_extensions/) for more detail on how to author a Theia extension.
 
 ## Theia Plugins
 

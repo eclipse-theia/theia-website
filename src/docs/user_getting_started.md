@@ -10,7 +10,7 @@ The Theia IDE is a modern and open IDE for cloud and desktop. The Theia IDE is b
 - [Try the Theia IDE online](https://try.theia-cloud.io/)
 - [Run the Theia IDE with Docker](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker-build)
 
-<img src="/theia-screenshot.jpg" alt="Theia IDE Screenshot" style="max-width: 525px">
+<img src="../../theia-screenshot.jpg" alt="Theia IDE Screenshot" style="max-width: 525px">
 
 This section is about using the Theia IDE from an end user point of view. Please note that the Theia IDE is based on the Theia Platform, a technology to build tools and IDEs. As an end user, you are not using “Theia”, but always a product based on Theia, in this case the Theia IDE. If you are using another product based on Theia, please consider the specific end user documentation of the product you are using over this section.
 

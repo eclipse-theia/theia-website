@@ -11,7 +11,7 @@ title: README
 
 Theia is an extensible platform to develop full-fledged multi-language Cloud & Desktop IDE-like products with state-of-the-art web technologies.
 
-<img src="/theia-screenshot.jpg" alt="Theia IDE Screenshot" class="doc-image">
+<img src="../theia-screenshot.jpg" alt="Theia IDE Screenshot" class="doc-image">
 
 ## Scope
 
