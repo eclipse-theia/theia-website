@@ -163,6 +163,32 @@ To use another custom dialog widget, remove this code, extend Theia’s AboutDia
 
 The default preferences directory in Eclipse Theia IDE is `.theia-blueprint` and is located as described in the [Preferences documentation](/docs/preferences/). You can customize this location by modifying [`theia-blueprint-variables-server.ts`](https://github.com/eclipse-theia/theia-blueprint/blob/master/theia-extensions/theia-blueprint-product/src/node/theia-blueprint-variables-server.ts).
 
+### Customizing the Electron Splash Screen
+
+Since Theia `1.49.0` Theia Electron applications support displaying a splash screen before showing the main window.
+
+The splash screen can be enabled within the application `package.json`'s Theia options by providing an object at `theia.frontend.config.electron.splashScreenOptions` with the following properties:
+
+```typescript
+{
+    content: string  // <mandatory> path to the content to render within the splash screen, resolved from application root
+    width: number // default 640
+    height: number // default 480
+    minDuration: number // minimum amount of time in milliseconds to show the splash screen before main window is shown. default 0
+    maxDuration: number // maximum amount of time in milliseconds before splash screen is removed and main window is shown. default 30000
+}
+```
+
+If not configured otherwise via `minDuration`, the splash screen will be shown until the frontend is ready, i.e. when the loading spinner is gone.
+Then the splash screen will be closed and the main window is shown.
+
+### Showing Windows Early
+
+The main window / splash screen can be configured to be shown "early", i.e. the window will be shown before it's ready to render content.
+By default this is `true` to give the user visual feedback as early as possible.
+
+If you prefer only showing the main window / splash screen once they are ready to render content, then you can configure `theia.frontend.config.electron.showWindowEarly: false` in your application's `package.json`.
+
 ### Customizing the Installer
 
 The installers are created using [electron-builder](https://www.electron.build/).
