@@ -27,7 +27,7 @@ export const MENU = [
     },
     M(
         'Getting Started',
-        'getting_started'
+        ''
     ),
     M(
         'Project Goals',
