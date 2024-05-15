@@ -24,6 +24,8 @@ If you are unsure what Theia is, how it compares to other technologies or how to
 
 Theia is an open community, and we are glad to help you. You can ask questions using our [public community forum](https://github.com/eclipse-theia/theia/discussions), you can [report bugs and feature requests](https://github.com/eclipse-theia/theia/issues/new/choose), and you can get [professional support, consulting and implementation services](/support/) for building products based on Theia.
 
+Also follow Theia on [Twitter](https://twitter.com/theia_ide) to stay up-to-date!
+
 ## Contributing
 
 Read below to learn how to take part in improving Theia:
@@ -35,6 +37,7 @@ Read below to learn how to take part in improving Theia:
   - First time contributing to Theia? Pick a [beginner friendly issue](https://github.com/eclipse-theia/theia/labels/beginners) to get you familiar with codebase and our contributing process.
   - Want to become a Committer? Solve an issue showing that you understand Theia objectives and architecture. [Here](https://github.com/eclipse-theia/theia/labels/help%20wanted) is a good list to start.
 - Could not find an issue? Look for bugs, typos, and missing features.
+- Star the repository to show your support.
 
 ## License
 
