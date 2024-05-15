@@ -1,25 +1,30 @@
 ---
-title: README
+title: Getting Started
 ---
 
-# Theia - Cloud & Desktop IDE
+# Getting started
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/help%20wanted)
-[![Build Status](https://github.com/eclipse-theia/theia/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/eclipse-theia/theia/actions/workflows/ci-cd.yml?query=branch%3Amaster+)
-[![Open questions](https://img.shields.io/badge/Open-questions-pink.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/question)
-[![Open bugs](https://img.shields.io/badge/Open-bugs-red.svg?style=flat-square)](https://github.com/eclipse-theia/theia/labels/bug)
+In this section, we provide a high level overview on how to get started with Eclipse Theia and link to respective sections to read.
+Eclipse Theia is a platform for building custom Cloud & Desktop IDEs and tools with modern web technologies. The Eclipse Theia Platform is not a tool itself, but there are many tools which are built upon Theia. The Theia project provides a tool called [Eclipse Theia IDE](/#theiaide) that can be directly used. The Theia IDE can also be [used as a template](/docs/blueprint_documentation/) to get started with building your own tool. Please have a look at the project goals for more details!
 
-Theia is an extensible platform to develop full-fledged multi-language Cloud & Desktop IDE-like products with state-of-the-art web technologies.
+## Use Eclipse Theia (IDE)
 
-<img src="../theia-screenshot.jpg" alt="Theia IDE Screenshot" class="doc-image">
+You cannot directly launch/use Theia as it is a platform. The project provides one tool called [Eclipse IDE](/#theiaide) that you can directly download and use. Further, it is very easy to [create your own product based on Theia](/docs/composing_applications/). Please also refer to [this article](https://eclipsesource.com/de/blogs/2019/09/25/how-to-launch-eclipse-theia/) highlighting the various options available to [launch/try Eclipse Theia and Theia-based products](https://eclipsesource.com/de/blogs/2019/09/25/how-to-launch-eclipse-theia/).
 
-## Scope
+## Build a tool or IDE based on Eclipse Theia
 
-- Establish a platform to build IDE-like products
-- Provide the end-user with a full-fledged multi-language IDE  (not just a smart editor)
-- Support equally the paradigm of Cloud IDE and Desktop IDE
-- Provide support for multiple languages via the language and debug server protocols
-- Provide modern GUI with JavaScript UI libraries
+The first step is to define a custom product based on Theia. Please check out the guide on [how to build your own IDE or tool based on Theia](/docs/composing_applications/). Subsequently, you might want to extend this product with your own feature for which you can use the [available extension mechanisms of Theia](/docs/extensions/).
+
+## Frequently Asked Questions
+
+If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [resource section](/resources/).
+
+
+## Need Help?
+
+Theia is an open community, and we are glad to help you. You can ask questions using our [public community forum](https://github.com/eclipse-theia/theia/discussions), you can [report bugs and feature requests](https://github.com/eclipse-theia/theia/issues/new/choose), and you can get [professional support, consulting and implementation services](/support/) for building products based on Theia.
+
+Also follow Theia on [Twitter](https://twitter.com/theia_ide) to stay up-to-date!
 
 ## Contributing
 
@@ -32,15 +37,7 @@ Read below to learn how to take part in improving Theia:
   - First time contributing to Theia? Pick a [beginner friendly issue](https://github.com/eclipse-theia/theia/labels/beginners) to get you familiar with codebase and our contributing process.
   - Want to become a Committer? Solve an issue showing that you understand Theia objectives and architecture. [Here](https://github.com/eclipse-theia/theia/labels/help%20wanted) is a good list to start.
 - Could not find an issue? Look for bugs, typos, and missing features.
-
-## Feedback
-
-Read below how to engage with Theia community:
-
-- Join the discussion on [GitHub](https://github.com/eclipse-theia/theia/discussions).
-- Ask a question, request a new feature and file a bug with [GitHub issues](https://github.com/eclipse-theia/theia/issues/new).
 - Star the repository to show your support.
-- Follow Theia on [Twitter](https://twitter.com/theia_ide).
 
 ## License
 
