@@ -155,6 +155,10 @@ export const MENU = [
         'enhanced_tab_bar_preview'
     ),
     M(
+        'Contribution Filter',
+        'contribution_filter'
+    ),
+    M(
         'Advanced Tips',
         'tips'
     )
