@@ -68,7 +68,7 @@ import { injectable } from 'inversify';
 export class SampleFilterContribution implements FilterContribution {
 
     registerContributionFilters(registry: ContributionFilterRegistry): void {
-        registry.addFilters('*', [
+        registry.addFilters([CommandContribution], [
             contrib => !(contrib instanceof SampleFilteredCommandContribution)
         ]);
     }
