@@ -58,7 +58,7 @@ export class SampleFilteredCommandContribution implements CommandContribution {
 
 ### Step 2: Register Filters
 
-Now, we register the filters to remove specific contributions, in our case the example command we just registered.
+Now, we register the filters to remove specific contributions, in our case the example command we just registered. The filter below is scoped to be only applied to `CommandContribution`, you can use '*' to filter any type of contribution. In the filter implementation, we additionally check for the specific type `SampleFilteredCommandContribution` in the example.
 
 ```typescript
 import { FilterContribution, ContributionFilterRegistry, CommandContribution } from '@theia/core/lib/common';
