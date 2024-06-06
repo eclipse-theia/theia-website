@@ -27,7 +27,7 @@ export const MENU = [
     },
     M(
         'Getting Started',
-        'getting_started'
+        ''
     ),
     M(
         'Project Goals',
@@ -153,6 +153,10 @@ export const MENU = [
     M(
         'Enhanced Tab Bar Preview',
         'enhanced_tab_bar_preview'
+    ),
+    M(
+        'Contribution Filter',
+        'contribution_filter'
     ),
     M(
         'Advanced Tips',
