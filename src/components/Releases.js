@@ -530,21 +530,13 @@ const monthlyReleases = [
         url: 'https://eclipsesource.com/blogs/2022/11/14/eclipse-theia-1-31-1-release-news-and-noteworthy/',
     },
     {
-        title: 'Eclipse Theia 2022-09 Community Release Celebration Video',
-        url: 'https://youtu.be/MUIZT2wOkmw',
-    },
-    {
         title: 'Eclipse Theia 1.30 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2022/10/13/eclipse-theia-1-30-release-news-and-noteworthy/',
     },
     {
         title: 'Eclipse Theia 1.29 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2022/09/09/eclipse-theia-1-29-release-news-and-noteworthy/',
-    },
-    {
-        title: 'Introducing the Eclipse Theia Community Release',
-        url: 'https://eclipsesource.com/blogs/2022/08/16/introducing-the-eclipse-theia-community-release/',
-    },
+    },    
     {
         title: 'Eclipse Theia 1.28 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2022/08/09/eclipse-theia-1-28-release-news-and-noteworthy/',
