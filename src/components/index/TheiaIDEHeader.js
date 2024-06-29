@@ -103,7 +103,7 @@ const TheiaIDEHeader = () => (
         <div className="header">
             <div id="theiaide" className="row">
                 <img className="logo" src={TheiaIDELogo} style={{height: '3rem'}} alt="The Theia IDE Logo"></img>
-                <h1>The Eclipse Theia IDE <sup>BETA</sup></h1>
+                <h1>The Eclipse Theia IDE</h1>
                 <img className="wrap" src={TheiaIDEScreenshot} alt="Theia IDE" />
                 <h2 style={{ fontSize: '2.1rem' }}>
                 A modern and open IDE for cloud and desktop. The Theia IDE is based on the Theia platform.
