@@ -89,7 +89,7 @@ const TheiaIDEDownloads = () => (
                     Download Theia IDE
                 </h1>
                 
-                NOTE: The Eclipse Theia IDE is currently in beta. While we are continuing to make improvements and add functionality, we welcome and value your feedback (see below).
+                We are continuing to make improvements and add functionality to the Theia IDE, we welcome and value your feedback (see below).
                 
                 <div className="header__buttons">
                     <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/windows/TheiaIDESetup.exe&r=1" rel="noopener">Windows (latest)</a>
