@@ -80,6 +80,16 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'Introducing the Theia IDE',
+                url: 'https://eclipsesource.com/blogs/2024/06/27/introducing-the-theia-ide/',
+                type: 'article'
+            },
+            {
+                title: 'Eclipse Foundation Introduces the Theia',
+                url: 'https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-theia-ide-elevate-modern-developer-experience',
+                type: 'article'
+            },
+            {
                 title: 'The Eclipse Theia Update 2023',
                 url: 'https://youtu.be/2rbMtztIHgw?si=3a1hw892rPT-lW6d',
                 type: 'video'

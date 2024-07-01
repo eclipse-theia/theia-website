@@ -113,7 +113,7 @@ const Header = () => (
                 </div>
                 <div className="header__banner">
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        In case you missed TheiaCon 2023 (Nov 15th-Nov 16th), all talk recordings are available now, see <a href="https://www.youtube.com/watch?v=2rbMtztIHgw&list=PLy7t4z5SYNaQ0cajexl1uZhiZwiD93v9g">here</a>!
+                        Theia IDE is now generally available! Read our <a href="https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-theia-ide-elevate-modern-developer-experience">press release</a> and <a href="https://eclipsesource.com/blogs/2024/06/27/introducing-the-theia-ide/">blog post</a> for more details!
                     </h1>       
                 </div>
         </header>
