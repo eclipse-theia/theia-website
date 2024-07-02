@@ -107,6 +107,26 @@ const categories = [
         ]
     },
     {
+        title: 'TheiaCon Talk Recordings',
+        resources: [
+            {
+                title: 'TheiaCon 2023',
+                url: 'https://www.youtube.com/watch?v=2rbMtztIHgw&list=PLy7t4z5SYNaQ0cajexl1uZhiZwiD93v9g',
+                type: 'video'
+            },
+            {
+                title: 'TheiaCon 2022',
+                url: 'https://www.youtube.com/watch?v=BtWJD-72IJ8&list=PLy7t4z5SYNaRj46WedNTnAXLLHwuk3nro',
+                type: 'video'
+            },
+            {
+                title: 'TheiaCon 2021',
+                url: 'https://www.youtube.com/watch?v=SPO8pudgJak&list=PLy7t4z5SYNaQnfc8RoVYBU9i9xqoK7X2_',
+                type: 'video'
+            },
+        ]
+    },
+    {
         title: 'Introductions to Eclipse Theia',
         resources: [
             {
