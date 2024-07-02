@@ -83,7 +83,7 @@ const VSCodeExtensions = () => (
         <Styled>
             <section className="products" >
                 <h3 className="heading-tertiary">Most popular extensions for Theia</h3>
-                <p>Unlock limitless possibilities with Theia IDE's seamless compatibility with the VS Code extension ecosystem. From robust linting tools to interactive notebook editors, customize your development experience like never before. Explore <b>more than 3000 availabe extensions</b> for the Theia IDE at <a href="https://open-vsx.org/">open-vsx.org!</a></p>
+                <p>Unlock limitless possibilities with Theia IDE's seamless compatibility with the VS Code extension ecosystem. From robust linting tools to interactive notebook editors, customize your development experience like never before. Explore <b>more than 3000 available extensions</b> for the Theia IDE at <a href="https://open-vsx.org/">open-vsx.org!</a></p>
                 <br></br>
                 <div className="swiper-button-prev"></div>
                 <Swiper
