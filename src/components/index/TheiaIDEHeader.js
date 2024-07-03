@@ -111,7 +111,7 @@ const TheiaIDEHeader = () => (
                 <div className="header__buttons">
                     <a className="btn btn--cta" href="#theiaidedownload" rel="noopener">Download &nbsp;&nbsp;&rarr;</a>
                     <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try online</a>
-                    <a className="btn" href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    <a className="btn" href="https://github.com/eclipse-theia/theia-blueprint" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                  </div>
                  <center><h2 style={{ fontSize: '1.5rem' }}>
                  Please note that the Theia IDE is currently rebranded from its original name “Theia Blueprint”.
