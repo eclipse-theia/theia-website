@@ -157,7 +157,7 @@
         src: CodeRealTime,
         thumb: CodeRealTimeMin,
         alt: "Code RealTime"
-    }
+    },
     {
         href: "https://www.renesas.com/qcstudio",
         src:   QuickConnectStudio,
