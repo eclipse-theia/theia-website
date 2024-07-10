@@ -49,6 +49,8 @@
  import Go from '../resources/extensions/go.png'
  import CodeRealTime from '../resources/screenshots/code_realtime_theia.png'
  import CodeRealTimeMin from '../resources/screenshots/thumbnails/code_realtime_theia_min.png'
+ import QuickConnectStudio from `../resources/screenshots/renesas-qcstudio.png`
+ import QuickConnectStudioMin from `../resources/screenshots/thumbnails/renesas-qcstudio-min.png`
 
  export const contributorsAndAdopters = [
      {
@@ -155,6 +157,12 @@
         src: CodeRealTime,
         thumb: CodeRealTimeMin,
         alt: "Code RealTime"
+    }
+    {
+        href: "https://www.renesas.com/qcstudio",
+        src:   QuickConnectStudio,
+        thumb: QuickConnectStudioMin,
+        alt: "QuickConnect Studio"
     }
  ]
 
