@@ -117,22 +117,16 @@
          alt: "Coffee Editor Example by EclipseSource"
      },
      {
-         href: "https://developers.redhat.com/products/codeready-workspaces/overview",
-         src: CodeReady,
-         thumb: CodeReadyMin,
-         alt: "Red Hat CodeReady Workspaces"
-     },
-     {
          href: "https://www.neuron-automation.eu/engineering-toolkit/your-automation-toolchain/logi-cloud",
          src: LogiCloud,
          thumb: LogiCloudMin,
          alt: "logi.cloud by logi.cals"
      },
      {
-         href: "https://theia-ide.org/docs/blueprint_download",
+         href: "https://theia-ide.org/#theiaide",
          src: BluePrint,
          thumb: BluePrintMin,
-         alt: "Theia Blueprint"
+         alt: "Theia IDE"
      },
      {
          href: "https://www.record-evolution.de/reswarm",
@@ -163,6 +157,12 @@
         src:   QuickConnectStudio,
         thumb: QuickConnectStudioMin,
         alt: "QuickConnect Studio"
+    },
+    {
+        href: "https://developers.redhat.com/products/codeready-workspaces/overview",
+        src: CodeReady,
+        thumb: CodeReadyMin,
+        alt: "Red Hat CodeReady Workspaces"
     }
  ]
 
