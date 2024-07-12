@@ -140,6 +140,11 @@ const categories = [
         title: 'Introductions to Eclipse Theia',
         resources: [
             {
+                title: 'The Theia IDE vs VS Code',
+                url: 'https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/',
+                type: 'article'
+            },
+            {
                 title: 'Getting started with Eclipse Theia',
                 url: 'https://youtu.be/KFmhzmPtAY0',
                 type: 'video'
