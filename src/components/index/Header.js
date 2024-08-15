@@ -15,6 +15,7 @@
  ********************************************************************************/
 
 import Background from '../../resources/background-image.png'
+import TheiaConLogo from '../../resources/theiacon-logo.svg'
 import Nav from '../Nav'
 import React from 'react'
 import { breakpoints } from '../../utils/variables'
@@ -91,6 +92,24 @@ const Header = () => (
                 <div className="header__github-details">
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
+                </div>
+                <div className="header__banner">
+                    <a href="https://events.eclipse.org/2024/theiacon/">
+                        <img className="banner__image" src={TheiaConLogo}></img>
+                    </a>
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        The Call for Presentations is now OPEN for the <a href="https://events.eclipse.org/2024/theiacon/">2023 TheiaCon</a>!<br/>
+                        (Virtual Event | 13 - 14 November, 2024)<br/>
+                        <a href="https://forms.gle/bJvCYnPadUrNwbK6A">Submit your proposal</a> today to be a speaker and <a href="https://www.crowdcast.io/c/theiacon2024">get registered</a>!
+                    </h1>
+                    <div className="header__buttons">
+                        <a className="btn btn--cta" href="https://forms.gle/bJvCYnPadUrNwbK6A" rel="noopener">
+                            Submit Proposal
+                        </a>
+                        <a className="btn btn--cta" href="https://www.crowdcast.io/c/theiacon2024" rel="noopener">
+                            Get registered
+                        </a>
+                    </div>
                 </div>
                 <h1 className="heading-primary">
                     The Eclipse Theia Platform
