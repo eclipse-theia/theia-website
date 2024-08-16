@@ -117,7 +117,7 @@ An example `package.json` may look like the following (please replace ${download
 The following properties are used to consume built-in plugins (bundled extensions):
 
 - `theiaPluginsDir`: the relative path to deploy plugins into
-- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, GitHub Releases, etc.). **In the example above, replace ${downloadURL} with a link to the latest builtins pack that can be found [on openVSX](https://open-vsx.org/extension/eclipse-theia/builtin-extension-pack) (copy the link on the download button). See also [here](https://github.com/eclipse-theia/theia/blob/a9345dab1b6ea175ec98a5bf197e56876f2d58f6/package.json#L105) for an example**
+- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, GitHub Releases, etc.). **In the example above, replace ${downloadURL} with a link to the latest builtins pack that can be found [on openVSX](https://open-vsx.org/extension/eclipse-theia/builtin-extension-pack) (copy the link on the download button). See also the respective section [in this file](https://github.com/eclipse-theia/theia/blob/master/package.json) for an example**
 - `theiaPluginsExcludeIds`: the list of plugin `ids` to exclude when resolving extension-packs
 
 ## Building
