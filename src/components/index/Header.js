@@ -98,7 +98,7 @@ const Header = () => (
                         <img className="banner__image" src={TheiaConLogo}></img>
                     </a>
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        The Call for Presentations is now OPEN for the <a href="https://events.eclipse.org/2024/theiacon/">2023 TheiaCon</a>!<br/>
+                        The Call for Presentations is now OPEN for the <a href="https://events.eclipse.org/2024/theiacon/">2024 TheiaCon</a>!<br/>
                         (Virtual Event | 13 - 14 November, 2024)<br/>
                         <a href="https://forms.gle/bJvCYnPadUrNwbK6A">Submit your proposal</a> today to be a speaker and <a href="https://www.crowdcast.io/c/theiacon2024">get registered</a>!
                     </h1>
