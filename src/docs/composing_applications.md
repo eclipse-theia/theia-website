@@ -70,7 +70,7 @@ As part of your application, it is also possible to consume (and package) VS Cod
 The [Theia repository](https://github.com/eclipse-theia/theia/wiki/Consuming-Builtin-and-External-VS-Code-Extensions) contains a guide on how to
 include such extensions as part of the application's `package.json`.
 
-An example `package.json` may look like the following:
+An example `package.json` may look like the following (please replace ${downloadURL}, see explaination below the example):
 
 ```json
 {
@@ -102,13 +102,11 @@ An example `package.json` may look like the following:
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
-    "vscode-builtin-extensions-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix"
+    "vscode-builtin-extensions-pack": "${downloadURL}"
   },
   "theiaPluginsExcludeIds": [
     "ms-vscode.js-debug-companion",
     "vscode.extension-editing",
-    "vscode.git",
-    "vscode.git-ui",
     "vscode.github",
     "vscode.github-authentication",
     "vscode.microsoft-authentication"
@@ -119,7 +117,7 @@ An example `package.json` may look like the following:
 The following properties are used to consume built-in plugins (bundled extensions):
 
 - `theiaPluginsDir`: the relative path to deploy plugins into
-- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, GitHub Releases, etc.)
+- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, GitHub Releases, etc.). **In the example above, replace ${downloadURL} with a link to the latest builtins pack that can be found [on openVSX](https://open-vsx.org/extension/eclipse-theia/builtin-extension-pack) (copy the link on the download button). See also the respective section [in this file](https://github.com/eclipse-theia/theia/blob/master/package.json) for an example**
 - `theiaPluginsExcludeIds`: the list of plugin `ids` to exclude when resolving extension-packs
 
 ## Building
