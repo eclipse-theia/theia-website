@@ -80,6 +80,11 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'The Vision of Theia AI: Empowering Tool Builders with full control over AI Solutions',
+                url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',
+                type: 'article'
+            },
+            {
                 title: 'Introducing the Theia IDE',
                 url: 'https://eclipsesource.com/blogs/2024/06/27/introducing-the-theia-ide/',
                 type: 'article'
