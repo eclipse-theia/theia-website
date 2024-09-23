@@ -17,6 +17,7 @@ This section is about using the Theia IDE from an end user point of view. Please
 The Theia IDE features and usability concept is heavily influences by VS Code. Therefore, for many use cases, we refer to the VS Code documentation. We still provide some selected documentation about use cases which are differing or not supported in VS Code:
 
 - [Install VS Code extensions](/docs/user_install_vscode_extensions/)
+- [Using the AI Features](/docs/user_ai)
 - [Using the dynamic Toolbar](/docs/user_toolbar/)
 
 Please note that you can also [use the Theia IDE as a basis to create your own custom product](/docs/blueprint_documentation/).

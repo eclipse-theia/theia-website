@@ -45,6 +45,10 @@ export const MENU = [
         'user_install_vscode_extensions'
     ),
     M(
+        'Using AI Features',
+        'user_ai'
+    ),
+    M(
         'Using the dynamic Toolbar',
         'user_toolbar'
     ),
