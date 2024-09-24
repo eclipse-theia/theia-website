@@ -291,6 +291,36 @@ const categories = [
             }
         ]
     },
+    {
+        title: 'Theia AI',
+        resources: [
+            {
+                title: 'The Vision of Theia AI: Empowering Tool Builders with Full Control over AI Solutions',
+                url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Sneak Preview: Transparent Code Completion',
+                url: 'https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Sneak Preview: Choose Your Own LLM',
+                url: 'https://eclipsesource.com/blogs/2024/09/20/theia-ai-sneak-preview-choose-your-own-llm/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Sneak Preview: Variables & Tool Functions',
+                url: 'https://eclipsesource.com/blogs/2024/09/23/theia-ai-sneak-preview-variables-toolfunctions/',
+                type: 'article'
+            },
+            {
+                title: 'The Rise of Closed Source AI Tool Integrations',
+                url: 'https://eclipsesource.com/blogs/2024/07/10/the-rise-of-closed-source-ai-tool-integrations/',
+                type: 'article'
+            }
+        ]
+    },
 ]
 
 const Resources = () => (
