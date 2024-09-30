@@ -234,7 +234,6 @@ To implement your own tool functions, provide an implementation of interface ‘
 export class FileContentFunction implements ToolProvider {
    static ID = FILE_CONTENT_FUNCTION_ID;
 
-
    getTool(): ToolRequest {
        return {
            id: FileContentFunction.ID,
