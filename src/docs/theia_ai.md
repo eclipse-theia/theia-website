@@ -68,7 +68,7 @@ Next, we will create the chat agent, which allows you to customize the agent’s
 
 ```ts
 export class CommandChatAgent extends AbstractChatAgent {
-   id: string = 'Command;
+   id: string = 'Command';
    name: string = 'Command;
    description: string = `Helps users find and execute commands in the IDE`;
    variables: string[] = []; // Optional: define variables for dynamic data insertion.
