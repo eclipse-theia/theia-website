@@ -159,11 +159,10 @@ To declare an agent-specific variable, simply add it like this in the constructo
 
 ```ts
 this.agentSpecificVariables = [{
-           name: 'command-ids',
-           description: 'The list of available commands in Theia.',
-           usedInPrompt: true
-       }];
-```
+   name: 'command-ids',
+   description: 'The list of available commands in Theia.',
+   usedInPrompt: true
+}];
 
 #### Global Variables
 
