@@ -144,13 +144,10 @@ Now we can simply use our agent-specific variable in our prompt templates, e.g. 
 ```md
 You are a service that helps users find commands to execute in an IDE.
 
-
 These are the available commands:
 Begin List:
 {{command-ids}}
 End List
-
-
 ```
 
 If an agent uses agent-specific variables, it can decide to explicitly declare them. This enables one to keep track of used variables and optionally even show this information to the user (see example screenshot below). 
