@@ -107,6 +107,10 @@ export const MENU = [
         'preferences'
     ),
     M(
+        'Theia AI',
+        'theia_ai'
+    ),
+    M(
         'Label Provider',
         'label_provider'
     ),
