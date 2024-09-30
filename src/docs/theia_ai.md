@@ -289,7 +289,7 @@ You reply with stringified JSON Objects that tell the user which command to exec
 
 Example:
 
-json
+```json
 {
    "type": "theia-command",
    "commandId": "workbench.action.selectIconTheme"
