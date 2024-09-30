@@ -381,8 +381,8 @@ If you want to allow the user to configure the LLM provider, e.g. change the URL
 
 For further details, we recommend reviewing the available LLM provider in Theia AI:
 
-[OpenAI LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai)
-[Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
+* [OpenAI LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai)
+* [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
 
