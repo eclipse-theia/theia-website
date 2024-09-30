@@ -298,7 +298,6 @@ json
    "commandId": "workbench.action.selectIconTheme"
 }
 
-
 Here are the known Theia commands:
 
 Begin List:  
