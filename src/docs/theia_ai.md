@@ -187,13 +187,10 @@ Second, we register the variable using an ‘AIVariableContribution’ (see code
 
 ```ts
 export class TodayVariableContribution implements AIVariableContribution, AIVariableResolver {
-   /Register the variable resolver
+   // Register the variable resolver
    registerVariables(service: AIVariableService): void {
        service.registerResolver(TODAY_VARIABLE, this);
    }
-
-
-
 
    async resolve(request: AIVariableResolutionRequest, context: AIVariableContext): Promise<ResolvedAIVariable | undefined> {
        if (request.variable.name === TODAY_VARIABLE.name) {
@@ -201,7 +198,6 @@ export class TodayVariableContribution implements AIVariableContribution, AIVari
        }
        return undefined;
    }
-
 
    private resolveTodayVariable(request: AIVariableResolutionRequest): ResolvedTodayVariable {
        const date = new Date();
@@ -214,7 +210,6 @@ export class TodayVariableContribution implements AIVariableContribution, AIVari
        return { variable: request.variable, value: date.toDateString(), date };
    }
 }
-```
 
 Finally, we register our variable provider in Theia like this:
 
