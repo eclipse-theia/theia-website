@@ -211,8 +211,6 @@ export class TodayVariableContribution implements AIVariableContribution, AIVari
    }
 }
 
-Finally, we register our variable provider in Theia like this:
-
 ```ts
 bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 ```
