@@ -114,9 +114,8 @@ Agents often need to interact with the tool to fetch dynamic data, such as a tex
 
 Theia AI by default supports two types of variables:
 
-*Global Variables* are available to all agents. Theia and Theia AI already provide a standard set of variables, such as the currently selected text. Tool builders can easily register their own global variables to provide arbitrary additional data from the tool state, including their custom tool components. Global variables can also be used in any prompt template, but are also available to users in the default chat provided by Theia AI, e.g. “#currentText” for the currently selected text.
-
-*Agent-specific Variables* are only available to specific agents (and in their prompt templates), but not to other agents and also not in the default chat.
+1. *Global Variables* are available to all agents. Theia and Theia AI already provide a standard set of variables, such as the currently selected text. Tool builders can easily register their own global variables to provide arbitrary additional data from the tool state, including their custom tool components. Global variables can also be used in any prompt template, but are also available to users in the default chat provided by Theia AI, e.g. “#currentText” for the currently selected text.
+2. *Agent-specific Variables* are only available to specific agents (and in their prompt templates), but not to other agents and also not in the default chat.
 
 #### Agent-specific Variables
 
@@ -163,6 +162,7 @@ this.agentSpecificVariables = [{
    description: 'The list of available commands in Theia.',
    usedInPrompt: true
 }];
+```
 
 #### Global Variables
 
@@ -211,7 +211,8 @@ export class TodayVariableContribution implements AIVariableContribution, AIVari
    }
 }
 
-```ts
+...
+
 bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 ```
 
@@ -289,11 +290,12 @@ You reply with stringified JSON Objects that tell the user which command to exec
 
 Example:
 
-```json
+\`\`\`json
 {
    "type": "theia-command",
    "commandId": "workbench.action.selectIconTheme"
 }
+\`\`\`
 
 Here are the known Theia commands:
 
