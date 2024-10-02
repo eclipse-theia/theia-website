@@ -8,7 +8,7 @@ The Theia IDE is a modern and open IDE for cloud and desktop. The Theia IDE is b
 - [Learn more about the Theia IDE](/#theiaide)
 - [Download the Theia IDE](/#theiaidedownload)
 - [Try the Theia IDE online](https://try.theia-cloud.io/)
-- [Run the Theia IDE with Docker](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker-build)
+- [Run the Theia IDE with Docker](https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker)
 
 <img src="../../theia-screenshot.jpg" alt="Theia IDE Screenshot" style="max-width: 525px">
 
