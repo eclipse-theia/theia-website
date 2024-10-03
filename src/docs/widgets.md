@@ -61,7 +61,7 @@ In the following code examples, we use `ReactWidget` as a base class. As shown b
 * `closable`: Whether the user can close the widget (via the “x” in the tab or via right click menu).
 * `iconClass`: The icon shown in the tab when the widget is opened.
 
-**mywidget-widget.ts**
+**mywidget-widget.tsx**
 
 ```typescript
 @injectable()
@@ -83,7 +83,7 @@ protected async init(): Promise < void> {
 
 When using the respective base class, the implementation of a widget can be really minimal and focused on the custom UI part. In our example, we just implement the render function that will create our actual custom UI (using JSX/React). The example UI contains a button that will trigger the `displayMessage` function below.
 
-**mywidget-widget.ts**
+**mywidget-widget.tsx** (continued)
 
 ```typescript
 protected render(): React.ReactNode {
@@ -151,7 +151,7 @@ export class MyWidgetContribution extends AbstractViewContribution<MyWidget> {
    }
 
    registerCommands(commands: CommandRegistry): void {
-       commands.registerCommand(WidgetCommand, {
+       commands.registerCommand(MyWidgetCommand, {
            execute: () => super.openView({ activate: false, reveal: true })
        });
    }
