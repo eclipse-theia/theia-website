@@ -113,8 +113,22 @@ In addition, some parts of the installer can be customized.
 #### Application Window Title
 
 The window title is the application’s name if no workspace is opened and `<workspace name> — <application name>` if a workspace is opened.
-The application name can be adapted in `applications/electron/package.json`:
-Open the file and adapt the value of property `theia.frontend.config.applicationName` to the desired name.
+The application name can be adapted in `applications/electron/package.json` by navigating through the nested properties.
+
+To change the application name, open the file and locate the following nested structure:
+
+```json
+  "theia": {
+    "frontend": {
+      "config": {
+        "applicationName": "Theia IDE",
+      },
+    },
+  },
+```
+
+Change the value of `applicationName` to the desired name.
+Also see [the structure in the original file](https://github.com/eclipse-theia/theia-blueprint/blob/ed203687bad53fdbd22012926978ac40d7d8cd23/applications/electron/package.json#L26).
 
 #### Application Icons
 
