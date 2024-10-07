@@ -220,6 +220,11 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'Code RealTime: Harnessing the Power of the Eclipse Cloud DevTools Ecosystem',
+                url: 'https://blogs.eclipse.org/post/john-kellerman/code-realtime-harnessing-power-eclipse-cloud-devtools-ecosystem',
+                type: 'article'
+            },
+            {
                 title: 'logi.CLOUD, a modern engineering platform for industrial automation',
                 url: 'https://blogs.eclipse.org/post/paul-buck/theia-adopter-story-logicloud-modern-engineering-platform-industrial-automation',
                 type: 'article'
