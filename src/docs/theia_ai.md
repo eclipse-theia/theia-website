@@ -4,7 +4,7 @@ title: Building Custom AI assistants and AI support with Theia AI
 
 # Building Custom AI assistants and AI support with Theia AI
 
-This section explains how to build custom AI assistants and integrate AI support into custom tools and IDEs using Theia AI. Theia AI, part of the Theia Platform, is a powerful framework designed to help tool builders integrate tailored AI capabilities into their tools and IDEs with ease. It provides reusable components, prompt management, LLM integration, and flexible user interfaces, allowing you to focus on delivering domain-specific AI features. This section is targeted at tool builders using Theia and Theia AI as a platform to build custom tools and IDEs. 
+This section explains how to build custom AI assistants and integrate AI support into custom tools and IDEs using Theia AI. Theia AI, part of the Theia Platform, is a powerful framework designed to help tool builders integrate tailored AI capabilities into their tools and IDEs with ease (see also [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/)). It provides reusable components, prompt management, LLM integration, and flexible user interfaces, allowing you to focus on delivering domain-specific AI features. This section is targeted at tool builders using Theia and Theia AI as a platform to build custom tools and IDEs. 
 For detailed information on how to use the experimental AI features in the Theia IDE as an end user, refer to the [user documentation](/docs/user_ai/). 
 To learn how to generally extend Theia by creating Theia extensions, including AI ones, visit the [extension authoring guide](/docs/authoring_extensions/).
 
@@ -390,4 +390,4 @@ Please note that Theia AI currently does not provide a fixed contribution point 
 
 ## Learn more
 
-If want to learn more about the AI support in the Theia AI, please see [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
+If want to learn more about the AI support in the Theia AI, please see [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)

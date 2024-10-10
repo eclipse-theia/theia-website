@@ -300,6 +300,16 @@ const categories = [
         title: 'Theia AI',
         resources: [
             {
+                title: 'Introducing Theia AI: Build AI-Enhanced Tools with Ease!',
+                url: 'https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing AI Support in Theia IDE: The First Open, Transparent AI-Enhanced Development Environment',
+                url: 'https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/',
+                type: 'article'
+            },            
+            {
                 title: 'The Vision of Theia AI: Empowering Tool Builders with Full Control over AI Solutions',
                 url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',
                 type: 'article'
@@ -320,10 +330,30 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'Theia AI Sneak Preview: Create your own AI assistance!',
+                url: 'https://eclipsesource.com/blogs/2024/09/25/theia-ai-sneak-preview-create-your-own-agent/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Sneak Preview: Custom Part Renderer and actionable responses',
+                url: 'https://eclipsesource.com/blogs/2024/09/27/theia-ai-sneak-preview-custom-part-renderer/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Sneak Preview: Let your agents talk to each other!',
+                url: 'https://eclipsesource.com/blogs/2024/09/30/theia-ai-sneak-preview-orchestrator/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Sneak Preview: Powerful AI integration paired with the most flexible tool platform',
+                url: 'https://eclipsesource.com/blogs/2024/10/02/theia-ai-flexible-platform/',
+                type: 'article'
+            },            
+            {
                 title: 'The Rise of Closed Source AI Tool Integrations',
                 url: 'https://eclipsesource.com/blogs/2024/07/10/the-rise-of-closed-source-ai-tool-integrations/',
                 type: 'article'
-            }
+            }   
         ]
     },
 ]
