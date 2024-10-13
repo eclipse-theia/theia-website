@@ -244,3 +244,13 @@ To also enable debugging from your development IDE (VS Code), you need to setup 
     ]
 }
 ```
+
+## Troubleshooting
+
+### Plugins not appearing
+
+If no plugins are available in the running Theia instance, it may be that you need to tell Theia where to find the downloaded plugins.
+The example above sets the `--plugins` switch in the `start` command which should be sufficient.
+However, if running `theia start` directly, you can alternatively set an environment variable to achieve the same thing:
+
+    export THEIA_DEFAULT_PLUGINS=local-dir:plugins
