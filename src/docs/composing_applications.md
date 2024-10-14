@@ -5,13 +5,13 @@ title: Build your own IDE/Tool
 
 # Build your own IDE/Tool
 
-This guide will teach you how to build your own Theia-based application. The guide will demonstrate how to configure your own application composed of existing or new Theia extensions, and any VS Code extensions you want bundled in your application by default. Please get familiar with the [extension mechanisms of Theia](/docs/extensions/) in case you are not already.
-This guide describes the manual steps to build a Theia-based product, there are two ways to avoid this manual set-up:
+This guide will teach you how to create your own Theia-based application. The guide will demonstrate how to configure your own application composed of existing or new Theia extensions, and any VS Code extensions you want bundled in your application by default. Please get familiar with the [extension mechanisms of Theia](/docs/extensions/) in case you are not already.
+We provide two entry points for creating your own Theia-based application.
 
-- [Theia Extension Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based products along with example extensions.
-- [Theia IDE](/#theiaide): A tool based on the Theia Platform that can be used as a template for creating installable desktop applications based on Theia. [Learn how to extend and adapt the Theia IDE](/docs/blueprint_documentation/).
+- [Theia Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based applications along with example extensions.
+- [Theia IDE](/#theiaide): A tool based on the Theia Platform that can be used as a template for creating installable desktop applications based on Theia with additional features such as automatic updates, branding, etc.. [Learn how to extend and adapt the Theia IDE](/docs/blueprint_documentation/).
 
-We still recommend reading the manual guide first, it allows you to understand the structure of a Theia-based project.
+If you are new to Theia, we recommend starting with the first option, as it is quicker and simpler to get started with. If you want to create a full product based on Theia, you can later on switch to using the Theia IDE without loosing your existing work by integrating your extensions into your custom version of the Theia IDE. In this guide, we will demonstrate how to get started with the [Yeoman Generator](https://github.com/eclipse-theia/generator-theia-extension).
 
 ## Requirements
 
@@ -19,153 +19,140 @@ The detailed list of prerequisites is located at the main Theia repository:
 
 - [Prerequisites](https://github.com/eclipse-theia/theia/blob/master/doc/Developing.md#prerequisites)
 
-## Setup
+## Theia’s Architecture
 
-Start with creating a new empty directory and moving into it:
+A Theia app is composed of so-called Theia extensions. Each extension resides in its own npm package.
+An extension provides a set of features, e.g. widgets, commands, handlers, etc. for a specific functionality. The Theia project itself ships a number of extensions for common features, e.g. for editors, terminals, the project view etc. You can resue these existing extensions by just adding them to you custom Theia application. Additionally, you can add arbitrary VS Code extensions to your application, again for reusing existing features already available, such as Git support. Finally, you can then extend and customize your Theia application with your own features, which you can implement as [Theia extensions or VS Code extensions](/docs/extensions).
+In this guide, we will create a Theia application with a number of existing Theia extensions and one (generated) custom Theia extension. Please also refer to our [documentation on how to create custom Theia extensions](/docs/authoring_extensions) to learn more on how to create your own Theia extensions. Finally, also see [our guide on how to add VS Code extensions to your custom Theia application](/docs/authoring_vscode_extensions).
 
-    mkdir my-app
-    cd my-app
+## Project Layout
 
-Create `package.json` in this directory:
+We are going to create a monorepo (a repository containing multiple npm packages) named `my-theia-app` containing three packages: `browser-app`, `electron-app` and `hello-world-extension`. The first two contain the custom Theia applications to run in browser and electron mode. The 'hello-world' package contains a generated example extension, that adds a feature to our custom Theia application. This extension can serve as a starting point for you to add your own custom features via Theia extensions.
 
-```json
-{
-  "private": true,
-  "dependencies": {
-    "@theia/callhierarchy": "latest",
-    "@theia/file-search": "latest",
-    "@theia/git": "latest",
-    "@theia/markers": "latest",
-    "@theia/messages": "latest",
-    "@theia/mini-browser": "latest",
-    "@theia/navigator": "latest",
-    "@theia/outline-view": "latest",
-    "@theia/plugin-ext-vscode": "latest",
-    "@theia/preferences": "latest",
-    "@theia/preview": "latest",
-    "@theia/search-in-workspace": "latest",
-    "@theia/terminal": "latest"
-  },
-  "devDependencies": {
-    "@theia/cli": "latest"
-  }
-}
+We are going to use `yarn` instead of `npm` (Theia default). We are also going to use `lerna` to run scripts across workspaces.
+
+To ease the setup of such a repository we have created a [Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension) to scaffold the project. It will also generate the `hello-world` example extension. Run it using
+
+```bash
+npm install -g yo generator-theia-extension
+mkdir my-theia-app
+cd my-theia-app
+yo theia-extension # select the 'Hello World' option and complete the prompts
 ```
 
-In a nutshell, Theia applications and extensions are [Node.js packages](https://nodesource.com/blog/the-basics-of-package-json-in-node-js-and-npm/). Each package has a `package.json` file that manifests package metadata,
-like `name`, `version`, its runtime and build time dependencies and so on.
-
-Let's have a look at the created package:
-
-- Its `name` and `version` are omitted since we are not going to use it as a dependency, and
-    it's marked as `private` since it is not going to be published as a Node.js package on its own.
-- We've listed required extensions as runtime dependencies, e.g. `@theia/navigator`.
-  - Some extensions require additional tooling installed, in such cases, please consult the corresponding extension documentation.
-  - Use [this link](https://www.npmjs.com/search?q=keywords:theia-extension) to see all published extensions.
-- We've listed [@theia/cli](https://www.npmjs.com/package/@theia/cli) as a build-time dependency. It provides scripts to build and run the application.
-
-## Consuming VS Code Extensions
-
-As part of your application, it is also possible to consume (and package) VS Code extensions.
-The [Theia repository](https://github.com/eclipse-theia/theia/wiki/Consuming-Builtin-and-External-VS-Code-Extensions) contains a guide on how to
-include such extensions as part of the application's `package.json`.
-
-An example `package.json` may look like the following (please replace ${downloadURL}, see explaination below the example):
+After creating the project structure, the Yeoman generator will also install the required dependencies, so it might take a minute to complete.
+Let's have look at the generated code now. The root `package.json` defines the workspaces, the dependency to `lerna` and some scripts to build, start and watch the project for browser or electron. Please note that the excerpt on this page might be outdated, please use the Yeoman generator to generate the files listed below to get the latest version.
 
 ```json
 {
   "private": true,
+  "engines": {
+    "yarn": ">=1.7.0 <2",
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:browser": "yarn --cwd browser-app bundle",
+    "build:electron": "yarn --cwd electron-app bundle",
+    "prepare": "lerna run prepare",
+    "postinstall": "theia check:theia-version",
+    "start:browser": "yarn --cwd browser-app start",
+    "start:electron": "yarn --cwd electron-app start",
+    "watch:browser": "lerna run --parallel watch --ignore electron-app",
+    "watch:electron": "lerna run --parallel watch --ignore browser-app"
+  },
+  "devDependencies": {
+    "lerna": "2.4.0"
+  },
+  "workspaces": [
+    "hello-world", "browser-app", "electron-app"
+  ]
+}
+```
+Besides the root level artifacts, you will have three directories in your project:
+
+- browser-app: The definitions of your custom Theia application running in the browser
+- electron-app: The definitions of your custom Theia application running on the desktop (via Electron)
+- hello-world: The generated example extensions, see [this guide](/docs/authoring_extensions) for more details
+
+## Executing the Browser Application
+
+Now we want to see our Theia application in action. For this purpose, the generator has created a `package.json` in the folder `browser-app`, which defines your Theia app. It defines a Theia browser application with a couple of statically included extensions, including our `hello-world`. These extensions are the features, that will be part of our Theia application. The generated project contains a minimalistic set-up, **you can add additional features by adding more existing (or custom) extensions to this list**. The example also does not contain any VS Code extensions, see [here](authoring_vscode_extensions) on how to add them.
+
+```json
+{
+  "private": true,
+  "name": "browser-app",
+  "version": "0.0.0",
   "dependencies": {
-    "@theia/callhierarchy": "latest",
-    "@theia/file-search": "latest",
-    "@theia/git": "latest",
+    "@theia/core": "latest",
+    "@theia/editor": "latest",
+    "@theia/filesystem": "latest",
     "@theia/markers": "latest",
     "@theia/messages": "latest",
+    "@theia/monaco": "latest",
     "@theia/navigator": "latest",
-    "@theia/outline-view": "latest",
-    "@theia/plugin-ext-vscode": "latest",
     "@theia/preferences": "latest",
-    "@theia/preview": "latest",
-    "@theia/search-in-workspace": "latest",
+    "@theia/process": "latest",
     "@theia/terminal": "latest",
-    "@theia/vsx-registry": "latest"
+    "@theia/workspace": "latest",
+    "hello-world": "0.0.0"
   },
   "devDependencies": {
     "@theia/cli": "latest"
   },
   "scripts": {
-    "prepare": "yarn run clean && yarn build && yarn run download:plugins",
-    "clean": "theia clean",
-    "build": "theia build --mode development",
-    "start": "theia start --plugins=local-dir:plugins",
-    "download:plugins": "theia download:plugins"
+    "bundle": "yarn rebuild && theia build --mode development",
+    "rebuild": "theia rebuild:browser --cacheRoot ..",
+    "start": "theia start",
+    "watch": "yarn rebuild && theia build --watch --mode development"
   },
-  "theiaPluginsDir": "plugins",
-  "theiaPlugins": {
-    "vscode-builtin-extensions-pack": "${downloadURL}"
-  },
-  "theiaPluginsExcludeIds": [
-    "ms-vscode.js-debug-companion",
-    "vscode.extension-editing",
-    "vscode.github",
-    "vscode.github-authentication",
-    "vscode.microsoft-authentication"
-  ]
+  "theia": {
+    "target": "browser"
+  }
 }
 ```
 
-The following properties are used to consume built-in plugins (bundled extensions):
+Now we have all pieces together to build and run the application.
+To run the browser app, enter:
 
-- `theiaPluginsDir`: the relative path to deploy plugins into
-- `theiaPlugins`: the collection of plugins to download (individual plugins or extension-packs) - can point to any valid download URL (ex: Open VSX, GitHub Releases, etc.). **In the example above, replace ${downloadURL} with a link to the latest builtins pack that can be found [on openVSX](https://open-vsx.org/extension/eclipse-theia/builtin-extension-pack) (copy the link on the download button). See also the respective section [in this file](https://github.com/eclipse-theia/theia/blob/master/package.json) for an example**
-- `theiaPluginsExcludeIds`: the list of plugin `ids` to exclude when resolving extension-packs
+```bash
+yarn build:browser
+yarn start:browser
+```
 
-## Building
+Point your browser to <http://localhost:3000>, you will see a minimalistic custom Theia App.
+As this Theia app contains the generated 'hello world' extension, you can try out the custom feature. Open the quick access bar by pressing 'F1' and enter 'say hello' and 'ENTER': A message "Hello World!" should pop up. This command is contributed by the 'hello-world' extension, see [this guide](/docs/authoring_extensions) to learn more.
 
-First, install all dependencies.
+## Executing the Extension In Electron
 
-    yarn
+The `package.json` for the Electron app looks almost the same, except for the name and the target property.
 
-Second, use Theia CLI to build the application.
+```json
+{
+  "name": "electron-app",
+  ...
+  "theia": {
+    "target": "electron"
+  }
+}
+```
 
-    yarn theia build
+Before running the electron app, you have to rebuild some native modules:
 
-`yarn` looks up `theia` executable provided by `@theia/cli` in the context of our application
-and then executes the `build` command with `theia`.
-This can take a while since the application is built in production mode by default,
-i.e. obfuscated and minified.
+```bash
+yarn build:electron
+yarn start:electron
+```
 
-## Running
+## Conclusion
 
-After the build is finished, we can start the application:
+In this guide, we have demonstrated how to set-up your own custom Theia application. The next typical steps are:
 
-    yarn theia start --plugins=local-dir:plugins
-
-or rely on the `start` script from `package.json`:
-
-    yarn start
-
-You can provide a workspace path to open as a first argument
-and `--hostname`, `--port` options to deploy the application on specific network interfaces and ports,
-e.g. to open `/workspace` on all interfaces and port `8080`:
-
-    yarn start /my-workspace --hostname 0.0.0.0 --port 8080
-
-In the terminal, you should see that Theia application is up and listening:
-
-<img class="doc-image" src="../../docs-terminal.png" alt="Terminal" style="max-width: 750px">
-
-Open the application by entering the printed address in a new browser page.
+- Extend your application with additional [Theia extensions](/docs/authoring_extensions/) (existing ones or developed by yourself)
+- Extend your application with [VS Code Extensions](/docs/authoring_vscode_extensions/) (existing ones or developed by yourself)
+- Create a deployable product for desktop, browser or both (see the [Theia IDE](/docs/blueprint_documentation/) as an example)
 
 ## Troubleshooting
-
-### Plugins not appearing
-
-If no plugins are available in the running Theia instance, it may be that you need to tell Theia where to find the downloaded plugins.
-The example above sets the `--plugins` switch in the `start` command which should be sufficient.
-However, if running `theia start` directly, you can alternatively set an environment variable to achieve the same thing:
-
-    export THEIA_DEFAULT_PLUGINS=local-dir:plugins
 
 ### Building native dependencies behind a proxy
 
