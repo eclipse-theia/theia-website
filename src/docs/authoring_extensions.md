@@ -142,4 +142,8 @@ To make sure your extension is included in your Theia application, list it as a 
 
 ## Deploying the Extension
 
-If you want to make your extension publicly available, we recommend publishing it to npm. This can be achieved by calling `yarn publish` from the extension package's directory. Of course, you need a valid account for that.
+To run the extension, you have two options:
+1. Have your extension as part of a monorepo containing a Theia-based application importing your extension (like the structure created by the Yeoman Generator)
+2. Publish the extension with `yarn publish` and consume it from your Theia-based application
+
+See [*Executing the Browser Application*](/docs/composing_applications/#executing-the-browser-application) and [*Executing the Extension in Electron* for more details*](/docs/composing_applications/#executing-the-extension-in-electron) for adding extensions to the dependencies of a Theia-based application and running it.
