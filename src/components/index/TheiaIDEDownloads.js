@@ -98,6 +98,7 @@ const TheiaIDEDownloads = () => (
                  </div>
                 
                  <center>
+                <a href="https://snapcraft.io/theia-ide">Get the Theia IDE from the Snap Store</a><br></br>
                  You can also <a href="https://try.theia-cloud.io/">try the latest version of the Theia IDE online</a>. The online test version is limited to 30 minutes per session and hosted via <a href="https://github.com/eclipsesource/theia-cloud">Theia.cloud</a>.<br></br>
                  Finally, we provide an <a href="https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker">experimental Docker image</a> for hosting the Theia IDE online.
                  </center>
