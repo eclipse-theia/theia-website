@@ -84,7 +84,8 @@ Managing LlamaFiles
 - Start a LlamaFile: Use the command "Start Llamafile", then select the model you want to start.
 - Stop a LlamaFile: Use the "Stop Llamafile" command, then select the running Llamafile which you want to terminate.
 
-For more details on LlamaFiles, see the [LlamaFile documentation](https://github.com/Mozilla-Ocho/llamafile).
+Please make sure that your LlamaFiles are executable.
+For more details on LlamaFiles, including a quickstart, see the official [Mozilla LlamaFile documentation](https://github.com/Mozilla-Ocho/llamafile).
 
 ### Ollama
 
