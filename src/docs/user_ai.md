@@ -81,7 +81,7 @@ To configure a LlamaFile LLM in the Theia IDE, add the necessary settings to you
 Replace "name", "uri", and "port" with your specific LlamaFile details.
 
 Managing LlamaFiles
-- Start a LlamaFile: Use the command "Start llamafile", then select the model you want to start.
+- Start a LlamaFile: Use the command "Start Llamafile", then select the model you want to start.
 - Stop a LlamaFile: Use the "Stop llamafile" command.
 
 For more details on LlamaFiles, see the [LlamaFile documentation](https://github.com/Mozilla-Ocho/llamafile).
