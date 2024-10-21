@@ -25,6 +25,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 - [Chat](#chat)
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
+- [Custom Agents](#custom-agents)
 - [AI History](#ai-history)
 - [Learn more](#learn-more)
 
@@ -132,6 +133,31 @@ Tool functions are used with the following syntax:
 ``` 
 ~{functionName}
 ```
+## Custom Agents
+
+Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat.
+
+To define a new custom agent, navigate to the AI Configuration View and click on "Add Custom Agent".
+
+<img src="../../add-custom-agents.png" alt="Add a custom Agents in the Theia IDE" style="max-width: 400px">
+
+This action opens a YAML file where all available custom agents are defined. Below is an example configuration:
+
+```yaml
+- id: obfuscator
+  name: Obfuscator
+  description: This is an example agent. Please adapt the properties to fit your needs.
+  prompt: Obfuscate the following code so that no human can understand it anymore. Preserve the functionality.
+  defaultLLM: openai/gpt-4o
+```
+
+- id: A unique identifier for the agent.
+- name: The display name of the agent.
+- description: A brief explanation of what the agent does.
+- prompt: The default prompt that the agent will use for processing requests.
+- defaultLLM: The language model used by default.
+
+Custom agents can be configured in the AI Configuration View just like other chat agents. You can enable/disable them, modify their prompt templates, and integrate variables and functions within these templates to enhance functionality.
 
 ## AI History
 
