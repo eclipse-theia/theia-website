@@ -38,7 +38,20 @@ const StyledHeader = styled.div`
             height: 3rem;
         }
         .banner__image {
-            height: 15rem;
+            height: auto;
+            width: 45rem; /* Default width */
+
+            @media (max-width: 800px) {
+                width: 35rem; /* Adjust for medium screens */
+            }
+
+            @media (max-width: 500px) {
+                width: 25rem; /* Further reduce width for smaller screens */
+            }
+
+            @media (max-width: 385px) {
+                width:20rem; /* Even smaller for very narrow screens */
+            }
         }
         &__banner {
             padding: 15px;
