@@ -40,7 +40,7 @@ const StyledHeader = styled.div`
         }
 
         &__logo {
-            height: 3rem;
+            height: 4rem;
         }
 
         .banner__image {
@@ -123,14 +123,21 @@ const StyledHeader = styled.div`
                 max-width: 90%;
             }
         }
+        #theiaide::before {
+           content: "";
+            display: block;
+            height: 1rem;
+            margin-top: -1rem;
+        }
     }
+}
 `;
 
 const TheiaIDEHeader = () => (
     <StyledHeader>
         <div className="header">
             <div id="theiaide" className="row">
-                <img className="logo" src={TheiaIDELogo} style={{ height: '3rem' }} alt="The Theia IDE Logo" />
+                <img className="logo" src={TheiaIDELogo} style={{ height: '4rem' }} alt="The Theia IDE Logo" />
                 <h1>The Eclipse Theia IDE</h1>
                 <img className="wrap" src={TheiaIDEScreenshot} alt="Theia IDE" />
                 <h2>
