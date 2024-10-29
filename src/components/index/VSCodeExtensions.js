@@ -44,9 +44,7 @@ const Styled = styled.div`
             &-container {
                 height: 12rem;
                 padding: 2px;
-                @media(min-width: 768px) {
-                    text-align: center;
-                }
+                text-align: center;
                 @media(max-width: 50rem) {
                     width: 40%;
                     margin-bottom: 4rem;
@@ -66,7 +64,7 @@ const Styled = styled.div`
     }
     .swiper-button-next, .swiper-button-prev {
         color: black;
-        margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+        margin-top: 3rem;
     }
     @media(min-width: 1120px) {
         .swiper-button-next {
@@ -90,12 +88,16 @@ const VSCodeExtensions = () => (
                     modules={[Navigation]}
                     slidesPerView={1}
                     breakpoints={{
+                        "500": {
+                            "slidesPerView": 1,
+                        },
                         "750": {
-                            "slidesPerView": 4,
+                            "slidesPerView": 2,
+                            "spaceBetween": 15,
                         },
                         "1120": {
-                            "slidesPerView": 5,
-                            "spaceBetween": 10,
+                            "slidesPerView": 3,
+                            "spaceBetween": 20,
                         }
                     }}
                     navigation={{
