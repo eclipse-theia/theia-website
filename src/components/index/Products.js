@@ -45,9 +45,7 @@ const Styled = styled.div`
             &-container {
                 height: 18rem;
                 padding: 2px;
-                @media(min-width: 768px) {
-                    text-align: center;
-                }
+                text-align: center;
                 @media(max-width: 50rem) {
                     width: 40%;
                     margin-bottom: 4rem;
