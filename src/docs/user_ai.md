@@ -56,7 +56,8 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
        {
            "model": "your-model-name",
            "url": "your-URL",
-           "id": "your-id"
+           "id": "your-unique-id", // Optional: if not provided, the model name will be used as the ID
+           "apiKey": "your-api-key" // Optional: use 'true' to apply the global OpenAI API key
        }
    ]
 }
