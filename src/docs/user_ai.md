@@ -14,6 +14,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 - [Set-Up](#set-up)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+  - [LlamaFile](#llamafile-models)
   - [Ollama](#ollama)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
   - [Universal (Chat Agent)](#universal-chat-agent)
@@ -62,6 +63,30 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
    ]
 }
 ```
+### LlamaFile Models
+
+To configure a LlamaFile LLM in the Theia IDE, add the necessary settings to your configuration (see example below)
+
+```json
+{
+   "ai-features.llamafile.llamafiles": [
+       {
+           "name": "modelname", //you can choose a name for your model
+           "uri": "file:///home/.../YourModel.llamafile",
+           "port": 30000 //you can choose a port to be used by llamafile
+       }
+   ]
+}
+```
+
+Replace "name", "uri", and "port" with your specific LlamaFile details.
+
+The Theia IDE also offers convenience commands to start and stop your LlamaFiles:
+- Start a LlamaFile: Use the command "Start Llamafile", then select the model you want to start.
+- Stop a LlamaFile: Use the "Stop Llamafile" command, then select the running Llamafile which you want to terminate.
+
+Please make sure that your LlamaFiles are executable.
+For more details on LlamaFiles, including a quickstart, see the official [Mozilla LlamaFile documentation](https://github.com/Mozilla-Ocho/llamafile).
 
 ### Ollama
 
