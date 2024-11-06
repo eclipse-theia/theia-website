@@ -15,19 +15,14 @@
  ********************************************************************************/
 
 import React from 'react'
-
 import styled from '@emotion/styled'
 import { products } from '../../utils/data'
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/components/navigation/navigation.min.css'
-import SwiperCore, {
-  Autoplay, Navigation
-} from 'swiper/core';
-
-SwiperCore.use([Autoplay, Navigation]);
+import Popup from 'reactjs-popup'
+import 'reactjs-popup/dist/index.css'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Autoplay } from 'swiper/modules'
 
 const Styled = styled.div`
     .products {
@@ -63,28 +58,15 @@ const Styled = styled.div`
             }
         }
     }
-    .swiper-button-next, .swiper-button-prev {
-        color: black;
-        margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
-    }
-    @media(min-width: 1120px) {
-        .swiper-button-next {
-            right: -6rem;
-        }
-        .swiper-button-prev {
-            left: -6rem;
-        }
-    }
 `
 
 const Products = () => (
     <div className="row">
         <Styled>
-            <section className="products" >
+            <section className="products">
                 <h3 className="heading-tertiary">Selected Tools based on Eclipse Theia</h3>
-                <div className="swiper-button-prev"></div>
                 <Swiper
-                    modules={[Navigation]}
+                    modules={[Navigation, Autoplay]}
                     slidesPerView={1}
                     breakpoints={{
                         "750": {
@@ -95,25 +77,21 @@ const Products = () => (
                             "spaceBetween": 20,
                         }
                     }}
-                    navigation={{
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev'
-                    }}
+                    loop={true}
+                    navigation={true}
                     autoplay={{
-                        "delay": 4000,
-                        "disableOnInteraction": false
+                        delay: 4000,
+                        disableOnInteraction: false
                     }}
                 >
-                    {
-                    products.map((item, i) => (
+                    {products.map((item, i) => (
                         <SwiperSlide key={i} className="products__thumb-container">
-                            <Popup key={i}
+                            <Popup
                                 trigger={
-                                <div className="products__thumb-popup">
-                                    <img className="products__thumb" src={item.thumb} alt={item.alt} />
-                                    <div>{item.alt}</div>
-                                </div>
-                                
+                                    <div className="products__thumb-popup">
+                                        <img className="products__thumb" src={item.thumb} alt={item.alt} />
+                                        <div>{item.alt}</div>
+                                    </div>
                                 } modal>
                                 {close => (
                                 <>
@@ -127,10 +105,8 @@ const Products = () => (
                                 )}
                             </Popup>
                         </SwiperSlide>
-                    ))
-                }
+                    ))}
                 </Swiper>
-                <div className="swiper-button-next"></div>
             </section>
         </Styled>
     </div>

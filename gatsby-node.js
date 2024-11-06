@@ -1,5 +1,5 @@
 const path = require('path')
-const fetch = require('node-fetch')
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 exports.onCreateNode = ({ node, actions }) => {
     const { createNodeField } = actions
@@ -14,6 +14,20 @@ exports.onCreateNode = ({ node, actions }) => {
         })
     }
 }
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+    actions.setWebpackConfig({
+      resolve: {
+        fallback: {
+            stream: require.resolve("stream-browserify"),
+            http: require.resolve("stream-http"),
+            https: require.resolve("https-browserify"),
+            timers: require.resolve("timers-browserify"),
+            url: require.resolve("url/"),
+        },
+      },
+    });
+  };
 
 exports.onCreatePage = async ({ page, reporter, actions }) => {
     if (page.path === '/') {
