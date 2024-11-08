@@ -18,6 +18,9 @@ import React from 'react'
 import Layout from '../layouts/layout'
 import Releases from '../components/Releases'
 import Footer from '../components/Footer'
+import BaseHead from '../layouts/basehead'
+
+export const Head = BaseHead
 
 export default () => {
     return (

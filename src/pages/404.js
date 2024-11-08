@@ -24,6 +24,7 @@ import styled from '@emotion/styled'
 import { breakpoints } from '../utils/variables'
 import Nav from '../components/Nav'
 import { Link } from 'gatsby'
+import BaseHead from '../layouts/basehead'
 
 const StyledNotFoundPage = styled.div`
     background-image: url(${Background});
@@ -63,6 +64,8 @@ const StyledNotFoundPage = styled.div`
     }
 
 `
+export const Head = BaseHead
+
 
 const NotFoundPage = () => (
     <Layout>

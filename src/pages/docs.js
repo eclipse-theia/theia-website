@@ -17,6 +17,7 @@
 import React from 'react'
 import DocsLayout from '../layouts/docs-layout'
 import { graphql } from 'gatsby'
+import BaseHead from '../layouts/basehead'
 
 export const query = graphql`
     query {
@@ -31,6 +32,7 @@ export const query = graphql`
         }
     }
 `
+export const Head = BaseHead
 
 const Docs = ({ data }) => {
     const context =  { next: "/docs/architecture/", nextTitle: "Architecture Overview" }

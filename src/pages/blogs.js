@@ -18,6 +18,11 @@ import React from 'react'
 import Layout from '../layouts/layout'
 import Blogs from '../components/Blogs'
 import Footer from '../components/Footer'
+import BaseHead from '../layouts/basehead'
+
+
+export const Head = BaseHead
+
 
 export default () => {
     return (
