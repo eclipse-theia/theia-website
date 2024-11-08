@@ -15,7 +15,7 @@
  ********************************************************************************/
 
 import React from 'react'
-import { Global, css } from '@emotion/core'
+import { Global, css } from '@emotion/react'
 import Helmet from 'react-helmet'
 import useSiteMetadata from '../hooks/use-site-metadata'
 import { fontSizes, colors, grid, breakpoints } from '../utils/variables'

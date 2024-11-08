@@ -15,18 +15,13 @@
  ********************************************************************************/
 
 import React from 'react'
-
 import styled from '@emotion/styled'
 import { extensions } from '../../utils/data'
-import 'reactjs-popup/dist/index.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/components/navigation/navigation.min.css'
-import SwiperCore, {
-  Autoplay, Navigation
-} from 'swiper/core';
-
-SwiperCore.use([Autoplay, Navigation]);
+import 'reactjs-popup/dist/index.css'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Autoplay } from 'swiper/modules'
 
 const Styled = styled.div`
     .products {
@@ -62,30 +57,16 @@ const Styled = styled.div`
             }
         }
     }
-    .swiper-button-next, .swiper-button-prev {
-        color: black;
-        margin-top: 3rem;
-    }
-    @media(min-width: 1120px) {
-        .swiper-button-next {
-            right: -6rem;
-        }
-        .swiper-button-prev {
-            left: -6rem;
-        }
-    }
 `
 
 const VSCodeExtensions = () => (
     <div className="row">
         <Styled>
-            <section className="products" >
+            <section className="products">
                 <h3 className="heading-tertiary">Most popular extensions for Theia</h3>
                 <p>Unlock limitless possibilities with Theia IDE's seamless compatibility with the VS Code extension ecosystem. From robust linting tools to interactive notebook editors, customize your development experience like never before. Explore <b>more than 3000 available extensions</b> for the Theia IDE at <a href="https://open-vsx.org/">open-vsx.org!</a></p>
-                <br></br>
-                <div className="swiper-button-prev"></div>
                 <Swiper
-                    modules={[Navigation]}
+                    modules={[Navigation, Autoplay]}
                     slidesPerView={1}
                     breakpoints={{
                         "500": {
@@ -100,27 +81,24 @@ const VSCodeExtensions = () => (
                             "spaceBetween": 20,
                         }
                     }}
-                    navigation={{
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev'
-                    }}
+                    loop={true}
+                    navigation={true}
                     autoplay={{
-                        "delay": 4000,
-                        "disableOnInteraction": false
+                        delay: 4000,
+                        disableOnInteraction: false
                     }}
                 >
-                    {
-                    extensions.map((item, i) => (
+                    {extensions.map((item, i) => (
                         <SwiperSlide key={i} className="products__thumb-container">
-                                <div className="products__thumb-popup">
-                                    <a href={item.href}><img className="products__thumb" src={item.thumb} alt={item.alt} /></a>
-                                    <div>{item.alt}</div>
-                                </div>         
+                            <div className="products__thumb-popup">
+                                <a href={item.href}>
+                                    <img className="products__thumb" src={item.thumb} alt={item.alt} />
+                                </a>
+                                <div>{item.alt}</div>
+                            </div>
                         </SwiperSlide>
-                    ))
-                }
+                    ))}
                 </Swiper>
-                <div className="swiper-button-next"></div>
             </section>
         </Styled>
     </div>
