@@ -16,19 +16,11 @@
 
 import React from 'react'
 import { Global, css } from '@emotion/react'
-import Helmet from 'react-helmet'
-import useSiteMetadata from '../hooks/use-site-metadata'
 import { fontSizes, colors, grid, breakpoints } from '../utils/variables'
-import Favicon from '../resources/theia-favicon.svg'
-import Favicon196 from '../resources/theia-favicon-196x196.png'
-import AppleTouchIcon from '../resources/apple-touch-icon.png'
+const Layout = ({ children }) => (
+  <>
+    <Global styles={css`
 
-
-const Layout = ({ children, canonical }) => {
-    const { title, description } = useSiteMetadata()
-    return (
-        <>
-            <Global styles={css`
                 /* --------------------------------------------- */
                 /* ----- Basic Setup ----- */
                 /* --------------------------------------------- */
@@ -191,29 +183,11 @@ const Layout = ({ children, canonical }) => {
                     border: 1px solid #cfcece;
                     outline: none;
                 }
-                
-
-            `} />
-            <Helmet>
-                <html lang='en' />
-                <title>{title}</title>
-                <meta name='description' content={description} />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="theme-color" content="#FFFFFF" />
-                {
-                    canonical ? <link rel="canonical" href={`https://theia-ide.org${canonical}`} /> : null
-                }
-                <link rel="apple-touch-icon" type="image/png" href={AppleTouchIcon} sizes="180x180"/>
-                <link rel="icon" type="image/png" href={Favicon196} sizes="196x196"/>
-                <link rel="icon" type="image/svg+xml" href={Favicon} sizes="any"/>
-                <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap" rel="stylesheet" />
-            </Helmet>
-            <>
-                {children}
-            </>
-        </>
-    )
-}
+    `} />
+    <>
+      {children}
+    </>
+  </>
+)
 
 export default Layout

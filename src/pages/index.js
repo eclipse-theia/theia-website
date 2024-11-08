@@ -29,7 +29,9 @@ import TheiaIDEHeader from '../components/index/TheiaIDEHeader'
 import VSCodeExtensions from '../components/index/VSCodeExtensions'
 import TheiaIDEDownloads from '../components/index/TheiaIDEDownloads'
 import TheiaIDEExtensible from '../components/index/TheiaIDEExtensible'
+import HeadWithSchema from '../layouts/headwithschema'
 
+export const Head = HeadWithSchema
 
 export default ({ pageContext }) => {
     return (

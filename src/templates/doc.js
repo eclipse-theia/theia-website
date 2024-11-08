@@ -18,6 +18,7 @@ import React from 'react'
 import DocsLayout from '../layouts/docs-layout'
 import { graphql } from 'gatsby'
 import { getMenuContext } from '../docs/menu'
+import BaseHead from '../layouts/basehead'
 
 export const query = graphql`
   query($slug: String) {
@@ -32,6 +33,7 @@ export const query = graphql`
     }
   }
 `
+export const Head = BaseHead
 
 const DocTemplate = ({ data }) => {
     const slug = data.markdownRemark.fields.slug
