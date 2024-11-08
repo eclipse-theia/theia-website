@@ -1,7 +1,7 @@
 name: Deploy PR previews
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronize
@@ -16,7 +16,7 @@ defaults:
 
 jobs:
   build-preview:
-    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js 20.x
@@ -68,7 +68,7 @@ jobs:
 
   # remove the preview page when the PR got closed
   remove-preview:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request_target' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
