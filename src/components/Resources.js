@@ -308,7 +308,17 @@ const categories = [
                 title: 'Introducing AI Support in Theia IDE: The First Open, Transparent AI-Enhanced Development Environment',
                 url: 'https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/',
                 type: 'article'
-            },            
+            },
+            {
+                title: 'Building AI-Powered Tools and IDEs: Practical Techniques',
+                url: 'https://eclipsesource.com/blogs/2024/10/28/building-ai-powered-tools-and-ides/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing Custom Chat Agents in Theia IDE: Automate Your Workflows with Ease',
+                url: 'https://eclipsesource.com/blogs/2024/11/06/custom-cat-agents-theia-ide/',
+                type: 'article'
+            },      
             {
                 title: 'The Vision of Theia AI: Empowering Tool Builders with Full Control over AI Solutions',
                 url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',
