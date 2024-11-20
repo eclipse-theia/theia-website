@@ -18,6 +18,7 @@ import React from 'react'
 
 import CodeEditing from '../../resources/codeediting.mp4'
 import ModernUX from '../../resources/modernux.mp4'
+import TheiaIDEAI from '../../resources/theia-ide-ai-demo.mp4'
 import styled from '@emotion/styled'
 import { breakpoints } from '../../utils/variables'
 
@@ -110,6 +111,17 @@ const TheiaIDEFeatures = ({ adopters }) => (
         <div className="promo__media">
             <video autoPlay loop muted playsInline className="promo__video">
                 <source src={CodeEditing} type="video/mp4" />
+            </video>
+        </div>
+    </StyledPromo>
+    <StyledPromo className="promo">
+        <div className="promo__text">
+           <h3 className="heading-tertiary">AI-Powered IDE (Alpha)</h3>
+            <p>Experience the future of development with <a href="/docs/user_ai/">Theia IDE's AI support</a>. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, the AI assistance offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
+        </div>
+        <div className="promo__media">
+            <video autoPlay loop muted playsInline className="promo__video">
+                <source src={TheiaIDEAI} type="video/mp4" />
             </video>
         </div>
     </StyledPromo>
