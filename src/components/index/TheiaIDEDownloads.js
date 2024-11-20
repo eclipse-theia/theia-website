@@ -88,10 +88,10 @@ const TheiaIDEDownloads = () => (
                 We are continuing to make improvements and add functionality to the Theia IDE, we welcome and value your feedback (see below).
                 
                 <div className="header__buttons">
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/windows/TheiaIDESetup.exe&r=1" rel="noopener">Windows</a>
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos/TheiaIDE.dmg&r=1" rel="noopener">MacOS</a>
+                    <a className="btn btn--cta" href="https://download.eclipse.org/theia/ide/latest/windows/TheiaIDESetup.exe" rel="noopener">Windows</a>
+                    <a className="btn btn--cta" href="https://download.eclipse.org/theia/ide/latest/macos/TheiaIDE.dmg" rel="noopener">MacOS</a>
                     <a className="btn btn--cta" href="https://snapcraft.io/theia-ide" rel="noopener">Linux (Snap)</a>
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=1" rel="noopener">Linux (AppImage)</a>
+                    <a className="btn btn--cta" href="https://download.eclipse.org/theia/ide/latest/linux/TheiaIDE.AppImage" rel="noopener">Linux (AppImage)</a>
                  </div>
                  <center>
                  You can also <a href="https://try.theia-cloud.io/">try the latest version of the Theia IDE online</a>. The online test version is limited to 30 minutes per session and hosted via <a href="https://github.com/eclipsesource/theia-cloud">Theia.cloud</a>.<br></br>
