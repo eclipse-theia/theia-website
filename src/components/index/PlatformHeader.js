@@ -97,7 +97,7 @@ const StyledHeader = styled.div`
     }
 `
 
-const Header = () => (
+const PlatformHeader = () => (
     <StyledHeader>
         <header className='header' role="banner">
             <div className="row">
@@ -106,32 +106,21 @@ const Header = () => (
                     <iframe title="Github Star Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=star&count=true" frameBorder={0} scrolling={0} />
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
-                <center>
                 <h1 className="heading-primary">
-                    Welcome to Eclipse Theia
+                    The Eclipse Theia Platform
                 </h1>
-                </center>
-                <div className="header__banner">
                 <h2 style={{ fontSize: '2.1rem' }}>
-                    <p>The <a href="/theia-platform">Theia Platform</a> is a framework for building custom, tailored cloud & desktop IDEs.</p>
-                    <p>The <a href="#theiaide"><b>Theia IDE</b></a> is a modern IDE for cloud and desktop built on the Theia Platform.</p>
-                
+                        An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
                 </h2>
-                </div>
                 <div className="header__buttons">
+                        <a className="btn" href="#gettingstarted" target="_blank" rel="noopener noreferrer">Get started with the Theia Platform</a>
                         <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try Theia IDE online</a>
-                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="#theiaide" rel="noopener">Get Theia IDE for desktop</a>
-                        <a className="btn" href="/theia-platform" target="_blank" rel="noopener noreferrer">Explore the Theia Platform</a>
+                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="/#theiaide" rel="noopener">Get Theia IDE for desktop</a>
                  </div>
+                </div>
                 <CommonNews/>
-                <div className="header__banner">
-                    <h2 style={{ fontSize: '2.2rem' }}>
-                        Theia IDE is now generally available! Read our <a href="https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-theia-ide-elevate-modern-developer-experience">press release</a> and <a href="https://eclipsesource.com/blogs/2024/06/27/introducing-the-theia-ide/">blog post</a> for more details!
-                    </h2>       
-                </div>
-                </div>
         </header>
     </StyledHeader>
 )
 
-export default Header
+export default PlatformHeader

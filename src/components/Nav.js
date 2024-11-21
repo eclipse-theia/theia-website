@@ -226,9 +226,12 @@ class Nav extends React.Component {
                             </button>
                         </div>
                     </div>
-                    <ul className={`nav__items ${this.state.isNavRendered ? 'navIsRendered' : 'navIsNotRendered' }`}>
+                    <ul className={`nav__items ${this.state.isNavRendered ? 'navIsRendered' : 'navIsNotRendered'}`}>
                         <li className="nav__item">
                             <Link to="https://github.com/eclipse-theia/theia" className="nav__link">Github</Link>
+                        </li>
+                        <li className="nav__item">
+                            <Link to="/theia-platform/" className="nav__link">Theia Platform</Link>
                         </li>
                         <li className="nav__item">
                             <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
