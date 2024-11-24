@@ -113,7 +113,7 @@ const Header = () => (
                 </center>
                 <div className="header__banner">
                 <h2 style={{ fontSize: '2.1rem' }}>
-                    <p>The <a href="/theia-platform">Theia Platform</a> is a framework for building custom, tailored cloud & desktop IDEs.</p>
+                    <p>The <a href="theia-platform/">Theia Platform</a> is a framework for building custom, tailored cloud & desktop IDEs.</p>
                     <p>The <a href="#theiaide"><b>Theia IDE</b></a> is a modern IDE for cloud and desktop built on the Theia Platform.</p>
                 
                 </h2>
@@ -121,7 +121,7 @@ const Header = () => (
                 <div className="header__buttons">
                         <a className="btn btn--cta" href="https://try.theia-cloud.io/" target="_blank" rel="noopener noreferrer">Try Theia IDE online</a>
                         <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="#theiaide" rel="noopener">Get Theia IDE for desktop</a>
-                        <a className="btn" href="/theia-platform" rel="noopener noreferrer">Explore the Theia Platform</a>
+                        <a className="btn" href="theia-platform/">Explore the Theia Platform</a>
                  </div>
                 <CommonNews/>
                 <div className="header__banner">
