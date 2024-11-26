@@ -113,8 +113,8 @@ const Header = () => (
                 </center>
                 <div className="header__banner">
                 <h2 style={{ fontSize: '2.1rem' }}>
-                    <p>The <a href="theia-platform/">Theia Platform</a> is a framework for building custom, tailored cloud & desktop IDEs.</p>
                     <p>The <a href="#theiaide"><b>Theia IDE</b></a> is a modern IDE for cloud and desktop built on the Theia Platform.</p>
+                    <p>The <a href="theia-platform/">Theia Platform</a> is a framework for building custom, tailored cloud & desktop IDEs.</p>
                 
                 </h2>
                 </div>
