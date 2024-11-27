@@ -21,6 +21,8 @@ import { breakpoints } from '../utils/variables'
 import styled from '@emotion/styled'
 import Background from '../resources/background-image.png'
 
+const RSS_FEED_URL = 'https://planeteclipse.org/planet/ecdtools.xml'; 
+
 const StyledBlogs = styled.div`
 .header {
     position: relative;
@@ -91,7 +93,7 @@ const Blogs = () => {
     const [feed, setFeed] = useState({ title: '', items: []});
 
     useEffect(() => {
-        fetch('https://planeteclipse.org/planet/ecdtools.xml')
+        fetch(RSS_FEED_URL)
             .then(response => response.text())
             .then(str => {
                 let parser = new Parser({
@@ -121,6 +123,7 @@ const Blogs = () => {
                         <h1 className="heading-primary">
                             Blogs
                         </h1>
+                        <p>Want to stay updated? You can also <a href={RSS_FEED_URL} target="_blank" rel="noopener noreferrer">follow this RSS feed</a>.</p>
                     </div>
                 </div>
             </header>
