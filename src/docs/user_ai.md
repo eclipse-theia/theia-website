@@ -17,6 +17,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
   - [Hugging Face](#hugging-face)
   - [LlamaFile](#llamafile-models)
   - [Ollama](#ollama)
+  - [Custom Request Settings](#custom-request-settings)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
   - [Universal (Chat Agent)](#universal-chat-agent)
   - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
@@ -107,6 +108,36 @@ For more details on LlamaFiles, including a quickstart, see the official [Mozill
 To connect to models hosted via [Ollama](https://ollama.com/), enter the corresponding URL, along with the available models, in the settings (as shown below).
 
 <img src="../../ollama-setting.png" alt="Ollama configuration in the Theia IDE" style="max-width: 525px">
+
+### Custom Request Settings
+
+You can define **custom request settings** for specific language models in the Theia IDE to tailor how models handle requests, based on their provider.
+
+Add the settings in `settings.json`:
+
+```json
+"ai-features.modelSettings.requestSettings": [
+    {
+        "modelId": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "requestSettings": { "max_new_tokens": 2048 },
+        "providerId": "huggingface"
+    },
+    {
+        "modelId": "gemma2",
+        "requestSettings": { "stop": ["<file_sep>"] },
+        "providerId": "ollama"
+    }
+]
+```
+
+Or navigate in the settings view to **`ModelSettings` => `Request Settings`**.
+
+#### Key Fields
+- **`modelId`**: The unique identifier of the model.
+- **`requestSettings`**: Provider-specific options, such as token limits or stopping criteria.
+- **`providerId`**: *(Optional)* Specifies the provider for the settings (e.g., `huggingface`, `ollama`, `openai`). If omitted, settings apply to all providers that match the `modelId`.
+
+Valid options for `requestSettings` depend on the model provider.
 
 ## Current Agents in the Theia IDE
 
