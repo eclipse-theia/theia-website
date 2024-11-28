@@ -14,6 +14,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 - [Set-Up](#set-up)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+  - [Hugging Face](#hugging-face)
   - [LlamaFile](#llamafile-models)
   - [Ollama](#ollama)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
@@ -38,11 +39,13 @@ To use Theia AI within the Theia IDE, you need to provide access to at least one
 
 Other LLM providers, including local models, can be added easily. We are also working on enabling LLamaFile support in the near future. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for OpenAI models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
+Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
 
 ### OpenAI (Hosted by OpenAI)
 
-To enable the use of OpenAI, you need to create an API key in your OpenAI account and enter it in the settings dialog (see the screenshot below). Please note that creating an API key requires a paid subscription, and using these models may incur additional costs. Be sure to monitor your usage carefully to avoid unexpected charges. We have not yet optimized the AI assistants in the Theia IDE for token usage.
+To enable the use of OpenAI, you need to create an API key in your OpenAI account and enter it in the settings AI-features => OpenAiOfficial (see the screenshot below).
+**Please note:** By using this preference the Open AI API key will be stored in clear text on the machine running Theia. Use the environment variable `OPENAI_API_KEY` to set the key securely.
+Please also note that creating an API key requires a paid subscription, and using these models may incur additional costs. Be sure to monitor your usage carefully to avoid unexpected charges. We have not yet optimized the AI assistants in the Theia IDE for token usage.
 
 <img src="../../enter-openai-key.png" alt="Open AI configuration in the Theia IDE" style="max-width: 525px">
 
@@ -64,6 +67,16 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
    ]
 }
 ```
+
+### Hugging Face
+
+To enable Hugging Face as an AI provider, you need to create an API key in your Hugging Face account and enter it in the Theia IDE settings: AI-features => Hugging Face
+**Please note:** By using this preference the Hugging Face API key will be stored in clear text on the machine running Theia. Use the environment variable `HUGGINGFACE_API_KEY` to set the key securely.
+Note also that Hugging Face offers both paid and free-tier options (including "serverless"), and usage limits vary. Monitor your usage carefully to avoid unexpected costs, especially when using high-demand models.
+Add or remove the desired Hugging Face models from the list of available models (see screenshot below). Please note that there is a copy button in the Hugging face UI to copy model IDs to the clipboard.
+
+<img src="../../huggingface-models.png" alt="Hugging Face configuration in the Theia IDE" style="max-width: 525px">
+
 ### LlamaFile Models
 
 To configure a LlamaFile LLM in the Theia IDE, add the necessary settings to your configuration (see example below)
