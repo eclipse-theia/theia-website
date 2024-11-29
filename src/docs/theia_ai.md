@@ -378,7 +378,7 @@ Learn more about which LLM providers are supported out of the box in at the exam
 
 As a tool provider, you can easily add support for additional LLM APIs too. Please consider contributing your additional LLM providers to the open source project, so that the community can benefit from increased compatibility and share the maintenance cost.
 
-To support a specific LLM, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This Language Model is then registered at the ‘LanguageModelRegistry’, to make it retrievable for agents, e.g. like this:
+To support a specific LLM API, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This language model implementation then needs to be registered at the ‘LanguageModelRegistry’, to make it retrievable for agents as follows:
 
 ```typescript
 this.languageModelRegistry.addLanguageModels([new OllamaModel()]);
