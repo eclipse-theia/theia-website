@@ -38,9 +38,11 @@ To activate AI support in the Theia IDE, go to Preferences and enable the settin
 
 To use Theia AI within the Theia IDE, you need to provide access to at least one LLM. Theia IDE comes with preinstalled support for OpenAI API-compatible models, either hosted by OpenAI or self-hosted via VLLM. Additionally, Theia IDE supports connecting to models via Ollama. See the corresponding sections below on how to configure these providers.
 
-Other LLM providers, including local models, can be added easily. We are also working on enabling LLamaFile support in the near future. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
+Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
 Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
+
+*Note: Theia IDE enables connections to various models (e.g., HuggingFace, custom OpenAPI models, LlamaFile). However, not all models may work out of the box, as they may require specific customizations or optimizations. If you encounter issues, please [provide feedback](https://github.com/eclipse-theia/theia/issues/new/choose), keeping in mind this is an early-phase feature.*
 
 ### OpenAI (Hosted by OpenAI)
 

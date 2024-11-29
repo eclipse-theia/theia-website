@@ -370,13 +370,18 @@ This approach enables users to interact with the AI-powered Chat UI more efficie
 
 ## Custom LLM Provider
 
-Theia AI currently provides out-of-the-box support for any OpenAI-compatible LLM services (including the OpenAI models hosted by OpenAI or self-hosted compatible LLMs) and Ollama LLMs. We are also working on integrating support for LLamaFile. As a tool provider, you can easily add support for other LLM APIs too. Please consider contributing any further LLM providers to the open source project, so that the community can benefit from increased compatibility and share the maintenance cost.
+Theia AI currently provides out-of-the-box support for any OpenAI-compatible LLM services (including the OpenAI models hosted by OpenAI or self-hosted compatible LLMs), Hugging Face, Ollama LLMs and Llamafile.
 
-To support a specific LLM, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This Language Model is then registered at the ‘LanguageModelRegistry’, to make it retrievable for agents, e.g. like this:
+*Note: Theia AI enables connections to various models. However, be aware that some models may require specific customizations and optimizations to perform well in all scenarios. If you encounter issues implementing those customizations, please [provide feedback](https://github.com/eclipse-theia/theia/issues/new/choose).*
 
+Learn more about which LLM providers are supported out of the box in at the example of the [Theia IDE](user_ai), which allows end users to configure the used LLM per agent. Of course, as a tool provider you can choose whether you provide this configurability to end users.
+
+As a tool provider, you can easily add support for additional LLM APIs too. Please consider contributing your additional LLM providers to the open source project, so that the community can benefit from increased compatibility and share the maintenance cost.
+
+To support a specific LLM API, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This language model implementation then needs to be registered at the ‘LanguageModelRegistry’, to make it retrievable for agents as follows:
 
 ```typescript
-this.languageModelRegistry.addLanguageModels([new OllamaModel());
+this.languageModelRegistry.addLanguageModels([new OllamaModel()]);
 ```
 
 If you want to allow the user to configure the LLM provider, e.g. change the URL or the available models, consider integrating your LLM provider with Theias preference system.
