@@ -381,7 +381,7 @@ As a tool provider, you can also easily add support for other LLM APIs too. Plea
 To support a specific LLM, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This Language Model is then registered at the ‘LanguageModelRegistry’, to make it retrievable for agents, e.g. like this:
 
 ```typescript
-this.languageModelRegistry.addLanguageModels([new OllamaModel());
+this.languageModelRegistry.addLanguageModels([new OllamaModel()]);
 ```
 
 If you want to allow the user to configure the LLM provider, e.g. change the URL or the available models, consider integrating your LLM provider with Theias preference system.
