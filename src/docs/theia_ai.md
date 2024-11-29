@@ -376,7 +376,7 @@ Theia AI currently provides out-of-the-box support for any OpenAI-compatible LLM
 
 Learn more about which LLM providers are supported out of the box in at the example of the [Theia IDE](user_ai), which allows end users to configure the used LLM per agent. Of course, as a tool provider you can choose whether you provide this configurability to end users.
 
-As a tool provider, you can also easily add support for other LLM APIs too. Please consider contributing any further LLM providers to the open source project, so that the community can benefit from increased compatibility and share the maintenance cost.
+As a tool provider, you can easily add support for additional LLM APIs too. Please consider contributing your additional LLM providers to the open source project, so that the community can benefit from increased compatibility and share the maintenance cost.
 
 To support a specific LLM, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This Language Model is then registered at the ‘LanguageModelRegistry’, to make it retrievable for agents, e.g. like this:
 
