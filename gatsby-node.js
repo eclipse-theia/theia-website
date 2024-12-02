@@ -30,7 +30,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   };
 
 exports.onCreatePage = async ({ page, reporter, actions }) => {
-    if (page.path === '/') {
+    if (page.path === '/' || page.path === '/theia-platform/') {
         try {
             const response = await fetch(
                 'https://api.eclipse.org/adopters/projects/ecd.theia', {
