@@ -167,7 +167,7 @@ This agent provides inline code completion within the Theia IDE's code editor. B
 
 Users who prefer continuous suggestions can enable 'Automatic Code Completion' in the settings ('AIFeatures'=>'CodeCompletion'). This agent makes continuous requests to the underlying LLM while coding if automatic suggestions are enabled.
 
-In the settings, you also specify 'Excluded File Extensions' for which the AI-powered code completion will be deactivated.
+In the settings, you can also specify 'Excluded File Extensions' for which the AI-powered code completion will be deactivated.
 
 Finally, the setting 'Max Context Lines' allows you to configure the maximum number of lines used for AI code completion context. This setting can be adjusted to customize the size of the context provided to the model, which is especially useful when using smaller models with limited token capacity.
 
