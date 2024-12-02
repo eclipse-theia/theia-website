@@ -163,7 +163,13 @@ This agent can access the user's workspace, retrieve a list of all available fil
 
 ### Code Completion (Agent)
 
-This agent provides inline code completion within the Theia IDE's code editor. It continuously shows suggestions while writing, and users can press TAB to insert the current suggestion. Note that this agent makes continuous requests to the underlying LLM while coding.
+This agent provides inline code completion within the Theia IDE's code editor. By default, automatic inline completion is disabled to give users greater control over how AI code suggestions are presented. Users can manually trigger inline completion via the default key binding SHIFT+SPACE (adaptable). Requests are canceled when moving the cursor.
+
+Users who prefer continuous suggestions can enable 'Automatic Code Completion' in the settings ('AIFeatures'=>'CodeCompletion'). This agent makes continuous requests to the underlying LLM while coding if automatic suggestions are enabled.
+
+In the settings, you can also specify 'Excluded File Extensions' for which the AI-powered code completion will be deactivated.
+
+Finally, the setting 'Max Context Lines' allows you to configure the maximum number of lines used for AI code completion context. This setting can be adjusted to customize the size of the context provided to the model, which is especially useful when using smaller models with limited token capacity.
 
 ### Terminal Assistance (Agent)
 
