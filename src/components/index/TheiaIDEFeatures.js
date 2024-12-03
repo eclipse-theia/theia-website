@@ -72,7 +72,6 @@ const StyledPromo = styled.div`
             left: 0;
             width: 100%;
             height: 100%;
-            background: #8c9bae;
             z-index: 1000;
             opacity: .1;
         }
@@ -83,22 +82,38 @@ const StyledPromo = styled.div`
     }
 `
 const LogoContainer = styled.div`
-    display: flex;
-    width: 50%;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    justify-items: center;
     align-items: center;
-    justify-content: space-around;
-    border: 0px solid #ddd; /* Optional: for visual boundary */
+    padding: 2rem 1rem;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 380px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 `;
 
 const Logo = styled.img`
-    width: calc(15% - 10px); /* 4 logos per row */
-    height: 25%; /* 2 rows */
-    margin: 0px 0px 0px px; /* Adjust for spacing */
+    width: 100%;
+    max-width: 50px;
+    height: auto;
     object-fit: contain;
-    scale: 0.7
+    margin: 0.5rem;
 `;
- 
+
 
 const TheiaIDEFeatures = ({ adopters }) => (
         
@@ -130,12 +145,14 @@ const TheiaIDEFeatures = ({ adopters }) => (
             <h3 className="heading-tertiary">Open Source and Vendor Neutral</h3>
             <p>The Theia IDE is backed by a diverse and healthy open source ecosystem. Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
         </div>
+        <div className="promo__media">
     <LogoContainer>
         {adopters.map((item, i) => (
                                 <Logo key={i} src={'https://api.eclipse.org/adopters/assets/images/adopters/' + item.logo} alt={item.name}/>
                                 ))
         }
     </LogoContainer>
+    </div>
     </StyledPromo>
     <StyledPromo className="promo">
         <div className="promo__text">
