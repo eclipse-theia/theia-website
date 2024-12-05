@@ -89,8 +89,10 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF.cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: '0.8.1',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.1' }
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
