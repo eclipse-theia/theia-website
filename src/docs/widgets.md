@@ -132,7 +132,7 @@ Widget contributions allow you to wire a widget into the Theia workbench, more p
 
 * `widgetID`: The ID of the widget, used to open it via the widget manager
 * `widgetName`: The name which is displayed in the view menu. Usually the same name as used for the widget tab.
-* `defaultWidgetOptions`: Option to influence where the widget will be displayed on opening, e.g. in the left area of the workbench. See [the typedoc](https://eclipse-theia.github.io/theia/docs/next/interfaces/core.applicationshell-2.widgetoptions.html) for more information.
+* `defaultWidgetOptions`: Option to influence where the widget will be displayed on opening, e.g. in the left area of the workbench. See [the typedoc](https://eclipse-theia.github.io/theia/docs/next/interfaces/core.core.WidgetOptions.html) for more information.
 * `toggleCommandId`: The command that opens the view. You can use the pre implemented `openView` function provided by the super class.
 Besides specifying these base parameters, you need to register the command to open the view. The base class implements the respective command contribution interface, so you just need to implement `registerCommands` to do so (see below).
 
