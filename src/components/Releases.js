@@ -73,12 +73,58 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.55.x (2024-11) - planned',
+        name: 'Theia 1.58.x (2024-02) - planned',
+        releasedate: 'February 27th, 2025',
+        releasecandidatedate: 'January 30th, 2025',
+        technologiesin: 'February 6th, 2025',
+        releaseanouncement: 'February 13th, 2025',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse EMF.cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer Extension for Theia Applications',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
+        name: 'Theia 1.55.x (2024-11) - published',
         releasedate: 'November 27th, 2024',
         releasecandidatedate: 'October 30th, 2024',
         technologiesin: 'December 5th, 2024',
         releaseanouncement: 'December 12th, 2024',
-        announcementurl: '',
+        announcementurl: 'https://eclipsesource.com/blogs/2024/12/12/the-eclipse-theia-community-release-2024-11/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
