@@ -62,7 +62,7 @@ bind(PreferenceContribution).toConstantValue(
 
 Here are some useful links for contributing a validation schema:
 
-* [JSON schema spec](http://json-schema.org/documentation.html)
+* [JSON schema spec](https://json-schema.org/docs)
 * [Online JSON validator](https://jsonlint.com/)
 * [Online JSON schema validator](http://www.jsonschemavalidator.net/)
 
