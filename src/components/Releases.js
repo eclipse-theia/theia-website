@@ -73,11 +73,11 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.58.x (2024-02) - planned',
+        name: 'Theia 1.58.x (2025-02) - planned',
         releasedate: 'February 27th, 2025',
         releasecandidatedate: 'January 30th, 2025',
-        technologiesin: 'February 6th, 2025',
-        releaseanouncement: 'February 13th, 2025',
+        technologiesin: 'March 6th, 2025',
+        releaseanouncement: 'March 13th, 2025',
         announcementurl: '',
         frameworks: [
             {
