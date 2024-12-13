@@ -270,6 +270,11 @@ const categories = [
         title: 'Topics related to Eclipse Theia',
         resources: [
             {
+                title: 'Eclipse Foundation Introduces Open Collaboration Tools (OCT) to Transform Remote Development',
+                url: 'https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-open-collaboration-tools-oct-transform-remote',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Theia compared to VS Code',
                 url: 'https://eclipsesource.com/blogs/2019/12/06/the-eclipse-theia-ide-vs-vs-code/',
                 type: 'article'
