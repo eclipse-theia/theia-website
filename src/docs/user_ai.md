@@ -29,6 +29,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Custom Agents](#custom-agents)
+- [MCP Integration](#mcp-integration)
 - [AI History](#ai-history)
 - [Learn more](#learn-more)
 
@@ -236,6 +237,80 @@ This action opens a YAML file where all available custom agents are defined. Bel
 - defaultLLM: The language model used by default.
 
 Custom agents can be configured in the AI Configuration View just like other chat agents. You can enable/disable them, modify their prompt templates, and integrate variables and functions within these templates to enhance functionality.
+
+Here is the updated **MCP Integration** section with the requested changes:
+
+## MCP Integration
+
+The Theia IDE now supports an with the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
+*Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
+
+To learn more about MCP, see the [official announcement from Anthropic](https://www.anthropic.com/news/model-context-protocol).  
+For a list of available MCP servers, visit the [MCP Servers Repository](https://github.com/modelcontextprotocol/servers).
+
+### Configuring MCP Servers
+
+To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables.
+
+**Example Configuration:**
+
+```json
+{
+  "brave-search": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-brave-search"
+    ],
+    "env": {
+      "BRAVE_API_KEY": "YOUR_API_KEY"
+    }
+  },
+  "filesystem": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/YOUR_USERNAME/Desktop"],
+    "env": {
+      "CUSTOM_ENV_VAR": "custom-value"
+    }
+  }
+}
+```
+
+The configuration options include:
+- **`command`**: The executable used to start the server (e.g., `npx`).
+- **`args`**: An array of arguments passed to the command.
+- **`env`**: An optional set of environment variables for the server.
+
+### Starting and Stopping MCP Servers
+
+Theia provides commands to manage MCP servers:
+
+- **Start MCP Server**: Use the command `"MCP: Start MCP Server"` to start a server. The system displays a list of available servers to select from.
+- **Stop MCP Server**: Use the command `"MCP: Stop MCP Server"` to stop a running server.
+
+When a server starts, a notification is displayed confirming the operation, and the functions made available.
+
+### Using MCP Server Functions
+
+Once a server is running, its functions can be invoked in prompts using the following syntax:
+
+```text
+~{mcp_<server-name>_<function-name>}
+```
+
+- `mcp`: Prefix for all MCP commands.
+- `<server-name>`: The unique identifier of the server (e.g., `brave-search`).
+- `<function-name>`: The specific function exposed by the server (e.g., `brave_web_search`).
+
+**Example:**
+
+To use the `brave_web_search` function of the `brave-search` server, you can write:
+
+```text
+~{mcp_brave-search_brave_web_search}
+```
+
+This allows you to seamlessly integrate external services into your AI workflows within the Theia IDE.
 
 ## AI History
 
