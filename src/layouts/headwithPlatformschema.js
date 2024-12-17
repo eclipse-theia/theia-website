@@ -1,9 +1,9 @@
 import React from 'react'
 import BaseHead from './basehead'
 
-const HeadWithPlatformSchema = ({ canonical }) => (
+const HeadWithPlatformSchema = ({ canonical, title, description }) => (
   <>
-    <BaseHead canonical={canonical} />
+    <BaseHead canonical={canonical} title={title} description={description} />
     {/* JSON-LD for Theia Platform */}
     <script
       type="application/ld+json"
