@@ -72,6 +72,16 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 }
 ```
 
+### Anthropics
+
+To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics account and
+enter it in the Theia IDE settings under AI-features => Anthropics.
+**Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
+
+Configure available models in the settings under AI-features => AnthropicsModels.
+Default supported models include choices like claude-3-5-sonnet-latest.
+Please note that the Anthropic LLM provider currently does not yet support tool calls, this will be added soon.
+
 ### Hugging Face
 
 To enable Hugging Face as an AI provider, you need to create an API key in your Hugging Face account and enter it in the Theia IDE settings: AI-features => Hugging Face
