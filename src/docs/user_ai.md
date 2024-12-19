@@ -250,7 +250,7 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 
 ### Configuring MCP Servers
 
-To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables.
+To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**
 
 **Example Configuration:**
 
@@ -280,6 +280,18 @@ The configuration options include:
 - **`command`**: The executable used to start the server (e.g., `npx`).
 - **`args`**: An array of arguments passed to the command.
 - **`env`**: An optional set of environment variables for the server.
+
+**Note for Windows users:** On Windows, you need to start a command interpreter (e.g. cmd.exe) as the server command in order for path lookups to work as expected. The effective command line is then passed as an argument. For example:
+
+```json
+"filesystem": {
+    "command": "cmd",
+    "args": ["/C", "npx -y @modelcontextprotocol/server-filesystem /Users/YOUR_USERNAME/Desktop"],
+    "env": {
+      "CUSTOM_ENV_VAR": "custom-value"
+    }
+  }
+```
 
 ### Starting and Stopping MCP Servers
 
