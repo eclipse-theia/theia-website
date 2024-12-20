@@ -607,7 +607,11 @@ const communityReleases = [
     }
 ]
 
-const monthlyReleases = [
+const monthlyReleases = [    
+    {
+        title: 'Eclipse Theia 1.57 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2024/12/20/eclipse-theia-1-57-release-news-and-noteworthy/',
+    },
     {
         title: 'Eclipse Theia 1.56 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2024/12/06/eclipse-theia-1-56-release-news-and-noteworthy/',
