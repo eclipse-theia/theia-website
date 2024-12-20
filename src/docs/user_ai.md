@@ -77,6 +77,7 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 
 To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics account and
 enter it in the Theia IDE settings under AI-features => Anthropics.
+
 **Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
 
 Configure available models in the settings under AI-features => AnthropicsModels.
