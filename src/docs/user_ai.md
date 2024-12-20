@@ -14,6 +14,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 - [Set-Up](#set-up)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+  - [Anthropic](#anthropic)
   - [Hugging Face](#hugging-face)
   - [LlamaFile](#llamafile-models)
   - [Ollama](#ollama)
@@ -71,6 +72,17 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
    ]
 }
 ```
+
+### Anthropic
+
+To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics account and
+enter it in the Theia IDE settings under AI-features => Anthropics.
+
+**Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
+
+Configure available models in the settings under AI-features => AnthropicsModels.
+Default supported models include choices like claude-3-5-sonnet-latest.
+Please note that the Anthropic LLM provider currently does not yet support tool calls, this will be added soon.
 
 ### Hugging Face
 
