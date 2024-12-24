@@ -23,6 +23,10 @@ The detailed list of prerequisites is located at the main Theia repository:
 
 A Theia app is composed of so-called Theia extensions. Each extension resides in its own npm package.
 An extension provides a set of features, e.g. widgets, commands, handlers, etc. for a specific functionality. The Theia project itself ships a number of extensions for common features, e.g. for editors, terminals, the project view etc. You can resue these existing extensions by just adding them to you custom Theia application. Additionally, you can add arbitrary VS Code extensions to your application, again for reusing existing features already available, such as Git support. Finally, you can then extend and customize your Theia application with your own features, which you can implement as [Theia extensions or VS Code extensions](/docs/extensions).
+
+While Theia incorporates certain components from Visual Studio Code, such as the Monaco editor, it is independently developed with a modular architecture and is **not a [fork of VS Code](https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/)**. This distinction allows adopters to innovate and fully tailor their tools without limitations. For a deeper comparison, see [Theia IDE vs VS Code](https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/) and [Eclipse Theia vs VS Code OSS](https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/).
+
+
 In this guide, we will create a Theia application with a number of existing Theia extensions and one (generated) custom Theia extension. Please also refer to our [documentation on how to create custom Theia extensions](/docs/authoring_extensions) to learn more on how to create your own Theia extensions. Finally, also see [our guide on how to add VS Code extensions to your custom Theia application](/docs/authoring_vscode_extensions).
 
 ## Project Layout
