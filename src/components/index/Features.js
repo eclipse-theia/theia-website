@@ -64,7 +64,10 @@ const features = [
     {
         img: <img src={Html} alt="Modern Tech" />,
         title: "Modern Tech",
-        paragraphs: ['Theia is based on a state-of-the-art web-based  technology stack. It provides language support via LSP and DAP. Further, it can host VS Code extensions and provides full terminal access.']
+        paragraphs: [
+            'Theia is built on a modern web technology stack, offering language support via LSP and DAP, hosting VS Code extensions, and providing full terminal access.',
+            'While it reuses components from VS Code, such as the Monaco editor, Theia is an independent platform with a modular architecture—not a fork of VS Code.'
+        ]
     }
 ]
 
