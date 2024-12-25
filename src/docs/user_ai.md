@@ -177,7 +177,7 @@ This agent can access the user's workspace, retrieve a list of all available fil
 
 ### Code Completion (Agent)
 
-This agent provides inline code completion within the Theia IDE's code editor. By default, automatic inline completion is disabled to give users greater control over how AI code suggestions are presented. Users can manually trigger inline completion via the default key binding SHIFT+SPACE (adaptable). Requests are canceled when moving the cursor.
+This agent provides inline code completion within the Theia IDE's code editor. By default, automatic inline completion is disabled to give users greater control over how AI code suggestions are presented. Users can manually trigger inline completion via the default key binding Ctrl+Alt+Space (adaptable). Requests are canceled when moving the cursor.
 
 Users who prefer continuous suggestions can enable 'Automatic Code Completion' in the settings ('AIFeatures'=>'CodeCompletion'). This agent makes continuous requests to the underlying LLM while coding if automatic suggestions are enabled.
 
