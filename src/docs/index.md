@@ -9,7 +9,7 @@ Eclipse Theia is a platform for building custom Cloud & Desktop IDEs and tools w
 
 ## Use Eclipse Theia (IDE)
 
-You cannot directly launch/use Theia as it is a platform. The project provides one tool called [Eclipse IDE](/#theiaide) that you can directly download and use. Further, it is very easy to [create your own product based on Theia](/docs/composing_applications/). Please also refer to [this article](https://eclipsesource.com/de/blogs/2019/09/25/how-to-launch-eclipse-theia/) highlighting the various options available to [launch/try Eclipse Theia and Theia-based products](https://eclipsesource.com/de/blogs/2019/09/25/how-to-launch-eclipse-theia/).
+You cannot directly launch/use Theia as it is a platform. The project provides one tool called [Theia IDE](/#theiaide) that you can directly download and use. Further, it is very easy to [create your own product based on Theia](/docs/composing_applications/). Please also refer to [this article](https://eclipsesource.com/de/blogs/2019/09/25/how-to-launch-eclipse-theia/) highlighting the various options available to [launch/try Eclipse Theia and Theia-based products](https://eclipsesource.com/de/blogs/2019/09/25/how-to-launch-eclipse-theia/).
 
 ## Build a tool or IDE based on Eclipse Theia
 
