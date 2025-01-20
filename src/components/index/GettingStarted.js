@@ -50,7 +50,7 @@ const features = [
         img: <img src={LearnMore} alt="Learn more" />,
         title: "Learn more",
         paragraphs: [<>
-            Learn more about Eclipse Theia, <a href="https://theia-ide.org/docs/getting_started/">how to get started with it</a>, <a href="https://theia-ide.org/docs/composing_applications/">how to build your own tool/IDE</a> and <a href="https://theia-ide.org/docs/project_goals/">about the project's goals</a>. Browse the <a href="https://theia-ide.org/docs/">documentation</a> and <a href="https://theia-ide.org/resources/">resource section</a>. Also, checkout the available introduction video below!
+            Learn more about Eclipse Theia, <a href="https://theia-ide.org/docs/">how to get started with it</a>, <a href="https://theia-ide.org/docs/composing_applications/">how to build your own tool/IDE</a> and <a href="https://theia-ide.org/docs/project_goals/">about the project's goals</a>. Browse the <a href="https://theia-ide.org/docs/">documentation</a> and <a href="https://theia-ide.org/resources/">resource section</a>. Also, checkout the available introduction video below!
         </>]
     },
     {
