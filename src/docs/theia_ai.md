@@ -24,6 +24,7 @@ High Level Architecture of Theia AI
   - [Tool Functions](#tool-functions)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Custom LLM Provider](#custom-llm-provider)
+- [Changesets](#changesets)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -392,6 +393,53 @@ For further details, we recommend reviewing the available LLM provider in Theia 
 * [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
+
+## Changesets
+
+ChangeSets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic ChangeSets, a default UI integrated in the generic, reusable Chat and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
+
+### Example usage of ChangeSets in a Tool Function
+
+The following example demonstrates how the Theia Coder agent proposes file modifications using a ChangeSet. This code in embeded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)).
+```typescript
+handler: async (args: string, ctx: ChatRequestModelImpl): Promise<string> => {
+    const { path, content } = JSON.parse(args);
+    const chatSessionId = ctx.session.id;
+    let changeSet = ctx.session.changeSet;
+    if (!changeSet) {
+        changeSet = new ChangeSetImpl('Changes proposed by Coder');
+        ctx.session.setChangeSet(changeSet);
+    }
+    const uri = await this.workspaceFunctionScope.resolveRelativePath(path);
+    let type: 'modify' | 'add' | 'delete' = 'modify';
+    if (content === '') {
+        type = 'delete';
+    }
+    try {
+        await this.fileService.read(uri);
+    } catch (error) {
+        type = 'add';
+    }
+    changeSet.addOrReplaceElement(
+        this.fileChangeFactory({
+            uri,
+            type,
+            state: 'pending',
+            targetState: content,
+            changeSet,
+            chatSessionId
+        })
+    );
+    return `Proposed writing to file ${path}. The user will review and potentially apply the changes`;
+}
+```
+This example demonstrates how:
+- A ChangeSet is created if one does not already exist.
+- A file modification type (add, modify, or delete) is determined based on file existence and content.
+- A proposed change is added to the ChangeSet for user review.
+
+### Custom Changesets
+Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic Changeset and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default ChangeSet.
 
 ## Learn more
 

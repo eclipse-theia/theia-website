@@ -20,6 +20,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
   - [Ollama](#ollama)
   - [Custom Request Settings](#custom-request-settings)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
+  - [Theia Coder - AI Coding assistant (separate page)](/docs/theia_coder)
   - [Universal (Chat Agent)](#universal-chat-agent)
   - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
   - [Command (Chat Agent)](#command-chat-agent)
@@ -68,7 +69,8 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
            "model": "your-model-name",
            "url": "your-URL",
            "id": "your-unique-id", // Optional: if not provided, the model name will be used as the ID
-           "apiKey": "your-api-key" // Optional: use 'true' to apply the global OpenAI API key
+           "apiKey": "your-api-key", // Optional: use 'true' to apply the global OpenAI API key
+           "supportsDeveloperMessage": false //Optional: whether your API supports the developer message (turn off when using OpenAI on Azure)
        }
    ]
 }
@@ -83,7 +85,6 @@ enter it in the Theia IDE settings under AI-features => Anthropics.
 
 Configure available models in the settings under AI-features => AnthropicsModels.
 Default supported models include choices like claude-3-5-sonnet-latest.
-Please note that the Anthropic LLM provider currently does not yet support tool calls, this will be added soon.
 
 ### Hugging Face
 
@@ -181,7 +182,13 @@ This agent provides inline code completion within the Theia IDE's code editor. B
 
 Users who prefer continuous suggestions can enable 'Automatic Code Completion' in the settings ('AIFeatures'=>'CodeCompletion'). This agent makes continuous requests to the underlying LLM while coding if automatic suggestions are enabled.
 
-In the settings, you can also specify 'Excluded File Extensions' for which the AI-powered code completion will be deactivated.
+Please note that there are two prompt variants available for the code completion agent, you can select them in the 'AI Configuration view' => 'Code Completion' => 'Prompt Templates'.
+
+You can also adapt the used prompt template to your personal preferences or to the LLM you want to use, see for example [how to use the Theia IDE with StarCoder](https://eclipsesource.com/blogs/2025/01/21/using-starcode-for-ai-code-completion-in-theia-ide/).
+
+In the settings, you can specify 'Excluded File Extensions' for which the AI-powered code completion will be deactivated.
+
+The setting 'Strip Backticks' will remove surrounding backticks that some LLMs might produce (depending on the prompt).
 
 Finally, the setting 'Max Context Lines' allows you to configure the maximum number of lines used for AI code completion context. This setting can be adjusted to customize the size of the context provided to the model, which is especially useful when using smaller models with limited token capacity.
 
@@ -263,7 +270,7 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 
 ### Configuring MCP Servers
 
-To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**
+To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**. 'autostart' will automatically start the respective MCP server the next time you restart your IDE, you will still need to **manually start it the first time** (see below).
 
 **Example Configuration:**
 
@@ -277,7 +284,8 @@ To configure MCP servers, open the preferences and add entries to the `MCP Serve
     ],
     "env": {
       "BRAVE_API_KEY": "YOUR_API_KEY"
-    }
+    },
+    "autostart": true
   },
   "filesystem": {
     "command": "npx",
@@ -314,6 +322,8 @@ Theia provides commands to manage MCP servers:
 - **Stop MCP Server**: Use the command `"MCP: Stop MCP Server"` to stop a running server.
 
 When a server starts, a notification is displayed confirming the operation, and the functions made available.
+You can also set a MCP server to 'autostart' in the settings, this will take effect on the next restart of your IDE.
+Please note that in a browser deployment MCP servers are scoped per connection, i.e. if you manually start them, you need to start them once per browser tab.
 
 ### Using MCP Server Functions
 

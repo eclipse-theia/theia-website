@@ -49,6 +49,10 @@ export const MENU = [
         'user_ai'
     ),
     M(
+        'Theia Coder (AI assistant)',
+        'theia_coder'
+    ),
+    M(
         'Using the dynamic Toolbar',
         'user_toolbar'
     ),
