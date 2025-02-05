@@ -394,7 +394,7 @@ For further details, we recommend reviewing the available LLM provider in Theia 
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
 
-## Changesets
+## Change Sets
 
 ChangeSets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic ChangeSets, a default UI integrated in the generic, reusable Chat and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
 
