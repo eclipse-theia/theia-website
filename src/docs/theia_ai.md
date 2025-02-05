@@ -434,7 +434,7 @@ handler: async (args: string, ctx: ChatRequestModelImpl): Promise<string> => {
 }
 ```
 This example demonstrates how:
-- A ChangeSet is created if one does not already exist.
+- A change set is created if one does not already exist.
 - A file modification type (add, modify, or delete) is determined based on file existence and content.
 - A proposed change is added to the ChangeSet for user review.
 
