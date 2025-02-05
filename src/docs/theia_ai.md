@@ -441,6 +441,8 @@ This example demonstrates how:
 ### Custom Change Set Elements
 Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
 
+Custom change set element implementations are identified by a `uri`, have full control over their presentation (label, icon, additional information), and can specify whether and how actions, such as open, open change, accept and discard are implemented. See [`ChangeSetElement` interface](https://github.com/eclipse-theia/theia/blob/451464e6ea3d4aaf9cdbffd3d17dbb117787fc4e/packages/ai-chat/src/common/chat-model.ts#L100) for more details.
+
 ## Learn more
 
 If want to learn more about the AI support in the Theia AI, please see [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
