@@ -23,6 +23,7 @@ High Level Architecture of Theia AI
     - [Global Variables](#global-variables)
   - [Tool Functions](#tool-functions)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
+- [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
 - [Learn more](#learn-more)
 
@@ -367,6 +368,51 @@ bind(ChatResponsePartRenderer).to(CommandPartRenderer).inSingletonScope();
 
 By following the steps outlined, you can transform an LLM response into custom and optionally actionable UI controls within Theia AI. See [the Theia IDE documentation](https://theia-ide.org/docs/user_ai/#command-chat-agent) on how the example looks integrated in a tool. 
 This approach enables users to interact with the AI-powered Chat UI more efficiently, e.g. allowing executing commands directly from the suggestions provided.
+
+## Managing the State of a Chat Response
+
+Theia AI provides a mechanism for chat agents to manage the state of a chat response. A chat response has the following states:
+
+- `isComplete: boolean`
+- `isWaitingForInput: boolean`
+- `isError: boolean`
+
+If all are false, the chat interface will show *Generating...* until either an error occurs or the response is complete. While the response is in progress, users can only cancel the request. Once `isComplete` is set to `true`, the response is final and users can submit new requests. In your chat agent you can control the state via `request.response.cancel()`, `request.response.complete()`, and `request.response.error()`.
+
+### Progress Messages
+
+In addition you can also show progress messages in the response to the user:
+
+```typescript
+const progressMessage = request.response.addProgressMessage({ content: 'Analyzing your request...', show: 'whileIncomplete' });
+// do your work
+// if you are done, you can update the message
+request.response.updateProgressMessage({ ...progressMessage, show: 'whileIncomplete', status: 'completed' });
+
+```
+
+With the `show` property, you can control whether your message is shown `untilFirstContent`, `whileIncomplete`, or `forever`.
+
+### Waiting for Input
+
+Especially in more agentic interactions, you might need input from the user, without completing the response. Typical use cases are confirmation dialogs, asking the user to select among defined options, etc. before continuing the request. In this case, you can render a content part with which you ask the user for input (e.g. with the `QuestionResponseContentImpl`) and set the response into a waiting-for-input state without completing it, to signalize the response is not complete yet, but you are waiting for user input.
+
+In your chat agent implementation, you can use the `onResponseComplete()` hook, which will be invoked when the LLM response is completed. In this hook, you can check if you need to wait for input and set the response to `isWaitingForInput`:
+
+```typescript
+protected override async onResponseComplete(request: ChatRequestModelImpl): Promise<void> {
+    const unansweredQs = unansweredQuestions(request);
+    if (unansweredQs.length < 1) {
+        return super.onResponseComplete(request); // completes the response
+    }
+    request.response.addProgressMessage({ content: 'Waiting for input...', show: 'whileIncomplete' });
+    request.response.waitForInput();
+}
+```
+
+In combination with the custom response part rendering (see above), this enables arbitrarily complex interactions with the user, including multi-step interactions, confirmation dialogs, and more. A simple example is available in the [AskAndContinueChatAgent](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/ask-and-continue-chat-agent-contribution.ts), which implements an interactive chat agent that asks the user for input and continues the conversation based on the user's response.
+
+<img src="../../ask-and-continue-chat-agent.png" alt="Ask and Continue Chat Agent" style="max-width: 650px">
 
 ## Custom LLM Provider
 
