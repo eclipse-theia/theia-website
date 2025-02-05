@@ -398,7 +398,7 @@ Please note that Theia AI currently does not provide a fixed contribution point 
 
 Change sets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic change sets, a default UI integrated in the generic, reusable chat interface and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
 
-### Example usage of ChangeSets in a Tool Function
+### Example usage of Change Sets
 
 The following example demonstrates how agents can propose file modifications using a change set. Please have a look at the full [example for using change sets in agents](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/change-set-chat-agent-contribution.ts).
 
