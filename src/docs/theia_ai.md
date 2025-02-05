@@ -105,7 +105,6 @@ Getting such agent implementations right typically requires a bit of prompt eval
 Also, if the underlying LLM supports it, structured output is a huge time saver, as this usually guarantees that the output follows a specific format and avoids coping with variations in your agent’s parsing logic.
 This guide is focussed on Theia AI and not about developing specific agents per se. If you need support building your own custom AI assistance, please get in contact with a service provider and browse our [resource section](/resources/#theia-ai).
 
-
 ## Variables and Tool Functions
 
 Agents often need to interact with the tool to fetch dynamic data, such as a text selection, project-data or any tool-specific data. Theia AI allows you to encapsulate this data access in Variables, which can then be used in prompts or user requests and will be resolved with the actual data from the tool at runtime. Furthermore, agents can use so-called Tool Functions that allow the underlying LLM to proactively call an action, either to retrieve more information or to trigger any kind of action including the modification of data.
@@ -323,7 +322,36 @@ const parsedCommand = JSON.parse(jsonString) as ParsedCommand;
 const theiaCommand = this.commandRegistry.getCommand(parsedCommand.commandId);
 return new CommandChatResponseContentImpl(theiaCommand);
 ```
+
 Please note that a chat response can contain a list of response parts, allowing various UI components to be mixed with actionable response components.
+
+### Parse Parts of the Response into Different Response Contents
+
+To simplify parsing an overall response from the LLM into different parts that you want to display with specific UI components, you can add so-called response content matchers. These matchers allow you to define a regular expression that matches a specific part of the response and then transform this part into a dedicated response content. This is especially useful if you want to display different parts of the response in different ways, e.g. as a highlighted code, buttons, etc.
+
+In the following example code, we define a response content matcher that matches text within `<question>` elements in the response and transforms them into specific `QuestionResponseContentImpl` objects. You can review the full code in the [AskAndContinueAgent](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/ask-and-continue-chat-agent-contribution.ts) API example.
+
+In your chat agent, you can register a response content matcher like this:
+
+```typescript
+@postConstruct()
+addContentMatchers(): void {
+    this.contentMatchers.push({
+        start: /^<question>.*$/m,
+        end: /^<\/question>$/m,
+        contentFactory: (content: string, request: ChatRequestModelImpl) => {
+            const question = content.replace(/^<question>\n|<\/question>$/g, '');
+            const parsedQuestion = JSON.parse(question);
+            return new QuestionResponseContentImpl(parsedQuestion.question, parsedQuestion.options, request, selectedOption => {
+                this.handleAnswer(selectedOption, request);
+            });
+        }
+    });
+}
+
+```
+
+This matcher will be invoked by the common response parser if it finds occurrences of the `start` and `end` regular expressions in the response. The `contentFactory` function is then invoked to transform the matched content into a specific response content object.
 
 ### Create and Register a Response Part Renderer
 
@@ -367,6 +395,8 @@ bind(ChatResponsePartRenderer).to(CommandPartRenderer).inSingletonScope();
 
 By following the steps outlined, you can transform an LLM response into custom and optionally actionable UI controls within Theia AI. See [the Theia IDE documentation](https://theia-ide.org/docs/user_ai/#command-chat-agent) on how the example looks integrated in a tool. 
 This approach enables users to interact with the AI-powered Chat UI more efficiently, e.g. allowing executing commands directly from the suggestions provided.
+
+
 
 ## Custom LLM Provider
 
