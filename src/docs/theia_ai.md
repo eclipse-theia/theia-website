@@ -24,7 +24,7 @@ High Level Architecture of Theia AI
   - [Tool Functions](#tool-functions)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Custom LLM Provider](#custom-llm-provider)
-- [Changesets](#changesets)
+- [Change Sets](#change-sets)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
