@@ -400,43 +400,62 @@ Change sets in Theia AI provide a mechanism for AI agents (and therefore the und
 
 ### Example usage of ChangeSets in a Tool Function
 
-The following example demonstrates how the Theia Coder agent proposes file modifications using a change set. This code in embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)).
+The following example demonstrates how agents can propose file modifications using a change set. Please have a look at the full [example for using change sets in agents](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/change-set-chat-agent-contribution.ts).
+
 ```typescript
-handler: async (args: string, ctx: ChatRequestModelImpl): Promise<string> => {
-    const { path, content } = JSON.parse(args);
-    const chatSessionId = ctx.session.id;
-    let changeSet = ctx.session.changeSet;
-    if (!changeSet) {
-        changeSet = new ChangeSetImpl('Changes proposed by Coder');
-        ctx.session.setChangeSet(changeSet);
-    }
-    const uri = await this.workspaceFunctionScope.resolveRelativePath(path);
-    let type: 'modify' | 'add' | 'delete' = 'modify';
-    if (content === '') {
-        type = 'delete';
-    }
-    try {
-        await this.fileService.read(uri);
-    } catch (error) {
-        type = 'add';
-    }
-    changeSet.addOrReplaceElement(
-        this.fileChangeFactory({
-            uri,
-            type,
-            state: 'pending',
-            targetState: content,
-            changeSet,
-            chatSessionId
-        })
-    );
-    return `Proposed writing to file ${path}. The user will review and potentially apply the changes`;
+override async invoke(request: ChatRequestModelImpl): Promise<void> {
+        // ...
+        const fileToAdd = root.resource.resolve('hello/new-file.txt');
+        const fileToChange = // some file to change
+        const fileToDelete = // Some file to delete
+
+        const chatSessionId = request.session.id;
+        const changeSet = new ChangeSetImpl('My Test Change Set');
+        changeSet.addElement(
+            this.fileChangeFactory({
+                uri: fileToAdd,
+                type: 'add',
+                state: 'pending',
+                targetState: 'Hello World!',
+                changeSet,
+                chatSessionId
+            })
+        );
+
+        if (fileToChange && fileToChange.resource) {
+            changeSet.addElement(
+                this.fileChangeFactory({
+                    uri: fileToChange.resource,
+                    type: 'modify',
+                    state: 'pending',
+                    targetState: await this.computeTargetState(fileToChange.resource),
+                    changeSet,
+                    chatSessionId
+                })
+            );
+        }
+        if (fileToDelete && fileToDelete.resource) {
+            changeSet.addElement(
+                this.fileChangeFactory({
+                    uri: fileToDelete.resource,
+                    type: 'delete',
+                    state: 'pending',
+                    changeSet,
+                    chatSessionId
+                })
+            );
+        }
+        request.session.setChangeSet(changeSet);
+        request.response.complete();
 }
 ```
+
 This example demonstrates how:
-- A change set is created if one does not already exist.
-- A file modification type (add, modify, or delete) is determined based on file existence and content.
+- A change set is created
+- An example file element of all available types (add, modify, or delete) is added.
 - A proposed change is added to the change set for user review.
+
+Another example to look at is the [Theia Coder agent](/docs/theia_coder) which proposes file modifications using a change set. In this use case, the change set creation is embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)). So in this workflow, the LLM can directly create and augment change sets.
 
 ### Custom Change Set Elements
 Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
