@@ -400,7 +400,7 @@ Change sets in Theia AI provide a mechanism for AI agents (and therefore the und
 
 ### Example usage of ChangeSets in a Tool Function
 
-The following example demonstrates how the Theia Coder agent proposes file modifications using a ChangeSet. This code in embeded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)).
+The following example demonstrates how the Theia Coder agent proposes file modifications using a change set. This code in embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)).
 ```typescript
 handler: async (args: string, ctx: ChatRequestModelImpl): Promise<string> => {
     const { path, content } = JSON.parse(args);
