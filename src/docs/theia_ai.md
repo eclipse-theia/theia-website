@@ -436,7 +436,7 @@ handler: async (args: string, ctx: ChatRequestModelImpl): Promise<string> => {
 This example demonstrates how:
 - A change set is created if one does not already exist.
 - A file modification type (add, modify, or delete) is determined based on file existence and content.
-- A proposed change is added to the ChangeSet for user review.
+- A proposed change is added to the change set for user review.
 
 ### Custom Changesets
 Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic Changeset and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default ChangeSet.
