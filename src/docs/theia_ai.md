@@ -25,6 +25,7 @@ High Level Architecture of Theia AI
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
+- [Change Sets](#change-sets)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -105,7 +106,6 @@ Getting such agent implementations right typically requires a bit of prompt eval
 
 Also, if the underlying LLM supports it, structured output is a huge time saver, as this usually guarantees that the output follows a specific format and avoids coping with variations in your agent’s parsing logic.
 This guide is focussed on Theia AI and not about developing specific agents per se. If you need support building your own custom AI assistance, please get in contact with a service provider and browse our [resource section](/resources/#theia-ai).
-
 
 ## Variables and Tool Functions
 
@@ -324,7 +324,36 @@ const parsedCommand = JSON.parse(jsonString) as ParsedCommand;
 const theiaCommand = this.commandRegistry.getCommand(parsedCommand.commandId);
 return new CommandChatResponseContentImpl(theiaCommand);
 ```
+
 Please note that a chat response can contain a list of response parts, allowing various UI components to be mixed with actionable response components.
+
+### Parse Parts of the Response into Different Response Contents
+
+To simplify parsing an overall response from the LLM into different parts that you want to display with specific UI components, you can add so-called response content matchers. These matchers allow you to define a regular expression that matches a specific part of the response and then transform this part into a dedicated response content. This is especially useful if you want to display different parts of the response in different ways, e.g. as a highlighted code, buttons, etc.
+
+In the following example code, we define a response content matcher that matches text within `<question>` elements in the response and transforms them into specific `QuestionResponseContentImpl` objects. You can review the full code in the [AskAndContinueAgent](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/ask-and-continue-chat-agent-contribution.ts) API example.
+
+In your chat agent, you can register a response content matcher like this:
+
+```typescript
+@postConstruct()
+addContentMatchers(): void {
+    this.contentMatchers.push({
+        start: /^<question>.*$/m,
+        end: /^<\/question>$/m,
+        contentFactory: (content: string, request: ChatRequestModelImpl) => {
+            const question = content.replace(/^<question>\n|<\/question>$/g, '');
+            const parsedQuestion = JSON.parse(question);
+            return new QuestionResponseContentImpl(parsedQuestion.question, parsedQuestion.options, request, selectedOption => {
+                this.handleAnswer(selectedOption, request);
+            });
+        }
+    });
+}
+
+```
+
+This matcher will be invoked by the common response parser if it finds occurrences of the `start` and `end` regular expressions in the response. The `contentFactory` function is then invoked to transform the matched content into a specific response content object.
 
 ### Create and Register a Response Part Renderer
 
@@ -438,6 +467,74 @@ For further details, we recommend reviewing the available LLM provider in Theia 
 * [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
+
+## Change Sets
+
+Change sets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic change sets, a default UI integrated in the generic, reusable chat interface and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
+
+### Example usage of Change Sets
+
+The following example demonstrates how agents can propose file modifications using a change set. Please have a look at the full [example for using change sets in agents](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/change-set-chat-agent-contribution.ts).
+
+```typescript
+override async invoke(request: ChatRequestModelImpl): Promise<void> {
+        // ...
+        const fileToAdd = root.resource.resolve('hello/new-file.txt');
+        const fileToChange = // some file to change
+        const fileToDelete = // Some file to delete
+
+        const chatSessionId = request.session.id;
+        const changeSet = new ChangeSetImpl('My Test Change Set');
+        changeSet.addElement(
+            this.fileChangeFactory({
+                uri: fileToAdd,
+                type: 'add',
+                state: 'pending',
+                targetState: 'Hello World!',
+                changeSet,
+                chatSessionId
+            })
+        );
+
+        if (fileToChange && fileToChange.resource) {
+            changeSet.addElement(
+                this.fileChangeFactory({
+                    uri: fileToChange.resource,
+                    type: 'modify',
+                    state: 'pending',
+                    targetState: await this.computeTargetState(fileToChange.resource),
+                    changeSet,
+                    chatSessionId
+                })
+            );
+        }
+        if (fileToDelete && fileToDelete.resource) {
+            changeSet.addElement(
+                this.fileChangeFactory({
+                    uri: fileToDelete.resource,
+                    type: 'delete',
+                    state: 'pending',
+                    changeSet,
+                    chatSessionId
+                })
+            );
+        }
+        request.session.setChangeSet(changeSet);
+        request.response.complete();
+}
+```
+
+This example demonstrates how:
+- A change set is created
+- An example file element of all available types (add, modify, or delete) is added.
+- A proposed change is added to the change set for user review.
+
+Another example to look at is the [Theia Coder agent](/docs/theia_coder) which proposes file modifications using a change set. In this use case, the change set creation is embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)). So in this workflow, the LLM can directly create and augment change sets.
+
+### Custom Change Set Elements
+Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
+
+Custom change set element implementations are identified by a `uri`, have full control over their presentation (label, icon, additional information), and can specify whether and how actions, such as open, open change, accept and discard are implemented. See [`ChangeSetElement` interface](https://github.com/eclipse-theia/theia/blob/451464e6ea3d4aaf9cdbffd3d17dbb117787fc4e/packages/ai-chat/src/common/chat-model.ts#L100) for more details.
 
 ## Learn more
 
