@@ -24,6 +24,7 @@ High Level Architecture of Theia AI
   - [Tool Functions](#tool-functions)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Custom LLM Provider](#custom-llm-provider)
+- [Change Sets](#change-sets)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -422,6 +423,74 @@ For further details, we recommend reviewing the available LLM provider in Theia 
 * [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
+
+## Change Sets
+
+Change sets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic change sets, a default UI integrated in the generic, reusable chat interface and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
+
+### Example usage of Change Sets
+
+The following example demonstrates how agents can propose file modifications using a change set. Please have a look at the full [example for using change sets in agents](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/change-set-chat-agent-contribution.ts).
+
+```typescript
+override async invoke(request: ChatRequestModelImpl): Promise<void> {
+        // ...
+        const fileToAdd = root.resource.resolve('hello/new-file.txt');
+        const fileToChange = // some file to change
+        const fileToDelete = // Some file to delete
+
+        const chatSessionId = request.session.id;
+        const changeSet = new ChangeSetImpl('My Test Change Set');
+        changeSet.addElement(
+            this.fileChangeFactory({
+                uri: fileToAdd,
+                type: 'add',
+                state: 'pending',
+                targetState: 'Hello World!',
+                changeSet,
+                chatSessionId
+            })
+        );
+
+        if (fileToChange && fileToChange.resource) {
+            changeSet.addElement(
+                this.fileChangeFactory({
+                    uri: fileToChange.resource,
+                    type: 'modify',
+                    state: 'pending',
+                    targetState: await this.computeTargetState(fileToChange.resource),
+                    changeSet,
+                    chatSessionId
+                })
+            );
+        }
+        if (fileToDelete && fileToDelete.resource) {
+            changeSet.addElement(
+                this.fileChangeFactory({
+                    uri: fileToDelete.resource,
+                    type: 'delete',
+                    state: 'pending',
+                    changeSet,
+                    chatSessionId
+                })
+            );
+        }
+        request.session.setChangeSet(changeSet);
+        request.response.complete();
+}
+```
+
+This example demonstrates how:
+- A change set is created
+- An example file element of all available types (add, modify, or delete) is added.
+- A proposed change is added to the change set for user review.
+
+Another example to look at is the [Theia Coder agent](/docs/theia_coder) which proposes file modifications using a change set. In this use case, the change set creation is embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)). So in this workflow, the LLM can directly create and augment change sets.
+
+### Custom Change Set Elements
+Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
+
+Custom change set element implementations are identified by a `uri`, have full control over their presentation (label, icon, additional information), and can specify whether and how actions, such as open, open change, accept and discard are implemented. See [`ChangeSetElement` interface](https://github.com/eclipse-theia/theia/blob/451464e6ea3d4aaf9cdbffd3d17dbb117787fc4e/packages/ai-chat/src/common/chat-model.ts#L100) for more details.
 
 ## Learn more
 
