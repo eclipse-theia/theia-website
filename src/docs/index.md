@@ -41,4 +41,4 @@ Read below to learn how to take part in improving Theia:
 
 ## License
 
-[EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0](https://github.com/eclipse-theia/theia/blob/master/LICENSE)
+[EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0](https://github.com/eclipse-theia/theia?tab=readme-ov-file#license)
