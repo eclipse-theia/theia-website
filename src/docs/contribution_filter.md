@@ -10,7 +10,7 @@ For a general understanding of contributions and contribution points, please ref
 
 ## Overview
 
-The Contribution Filter feature provides a way to selectively disable certain contributions within a Theia application. This is handeled by the `ContributionFilterRegistry` and `FilterContribution`s  which allow you to register and apply filters to contributions.
+The Contribution Filter feature provides a way to selectively disable certain contributions within a Theia application. This is handled by the `ContributionFilterRegistry` and `FilterContribution`s,  which allow you to register and apply filters to contributions.
 
 ### FilterContribution API
 

@@ -16,7 +16,7 @@ The Extension View also presents recommendations to be installed, if any, as wel
 
 <img src="../../theia-marketplace.gif" alt="Theia Marketplace / Theia Registry" style="max-width: 525px">
 
-The last section, “Built-In” shows VS Code extensions that are a fix part of your Theia-based product. This means the creator of your tool has installed them already for you and you can also not uninstall them.
+The last section, “Built-In”, shows VS Code extensions that are a fixed part of your Theia-based product. These are pre-installed by the creator of your tool and cannot be uninstalled.
 
 ## Compatibility
 

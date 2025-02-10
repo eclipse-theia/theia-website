@@ -4,7 +4,7 @@ title: Using the AI Features in the Theia IDE as an End User
 
 # Using the AI Features in the Theia IDE as an End User
 
-This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistance in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
+This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistants in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
 
 **Please note that these features are in early access and experimental. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
 
@@ -262,7 +262,7 @@ Here is the updated **MCP Integration** section with the requested changes:
 
 ## MCP Integration
 
-The Theia IDE now supports an with the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
+The Theia IDE now supports integration with the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
 *Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
 
 To learn more about MCP, see the [official announcement from Anthropic](https://www.anthropic.com/news/model-context-protocol).  
