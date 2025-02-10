@@ -20,7 +20,7 @@ In the following sections, we provide a quick overview of dependency injection, 
 
 ## Dependency Injection (DI)
 
-Theia uses the DI framework [InversifyJS](http://inversify.io/) to wire ups the difference services and contributions points.
+Theia uses the [InversifyJS](http://inversify.io/) DI framework to wire up the different services and contribution points.
 
 Dependency injection decouples the consumers of services -- i.e. the dependencies of those consumers -- from the actual creation and retrieval of those services. As an example, if you want to use a service, you neither have to instantiate it, nor do you need to manually retrieve it from somewhere. Instead, the dependency injection container injects the services on creation of your component. The dependency injection container resolves the dependency for you and, if necessary, even instantiates it on the fly. With that, the consumer of services doesn’t need to worry where they come from. You can easily exchange the actual implementations of services later on without having to change the consumers. The dependency injection container works based on some configuration you provide on startup through so-called container modules.
 
