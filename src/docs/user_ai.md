@@ -12,8 +12,10 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 
 ## Table of Contents
 - [Set-Up](#set-up)
+  - [LLM Providers Overview](#llm-providers-overview)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+  - [Azure](#azure)
   - [Anthropic](#anthropic)
   - [Hugging Face](#hugging-face)
   - [LlamaFile](#llamafile-models)
@@ -46,7 +48,74 @@ Other LLM providers, including local models, can be added easily. If you would l
 
 Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
 
+### LLM Providers Overview
+
 *Note: Theia IDE enables connections to various models (e.g., HuggingFace, custom OpenAPI models, LlamaFile). However, not all models may work out of the box, as they may require specific customizations or optimizations. If you encounter issues, please [provide feedback](https://github.com/eclipse-theia/theia/issues/new/choose), keeping in mind this is an early-phase feature.*
+
+**Many models and providers support using an OpenAI compatible API. In this case, we recommend using the [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm)**
+
+Below is an overview of various Large Language Model (LLM) providers supported within the Theia IDE, highlighting their key features and current state.
+
+<table>
+  <tr>
+    <th>Provider</th>
+    <th>Streaming</th>
+    <th>Tool Calls</th>
+    <th>Structured Output</th>
+    <th>State</th>
+  </tr>
+  <tr>
+    <td><a href="#openai-hosted-by-openai">OpenAI Official</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Public</td>
+  </tr>
+  <tr>
+    <td><a href="#openai-compatible-models-eg-via-vllm">OpenAI Compatible</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Public</td>
+  </tr>
+  <tr>
+    <td><a href="#azure">Azure</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Public</td>
+  </tr>
+  <tr>
+    <td><a href="#anthropic">Anthropic</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>Beta</td>
+  </tr>
+  <tr>
+    <td><a href="#hugging-face">Hugging Face</a></td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>Experimental</td>
+  </tr>
+  <tr>
+    <td><a href="#llamafile-models">LlamaFile</a></td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>Experimental</td>
+  </tr>
+  <tr>
+    <td><a href="#ollama">Ollama</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Alpha</td>
+  </tr>
+</table>
+</br>
+</br>
 
 ### OpenAI (Hosted by OpenAI)
 
@@ -76,6 +145,10 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 }
 ```
 
+### Azure
+
+All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section.
+
 ### Anthropic
 
 To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics account and
@@ -87,6 +160,8 @@ Configure available models in the settings under AI-features => AnthropicsModels
 Default supported models include choices like claude-3-5-sonnet-latest.
 
 ### Hugging Face
+
+**Many hosting options and models on Hugging Face support using an OpenAI compatible API. In this case, we recommend using the [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). The Hugging face provider only supports text generation at the moment for models not compatible with the OpenAI API.**
 
 To enable Hugging Face as an AI provider, you need to create an API key in your Hugging Face account and enter it in the Theia IDE settings: AI-features => Hugging Face
 **Please note:** By using this preference the Hugging Face API key will be stored in clear text on the machine running Theia. Use the environment variable `HUGGINGFACE_API_KEY` to set the key securely.
@@ -125,6 +200,8 @@ For more details on LlamaFiles, including a quickstart, see the official [Mozill
 To connect to models hosted via [Ollama](https://ollama.com/), enter the corresponding URL, along with the available models, in the settings (as shown below).
 
 <img src="../../ollama-setting.png" alt="Ollama configuration in the Theia IDE" style="max-width: 525px">
+
+**Some models on Ollama support using an OpenAI compatible API. In this case, we recommend using the [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm)**
 
 ### Custom Request Settings
 
@@ -270,7 +347,9 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 
 ### Configuring MCP Servers
 
-To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**. 'autostart' will automatically start the respective MCP server the next time you restart your IDE, you will still need to **manually start it the first time** (see below).
+To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**.
+
+`"autostart"` will automatically start the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** (see below).
 
 **Example Configuration:**
 
