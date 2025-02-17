@@ -349,7 +349,7 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 
 To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**.
 
-'autostart' will automatically start the respective MCP server the next time you restart your IDE, you will still need to **manually start it the first time** (see below).
+`"autostart"` will automatically start the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** (see below).
 
 **Example Configuration:**
 
