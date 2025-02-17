@@ -15,6 +15,7 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
   - [LLM Providers Overview](#llm-providers-overview)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+  - [Azure](#azure)
   - [Anthropic](#anthropic)
   - [Hugging Face](#hugging-face)
   - [LlamaFile](#llamafile-models)
