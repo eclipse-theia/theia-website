@@ -262,7 +262,7 @@ Here is the updated **MCP Integration** section with the requested changes:
 
 ## MCP Integration
 
-The Theia IDE now supports integration with the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
+The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
 *Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
 
 To learn more about MCP, see the [official announcement from Anthropic](https://www.anthropic.com/news/model-context-protocol).  
