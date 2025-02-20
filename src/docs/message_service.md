@@ -11,7 +11,7 @@ The message service allows you to show messages, interactive dialogues and progr
 this.messageService.info('Hello World!')
 ```
 
-By default, Theia will display messages as toast notifications in the bottom right corner. Below you can see screenshots of the different message types (info, warn and error). Please note that you can easily adopt Theia to implement a different behavior for displaying messages by providing a custom `MessageClient`.
+By default, Theia will display messages as toast notifications in the bottom right corner. Below you can see screenshots of the different message types (info, warn and error). Please note that you can easily adapt Theia to implement a different behavior for displaying messages by providing a custom `MessageClient`.
 
 Info
 

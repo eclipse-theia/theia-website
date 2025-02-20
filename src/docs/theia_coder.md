@@ -20,7 +20,7 @@ Theia Coder functions as a chat agent within Theia AI Chat. To interact with it,
 
 In the following example video, we provide a simple task to Coder to demonstrate the full work flow.
 
-<img src="../../theia-coder.gif" alt="Demo of Theia Coder, the personal AI developement assistant in the Theia IDE" style="max-width: 800px">
+<img src="../../theia-coder.gif" alt="Demo of Theia Coder, the personal AI development assistant in the Theia IDE" style="max-width: 800px">
 
 
 ### Describing Programming Tasks
@@ -67,4 +67,4 @@ Theia Coder enhances AI-driven development by:
 
 Please remember that Theia Coder is currently released as a **preview version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
 
-Please also note that Theia Coder is built on [Theia AI](/docs/theia_ai), a flexible framework for build AI-powered tools and IDEs. You can easily adopt or extend Theia Coder or build a similar agent for your own use case with ease.
+Please also note that Theia Coder is built on [Theia AI](/docs/theia_ai), a flexible framework for building AI-powered tools and IDEs. You can easily adopt or extend Theia Coder or build a similar agent for your own use case with ease.

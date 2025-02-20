@@ -23,7 +23,7 @@ You will need to create backend server module file similar to this (`task-backen
 
 ``` typescript
 
-import { ContainerModule } from '@theia/core/shared/inversify'';
+import { ContainerModule } from '@theia/core/shared/inversify';
 import { ConnectionHandler, RpcConnectionHandler } from '@theia/core/lib/common/messaging';
 import { TaskClient, TaskServer, taskPath } from '../common/task-protocol';
 
@@ -254,7 +254,7 @@ serverProxy.setClient(client);
 So here at the last line we're binding the `TaskServer` interface to a
 RPC proxy.
 
-Note that his under the hood calls:
+Note what this calls under the hood:
 
 ``` typescript
   createProxy<T extends object>(path: string, arg?: object): RpcProxy<T> {
