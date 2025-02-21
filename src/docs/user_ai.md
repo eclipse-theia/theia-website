@@ -279,7 +279,12 @@ The Theia IDE provides a global chat interface where users can interact with all
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
-Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. Pressing '#' in the chat will show a list of available variables.
+Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. Pressing '#' in ^the chat will show a list of available variables.
+
+You can also pass context files into the chat to further specify the scope of your request. To do this, drag and drop a file into the chat view, or use the auto-completion feature by typing `#file` or directly typing `#<file-name>`.
+Note that the use of the variable `#file:src/my-code.ts` in the chat input text will resolve to the workspace-relative path, while attaching the file into the context, makes the contents available to the chat agent. This allows adding the file content and then referring to it in the chat input text conveniently.
+
+<img src="../../context-variables.png" alt="Attach Files to the Context" style="max-width: 525px">
 
 ## AI Configuration
 
