@@ -289,10 +289,22 @@ To configure MCP servers, open the preferences and add entries to the `MCP Serve
   },
   "filesystem": {
     "command": "npx",
-    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/YOUR_USERNAME/Desktop"],
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-filesystem",
+      "/Users/YOUR_USERNAME/Desktop"
+    ],
     "env": {
       "CUSTOM_ENV_VAR": "custom-value"
     }
+  },
+  "git": {
+    "command": "uvx",
+    "args": [
+      "mcp-server-git",
+      "--repository",
+      "/path/to/repo"
+    ]
   }
 }
 ```
