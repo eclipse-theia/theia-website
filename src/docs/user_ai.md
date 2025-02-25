@@ -299,14 +299,22 @@ To configure MCP servers, open the preferences and add entries to the `MCP Serve
     }
   },
   "git": {
-        "command": "uv",
-        "args": [
-            "--directory",
-            "/path/to/repo",
-            "run",
-            "mcp-server-git"
-        ]
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/repo",
+        "run",
+        "mcp-server-git"
+      ]
     },
+  "git2": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "/path/to/otherrepo"
+      ]
+  }
 }
 ```
 
