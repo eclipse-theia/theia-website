@@ -397,6 +397,8 @@ To configure MCP servers, open the preferences and add entries to the `MCP Serve
 }
 ```
 
+**Note**: `uvx` comes preinstalled with `uv` and does not need to be installed manually. Running `pip install uvx` installs a deprecated tool unrelated `uv`.
+
 The configuration options include:
 - **`command`**: The executable used to start the server (e.g., `npx`).
 - **`args`**: An array of arguments passed to the command.
