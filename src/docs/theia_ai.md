@@ -218,6 +218,8 @@ export class TodayVariableContribution implements AIVariableContribution, AIVari
 bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 ```
 
+It can now be used in any prompt template, as well as in user requests.
+
 ### Chat Context Variables
 
 Theia AI supports attaching rich contextual information to chat requests via **context variables**. Unlike standard variables discussed above, which simply inject a value into the prompt, context variables provide both a `value` and a `contextValue`. The `value` is inserted at the position of the variable usage, while the `contextValue` is added to the `ChatRequestModel.context`—supplying additional data that the chat agent and underlying LLM can leverage for more informed responses.
@@ -228,6 +230,15 @@ It is up to the agent to decide how this additional data is processed. Common pr
 1. **Summarization:** The agent may summarize the provided context (e.g., listing file names) before passing it to the LLM.
 2. **Context Window Management:** The agent may decide how much context to include the entire context if it fits, apply ranking/summarization if too large, or use multi-turn prompt flows to incrementally identify relevant parts and refine the provided context.
 3. **On-Demand Retrieval:** Instead of sending all context upfront, the agent may also expose tool functions so that the LLM can fetch specific elements when needed.
+
+Note that the context feature is enabled by default, but can be disabled by rebinding the `AIChatInputConfiguration` in your custom dependency injection module:
+
+```ts
+rebind(AIChatInputConfiguration).toConstantValue({
+    showContext: false,
+    showPinnedAgent: true
+});
+```
 
 #### Usage
 
@@ -312,7 +323,7 @@ export class FileVariableContribution implements AIVariableContribution, AIVaria
 
 #### File Chat Variable Contributions
 
-To enhance usability, additional contributions are implemented to handle argument picking, auto-completion, and drag-and-drop support for file context variables.
+To enhance usability, an additional `FrontendVariableContribution` can be provided  to handle argument picking, auto-completion, and drag-and-drop support for file context variables.
 
 ```ts
 export class FileChatVariableContribution implements FrontendVariableContribution {
@@ -391,7 +402,7 @@ export class FileChatVariableContribution implements FrontendVariableContributio
 
 Your custom agent can now use the context variables in various ways. The context variables are available in the `context` property of the `ChatRequestModel` and apply your custom logic to decide in which way your agent passes the context data to the LLM.
 
-Your agents can use the variables `#contextSummary` or `#contextDetails`, which resolve to either a list or the full context, in your system message to transfer the attached context to the LLM. Alternatively, you can use the tool functions `~{context_ListChatContext}` and `~{context_ResolveChatContext}` to allow the LLM obtaining the context on demand.
+Your agents can use the predefined variables `#contextSummary` or `#contextDetails` in their prompt, which resolve to either a list or the full context, in your system message to transfer the attached context to the LLM. Alternatively, you can use the tool functions `~{context_ListChatContext}` and `~{context_ResolveChatContext}` to allow the LLM obtaining the context on demand. Please note that ignoring the context completly in you agent while displaying the context user interface in the chat will likely lead to unexpected user results.
 
 ### Tool Functions
 
