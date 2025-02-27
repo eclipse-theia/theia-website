@@ -347,9 +347,9 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 
 ### Configuring MCP Servers
 
-To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, and optional environment variables. **For Windows users, please see the additional information below**.
+To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, optional environment variables and autostart (true by default). **For Windows users, please see the additional information below**.
 
-`"autostart"` will automatically start the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** (see below).
+`"autostart"` (true by default) will automatically start the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** using the `"MCP Start MCP Server"` command (see below).
 
 **Example Configuration:**
 
@@ -364,7 +364,7 @@ To configure MCP servers, open the preferences and add entries to the `MCP Serve
     "env": {
       "BRAVE_API_KEY": "YOUR_API_KEY"
     },
-    "autostart": true
+    "autostart": false
   },
   "filesystem": {
     "command": "npx",
@@ -424,7 +424,7 @@ Theia provides commands to manage MCP servers:
 - **Stop MCP Server**: Use the command `"MCP: Stop MCP Server"` to stop a running server.
 
 When a server starts, a notification is displayed confirming the operation, and the functions made available.
-You can also set a MCP server to 'autostart' in the settings, this will take effect on the next restart of your IDE.
+You can also set a MCP server to 'autostart' in the settings (true by default), this will take effect on the next restart of your IDE.
 Please note that in a browser deployment MCP servers are scoped per connection, i.e. if you manually start them, you need to start them once per browser tab.
 
 ### Using MCP Server Functions
