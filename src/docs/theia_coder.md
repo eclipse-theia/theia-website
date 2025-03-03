@@ -32,7 +32,7 @@ Theia Coder supports predefined variables that dynamically provide relevant cont
 Here are some example of the most frequently used variable, you can see the full list of available variables when typing `#` in the chat input field:
 
 - `#file:filePath` - Inserts the path to the specified file relative to the workspace root. After typing `#file:`, auto completed suggestions will help you specifiying a file. The suggestions are based on the recently opened files and on the file name you type.
-- `#filePath` - Shortcut for `#file:filePath`
+- `#filePath` - Shortcut for `#file:filePath`; after typing `#` following by the file name you can directly start your search for the file you want to add and reference in your message.
 - `#currentRelativeFilePath` – The relative path of the currently selected file (in the editor or explorer)
 - `#currentRelativeDirPath` – The directory path of the currently selected file
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
