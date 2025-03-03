@@ -70,7 +70,7 @@ Theia Coder enhances AI-driven development by:
 - Generating structured code modifications
 - Providing an intuitive interface for reviewing and applying changes
 
-Please remember that Theia Coder is currently released as a **alpha version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
+Please remember that Theia Coder is currently released as an **alpha version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
 
 Please also note that Theia Coder is built on [Theia AI](/docs/theia_ai), a flexible framework for building AI-powered tools and IDEs. You can easily adopt or extend Theia Coder or build a similar agent for your own use case with ease.
 
