@@ -11,7 +11,7 @@ Theia Coder is currently released as an **alpha version**. To improve and refine
 Theia Coder functions is a chat agent within Theia AI Chat. To interact with it, simply type `@Coder` followed by your request in the chat. This will also pin `@Coder` for the ongoing chat session, so in hte following messages, you don't need to use `@Coder` again.
 
 ### Key Capabilities
-1. **Retrieving Context**: Coder can browse the current workspace to find and look at relevant files or code. As a user, you can augment your queries by including specific files as context information to get faster and more accurate suggestions.
+1. **Retrieving Context**: Coder can browse the current workspace to find and read the content of relevant code files. As a user, you can augment your queries by mentioning or attaching specific files as context information to your chat messages to get faster and more accurate responses from Theia Coder.
 2. **Proposing Changes**: It provides structured code modifications that users can review and apply automatically.
 
 In the following example video, we provide a simple task to Coder to demonstrate the full work flow.
