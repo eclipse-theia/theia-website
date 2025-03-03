@@ -52,7 +52,7 @@ You can describe the location in plain text, such as:
 While Coder will still need to search, this helps it focus on the right area of your workspace. Always prefer providing context variables to directly point to relevant files, if you know the correct location of files already. This will lead to faster and more accurate results.
 
 ### Reviewing and Applying Code Changes
-Based on your task and the provided context, Theia Coder generates proposed code changes. This process may take some time. For transparency, you can observe which files Coder accesses in the chat. You can expand function calls (the arguments and the return value) such as `getFileContent`to see which files are accessed.
+Based on your task and the provided context, Theia Coder suggests code changes. This process may take some time. For transparency, you can observe which files Coder accesses in the chat. You can expand function calls (the arguments and the return value) such as `getFileContent`to see which files are accessed. While Coder generates file changes, you can also observe the code generation by expanding the function call arguments.
 
 To apply changes, Theia Coder utilizes Theia AI’s changeset feature:
 - A list of modified files appears above the chat input field.
