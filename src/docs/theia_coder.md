@@ -28,7 +28,7 @@ To use Theia Coder effectively, describe your programming task in clear natural 
 There are multiple ways to help Coder find the right files efficiently, keep in mind that Coder operates with file paths relative to the workspace root:
 
 #### 1. Using Context Variables (preferred)
-Theia Coder supports predefined variables that dynamically provide relevant context. You can just add them to your request in the chat input field (more details in the [chat documentation](/docs/user_ai/#chat)). This allows you to also describe the meaning of the added file, e.g. "Add something to this file:" or "Look at this file to understand:"
+Theia Coder supports predefined variables that dynamically provide relevant context. You can just type them in your request in the chat input field (more details in the [chat documentation](/docs/user_ai/#chat)). This allows you to not just add the file as context but also describe why the file is relevant, e.g. "Add documentation to this file: #file:DOC.md" or "Look at #file:src/api.ts as a reference for generating an implementation..."
 Here are some example of the most frequently used variable, you can see the full list of available variables when typing `#` in the chat input field:
 
 - `#file:filePath` - Inserts the path to the specified file relative to the workspace root. After typing `#file:`, auto completed suggestions will help you specifiying a file. The suggestions are based on the recently opened files and on the file name you type.
