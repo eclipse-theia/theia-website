@@ -298,6 +298,8 @@ In the Theia IDE, you can open and edit prompts for all agents from the AI Confi
 
 <img src="../../prompt-editor.png" alt="Prompt Editor in the Theia IDE" style="max-width: 800px">
 
+Note that some agents come with several prompt variants, you can choose the active variant in the drop down box. To create user-defined variants, browse to the prompt templates directory and create/copy a new file starting with the same id as the default prompt of an agent.
+
 Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the "Variables" tab of the AI Configuration View and agent-specific variables in the agent's configuration.
 
 Variables are used with the following syntax:
@@ -334,8 +336,6 @@ This action opens a YAML file where all available custom agents are defined. Bel
 - defaultLLM: The language model used by default.
 
 Custom agents can be configured in the AI Configuration View just like other chat agents. You can enable/disable them, modify their prompt templates, and integrate variables and functions within these templates to enhance functionality.
-
-Here is the updated **MCP Integration** section with the requested changes:
 
 ## MCP Integration
 
