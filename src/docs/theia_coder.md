@@ -49,7 +49,7 @@ You can drag and drop files from the file explorer, or use the `+` button below 
 You can describe the location in plain text, such as:
 > "In the `ai-mcp` package under `src/browser`."
 
-While Coder will still need to search, this helps it focus on the right area. Always prefer providing context variables if you know the correct location of files, as it will lead to faster and more accurate results.
+While Coder will still need to search, this helps it focus on the right area of your workspace. Always prefer providing context variables to directly point to relevant files, if you know the correct location of files already. This will lead to faster and more accurate results.
 
 ### Reviewing and Applying Code Changes
 Based on your task and the provided context, Theia Coder generates proposed code changes. This process may take some time. For transparency, you can observe which files Coder accesses in the chat. You can expand function calls (the arguments and the return value) such as `getFileContent`to see which files are accessed.
