@@ -54,7 +54,7 @@ While Coder will still need to search, this helps it focus on the right area of 
 ### Reviewing and Applying Code Changes
 Based on your task and the provided context, Theia Coder suggests code changes. This process may take some time. For transparency, you can observe which files Coder accesses in the chat. You can expand function calls (the arguments and the return value) such as `getFileContent`to see which files are accessed. While Coder generates file changes, you can also observe the code generation by expanding the function call arguments.
 
-To apply changes, Theia Coder utilizes Theia AI’s changeset feature:
+To apply changes, Theia Coder utilizes Theia AI's changeset feature:
 - A list of modified files appears above the chat input field.
 - Click on an entry to view a **diff editor**, comparing the previous and new state.
 - In the diff editor, selectively apply changes.
@@ -62,6 +62,14 @@ To apply changes, Theia Coder utilizes Theia AI’s changeset feature:
 - If needed, you can clear individual changes or the entire changeset.
 
 See the video above for a demonstration.
+
+## SCANOSS Integration: Open Source Compliance Scanning
+
+Theia Coder integrates with SCANOSS to help you identify potential licensing implications in the AI-generated code. This feature allows you to scan code changes proposed by Coder for open-source compliance and licensing concerns before applying them to your codebase (see the warning icon in the following screenshot).
+
+<img src="../../scanoss-coder.png" alt="Scanning generated code snippets with SCANOSS in Theia Coder" style="max-width: 525px">
+
+For more details about SCANOSS integration and other scanning capabilities in Theia IDE, see the [SCANOSS documentation section](/docs/user_ai/#scanoss).
 
 ## Summary
 Theia Coder enhances AI-driven development by:
