@@ -451,7 +451,7 @@ This allows you to seamlessly integrate external services into your AI workflows
 
 ## SCANOSS
 
-The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabling developers to analyze generated code snippets for open-source compliance and licensing. This feature helps developers understand potential licensing implications when using generated code in the Chat view.
+The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabling developers to analyze generated code for open-source compliance and licensing. This feature helps developers understand potential licensing implications when using generated code.
 
 **Please note:** This feature sends a hash of suggested code snippets to the SCANOSS service hosted by the [Software Transparency Foundation](https://www.softwaretransparency.org/osskb) for analysis. While the service is free to use, very high usage may trigger rate limiting (unlikely for individual developers). Additionally, neither Theia nor SCANOSS can guarantee that no license implications exist, even if no issues are detected during the scan.
 
@@ -461,24 +461,31 @@ The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabl
 2. Navigate to **SCANOSS Mode** under the **AI Features** section.
 3. Select the desired mode:
    - **Off**: Disables SCANOSS completely.
-   - **Manual**: Allows users to trigger scans manually via the SCANOSS button on generated code snippets in the Chat view.
+   - **Manual**: Allows users to trigger scans manually via the SCANOSS button on generated code (via the [Theia Coder Agent](/docs/theia_coder/) or directly in the Chat view.
    - **Automatic**: Automatically scans generated code snippets in the Chat view.
 
 ### Manual Scanning
 
 To manually scan a code snippet:
 
-1. Generate a code snippet in the AI Chat view.
-2. Click the **SCANOSS** button in the toolbar of the code renderer embedded in the Chat view.
+1. Generate a code in the AI Chat view or via the [Theia Coder Agent](/docs/theia_coder/).
+2. Click the **SCANOSS** button in the toolbar of the code renderer embedded in the Chat view or above the changeset.
 3. A result icon will appear:
    - A **warning icon** if a match is found.
    - A **green check mark** if no matches are found.
 4. If a warning icon is displayed, click the **SCANOSS** button again to view detailed scan results in a popup window.
+
+This screenshot shows a SCANOSS match for code generated in the chat view:
+
 <img src="../../scanoss.png" alt="Scanning generated code snippets in the Theia AI chat view" style="max-width: 525px">
+
+This screenshot shows a SCANOSS match for a code change made via the Theia Coder agent:
+
+<img src="../../scanoss-coder.png" alt="Scanning generated code snippets in the Theia AI chat view" style="max-width: 525px">
 
 ### Automatic Scanning
 
-In **Automatic** mode, SCANOSS scans code snippets in the background whenever they are generated in the Chat view. Results are displayed immediately, indicating whether any matches are found.
+In **Automatic** mode, SCANOSS scans code in the background whenever they are generated in the Chat view or via the [Theia Coder Agent](/docs/theia_coder/). Results are displayed immediately, indicating whether any matches are found.
 
 ### Understanding SCANOSS Results
 
