@@ -99,11 +99,8 @@ const TheiaIDEDownloads = () => (
                  <center>
                  <i>¹ The Mac x86 version might run slow and unstable on recent ARM systems. Please try our new dedicated ARM build.</i>
                  <br></br>
-                 <i>² The Mac ARM version is new, experimental and currently still unsigned. Newer versions of MacOS set the `quarantine` attribute on programs downloaded from the internet and refuse to run the application. 
-                 In order to still run the build, you will have to clear the `quarantine` attribute from the application. In a terminal, type 
-                 ```
-                 xattr -d -r com.apple.quarantine /Applications/TheiaIDE.app
-                 ```
+                 <i>² The Mac ARM version is new, experimental and currently still unsigned. Newer versions of MacOS set the 'quarantine' attribute on programs downloaded from the internet and refuse to run the application. 
+                 In order to still run the build, you will have to clear the 'quarantine' attribute from the application. In a terminal, type 'xattr -d -r com.apple.quarantine /Applications/TheiaIDE.app'. 
                  after you have installed the build. The Theia appliation should now start normally. We are working on providing a signed version asap.
                  </i>
                  <br></br>
