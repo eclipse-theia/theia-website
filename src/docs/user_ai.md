@@ -129,7 +129,7 @@ The OpenAI provider is preconfigured with a list of available models. You can ea
 
 ### OpenAI Compatible Models (e.g. via VLLM)
 
-As an alternative to using an official OpenAI account, Theia IDE also supports arbitrary models compatible with the OpenAI API (e.g., hosted via [VLLM](https://docs.vllm.ai/en/latest/)). This enables you to connect to self-hosted models with ease. To add a custom model, click on the link in the settings section and add your configuration like this:
+As an alternative to using an official OpenAI account, Theia IDE also supports arbitrary models compatible with the OpenAI API (e.g., hosted via [VLLM](https://docs.vllm.ai/en/latest/)). This enables you to connect to self-hosted models with ease. To add a custom model, click on the link in the settings section and add your configuration like the following and check the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#custom-models) for all configuration options:
 
 ```json
 {
@@ -139,7 +139,8 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
            "url": "your-URL",
            "id": "your-unique-id", // Optional: if not provided, the model name will be used as the ID
            "apiKey": "your-api-key", // Optional: use 'true' to apply the global OpenAI API key
-           "supportsDeveloperMessage": false //Optional: whether your API supports the developer message (turn off when using OpenAI on Azure)
+           "developerMessageSettings": "system" //Optional: Controls the handling of system messages: user, system, and developer will be used as a role, mergeWithFollowingUserMessage will prefix the following user message with the system message or convert the system message to user message if the next message is not a user message. skip will just remove the system message. Defaulting to developer.
+
        }
    ]
 }
@@ -147,7 +148,7 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 
 ### Azure
 
-All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section.
+All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
 
 ### Anthropic
 
@@ -237,6 +238,9 @@ Valid options for `requestSettings` depend on the model provider.
 
 This section provides an overview of the currently available agents in the Theia IDE. Agents marked as “Chat Agents” are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
 
+### Theia Coder (Chat Agent)
+An AI assistant is designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. Futhermore, it can suggest modifications of files to the user. It can therefore assist the user with coding tasks or other tasks involving file changes. See the dedicated [Theia Coder Documentation](/docs/theia_coder) for more details.
+
 ### Universal (Chat Agent)
 
 This agent helps developers by providing concise and accurate answers to general programming and software development questions. It also serves as a fallback for generic user questions. By default, this agent does not have access to the current user context or workspace. However, you can add variables, such as `#selectedText`, to your requests to provide additional context.
@@ -249,9 +253,9 @@ This agent analyzes user requests against the descriptions of all available chat
 
 This agent is aware of all commands available in the Theia IDE and the current tool the user is working with. Based on the user request, it can find the appropriate command and let the user execute it.
 
-### Workspace (Chat Agent)
+### Architect (Chat Agent)
 
-This agent can access the user's workspace, retrieve a list of all available files, and view their content. It can answer questions about the current project, including project files and source code in the workspace, such as how to build the project, where to place source code, or where to find specific files or configurations.
+An AI assistant is designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files. It can therefore answer questions about the current project, project files and source code in the workspace, such as how to build the project, where to put source code, where to find specific code or configurations, etc.
 
 ### Code Completion (Agent)
 
@@ -279,12 +283,33 @@ The Theia IDE provides a global chat interface where users can interact with all
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
-Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. Pressing '#' in the chat will show a list of available variables.
+Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. 
+
+### Agent Pinning
+The *Agent Pinning* feature, reduces the need for repeated agent references.  
+  
+- When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.  
+- If an agent is already pinned, mentioning a different agent will **not** change the pinned agent. Instead, the newly mentioned agent will be used **only** for that specific prompt.  
+- You can manually unpin an agent through the chat interface if needed.  
+- A new chat session can now be started directly with a pinned agent.
+
+<img src="../../agent-pinning.gif" alt="Pinning Agents in the Theia IDE AI Chat" style="max-width: 525px">
+
+### Context Variables
+You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. 
 
 You can also pass context files into the chat to further specify the scope of your request. To do this, drag and drop a file into the chat view, or use the auto-completion feature by typing `#file` or directly typing `#<file-name>`. 
 Note that `#file:src/my-code.ts` in the user message is replaced to the workspace-relative path, alongside attaching the file to the context. This allows adding the file content to the context and then referring to the file in the chat input text efficiently in one go.
 
 <img src="../../context-variables.png" alt="Attach Files to the Context" style="max-width: 525px">
+
+Here are some example of the most frequently used variable, you can see the full list of available variables when typing `#` in the chat input field (see also how [Theia Coder](/docs/theia_coder) uses context variables):
+
+- `#file:filePath` - Inserts the path to the specified file relative to the workspace root. After typing `#file:`, auto completed suggestions will help you specifiying a file. The suggestions are based on the recently opened files and on the file name you type.
+- `#filePath` - Shortcut for `#file:filePath`; after typing `#` following by the file name you can directly start your search for the file you want to add and reference in your message.
+- `#currentRelativeFilePath` – The relative path of the currently selected file (in the editor or explorer)
+- `#currentRelativeDirPath` – The directory path of the currently selected file
+- `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
