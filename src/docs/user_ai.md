@@ -291,7 +291,6 @@ The *Agent Pinning* feature, reduces the need for repeated agent references.
 - When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.  
 - If an agent is already pinned, mentioning a different agent will **not** change the pinned agent. Instead, the newly mentioned agent will be used **only** for that specific prompt.  
 - You can manually unpin an agent through the chat interface if needed.  
-- A new chat session can now be started directly with a pinned agent.
 
 <img src="../../agent-pinning.gif" alt="Pinning Agents in the Theia IDE AI Chat" style="max-width: 525px">
 
