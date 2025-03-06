@@ -89,12 +89,21 @@ const TheiaIDEDownloads = () => (
                 
                 <div className="header__buttons">
                     <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/windows/TheiaIDESetup.exe&r=1" rel="noopener">Windows</a>
-                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos/TheiaIDE.dmg&r=1" rel="noopener">MacOS (x86)˟</a>
-                    <a className="btn btn--cta" href="https://snapcraft.io/theia-ide" rel="noopener">Linux (Snap)</a>
                     <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=1" rel="noopener">Linux (AppImage)</a>
+                    <a className="btn btn--cta" href="https://snapcraft.io/theia-ide" rel="noopener">Linux (Snap)</a>
+                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos/TheiaIDE.dmg&r=1" rel="noopener">MacOS (x86)¹</a>
+                </div>
+                 <div className="header__buttons">
+                    <a className="btn btn--cta" href="https://github.com/eclipse-theia/theia-ide/releases/download/pre-release/TheiaIDE-arm64-patched.dmg.zip" rel="noopener">MacOS (ARM, <i>experimental</i>)²</a>
                  </div>
                  <center>
-                 <i>˟ The Mac x86 version might run slow and unstable on recent ARM systems. We are working on a dedciated build for ARM architectures on Mac.</i>
+                 <i>¹ The Mac x86 version might run slow and unstable on recent ARM systems. Please try our new dedicated ARM build.</i>
+                 <br></br>
+                 <i>² The Mac ARM version is new, experimental and currently still unsigned. Newer versions of MacOS set the 'quarantine' attribute on programs downloaded from the internet and refuse to run the application. 
+                 In order to still run the build, you will have to clear the 'quarantine' attribute from the application. In a terminal, type 'xattr -d -r com.apple.quarantine /Applications/TheiaIDE.app' 
+                 after you have installed the build. The Theia appliation should now start normally. We are working on providing a signed version asap.
+                 </i>
+                 <br></br>
                  <br></br>
                  You can also <a href="https://try.theia-cloud.io/">try the latest version of the Theia IDE online</a>. The online test version is limited to 30 minutes per session and hosted via <a href="https://github.com/eclipsesource/theia-cloud">Theia.cloud</a>.<br></br>
                  Finally, we provide an <a href="https://github.com/eclipse-theia/theia-blueprint?tab=readme-ov-file#docker">experimental Docker image</a> for hosting the Theia IDE online.
