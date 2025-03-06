@@ -255,7 +255,7 @@ This agent is aware of all commands available in the Theia IDE and the current t
 
 ### Architect (Chat Agent)
 
-An AI assistant is designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files. It can therefore answer questions about the current project, project files and source code in the workspace, such as how to build the project, where to put source code, where to find specific code or configurations, etc.
+An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files. It can therefore answer questions about the current project, project files and source code in the workspace, such as how to build the project, where to put source code, where to find specific code or configurations, etc.
 
 ### Code Completion (Agent)
 
