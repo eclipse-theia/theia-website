@@ -94,14 +94,12 @@ const TheiaIDEDownloads = () => (
                     <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos/TheiaIDE.dmg&r=1" rel="noopener">MacOS (x86)¹</a>
                 </div>
                  <div className="header__buttons">
-                    <a className="btn btn--cta" href="https://github.com/eclipse-theia/theia-ide/releases/download/pre-release/TheiaIDE-arm64-patched.dmg.zip" rel="noopener">MacOS (ARM, <i>experimental</i>)²</a>
+                    <a className="btn btn--cta" href="https://github.com/eclipse-theia/theia-ide/releases/download/pre-release/TheiaIDE.dmg" rel="noopener">MacOS (ARM, <i>experimental</i>)²</a>
                  </div>
                  <center>
                  <i>¹ The Mac x86 version might run slow and unstable on recent ARM systems. Please try our new dedicated ARM build.</i>
                  <br></br>
-                 <i>² The Mac ARM version is new, experimental and currently still unsigned. Newer versions of MacOS set the 'quarantine' attribute on programs downloaded from the internet and refuse to run the application. 
-                 In order to still run the build, you will have to clear the 'quarantine' attribute from the application. In a terminal, type 'xattr -d -r com.apple.quarantine /Applications/TheiaIDE.app' 
-                 after you have installed the build. The Theia appliation should now start normally. We are working on providing a signed version asap.
+                 <i>² The Mac ARM version is new and still experimental. Updates may not work as expected yet.
                  </i>
                  <br></br>
                  <br></br>
