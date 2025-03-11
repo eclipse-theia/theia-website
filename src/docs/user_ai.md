@@ -48,6 +48,10 @@ Other LLM providers, including local models, can be added easily. If you would l
 
 Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
 
+See also:
+
+👉 [Why Theia supports any LLM!](https://eclipsesource.com/blogs/2025/02/27/why-theia-supports-any-llm/)
+
 ### LLM Providers Overview
 
 *Note: Theia IDE enables connections to various models (e.g., HuggingFace, custom OpenAPI models, LlamaFile). However, not all models may work out of the box, as they may require specific customizations or optimizations. If you encounter issues, please [provide feedback](https://github.com/eclipse-theia/theia/issues/new/choose), keeping in mind this is an early-phase feature.*
@@ -372,6 +376,11 @@ Custom agents can be configured in the AI Configuration View just like other cha
 
 The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
 *Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
+
+See also this comprehensive example on how to MCP in Theia:
+👉 [Let AI commit (to) your work - With Theia AI, Git and MCP](https://eclipsesource.com/blogs/2025/03/05/theia-ai-git-and-mcp/)
+And our introduction to MCP in Theia AI:
+👉 [Introducing Anthropics's Model Context Protocol (MCP) for AI-Powered Tools in Theia AI and the Theia IDE](https://eclipsesource.com/blogs/2024/12/19/theia-ide-and-theia-ai-support-mcp/)
 
 To learn more about MCP, see the [official announcement from Anthropic](https://www.anthropic.com/news/model-context-protocol).  
 For a list of available MCP servers, visit the [MCP Servers Repository](https://github.com/modelcontextprotocol/servers).
