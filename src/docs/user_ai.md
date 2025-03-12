@@ -6,7 +6,7 @@ title: Using the AI Features in the Theia IDE as an End User
 
 This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistants in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
 
-**Please note that these features are in early access and experimental. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
+**Please note that these features are in alpha state. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
 
 Theia AI features within the Theia IDE are currently disabled by default. See the next section on how to enable them.
 
@@ -42,11 +42,17 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 
 To activate AI support in the Theia IDE, go to Preferences and enable the setting “AI-features => AI Enable.”
 
-To use Theia AI within the Theia IDE, you need to provide access to at least one LLM. Theia IDE comes with preinstalled support for OpenAI API-compatible models, either hosted by OpenAI or self-hosted via VLLM. Additionally, Theia IDE supports connecting to models via Ollama. See the corresponding sections below on how to configure these providers.
+To use Theia AI within the Theia IDE, **you need to provide access to at least one LLM**. Theia IDE comes with preinstalled support for several LLM providers (including OpenAI API-compatible models and Anthropic). Additionally, Theia IDE supports connecting to models via Ollama. See the the [LLM Provider Overview](#llm-providers-overview) and the corresponding sections below on how to configure these providers.
+
+If you do not have access to an LLM, yet, here is an easy way to try it out:
+
+👉 [Testing the AI-Powered Theia IDE and Theia AI Applications for Free Using GitHub Models](https://eclipsesource.com/blogs/2025/03/12/testing-theia-ai-with-github-models/)
 
 Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
+Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). 
+
+**To use a specific model in your IDE, configure it on a per-agent basis in the [AI Configuration view](#ai-configuration).**
 
 See also:
 
