@@ -15,7 +15,6 @@
  ********************************************************************************/
 
  import GoogleLogo from '../resources/google.svg'
- import ToroC from '../resources/toro-r.svg'
  import Huawei from '../resources/huawei.svg'
  import VUEngineStudioScreenshot from '../resources/screenshots/vuengine-studio.png'
  import VUEngineStudioScreenshotMin from '../resources/screenshots/thumbnails/vuengine-studio-min.png'
@@ -51,17 +50,14 @@
  import CodeRealTimeMin from '../resources/screenshots/thumbnails/code_realtime_theia_min.png'
  import QuickConnectStudio from '../resources/screenshots/renesas-qcstudio.png'
  import QuickConnectStudioMin from '../resources/screenshots/thumbnails/renesas-qcstudio-min.png'
+ import MartiniDesigner from '../resources/screenshots/martini-designer.png'
+ import MartiniDesignerMin from '../resources/screenshots/thumbnails/martini-designer-min.png'
 
  export const contributorsAndAdopters = [
      {
          homepage_url: "https://about.google/",
          src: GoogleLogo,
          name: "Google Logo"
-     },
-     {
-         homepage_url: "https://www.torocloud.com/",
-         src: ToroC,
-         name: "ToroCloud logo"
      },
      {
          homepage_url: "https://www.huawei.com/",
@@ -163,6 +159,12 @@
         src: CodeReady,
         thumb: CodeReadyMin,
         alt: "Red Hat CodeReady Workspaces"
+    },
+    {
+        href: "https://www.lonti.com/martini",
+        src: MartiniDesigner,
+        thumb: MartiniDesignerMin,
+        alt: "Martini Designer"
     }
  ]
 
