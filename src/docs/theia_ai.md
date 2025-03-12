@@ -224,6 +224,10 @@ It can now be used in any prompt template, as well as in user requests.
 
 Theia AI supports attaching rich contextual information to chat requests via **context variables**. Unlike standard variables discussed above, which simply inject a value into the prompt, context variables provide both a `value` and a `contextValue`. The `value` is inserted at the position of the variable usage, while the `contextValue` is added to the `ChatRequestModel.context`—supplying additional data that the chat agent and underlying LLM can leverage for more informed responses.
 
+Learn more about the generic concept of context variables in Theia AI:
+
+👉 [Enhancing Your Tools with Chat Context in Theia AI](https://eclipsesource.com/blogs/2025/03/04/enhancing-your-tools-with-chat-context-in-theia-ai/)
+
 Context variables enable users to scope their requests by including elements such as files, symbols, or other domain-specific data elements.
 It is up to the agent to decide how this additional data is processed. Common processing approaches include:
 
@@ -456,6 +460,11 @@ bind(ToolProvider).to(FileContentFunction);
 ## Custom Response Part Rendering
 
 This section explains the process of converting an LLM (Large Language Model) response into custom UI controls within the Theia AI default chat (or any custom chat implementation). Custom UI control can be specially highlighted text, clickable buttons or literally anything that you want to display to your users.
+
+Learn more about the generic concept:
+
+👉 [Introducing Interactive AI Flows in Theia AI](https://eclipsesource.com/blogs/2025/02/13/introducing-interactive-ai-flows-in-theia-ai/)
+
 As an example, we will use the command chat agent used in this documentation before, which is capable of identifying a command in the Theia IDE based on the user's request. We will augment this agent to render commands that the agent returns as buttons. By clicking the button, users can then directly invoke a command.
 
 Let’s look at the basic control flow of a chat request in Theia AI (see diagram below). The flow starts with a user request in the default Chat UI (1), which is sent to the underlying LLM (2) to return an answer (3). By default, the agent can forward the response to the Chat UI as-is. However, in our scenario, the agent will parse the response and augment it with a structured response content (4). Based on this, the chat UI can select a corresponding response part renderer to be shown in the UI (5).
@@ -656,6 +665,12 @@ Please note that Theia AI currently does not provide a fixed contribution point 
 ## Change Sets
 
 Change sets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic change sets, a default UI integrated in the generic, reusable chat interface and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
+
+Learn more about the concept:
+
+👉 [Theia AI Change Sets: Managing Complex AI Change Suggestions](https://eclipsesource.com/blogs/2025/03/11/theia-ai-change-sets-managing-complex-ai-change-suggestions/)
+
+👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
 
 ### Example usage of Change Sets
 
