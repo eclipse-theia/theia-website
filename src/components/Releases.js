@@ -77,7 +77,7 @@ const communityReleases = [
         releasedate: 'February 27th, 2025',
         releasecandidatedate: 'January 30th, 2025',
         technologiesin: 'March 6th, 2025',
-        releaseanouncement: 'March 13th, 2025',
+        releaseanouncement: 'March 19th, 2025',
         announcementurl: '',
         frameworks: [
             {
