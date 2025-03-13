@@ -7,6 +7,10 @@ title: Theia Coder, AI-Powered Development in the Theia IDE
 This page provides details about the Theia Coder agent in the Theia IDE, please also refer to [the general introduction to the AI features in the Theia IDE](/docs/user_ai). Theia Coder is an AI-powered coding agent designed to assist developers with structured code modifications directly within the Theia IDE. Theia Coder can browse the workspace, retrieve relevant context, and propose code changes that users can review and apply seamlessly.
 Theia Coder is currently released as an **alpha version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
 
+Learn more about Theia Coder and see it in action:
+
+👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
+
 ## Using Theia Coder
 Theia Coder functions is a chat agent within Theia AI Chat. To interact with it, simply type `@Coder` followed by your request in the chat. This will also pin `@Coder` for the ongoing chat session, so in hte following messages, you don't need to use `@Coder` again.
 
@@ -80,6 +84,10 @@ Theia Coder enhances AI-driven development by:
 
 Please remember that Theia Coder is currently released as an **alpha version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
 
+Learn more about Theia Coder and see it in action:
+
+👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
+
 Please also note that Theia Coder is built on [Theia AI](/docs/theia_ai), a flexible framework for building AI-powered tools and IDEs. You can easily adopt or extend Theia Coder or build a similar agent for your own use case with ease.
 
 ## Hints and Trouble Shooting
@@ -105,4 +113,8 @@ In the default prompt Coder uses two functions to suggest changes (you can also 
 - `changeSet_replaceContentInFile`: Will only replace specific segments of text within a file. This is faster but may require multiple attempts if the content to be replaced is ambiguous or if there are many similar patterns in the code.
 Coder will usually select the best of the two functions above, based on the proposed change. If you experience continous issues, specifically, if the `changeSet_replaceContentInFile` function continously fails, you can experiment with changing the default prompt or switching to the prompt variant `coder-rewrite` which will only rewrite files.
 
-You can change any prompt related setting in the AI configuration view under **"Coder" => "Prompt Templates"**.
+## Learn more
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)

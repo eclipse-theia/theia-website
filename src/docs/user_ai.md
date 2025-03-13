@@ -6,9 +6,13 @@ title: Using the AI Features in the Theia IDE as an End User
 
 This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistants in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
 
-**Please note that these features are in early access and experimental. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
+**Please note that these features are in alpha state. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
 
 Theia AI features within the Theia IDE are currently disabled by default. See the next section on how to enable them.
+
+Learn more about the AI-powered Theia IDE:
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
 ## Table of Contents
 - [Set-Up](#set-up)
@@ -42,11 +46,21 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 
 To activate AI support in the Theia IDE, go to Preferences and enable the setting “AI-features => AI Enable.”
 
-To use Theia AI within the Theia IDE, you need to provide access to at least one LLM. Theia IDE comes with preinstalled support for OpenAI API-compatible models, either hosted by OpenAI or self-hosted via VLLM. Additionally, Theia IDE supports connecting to models via Ollama. See the corresponding sections below on how to configure these providers.
+To use Theia AI within the Theia IDE, **you need to provide access to at least one LLM**. Theia IDE comes with preinstalled support for several LLM providers (including OpenAI API-compatible models and Anthropic). Additionally, Theia IDE supports connecting to models via Ollama. See the the [LLM Provider Overview](#llm-providers-overview) and the corresponding sections below on how to configure these providers.
+
+If you do not have access to an LLM, yet, here is an easy way to try it out:
+
+👉 [Testing the AI-Powered Theia IDE and Theia AI Applications for Free Using GitHub Models](https://eclipsesource.com/blogs/2025/03/12/testing-theia-ai-with-github-models/)
 
 Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
+Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). 
+
+**To use a specific model in your IDE, configure it on a per-agent basis in the [AI Configuration view](#ai-configuration).**
+
+See also:
+
+👉 [Why Theia supports any LLM!](https://eclipsesource.com/blogs/2025/02/27/why-theia-supports-any-llm/)
 
 ### LLM Providers Overview
 
@@ -373,6 +387,11 @@ Custom agents can be configured in the AI Configuration View just like other cha
 The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
 *Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
 
+See also this comprehensive example on how to MCP in Theia:
+👉 [Let AI commit (to) your work - With Theia AI, Git and MCP](https://eclipsesource.com/blogs/2025/03/05/theia-ai-git-and-mcp/)
+And our introduction to MCP in Theia AI:
+👉 [Introducing Anthropics's Model Context Protocol (MCP) for AI-Powered Tools in Theia AI and the Theia IDE](https://eclipsesource.com/blogs/2024/12/19/theia-ide-and-theia-ai-support-mcp/)
+
 To learn more about MCP, see the [official announcement from Anthropic](https://www.anthropic.com/news/model-context-protocol).  
 For a list of available MCP servers, visit the [MCP Servers Repository](https://github.com/modelcontextprotocol/servers).
 
@@ -534,4 +553,6 @@ The AI History view allows you to review all communications between agents and u
 
 ## Learn more
 
-If want to learn more about the AI support in the Theia AI, please see [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
