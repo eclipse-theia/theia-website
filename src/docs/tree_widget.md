@@ -6,7 +6,7 @@ title: Tree Widget
 
 Interacting with hierarchical content is an integral part of many applications. Tree UIs are a common aspect of many user interfaces. In Theia, the `@theia/core` module provides `TreeWidget`, a common implementation of tree UIs in Theia, which can be customized in many ways to let the user work with hierarchical content. This article provides an overview of `TreeWidget`, its related classes and features, and how to implement and customize them.
 
-Note: The code snippets shown below are part of the full example available in the [Theia Examples](https://github.com/eclipse-theia/theia/tree/master/examples/api-samples/src/browser/tree-widget).
+Note: The code snippets shown below are part of the full example available via the [Theia Extension Generator](https://github.com/eclipse-theia/generator-theia-extension/blob/master/README.md). To get started and play with the example code, generate the `TreeWidget` example using the generator.
 
 ## Basic Building Blocks
 
