@@ -273,9 +273,10 @@ An AI assistant designed to assist software developers. This agent can access th
 
 ### Code Completion (Agent)
 
-This agent provides inline code completion within the Theia IDE's code editor. By default, automatic inline completion is disabled to give users greater control over how AI code suggestions are presented. Users can manually trigger inline completion via the default key binding Ctrl+Alt+Space (adaptable). Requests are canceled when moving the cursor.
+This agent provides inline code completion within the Theia IDE's code editor. The agent supports both manual and automatic modes for code completion. When 'Automatic Code Completion' is enabled (which is the default), the agent makes continuous requests to the underlying LLM while coding, providing suggestions as you type.
+In manual mode (triggered via Ctrl+Alt+Space by default), users have greater control over when AI suggestions appear. Requests are canceled when moving the cursor.
 
-Users who prefer continuous suggestions can enable 'Automatic Code Completion' in the settings ('AIFeatures'=>'CodeCompletion'). This agent makes continuous requests to the underlying LLM while coding if automatic suggestions are enabled.
+Users can switch between modes in the settings ('AIFeatures'=>'CodeCompletion'). 
 
 Please note that there are two prompt variants available for the code completion agent, you can select them in the 'AI Configuration view' => 'Code Completion' => 'Prompt Templates'.
 
