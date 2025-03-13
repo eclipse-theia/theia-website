@@ -10,6 +10,10 @@ This section documents how to use AI features in the Theia IDE (available since 
 
 Theia AI features within the Theia IDE are currently disabled by default. See the next section on how to enable them.
 
+Learn more about the AI-powered Theia IDE:
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
 ## Table of Contents
 - [Set-Up](#set-up)
   - [LLM Providers Overview](#llm-providers-overview)
@@ -549,4 +553,6 @@ The AI History view allows you to review all communications between agents and u
 
 ## Learn more
 
-If want to learn more about the AI support in the Theia AI, please see [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
