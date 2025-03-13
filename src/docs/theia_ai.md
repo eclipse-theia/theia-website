@@ -12,6 +12,10 @@ To learn how to generally extend Theia by creating Theia extensions, including A
 
 High Level Architecture of Theia AI
 
+Learn more about Theia AI:
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
 ## Table of Contents
 
 - [Creating Agents with Theia AI](#creating-agents-with-theia-ai)
@@ -21,6 +25,7 @@ High Level Architecture of Theia AI
   - [Variables](#variables)
     - [Agent-specific Variables](#agent-specific-variables)
     - [Global Variables](#global-variables)
+    - [Chat Context Variables](#chat-context-variables)
   - [Tool Functions](#tool-functions)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
@@ -219,6 +224,194 @@ bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 
 It can now be used in any prompt template, as well as in user requests.
 
+### Chat Context Variables
+
+Theia AI supports attaching rich contextual information to chat requests via **context variables**. Unlike standard variables discussed above, which simply inject a value into the prompt, context variables provide both a `value` and a `contextValue`. The `value` is inserted at the position of the variable usage, while the `contextValue` is added to the `ChatRequestModel.context`—supplying additional data that the chat agent and underlying LLM can leverage for more informed responses.
+
+Learn more about the generic concept of context variables in Theia AI:
+
+👉 [Enhancing Your Tools with Chat Context in Theia AI](https://eclipsesource.com/blogs/2025/03/04/enhancing-your-tools-with-chat-context-in-theia-ai/)
+
+Context variables enable users to scope their requests by including elements such as files, symbols, or other domain-specific data elements.
+It is up to the agent to decide how this additional data is processed. Common processing approaches include:
+
+1. **Summarization:** The agent may summarize the provided context (e.g., listing file names) before passing it to the LLM.
+2. **Context Window Management:** The agent may decide how much context to include the entire context if it fits, apply ranking/summarization if too large, or use multi-turn prompt flows to incrementally identify relevant parts and refine the provided context.
+3. **On-Demand Retrieval:** Instead of sending all context upfront, the agent may also expose tool functions so that the LLM can fetch specific elements when needed.
+
+Note that the context feature is enabled by default, but can be disabled by rebinding the `AIChatInputConfiguration` in your custom dependency injection module:
+
+```ts
+rebind(AIChatInputConfiguration).toConstantValue({
+    showContext: false,
+    showPinnedAgent: true
+});
+```
+
+#### Usage
+
+Users can attach context elements to chat requests in several ways:
+
+- **Drag and Drop:** Drag elements into the chat input, e.g. dropping files from the file explorer.
+- **Typing:** Enter the context variable name (e.g. `#file`), which triggers a quick pick selection dialog.
+- **Auto-completion:** Type and select a specific element (e.g. `#file:myFile.txt`).
+
+<img src="../../context-variables.png" alt="Attach Files to the Context" style="max-width: 525px">
+
+Once attached, the context elements are displayed in the chat input to the user.
+
+##### Implementation Example: File Context Variable
+
+The following code registers a file context variable provider along with its label provider:
+
+```ts
+export default new ContainerModule(bind => {
+    ...
+    // the plain variable registration
+    bind(AIVariableContribution).to(FileVariableContribution).inSingletonScope();
+    // the registration of the additional support contributions, such as the drag-and-drop handler, auto-completion, etc.
+    bind(AIVariableContribution).to(FileChatVariableContribution).inSingletonScope();
+    // the label provider controlling how the context element is displayed in the chat input
+    bind(ContextFileVariableLabelProvider).toSelf().inSingletonScope();
+    bind(LabelProviderContribution).toService(ContextFileVariableLabelProvider);
+    ...
+});
+```
+
+#### File Variable Provider
+
+This provider resolves a file variable by reading the contents of the specified file. Note the difference: it returns a `value` (e.g., a workspace-relative file path) which will be inserted in to the user request when `#file:abc.txt` is used, and a `contextValue` (the file’s actual content) for further processing of the agent.
+
+```ts
+export const FILE_VARIABLE: AIVariable = {
+    id: 'file-provider',
+    description: 'Resolves the path and the contents of a file',
+    name: 'file',
+    label: 'File',
+    // specifies the icon to be used in the user interface for selecting this variable type
+    iconClasses: codiconArray('file'),
+    // sets this variable as a context variable
+    isContextVariable: true,
+    // specifying the arguments this variable takes (the URI of the file)
+    args: [{ name: 'uri', description: 'The URI of the requested file.' }]
+};
+
+@injectable()
+export class FileVariableContribution implements AIVariableContribution, AIVariableResolver {
+    @inject(FileService)
+    protected readonly fileService: FileService;
+
+    @inject(WorkspaceService)
+    protected readonly wsService: WorkspaceService;
+
+    registerVariables(service: AIVariableService): void {
+        service.registerResolver(FILE_VARIABLE, this);
+    }
+
+    async canResolve(request: AIVariableResolutionRequest, _: AIVariableContext): Promise<number> {
+        return request.variable.name === FILE_VARIABLE.name ? 1 : 0;
+    }
+
+    async resolve(request: AIVariableResolutionRequest, _: AIVariableContext): Promise<ResolvedAIContextVariable | undefined> {
+        //...
+        try {
+            const content = await this.fileService.readFile(path);
+            return {
+                variable: request.variable,
+                value: await this.wsService.getWorkspaceRelativePath(path),
+                contextValue: content.value.toString(),
+            };
+        } catch (error) {
+            return undefined;
+        }
+    }
+    //...
+}
+```
+
+#### File Chat Variable Contributions
+
+To enhance usability, an additional `FrontendVariableContribution` can be provided  to handle argument picking, auto-completion, and drag-and-drop support for file context variables.
+
+```ts
+export class FileChatVariableContribution implements FrontendVariableContribution {
+    @inject(FileService)
+    protected readonly fileService: FileService;
+
+    @inject(WorkspaceService)
+    protected readonly wsService: WorkspaceService;
+
+    @inject(QuickInputService)
+    protected readonly quickInputService: QuickInputService;
+
+    @inject(QuickFileSelectService)
+    protected readonly quickFileSelectService: QuickFileSelectService;
+
+    registerVariables(service: FrontendVariableService): void {
+        service.registerArgumentPicker(FILE_VARIABLE, this.triggerArgumentPicker.bind(this));
+        service.registerArgumentCompletionProvider(FILE_VARIABLE, this.provideArgumentCompletionItems.bind(this));
+        service.registerDropHandler(this.handleDrop.bind(this));
+    }
+
+    protected async triggerArgumentPicker(): Promise<string | undefined> {
+        // triggered when the user auto-completes the variable name in the chat input, e.g. #file
+        // below we use the quick input service to show a file picker
+        const quickPick = this.quickInputService.createQuickPick();
+        quickPick.items = await this.quickFileSelectService.getPicks();
+
+        const updateItems = async (value: string) => {
+            quickPick.items = await this.quickFileSelectService.getPicks(value, CancellationToken.None);
+        };
+
+        const onChangeListener = quickPick.onDidChangeValue(updateItems);
+        quickPick.show();
+
+        return new Promise(resolve => {
+            quickPick.onDispose(onChangeListener.dispose);
+            quickPick.onDidAccept(async () => {
+                const selectedItem = quickPick.selectedItems[0];
+                if (selectedItem && FileQuickPickItem.is(selectedItem)) {
+                    quickPick.dispose();
+                    resolve(await this.wsService.getWorkspaceRelativePath(selectedItem.uri));
+                }
+            });
+        });
+    }
+
+    protected async provideArgumentCompletionItems(
+        model: monaco.editor.ITextModel,
+        position: monaco.Position
+    ): Promise<monaco.languages.CompletionItem[] | undefined> {
+        // triggered when the user auto-completes after `#` or `#<variable-name>:`
+        // your implementation needs to return a list of completion items
+        //...
+    }
+
+    protected async handleDrop(event: DragEvent, _: AIVariableContext): Promise<AIVariableDropResult | undefined> {
+        // triggered when the user drags an element into the chat input
+        // your implementation needs to read the `event.dataTransfer` and return a variable to add to the request
+        // and optionally a text to add to the chat input
+        const data = event.dataTransfer?.getData('selected-tree-nodes');
+        if (!data) {
+            return undefined;
+        }
+
+        try {
+            //...
+            return { variables, text };
+        } catch {
+            return undefined;
+        }
+    }
+}
+```
+
+#### Using the Context Variables from Agents
+
+Your custom agent can now use the context variables in various ways. The context variables are available in the `context` property of the `ChatRequestModel` and apply your custom logic to decide in which way your agent passes the context data to the LLM.
+
+Your agents can use the predefined variables `#contextSummary` or `#contextDetails` in their prompt, which resolve to either a list or the full context, in your system message to transfer the attached context to the LLM. Alternatively, you can use the tool functions `~{context_ListChatContext}` and `~{context_ResolveChatContext}` to allow the LLM obtaining the context on demand. Please note that ignoring the context completly in you agent while displaying the context user interface in the chat will likely lead to unexpected user results.
+
 ### Tool Functions
 
 Tool functions allow an agent to provide capabilities to the underlying LLM. Compared to variables, it is up to the LLM to decide whether to use an available function or not. Functions can be used to allow the LLM to retrieve additional information or to trigger actions in the tool. Actions can be literally anything you want the LLM to be able to trigger, including modifications of data. Tool Functions can be used in requests, similarly to variables as shown in the following prompt example:
@@ -271,6 +464,11 @@ bind(ToolProvider).to(FileContentFunction);
 ## Custom Response Part Rendering
 
 This section explains the process of converting an LLM (Large Language Model) response into custom UI controls within the Theia AI default chat (or any custom chat implementation). Custom UI control can be specially highlighted text, clickable buttons or literally anything that you want to display to your users.
+
+Learn more about the generic concept:
+
+👉 [Introducing Interactive AI Flows in Theia AI](https://eclipsesource.com/blogs/2025/02/13/introducing-interactive-ai-flows-in-theia-ai/)
+
 As an example, we will use the command chat agent used in this documentation before, which is capable of identifying a command in the Theia IDE based on the user's request. We will augment this agent to render commands that the agent returns as buttons. By clicking the button, users can then directly invoke a command.
 
 Let’s look at the basic control flow of a chat request in Theia AI (see diagram below). The flow starts with a user request in the default Chat UI (1), which is sent to the underlying LLM (2) to return an answer (3). By default, the agent can forward the response to the Chat UI as-is. However, in our scenario, the agent will parse the response and augment it with a structured response content (4). Based on this, the chat UI can select a corresponding response part renderer to be shown in the UI (5).
@@ -472,6 +670,12 @@ Please note that Theia AI currently does not provide a fixed contribution point 
 
 Change sets in Theia AI provide a mechanism for AI agents (and therefore the underlying LLMs) to propose changes to users. These proposed changes can then be reviewed, accepted, refined, or declined by the user. Theia AI offers framework support for generic change sets, a default UI integrated in the generic, reusable chat interface and Theia AI includes a default implementation for file-based changes. This default implementation is utilized in the Theia IDE, particularly with the [Theia Coder agent](/docs/theia_coder). However, adopters can provide alternative implementations to handle different types of changes, such as modifications to databases, structured models, or other domain-specific data.
 
+Learn more about the concept:
+
+👉 [Theia AI Change Sets: Managing Complex AI Change Suggestions](https://eclipsesource.com/blogs/2025/03/11/theia-ai-change-sets-managing-complex-ai-change-suggestions/)
+
+👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
+
 ### Example usage of Change Sets
 
 The following example demonstrates how agents can propose file modifications using a change set. Please have a look at the full [example for using change sets in agents](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/change-set-chat-agent-contribution.ts).
@@ -538,4 +742,8 @@ Custom change set element implementations are identified by a `uri`, have full c
 
 ## Learn more
 
-If want to learn more about the AI support in the Theia AI, please see [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+

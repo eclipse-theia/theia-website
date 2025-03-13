@@ -77,7 +77,7 @@ const communityReleases = [
         releasedate: 'February 27th, 2025',
         releasecandidatedate: 'January 30th, 2025',
         technologiesin: 'March 6th, 2025',
-        releaseanouncement: 'March 13th, 2025',
+        releaseanouncement: 'March 19th, 2025',
         announcementurl: '',
         frameworks: [
             {
@@ -87,10 +87,12 @@ const communityReleases = [
                 modules: []
             },
             {
-                title: 'Eclipse EMF.cloud',
+                title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: '0.8.1',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.1' }
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
@@ -613,6 +615,10 @@ const communityReleases = [
 ]
 
 const monthlyReleases = [    
+    {
+        title: 'Eclipse Theia 1.59 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2025/03/07/eclipse-theia-1-59-release-news-and-noteworthy/',
+    },
     {
         title: 'Eclipse Theia 1.58 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2025/02/06/eclipse-theia-1-58-release-news-and-noteworthy/',

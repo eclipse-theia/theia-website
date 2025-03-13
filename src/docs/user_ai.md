@@ -6,9 +6,13 @@ title: Using the AI Features in the Theia IDE as an End User
 
 This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistants in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
 
-**Please note that these features are in early access and experimental. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
+**Please note that these features are in alpha state. This means they may be unstable, behave unexpectedly, or undergo significant changes. In particular, using your own LLM might incur costs that you need to monitor closely. We have not yet optimized the AI assistants in the Theia IDE for token usage. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
 
 Theia AI features within the Theia IDE are currently disabled by default. See the next section on how to enable them.
+
+Learn more about the AI-powered Theia IDE:
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
 ## Table of Contents
 - [Set-Up](#set-up)
@@ -42,11 +46,21 @@ Theia AI features within the Theia IDE are currently disabled by default. See th
 
 To activate AI support in the Theia IDE, go to Preferences and enable the setting “AI-features => AI Enable.”
 
-To use Theia AI within the Theia IDE, you need to provide access to at least one LLM. Theia IDE comes with preinstalled support for OpenAI API-compatible models, either hosted by OpenAI or self-hosted via VLLM. Additionally, Theia IDE supports connecting to models via Ollama. See the corresponding sections below on how to configure these providers.
+To use Theia AI within the Theia IDE, **you need to provide access to at least one LLM**. Theia IDE comes with preinstalled support for several LLM providers (including OpenAI API-compatible models and Anthropic). Additionally, Theia IDE supports connecting to models via Ollama. See the the [LLM Provider Overview](#llm-providers-overview) and the corresponding sections below on how to configure these providers.
+
+If you do not have access to an LLM, yet, here is an easy way to try it out:
+
+👉 [Testing the AI-Powered Theia IDE and Theia AI Applications for Free Using GitHub Models](https://eclipsesource.com/blogs/2025/03/12/testing-theia-ai-with-github-models/)
 
 Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). To use a model in your IDE, configure it on a per-agent basis in the AI Configuration view.
+Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). 
+
+**To use a specific model in your IDE, configure it on a per-agent basis in the [AI Configuration view](#ai-configuration).**
+
+See also:
+
+👉 [Why Theia supports any LLM!](https://eclipsesource.com/blogs/2025/02/27/why-theia-supports-any-llm/)
 
 ### LLM Providers Overview
 
@@ -129,7 +143,7 @@ The OpenAI provider is preconfigured with a list of available models. You can ea
 
 ### OpenAI Compatible Models (e.g. via VLLM)
 
-As an alternative to using an official OpenAI account, Theia IDE also supports arbitrary models compatible with the OpenAI API (e.g., hosted via [VLLM](https://docs.vllm.ai/en/latest/)). This enables you to connect to self-hosted models with ease. To add a custom model, click on the link in the settings section and add your configuration like this:
+As an alternative to using an official OpenAI account, Theia IDE also supports arbitrary models compatible with the OpenAI API (e.g., hosted via [VLLM](https://docs.vllm.ai/en/latest/)). This enables you to connect to self-hosted models with ease. To add a custom model, click on the link in the settings section and add your configuration like the following and check the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#custom-models) for all configuration options:
 
 ```json
 {
@@ -139,7 +153,8 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
            "url": "your-URL",
            "id": "your-unique-id", // Optional: if not provided, the model name will be used as the ID
            "apiKey": "your-api-key", // Optional: use 'true' to apply the global OpenAI API key
-           "supportsDeveloperMessage": false //Optional: whether your API supports the developer message (turn off when using OpenAI on Azure)
+           "developerMessageSettings": "system" //Optional: Controls the handling of system messages: user, system, and developer will be used as a role, mergeWithFollowingUserMessage will prefix the following user message with the system message or convert the system message to user message if the next message is not a user message. skip will just remove the system message. Defaulting to developer.
+
        }
    ]
 }
@@ -147,7 +162,7 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 
 ### Azure
 
-All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section.
+All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
 
 ### Anthropic
 
@@ -237,6 +252,9 @@ Valid options for `requestSettings` depend on the model provider.
 
 This section provides an overview of the currently available agents in the Theia IDE. Agents marked as “Chat Agents” are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
 
+### Theia Coder (Chat Agent)
+An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. Furthermore, it can suggest modifications of files to the user. It can therefore assist the user with coding tasks or other tasks involving file changes. See the dedicated [Theia Coder Documentation](/docs/theia_coder) for more details.
+
 ### Universal (Chat Agent)
 
 This agent helps developers by providing concise and accurate answers to general programming and software development questions. It also serves as a fallback for generic user questions. By default, this agent does not have access to the current user context or workspace. However, you can add variables, such as `#selectedText`, to your requests to provide additional context.
@@ -249,9 +267,9 @@ This agent analyzes user requests against the descriptions of all available chat
 
 This agent is aware of all commands available in the Theia IDE and the current tool the user is working with. Based on the user request, it can find the appropriate command and let the user execute it.
 
-### Workspace (Chat Agent)
+### Architect (Chat Agent)
 
-This agent can access the user's workspace, retrieve a list of all available files, and view their content. It can answer questions about the current project, including project files and source code in the workspace, such as how to build the project, where to place source code, or where to find specific files or configurations.
+An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files. It can therefore answer questions about the current project, project files and source code in the workspace, such as how to build the project, where to put source code, where to find specific code or configurations, etc.
 
 ### Code Completion (Agent)
 
@@ -279,7 +297,34 @@ The Theia IDE provides a global chat interface where users can interact with all
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
-Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. Pressing '#' in the chat will show a list of available variables.
+Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. 
+
+### Agent Pinning
+The *Agent Pinning* feature, reduces the need for repeated agent references.  
+  
+- When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.  
+- If an agent is already pinned, mentioning a different agent will **not** change the pinned agent. Instead, the newly mentioned agent will be used **only** for that specific prompt.  
+- You can manually unpin an agent through the chat interface if needed.  
+
+<img src="../../agent-pinning.gif" alt="Pinning Agents in the Theia IDE AI Chat" style="max-width: 525px">
+
+### Context Variables
+You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. 
+
+You can also pass context files into the chat to further specify the scope of your request. To do this, drag and drop a file into the chat view, or use the auto-completion feature by typing `#file` or directly typing `#<file-name>`. 
+Note that `#file:src/my-code.ts` in the user message is replaced to the workspace-relative path, alongside attaching the file to the context. This allows adding the file content to the context and then referring to the file in the chat input text efficiently in one go.
+
+<img src="../../context-variables.png" alt="Attach Files to the Context" style="max-width: 525px">
+
+Here are some example of the most frequently used variable, you can see the full list of available variables when typing `#` in the chat input field (see also how [Theia Coder](/docs/theia_coder) uses context variables):
+
+- `#file:filePath` - Inserts the path to the specified file relative to the workspace root. After typing `#file:`, auto completed suggestions will help you specifiying a file. The suggestions are based on the recently opened files and on the file name you type.
+- `#filePath` - Shortcut for `#file:filePath`; after typing `#` following by the file name you can directly start your search for the file you want to add and reference in your message.
+- `#currentRelativeFilePath` – The relative path of the currently selected file (in the editor or explorer)
+- `#currentRelativeDirPath` – The directory path of the currently selected file
+- `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
+
+**Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
 ## AI Configuration
 
@@ -297,6 +342,8 @@ The AI Configuration View allows you to review and adapt agent-specific settings
 In the Theia IDE, you can open and edit prompts for all agents from the AI Configuration View. Prompts are shown in a text editor (see the screenshot below). Changes saved in the prompt editor will take effect with the next request made to the corresponding agent. You can reset a prompt to its default using the "Reset" button in the AI configuration view or the "Revert" toolbar item in the prompt editor (top-right corner).
 
 <img src="../../prompt-editor.png" alt="Prompt Editor in the Theia IDE" style="max-width: 800px">
+
+Note that some agents come with several prompt variants, you can choose the active variant in the drop down box. To create user-defined variants, browse to the prompt templates directory and create/copy a new file starting with the same id as the default prompt of an agent.
 
 Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the "Variables" tab of the AI Configuration View and agent-specific variables in the agent's configuration.
 
@@ -335,12 +382,15 @@ This action opens a YAML file where all available custom agents are defined. Bel
 
 Custom agents can be configured in the AI Configuration View just like other chat agents. You can enable/disable them, modify their prompt templates, and integrate variables and functions within these templates to enhance functionality.
 
-Here is the updated **MCP Integration** section with the requested changes:
-
 ## MCP Integration
 
 The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
 *Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
+
+See also this comprehensive example on how to MCP in Theia:
+👉 [Let AI commit (to) your work - With Theia AI, Git and MCP](https://eclipsesource.com/blogs/2025/03/05/theia-ai-git-and-mcp/)
+And our introduction to MCP in Theia AI:
+👉 [Introducing Anthropics's Model Context Protocol (MCP) for AI-Powered Tools in Theia AI and the Theia IDE](https://eclipsesource.com/blogs/2024/12/19/theia-ide-and-theia-ai-support-mcp/)
 
 To learn more about MCP, see the [official announcement from Anthropic](https://www.anthropic.com/news/model-context-protocol).  
 For a list of available MCP servers, visit the [MCP Servers Repository](https://github.com/modelcontextprotocol/servers).
@@ -451,7 +501,7 @@ This allows you to seamlessly integrate external services into your AI workflows
 
 ## SCANOSS
 
-The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabling developers to analyze generated code snippets for open-source compliance and licensing. This feature helps developers understand potential licensing implications when using generated code in the Chat view.
+The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabling developers to analyze generated code for open-source compliance and licensing. This feature helps developers understand potential licensing implications when using generated code.
 
 **Please note:** This feature sends a hash of suggested code snippets to the SCANOSS service hosted by the [Software Transparency Foundation](https://www.softwaretransparency.org/osskb) for analysis. While the service is free to use, very high usage may trigger rate limiting (unlikely for individual developers). Additionally, neither Theia nor SCANOSS can guarantee that no license implications exist, even if no issues are detected during the scan.
 
@@ -461,24 +511,31 @@ The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabl
 2. Navigate to **SCANOSS Mode** under the **AI Features** section.
 3. Select the desired mode:
    - **Off**: Disables SCANOSS completely.
-   - **Manual**: Allows users to trigger scans manually via the SCANOSS button on generated code snippets in the Chat view.
+   - **Manual**: Allows users to trigger scans manually via the SCANOSS button on generated code (via the [Theia Coder Agent](/docs/theia_coder/) or directly in the Chat view.
    - **Automatic**: Automatically scans generated code snippets in the Chat view.
 
 ### Manual Scanning
 
 To manually scan a code snippet:
 
-1. Generate a code snippet in the AI Chat view.
-2. Click the **SCANOSS** button in the toolbar of the code renderer embedded in the Chat view.
+1. Generate a code in the AI Chat view or via the [Theia Coder Agent](/docs/theia_coder/).
+2. Click the **SCANOSS** button in the toolbar of the code renderer embedded in the Chat view or above the changeset.
 3. A result icon will appear:
    - A **warning icon** if a match is found.
    - A **green check mark** if no matches are found.
 4. If a warning icon is displayed, click the **SCANOSS** button again to view detailed scan results in a popup window.
+
+This screenshot shows a SCANOSS match for code generated in the chat view:
+
 <img src="../../scanoss.png" alt="Scanning generated code snippets in the Theia AI chat view" style="max-width: 525px">
+
+This screenshot shows a SCANOSS match for a code change made via the Theia Coder agent:
+
+<img src="../../scanoss-coder.png" alt="Scanning generated code snippets in the Theia AI chat view" style="max-width: 525px">
 
 ### Automatic Scanning
 
-In **Automatic** mode, SCANOSS scans code snippets in the background whenever they are generated in the Chat view. Results are displayed immediately, indicating whether any matches are found.
+In **Automatic** mode, SCANOSS scans code in the background whenever they are generated in the Chat view or via the [Theia Coder Agent](/docs/theia_coder/). Results are displayed immediately, indicating whether any matches are found.
 
 ### Understanding SCANOSS Results
 
@@ -496,4 +553,6 @@ The AI History view allows you to review all communications between agents and u
 
 ## Learn more
 
-If want to learn more about the AI support in the Theia AI, please see [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
