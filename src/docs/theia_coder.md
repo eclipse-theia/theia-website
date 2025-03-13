@@ -113,4 +113,8 @@ In the default prompt Coder uses two functions to suggest changes (you can also 
 - `changeSet_replaceContentInFile`: Will only replace specific segments of text within a file. This is faster but may require multiple attempts if the content to be replaced is ambiguous or if there are many similar patterns in the code.
 Coder will usually select the best of the two functions above, based on the proposed change. If you experience continous issues, specifically, if the `changeSet_replaceContentInFile` function continously fails, you can experiment with changing the default prompt or switching to the prompt variant `coder-rewrite` which will only rewrite files.
 
-You can change any prompt related setting in the AI configuration view under **"Coder" => "Prompt Templates"**.
+## Learn more
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)

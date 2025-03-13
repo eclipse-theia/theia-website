@@ -80,44 +80,34 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
-                title: 'The Vision of Theia AI: Empowering Tool Builders with full control over AI Solutions',
-                url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',
+                title: 'Introducing the AI-powered Theia IDE: AI-driven coding with full Control',
+                url: 'https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/',
                 type: 'article'
+            },
+            {
+                title: 'Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs',
+                url: 'https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing Theia Coder - the open AI coding agent with full control',
+                url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
+                type: 'article'
+            },
+            {
+                title: 'Theia Cloud 1.0: Simplifying Deployment and Management of Theia-Based Tools in Kubernetes',
+                url: 'https://eclipsesource.com/blogs/2025/01/30/theia-cloud-release-1/',
+                type: 'article'
+            },
+            {
+                title: 'The Eclipse Theia Update 2024',
+                url: 'https://eclipsesource.com/blogs/2024/12/18/eclipse-theia-news-2024/',
+                type: 'video'
             },
             {
                 title: 'Introducing the Theia IDE',
                 url: 'https://eclipsesource.com/blogs/2024/06/27/introducing-the-theia-ide/',
                 type: 'article'
-            },
-            {
-                title: 'Eclipse Foundation Introduces the Theia',
-                url: 'https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-theia-ide-elevate-modern-developer-experience',
-                type: 'article'
-            },
-            {
-                title: 'The Eclipse Theia Update 2023',
-                url: 'https://youtu.be/2rbMtztIHgw?si=3a1hw892rPT-lW6d',
-                type: 'video'
-            },
-            {
-                title: 'The Eclipse Theia Update 2022',
-                url: 'https://eclipsesource.com/blogs/2022/12/20/the-eclipse-theia-update-2022/',
-                type: 'article'
-            },
-            {
-                title: 'Happy Birthday, Eclipse Theia!',
-                url: 'https://eclipsesource.com/blogs/2022/12/16/happy-birthday-eclipse-theia/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia 5 Year Anniversary Celebration',
-                url: 'https://www.youtube.com/watch?v=Th1pC-yT1Ac&t=1s',
-                type: 'video'
-            },
-            {
-                title: 'TheiaCon 2022 Panel - The past, present and future',
-                url: 'https://youtu.be/gHOxuuyalH4',
-                type: 'video'
             },
         ]
     },
@@ -150,18 +140,23 @@ const categories = [
         title: 'Introductions to Eclipse Theia',
         resources: [
             {
+                title: 'Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools!',
+                url: 'https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/',
+                type: 'article'
+            },
+            {
                 title: 'The Theia IDE vs VS Code',
                 url: 'https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/',
                 type: 'article'
             },
             {
-                title: 'Getting started with Eclipse Theia',
-                url: 'https://youtu.be/KFmhzmPtAY0',
-                type: 'video'
+                title: 'Eclipse Theia vs. VS Code OSS',
+                url: 'https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/',
+                type: 'article'
             },
             {
-                title: 'Why Eclipse Theia',
-                url: 'https://youtu.be/xs0haWTulrY',
+                title: 'Getting started with Eclipse Theia',
+                url: 'https://youtu.be/KFmhzmPtAY0',
                 type: 'video'
             },
             {
@@ -175,9 +170,9 @@ const categories = [
                 type: 'article'
             },
             {
-                title: '5 Reasons to Adopt Eclipse Theia',
-                url: 'https://blogs.eclipse.org/post/brian-king/5-reasons-adopt-eclipse-theia',
-                type: 'video'
+                title: 'Getting Started with Eclipse Theia Towards A Common Platform for Automotive',
+                url: 'https://eclipsesource.com/blogs/2025/01/10/eclipse-theia-common-platform-for-automotive/',
+                type: 'article'
             },
             {
                 title: 'The Eclipse Theia Architecture',
@@ -190,23 +185,8 @@ const categories = [
                 type: 'video'
             },
             {
-                title: 'Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools!',
-                url: 'https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/',
-                type: 'article'
-            },
-            {
                 title: 'Eclipse Theia is the next generation Eclipse RCP?!',
                 url: 'https://eclipsesource.com/blogs/2022/03/16/eclipse-theia-is-the-next-generation-eclipse-rcp/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia is the next generation of Eclipse!',
-                url: 'https://eclipse-foundation.blog/2022/04/19/eclipse-theia-is-the-next-generation-of-eclipse/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia Builds Momentum',
-                url: 'https://blogs.eclipse.org/post/brian-king/eclipse-theia-builds-momentum',
                 type: 'article'
             }
         ]
@@ -214,6 +194,11 @@ const categories = [
     {
         title: 'Eclipse Theia Adopter Stories',
         resources: [
+            {
+                title: 'Exploring Real-World Applications of Theia: Insights from TheiaCon 2024',
+                url: 'https://eclipsesource.com/blogs/2025/01/23/exploring-real-world-applications-of-theia-theiacon/',
+                type: 'article'
+            },
             {
                 title: 'How to get visible as a Theia adopter and contributor',
                 url: 'https://eclipsesource.com/blogs/2023/11/22/how-to-become-visible-theia-adopter/',
@@ -245,11 +230,6 @@ const categories = [
         title: 'Technical topics about Eclipse Theia',
         resources: [
             {
-                title: 'Eclipse Theia vs. VS Code OSS',
-                url: 'https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/',
-                type: 'article'
-            },
-            {
                 title: 'VS Code extensions vs. Theia extensions',
                 url: 'https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/',
                 type: 'article'
@@ -275,28 +255,28 @@ const categories = [
         title: 'Topics related to Eclipse Theia',
         resources: [
             {
+                title: 'Is Forking VS Code a Good Idea?',
+                url: 'https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/',
+                type: 'article'
+            },
+            {
+                title: 'Modern (web-based) Tool and IDEs: Definitions, Concepts and Architecture',
+                url: 'https://eclipsesource.com/blogs/2025/02/04/modern-web-based-tool-and-ide-definitions-concepts-architecture/',
+                type: 'article'
+            },
+            {
+                title: 'How to Build a Custom IDE or Tool',
+                url: 'https://eclipsesource.com/blogs/2025/02/26/how-to-build-a-custom-ide-or-tool/',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Foundation Introduces Open Collaboration Tools (OCT) to Transform Remote Development',
                 url: 'https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-open-collaboration-tools-oct-transform-remote',
                 type: 'article'
             },
             {
-                title: 'Eclipse Theia compared to VS Code',
-                url: 'https://eclipsesource.com/blogs/2019/12/06/the-eclipse-theia-ide-vs-vs-code/',
-                type: 'article'
-            },
-            {
-                title: 'Migrating Eclipse plugins to Eclipse Theia or VS Code',
-                url: 'https://eclipsesource.com/blogs/2021/05/27/migrating-eclipse-plugins-to-eclipse-theia-or-vs-code/',
-                type: 'article'
-            },
-            {
                 title: 'Building diagram editors in Eclipse Theia with GLSP',
                 url: 'https://eclipsesource.com/blogs/2021/03/03/building-diagram-editors-in-eclipse-theia-with-glsp/',
-                type: 'article'
-            },
-            {
-                title: 'Eclipse Theia compared to Eclipse Che',
-                url: 'https://eclipsesource.com/blogs/2018/12/03/eclipse-che-vs-eclipse-theia/',
                 type: 'article'
             },
             {
@@ -307,28 +287,53 @@ const categories = [
         ]
     },
     {
-        title: 'Theia AI',
+        title: 'Theia AI and AI-powered Theia IDE',
         resources: [
             {
-                title: 'Introducing Theia AI: Build AI-Enhanced Tools with Ease!',
-                url: 'https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/',
+                title: 'Introducing the AI-powered Theia IDE: AI-driven coding with full Control',
+                url: 'https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/',
                 type: 'article'
             },
             {
-                title: 'Introducing AI Support in Theia IDE: The First Open, Transparent AI-Enhanced Development Environment',
-                url: 'https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/',
+                title: 'Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs',
+                url: 'https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing Theia Coder - the open AI coding agent with full control',
+                url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
+                type: 'article'
+            },
+            {
+                title: 'Theia AI Change Sets: Managing Complex AI Change Suggestions',
+                url: 'https://eclipsesource.com/blogs/2025/03/11/theia-ai-change-sets-managing-complex-ai-change-suggestions/',
+                type: 'article'
+            },
+            {
+                title: 'Let AI commit (to) your work - With Theia AI, Git and MCP',
+                url: 'https://eclipsesource.com/blogs/2025/03/05/theia-ai-git-and-mcp/',
+                type: 'article'
+            },
+            {
+                title: 'Why Theia supports any LLM!',
+                url: 'https://eclipsesource.com/blogs/2025/02/27/why-theia-supports-any-llm/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing Interactive AI Flows in Theia AI',
+                url: 'https://eclipsesource.com/blogs/2025/02/13/introducing-interactive-ai-flows-in-theia-ai/',
+                type: 'article'
+            },
+            {
+                title: 'Enhancing Your Tools with Chat Context in Theia AI',
+                url: 'https://eclipsesource.com/blogs/2025/03/04/enhancing-your-tools-with-chat-context-in-theia-ai/',
                 type: 'article'
             },
             {
                 title: 'Building AI-Powered Tools and IDEs: Practical Techniques',
                 url: 'https://eclipsesource.com/blogs/2024/10/28/building-ai-powered-tools-and-ides/',
                 type: 'article'
-            },
-            {
-                title: 'Introducing Custom Chat Agents in Theia IDE: Automate Your Workflows with Ease',
-                url: 'https://eclipsesource.com/blogs/2024/11/06/custom-cat-agents-theia-ide/',
-                type: 'article'
-            },      
+            },    
             {
                 title: 'The Vision of Theia AI: Empowering Tool Builders with Full Control over AI Solutions',
                 url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',

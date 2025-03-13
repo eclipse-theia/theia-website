@@ -12,6 +12,10 @@ To learn how to generally extend Theia by creating Theia extensions, including A
 
 High Level Architecture of Theia AI
 
+Learn more about Theia AI:
+
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
 ## Table of Contents
 
 - [Creating Agents with Theia AI](#creating-agents-with-theia-ai)
@@ -738,4 +742,8 @@ Custom change set element implementations are identified by a `uri`, have full c
 
 ## Learn more
 
-If want to learn more about the AI support in the Theia AI, please see [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/), [our article on the vision of Theia AI](https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/) and the demonstrations in [Sneak Preview Series about Theia AI](https://eclipsesource.com/blogs/2024/09/18/theia-ai-sneak-preview-transparent-code-completion/)
+👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
+👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
+
+
