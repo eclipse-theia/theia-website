@@ -124,11 +124,6 @@ const Header = () => (
                         <a className="btn" href="theia-platform/">Explore the Theia Platform</a>
                  </div>
                 <CommonNews/>
-                <div className="header__banner">
-                    <h2 style={{ fontSize: '2.2rem' }}>
-                        Theia IDE is now generally available! Read our <a href="https://newsroom.eclipse.org/news/announcements/eclipse-foundation-introduces-theia-ide-elevate-modern-developer-experience">press release</a> and <a href="https://eclipsesource.com/blogs/2024/06/27/introducing-the-theia-ide/">blog post</a> for more details!
-                    </h2>       
-                </div>
                 </div>
         </header>
     </StyledHeader>

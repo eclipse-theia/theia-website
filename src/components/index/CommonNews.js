@@ -13,6 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
+import React from 'react'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
@@ -22,6 +23,11 @@ const PlatformHeader = () => (
             <br />
             In case you missed TheiaCon 2024, all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaQAGs0tr_ZSv3h2GKH2G50X">here</a>!
         </h2>
+        <br />
+        <h2 style={{ fontSize: '2.rem' }}>
+            <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/">Theia AI is now generally available</a> - <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/">AI features in the Theia IDE are now in alpha</a>!
+        </h2>
+
     </div>
 )
 
