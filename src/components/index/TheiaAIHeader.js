@@ -118,7 +118,7 @@ const PlatformHeader = () => (
                 <div className="header__buttons">
                         <a className="btn" href="https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/" target="_blank">Read more about Theia AI</a>
                         <a className="btn" href="/docs/theia_ai" target="_blank" rel="noopener noreferrer">Theia AI Documentation</a>
-                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="/#theiaide" rel="noopener">Get the AI-powered Theia IDE</a>
+                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="/#theiaide" rel="noopener">Try Theia AI in the Theia IDE</a>
                  </div>
                 </div>
                 <CommonNews/>
