@@ -29,7 +29,7 @@ const TheiaAIOutro = () => (
             <div className="row">
                 <h1>Feature Requests, Bug Reports and Support</h1>
                 Help us make the Theia AI even better, by <a href="https://github.com/eclipse-theia/theia/discussions">sharing your experience and suggestions</a>.
-                Please refer to the <a href="docs/theia_ai/">Theia AI Documentation</a> and the <a href="docs/user_ai/">User Documentation for the AI-powered Theia IDE</a>.
+                Please refer to the <a href="/docs/theia_ai/">Theia AI Documentation</a> and the <a href="/docs/user_ai/">User Documentation for the AI-powered Theia IDE</a>.
                 Need further help with Theia? To get support by the community go to the <a href="https://github.com/eclipse-theia/theia/discussions">Discussions at GitHub</a>. To get professional support for Theia see the <a href="./support/">support page</a>.
             </div>
     
