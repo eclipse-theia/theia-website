@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet">
+  <!-- Simple puzzle pieces representing integrations -->
+  <path d="M8 8 L14 8 L14 14 L8 14 Z" fill="#626262"/>
+  <path d="M18 8 L24 8 L24 14 L18 14 Z" fill="#626262"/>
+  <path d="M8 18 L14 18 L14 24 L8 24 Z" fill="#626262"/>
+  <path d="M18 18 L24 18 L24 24 L18 24 Z" fill="#626262"/>
+  
+  <!-- Connection notches -->
+  <path d="M14 10 L18 10 L18 12 L14 12 Z" fill="#626262"/>
+  <path d="M10 14 L12 14 L12 18 L10 18 Z" fill="#626262"/>
+  <path d="M14 20 L18 20 L18 22 L14 22 Z" fill="#626262"/>
+  <path d="M20 14 L22 14 L22 18 L20 18 Z" fill="#626262"/>
+</svg>
