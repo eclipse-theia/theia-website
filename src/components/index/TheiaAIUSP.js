@@ -49,7 +49,7 @@ const features = [
         paragraphs: [ 
         'Design custom AI interactions with flexible chat interfaces, inline suggestions, or entirely custom UI elements that integrate seamlessly into your tool environment.',
         <>
-        👉 <a href="https://eclipsesource.com/blogs/2025/03/12/beyond-ai-chat-agents-with-theia-ai/</>">Beyond AI Chat Agents with Theia AI</a>
+        👉 <a href="https://eclipsesource.com/blogs/2025/03/12/beyond-ai-chat-agents-with-theia-ai/">Beyond AI Chat Agents with Theia AI</a>
         </>]
     },
     {
