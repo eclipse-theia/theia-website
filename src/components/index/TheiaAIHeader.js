@@ -107,13 +107,10 @@ const PlatformHeader = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <h1 className="heading-primary">
-                    Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs
+                    Theia AI: Building Custom AI-native Tools and IDEs
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                👉 The <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> is an open, flexible and transparent AI coding tool based on Theia AI.
-                </h2>
-                <h2 style={{ fontSize: '2.1rem' }}>
-                👉 Theia AI is part of the <a href="/theia-platform" target="_blank">Theia Platform</a> to efficiently build Cloud & Desktop IDEs and tools.
+                Theia AI is an open framework, part of the <a href="/theia-platform" target="_blank">Theia Platform</a>, for building custom, AI-native Cloud & Desktop tools and IDEs. The <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> is an open, flexible and transparent AI coding tool based on Theia AI.
                 </h2>
                 <div className="header__buttons">
                         <a className="btn" href="https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/" target="_blank">Read more about Theia AI</a>
