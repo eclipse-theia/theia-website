@@ -73,12 +73,58 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.58.x (2025-02) - planned',
+        name: 'Theia 1.61.x (2025-05) - planned',
+        releasedate: 'May 28th, 2025',
+        releasecandidatedate: 'April 24th, 2025',
+        technologiesin: 'June 5th, 2025',
+        releaseanouncement: 'June 12th, 2025',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse EMF cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer Extension for Theia Applications',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
+        name: 'Theia 1.58.x (2025-02) - published',
         releasedate: 'February 27th, 2025',
         releasecandidatedate: 'January 30th, 2025',
         technologiesin: 'March 6th, 2025',
         releaseanouncement: 'March 19th, 2025',
-        announcementurl: '',
+        announcementurl: 'https://eclipsesource.com/blogs/2025/03/19/the-eclipse-theia-community-release-2025-02/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
