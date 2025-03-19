@@ -234,6 +234,9 @@ class Nav extends React.Component {
                             <Link to="/theia-platform/" className="nav__link">Theia Platform</Link>
                         </li>
                         <li className="nav__item">
+                            <Link to="/theia-ai/" className="nav__link" activeClassName="active">Theia AI</Link>
+                        </li>
+                        <li className="nav__item">
                             <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
                         </li>
                         <li className="nav__item">
@@ -242,12 +245,10 @@ class Nav extends React.Component {
                         <li className="nav__item">
                             <Link to="/support/" className="nav__link">Support</Link>
                         </li>
-                        <li className="nav__item">
-                            <Link to="/releases/" className="nav__link">Releases</Link>
-                        </li>
                         <li className="nav__item nav__dropdown">
-                            Resources <b className="caret"></b>
+                            More <b className="caret"></b>
                             <ul className="dropdown-menu">
+                                <li><Link to="/releases/" className="nav__link">Releases</Link></li>
                                 <li><Link to="/blogs/" className="nav__link">Blogs</Link></li>
                                 <li><Link to="/resources/" className="nav__link">Other Resources</Link></li>
                             </ul>
