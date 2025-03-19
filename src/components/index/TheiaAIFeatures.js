@@ -188,7 +188,7 @@ const TheiaAIFeatures = ({ adopters }) => {
                 <div className="promo__text">
                     <h3 className="heading-tertiary">Specialized AI Agents</h3>
                     <p>Build AI agents customized for your domain's knowledge and workflows with ready components for function calling, context retrieval, multi-turn conversations, custom UX elements and integration with external AI components.</p>
-                    <a href="https://theia-ide.org/docs/theia-ai/" className="text-indigo-600 hover:text-indigo-800 font-medium">Learn more about developing custom agents →</a>
+                    <a href="https://theia-ide.org/docs/theia_ai/" className="text-indigo-600 hover:text-indigo-800 font-medium">Learn more about developing custom agents →</a>
                 </div>
                 <div className="promo__media" onClick={() => openModal(GlspFixWithAI, "video/mp4")}>
                     <div className="expand-icon">⤢</div>
@@ -202,7 +202,7 @@ const TheiaAIFeatures = ({ adopters }) => {
                 <div className="promo__text">
                     <h3 className="heading-tertiary">Interactive AI Workflows</h3>
                     <p>Move beyond one-shot responses with AI agents that engage users in dynamic, multi-step interactions, presenting actionable options and guiding through complex workflows.</p>
-                    <a href="https://theia-ide.org/docs/theia-ai/interactive-flows" className="text-indigo-600 hover:text-indigo-800 font-medium">Explore interactive AI flows →</a>
+                    <a href="https://eclipsesource.com/blogs/2025/02/13/introducing-interactive-ai-flows-in-theia-ai/" className="text-indigo-600 hover:text-indigo-800 font-medium">Explore interactive AI flows →</a>
                 </div>
                 <div className="promo__media" onClick={() => openModal(AskAndContinue, "video/webm")}>
                     <div className="expand-icon">⤢</div>
@@ -230,7 +230,7 @@ const TheiaAIFeatures = ({ adopters }) => {
                 <div className="promo__text">
                     <h3 className="heading-tertiary">Organized Change Suggestions</h3>
                     <p>Keep AI-proposed changes organized through structured Change Sets that separate suggestions from conversation, enabling users to systematically review complex modifications.</p>
-                    <a href="https://theia-ide.org/docs/theia-ai/change-sets" className="text-indigo-600 hover:text-indigo-800 font-medium">Discover how change sets simplify suggestions →</a>
+                    <a href="https://eclipsesource.com/blogs/2025/03/11/theia-ai-change-sets-managing-complex-ai-change-suggestions/" className="text-indigo-600 hover:text-indigo-800 font-medium">Discover how change sets simplify suggestions →</a>
                 </div>
                 <div className="promo__media" onClick={() => openModal(CustomChangeSet, "video/webm")}>
                     <div className="expand-icon">⤢</div>
