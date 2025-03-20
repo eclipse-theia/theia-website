@@ -115,7 +115,9 @@ const supporters = [
         link: 'https://eclipsesource.com',
         support: 'https://eclipsesource.com/technology/eclipse-theia/',
         training: 'https://eclipsesource.com/technology/eclipse-theia/#training',
-        sponsored: 'https://eclipsesource.com/technology/eclipse-theia/#sponsored'
+        sponsored: 'https://eclipsesource.com/technology/eclipse-theia/#sponsored',
+        tool: 'https://eclipsesource.com/services/tools/',
+        ai: 'https://eclipsesource.com/services/ai-in-tools-and-ides/'
     },
     {
         img: TypeFoxLogo,
@@ -123,7 +125,8 @@ const supporters = [
         link: 'https://typefox.io',
         support: 'https://www.typefox.io/cloud-and-desktop-ides/',
         training: 'https://www.typefox.io/cloud-and-desktop-ides/',
-        sponsored: 'https://www.typefox.io/cloud-and-desktop-ides/'
+        sponsored: 'https://www.typefox.io/cloud-and-desktop-ides/',
+        tool: 'https://www.typefox.io/cloud-and-desktop-ides/'
     }
 ]
 
@@ -146,7 +149,7 @@ const Support = () => (
             <div className={`support__container ${Math.random() < 0.5 && 'reverse'}`}>
                 {
                     supporters.map(
-                        ({title, link, img, training, support, sponsored},i) => {
+                        ({title, link, img, training, support, sponsored, tool, ai},i) => {
                             return(
                             <div key={`${i}_${title}`} className="supporter">
                                 <div>
@@ -154,6 +157,8 @@ const Support = () => (
                                     <h3 className="heading-tertiary"><a href={support}>Support</a></h3>
                                     <h3 className="heading-tertiary"><a href={training}>Training</a></h3>
                                     {(sponsored) && <h3 className="heading-tertiary"><a href={sponsored}>Sponsored Development</a></h3>}
+                                    {(tool) && <h3 className="heading-tertiary"><a href={tool}>Custom Tools & IDEs</a></h3>}
+                                    {(ai) && <h3 className="heading-tertiary"><a href={ai}>AI-powered Tools & IDEs</a></h3>}
                                 </div>
                             </div>)
                         }
