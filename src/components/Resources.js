@@ -90,6 +90,11 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'Eclipse Theia: The DeepSeek of AI Tooling?',
+                url: 'https://thenewstack.io/eclipse-theia-the-deepseek-of-ai-tooling/',
+                type: 'article'
+            },
+            {
                 title: 'Introducing Theia Coder - the open AI coding agent with full control',
                 url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
                 type: 'article'
