@@ -14,6 +14,8 @@ Learn more about the AI-powered Theia IDE:
 
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
+👉 [Download the AI-powered Theia IDE](/#theiaide)
+
 ## Table of Contents
 - [Set-Up](#set-up)
   - [LLM Providers Overview](#llm-providers-overview)
@@ -557,3 +559,5 @@ The AI History view allows you to review all communications between agents and u
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
+👉 [Download the AI-powered Theia IDE](/#theiaide)

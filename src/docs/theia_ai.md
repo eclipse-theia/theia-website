@@ -4,6 +4,8 @@ title: Building Custom AI assistants and AI support with Theia AI
 
 # Building Custom AI assistants and AI support with Theia AI
 
+> **Note for end users**: This documentation is for **tool builders** who want to create AI capabilities in their own tools. If you're looking for the AI-powered Theia IDE as an **end user**, please see the [user documentation](/docs/user_ai/) or go to the [download page](/#theiaide) to get Theia IDE.
+
 This section explains how to build custom AI assistants and integrate AI support into custom tools and IDEs using Theia AI. Theia AI, part of the Theia Platform, is a powerful framework designed to help tool builders integrate tailored AI capabilities into their tools and IDEs with ease (see also [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/)). It provides reusable components, prompt management, LLM integration, and flexible user interfaces, allowing you to focus on delivering domain-specific AI features. This section is targeted at tool builders using Theia and Theia AI as a platform to build custom tools and IDEs. 
 For detailed information on how to use the experimental AI features in the Theia IDE as an end user, refer to the [user documentation](/docs/user_ai/). 
 To learn how to generally extend Theia by creating Theia extensions, including AI ones, visit the [extension authoring guide](/docs/authoring_extensions/).
