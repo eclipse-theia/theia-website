@@ -296,7 +296,7 @@ This agent assists with writing and executing terminal commands. Based on the us
 
 ## Chat
 
-The Theia IDE provides a global chat interface where users can interact with all chat agents. The Orchestrator automatically delegates user requests to the most appropriate agent. To send a request directly to a specific agent, mention the agent's name using '@', for example, '@Command'. Press '@' in the chat to see a list of available chat agents.
+The Theia IDE provides a global chat interface where users can interact with all chat agents. The Orchestrator automatically delegates user requests to the most appropriate agent. **To get more reliable results, it is preferred to talk to a specific agent directly. Use the '@' symbol in the beginning of your message to specify an agent, for example, '@Coder'.** Press '@' in the chat to see a list of available chat agents.
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 

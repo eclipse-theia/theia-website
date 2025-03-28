@@ -12,7 +12,7 @@ Learn more about Theia Coder and see it in action:
 👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
 
 ## Using Theia Coder
-Theia Coder functions is a chat agent within Theia AI Chat. To interact with it, simply type `@Coder` followed by your request in the chat. This will also pin `@Coder` for the ongoing chat session, so in hte following messages, you don't need to use `@Coder` again.
+Theia Coder is a chat agent within Theia AI Chat. **To interact with it, simply type `@Coder` followed by your request in the chat**. This will also pin `@Coder` for the ongoing chat session, so in the following messages, you don't need to mention `@Coder` again.
 
 ### Key Capabilities
 1. **Retrieving Context**: Coder can browse the current workspace to find and read the content of relevant code files. As a user, you can augment your queries by mentioning or attaching specific files as context information to your chat messages to get faster and more accurate responses from Theia Coder.
