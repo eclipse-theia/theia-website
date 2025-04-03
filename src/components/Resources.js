@@ -310,6 +310,11 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'Getting Started with Theia Coder: The Flexible AI Coding Assistant for Theia IDE | No Vendor Lock-in',
+                url: 'https://youtu.be/J1FECv6emEg?si=QKi3NY41t0Rd_4cc',
+                type: 'video'
+            },
+            {
                 title: 'Theia AI Change Sets: Managing Complex AI Change Suggestions',
                 url: 'https://eclipsesource.com/blogs/2025/03/11/theia-ai-change-sets-managing-complex-ai-change-suggestions/',
                 type: 'article'
