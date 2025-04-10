@@ -93,15 +93,13 @@ const TheiaIDEDownloads = () => (
                     <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos/TheiaIDE.dmg&r=1" rel="noopener">MacOS (x86)¹</a>
                 </div>
                  <div className="header__buttons">
-                    <a className="btn btn--cta" href="https://github.com/eclipse-theia/theia-ide/releases/download/pre-release/TheiaIDE.dmg" rel="noopener">MacOS (ARM, <i>experimental</i>)²</a>
-                    <a className="btn btn--cta" href="https://snapcraft.io/theia-ide" rel="noopener">Linux (Snap)³</a>
+                    <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos-arm/TheiaIDE.dmg&r=1" rel="noopener">MacOS (ARM)</a>
+                    <a className="btn btn--cta" href="https://snapcraft.io/theia-ide" rel="noopener">Linux (Snap)²</a>
                  </div>
                  <center>
                  <i>¹ The Mac x86 version might run slow and unstable on recent ARM systems. Please try our new dedicated ARM build.</i>
                  <br></br>
-                 <i>² The Mac ARM version is new and still experimental. Updates may not work as expected yet.</i>
-                 <br></br>
-                 <i>³ Community-maintained build. Updates from within the IDE don't work, but only via Snap.</i>
+                 <i>² Community-maintained build. Updates from within the IDE don't work, but only via Snap.</i>
                  <br></br>
                  <br></br>
                  You can also <a href="https://try.theia-cloud.io/">try the latest version of the Theia IDE online</a>. The online test version is limited to 30 minutes per session and hosted via <a href="https://github.com/eclipsesource/theia-cloud">Theia.cloud</a>.<br></br>
