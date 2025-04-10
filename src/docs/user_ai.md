@@ -23,24 +23,34 @@ Learn more about the AI-powered Theia IDE:
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
   - [Azure](#azure)
   - [Anthropic](#anthropic)
+  - [Google AI](#google-ai)
   - [Hugging Face](#hugging-face)
-  - [LlamaFile](#llamafile-models)
+  - [LlamaFile Models](#llamafile-models)
   - [Ollama](#ollama)
   - [Custom Request Settings](#custom-request-settings)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
-  - [Theia Coder - AI Coding assistant (separate page)](/docs/theia_coder)
+  - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
   - [Universal (Chat Agent)](#universal-chat-agent)
   - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
   - [Command (Chat Agent)](#command-chat-agent)
-  - [Workspace (Chat Agent)](#workspace-chat-agent)
+  - [Architect (Chat Agent)](#architect-chat-agent)
   - [Code Completion (Agent)](#code-completion-agent)
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
 - [Chat](#chat)
+  - [Agent Pinning](#agent-pinning)
+  - [Context Variables](#context-variables)
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Custom Agents](#custom-agents)
 - [MCP Integration](#mcp-integration)
+  - [Configuring MCP Servers](#configuring-mcp-servers)
+  - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
+  - [Using MCP Server Functions](#using-mcp-server-functions)
 - [SCANOSS](#scanoss)
+  - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
+  - [Manual Scanning](#manual-scanning)
+  - [Automatic Scanning](#automatic-scanning)
+  - [Understanding SCANOSS Results](#understanding-scanoss-results)
 - [AI History](#ai-history)
 - [Learn more](#learn-more)
 
@@ -109,6 +119,13 @@ Below is an overview of various Large Language Model (LLM) providers supported w
     <td>Beta</td>
   </tr>
   <tr>
+    <td><a href="#google-ai">Google AI</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>Experimental</td>
+  </tr>
+  <tr>
     <td><a href="#hugging-face">Hugging Face</a></td>
     <td>✅</td>
     <td>❌</td>
@@ -175,6 +192,16 @@ enter it in the Theia IDE settings under AI-features => Anthropics.
 
 Configure available models in the settings under AI-features => AnthropicsModels.
 Default supported models include choices like claude-3-5-sonnet-latest.
+
+### Google AI
+
+To enable Google AI models in the Theia IDE, create an API key in your Google AI account (https://aistudio.google.com/) and enter it in the Theia IDE settings under AI-features => Google AI.
+
+**Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
+
+Configure available models in the settings under AI-features => Google AI Models.
+
+<img src="../../google-ai-models.png" alt="Google AI configuration in the Theia IDE" style="max-width: 525px">
 
 ### Hugging Face
 
