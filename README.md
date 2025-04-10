@@ -41,3 +41,4 @@ For more information, see [`publish.yml`](.github/workflows/publish.yml) and [`p
 
 "Theia" is a trademark of the Eclipse Foundation
 https://www.eclipse.dev/theia
+
