@@ -28,6 +28,7 @@ Learn more about the AI-powered Theia IDE:
   - [LlamaFile Models](#llamafile-models)
   - [Ollama](#ollama)
   - [Custom Request Settings](#custom-request-settings)
+  - [Thinking Mode](#thinking-mode)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
   - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
   - [Universal (Chat Agent)](#universal-chat-agent)
@@ -277,9 +278,45 @@ Or navigate in the settings view to **`ModelSettings` => `Request Settings`**.
 
 Valid options for `requestSettings` depend on the model provider.
 
+#### Per-Chat Custom Request Settings
+
+In addition to global custom request settings, Theia AI also supports an experimental feature that allows you to define custom request settings per individual chat session. This adds flexibility by enabling on-the-fly adjustments within a single conversation.
+
+You can click an icon in the top-right corner of a chat window to access this functionality. Settings must currently be entered manually as JSON text. For example, you can adjust the temperature parameter for a particular session to make the language model more or less creative:
+
+```json
+{
+"temperature": 1
+}
+```
+
+The video below demonstrates how adjusting the temperature parameter for the Theia Code agent results in the generation of more imaginative code examples:
+
+<video src="../../effect-of-temperature.webm" controls style="max-width: 100%;"></video>
+
+This feature also unlocks the ability to use provider-specific parameters, such as Claude's new "thinking mode," which is discussed in the following section. Future updates are expected to improve the default user interface, especially for commonly used settings.
+
+### Thinking Mode
+
+Theia AI provides support for Claude's "thinking mode" when using Sonnet-3.7. By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+
+<video src="../../thinking-mode-example.webm" controls style="max-width: 100%;"></video>
+
+To enable thinking mode, you need to add the following custom request setting:
+
+```json
+"thinking": { "type": "enabled", "budget_tokens": 8192 }
+```
+
+You can configure this setting either:
+- Globally through the model settings (as described in the [Custom Request Settings](#custom-request-settings) section)
+- For a specific chat session using the chat-specific settings icon in the chat window
+
+As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
+
 ## Current Agents in the Theia IDE
 
-This section provides an overview of the currently available agents in the Theia IDE. Agents marked as “Chat Agents” are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
+This section provides an overview of the currently available agents in the Theia IDE. Agents marked as "Chat Agents" are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
 
 ### Theia Coder (Chat Agent)
 An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. Furthermore, it can suggest modifications of files to the user. It can therefore assist the user with coding tasks or other tasks involving file changes. See the dedicated [Theia Coder Documentation](/docs/theia_coder) for more details.
