@@ -262,6 +262,28 @@ Users can attach context elements to chat requests in several ways:
 
 Once attached, the context elements are displayed in the chat input to the user.
 
+#### Thinking Mode for Claude
+
+Theia AI provides support for Claude's "thinking mode" when using Sonnet-3.7. By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+
+The corresponding request settings looks like this:
+
+```json
+"thinking": {
+    "type": "enabled",
+    "budget_tokens": 8192
+}
+```
+
+As shown in the following video, we first ask Sonnet-3.7 a fairly difficult question without thinking mode enabled. It responds quickly but with an incorrect answer. We then switch to a new chat session and enable thinking mode via a chat-specific setting. This time, the model takes noticeably longer to respond. To keep the video short, we switch to a previously completed session with the same setting, and it arrives at the correct solution.
+
+<video controls>
+  <source src="../../thinking-mode-example.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
+
 ##### Implementation Example: File Context Variable
 
 The following code registers a file context variable provider along with its label provider:
