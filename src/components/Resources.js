@@ -200,6 +200,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'Texas Instruments Elevates Code Composer Studio™ with Eclipse Theia',
+                url: 'https://outreach.eclipse.foundation/theia-ti-codecomposer',
+                type: 'article'
+            },
+            {
                 title: 'Exploring Real-World Applications of Theia: Insights from TheiaCon 2024',
                 url: 'https://eclipsesource.com/blogs/2025/01/23/exploring-real-world-applications-of-theia-theiacon/',
                 type: 'article'
