@@ -440,7 +440,7 @@ This feature supports two main use cases:
 
 2. **Creating reusable project-specific prompts**: Teams can maintain a collection of shortcut prompts for common actions like "generate a test according to specifics," enabling consistent and efficient communication with AI agents within a project. See an example for this use case in the previous section. As mentioned, you can also override the prompts of the default agents with project-specific versions.
 
-In future releases, we may include preconfigured defaults such as `#project-info.prompttemplate` for specific agents like Coder or Architect.
+In future releases, we may include pre-configured defaults, such as adding `#prompt:project-info` in the system messages of specific agents like Coder or Architect.
 
 ## Prompt Fragments
 
