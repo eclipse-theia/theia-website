@@ -42,6 +42,8 @@ Learn more about the AI-powered Theia IDE:
   - [Context Variables](#context-variables)
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
+- [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
+- [Prompt Fragments](#prompt-fragments)
 - [Custom Agents](#custom-agents)
 - [MCP Integration](#mcp-integration)
   - [Configuring MCP Servers](#configuring-mcp-servers)
@@ -423,9 +425,36 @@ Tool functions are used with the following syntax:
 ``` 
 ~{functionName}
 ```
+
+## Prompt Template and Fragment Locations
+
+By default, custom prompts, prompt variants, and [prompt fragments](#prompt-fragments) are created and read from global and local directories that can be configured in the settings (Under "AI-Features"=>"Prompt Templates"). This setting is valid for all projects. In addition, the user can configure workspace-specific directories and files (available as prompts and prompt fragments) to introduce project-specific adaptations and additions.
+
+### Allow project specific prompt locations
+
+Users can specify workspace-relative directories (Also under "AI-Features"=>"Prompt Templates"), individual files, and relevant file extensions for prompt templates and fragments. Workspace specific prompts have priority, so you can override the prompts of the available agents in a workspace specific way. Furthermore, these workspace specific templates are accessible via the prompt fragment variable (e.g., `#prompt:filename`) in both the chat interface and agent prompt editors.
+
+This feature supports two main use cases:
+
+1. **Augmenting prompts with project-specific information**: Developers can create a dedicated file—such as `project-info.prompttemplate`—to include domain knowledge, architectural decisions, or coding guidelines. When referenced via `#prompt:project-info`, this information can guide AI behavior and improve prompt relevance.
+
+2. **Creating reusable project-specific prompts**: Teams can maintain a collection of shortcut prompts for common actions like "generate a test according to specifics," enabling consistent and efficient communication with AI agents within a project. See an example for this use case in the previous section. As mentioned, you can also override the prompts of the default agents with project-specific versions.
+
+In future releases, we may include preconfigured defaults such as `#project-info.prompttemplate` for specific agents like Coder or Architect.
+
+## Prompt Fragments
+
+Prompt fragments enable users to define reusable parts of prompts for recurring instructions given to an AI. These fragments can be referenced both in the chat interface (for one-time usage) and within the prompt templates of agents (to customize agents with reusable fragments). For example, users can define a prompt fragment that specifies a task, provides workspace context or coding guidelines, and then reuse it across multiple AI requests without having to repeat the full text.
+
+To support this functionality, Theia includes a special variable `#prompt:promptFragmentID` that takes the ID of a prompt fragment as an argument. In the following video, we demonstrate the usage of a prompt fragment to create a reusable workflow (documenting a file). We add a new directory to our workspace with a prompt template in it. We then make sure that the directory is configured as a location for prompt templates (also see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)). Now we can use the prompt fragment in the chat. We could also add it to the prompt template of an agent instead. Please note that for more complex workflows, Theia AI also makes it very easy to create custom agents from scratch (see [Custom Agents](#custom-agents)).
+
+<video controls src="../../prompttemplates.webm" alt="Creating and using reusable prompt fragments for common workflows" style="max-width: 100%"></video>
+
+Prompt fragments can recursively reference other fragments, variables, and tool functions, which is particularly useful for reusable additions to standard prompts, such as adding access to MCP servers.
+
 ## Custom Agents
 
-Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat.
+Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat. For simpler workflows, you might also consider using [Prompt Fragments](#prompt-fragments) instead.
 
 To define a new custom agent, navigate to the AI Configuration View and click on "Add Custom Agent".
 
