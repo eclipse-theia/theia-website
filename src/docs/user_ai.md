@@ -432,7 +432,7 @@ By default, custom prompts, prompt variants, and [prompt fragments](#prompt-frag
 
 ### Allow project specific prompt locations
 
-Users can specify workspace-relative directories (Also under "AI-Features"=>"Prompt Templates"), individual files, and relevant file extensions for prompt templates and fragments. Workspace specific prompts have priority, so you can override the prompts of the available agents in a workspace specific way. Furthermore, these workspace specific templates are accessible via the prompt fragment variable (e.g., `#prompt:filename`) in both the chat interface and agent prompt editors.
+Users can specify workspace-relative directories (settings "AI-Features"=>"Prompt Templates"), individual files, and relevant file extensions for prompt templates and fragments. Workspace-specific prompts have priority, so you can override the prompts of the available agents in a workspace-specific way. Furthermore, these workspace-specific templates are accessible via the prompt fragment variable (e.g., `#prompt:filename`) in both the chat interface and agent prompt editors.
 
 This feature supports two main use cases:
 
