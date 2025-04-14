@@ -428,7 +428,7 @@ Tool functions are used with the following syntax:
 
 ## Prompt Template and Fragment Locations
 
-By default, custom prompts, prompt variants, and [prompt fragments](#prompt-fragments) are created and read from global and local directories that can be configured in the settings (Under "AI-Features"=>"Prompt Templates"). This setting is valid for all projects. In addition, the user can configure workspace-specific directories and files (available as prompts and prompt fragments) to introduce project-specific adaptations and additions.
+By default, custom prompts, prompt variants, and [prompt fragments](#prompt-fragments) are created and read from user-wide local directories that can be configured in the settings ("AI-Features"=>"Prompt Templates"). This setting is valid for all projects. In addition, users can configure workspace-specific directories and files (available as prompts and prompt fragments) to introduce project-specific adaptations and additions.
 
 ### Allow project specific prompt locations
 
