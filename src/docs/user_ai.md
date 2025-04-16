@@ -14,6 +14,8 @@ Learn more about the AI-powered Theia IDE:
 
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
+👉 [Watch the video: AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action](https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj)
+
 👉 [Download the AI-powered Theia IDE](/#theiaide)
 
 ## Table of Contents

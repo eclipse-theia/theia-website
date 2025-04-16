@@ -18,6 +18,8 @@ Learn more about Theia AI:
 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
 
+👉 [Watch the video: AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action](https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj)
+
 ## Table of Contents
 
 - [Creating Agents with Theia AI](#creating-agents-with-theia-ai)
