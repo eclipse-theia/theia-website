@@ -49,6 +49,7 @@ Learn more about the AI-powered Theia IDE:
   - [Configuring MCP Servers](#configuring-mcp-servers)
   - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
   - [Using MCP Server Functions](#using-mcp-server-functions)
+  - [MCP Configuration View](#mcp-configuration-view)
 - [SCANOSS](#scanoss)
   - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
   - [Manual Scanning](#manual-scanning)
@@ -594,6 +595,16 @@ To use the `brave_web_search` function of the `brave-search` server, you can wri
 ```
 
 This allows you to seamlessly integrate external services into your AI workflows within the Theia IDE.
+
+### MCP Configuration View
+
+In the AI Configuration view, you can access a dedicated tab for Model Control Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. The view provides the capability to start or stop any MCP server directly from the configuration interface.
+
+Additionally, you can view all tools associated with each server. These tools can be easily copied for integration into chat-based interfaces or prompt templates. Options for copying tools include obtaining a consolidated prompt fragment representing all available tools, listing available tools to review or restrict used tools, or selecting individual tools for specific inclusion.
+
+For more details, refer to the video demonstration below. In the video, the tools from two example servers, the MCP Git server and the MCP search server, are embedded into the chat. The video also illustrates how the search tool is incorporated into the universal agent's prompt, allowing it to perform searches upon request without explicit mention in the chat.
+
+<video controls src="../../mcp-configuration.webm" alt="MCP Configuration View Demonstration" style="max-width: 100%"></video>
 
 ## SCANOSS
 
