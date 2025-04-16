@@ -310,6 +310,11 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action',
+                url: 'https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj',
+                type: 'video'
+            },
+            {
                 title: 'Introducing Theia Coder - the open AI coding agent with full control',
                 url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
                 type: 'article'
