@@ -75,7 +75,7 @@ const communityReleases = [
     {
         name: 'Theia 1.61.x (2025-05) - planned',
         releasedate: 'May 28th, 2025',
-        releasecandidatedate: 'April 24th, 2025',
+        releasecandidatedate: 'April 29th, 2025',
         technologiesin: 'June 5th, 2025',
         releaseanouncement: 'June 12th, 2025',
         announcementurl: '',
