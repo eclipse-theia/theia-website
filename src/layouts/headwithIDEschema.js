@@ -14,7 +14,7 @@ const HeadWithIDESchema = ({ canonical, title, description }) => (
                     "name": "Theia IDE",
                     "url": "https://theia-ide.org/#theiaide",
                     "image": "https://theia-ide.org/static/TheiaIDE.png",
-                    "description": "Theia IDE is a modern, open-source, and flexible development environment (IDE) for developers on desktop and browser, featuring advanced AI-powered capabilities with full control over AI interactions.",
+                    "description": "Theia IDE is a modern, open-source, and flexible development environment (IDE) for developers on desktop and browser, featuring advanced AI-powered capabilities with full control over AI interactions. It's the open alternative to VS Code (not a fork) and its AI features are the open alternative to Github Copilot, Cursor etc.",
                     "operatingSystem": "Linux, macOS, Windows",
                     "applicationCategory": "DeveloperApplication",
                     "applicationSubCategory": "IntegratedDevelopmentEnvironment",
@@ -35,8 +35,11 @@ const HeadWithIDESchema = ({ canonical, title, description }) => (
                         "open-source IDE",
                         "development environment",
                         "AI-powered IDE",
+                        "AI coding",
                         "VS Code extensions",
-                        "VS Code alternative"
+                        "VS Code alternative",
+                        "Github Copilot alternative",
+                        "Cursor alternative"
                     ],
                     "license": "Eclipse Public License 2.0",
                     "featureList": [

@@ -132,7 +132,7 @@ const TheiaIDEFeatures = ({ adopters }) => (
     <StyledPromo className="promo">
         <div className="promo__text">
            <h3 className="heading-tertiary">AI-Powered IDE (Alpha)</h3>
-            <p>Experience the future of development with <a href="/docs/user_ai/">Theia IDE's AI support</a>. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, the AI assistance offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
+            <p>Experience the future of development with <a href="/docs/user_ai/">the AI-powered Theia IDE</a>, the open alternative to Github Copilot, Cursor etc. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, the AI assistance offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
         </div>
         <div className="promo__media">
             <video autoPlay loop muted playsInline className="promo__video">
@@ -143,7 +143,7 @@ const TheiaIDEFeatures = ({ adopters }) => (
     <StyledPromo className="promo">
         <div className="promo__text">
             <h3 className="heading-tertiary">Open Source and Vendor Neutral</h3>
-            <p>The Theia IDE is backed by a diverse and healthy open source ecosystem. Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
+            <p>The Theia IDE is backed by a diverse and healthy open source ecosystem and is an open alternative to VS Code (not a fork). Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
         </div>
         <div className="promo__media">
     <LogoContainer>
