@@ -6,7 +6,7 @@ title: Tree Widget
 
 Interacting with hierarchical content is an integral part of many applications. Tree UIs are a common aspect of many user interfaces. In Theia, the `@theia/core` module provides `TreeWidget`, a common implementation of tree UIs in Theia, which can be customized in many ways to let the user work with hierarchical content. This article provides an overview of `TreeWidget`, its related classes and features, and how to implement and customize them.
 
-Note: The code snippets shown below are part of the full example available via the [Theia Extension Generator](https://github.com/eclipse-theia/generator-theia-extension/blob/master/README.md). To get started and play with the example code, generate the `TreeWidget` example using the generator.
+Note: The code snippets shown below are part of the full example available via the [Theia Extension Generator](https://github.com/eclipse-theia/generator-theia-extension/blob/master/README.md). To get started and play with the example code, generate the `TreeWidget View` example using the generator.
 
 ## Basic Building Blocks
 
@@ -88,13 +88,13 @@ const EXAMPLE_DATA: Item[] = [{
 ];
 ```
 
-This business model needs to be mapped to a hierarchy of tree nodes. These are objects that satisfy  the `TreeNode` interface, which primarily provides the `id` and `parent` properties. Each node in the tree is required to have an `id` that is unique within the tree _(Note: expect strange effects if your `id`s are not unique!)._ The `parent` property can be `undefined` initially, and will be managed by the utiltiy functions described below.
+This business model needs to be mapped to a hierarchy of tree nodes. These are objects that satisfy  the `TreeNode` interface, which primarily provides the `id` and `parent` properties. Each node in the tree is required to have an `id` that is unique within the tree _(Note: expect strange effects if your `id`s are not unique!)._ The `parent` property can be `undefined` initially, and will be managed by utiltiy functions within the `CompoiteTreeNode` namespace, which are described below.
 
 Since the `TreeNode` interface lacks a `children` property, it is only suitable for leaves in the tree. For container nodes, we need to use the interface `CompositeTreeNode` instead.
 
-But still, neither `TreeNode`, not `CompositeTreeNode` provide any way to reference our own data. Therefore, it is common practice to define custom sub-interfaces for the tree nodes.
+But still, neither `TreeNode`, not `CompositeTreeNode` provide any way to reference our own data. To address this, it is common practice to define custom sub-interfaces for the tree nodes.
 
-Let us provide these sub-interfaces along with type-checking functions and a mapping function that can create tree nodes from a given business model object:
+Let us provide these sub-interfaces along with type-checking functions:
 
 ```typescript
 export interface ExampleTreeNode extends CompositeTreeNode {
@@ -116,37 +116,64 @@ export namespace ExampleTreeLeaf {
         return TreeNode.is(candidate) && 'type' in candidate && candidate.type === 'leaf';
     }
 }
+```
 
-export namespace Item {
-    export function toTreeNode(item: Item): ExampleTreeNode | ExampleTreeLeaf {
+Additionally, let's create a factory that is able to create tree nodes from business model objects:
+
+```typescript
+@injectable()
+export class TreeViewExampleTreeItemFactory {
+    private readonly idCounter = new Map<string, number>();
+
+    public toTreeNode(item: Item): ExampleTreeNode | ExampleTreeLeaf {
         if (item.children) {
             return <ExampleTreeNode>{
-                id: item.name,
+                id: this.toTreeNodeId(item),
                 data: item,
                 children: [],
                 parent: undefined,
-                type: 'node'                
+                type: 'node'
             };
         } else {
             return <ExampleTreeLeaf>{
-                id: item.name,
+                id: this.toTreeNodeId(item),
                 data: item,
                 parent: undefined,
-                type: 'leaf'
+                type: 'leaf',
             };
         }
     }
-}
-```
 
-On this basis, we can implement the tree model as follows:
+    private toTreeNodeId(item: Item): string {
+        const key = item.name;
+        let count: number;
+        if (this.idCounter.has(key)) {
+            count = this.idCounter.get(key)!;
+        }
+        else {
+            count = 0;
+        }
+
+        this.idCounter.set(key, count + 1);
+        return `${key}-${count}`;
+    }
+}
+````
+
+As noted above, the `id` property must be unique within a tree. If a unique _ID_ is present within
+the business model (for example, because the business model is kept an a database), then we could
+just reuse that. But in our example, there is no such _ID_ which is why we calculate one based on a
+name-to-counter map in the `toTreeNodeId()` method.
+
+Now, that we have created the necessary parts, we can implement the tree model as follows:
 
 ```typescript
 export const ROOT_NODE_ID = 'treeview-example-root';
 
 @injectable()
 export class TreeViewExampleModel extends TreeModelImpl {
-    
+    @inject(TreeViewExampleTreeItemFactory) private readonly itemFactory: TreeViewExampleTreeItemFactory;
+
     @postConstruct()
     protected init(): void {
         super.init();
@@ -164,7 +191,7 @@ export class TreeViewExampleModel extends TreeModelImpl {
 
     private initChildren(parent: CompositeTreeNode, items: Item[]): void {
         items.forEach(item => {
-            const node = Item.toTreeNode(item);
+            const node = this.itemFactory.toTreeNode(item);
             CompositeTreeNode.addChild(parent, node);
             if (item.children && ExampleTreeNode.is(node)) {
                 this.initChildren(node, item.children);
@@ -176,9 +203,9 @@ export class TreeViewExampleModel extends TreeModelImpl {
 
 In this example, we initialize the tree in the `init()` method when the class is instantiated. This is not necessarily required, but it is the simplest way for our static model. In more complex scenarios, we could also call a concrete `initModel()` method from the Tree Widget implementation, for example, in the `onAfterAttach()` event handler, or we could implement the initialization asynchonously.
 
-To initialize the tree model, we first create the root node. This is a simple `CompositeTreeNode` with a well-known `id`, so we can identify it later. Note that we initialze `children` as `[]` since tree nodes should always be added via `CompositeTreeNode.addChild()`, which takes care of maintaining both the `parent` and `children` properties of the affected nodes.
+To initialize the tree model, we first create the root node. This is a simple `CompositeTreeNode` with a well-known `id`, so we can identify it later. Note that we initialze `children` as `[]` since tree nodes should always be added via `CompositeTreeNode.addChild()`. This function takes care of maintaining both the `parent` and `children` properties of the affected nodes.
 
-Next we initialize the children recursively in see `initChildren()`, so the complete tree model is populated.
+Next, we initialize the children recursively in `initChildren()`, so that the complete tree model is populated.
 
 In the last step, we assign the root node to `this.tree.root`. Note that the call order matters here, because setting the root node will cause the tree-internal id-lookup map to be initialized with the root node and all its (current) children. If we assigned the root before adding its children, the id-lookup map would be incomplete, potentially breaking some tree operations.
 
@@ -211,7 +238,7 @@ export class TreeViewExampleLabelProvider implements LabelProviderContribution {
 
 To put everything together we need to create a `ViewContribution` and register our bindings in the frontend module. The `ViewContribution` is explained in detail in its [own section](/docs/widgets/#widget-contribution) and can be implemented straightforward. The registration of the _widget factory_, on the other hand needs a bit of explanation.
 
-As we have seen above, a tree consists of several associated classes that collaborate in order to provide the logic and features behind the tree. But since we usually have multiple `TreeWidget` implementations within our application (File Explorer, Outline, ...), a simple binding would not work. This _could_ be solved using named bindings and injections, but would require subclassing all the participating classes. Therefore, the Theia framework uses a different approach by using an inversify child container which encapsulates all bindings relevant to the `TreeWidget` locally. To simplify the creation of this child container, the framework provides the function `createTreeContainer()` which creates such a child container with default settings that can be overridden one by one to customize only those parts of the concrete `TreeWidget` that need to be customized.
+As we have seen above, a tree consists of several associated classes that collaborate in order to provide the logic and features behind the tree. But since we usually have multiple `TreeWidget` implementations within our application (File Explorer, Outline, ...), a simple binding would not work. This _could_ be solved using named bindings and injections, but would require subclassing all the participating classes to get the named bindings at the respective locations. Therefore, the Theia framework uses a different approach by using an inversify child container which encapsulates all bindings relevant to the `TreeWidget` locally. To simplify the creation of this child container, the framework provides the function `createTreeContainer()` which creates such a child container with default settings that can be overridden one by one to customize only those parts of the concrete `TreeWidget` that need to be customized.
 
 With this, the frontend module can be implemented as:
 
@@ -228,10 +255,12 @@ export default new ContainerModule(bind => {
 });
 
 function createTreeViewExampleViewContainer(parent: interfaces.Container): Container {
-    return createTreeContainer(parent, {
+    const child = createTreeContainer(parent, {
         model: TreeViewExampleModel,
         widget: TreeViewExampleWidget,
     });
+    child.bind(TreeViewExampleTreeItemFactory).toSelf().inSingletonScope();
+    return child;
 }
 ```
 
@@ -243,7 +272,7 @@ If we run the simple `TreeWidget` example, we will see a tree widget that works,
 
 ### Expandable/Collapsible Tree Nodes
 
-The management of expandable/collapsible tree nodes is already built into the framework. The only thing we need to change is to make our `ExampleTreeNode` interface conform to `ExpandableTreeNode` instead of `CompositeTreeNode` and initialize the `expanded` property to `false` in the `toTreeNode()` function.
+The management of expandable/collapsible tree nodes is already built into the framework. The only thing we need to change is to make our `ExampleTreeNode` interface conform to `ExpandableTreeNode` instead of `CompositeTreeNode` and initialize the `expanded` property to `false` in the `TreeViewExampleTreeItemFactory` class.
 
 ### Lazy Child Resolution
 
@@ -253,7 +282,7 @@ So, in the `TreeViewExampleModel.init()` method, we change the initialization to
 
 ```typescript
         ...
-        EXAMPLE_DATA.map(item => Item.toTreeNode(item))
+        EXAMPLE_DATA.map(item => this.itemFactory.toTreeNode(item))
             .forEach(node => CompositeTreeNode.addChild(root, node));
         this.tree.root = root;
 ````
@@ -262,45 +291,46 @@ and implement the dynamic resolution of child nodes by subclassing `TreeImpl`:
 
 ```typescript
 export class TreeviewExampleTree extends TreeImpl {
-    override resolveChildren(parent: CompositeTreeNode): Promise<TreeNode[]> {
+    @inject(TreeViewExampleTreeItemFactory) private readonly itemFactory: TreeViewExampleTreeItemFactory;
+
+    override async resolveChildren(parent: CompositeTreeNode): Promise<TreeNode[]> {
         // root children are initialized once and never change
         if (parent.id === ROOT_NODE_ID) {
-            return Promise.resolve([...parent.children]);
+            return [...parent.children];
         }
 
         // non-container classes do not have children
         if (!ExampleTreeNode.is(parent)) {
-            return Promise.resolve([]);
+            return [];
         }
 
         // (optional) caching: if the children are resolved and no child was added/removed, reuse 
         if (parent.children.length === parent.data.children?.length) {
-            return Promise.resolve([...parent.children]);
+            return [...parent.children];
         }
 
         // simulate asynchronous loading of children
-        return new Promise(resolve => {
-            setTimeout(() => resolve(parent.data.children!.map(Item.toTreeNode)), 2000);
-        });
+        await wait(2000);
+        return (parent.data.children ?? []).map(i => this.itemFactory.toTreeNode(i));        
     }
 }
 ```
 
-Under the hood, the tree expansion is handled by the `TreeExpansionServiceImpl` implementation which maintains the `expanded` state of `ExpandableTreeNode`, sends events related to expanding and collapsing subtrees, and also calls `Tree.refresh()` for the expanded node. The `refresh()` method in turn calls `resolveChildren()` which can be implemented to asyncronously provide the child nodes for the given parent. As a bonus, `Tree.refresh()` marks the node as `busy` until the promise is resolved, leading to a nice busy marker in the form of a spinning circle if the promise is not resolved within a certain amount of time (800ms).
+Under the hood, the tree expansion is handled by the `TreeExpansionServiceImpl` implementation which maintains the `expanded` state of `ExpandableTreeNode`, sends events related to expanding and collapsing subtrees, and also calls `Tree.refresh()` for the expanded node. The `refresh()` method in turn calls `resolveChildren()` which can be implemented to asyncronously provide the child nodes for the given parent. As a bonus, `Tree.refresh()` marks the node as `busy` until the promise is resolved, leading to a nice busy marker in the form of a spinning circle if the promise is not resolved within a certain amount of time (800ms). This can be observed in this demo code due to the `wait(2000)` call.
 
 ## Tree Items with Checkboxes
 
-The `TreeWidget` framework also supports presenting and maintaining checkboxes for tree items. Adding checkboxes is as simple as initializing the `checkboxInfo` property for the tree nodes in the `toTreeNode()` function:
+The `TreeWidget` framework also supports presenting and maintaining checkboxes for tree items. Adding checkboxes is as simple as initializing the `checkboxInfo` property for the tree nodes in the `TreeViewExampleTreeItemFactory` class:
 
 ```typescript
     return <ExampleTreeLeaf>{
-        id: item.name,
+        id: this.toTreeNodeId(item),
         ...
         checkboxInfo: { checked: item.backOrdered }
     };
 ```
 
-To react to the user checking/unchecking a checkbox, for example, to update the underlying model, we can override the `TreeModel.markAsChecked()` method and provide our own implementation:
+To react to the user checking/unchecking a checkbox, for example, to update the underlying model, we can override the `TreeModel.markAsChecked()` method and provide our own implementation before calling `super`:
 
 ```typescript
     override markAsChecked(node: TreeNode, checked: boolean): void {
@@ -310,6 +340,10 @@ To react to the user checking/unchecking a checkbox, for example, to update the 
         super.markAsChecked(node, checked);
     }
 ```
+
+> **Note:** At the moment (Theia 1.60.x), there is an issue with the UI in which the
+checkbox state is not properly reflected after the user clicks it.
+See [this GitHub issue](https://github.com/eclipse-theia/theia/issues/15521) for details.
 
 ## Visual Customizations
 
@@ -353,7 +387,7 @@ In this code, the `this.toNodeIcon()` call takes care of adding the necessary `f
 
 ### Customizing Style
 
-If we run the example with the icon rendering code from the previous section, we notice that the spacing is not very nice. We could fix this by adding explicit styling to the `div` element, but for demonstration purposes, let's use a custom CSS class and an imported CSS file instead.
+If we run the example with the icon rendering code from the previous section, we notice that the spacing is not very nice. We could fix this by adding explicit inline styling to the `div` element, but for demonstration purposes, let's use a custom CSS class for the tree nodes, and an imported CSS file instead.
 
 The `TreeWidget` base class determines the CSS classes for its nodes in the `createNodeClassNames()` method. We can override this to append our own CSS class to all nodes (or only some nodes based on some conditional logic, if that was necessary):
 
@@ -366,7 +400,7 @@ protected override createNodeClassNames(node: TreeNode, props: NodeProps): strin
 To provide our styles, we import a CSS file:
 
 ```typescript
-import '../../src/browser/treeview-example-widget.css';
+import '../../src/browser/styles/treeview-example-widget.css';
 ```
 
 with the contents:
@@ -379,7 +413,7 @@ with the contents:
 
 ### Decorations
 
-If you are familiar with the classic _Eclipse Rich Client Platform_, you might be already aware of the concept of _decorations_. A _decoration_ is an addition or visual modification to a tree item that can take the form of a prefix or suffix text, font or color modification, or an overlay icon (for example, to add a small green check mark in one of the corners of the decorated icon).
+If you are familiar with the classic _Eclipse Rich Client Platform_, you might be already aware of the concept of _decorations_. A _decoration_ is an addition or visual modification to a tree item that can take the form of a prefix or suffix text, font or color modification, or an overlay icon (for example, to add a small green check mark in one of the corners of the node's main icon).
 
 Compared to the explicit styling approach described earlier, decorations offer cleaner syntax and better decoupling from the `TreeWidget`.
 
@@ -447,7 +481,7 @@ export class TreeviewExampleDemoDecorator implements TreeDecorator {
 
 As we can see from this implementation, the framework calls the `decorations()` method with the root node of the tree to decorate. We can make use of one of the provided iterator classes `DepthFirstTreeIterator`, `BreadthFirstTreeIterator`, `TopDownTreeIterator`, or `BottomUpTreeIterator`, or traverse the tree using our own iteration logic. To add a decoration to a `TreeNode` we just add the `WidgetDecoration.Data` to the resulting map with the node id as key.
 
-Note: This example doesn’t show it, but decorations can be computed asynchronously (by returning a `Promise<Map>`), and they can be updated dynamically using the `onDidChangeDecorations()` event emitter.
+> **Note:** This example doesn’t show it, but decorations can be computed asynchronously (by returning a `Promise<Map>`), and they can be updated dynamically using the `onDidChangeDecorations()` event emitter.
 
 ## Actions
 
@@ -494,7 +528,8 @@ function createTreeViewExampleViewContainer(parent: interfaces.Container): Conta
 }
 ```
 
-Making the tree items selectable works similar to making them expandable and collapsible (see [above](#expandablecollapsible-tree-nodes)): we just need to add the `SelectableTreeNode` interface to our tree node interfaces and in the code that initializes the tree nodes, we initialize the `selected` property to `false`.
+Making the tree items selectable works similar to making them expandable and collapsible (see [above](#expandablecollapsible-tree-nodes)): we just need to add the `SelectableTreeNode` interface to our tree node interfaces and in the `TreeViewExampleTreeItemFactory` code that initializes the tree nodes, we initialize the
+`selected` property to `false`.
 
 After these preconditions have been met, we can implement a command and menu contribution as usual. This is already described in detail [here](/docs/commands_keybindings/).
 
@@ -540,7 +575,7 @@ This also demonstrates how to apply structural modifications to the tree: We mod
 
 ## Supporting Drag & Drop
 
-One feature that is, at least currently, not implemented in the `TreeWidget` base class is Drag & Drop handling. But it is possible to add it with a reasonable amount of code.
+One feature that is, at least currently, not implemented in the `TreeWidget` base class, is Drag & Drop handling. But it is still possible to add it with a few lines of code.
 
 Let's say we want to support moving a leaf node and attach it to a different containing node.
 The code for this operation (again implemented in the `TreeViewExampleModel`) looks as follows:
