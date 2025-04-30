@@ -4,6 +4,8 @@ title: Building Custom AI assistants and AI support with Theia AI
 
 # Building Custom AI assistants and AI support with Theia AI
 
+> **Note for end users**: This documentation is for **tool builders** who want to create AI capabilities in their own tools. If you're looking for the AI-powered Theia IDE as an **end user**, please see the [user documentation](/docs/user_ai/) or go to the [download page](/#theiaide) to get Theia IDE.
+
 This section explains how to build custom AI assistants and integrate AI support into custom tools and IDEs using Theia AI. Theia AI, part of the Theia Platform, is a powerful framework designed to help tool builders integrate tailored AI capabilities into their tools and IDEs with ease (see also [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/)). It provides reusable components, prompt management, LLM integration, and flexible user interfaces, allowing you to focus on delivering domain-specific AI features. This section is targeted at tool builders using Theia and Theia AI as a platform to build custom tools and IDEs. 
 For detailed information on how to use the experimental AI features in the Theia IDE as an end user, refer to the [user documentation](/docs/user_ai/). 
 To learn how to generally extend Theia by creating Theia extensions, including AI ones, visit the [extension authoring guide](/docs/authoring_extensions/).
@@ -15,6 +17,8 @@ High Level Architecture of Theia AI
 Learn more about Theia AI:
 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
+👉 [Watch the video: AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action](https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj)
 
 ## Table of Contents
 
@@ -259,6 +263,28 @@ Users can attach context elements to chat requests in several ways:
 <img src="../../context-variables.png" alt="Attach Files to the Context" style="max-width: 525px">
 
 Once attached, the context elements are displayed in the chat input to the user.
+
+#### Thinking Mode for Claude
+
+Theia AI provides support for Claude's "thinking mode" when using Sonnet-3.7. By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+
+The corresponding request settings looks like this:
+
+```json
+"thinking": {
+    "type": "enabled",
+    "budget_tokens": 8192
+}
+```
+
+As shown in the following video, we first ask Sonnet-3.7 a fairly difficult question without thinking mode enabled. It responds quickly but with an incorrect answer. We then switch to a new chat session and enable thinking mode via a chat-specific setting. This time, the model takes noticeably longer to respond. To keep the video short, we switch to a previously completed session with the same setting, and it arrives at the correct solution.
+
+<video controls>
+  <source src="../../thinking-mode-example.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
 
 ##### Implementation Example: File Context Variable
 

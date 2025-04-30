@@ -14,6 +14,10 @@ Learn more about the AI-powered Theia IDE:
 
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
+👉 [Watch the video: AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action](https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj)
+
+👉 [Download the AI-powered Theia IDE](/#theiaide)
+
 ## Table of Contents
 - [Set-Up](#set-up)
   - [LLM Providers Overview](#llm-providers-overview)
@@ -21,24 +25,38 @@ Learn more about the AI-powered Theia IDE:
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
   - [Azure](#azure)
   - [Anthropic](#anthropic)
+  - [Google AI](#google-ai)
   - [Hugging Face](#hugging-face)
-  - [LlamaFile](#llamafile-models)
+  - [LlamaFile Models](#llamafile-models)
   - [Ollama](#ollama)
   - [Custom Request Settings](#custom-request-settings)
+  - [Thinking Mode](#thinking-mode)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
-  - [Theia Coder - AI Coding assistant (separate page)](/docs/theia_coder)
+  - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
   - [Universal (Chat Agent)](#universal-chat-agent)
   - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
   - [Command (Chat Agent)](#command-chat-agent)
-  - [Workspace (Chat Agent)](#workspace-chat-agent)
+  - [Architect (Chat Agent)](#architect-chat-agent)
   - [Code Completion (Agent)](#code-completion-agent)
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
 - [Chat](#chat)
+  - [Agent Pinning](#agent-pinning)
+  - [Context Variables](#context-variables)
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
+- [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
+- [Prompt Fragments](#prompt-fragments)
 - [Custom Agents](#custom-agents)
 - [MCP Integration](#mcp-integration)
+  - [Configuring MCP Servers](#configuring-mcp-servers)
+  - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
+  - [Using MCP Server Functions](#using-mcp-server-functions)
+  - [MCP Configuration View](#mcp-configuration-view)
 - [SCANOSS](#scanoss)
+  - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
+  - [Manual Scanning](#manual-scanning)
+  - [Automatic Scanning](#automatic-scanning)
+  - [Understanding SCANOSS Results](#understanding-scanoss-results)
 - [AI History](#ai-history)
 - [Learn more](#learn-more)
 
@@ -107,6 +125,13 @@ Below is an overview of various Large Language Model (LLM) providers supported w
     <td>Beta</td>
   </tr>
   <tr>
+    <td><a href="#google-ai">Google AI</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>Experimental</td>
+  </tr>
+  <tr>
     <td><a href="#hugging-face">Hugging Face</a></td>
     <td>✅</td>
     <td>❌</td>
@@ -133,7 +158,7 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 ### OpenAI (Hosted by OpenAI)
 
-To enable the use of OpenAI, you need to create an API key in your OpenAI account and enter it in the settings AI-features => OpenAiOfficial (see the screenshot below).
+To enable the use of OpenAI, you need to create an API key in your OpenAI API account (https://platform.openai.com/) and enter it in the settings AI-features => OpenAiOfficial (see the screenshot below).
 **Please note:** By using this preference the Open AI API key will be stored in clear text on the machine running Theia. Use the environment variable `OPENAI_API_KEY` to set the key securely.
 Please also note that creating an API key requires a paid subscription, and using these models may incur additional costs. Be sure to monitor your usage carefully to avoid unexpected charges. We have not yet optimized the AI assistants in the Theia IDE for token usage.
 
@@ -166,13 +191,23 @@ All models hosted on Azure that are compatible with the OpenAI API are accessibl
 
 ### Anthropic
 
-To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics account and
+To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics API account (https://console.anthropic.com/) and
 enter it in the Theia IDE settings under AI-features => Anthropics.
 
 **Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
 
 Configure available models in the settings under AI-features => AnthropicsModels.
 Default supported models include choices like claude-3-5-sonnet-latest.
+
+### Google AI
+
+To enable Google AI models in the Theia IDE, create an API key in your Google AI account (https://aistudio.google.com/) and enter it in the Theia IDE settings under AI-features => Google AI.
+
+**Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
+
+Configure available models in the settings under AI-features => Google AI Models.
+
+<img src="../../google-ai-models.png" alt="Google AI configuration in the Theia IDE" style="max-width: 525px">
 
 ### Hugging Face
 
@@ -248,9 +283,45 @@ Or navigate in the settings view to **`ModelSettings` => `Request Settings`**.
 
 Valid options for `requestSettings` depend on the model provider.
 
+#### Per-Chat Custom Request Settings
+
+In addition to global custom request settings, Theia AI also supports an experimental feature that allows you to define custom request settings per individual chat session. This adds flexibility by enabling on-the-fly adjustments within a single conversation.
+
+You can click an icon in the top-right corner of a chat window to access this functionality. Settings must currently be entered manually as JSON text. For example, you can adjust the temperature parameter for a particular session to make the language model more or less creative:
+
+```json
+{
+"temperature": 1
+}
+```
+
+The video below demonstrates how adjusting the temperature parameter for the Theia Code agent results in the generation of more imaginative code examples:
+
+<video src="../../effect-of-temperature.webm" controls style="max-width: 100%;"></video>
+
+This feature also unlocks the ability to use provider-specific parameters, such as Claude's new "thinking mode," which is discussed in the following section. Future updates are expected to improve the default user interface, especially for commonly used settings.
+
+### Thinking Mode
+
+Theia AI provides support for Claude's "thinking mode" when using Sonnet-3.7. By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+
+<video src="../../thinking-mode-example.webm" controls style="max-width: 100%;"></video>
+
+To enable thinking mode, you need to add the following custom request setting:
+
+```json
+"thinking": { "type": "enabled", "budget_tokens": 8192 }
+```
+
+You can configure this setting either:
+- Globally through the model settings (as described in the [Custom Request Settings](#custom-request-settings) section)
+- For a specific chat session using the chat-specific settings icon in the chat window
+
+As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
+
 ## Current Agents in the Theia IDE
 
-This section provides an overview of the currently available agents in the Theia IDE. Agents marked as “Chat Agents” are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
+This section provides an overview of the currently available agents in the Theia IDE. Agents marked as "Chat Agents" are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
 
 ### Theia Coder (Chat Agent)
 An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. Furthermore, it can suggest modifications of files to the user. It can therefore assist the user with coding tasks or other tasks involving file changes. See the dedicated [Theia Coder Documentation](/docs/theia_coder) for more details.
@@ -273,9 +344,10 @@ An AI assistant designed to assist software developers. This agent can access th
 
 ### Code Completion (Agent)
 
-This agent provides inline code completion within the Theia IDE's code editor. By default, automatic inline completion is disabled to give users greater control over how AI code suggestions are presented. Users can manually trigger inline completion via the default key binding Ctrl+Alt+Space (adaptable). Requests are canceled when moving the cursor.
+This agent provides inline code completion within the Theia IDE's code editor. The agent supports both manual and automatic modes for code completion. When 'Automatic Code Completion' is enabled (which is the default), the agent makes continuous requests to the underlying LLM while coding, providing suggestions as you type.
+In manual mode (triggered via Ctrl+Alt+Space by default), users have greater control over when AI suggestions appear. Requests are canceled when moving the cursor.
 
-Users who prefer continuous suggestions can enable 'Automatic Code Completion' in the settings ('AIFeatures'=>'CodeCompletion'). This agent makes continuous requests to the underlying LLM while coding if automatic suggestions are enabled.
+Users can switch between modes in the settings ('AIFeatures'=>'CodeCompletion'). 
 
 Please note that there are two prompt variants available for the code completion agent, you can select them in the 'AI Configuration view' => 'Code Completion' => 'Prompt Templates'.
 
@@ -293,7 +365,7 @@ This agent assists with writing and executing terminal commands. Based on the us
 
 ## Chat
 
-The Theia IDE provides a global chat interface where users can interact with all chat agents. The Orchestrator automatically delegates user requests to the most appropriate agent. To send a request directly to a specific agent, mention the agent's name using '@', for example, '@Command'. Press '@' in the chat to see a list of available chat agents.
+The Theia IDE provides a global chat interface where users can interact with all chat agents. The Orchestrator automatically delegates user requests to the most appropriate agent. **To get more reliable results, it is preferred to talk to a specific agent directly. Use the '@' symbol in the beginning of your message to specify an agent, for example, '@Coder'.** Press '@' in the chat to see a list of available chat agents.
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
@@ -356,9 +428,36 @@ Tool functions are used with the following syntax:
 ``` 
 ~{functionName}
 ```
+
+## Prompt Template and Fragment Locations
+
+By default, custom prompts, prompt variants, and [prompt fragments](#prompt-fragments) are created and read from user-wide local directories that can be configured in the settings ("AI-Features"=>"Prompt Templates"). This setting is valid for all projects. In addition, users can configure workspace-specific directories and files (available as prompts and prompt fragments) to introduce project-specific adaptations and additions.
+
+### Allow project specific prompt locations
+
+Users can specify workspace-relative directories (settings "AI-Features"=>"Prompt Templates"), individual files, and relevant file extensions for prompt templates and fragments. Workspace-specific prompts have priority, so you can override the prompts of the available agents in a workspace-specific way. Furthermore, these workspace-specific templates are accessible via the prompt fragment variable (e.g., `#prompt:filename`) in both the chat interface and agent prompt editors.
+
+This feature supports two main use cases:
+
+1. **Augmenting prompts with project-specific information**: Developers can create a dedicated file—such as `project-info.prompttemplate`—to include domain knowledge, architectural decisions, or coding guidelines. When referenced via `#prompt:project-info`, this information can guide AI behavior and improve prompt relevance.
+
+2. **Creating reusable project-specific prompts**: Teams can maintain a collection of shortcut prompts for common actions like "generate a test according to specifics," enabling consistent and efficient communication with AI agents within a project. See an example for this use case in the previous section. As mentioned, you can also override the prompts of the default agents with project-specific versions.
+
+In future releases, we may include pre-configured defaults, such as adding `#prompt:project-info` in the system messages of specific agents like Coder or Architect.
+
+## Prompt Fragments
+
+Prompt fragments enable users to define reusable parts of prompts for recurring instructions given to an AI. These fragments can be referenced both in the chat interface (for one-time usage) and within the prompt templates of agents (to customize agents with reusable fragments). For example, users can define a prompt fragment that specifies a task, provides workspace context or coding guidelines, and then reuse it across multiple AI requests without having to repeat the full text.
+
+To support this functionality, Theia includes a special variable `#prompt:promptFragmentID` that takes the ID of a prompt fragment as an argument. In the following video, we demonstrate the usage of a prompt fragment to create a reusable workflow (documenting a file). We add a new directory to our workspace with a prompt template in it. We then make sure that the directory is configured as a location for prompt templates (also see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)). Now we can use the prompt fragment in the chat. We could also add it to the prompt template of an agent instead. Please note that for more complex workflows, Theia AI also makes it very easy to create custom agents from scratch (see [Custom Agents](#custom-agents)).
+
+<video controls src="../../prompttemplates.webm" alt="Creating and using reusable prompt fragments for common workflows" style="max-width: 100%"></video>
+
+Prompt fragments can recursively reference other fragments, variables, and tool functions, which is particularly useful for reusable additions to standard prompts, such as adding access to MCP servers.
+
 ## Custom Agents
 
-Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat.
+Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat. For simpler workflows, you might also consider using [Prompt Fragments](#prompt-fragments) instead.
 
 To define a new custom agent, navigate to the AI Configuration View and click on "Add Custom Agent".
 
@@ -499,6 +598,16 @@ To use the `brave_web_search` function of the `brave-search` server, you can wri
 
 This allows you to seamlessly integrate external services into your AI workflows within the Theia IDE.
 
+### MCP Configuration View
+
+In the AI Configuration view, you can access a dedicated tab for Model Control Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. The view provides the capability to start or stop any MCP server directly from the configuration interface.
+
+Additionally, you can view all tools associated with each server. These tools can be easily copied for integration into chat-based interfaces or prompt templates. Options for copying tools include obtaining a consolidated prompt fragment representing all available tools, listing available tools to review or restrict used tools, or selecting individual tools for specific inclusion.
+
+For more details, refer to the video demonstration below. In the video, the tools from two example servers, the MCP Git server and the MCP search server, are embedded into the chat. The video also illustrates how the search tool is incorporated into the universal agent's prompt, allowing it to perform searches upon request without explicit mention in the chat.
+
+<video controls src="../../mcp-configuration.webm" alt="MCP Configuration View Demonstration" style="max-width: 100%"></video>
+
 ## SCANOSS
 
 The Theia IDE (and Theia AI) integrates a code scanner powered by SCANOSS, enabling developers to analyze generated code for open-source compliance and licensing. This feature helps developers understand potential licensing implications when using generated code.
@@ -556,3 +665,5 @@ The AI History view allows you to review all communications between agents and u
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
+
+👉 [Download the AI-powered Theia IDE](/#theiaide)

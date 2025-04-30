@@ -73,11 +73,11 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.58.x (2025-02) - planned',
-        releasedate: 'February 27th, 2025',
-        releasecandidatedate: 'January 30th, 2025',
-        technologiesin: 'March 6th, 2025',
-        releaseanouncement: 'March 19th, 2025',
+        name: 'Theia 1.61.x (2025-05) - planned',
+        releasedate: 'May 28th, 2025',
+        releasecandidatedate: 'April 29th, 2025',
+        technologiesin: 'June 5th, 2025',
+        releaseanouncement: 'June 12th, 2025',
         announcementurl: '',
         frameworks: [
             {
@@ -89,10 +89,8 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: '0.8.1',
-                modules: [
-                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.1' }
-                ]
+                version: 'TBD',
+                modules: []
             },
             {
                 title: 'Eclipse Sprotty',
@@ -121,6 +119,61 @@ const communityReleases = [
         ]
     },
     {
+        name: 'Theia 1.58.x (2025-02) - published',
+        releasedate: 'February 27th, 2025',
+        releasecandidatedate: 'January 30th, 2025',
+        technologiesin: 'March 6th, 2025',
+        releaseanouncement: 'March 19th, 2025',
+        announcementurl: 'https://eclipsesource.com/blogs/2025/03/19/the-eclipse-theia-community-release-2025-02/',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: '2.3.0',
+                modules: [
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.3.0' }
+                ]
+            },
+            {
+                title: 'Eclipse EMF cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: '0.8.1',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.1' }
+                ]
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: '1.4.0',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: '2.0.1',
+                modules: [
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/2.0.1' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/1.0.5' }
+                ]
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: '3.4.0',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer Extension for Theia Applications',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: '0.7.3',
+                modules: [
+                    { modulename: 'theia-traceviewer extension', url: 'https://www.npmjs.com/package/theia-traceviewer/v/0.7.3' }
+                ]
+            }
+        ]
+    },
+    {
         name: 'Theia 1.55.x (2024-11) - published',
         releasedate: 'November 27th, 2024',
         releasecandidatedate: 'October 30th, 2024',
@@ -131,8 +184,10 @@ const communityReleases = [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.dev/glsp/',
-                version: 'TBD',
-                modules: []
+                version: '2.3.0',
+                modules: [
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.3.0' }
+                ]
             },
             {
                 title: 'Eclipse EMF.cloud',
@@ -615,6 +670,10 @@ const communityReleases = [
 ]
 
 const monthlyReleases = [    
+    {
+        title: 'Eclipse Theia 1.60 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2025/04/10/eclipse-theia-1-60-release-news-and-noteworthy/',
+    },
     {
         title: 'Eclipse Theia 1.59 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2025/03/07/eclipse-theia-1-59-release-news-and-noteworthy/',

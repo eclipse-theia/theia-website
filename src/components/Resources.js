@@ -90,6 +90,11 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'Eclipse Theia: The DeepSeek of AI Tooling?',
+                url: 'https://thenewstack.io/eclipse-theia-the-deepseek-of-ai-tooling/',
+                type: 'article'
+            },
+            {
                 title: 'Introducing Theia Coder - the open AI coding agent with full control',
                 url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
                 type: 'article'
@@ -194,6 +199,11 @@ const categories = [
     {
         title: 'Eclipse Theia Adopter Stories',
         resources: [
+            {
+                title: 'Texas Instruments Elevates Code Composer Studio™ with Eclipse Theia',
+                url: 'https://outreach.eclipse.foundation/theia-ti-codecomposer',
+                type: 'article'
+            },
             {
                 title: 'Exploring Real-World Applications of Theia: Insights from TheiaCon 2024',
                 url: 'https://eclipsesource.com/blogs/2025/01/23/exploring-real-world-applications-of-theia-theiacon/',
@@ -300,9 +310,19 @@ const categories = [
                 type: 'article'
             },
             {
+                title: 'AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action',
+                url: 'https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj',
+                type: 'video'
+            },
+            {
                 title: 'Introducing Theia Coder - the open AI coding agent with full control',
                 url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
                 type: 'article'
+            },
+            {
+                title: 'Getting Started with Theia Coder: The Flexible AI Coding Assistant for Theia IDE | No Vendor Lock-in',
+                url: 'https://youtu.be/J1FECv6emEg?si=QKi3NY41t0Rd_4cc',
+                type: 'video'
             },
             {
                 title: 'Theia AI Change Sets: Managing Complex AI Change Suggestions',

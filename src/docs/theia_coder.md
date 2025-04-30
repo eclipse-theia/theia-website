@@ -11,12 +11,17 @@ Learn more about Theia Coder and see it in action:
 
 👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
 
+🎥 Check out the video below to see how easy it is to get started with Theia Coder. We’ll walk through a simple example task.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/J1FECv6emEg?si=XydEDk5lXrFRWFFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Using Theia Coder
-Theia Coder functions is a chat agent within Theia AI Chat. To interact with it, simply type `@Coder` followed by your request in the chat. This will also pin `@Coder` for the ongoing chat session, so in hte following messages, you don't need to use `@Coder` again.
+Theia Coder is a chat agent within Theia AI Chat. **To interact with it, simply type `@Coder` followed by your request in the chat**. This will also pin `@Coder` for the ongoing chat session, so in the following messages, you don't need to mention `@Coder` again.
 
 ### Key Capabilities
 1. **Retrieving Context**: Coder can browse the current workspace to find and read the content of relevant code files. As a user, you can augment your queries by mentioning or attaching specific files as context information to your chat messages to get faster and more accurate responses from Theia Coder.
 2. **Proposing Changes**: It provides structured code modifications that users can review and apply automatically.
+3. **Fixing File Issues**: Coder can automatically detect and fix issues in files by analyzing diagnostics reported by language servers, linters, and other tools.
 
 In the following example video, we provide a simple task to Coder to demonstrate the full work flow.
 
@@ -28,6 +33,23 @@ To use Theia Coder effectively, describe your programming task in clear natural 
 - Code files that need to be modified
 - Supporting files that contribute to understanding the task (e.g., interface definitions or similar implementations)
 
+### Automatic Issue Detection and Fixing
+
+Theia Coder can identify and automatically fix problems in your code files. To use this feature, simply ask Coder to fix issues in a specific file. You can use context variables like `#currentRelativeFilePath` (shortcut `#_f`) or `#file:path` to specify which file needs fixing.
+
+For example:
+> @Coder Fix all issues in #_f
+
+When triggered, Coder will:
+1. Open the specified file in an editor
+2. Collect all issues reported in the problem view including the diagnostics from language servers, linters, and spell checkers
+3. Propose automated fixes for the identified issues
+
+<video controls width="100%" height="auto">
+  <source src="../../fix-errors.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
 ### Ways to Specify Relevant Context
 There are multiple ways to help Coder find the right files efficiently, keep in mind that Coder operates with file paths relative to the workspace root:
 
@@ -37,7 +59,7 @@ Here are some example of the most frequently used variable, you can see the full
 
 - `#file:filePath` - Inserts the path to the specified file relative to the workspace root. After typing `#file:`, auto completed suggestions will help you specifiying a file. The suggestions are based on the recently opened files and on the file name you type.
 - `#filePath` - Shortcut for `#file:filePath`; after typing `#` following by the file name you can directly start your search for the file you want to add and reference in your message.
-- `#currentRelativeFilePath` – The relative path of the currently selected file (in the editor or explorer)
+- `#currentRelativeFilePath` (shortcut `#_f`) – The relative path of the currently selected file (in the editor or explorer)
 - `#currentRelativeDirPath` – The directory path of the currently selected file
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 
