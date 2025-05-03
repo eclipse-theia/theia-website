@@ -459,11 +459,15 @@ Prompt fragments can recursively reference other fragments, variables, and tool 
 
 Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat. For simpler workflows, you might also consider using [Prompt Fragments](#prompt-fragments) instead.
 
+Custom agents can either be global (stored in the global prompt directory) or workspace-specific (stored in a workspace-specific directory). Workspace-specific custom agents take precedence in case the same id is used.
+
 To define a new custom agent, navigate to the AI Configuration View and click on "Add Custom Agent".
 
 <img src="../../add-custom-agents.png" alt="Add a custom Agents in the Theia IDE" style="max-width: 400px">
 
-This action opens a YAML file where all available custom agents are defined. Below is an example configuration:
+If workspace-specific prompt directories are configured in settings (see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)), you can decide next where to add the custom agent.
+
+Next, a YAML file will be opened where all available custom agents in a specific directory are defined. Below is an example configuration:
 
 ```yaml
 - id: obfuscator
