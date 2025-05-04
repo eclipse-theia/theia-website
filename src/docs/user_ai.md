@@ -401,7 +401,7 @@ Here are some example of the most frequently used variable, you can see the full
 
 ### Editing Chat Requests
 
-Users can modify previously sent messages in the chat UI through the "Edit" option. This functionality is especially helpful for refining prompts, fixing typographical errors, or experimenting with various phrasing without losing context or initiating a new conversation from the beginning.
+Users can modify previously sent messages in the chat UI through the "Edit" option. This functionality is especially helpful for refining prompts if you are unhappy with the LLMs response, or experimenting with various phrasing without losing context or initiating a new conversation from the beginning.
 
 When you edit a message, a new branch of conversation is created, preserving access to the original thread while continuing the dialogue based on your modifications.
 
