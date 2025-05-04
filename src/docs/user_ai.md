@@ -42,6 +42,7 @@ Learn more about the AI-powered Theia IDE:
 - [Chat](#chat)
   - [Agent Pinning](#agent-pinning)
   - [Context Variables](#context-variables)
+  - [Editing Chat Requests](#editing-chat-requests)
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
@@ -397,6 +398,18 @@ Here are some example of the most frequently used variable, you can see the full
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
+
+### Editing Chat Requests
+
+Users can modify previously sent messages in the chat UI through the "Edit" option. This functionality is especially helpful for refining prompts, fixing typographical errors, or experimenting with various phrasing without losing context or initiating a new conversation from the beginning.
+
+When you edit a message, a new branch of conversation is created, preserving access to the original thread while continuing the dialogue based on your modifications.
+
+To use this feature, click the edit icon located next to each message you send in the chat. Upon clicking, the original message opens for editing. Submitting the changes will transition the conversation to follow the newly edited message while maintaining access to prior versions.
+
+Below is a screenshot depicting the edit button and options to switch between conversation branches:
+
+<img src="../../edit-request.png" alt="Edit Chat Request in the Theia IDE" style="max-width: 525px" />
 
 ## AI Configuration
 
