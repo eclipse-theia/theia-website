@@ -783,7 +783,7 @@ You can add suggestions to a chat session by accessing the chat model API, e.g. 
 1. **Command-based suggestions**: Trigger Theia commands when clicked
 2. **Callback-based suggestions**: Execute custom code (a callback) when clicked
 
-Here's an example of how to add suggestions to a chat model with a simple call back:
+Here's an example of how to add suggestions to a chat model with custom callback code when a link in the suggestion is clicked:
 
 ```typescript
 model.setSuggestions([
