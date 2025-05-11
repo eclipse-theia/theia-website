@@ -778,7 +778,7 @@ The following video demonstrates how suggestions look like in the UI.
   Your browser does not support the video tag.
 </video>
 
-You can add suggestions to a chat session by accessing the chat model API, e.g. from within an agent implementation. The suggestions can text augmented with different types of actions:
+You can add suggestions to a chat session by accessing the chat model API, e.g. from within an agent implementation. The suggestions can be text augmented with different types of actions:
 
 1. **Command-based suggestions**: Trigger Theia commands when clicked
 2. **Callback-based suggestions**: Execute custom code (a call back) when clicked
