@@ -797,7 +797,7 @@ model.setSuggestions([
 
 In this example, when the user clicks on the "Fix problems" suggestion, it will automatically send a request to the Coder agent to analyze and fix issues in the specified file.
 
-For command-based suggestions, you can use a MarkDownString kind and specify a command ID it:
+For command-based suggestions, you can use `MarkdownStringImpl` and specify command identifier in links:
 
 ```typescript
 model.setSuggestions([
