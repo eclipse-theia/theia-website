@@ -35,6 +35,7 @@ Learn more about Theia AI:
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
 - [Change Sets](#change-sets)
+- [Chat Suggestions](chat-suggestions)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -765,6 +766,47 @@ Another example to look at is the [Theia Coder agent](/docs/theia_coder) which p
 Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
 
 Custom change set element implementations are identified by a `uri`, have full control over their presentation (label, icon, additional information), and can specify whether and how actions, such as open, open change, accept and discard are implemented. See [`ChangeSetElement` interface](https://github.com/eclipse-theia/theia/blob/451464e6ea3d4aaf9cdbffd3d17dbb117787fc4e/packages/ai-chat/src/common/chat-model.ts#L100) for more details.
+
+## Chat Suggestions
+
+Theia AI provides a mechanism for displaying contextual suggestions to users in the chat interface. These suggestions can help guide users on what to do next, offer shortcuts to common actions, or provide contextual help based on the current state of the conversation.
+
+The following video demonstrates how suggestions look like in the UI.
+
+<video controls>
+  <source src="../../agent-suggestions.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+You can add suggestions to a chat session by accessing the chat model API, e.g. from within an agent implementation. The suggestions can be text augmented with different types of actions:
+
+1. **Command-based suggestions**: Trigger Theia commands when clicked
+2. **Callback-based suggestions**: Execute custom code (a callback) when clicked
+
+Here's an example of how to add suggestions to a chat model with custom callback code when a link in the suggestion is clicked:
+
+```typescript
+model.setSuggestions([
+    {
+        kind: 'callback',
+        callback: () => this.chatService.sendRequest(session.id, { text: '@Coder please look at src/docs/theia_ai.md and fix any problems.' }),
+        content: '[Fix problems](_callback) in the current file.'
+    },
+]);
+```
+
+In this example, when the user clicks on the "Fix problems" suggestion, it will automatically send a request to the Coder agent to analyze and fix issues in the specified file.
+
+For command-based suggestions, you can use `MarkdownStringImpl` and specify command identifier in links:
+
+```typescript
+model.setSuggestions([
+    new MarkdownStringImpl(`Keep chats short and focused. [Start a new chat](command:${AI_CHAT_NEW_CHAT_WINDOW_COMMAND.id}) for a new task`
+        + ` or [start a new chat with a summary of this one](command:${ChatCommands.AI_CHAT_NEW_WITH_TASK_CONTEXT.id}).`)
+]);
+```
+
+For comprehensive example, also see the Coder agent in the AI-powered Theia IDE (see [coder-agent.ts](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/coder-agent.ts)) providing different suggestions based on the context of the conversation.
 
 ## Learn more
 
