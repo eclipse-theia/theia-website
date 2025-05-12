@@ -127,6 +127,10 @@ export const MENU = [
         'property_view'
     ),
     M(
+        'Tree Widget',
+        'tree_widget'
+    ),
+    M(
         'Events',
         'events'
     ),
