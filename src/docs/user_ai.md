@@ -24,6 +24,7 @@ Learn more about the AI-powered Theia IDE:
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
   - [Azure](#azure)
+  - [Mistral](#mistral-models)
   - [Anthropic](#anthropic)
   - [Google AI](#google-ai)
   - [Hugging Face](#hugging-face)
@@ -118,6 +119,14 @@ Below is an overview of various Large Language Model (LLM) providers supported w
     <td>Public</td>
   </tr>
   <tr>
+    <td>Mistral (via OpenAI Compatible)</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Public</td>
+  </tr>
+
+  <tr>
     <td><a href="#anthropic">Anthropic</a></td>
     <td>✅</td>
     <td>✅</td>
@@ -188,6 +197,29 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 ### Azure
 
 All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
+
+### Mistral Models
+
+Mistral models (including on "La Platforme") can be used via the OpenAI API and support the same feature set. Here is an example configuration:
+
+```json
+"ai-features.openAiCustom.customOpenAiModels": [
+    {
+        "model": "mistral-large-latest",
+        "url": "https://api.mistral.ai/v1",
+        "id": "Mistral",
+        "apiKey": "YourAPIKey",
+        "developerMessageSettings": "system"
+    },
+    {
+        "model": "codestral-latest",
+        "url": "https://codestral.mistral.ai/v1",
+        "id": "Codestral",
+        "apiKey": "YourAPIKey",
+        "developerMessageSettings": "system"
+    }
+]
+```
 
 ### Anthropic
 
