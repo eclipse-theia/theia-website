@@ -25,6 +25,7 @@ Learn more about the AI-powered Theia IDE:
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
   - [Azure](#azure)
   - [Mistral](#mistral-models)
+  - [Vercel AI](#vercel-ai)
   - [Anthropic](#anthropic)
   - [Google AI](#google-ai)
   - [Hugging Face](#hugging-face)
@@ -125,7 +126,13 @@ Below is an overview of various Large Language Model (LLM) providers supported w
     <td>✅</td>
     <td>Public</td>
   </tr>
-
+  <tr>
+    <td><a href="#vercel-ai">Vercel AI</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Experimental</td>
+  </tr>
   <tr>
     <td><a href="#anthropic">Anthropic</a></td>
     <td>✅</td>
@@ -220,6 +227,74 @@ Mistral models (including on "La Platforme") can be used via the OpenAI API and 
     }
 ]
 ```
+
+### Vercel AI
+
+**Note: The Vercel AI provider is currently experimental. We are evaluating replacing some existing providers to reduce maintenance effort. Please try this provider and provide feedback to help us stabilize it.**
+
+The Vercel AI provider offers a unified way of communicating with LLMs through the Vercel AI SDK framework. It serves as an alternative to other providers and currently supports OpenAI and Anthropic APIs with both official and custom endpoints.
+
+#### API Key Configuration
+
+If you already have your OpenAI or Anthropic API keys set as environment variables (`OPENAI_API_KEY` or `ANTHROPIC_API_KEY`), no additional configuration is required for the Vercel provider.
+
+If you configure your API keys through the settings, you need to explicitly set the API keys for the Vercel provider:
+1. Go to **Preferences** => **AI features** => **Vercel AI**
+2. Set your OpenAI and/or Anthropic API keys
+
+#### Vercel AI: Official Models Configuration
+
+The Vercel provider includes the most common OpenAI and Anthropic models by default. To add new official models, configure them in your `settings.json`:
+
+```json
+{
+  "ai-features.vercelAi.officialModels": [
+    {
+      "id": "vercel/openai/new-gpt",
+      "model": "new-gpt",
+      "provider": "openai"
+    }
+  ]
+}
+```
+
+#### Vercel AI: Custom Models Configuration
+
+The Vercel provider supports custom models compatible with the Vercel AI SDK. Configure custom endpoints in your `settings.json`:
+
+```json
+{
+  "ai-features.vercelAi.customModels": [
+    {
+      "model": "custom-model-name",
+      "url": "https://api.example.com/v1",
+      "id": "my-custom-model",
+      "apiKey": "your-api-key",
+      "provider": "openai",
+      "supportsStructuredOutput": true,
+      "enableStreaming": true
+    },
+    {
+      "model": "local-llama",
+      "url": "http://localhost:8000",
+      "id": "local-llama-model",
+      "apiKey": true,
+      "provider": "openai",
+      "supportsStructuredOutput": false,
+      "enableStreaming": false
+    }
+  ]
+}
+```
+
+**Configuration Options:**
+- **`model`** (required): The model identifier
+- **`url`** (required): The API endpoint URL
+- **`id`** (optional): Unique identifier for the UI. If not provided, `model` will be used
+- **`apiKey`** (optional): API key for the endpoint. Use `true` to use the global API key
+- **`provider`** (optional): Specify the provider type (`openai`, `anthropic`)
+- **`supportsStructuredOutput`** (optional): Set to `false` to disable structured output. Default: `true`
+- **`enableStreaming`** (optional): Set to `false` to disable streaming. Default: `true`
 
 ### Anthropic
 
