@@ -452,9 +452,11 @@ with the contents:
 
 ```css
 .theia-example-tree-node .a {
-    padding-right: 4px
+    padding-right: 4px;
 }
 ```
+
+> **Note:** Since we want to apply the padding to the icon, not to the tree node itself, we use the CSS selector to select the child with the CSS class `a`, which is assigned to icons in the `TreeWidget.getIconClass()` implementation.
 
 ### Decorations
 
