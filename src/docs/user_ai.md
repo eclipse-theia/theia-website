@@ -24,6 +24,8 @@ Learn more about the AI-powered Theia IDE:
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
   - [Azure](#azure)
+  - [Mistral](#mistral-models)
+  - [Vercel AI](#vercel-ai)
   - [Anthropic](#anthropic)
   - [Google AI](#google-ai)
   - [Hugging Face](#hugging-face)
@@ -118,6 +120,20 @@ Below is an overview of various Large Language Model (LLM) providers supported w
     <td>Public</td>
   </tr>
   <tr>
+    <td>Mistral (via OpenAI Compatible)</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Public</td>
+  </tr>
+  <tr>
+    <td><a href="#vercel-ai">Vercel AI</a></td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Experimental</td>
+  </tr>
+  <tr>
     <td><a href="#anthropic">Anthropic</a></td>
     <td>✅</td>
     <td>✅</td>
@@ -188,6 +204,97 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 ### Azure
 
 All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
+
+### Mistral Models
+
+Mistral models (including on "La Platforme") can be used via the OpenAI API and support the same feature set. Here is an example configuration:
+
+```json
+"ai-features.openAiCustom.customOpenAiModels": [
+    {
+        "model": "mistral-large-latest",
+        "url": "https://api.mistral.ai/v1",
+        "id": "Mistral",
+        "apiKey": "YourAPIKey",
+        "developerMessageSettings": "system"
+    },
+    {
+        "model": "codestral-latest",
+        "url": "https://codestral.mistral.ai/v1",
+        "id": "Codestral",
+        "apiKey": "YourAPIKey",
+        "developerMessageSettings": "system"
+    }
+]
+```
+
+### Vercel AI
+
+**Note: The Vercel AI provider is currently experimental. We are evaluating replacing some existing providers to reduce maintenance effort. Please try this provider and provide feedback to help us stabilize it.**
+
+The Vercel AI provider offers a unified way of communicating with LLMs through the Vercel AI SDK framework. It serves as an alternative to other providers and currently supports OpenAI and Anthropic APIs with both official and custom endpoints.
+
+#### API Key Configuration
+
+If you already have your OpenAI or Anthropic API keys set as environment variables (`OPENAI_API_KEY` or `ANTHROPIC_API_KEY`), no additional configuration is required for the Vercel provider.
+
+If you configure your API keys through the settings, you need to explicitly set the API keys for the Vercel provider:
+1. Go to **Preferences** => **AI features** => **Vercel AI**
+2. Set your OpenAI and/or Anthropic API keys
+
+#### Vercel AI: Official Models Configuration
+
+The Vercel provider includes the most common OpenAI and Anthropic models by default. To add new official models, configure them in your `settings.json`:
+
+```json
+{
+  "ai-features.vercelAi.officialModels": [
+    {
+      "id": "vercel/openai/new-gpt",
+      "model": "new-gpt",
+      "provider": "openai"
+    }
+  ]
+}
+```
+
+#### Vercel AI: Custom Models Configuration
+
+The Vercel provider supports custom models compatible with the Vercel AI SDK. Configure custom endpoints in your `settings.json`:
+
+```json
+{
+  "ai-features.vercelAi.customModels": [
+    {
+      "model": "custom-model-name",
+      "url": "https://api.example.com/v1",
+      "id": "my-custom-model",
+      "apiKey": "your-api-key",
+      "provider": "openai",
+      "supportsStructuredOutput": true,
+      "enableStreaming": true
+    },
+    {
+      "model": "local-llama",
+      "url": "http://localhost:8000",
+      "id": "local-llama-model",
+      "apiKey": true,
+      "provider": "openai",
+      "supportsStructuredOutput": false,
+      "enableStreaming": false
+    }
+  ]
+}
+```
+
+**Configuration Options:**
+- **`model`** (required): The model identifier
+- **`url`** (required): The API endpoint URL
+- **`id`** (optional): Unique identifier for the UI. If not provided, `model` will be used
+- **`apiKey`** (optional): API key for the endpoint. Use `true` to use the global API key
+- **`provider`** (optional): Specify the provider type (`openai`, `anthropic`)
+- **`supportsStructuredOutput`** (optional): Set to `false` to disable structured output. Default: `true`
+- **`enableStreaming`** (optional): Set to `false` to disable streaming. Default: `true`
 
 ### Anthropic
 
@@ -459,11 +566,15 @@ Prompt fragments can recursively reference other fragments, variables, and tool 
 
 Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat. For simpler workflows, you might also consider using [Prompt Fragments](#prompt-fragments) instead.
 
+Custom agents can either be global (stored in the global prompt directory) or workspace-specific (stored in a workspace-specific directory). Workspace-specific custom agents take precedence in case the same id is used.
+
 To define a new custom agent, navigate to the AI Configuration View and click on "Add Custom Agent".
 
 <img src="../../add-custom-agents.png" alt="Add a custom Agents in the Theia IDE" style="max-width: 400px">
 
-This action opens a YAML file where all available custom agents are defined. Below is an example configuration:
+If workspace-specific prompt directories are configured in settings (see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)), you can decide next where to add the custom agent.
+
+Next, a YAML file will be opened where all available custom agents in a specific directory are defined. Below is an example configuration:
 
 ```yaml
 - id: obfuscator

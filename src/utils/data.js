@@ -52,6 +52,8 @@
  import QuickConnectStudioMin from '../resources/screenshots/thumbnails/renesas-qcstudio-min.png'
  import MartiniDesigner from '../resources/screenshots/martini-designer.png'
  import MartiniDesignerMin from '../resources/screenshots/thumbnails/martini-designer-min.png'
+ import MVTecHDevelopEVO from '../resources/screenshots/mvtec-hdevelopevo.png'
+ import MVTecHDevelopEVOMin from '../resources/screenshots/thumbnails/mvtec-hdevelopevo-min.png'
 
  export const contributorsAndAdopters = [
      {
@@ -165,6 +167,12 @@
         src: MartiniDesigner,
         thumb: MartiniDesignerMin,
         alt: "Martini Designer"
+    },
+    {
+        href: "https://www.mvtec.com/products/halcon/work-with-halcon/hdevelopevo",
+        src: MVTecHDevelopEVO,
+        thumb: MVTecHDevelopEVOMin,
+        alt: "MVTec HDevelopEVO"
     }
  ]
 
