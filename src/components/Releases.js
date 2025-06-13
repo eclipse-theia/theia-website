@@ -147,8 +147,11 @@ const communityReleases = [
             {
                 title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
-                version: 'TBD',
-                modules: []
+                version: '2.0.5',
+                modules: [
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/2.0.5' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/1.0.10' }
+                ]
             },
             {
                 title: 'Langium',
