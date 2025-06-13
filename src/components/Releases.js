@@ -73,12 +73,58 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.61.x (2025-05) - planned',
+        name: 'Theia 1.64.x (2025-08) - planned',
+        releasedate: 'August 28th, 2025',
+        releasecandidatedate: 'July 31th, 2025',
+        technologiesin: 'September 4th, 2025',
+        releaseanouncement: 'September 11th, 2025',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse EMF cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer Extension for Theia Applications',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
+        name: 'Theia 1.61.x (2025-05) - published',
         releasedate: 'May 28th, 2025',
         releasecandidatedate: 'April 29th, 2025',
-        technologiesin: 'June 5th, 2025',
-        releaseanouncement: 'June 12th, 2025',
-        announcementurl: '',
+        technologiesin: 'June 20th, 2025',
+        releaseanouncement: 'June 13th, 2025',
+        announcementurl: 'https://eclipsesource.com/blogs/2025/06/13/the-eclipse-theia-community-release-2025-05/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
