@@ -17,7 +17,7 @@ backend would run on a remote host.
 Both the frontend and backend processes have their dependency injection (DI)
 container (see below) to which extensions can contribute.
 
-## Frontend
+## Frontend HELLO!!!
 
 The frontend process represents the client and renders the UI. In the browser,
 it simply runs in the rendering loop, while in Electron it runs in an Electron
