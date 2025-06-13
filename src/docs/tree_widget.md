@@ -96,7 +96,7 @@ const EXAMPLE_DATA: Item[] = [{
 ];
 ```
 
-This business model now needs to be mapped to a hierarchy of tree nodes, so that it can be represented in a tree. These tree nodes are objects that satisfy the `TreeNode` interface, which primarily provides the `id` and `parent` properties. Each node in the tree is required to have an `id` that is unique within the tree _(Note: expect strange effects if your `id`s are not unique!)._ The `parent` property can be `undefined` initially, and will be managed by utility functions within the `CompoiteTreeNode` namespace, when adding child nodes. More information on these utility functions can be found below.
+This business model now needs to be mapped to a hierarchy of tree nodes, so that it can be represented in a tree. These tree nodes are objects that satisfy the `TreeNode` interface, which primarily provides the `id` and `parent` properties. Each node in the tree is required to have an `id` that is unique within the tree _(Note: expect strange effects if your `id`s are not unique!)._ The `parent` property can be `undefined` initially, and will be managed by utility functions within the `CompositeTreeNode` namespace, when adding child nodes. More information on these utility functions can be found below.
 
 Since the `TreeNode` interface lacks a `children` property, it is only suitable for leaves in the tree. For container nodes, we need to use the interface `CompositeTreeNode` instead.
 
@@ -214,7 +214,7 @@ export class TreeViewExampleModel extends TreeModelImpl {
 
 In this example, we initialize the tree in the `init()` method when the class is instantiated. This is not necessarily required, but it is the simplest way for our static model. In more complex scenarios, we could also call a concrete `initModel()` method from the Tree Widget implementation, for example, in the `onAfterAttach()` event handler, or we could implement the initialization asynchronously.
 
-To initialize the tree model, we first create the root node. This is a simple `CompositeTreeNode` with a well-known `id`, so we can identify it later. Note that we initialze `children` as `[]` since tree nodes should always be added via `CompositeTreeNode.addChild()`. This function takes care of maintaining both the `parent` and `children` properties of the affected nodes.
+To initialize the tree model, we first create the root node. This is a simple `CompositeTreeNode` with a well-known `id`, so we can identify it later. Note that we initialize `children` as `[]` since tree nodes should always be added via `CompositeTreeNode.addChild()`. This function takes care of maintaining both the `parent` and `children` properties of the affected nodes.
 
 Next, we initialize the children recursively in `initChildren()`, so that the complete tree model is populated.
 
@@ -289,7 +289,7 @@ function createTreeViewExampleViewContainer(parent: interfaces.Container): Conta
 }
 ```
 
-The fontend module completes the basic `TreeWidget` example. When run in a Theia application, we can toggle the view using the command registered in the `ViewContribution` and we can see a tree visualization of our business model.
+The frontend module completes the basic `TreeWidget` example. When run in a Theia application, we can toggle the view using the command registered in the `ViewContribution` and we can see a tree visualization of our business model.
 
 The further sections below show how we can customize single features and aspects of this `TreeWidget` example:
 
@@ -361,7 +361,7 @@ export class TreeviewExampleTree extends TreeImpl {
 
 Under the hood, the tree expansion is handled by the `TreeExpansionService` implementation which, in its default implementation, maintains the `expanded` state of `ExpandableTreeNode`, sends events related to expanding and collapsing subtrees, and also calls `Tree.refresh()` for the expanded node. 
 
-The `refresh()` method in turn calls `resolveChildren()` which can be implemented to asyncronously provide the child nodes for the given parent. As a bonus, `Tree.refresh()` marks the node as `busy` until the promise is resolved, leading to a nice busy marker in the form of a spinning circle if the promise is not resolved within a certain amount of time (800ms). This can be observed in this demo code due to the `wait(2000)` call.
+The `refresh()` method in turn calls `resolveChildren()` which can be implemented to asynchronously provide the child nodes for the given parent. As a bonus, `Tree.refresh()` marks the node as `busy` until the promise is resolved, leading to a nice busy marker in the form of a spinning circle if the promise is not resolved within a certain amount of time (800ms). This can be observed in this demo code due to the `wait(2000)` call.
 
 ## Tree Items with Checkboxes
 
