@@ -156,7 +156,7 @@ const communityReleases = [
             {
                 title: 'Langium',
                 url: 'https://langium.org/',
-                version: 'TBD',
+                version: '3.5.0',
                 modules: []
             },
             {
