@@ -17,7 +17,7 @@ import React from 'react'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
-            <a href="[News & Noteworthy](https://eclipsesource.com/blogs/2025/06/17/eclipse-theia-1-62-release-news-and-noteworthy/)" rel="noopener noreferrer">Learn about the latest 1.62 Release</a> and <a href="https://eclipsesource.com/blogs/2025/06/13/the-eclipse-theia-community-release-2025-05/">the latest Community Release (2025-05)</a>.
+            <a href="https://eclipsesource.com/blogs/2025/06/17/eclipse-theia-1-62-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.62 Release</a> and <a href="https://eclipsesource.com/blogs/2025/06/13/the-eclipse-theia-community-release-2025-05/">the latest Community Release (2025-05)</a>.
             <br />
             Stay up-to-date: <a href="https://twitter.com/theia_ide">follow us on Twitter</a> and <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a>.
             <br />
