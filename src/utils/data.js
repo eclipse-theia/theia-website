@@ -54,6 +54,8 @@
  import MartiniDesignerMin from '../resources/screenshots/thumbnails/martini-designer-min.png'
  import MVTecHDevelopEVO from '../resources/screenshots/mvtec-hdevelopevo.png'
  import MVTecHDevelopEVOMin from '../resources/screenshots/thumbnails/mvtec-hdevelopevo-min.png'
+ import CodingParkWebIDE from '../resources/screenshots/codingpark-web-ide.png'
+ import CodingParkWebIDEMin from '../resources/screenshots/thumbnails/codingpark-web-ide-min.png'  
 
  export const contributorsAndAdopters = [
      {
@@ -173,6 +175,12 @@
         src: MVTecHDevelopEVO,
         thumb: MVTecHDevelopEVOMin,
         alt: "MVTec HDevelopEVO"
+    },
+    {
+        href: "https://codingpark.io/en/web-ide",
+        src: CodingParkWebIDE,
+        thumb: CodingParkWebIDEMin,
+        alt: "Coding Park Web IDE"
     }
  ]
 
