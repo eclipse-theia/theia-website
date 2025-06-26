@@ -359,7 +359,18 @@ To connect to models hosted via [Ollama](https://ollama.com/), enter the corresp
 
 <img src="../../ollama-setting.png" alt="Ollama configuration in the Theia IDE" style="max-width: 525px">
 
-**Some models on Ollama support using an OpenAI compatible API. In this case, we recommend using the [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm)**
+When using Ollama, it is advisable to check for the optimal settings and prompts for the specific model
+to be used. For example, the default context size for all Ollama models is 2048 tokens. Depending on
+available VRAM, this parameter (`num_ctx`) should be raised, especially for more complex scenarios
+involving the various Chat agents. See [below](#custom-request-settings) for details on this.
+
+**Note: The Ollama connector is still in Alpha state. If you experience problems while using it, you can
+alternatively take advantage of the fact that some Ollama models support using an OpenAI compatible API. In
+this case, you can alternatively use the
+[Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). But note that the
+context window size `num_ctx` (default: 2048)
+cannot be configured this way. If you need a different context window size, you should create your own
+derived model in Ollama, in which you set the `num_ctx` parameter to the desired value via the Modelfile.**
 
 ### Custom Request Settings
 
@@ -370,26 +381,37 @@ Add the settings in `settings.json`:
 ```json
 "ai-features.modelSettings.requestSettings": [
     {
-        "modelId": "Qwen/Qwen2.5-Coder-32B-Instruct",
-        "requestSettings": { "max_new_tokens": 2048 },
-        "providerId": "huggingface"
+        "scope": {
+            "providerId": "ollama",
+            "modelId": "qwen3:14b"
+        },
+        "requestSettings": { "num_ctx": 40960 },
+        "clientSettings": {
+            "keepToolCalls": true,
+            "keepThinking": false
+        }
     },
     {
-        "modelId": "gemma2",
-        "requestSettings": { "stop": ["<file_sep>"] },
-        "providerId": "ollama"
+        "scope": {
+            "providerId": "huggingface",
+            "modelId": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        },
+        {
+            "requestSettings": { "max_new_tokens": 2048 },
+        }
     }
 ]
 ```
 
-Or navigate in the settings view to **`ModelSettings` => `Request Settings`**.
-
 #### Key Fields
-- **`modelId`**: The unique identifier of the model.
-- **`requestSettings`**: Provider-specific options, such as token limits or stopping criteria.
-- **`providerId`**: *(Optional)* Specifies the provider for the settings (e.g., `huggingface`, `ollama`, `openai`). If omitted, settings apply to all providers that match the `modelId`.
 
-Valid options for `requestSettings` depend on the model provider.
+- **`scope`**: any combination of `providerId`, `agentId`, and `modelId`. Describes the model(s) to which
+  the settings should be applied. The models are matched based on specificity (agent: 100, model: 10, provider: 1 points). This way, e.g., settings to be applied to all or just one `ollama` model can be
+  specified, depending on whether only the `providerId` is specified or also the `modelId` is given.
+- **`requestSettings`**: Provider-specific options, such as token limits or stopping criteria. Check the
+  documentation of the model provider for available values.
+- **`clientSettings`**: Controls retention of reasoning and/or toolcall messages in the chat context.
+  E.g., if `keepThinking` is set to `true`, the reasoning is kept in the context for follow-up chat messages. Else, earlier reasoning messages are removed (potentially saving input tokens).
 
 #### Per-Chat Custom Request Settings
 
