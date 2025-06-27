@@ -642,9 +642,12 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 
 ### Configuring MCP Servers
 
-To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and configuration details such as the command, arguments, optional environment variables and autostart (true by default). **For Windows users, please see the additional information below**.
+To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and can be configured in one of two ways:
 
-`"autostart"` (true by default) will automatically start the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** using the `"MCP Start MCP Server"` command (see below).
+1. **Local MCP Server**: Specify a command to execute locally with arguments and optional environment variables.
+2. **Remote MCP Server**: Provide a server URL, authentication token, and optional authentication header name.
+
+Both configurations support the `autostart` option (true by default), which automatically starts the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** using the `"MCP: Start MCP Server"` command (see below).
 
 **Example Configuration:**
 
@@ -673,31 +676,40 @@ To configure MCP servers, open the preferences and add entries to the `MCP Serve
     }
   },
   "git": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "/path/to/repo",
-        "run",
-        "mcp-server-git"
-      ]
-    },
+    "command": "uv",
+    "args": [
+      "--directory",
+      "/path/to/repo",
+      "run",
+      "mcp-server-git"
+    ]
+  },
   "git2": {
-      "command": "uvx",
-      "args": [
-        "mcp-server-git",
-        "--repository",
-        "/path/to/otherrepo"
-      ]
+    "command": "uvx",
+    "args": [
+      "mcp-server-git",
+      "--repository",
+      "/path/to/otherrepo"
+    ]
+  },
+  "jira": {
+    "serverUrl": "YOUR_JIRA_MCP_SERVER_URL",
+    "serverAuthToken": "YOUR_JIRA_MCP_SERVER_TOKEN"
+  },
+  "cloudflare": {
+    "serverUrl": "https://demo-day.mcp.cloudflare.com/sse"
   }
 }
 ```
 
 **Note**: `uvx` comes preinstalled with `uv` and does not need to be installed manually. Running `pip install uvx` installs a deprecated tool unrelated to `uv`.
 
-The configuration options include:
+### Local Server Configuration Options
+
 - **`command`**: The executable used to start the server (e.g., `npx`).
 - **`args`**: An array of arguments passed to the command.
 - **`env`**: An optional set of environment variables for the server.
+- **`autostart`**: Whether to automatically start the server when the IDE starts (default: true).
 
 **Note for Windows users:** On Windows, you need to start a command interpreter (e.g. cmd.exe) as the server command in order for path lookups to work as expected. The effective command line is then passed as an argument. For example:
 
@@ -710,6 +722,13 @@ The configuration options include:
     }
   }
 ```
+
+### Remote Server Configuration Options
+
+- **`serverUrl`**: The URL of the remote MCP server to connect to.
+- **`serverAuthToken`**: Authentication token for the server (if required).
+- **`serverAuthTokenHeader`**: The header name to use for authentication (if not provided, "Authorization" with "Bearer" will be used).
+- **`autostart`**: Whether to automatically start the connection to the remote server when the IDE starts (default: true).
 
 ### Starting and Stopping MCP Servers
 
