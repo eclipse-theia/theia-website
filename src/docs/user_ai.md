@@ -645,7 +645,7 @@ For a list of available MCP servers, visit the [MCP Servers Repository](https://
 To configure MCP servers, open the preferences and add entries to the `MCP Servers Configuration` section. Each server requires a unique identifier (e.g., `"brave-search"` or `"filesystem"`) and can be configured in one of two ways:
 
 1. **Local MCP Server**: Specify a command to execute locally, with optional arguments and environment variables.
-2. **Remote MCP Server**: Provide a server URL, authentication token, and optional authentication header name.
+2. **Remote MCP Server**: Provide a server URL, with optional authentication token and header.
 
 Both configurations support the `autostart` option (true by default), which automatically starts the respective MCP server whenever you restart your IDE. In your current session, however, you'll still need to **manually start it** using the `"MCP: Start MCP Server"` command (see below).
 
