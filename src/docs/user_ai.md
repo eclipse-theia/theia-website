@@ -501,6 +501,16 @@ The Theia IDE provides a global chat interface where users can interact with all
 
 Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. 
 
+### Starting Chat from the Editor
+
+You can initiate AI chat sessions directly from the editor context. To start a session, right-click anywhere in a file - either at the cursor position or with a selection—and choose the "Ask AI" option. Alternatively, use the shortcut Ctrl+I to trigger the same action.
+
+The context of the chat includes information about the current editor state, such as the selected range or the cursor location, which helps the AI provide more relevant responses. This approach is particularly useful when you need assistance with specific code segments.
+
+<video src="../../start-chat-from-editor.webm" controls style="max-width: 100%;"></video>
+
+The video above demonstrates how Theia Coder can be used to generate a test case for a specific function in a file, starting directly from the editor context.
+
 ### Agent Pinning
 The *Agent Pinning* feature, reduces the need for repeated agent references.  
   
