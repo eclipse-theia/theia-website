@@ -766,7 +766,7 @@ The Theia IDE provides a flexible and user-configurable tool call confirmation s
 ### Configuration
 
 1. Open the AI configuration view and switch to the "Tools" tab
-2. You can set the globa default on top
+2. You can set the global default on top
 4. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow).
 5. When a tool requires confirmation in the chat, you can choose to:
    - Allow once
