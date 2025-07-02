@@ -55,6 +55,7 @@ Learn more about the AI-powered Theia IDE:
   - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
   - [Using MCP Server Functions](#using-mcp-server-functions)
   - [MCP Configuration View](#mcp-configuration-view)
+- [Tool Call Confirmation UI](#tool-call-confirmation-ui)
 - [SCANOSS](#scanoss)
   - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
   - [Manual Scanning](#manual-scanning)
@@ -772,6 +773,31 @@ Additionally, you can view all tools associated with each server. These tools ca
 For more details, refer to the video demonstration below. In the video, the tools from two example servers, the MCP Git server and the MCP search server, are embedded into the chat. The video also illustrates how the search tool is incorporated into the universal agent's prompt, allowing it to perform searches upon request without explicit mention in the chat.
 
 <video controls src="../../mcp-configuration.webm" alt="MCP Configuration View Demonstration" style="max-width: 100%"></video>
+
+## Tool Call Confirmation UI
+
+The Theia IDE provides a flexible and user-configurable tool call confirmation system for agent interactions. This feature allows you to control, on a per-tool basis, whether a tool call should be:
+
+- **Disabled**: The tool cannot be executed.
+- **Confirm**: You are prompted for approval each time the tool is called.
+- **Always Allow (Default)**: The tool is executed immediately without confirmation.
+
+### Configuration
+
+1. Open the AI configuration view and switch to the "Tools" tab
+2. You can set the global default on top
+4. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow).
+5. When a tool requires confirmation in the chat, you can choose to:
+   - Allow once
+   - Allow for the current session
+   - Always allow (persists across sessions)
+   - Deny once
+   - Deny for the session
+   - Always deny (disables the tool)
+
+The following video demonstrates how to set a GitHub MCP server function to "confirm" mode, which then prompts the user for permission when an agent attempts to use it:
+
+<video controls src="../../tool-functions-access-control.webm" alt="Tool Call Confirmation UI Demonstration" style="max-width: 100%"></video>
 
 ## SCANOSS
 
