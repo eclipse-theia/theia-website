@@ -513,13 +513,16 @@ The context of the chat includes information about the current editor state, suc
 The video above demonstrates how Theia Coder can be used to generate a test case for a specific function in a file, starting directly from the editor context.
 
 ### Agent Pinning
+
 The *Agent Pinning* feature, reduces the need for repeated agent references.  
   
 - When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.  
-- If an agent is already pinned, mentioning a different agent will **not** change the pinned agent. Instead, the newly mentioned agent will be used **only** for that specific prompt.  
-- You can manually unpin an agent through the chat interface if needed.  
+- If an agent is already pinned, mentioning a different agent will **update** the pinned agent.
+- You can manually unpin an agent through the chat interface if needed.
 
-<img src="../../agent-pinning.gif" alt="Pinning Agents in the Theia IDE AI Chat" style="max-width: 525px">
+<video src="../../agent-pinning.webm" controls style="max-width: 100%;"></video>
+
+</br>
 
 ### Context Variables
 You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. 
