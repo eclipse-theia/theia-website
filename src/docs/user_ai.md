@@ -42,6 +42,7 @@ Learn more about the AI-powered Theia IDE:
   - [Code Completion (Agent)](#code-completion-agent)
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
 - [Chat](#chat)
+  - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
