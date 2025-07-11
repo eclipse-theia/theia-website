@@ -93,85 +93,19 @@ See also:
 
 Below is an overview of various Large Language Model (LLM) providers supported within the Theia IDE, highlighting their key features and current state.
 
-<table>
-  <tr>
-    <th>Provider</th>
-    <th>Streaming</th>
-    <th>Tool Calls</th>
-    <th>Structured Output</th>
-    <th>State</th>
-  </tr>
-  <tr>
-    <td><a href="#openai-hosted-by-openai">OpenAI Official</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td><a href="#openai-compatible-models-eg-via-vllm">OpenAI Compatible</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td><a href="#azure">Azure</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td>Mistral (via OpenAI Compatible)</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td><a href="#vercel-ai">Vercel AI</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#anthropic">Anthropic</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>Beta</td>
-  </tr>
-  <tr>
-    <td><a href="#google-ai">Google AI</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#hugging-face">Hugging Face</a></td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#llamafile-models">LlamaFile</a></td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#ollama">Ollama</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Alpha</td>
-  </tr>
-</table>
+| Provider | Streaming | Tool Calls | Structured Output | State |
+| --- | :---: | :---: | :---: | --- |
+| [OpenAI Official](#openai-hosted-by-openai) | ✅ | ✅ | ✅ | Public |
+| [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) | ✅ | ✅ | ✅ | Public |
+| [Azure](#azure) | ✅ | ✅ | ✅ | Public |
+| Mistral (via OpenAI Compatible) | ✅ | ✅ | ✅ | Public |
+| [Vercel AI](#vercel-ai) | ✅ | ✅ | ✅ | Experimental |
+| [Anthropic](#anthropic) | ✅ | ✅ | ❌ | Beta |
+| [Google AI](#google-ai) | ✅ | ✅ | ❌ | Experimental |
+| [Hugging Face](#hugging-face) | ✅ | ❌ | ❌ | Experimental |
+| [LlamaFile](#llamafile-models) | ✅ | ❌ | ❌ | Experimental |
+| [Ollama](#ollama) | ✅ | ✅ | ✅ | Alpha |
+
 </br>
 </br>
 
