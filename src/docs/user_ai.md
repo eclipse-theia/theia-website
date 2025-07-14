@@ -42,6 +42,7 @@ Learn more about the AI-powered Theia IDE:
   - [Code Completion (Agent)](#code-completion-agent)
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
 - [Chat](#chat)
+  - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
@@ -92,85 +93,19 @@ See also:
 
 Below is an overview of various Large Language Model (LLM) providers supported within the Theia IDE, highlighting their key features and current state.
 
-<table>
-  <tr>
-    <th>Provider</th>
-    <th>Streaming</th>
-    <th>Tool Calls</th>
-    <th>Structured Output</th>
-    <th>State</th>
-  </tr>
-  <tr>
-    <td><a href="#openai-hosted-by-openai">OpenAI Official</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td><a href="#openai-compatible-models-eg-via-vllm">OpenAI Compatible</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td><a href="#azure">Azure</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td>Mistral (via OpenAI Compatible)</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Public</td>
-  </tr>
-  <tr>
-    <td><a href="#vercel-ai">Vercel AI</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#anthropic">Anthropic</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>Beta</td>
-  </tr>
-  <tr>
-    <td><a href="#google-ai">Google AI</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#hugging-face">Hugging Face</a></td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#llamafile-models">LlamaFile</a></td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>Experimental</td>
-  </tr>
-  <tr>
-    <td><a href="#ollama">Ollama</a></td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>Alpha</td>
-  </tr>
-</table>
+| Provider | Streaming | Tool Calls | Structured Output | State |
+| --- | :---: | :---: | :---: | --- |
+| [OpenAI Official](#openai-hosted-by-openai) | ✅ | ✅ | ✅ | Public |
+| [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) | ✅ | ✅ | ✅ | Public |
+| [Azure](#azure) | ✅ | ✅ | ✅ | Public |
+| Mistral (via OpenAI Compatible) | ✅ | ✅ | ✅ | Public |
+| [Vercel AI](#vercel-ai) | ✅ | ✅ | ✅ | Experimental |
+| [Anthropic](#anthropic) | ✅ | ✅ | ❌ | Beta |
+| [Google AI](#google-ai) | ✅ | ✅ | ❌ | Experimental |
+| [Hugging Face](#hugging-face) | ✅ | ❌ | ❌ | Experimental |
+| [LlamaFile](#llamafile-models) | ✅ | ❌ | ❌ | Experimental |
+| [Ollama](#ollama) | ✅ | ✅ | ✅ | Alpha |
+
 </br>
 </br>
 
@@ -513,13 +448,16 @@ The context of the chat includes information about the current editor state, suc
 The video above demonstrates how Theia Coder can be used to generate a test case for a specific function in a file, starting directly from the editor context.
 
 ### Agent Pinning
+
 The *Agent Pinning* feature, reduces the need for repeated agent references.  
   
 - When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.  
-- If an agent is already pinned, mentioning a different agent will **not** change the pinned agent. Instead, the newly mentioned agent will be used **only** for that specific prompt.  
-- You can manually unpin an agent through the chat interface if needed.  
+- If an agent is already pinned, mentioning a different agent will **update** the pinned agent.
+- You can manually unpin an agent through the chat interface if needed.
 
-<img src="../../agent-pinning.gif" alt="Pinning Agents in the Theia IDE AI Chat" style="max-width: 525px">
+<video src="../../agent-pinning.webm" controls style="max-width: 100%;"></video>
+
+</br>
 
 ### Context Variables
 You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. 
