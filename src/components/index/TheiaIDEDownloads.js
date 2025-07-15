@@ -96,6 +96,13 @@ const TheiaIDEDownloads = () => (
                     <a className="btn btn--cta" href="https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/macos-arm/TheiaIDE.dmg&r=1" rel="noopener">MacOS (ARM)</a>
                     <a className="btn btn--cta" href="https://snapcraft.io/theia-ide" rel="noopener">Linux (Snap)²</a>
                  </div>
+                 
+                 <div style={{backgroundColor: '#ffe0e0', border: '2px solid #ff0000', padding: '15px', margin: '20px auto', maxWidth: '90%', borderRadius: '5px'}}>
+                    <strong>⚠️ Important Notice for Linux Users (1.63 Release):</strong><br />
+                    If the latest 1.63 release does not start on your machine, use this parameter: <code style={{background: '#f0f0f0', padding: '3px 6px', borderRadius: '3px'}}>./TheiaIDE.AppImage --gtk-version=3</code><br />
+                    We are working on a fix for this issue. For more details, see <a href="https://github.com/eclipse-theia/theia/issues/15981" target="_blank" rel="noopener noreferrer">GitHub issue #15981</a>.
+                 </div>
+                 
                  <center>
                  <i>¹ The Mac x86 version might run slow and unstable on recent ARM systems. Please try our new dedicated ARM build.</i>
                  <br></br>
