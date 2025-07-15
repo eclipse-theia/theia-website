@@ -143,8 +143,8 @@ const TheiaIDEHeader = () => (
                 <h2>
                     A modern and open IDE for cloud and desktop. The Theia IDE is based on the Theia platform.
                 </h2>
-                <div style="background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.5); padding: 8px 15px; margin: 15px auto; max-width: 600px; border-radius: 5px; text-align: center;">
-                    <strong>⚠️ Linux Users (v1.63):</strong> See <a href="#theiaidedownload" style="color: white; text-decoration: underline;">download section</a> for important startup information.
+                <div style={{backgroundColor: 'rgba(255, 255, 255, 0.2)', border: '1px solid rgba(255, 255, 255, 0.5)', padding: '8px 15px', margin: '15px auto', maxWidth: '600px', borderRadius: '5px', textAlign: 'center'}}>
+                    <strong>⚠️ Linux Users (v1.63):</strong> See <a href="#theiaidedownload" style={{color: 'white', textDecoration: 'underline'}}>download section</a> for important startup information.
                 </div>
                 <div className="header__buttons">
                     <a className="btn btn--cta" href="#theiaidedownload" rel="noopener">Download &nbsp;&nbsp;&rarr;</a>
