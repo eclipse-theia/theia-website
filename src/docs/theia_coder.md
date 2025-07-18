@@ -22,11 +22,60 @@ Theia Coder is a chat agent within Theia AI Chat. **To interact with it, simply 
 1. **Retrieving Context**: Coder can browse the current workspace to find and read the content of relevant code files. As a user, you can augment your queries by mentioning or attaching specific files as context information to your chat messages to get faster and more accurate responses from Theia Coder.
 2. **Proposing Changes**: It provides structured code modifications that users can review and apply automatically.
 3. **Fixing File Issues**: Coder can automatically detect and fix issues in files by analyzing diagnostics reported by language servers, linters, and other tools.
+4. **Agent Mode**: Coder can operate as a fully autonomous agent that plans, writes, tests, iterates, and fixes code without requiring manual intervention at each step.
 
 In the following example video, we provide a simple task to Coder to demonstrate the full work flow.
 
 <img src="../../theia-coder.gif" alt="Demo of Theia Coder, the personal AI development assistant in the Theia IDE" style="max-width: 800px">
 <br></br>
+
+## Theia Coder Modes: Edit Mode and Agent Mode
+
+Theia Coder operates in two distinct modes that offer different levels of autonomy:
+
+### Edit Mode
+
+Edit Mode is the default interaction model that gives you full control over file changes:
+
+- The agent proposes changes through structured prompt-based interaction
+- You review and approve each file modification before it's committed
+- Changes are presented as diffs for easy review
+- Ideal for targeted code modifications where careful review is essential
+
+### Agent Mode
+
+Agent Mode transforms Theia Coder into a fully autonomous developer that can:
+
+- Write and modify files without requiring user approval for each change
+- Compile and test the generated code
+- Interpret results from tests and builds
+- Fix its own errors
+- Iterate until everything works correctly
+
+This autonomous workflow is particularly valuable for:
+- Greenfield development of new features
+- Complex testing scenarios
+- Multi-step workflows that would otherwise require constant intervention
+
+Watch Agent Mode in action:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1XcsPPedIXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### Activating Agent Mode
+
+To switch to Agent Mode:
+
+1. Navigate to the AI Configuration View and select Theia Coder as the active agent
+2. Choose the `agent-mode` prompt
+3. Optionally switch to a more powerful LLM like Sonnet-4, GPT-4.1 or Gemini-Pro for better results
+4. Enable notifications to get updates when long-running tasks complete
+
+Once active, the agent operates differently: it directly writes to the workspace, executes code, and even starts the application when complete.
+
+**Tips for Agent Mode:**
+- Provide clear, detailed prompts since the agent will run independently for 10-30 minutes
+- Consider using [Task Context](https://eclipsesource.com/blogs/2025/07/01/structure-ai-coding-with-task-context/) to better structure your requests
+- Agent Mode preserves traceability of all changes via Theia AI's changeset feature
 
 ### Describing Programming Tasks
 To use Theia Coder effectively, describe your programming task in clear natural language. Coder will search your workspace for relevant code, but you can improve efficiency by specifying key locations, such as:
@@ -109,6 +158,7 @@ Please remember that Theia Coder is currently released as an **alpha version**. 
 Learn more about Theia Coder and see it in action:
 
 👉 [Introducing Theia Coder - the open AI coding agent with full control](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
+👉 [Theia Coder Agent Mode: From AI Assistant to Autonomous Developer](https://eclipsesource.com/blogs/2025/07/08/theia-coder-agent-mode-from-ai-assistant-to-autonomous-developer/)
 
 Please also note that Theia Coder is built on [Theia AI](/docs/theia_ai), a flexible framework for building AI-powered tools and IDEs. You can easily adopt or extend Theia Coder or build a similar agent for your own use case with ease.
 
