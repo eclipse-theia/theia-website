@@ -23,6 +23,7 @@ Theia Coder is a chat agent within Theia AI Chat. **To interact with it, simply 
 2. **Proposing Changes**: It provides structured code modifications that users can review and apply automatically.
 3. **Fixing File Issues**: Coder can automatically detect and fix issues in files by analyzing diagnostics reported by language servers, linters, and other tools.
 4. **Agent Mode**: Coder can operate as a fully autonomous agent that plans, writes, tests, iterates, and fixes code without requiring manual intervention at each step.
+5. **Task Context**: For complex development tasks, Theia Coder works with [Task Context](/docs/user_ai/#task-context) to provide a structured, reproducible approach with clear planning before implementation.
 
 In the following example video, we provide a simple task to Coder to demonstrate the full work flow.
 
@@ -74,7 +75,7 @@ Once active, the agent operates differently: it directly writes to the workspace
 
 **Tips for Agent Mode:**
 - Provide clear, detailed prompts since the agent will run independently for 10-30 minutes
-- Consider using [Task Context](https://eclipsesource.com/blogs/2025/07/01/structure-ai-coding-with-task-context/) to better structure your requests
+- Consider using [Task Context](/docs/user_ai/#task-context) to better structure your requests
 - Agent Mode preserves traceability of all changes via Theia AI's changeset feature
 
 ### Describing Programming Tasks
@@ -169,7 +170,11 @@ There are three external factors influencing th quality of Theia Coder's results
 1. The user request
 2. The provided context
 3. The used LLM
-**About 1. and 2.**: For best results with Theia Coder, ensure that your requests are clear, comprehensive and provide sufficient context. Keep in mind that Coder (and the underlying LLM) only knows the information you provide it with. The LLM usually does not have any implicit knowledge about the project you are working on, except it is an open source project and was part of the training data. Specifically, using context variables, like `#file:filePath`, can significantly enhance the accuracy and efficiency of Coder's suggestions by reducing the amount of information it needs to process on its own. As a general benchmark, try to describe the task in a way that a peer developer would understand without any additional information and without asking any additional questions. If you have conceptional issues, please see the next section.
+**About 1. and 2.**: For best results with Theia Coder, ensure that your requests are clear, comprehensive and provide sufficient context. Keep in mind that Coder (and the underlying LLM) only knows the information you provide it with. The LLM usually does not have any implicit knowledge about the project you are working on, except it is an open source project and was part of the training data. 
+
+For complex tasks, consider using [Task Context](/docs/user_ai/#task-context) to structure your requests in a reproducible way and get better planning before implementation. For simpler tasks, using context variables, like `#file:filePath`, can significantly enhance the accuracy and efficiency of Coder's suggestions by reducing the amount of information it needs to process on its own. 
+
+As a general benchmark, try to describe the task in a way that a peer developer would understand without any additional information and without asking any additional questions. If you have conceptional issues, please see the next section.
 
 **About 3.:** The LLM used in Theia Coder can be easily configured in the general Theia AI settings. Different models might provide varying levels of performance, so it might be worthwhile to experiment with different options to see which one yields the best results for your specific use case. In general, we recommend to use the "best" and "latest" model available to you. In most scenarios, the better results will compensate for the increased computational costs. Claude Sonnet 3.7 is a very popular option at the time of writing.
 
