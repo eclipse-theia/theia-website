@@ -46,6 +46,11 @@ Learn more about the AI-powered Theia IDE:
   - [Agent Pinning](#agent-pinning)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
+- [Task Context](#task-context)
+  - [Set-up for Task Context](#set-up-for-task-context)
+  - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
+  - [Planning with the Architect Agent](#planning-with-the-architect-agent)
+  - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
@@ -488,6 +493,57 @@ To use this feature, click the edit icon located next to each message you send i
 Below is a screenshot depicting the edit button and options to switch between conversation branches:
 
 <img src="../../edit-request.png" alt="Edit Chat Request in the Theia IDE" style="max-width: 525px" />
+
+## Task Context
+
+Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish. Watch the video below for a introduction.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Wy9epGszWz0?si=y6CoPDZg3LS6EP9l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### Set-up for Task Context
+
+Task contexts will be stored as Mark Down files. You can set the directory in the settings (Setting id: `ai-features.promptTemplates.taskContextStorageDirector`), the default is: `.prompts/task-contexts`).
+
+### Manually creating a Task Context File
+
+Instead of starting with a chat prompt, create a dedicated task context file that externalizes your requirements:
+
+1. Create a new file (e.g., `my_task.md`) in a dedicated directory (by default `.prompts/task-context/`)
+2. Write your initial requirement in this file (e.g., "add a reset button to the token usage view")
+3. Initiate a session with this file using the command `Task Context: Initiate Session`
+4. Select your desired agent to link the chat session to your externalized prompt file
+5. Just hit enter to start the request in the chat
+
+This approach makes your prompt reproducible and allows you to refine it before sending it to the LLM.
+
+### Planning with the Architect Agent
+
+For complex tasks, it's highly beneficial to use a planning agent before a coding agent:
+
+1. Select the "Architect" agent when initiating your chat session and describe your task
+2. The Architect will analyze your workspace and create a detailed plan of what should be coded
+3. Use the "Summarize this session as a task for coder" button in the chat. 
+
+The system will send the plan to an underlying LLM, which summarizes it into a structured format and create a task context file. This structured task context includes comprehensive details such as:
+   - Problem description and scope
+   - Detailed design and implementation steps with specific files
+   - Testing strategy (both automated and manual)
+   - Deliverables and PR description
+
+Please note that you adapt this template via modifying the prompt `architect-tasksummary`.
+
+### Implementing with the Coder Agent
+
+After reviewing and refining the task context:
+
+1. Review the plan and make any necessary adjustments
+2. If modifications are needed, return to the planning agent and provide feedback
+3. Use the "Update Task Context" action to incorporate changes
+4. When the plan is finalized, trigger the Coder agent with the updated task context
+
+Because the Coder agent is now working from a detailed and verified plan, it produces much higher quality results.
+
+For more details about Task Context, visit [Structure AI Coding with Task Context](https://eclipsesource.com/blogs/2025/07/01/structure-ai-coding-with-task-context/).
 
 ## AI Configuration
 
