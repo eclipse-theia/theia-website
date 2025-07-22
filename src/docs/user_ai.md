@@ -437,7 +437,7 @@ This agent assists with writing and executing terminal commands. Based on the us
 
 ### App Tester (Chat Agent)
 
-The App Tester is an AI-driven agent that helps you test browser-based applications using Playwrite (using a Playwrite MCP server). It performs end-to-end (E2E) testing by interacting directly with your running application in a browser, focusing on testing the application through its UI rather than generating unit tests for business logic.
+The App Tester is an AI-driven agent that helps you test browser-based applications using Playwright (using a Playwright MCP server). It performs end-to-end (E2E) testing by interacting directly with your running application in a browser, focusing on testing the application through its UI rather than generating unit tests for business logic.
 
 **How to Use the App Tester:**
 
