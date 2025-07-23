@@ -44,6 +44,7 @@ Learn more about the AI-powered Theia IDE:
 - [Chat](#chat)
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
+  - [Image Support](#image-support)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
 - [Task Context](#task-context)
@@ -463,6 +464,19 @@ The *Agent Pinning* feature, reduces the need for repeated agent references.
 <video src="../../agent-pinning.webm" controls style="max-width: 100%;"></video>
 
 </br>
+
+### Image Support
+
+Theia IDE (and Theia AI) supports adding images to chat sessions, which is especially useful when visual context is needed to solve problems or explain issues.
+
+You can add images to chat sessions in several ways:
+- Click the "+" icon in the chat input area
+- Drag and drop images directly into the chat
+- Copy and paste images from your clipboard
+
+When an image is included in your request, it will be sent to the LLM along with your text (if the selected model supports image inputs). This enables you to provide visual context that can help the AI understand and address your questions more effectively (see example screenshot below).
+
+<video src="../../image-support.webm" controls style="max-width: 100%;"></video>
 
 ### Context Variables
 You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. 
