@@ -9,6 +9,7 @@ import TheiaIDEDownloads from '../components/index/TheiaIDEDownloads';
 import TheiaIDEExtensible from '../components/index/TheiaIDEExtensible';
 import Footer from '../components/Footer';
 import HeadWithIDESchema from '../layouts/headwithIDEschema';
+import YouTubeVideosThumbnails from '../components/index/YouTubeVideosThumbnails';
 
 export const Head = () => (
     <HeadWithIDESchema
@@ -24,6 +25,7 @@ export default ({ pageContext }) => {
             <Header />
             <main role="main">
                 <TheiaIDEHeader />
+                <YouTubeVideosThumbnails />
                 <VSCodeExtensions />
                 <TheiaIDEFeatures adopters={pageContext.adopters}/>
                 <TheiaIDEExtensible />
