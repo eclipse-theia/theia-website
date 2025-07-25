@@ -315,6 +315,46 @@ const categories = [
                 type: 'video'
             },
             {
+                title: 'AI Driven E2E Testing with the Theia IDE',
+                url: 'https://eclipsesource.com/blogs/2025/07/09/ai-driven-e2e-testing-theia-ide/',
+                type: 'video'
+            },
+            {
+                title: 'Theia Coder Agent Mode: From AI Assistant to Autonomous Developer',
+                url: 'https://eclipsesource.com/blogs/2025/07/08/theia-coder-agent-mode/',
+                type: 'video'
+            },
+            {
+                title: 'Structured AI Coding with Task Context: A Better Way to Work with AI Agents',
+                url: 'https://eclipsesource.com/blogs/2025/07/01/structure-ai-coding-with-task-context/',
+                type: 'video'
+            },
+            {
+                title: 'How to Build Custom AI Agents in the Theia IDE',
+                url: 'https://eclipsesource.com/blogs/2025/06/18/how-to-build-custom-agents-in-theia-ai/',
+                type: 'video'
+            },
+            {
+                title: 'Installing MCP Servers via VS Code Extensions',
+                url: 'https://eclipsesource.com/blogs/2025/06/12/installing-mcp-servers-via-vscode-extensions/',
+                type: 'video'
+            },
+            {
+                title: 'Custom GitHub Copilot with Theia AI – New Video Tutorial',
+                url: 'https://eclipsesource.com/blogs/2025/05/27/custom-github-copilot-with-theia-ai-tutorial/',
+                type: 'video'
+            },
+            {
+                title: 'Enhancing AI Coding Agents with Project-Specific Information',
+                url: 'https://eclipsesource.com/blogs/2025/05/06/enhancing-ai-coding-with-project-info/',
+                type: 'article'
+            },
+            {
+                title: 'Introducing SCANOSS Integration in Theia: Transparent License Compliance for AI-Generated Code',
+                url: 'https://eclipsesource.com/blogs/2025/03/20/scanoss-integration-in-theia/',
+                type: 'article'
+            },
+            {
                 title: 'Introducing Theia Coder - the open AI coding agent with full control',
                 url: 'https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/',
                 type: 'article'
