@@ -181,12 +181,12 @@ const VideoModal = ({ videoId, onClose }) => (
     </div>
 )
 
-const YouTubeVideosThumbnails = () => {
+const TheiaAIVideosThumbnails = () => {
     const [activeVideo, setActiveVideo] = useState(null);
     
-    // Filter videos by theia-ide tag
-    const theiaIDEVideos = youtubeVideos.filter(video => 
-        video.tags && video.tags.includes('theia-ide')
+    // Filter videos by theia-ai tag
+    const theiaAIVideos = youtubeVideos.filter(video => 
+        video.tags && video.tags.includes('theia-ai')
     );
     
     const openVideo = (videoId) => {
@@ -203,7 +203,7 @@ const YouTubeVideosThumbnails = () => {
         <div className="row">
             <Styled>
                 <section className="youtube-gallery">
-                    <h3 className="heading-tertiary">Latest Theia IDE Demo Videos</h3>
+                    <h3 className="heading-tertiary">Latest Theia AI Demo Videos</h3>
                     
                     <div className="youtube-gallery__container">
                         <Swiper
@@ -229,7 +229,7 @@ const YouTubeVideosThumbnails = () => {
                                 disableOnInteraction: false
                             }}
                         >
-                            {theiaIDEVideos.map((video, i) => (
+                            {theiaAIVideos.map((video, i) => (
                                 <SwiperSlide key={i}>
                                     <YoutubeCard>
                                         <div 
@@ -277,4 +277,4 @@ const YouTubeVideosThumbnails = () => {
     )
 }
 
-export default YouTubeVideosThumbnails
+export default TheiaAIVideosThumbnails
