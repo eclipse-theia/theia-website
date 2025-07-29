@@ -20,6 +20,7 @@ import { breakpoints } from '../utils/variables'
 import styled from '@emotion/styled'
 import EclipseSourceLogo from '../resources/eclipse-source.svg'
 import TypeFoxLogo from '../resources/typefox.png'
+import CastleRidgeLogo from '../resources/castleridge.png'
 import Background from '../resources/background-image.png'
 
 const StyledSupport = styled.div`
@@ -127,6 +128,14 @@ const supporters = [
         training: 'https://www.typefox.io/cloud-and-desktop-ides/',
         sponsored: 'https://www.typefox.io/cloud-and-desktop-ides/',
         tool: 'https://www.typefox.io/cloud-and-desktop-ides/'
+    },
+    {
+        img: CastleRidgeLogo,
+        title: 'Castle Ridge Software',
+        link: 'https://www.linkedin.com/company/castleridge',
+        support: 'https://www.linkedin.com/company/castleridge',
+        sponsored: 'https://www.linkedin.com/company/castleridge',
+        tool: 'https://www.linkedin.com/company/castleridge'
     }
 ]
 
@@ -155,7 +164,7 @@ const Support = () => (
                                 <div>
                                     <a href={link}><img src={img} alt={`${title} Logo`} /></a>
                                     <h3 className="heading-tertiary"><a href={support}>Support</a></h3>
-                                    <h3 className="heading-tertiary"><a href={training}>Training</a></h3>
+                                    {(training) && <h3 className="heading-tertiary"><a href={training}>Training</a></h3>}
                                     {(sponsored) && <h3 className="heading-tertiary"><a href={sponsored}>Sponsored Development</a></h3>}
                                     {(tool) && <h3 className="heading-tertiary"><a href={tool}>Custom Tools & IDEs</a></h3>}
                                     {(ai) && <h3 className="heading-tertiary"><a href={ai}>AI-powered Tools & IDEs</a></h3>}
