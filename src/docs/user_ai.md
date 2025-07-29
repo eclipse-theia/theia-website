@@ -41,6 +41,7 @@ Learn more about the AI-powered Theia IDE:
   - [Architect (Chat Agent)](#architect-chat-agent)
   - [Code Completion (Agent)](#code-completion-agent)
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
+  - [App Tester (Chat Agent)](#app-tester-chat-agent)
 - [Chat](#chat)
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
@@ -434,6 +435,27 @@ Finally, the setting 'Max Context Lines' allows you to configure the maximum num
 ### Terminal Assistance (Agent)
 
 This agent assists with writing and executing terminal commands. Based on the user's request, it suggests commands and allows them to be directly pasted and executed in the terminal. It can access the current directory, environment, and recent terminal output to provide context-aware assistance. You can open the terminal assistance agent via Ctrl+I in the terminal view.
+
+### App Tester (Chat Agent)
+
+The App Tester is an AI-driven agent that helps you test browser-based applications using Playwright (using a Playwright MCP server). It performs end-to-end (E2E) testing by interacting directly with your running application in a browser, focusing on testing the application through its UI rather than generating unit tests for business logic.
+
+**How to Use the App Tester:**
+
+1. **Accessing the Agent:** Interact with the App Tester like any other chat agent by mentioning it in the chat interface.
+2. **Launching Your Application:** Ensure your web application is running (e.g., on `localhost:3000`).
+3. **Prompting the App Tester:** Formulate a natural language prompt addressing the agent. For example: "test my calculator app focus on multiplication only it is running on localhost 3000".
+4. **Observing the Test Process:** The App Tester will open a browser and interact with your application autonomously, performing actions like inputting values and clicking buttons. It generates test cases on its own and informs you of any issues detected, comparing expected results with actual results.
+5. **Reviewing Test Results:** Once testing is complete, the App Tester provides detailed test results describing what it found, including issues and discrepancies.
+6. **Integrating with Code Fixing:** The detailed test results can be fed back to a coding agent (like "Theia Coder") to help automatically fix detected issues, creating a seamless workflow from testing to bug resolution.
+
+**Installation Notes:**
+
+* If you use the App Tester for the first time and the Playwright MCP server is not yet installed, the agent will help you install it!
+
+The following video shows the AppTester agent in action:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/E0aWe48AH6s?si=5BNEwBK6nHbjaP9H" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Chat
 
