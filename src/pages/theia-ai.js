@@ -6,6 +6,7 @@ import TheiaAIUSP from '../components/index/TheiaAIUSP';
 import TheiaAIOutro from '../components/index/TheiaAIOutro';
 import Footer from '../components/Footer';
 import TheiaAIFeatures from '../components/index/TheiaAIFeatures';
+import TheiaAIVideosThumbnails from '../components/index/TheiaAIVideosThumbnails';
 import HeadWithTheiaAI from '../layouts/headwithTheiaAI';
 
 export const Head = () => (
@@ -22,6 +23,7 @@ export default ({ pageContext }) => {
             <TheiaAIHeader />
             <main role="main">
                 <TheiaAIUSP />
+                <TheiaAIVideosThumbnails />
                 <TheiaAIFeatures adopters={pageContext.adopters} />
                 <TheiaAIOutro />
             </main>
