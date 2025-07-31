@@ -4,7 +4,7 @@ title: Data Usage and Telemetry
 
 # Data Usage and Telemetry in Theia
 
-Eclipse Theia and Theia IDE are fully open-source projects. This means you can review the source code to verify exactly how the application behaves. Transparency is a core principle—no hidden services or undisclosed data collection take place.
+Eclipse Theia and Theia IDE are fully open-source projects. This means you can review the source code to verify exactly how the application behaves. Transparency is a core principle - no hidden services or undisclosed data collection take place.
 
 ## No Built-in Telemetry
 
@@ -52,7 +52,7 @@ What the provider does with your data depends on their own policies. Theia canno
 ## Optional Integrations
 
 ### SCANOSS Integration
-Theia offers an integration with SCANOSS for code analysis and compliance checks. This is also opt-in and only sends code to SCANOSS when explicitly enabled.
+Theia offers an integration with SCANOSS for code analysis and compliance checks. This is also opt-in and only sends data to SCANOSS when explicitly enabled.
 
 ## Key Takeaways
 
