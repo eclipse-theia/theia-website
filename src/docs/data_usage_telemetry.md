@@ -17,7 +17,7 @@ However, tool builders who create custom products based on Theia can choose to a
 While Theia IDE does not include telemetry, there are two automatic checks made during normal operation:
 
 - **Update Check for Theia IDE**: The IDE may query the download servers to see if a newer version of Theia IDE is available.
-- **Extension Update Check**: The IDE may query Open VSX to determine whether newer versions of installed extensions are available.
+- **Extension Update Check**: The IDE may query Open VSX to determine whether newer versions of installed extensions are available. This might include metadata about extensions not installed from openVSX, e.g. custom developed extensions. By using Open VSX, you agree to their [terms of use](https://open-vsx.org/terms-of-use).
 
 These checks are limited to update metadata and do not transmit user code or workspace data.
 
@@ -30,6 +30,7 @@ When Theia AI features are enabled:
 ### Manual Activation
 - Most AI interactions (e.g., chat, code transformation) are triggered explicitly by the user.
 - Automatic code completion is separately opt-in to prevent accidental transmission of code.
+- Manual code completion is bound to a key binding (Command "Trigger Inline Suggestion"). To avoid accidental invocation, you can unbind this key binding in your preferences.
 
 ### Transparency in Data Transfer
 You can inspect exactly what data is sent to AI providers using:
@@ -52,7 +53,7 @@ What the provider does with your data depends on their own policies. Theia canno
 ## Optional Integrations
 
 ### SCANOSS Integration
-Theia offers an integration with SCANOSS for code analysis and compliance checks. This is also opt-in and only sends data to SCANOSS when explicitly enabled.
+Theia offers an integration with SCANOSS for code analysis and compliance checks. This is also opt-in and only sends hash data to SCANOSS when explicitly enabled. By using this integration, you agree to SCANOSS's [terms of service](https://www.softwaretransparency.org/terms).
 
 ## Key Takeaways
 
