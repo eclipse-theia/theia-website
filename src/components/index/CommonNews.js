@@ -14,6 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import React from 'react'
+import TheiaConLogo from '../../resources/theiacon-logo.svg'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
@@ -24,11 +25,22 @@ const PlatformHeader = () => (
             
         </h2>
         <br />
-        <h2 style={{ fontSize: '2.rem' }}>
-            <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/">Theia AI is now generally available</a> - <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/">AI features in the Theia IDE are now in alpha</a>!<br></br>
-            <b>Watch: <a href="https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj">AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action</a>!</b>
-        </h2>
-
+         <a href="https://www.eclipse.org/events/2025/theiacon/">
+                        <img className="banner__image" src={TheiaConLogo}></img>
+                    </a>
+                    <h1 style={{ fontSize: '2.2rem' }}>
+                        The Call for Presentations is now OPEN for the <a href="https://www.eclipse.org/events/2025/theiacon/">2025 TheiaCon</a>!<br/>
+                        (Virtual Event | 29 - 30 October, 2025)<br/>
+                        <a href="https://forms.gle/jGfU7mscY9k7xCop8">Submit your proposal</a> today to be a speaker and <a href="https://eclipse.zoom.us/webinar/register/WN_tSNF38qYR6OPdtIUCnnSHA">get registered</a>!
+                    </h1>
+                    <div className="header__buttons">
+                        <a className="btn btn--cta" href="https://forms.gle/jGfU7mscY9k7xCop8" rel="noopener">
+                            Submit Proposal
+                        </a>
+                        <a className="btn btn--cta" href="https://eclipse.zoom.us/webinar/register/WN_tSNF38qYR6OPdtIUCnnSHA" rel="noopener">
+                            Get registered
+                        </a>
+                    </div>
     </div>
 )
 
