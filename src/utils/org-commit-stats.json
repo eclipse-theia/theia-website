@@ -1,0 +1,17 @@
+[
+  {
+    "name": "EclipseSource",
+    "type": "company",
+    "totalCommits": 796
+  },
+  {
+    "name": "TypeFox",
+    "type": "company",
+    "totalCommits": 110
+  },
+  {
+    "name": "tsmaeder",
+    "type": "individual",
+    "totalCommits": 77
+  }
+]
