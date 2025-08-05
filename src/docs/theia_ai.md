@@ -540,7 +540,7 @@ After receiving the LLM response, the next step is to parse it in the agent impl
 - The Theia command corresponding to the parsed command ID is retrieved.
 - A `CommandChatResponseContentImpl` object is created to wrap the command.
 
-You can review the parsing code, including error handling  [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts))
+You can review the parsing code, including error handling  [here](https://github.com/eclipse-theia/theia/blob/cbceb25a9d5c4b4a9b2d038574f974f9ad708421/packages/ai-ide/src/common/command-chat-agents.ts))
 
 Example code:
 
