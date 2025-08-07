@@ -16,6 +16,10 @@
 
 export const youtubeVideos = [
     {
+        id: 'ZnTSTCgxsHA',
+        tags: ['theia-ai']
+    },
+    {
         id: 'FSxw3VGw8T4',
         tags: ['theia-ide','theia-ai']
     },
