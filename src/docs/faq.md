@@ -97,7 +97,28 @@ VS Code extension = feature in an existing IDE; Theia adoption = full control fo
 
 Theia lets you modify the entire application; VS Code extensions cannot.
 
-[Learn more →](https://www.eclipse.org/theia/docs/)
+[Learn more →](/docs/extensions/)
+</details>
+
+## Is Theia just another VS Code fork?
+
+No — Theia is not a fork of VS Code, but a separate, independently developed platform that shares some technologies.
+
+<details> <summary>Longer answer</summary>
+While Theia and VS Code both use key open technologies like Monaco, the Language Server Protocol (LSP), and the Debug Adapter Protocol (DAP), Theia is not based on the VS Code codebase. Instead, it is:
+
+- A separate architecture: Theia was built from scratch with a modular design that allows replacing or customizing any part of the application — from the frontend UI to the backend services.
+
+- A platform first: Theia is primarily a framework for building custom tools and IDEs, not just a prebuilt editor.
+
+- Governed openly: Theia is hosted by the vendor-neutral Eclipse Foundation with contributions from many companies; VS Code is controlled by Microsoft.
+
+- Extension compatibility without forking: Theia runs most VS Code extensions via the Open VSX registry but does so without inheriting the constraints of a forked codebase.
+
+In short, Theia gives you the flexibility of a platform, the familiarity of VS Code extensions, and the freedom of an open governance model — without the downsides of maintaining a fork.
+
+[Is Forking VS Code a Good Idea? →](https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/)
+
 </details>
 
 ## Why should I use Theia and not just fork VS Code?
@@ -121,7 +142,6 @@ Theia:
 
 ## I need support for my Theia-based tool project.
 
-**Short answer:**  
 Use community resources or [professional support](/support/).
 
 <details>
