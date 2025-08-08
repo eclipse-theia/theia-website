@@ -33,6 +33,10 @@ export const MENU = [
         'Project Goals',
         'project_goals'
     ),
+        M(
+        'Theia FAQ',
+        'faq'
+    ),
     {
         title: 'Using the Theia IDE'
     },
