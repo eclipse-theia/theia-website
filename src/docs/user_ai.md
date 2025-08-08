@@ -58,6 +58,7 @@ Learn more about the AI-powered Theia IDE:
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
 - [Prompt Fragments](#prompt-fragments)
 - [Custom Agents](#custom-agents)
+- [Agent-to-Agent Delegation](#agent-to-agent-delegation)
 - [MCP Integration](#mcp-integration)
   - [Configuring MCP Servers](#configuring-mcp-servers)
   - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
@@ -667,6 +668,28 @@ Next, a YAML file will be opened where all available custom agents in a specific
 - defaultLLM: The language model used by default.
 
 Custom agents can be configured in the AI Configuration View just like other chat agents. You can enable/disable them, modify their prompt templates, and integrate variables and functions within these templates to enhance functionality.
+
+The following demonstrations shows an example on how to create a custom agent:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/F0ZK0kz9_yc?si=Bn2Rzlf1REYGY50a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Agent-to-Agent Delegation
+
+Agent-to-agent delegation is a powerful feature in Theia AI that enables one AI agent to delegate specific tasks to another specialized agent. This creates multi-agent workflows where each AI agent can focus on its dedicated responsibility, leading to better automation and specialization.
+
+### How Agent-to-Agent Delegation Works
+
+The delegation system allows agents to:
+- **Delegate specialized tasks**: One agent can hand off specific work to another agent that's better suited for the task
+- **Chain workflows**: Create complex, multi-step processes by connecting different agents
+- **Maintain context**: The delegating agent can pass along necessary context and continue its work after delegation
+- **Automate repetitive tasks**: Set up workflows where routine tasks are automatically handled by specialized agents
+
+### Using the Delegation Function
+
+The following demonstrations shows an example on how to use the delegate function with a custom agent:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FSxw3VGw8T4?si=Nu1iFAXGOFxycPsp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## MCP Integration
 
