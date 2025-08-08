@@ -151,6 +151,98 @@ h1 {
         font-weight: bold;
         color: #2a87ca;
         margin-bottom: 0.5rem;
+        cursor: pointer;
+        position: relative;
+        
+        &:hover .contribution-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    
+    .contribution-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 12px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+        font-weight: normal;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #333;
+        }
+    }
+
+    .interactions {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #5ca3d9;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        position: relative;
+        
+        &:hover .interaction-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    
+    .interaction-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        background-color: #333;
+        color: white;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px 12px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+        font-weight: normal;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #333;
+        }
+        
+        .tooltip-item {
+            display: block;
+            margin-bottom: 2px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
     
     .contributions-period {
@@ -255,6 +347,17 @@ const Support = () => (
                                         <div className="contributor-stats">
                                             <div className="contributions">
                                                 {stats.totalCommits} contributions
+                                                <div className="contribution-tooltip">
+                                                    These are accepted pull requests
+                                                </div>
+                                            </div>
+                                            <div className="interactions">
+                                                {stats.totalInteractions} interactions
+                                                <div className="interaction-tooltip">
+                                                    <span className="tooltip-item">Interactions on discussions: {stats.interactions.discussions}</span>
+                                                    <span className="tooltip-item">Interactions on issues: {stats.interactions.issues}</span>
+                                                    <span className="tooltip-item">Interactions on pull requests: {stats.interactions.pullRequests}</span>
+                                                </div>
                                             </div>
                                             <div className="contributions-period">
                                                 in the last 12 months
