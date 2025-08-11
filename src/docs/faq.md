@@ -47,7 +47,7 @@ Theia is a *platform* for building specialized IDEs and tools, with deeper custo
 <details>
 <summary>Longer answer</summary>
 
-Eclipse Theia and Microsoft's VS Code share technologies (Monaco, LSP, DAP) but differ in purpose and philosophy:  
+Eclipse Theia and Microsoft's VS Code share technologies (Monaco, LSP, DAP) but are entirely different code bases and differ in purpose and philosophy:  
 - Theia is a framework designed for building custom IDEs and tools, with full flexibility to change any part of the UI or backend.  
 - VS Code is a powerful general-purpose editor with limited deep customization outside its extension API.  
 - Theia IDE is a fully-featured development environment built on the Theia Platform that functions as an open variant to VS Code, offering similar features and compatibility with VS Code extensions.
