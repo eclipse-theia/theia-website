@@ -240,6 +240,9 @@ class Nav extends React.Component {
                             <Link to="/docs/" className="nav__link" activeClassName="active">Documentation</Link>
                         </li>
                         <li className="nav__item">
+                            <Link to="/docs/faq/" className="nav__link" activeClassName="active">FAQ</Link>
+                        </li>
+                        <li className="nav__item">
                             <a href="https://github.com/eclipse-theia/theia/discussions" target="_blank" rel="noopener" className="nav__link">Community</a>
                         </li>
                         <li className="nav__item">
