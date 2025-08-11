@@ -105,7 +105,7 @@ Theia lets you modify the entire application; VS Code extensions cannot.
 No — Theia is not a fork of VS Code, but a separate, independently developed platform that shares a few technologies, such as Monaco, LSP, or DAP.
 
 <details> <summary>Longer answer</summary>
-While Theia and VS Code both use key open technologies like Monaco, the Language Server Protocol (LSP), and the Debug Adapter Protocol (DAP), Theia is not based on the VS Code codebase. Instead, it is:
+While Theia and VS Code both use common open technologies like Monaco, the Language Server Protocol (LSP), the Debug Adapter Protocol (DAP), or the VS Code extension API for compatibility, Theia is not a fork and is also not based on the VS Code code base. Instead, it is:
 
 - A separate architecture: Theia was built from scratch with a modular design that allows replacing or customizing any part of the application — from the frontend UI to the backend services.
 
