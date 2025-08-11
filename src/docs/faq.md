@@ -2,7 +2,7 @@
 
 ## Is Theia just a new version of the old Eclipse IDE?
 
-No — Theia is a completely new technology stack with a modern architecture, nothing like the classic Eclipse IDE.
+No — Theia is a completely independent project, based on a new technology stack with a modern web-based architecture.
 
 <details> <summary>Longer answer</summary>
 Theia and the classic Eclipse IDE share the Eclipse Foundation name but have entirely different architectures, technologies, and user experiences:
