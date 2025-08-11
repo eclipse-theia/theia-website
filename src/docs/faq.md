@@ -221,6 +221,13 @@ Eclipse Theia is the next-generation Eclipse platform for IDEs and tools:
 
 - Future-proof – Theia is actively evolving with modern development trends, including cloud workspaces, collaborative editing, and local or remote AI integration.
 
-If you have an existing Eclipse-based tool, migrating does not always mean starting from scratch — you can reuse your domain logic, adapt your existing architecture, and incrementally replace the UI. The Migrating Eclipse RCP Tools to Web guide explains common migration paths, strategies, and best practices. For more background on why Theia can be the successor to Eclipse RCP for certain applications — and why it’s not suited for all — see Eclipse Theia is the Next Generation Eclipse RCP and Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools.
+If you have an existing Eclipse-based tool, migrating does not always mean starting from scratch — you can reuse your domain logic, adapt your existing architecture, and incrementally replace the UI. The [Migrating Eclipse RCP Tools to Web guide](https://eclipsesource.com/blogs/2025/07/30/migrating-eclipse-rcp-tools-to-web/) explains common migration paths, strategies, and best practices. For more background on why Theia can be the successor to Eclipse RCP for certain applications — and why it’s not suited for all — see:
+
+[Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools →](https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/)
+
+
+[Eclipse Theia is the Next Generation Eclipse RCP →](https://eclipsesource.com/blogs/2022/03/16/eclipse-theia-is-the-next-generation-eclipse-rcp/)
+
+[Migrating Eclipse RCP Tools to Web guide →](https://eclipsesource.com/blogs/2025/07/30/migrating-eclipse-rcp-tools-to-web/)
 
 </details>
