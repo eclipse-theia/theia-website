@@ -42,7 +42,7 @@ Theia Platform is the framework; Theia IDE is the ready-to-use IDE product built
 
 ## What is the difference to VS Code?
 
-Theia is a *platform* for building IDEs and tools, with deeper customization and open governance; VS Code is an extensible code editor. Theia IDE is fully open alternative to VS Code, offering similar features while providing more flexibility and control.
+Theia is a *platform* for building specialized IDEs and tools, with deeper customization and open governance; VS Code is an extensible code editor by Microsoft. Theia IDE is a fully open alternative to VS Code, offering similar features while providing vendor-neutrality, more flexibility and control.
 
 <details>
 <summary>Longer answer</summary>
