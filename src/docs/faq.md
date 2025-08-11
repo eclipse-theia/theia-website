@@ -136,7 +136,7 @@ Forking VS Code:
 Theia:  
 - Gives you deep customization without forking.  
 - Maintains compatibility with VS Code extensions.
-- Is actively maintained by a vendor-neutral community.
+- Is actively maintained by a vendor-neutral community with the shared goal of providing a stable, extensible platform that supports and evolves with multiple independent products built on top of Theia.
 
 [Is Forking VS Code a Good Idea? →](https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/)
 </details>
