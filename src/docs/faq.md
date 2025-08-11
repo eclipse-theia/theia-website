@@ -67,7 +67,7 @@ Theia is vendor-neutral (Eclipse Foundation) and runs most VS Code extensions vi
 [Compare the Theia IDE and VS Code →](https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/)
 </details>
 
-## Can I build my own tool based on Theia and sell it?
+## Can I build my own tool product based on Theia and sell it?
 
 Yes, Theia's EPL-2.0 license allows commercial products without royalties.
 
