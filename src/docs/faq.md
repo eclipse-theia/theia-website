@@ -15,7 +15,7 @@ Theia and the classic Eclipse IDE share the Eclipse Foundation name but have ent
 
 - Modern UI and UX: Theia offers a clean, responsive interface with features like detachable views, customizable toolbars, and multiple extension sources.
 
-If you dislike the old Eclipse IDE, that experience does not apply to Theia — they are separate projects, built in different eras, for different goals, with different technology.
+If you dislike the traditional Eclipse IDE, that experience does not apply to Theia — they are separate projects, built in different eras, for different goals, with different technology.
 
 [Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools!](https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/)
 
