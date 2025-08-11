@@ -131,6 +131,7 @@ Forking VS Code is high-maintenance and loses Marketplace access; Theia offers f
 Forking VS Code:  
 - Cuts you off from the Microsoft Marketplace (and some extensions like Live Share).  
 - Creates a heavy maintenance burden to keep up with upstream changes.  
+- Exposes your project to significant future risks, as VS Code's strategies and conditions may change. Remember, VS Code is developed to serve the needs of VS Code itself, not your product.
 
 Theia:  
 - Gives you deep customization without forking.  
