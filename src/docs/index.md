@@ -17,7 +17,7 @@ The first step is to define a custom product based on Theia. Please check out th
 
 ## Frequently Asked Questions
 
-If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [resource section](/resources/).
+If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [Theia FAQ](/docs/faq/).
 
 
 ## Need Help?
