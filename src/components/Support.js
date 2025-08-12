@@ -265,7 +265,7 @@ h1 {
             color: #6baa3d;
         }
         
-        &.contractor {
+        &.individual {
             background-color: #e6f4fa;
             color: #2a87ca;
         }
