@@ -61,6 +61,10 @@ export const MENU = [
         'user_toolbar'
     ),
     M(
+        'Data Usage & Telemetry',
+        'data_usage_telemetry'
+    ),
+    M(
         'Download',
         'blueprint_download'
     ),
