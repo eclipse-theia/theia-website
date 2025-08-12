@@ -265,7 +265,7 @@ h1 {
             color: #6baa3d;
         }
         
-        &.individual {
+        &.contractor {
             background-color: #e6f4fa;
             color: #2a87ca;
         }
@@ -363,7 +363,7 @@ const Support = () => (
                                                 in the last 12 months
                                             </div>
                                             <div className={`contributor-type ${stats.type}`}>
-                                                {stats.type}
+                                                {stats.type === 'individual' ? 'contractor' : stats.type}
                                             </div>
                                         </div>
                                     )}
