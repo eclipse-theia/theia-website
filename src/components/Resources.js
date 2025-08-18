@@ -200,6 +200,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'How Lonti Created a Unified IDE for APIs, Automation, and Application Development With Eclipse Theia',
+                url: 'https://www.eclipse.org/topics/ide/articles/how-lonti-created-a-unified-ide-for-apis-automation-and-application-development-with-eclipse-theia/',
+                type: 'article'
+            },
+            {
                 title: 'Texas Instruments Elevates Code Composer Studio™ with Eclipse Theia',
                 url: 'https://outreach.eclipse.foundation/theia-ti-codecomposer',
                 type: 'article'
@@ -312,6 +317,26 @@ const categories = [
             {
                 title: 'AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action',
                 url: 'https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj',
+                type: 'video'
+            },
+            {
+                title: 'AI Driven E2E Testing with the Theia IDE',
+                url: 'https://eclipsesource.com/blogs/2025/07/09/ai-driven-e2e-testing-theia-ide/',
+                type: 'video'
+            },
+            {
+                title: 'A Native Claude Code IDE? How It Could Look Like with Eclipse Theia',
+                url: 'https://eclipsesource.com/blogs/2025/08/07/a-native-claude-code-ide-how-it-could-look-like-with-eclipse-theia/',
+                type: 'video'
+            },
+            {
+                title: 'Enhanced Image Support in the AI-powered Theia IDE / Theia AI',
+                url: 'https://eclipsesource.com/blogs/2025/07/31/image-support-ai-powered-theia-ide/',
+                type: 'video'
+            },
+            {
+                title: 'Interactive AI Responses in Your Custom GitHub Copilot – New Theia AI Tutorial',
+                url: 'https://eclipsesource.com/blogs/2025/07/29/interactive-ai-responses-in-your-custom-github-copilot-new-theia-ai-tutorial/',
                 type: 'video'
             },
             {
