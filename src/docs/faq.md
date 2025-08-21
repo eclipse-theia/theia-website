@@ -1,3 +1,9 @@
+---
+title: "Eclipse Theia – FAQ for Adopters and Users"
+originalSource: "https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/"
+canonical: "https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/"
+---
+
 # Eclipse Theia – FAQ for Adopters and Users
 
 ## Is Theia just a new version of the old Eclipse IDE?

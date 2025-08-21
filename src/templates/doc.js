@@ -25,6 +25,7 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
         frontmatter {
             title
+            canonical
         }
         html
         fields {
@@ -33,10 +34,15 @@ export const query = graphql`
     }
   }
 `
-export const Head = BaseHead
+export const Head = ({ data }) => {
+    const canonical = data.markdownRemark.frontmatter.canonical
+    const title = data.markdownRemark.frontmatter.title
+    return <BaseHead canonical={canonical} title={title} />
+}
 
 const DocTemplate = ({ data }) => {
     const slug = data.markdownRemark.fields.slug
+    const canonical = data.markdownRemark.frontmatter.canonical
     let context = getMenuContext(slug)
     if(slug === 'architecture') {
         context.prev = '/docs/'
@@ -44,7 +50,7 @@ const DocTemplate = ({ data }) => {
     }
 
     return (
-        <DocsLayout canonical={`/docs/${data.markdownRemark.fields.slug}/`} context={context}>
+        <DocsLayout canonical={canonical || `/docs/${data.markdownRemark.fields.slug}/`} context={context}>
             <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
         </DocsLayout>
     )
