@@ -320,6 +320,16 @@ const categories = [
                 type: 'video'
             },
             {
+                title: 'How AI and MCP Supercharge GitHub Workflows in Theia IDE',
+                url: 'https://eclipsesource.com/blogs/2025/08/26/ai-runs-github-workflows/',
+                type: 'video'
+            },
+            {
+                title: 'GPT-5 vs Sonnet-4: Side-by-Side on Real Coding Tasks',
+                url: 'https://eclipsesource.com/blogs/2025/08/19/gpt5-vs-sonnet4/',
+                type: 'video'
+            },
+            {
                 title: 'AI Driven E2E Testing with the Theia IDE',
                 url: 'https://eclipsesource.com/blogs/2025/07/09/ai-driven-e2e-testing-theia-ide/',
                 type: 'video'
