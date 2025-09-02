@@ -73,7 +73,53 @@ heading-primary {
 
 const communityReleases = [
     {
-        name: 'Theia 1.64.x (2025-08) - planned',
+        name: 'Theia 1.66.x (2025-11) - planned',
+        releasedate: 'November 27th, 2025',
+        releasecandidatedate: 'October 30th, 2025',
+        technologiesin: 'December 4th, 2025',
+        releaseanouncement: 'December 11th, 2025',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse EMF cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer Extension for Theia Applications',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
+        name: 'Theia 1.64.x (2025-08) - published',
         releasedate: 'August 28th, 2025',
         releasecandidatedate: 'July 31th, 2025',
         technologiesin: 'September 4th, 2025',
