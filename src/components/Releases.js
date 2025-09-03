@@ -89,8 +89,10 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: '0.8.2',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.2' }
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
@@ -177,10 +179,10 @@ const communityReleases = [
                 url: 'https://www.eclipse.dev/glsp/',
                 version: '2.4.0-theia1.60.0',
                 modules: [
-                       { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.4.0-theia1.60.0' }
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.4.0-theia1.60.0' }
                 ]
             },
-           {
+            {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
                 version: '0.8.2',
@@ -768,7 +770,7 @@ const communityReleases = [
     }
 ]
 
-const monthlyReleases = [    
+const monthlyReleases = [
     {
         title: 'Eclipse Theia 1.64 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2025/08/13/eclipse-theia-1-64-release-news-and-noteworthy/',
@@ -808,7 +810,7 @@ const monthlyReleases = [
     {
         title: 'Eclipse Theia 1.55 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2024/11/07/eclipse-theia-1-54-release-news-and-noteworthy/',
-    },   
+    },
     {
         title: 'Eclipse Theia 1.54 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2024/10/09/eclipse-theia-1-54-release-news-and-noteworthy/',
@@ -912,7 +914,7 @@ const monthlyReleases = [
     {
         title: 'Eclipse Theia 1.29 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2022/09/09/eclipse-theia-1-29-release-news-and-noteworthy/',
-    },    
+    },
     {
         title: 'Eclipse Theia 1.28 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2022/08/09/eclipse-theia-1-28-release-news-and-noteworthy/',
@@ -1004,18 +1006,18 @@ const Releases = () => (
             <h1 className='heading-primary' id='monthlyreleases'>Monthly Releases</h1>
         </div>
         <div className='row'>
-        {monthlyReleases.map(
-                        ({ title, url }, i) => {
-                            return (
-                                <div key={`${i}_${title}`} className="resource">
-                                    <div>
-                                        <h3 className="heading-secondary">
-                                            <a href={url}>{title}</a>
-                                        </h3>
-                                    </div>
-                                </div>)
-                        }
-        )}
+            {monthlyReleases.map(
+                ({ title, url }, i) => {
+                    return (
+                        <div key={`${i}_${title}`} className="resource">
+                            <div>
+                                <h3 className="heading-secondary">
+                                    <a href={url}>{title}</a>
+                                </h3>
+                            </div>
+                        </div>)
+                }
+            )}
         </div>
     </StyledResources>
 )
