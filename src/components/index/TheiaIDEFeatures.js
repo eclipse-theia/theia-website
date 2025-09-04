@@ -120,23 +120,23 @@ const TheiaIDEFeatures = ({ adopters }) => (
     <div className="row">
     <StyledPromo className="promo">
         <div className="promo__text">
+           <h3 className="heading-tertiary">AI-Native IDE (Beta)</h3>
+            <p>Experience the future of development with <a href="/docs/user_ai/">the AI-native Theia IDE</a>, the open alternative to Github Copilot, Cursor etc. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, our AI-first approach offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
+        </div>
+        <div className="promo__media">
+            <video autoPlay loop muted playsInline className="promo__video">
+                <source src={TheiaIDEAI} type="video/mp4" />
+            </video>
+        </div>
+    </StyledPromo>
+    <StyledPromo className="promo">
+        <div className="promo__text">
             <h3 className="heading-tertiary">Language Support</h3>
             <p>Experience world-class code editing support in Theia IDE, integrated with the Language Server Protocol (LSP). Develop in almost any programming language, including Python, Java, JavaScript, C++, and more—all within one environment.</p>
         </div>
         <div className="promo__media">
             <video autoPlay loop muted playsInline className="promo__video">
                 <source src={CodeEditing} type="video/mp4" />
-            </video>
-        </div>
-    </StyledPromo>
-    <StyledPromo className="promo">
-        <div className="promo__text">
-           <h3 className="heading-tertiary">AI-Powered IDE (Alpha)</h3>
-            <p>Experience the future of development with <a href="/docs/user_ai/">the AI-powered Theia IDE</a>, the open alternative to Github Copilot, Cursor etc. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, the AI assistance offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
-        </div>
-        <div className="promo__media">
-            <video autoPlay loop muted playsInline className="promo__video">
-                <source src={TheiaIDEAI} type="video/mp4" />
             </video>
         </div>
     </StyledPromo>
