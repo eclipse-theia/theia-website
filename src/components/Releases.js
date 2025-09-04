@@ -89,10 +89,8 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: '0.8.2',
-                modules: [
-                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.2' }
-                ]
+                version: 'TBD',
+                modules: []
             },
             {
                 title: 'Eclipse Sprotty',
@@ -137,32 +135,37 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
-                modules: []
+                version: '0.8.2',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.2' }
+                ]
             },
             {
                 title: 'Eclipse Sprotty',
                 url: 'https://www.eclipse.dev/sprotty/',
-                version: 'TBD',
+                version: '1.4.0',
                 modules: []
             },
             {
                 title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
-                version: 'TBD',
-                modules: []
+                version: '2.2.0',
+                modules: [
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/2.2.0' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/1.2.0' }
+                ]
             },
             {
                 title: 'Langium',
                 url: 'https://langium.org/',
-                version: 'TBD',
+                version: '4.0.0',
                 modules: []
             },
             {
                 title: 'Trace Viewer Extension for Theia Applications',
                 url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
-                version: 'TBD',
-                modules: []
+                version: '0.9.1',
+                modules: [{ modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer/v/0.9.1' }]
             }
         ]
     },
