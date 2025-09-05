@@ -110,12 +110,12 @@ const PlatformHeader = () => (
                     The Eclipse Theia Platform
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                        An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
+                        An Open, Flexible and Extensible Platform to efficiently develop and deliver Cloud & Desktop IDEs and tools with modern web technologies. With <a href="/theia-ai">Theia AI</a> the platform includes native support for building AI-powered tools and IDEs. The <a href="#theiaide"><b>Theia IDE</b></a> is a standard IDE built on the Theia Platform.
                 </h2>
                 <div className="header__buttons">
                         <a className="btn" href="#gettingstarted" target="_blank" rel="noopener noreferrer">Get started with the Theia Platform</a>
-                        <a className="btn btn--cta" href="https://try.theia-cloud.io/" rel="noopener">Try Theia IDE online</a>
-                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="/#theiaide" rel="noopener">Get Theia IDE for desktop</a>
+                        <a className="btn btn--cta" href="/theia-ai" rel="noopener">Learn more about <br></br>Theia AI</a>
+                        <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="/#theiaide" rel="noopener">Explore the <br></br> Theia IDE</a>
                  </div>
                 </div>
                 <CommonNews/>
