@@ -57,8 +57,8 @@ const features = [
         img: <img src={IconOpenSource} alt="Vendor Neutral Open Source" />,
         title: "Vendor Neutral",
         paragraphs: [ <>
-            Theia is truly vendor-neutral and developed by a diverse community. Unlike other “open source” projects, Theia is actually hosted at an Open-Source Foundation, protecting it against single-vendor decisions that are against the interest of the community.
-            Learn more <a href="https://www.eclipse.org/projects/dev_process/">here</a>.
+            Theia is truly vendor-neutral and developed by a diverse community. Unlike other “open source” projects, Theia is actually hosted at an Open-Source Foundation, protecting it against single-vendor decisions.
+            Learn more <a href="https://www.eclipse.org/projects/dev_process/">here</a>. This vendor neutrality also means <a href="/support">multiple companies offer professional support</a>.
         </>]
     },
     {
