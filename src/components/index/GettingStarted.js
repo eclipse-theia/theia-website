@@ -57,7 +57,7 @@ const features = [
         img: <img src={AdoptIt} alt="Adopt it" />,
         title: "Adopt it",
         paragraphs: [ <>
-           Checkout the <a href="https://github.com/eclipse-theia/theia/releases">available releases</a> including changelogs, migration guides and news and noteworthy articles. Browse the <a href="https://github.com/eclipse-theia/theia">project's sources</a> and consume/download Theia packages from the <a href="https://www.npmjs.com/search?q=keywords:theia-extension">npm registry</a>.
+           Checkout the <a href="https://github.com/eclipse-theia/theia/releases">available releases</a> including changelogs, migration guides and news and noteworthy articles. Browse the <a href="https://github.com/eclipse-theia/theia">project's sources</a> and consume/download Theia packages from the <a href="https://www.npmjs.com/search?q=keywords:theia-extension">npm registry</a>. Need help with adoption? <a href="/support">Get professional support</a>.
         </>]
     },
     {
