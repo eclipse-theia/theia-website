@@ -124,7 +124,7 @@ const communityReleases = [
         releasecandidatedate: 'July 31th, 2025',
         technologiesin: 'September 4th, 2025',
         releaseanouncement: 'September 11th, 2025',
-        announcementurl: '',
+        announcementurl: 'https://eclipsesource.com/blogs/2025/09/11/the-eclipse-theia-community-release-2025-08/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
