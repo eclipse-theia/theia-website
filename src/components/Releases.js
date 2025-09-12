@@ -164,8 +164,8 @@ const communityReleases = [
             {
                 title: 'Trace Viewer Extension for Theia Applications',
                 url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
-                version: '0.9.1',
-                modules: [{ modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer/v/0.9.1' }]
+                version: 'TBD',
+                modules: []
             }
         ]
     },
