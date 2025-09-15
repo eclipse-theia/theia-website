@@ -15,6 +15,18 @@ You cannot directly launch/use Theia as it is a platform. The project provides o
 
 The first step is to define a custom product based on Theia. Please check out the guide on [how to build your own IDE or tool based on Theia](/docs/composing_applications/). Subsequently, you might want to extend this product with your own feature for which you can use the [available extension mechanisms of Theia](/docs/extensions/).
 
+## AI-Native Development with Theia
+
+Theia provides comprehensive, native support for AI across two key dimensions:
+
+### 1. Theia AI Platform - Build Custom AI-Native Tools
+
+[Theia AI](/theia-ai) is an open framework integrated into the Theia Platform that enables you to build custom, AI-native tools and IDEs with complete control over the user experience, AI agents, language models, and data integrations. Whether you need domain-specific AI agents, custom chat interfaces, or seamless integration with your existing tool ecosystem, Theia AI provides the flexibility to create tailored AI solutions that fit your exact requirements.
+
+### 2. AI-Powered Theia IDE - Ready-to-Use AI Coding
+
+The [Theia IDE](/) comes with extensive AI coding support built on Theia AI, offering a transparent and open alternative to proprietary AI development tools. With the AI-native Theia IDE, you get powerful AI coding assistance while maintaining full control over your development workflow and data.
+
 ## Frequently Asked Questions
 
 If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [Theia FAQ](/docs/faq/).
