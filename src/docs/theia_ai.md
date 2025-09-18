@@ -60,14 +60,16 @@ A **Chat Agent** is integrated into the default chat UI provided by Theia AI and
 
 Let’s create a new agent for the Theia IDE as an example! This new agent will assist users in identifying (and later executing) arbitrary commands in the Theia IDE, such as opening the settings or showing the toolbar. You can review the [full code of this agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts) as a reference.
 
-#### Defining the Prompt Template
+#### Defining the Prompt Fragment
 
-The first step in creating a chat agent is defining the system prompt template, which acts as the foundation for guiding how the agent interacts with the LLM.
+The first step in creating a chat agent is defining the system prompt fragment, which acts as the foundation for guiding how the agent interacts with the LLM.
 
 ```ts
-export const commandPromptTemplate: PromptTemplate = {
-   id = 'command-chat-agent-system-prompt-template';
-   template = `Always respond with: “I am the command agent`;
+import { BasePromptFragment } from '@theia/ai-core';
+
+export const commandPromptTemplate: BasePromptFragment = {
+   id: 'command-chat-agent-system-prompt-template',
+   template: `Always respond with: “I am the command agent"`
 }
 ```
 
@@ -76,25 +78,29 @@ This template sets the behavior of the agent, in the example above, it will alwa
 #### Creating the Chat Agent
 
 Next, we will create the chat agent, which allows you to customize the agent’s behavior, specify its language model requirements, which prompt templates it uses, and define its interaction with users. In our case, we want to create a simple Chat Agent for which we extend the reusable base implementation provided by Theia AI (see code example below).
-`AbstractChatAgent` takes care of a basic conversation flow and streaming, so we literally only need to define a name, an id, a description and which system prompt our agent uses. This agent will be available in the default chat UI and can be referenced via `@Command`. The agent will respond based on the behavior defined in the prompt.
+`AbstractStreamParsingChatAgent` takes care of a basic conversation flow and streaming, so we need to define the required properties including a name, an id, language model requirements, and which system prompt our agent uses. This agent will be available in the default chat UI and can be referenced via `@Command`. The agent will respond based on the behavior defined in the prompt.
 
 ```ts
-export class CommandChatAgent extends AbstractChatAgent {
+import { AbstractStreamParsingChatAgent } from '@theia/ai-chat';
+import { LanguageModelRequirement } from '@theia/ai-core';
+
+export class CommandChatAgent extends AbstractStreamParsingChatAgent {
    id: string = 'Command';
    name: string = 'Command';
    description: string = `Helps users find and execute commands in the IDE`;
-   variables: string[] = []; // Optional: define variables for dynamic data insertion.
-   promptTemplates: PromptTemplate[] = [commandPromptTemplate];
-
-   protected async getSystemMessage(): Promise<SystemMessage | undefined> {
-       const systemPrompt = await this.promptService.getPrompt('command-system');
-       return SystemMessage.fromResolvedPromptTemplate(systemPrompt);
-   }
+   languageModelRequirements: LanguageModelRequirement[] = [{
+       purpose: 'chat',
+       identifier: 'default/universal',
+   }];
+   protected defaultLanguageModelPurpose: string = 'chat';
+   
+   // Register the prompt fragment with the agent
+   override prompts = [{ id: commandPromptTemplate.id, defaultVariant: commandPromptTemplate }];
+   protected override systemPromptId: string = commandPromptTemplate.id;
 }
 ```
 
-In the example above, we retrieve the prompt from Theia AIs Prompt Service. This provides features such as automatic variable resolvement. The usage of the Prompt Service is of course optional, as an agent implemented you can also simply define your own data structure if you prefer.
-In the example above, we also register our prompt template with Theia AI. With this, Theia AI can provide generic features such as the prompt editor, but of course this is again up to the agent implementer whether to register prompts or not.
+In the example above, we register the prompt fragment with the agent using the `prompts` property and set the `systemPromptId` to reference it. This allows Theia AI to provide generic features such as the prompt editor and automatic variable resolution. The Prompt Service will handle resolving variables and functions in your prompt fragments automatically.
 
 #### Registering the Agent
 
@@ -112,7 +118,7 @@ The next step is typically the most effort and it is actually unrelated to Theia
 
 In our example, we want to return an executable Theia command that the user is looking for with their question. For this, we need to augment our prompt with variables (see section “Variables and Tool Functions”) to give the LLM the necessary context information on what Theia commands are available. Moreover, we want this response in a parsable format, so that we can easily detect the command selected by the LLM in its response and provide the user with the option to directly execute the command. See the section “Response Renderers” for more details.
 
-Getting such agent implementations right typically requires a bit of prompt evaluation with a set of expected user queries. A huge help in Theia AI is that you can modify the prompt templates at runtime to test different scenarios and tweak the prompt until you are satisfied, instead of changing the prompt templates in the code and need to rebuild after every change.
+Getting such agent implementations right typically requires a bit of prompt evaluation with a set of expected user queries. A huge help in Theia AI is that you can modify the prompt fragments at runtime to test different scenarios and tweak the prompt until you are satisfied, instead of changing the prompt fragments in the code and need to rebuild after every change.
 
 Also, if the underlying LLM supports it, structured output is a huge time saver, as this usually guarantees that the output follows a specific format and avoids coping with variations in your agent’s parsing logic.
 This guide is focussed on Theia AI and not about developing specific agents per se. If you need support building your own custom AI assistance, please get in contact with a service provider and browse our [resource section](/resources/#theia-ai).
@@ -125,8 +131,8 @@ Agents often need to interact with the tool to fetch dynamic data, such as a tex
 
 Theia AI by default supports two types of variables:
 
-1. *Global Variables* are available to all agents. Theia and Theia AI already provide a standard set of variables, such as the currently selected text. Tool builders can easily register their own global variables to provide arbitrary additional data from the tool state, including their custom tool components. Global variables can also be used in any prompt template, but are also available to users in the default chat provided by Theia AI, e.g. “#currentText” for the currently selected text.
-2. *Agent-specific Variables* are only available to specific agents (and in their prompt templates), but not to other agents and also not in the default chat.
+1. *Global Variables* are available to all agents. Theia and Theia AI already provide a standard set of variables, such as the currently selected text. Tool builders can easily register their own global variables to provide arbitrary additional data from the tool state, including their custom tool components. Global variables can also be used in any prompt fragment, but are also available to users in the default chat provided by Theia AI, e.g. “#currentText” for the currently selected text.
+2. *Agent-specific Variables* are only available to specific agents (and in their prompt fragments), but not to other agents and also not in the default chat.
 
 #### Agent-specific Variables
 
@@ -149,7 +155,7 @@ const systemPrompt = await this.promptService.getPrompt('command-chat-agent-syst
 ```
 
 Please note that the manual resolvement of variables is not necessary when using global variables.
-Now we can simply use our agent-specific variable in our prompt templates, e.g. like this:
+Now we can simply use our agent-specific variable in our prompt fragments, e.g. like this:
 
 ```md
 You are a service that helps users find commands to execute in an IDE.
@@ -164,7 +170,7 @@ If an agent uses agent-specific variables, it can decide to explicitly declare t
 
 <img src="../../used-variables-command-agent.png" alt="Used variables in Theia AI" style="max-width: 525px">
 
-To declare an agent-specific variable, simply add it like this in the constructor of your agents, along with an optional description and whether it is used in the prompt template or not.
+To declare an agent-specific variable, simply add it like this in the constructor of your agents, along with an optional description and whether it is used in the prompt fragment or not.
 
 
 ```ts
@@ -227,7 +233,7 @@ export class TodayVariableContribution implements AIVariableContribution, AIVari
 bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 ```
 
-It can now be used in any prompt template, as well as in user requests.
+It can now be used in any prompt fragment, as well as in user requests.
 
 ### Chat Context Variables
 
@@ -508,7 +514,7 @@ In the following, we will dive into the details on how to implement this flow.
 
 The first step to enable structured response parsing is developing a prompt that reliably returns the expected output. In this case, the output should include an executable Theia command related to the user's question in JSON format. The response needs to be in a parsable format, allowing the system to detect the command and provide the user with the option to execute it.
 
-An simplified example of such a prompt might look like the following (you can review the full prompt template [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts))
+An simplified example of such a prompt might look like the following (you can review the full prompt fragment [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts))
 
 ```md
 You are a service that helps users find commands to execute in an IDE.  
@@ -813,5 +819,4 @@ For comprehensive example, also see the Coder agent in the AI-powered Theia IDE 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
 
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
-
 
