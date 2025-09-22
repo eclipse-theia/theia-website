@@ -52,13 +52,13 @@ This guide will walk you through creating agents and chat agents using Theia AI,
 
 In general, an agent is essentially an injectable Theia service offering a specific API for its clients, such as custom widgets, editors, or menu items. Clients can obtain the instance of the agent from the agent registry or get it injected via DI, and call its methods. Usually those methods are very use case specific, often taking parameters for context that are relevant and already available to the clients calling the agents. The agent will then construct one or more prompts, obtain one or more language models, process its output, invoke actions in Theia and/or return a result to the client, e.g. to show a result message, offer follow-up questions or buttons to perform actions.
 
-As you see, an agent is rather generic — and this is on purpose. It is designed to cater many different use cases integrated in a variety of UI components, widgets, or editors. An example of such an agent in the Theia IDE is the [code completion agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-code-completion/src/common/code-completion-agent.ts) integrated in the code editor.
+As you see, an agent is rather generic — and this is on purpose. It is designed to cater many different use cases integrated in a variety of UI components, widgets, or editors. An example of such an agent in the Theia IDE is the [code completion agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-code-completion/src/browser/code-completion-agent.ts) integrated in the code editor.
   
 ### Creating a Chat Agent
 
 A **Chat Agent** is integrated into the default chat UI provided by Theia AI and thus needs to implement a more specific interface, so it can be invoked from the chat UI generically. It’s designed for conversational interaction with users.
 
-Let’s create a new agent for the Theia IDE as an example! This new agent will assist users in identifying (and later executing) arbitrary commands in the Theia IDE, such as opening the settings or showing the toolbar. You can review the [full code of this agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts) as a reference.
+Let’s create a new agent for the Theia IDE as an example! This new agent will assist users in identifying (and later executing) arbitrary commands in the Theia IDE, such as opening the settings or showing the toolbar. You can review the [full code of this agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/common/command-chat-agents.ts) as a reference.
 
 #### Defining the Prompt Fragment
 
@@ -136,7 +136,7 @@ Theia AI by default supports two types of variables:
 
 #### Agent-specific Variables
 
-Agent-specific variables are controlled by a specific agent. To fill a variable with data, you can literally use any internal Theia API or other external APIs or methods you like. As an example, let’s again look at the chat agent that assists users in identifying (and later executing) arbitrary commands in the Theia IDE, such as opening the settings or showing the toolbar. You can review the [full code of this agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts) as a reference.
+Agent-specific variables are controlled by a specific agent. To fill a variable with data, you can literally use any internal Theia API or other external APIs or methods you like. As an example, let’s again look at the chat agent that assists users in identifying (and later executing) arbitrary commands in the Theia IDE, such as opening the settings or showing the toolbar. You can review the [full code of this agent](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/common/command-chat-agents.ts) as a reference.
 
 To allow the underlying LLM to identify the right command, we want to send it a list with all available commands. To achieve this, we first retrieve a list of all available commands using the CommandRegistry (see code example below). This step is independent of Theia AI and you could retrieve any sort of data here instead.
 Second, we resolve the variable ‘command-ids’ when receiving the system prompt’ (also see code example below).
@@ -486,7 +486,7 @@ export class FileContentFunction implements ToolProvider {
 
 ```
 
-See [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-workspace-agent/src/browser/functions.ts) for the full example listed above. In the handler, you can call literally any available API to execute arbitrary actions or retrieve arbitrary content, including tool-specific things.
+See [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/workspace-functions.ts) for the full example listed above. In the handler, you can call literally any available API to execute arbitrary actions or retrieve arbitrary content, including tool-specific things.
 
 Finally, register your ‘ToolProvider’ like this:
 
@@ -514,7 +514,7 @@ In the following, we will dive into the details on how to implement this flow.
 
 The first step to enable structured response parsing is developing a prompt that reliably returns the expected output. In this case, the output should include an executable Theia command related to the user's question in JSON format. The response needs to be in a parsable format, allowing the system to detect the command and provide the user with the option to execute it.
 
-An simplified example of such a prompt might look like the following (you can review the full prompt fragment [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-chat/src/common/command-chat-agents.ts))
+An simplified example of such a prompt might look like the following (you can review the full prompt fragment [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/common/command-chat-agents.ts))
 
 ```md
 You are a service that helps users find commands to execute in an IDE.  
@@ -766,7 +766,7 @@ This example demonstrates how:
 - An example file element of all available types (add, modify, or delete) is added.
 - A proposed change is added to the change set for user review.
 
-Another example to look at is the [Theia Coder agent](/docs/theia_coder) which proposes file modifications using a change set. In this use case, the change set creation is embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/f4778c2737bb75613f0e1f99da8996bad91f6e17/packages/ai-workspace-agent/src/browser/file-changeset-functions.ts#L60)). So in this workflow, the LLM can directly create and augment change sets.
+Another example to look at is the [Theia Coder agent](/docs/theia_coder) which proposes file modifications using a change set. In this use case, the change set creation is embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/file-changeset-functions.ts)). So in this workflow, the LLM can directly create and augment change sets.
 
 ### Custom Change Set Elements
 Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
@@ -819,4 +819,3 @@ For comprehensive example, also see the Coder agent in the AI-powered Theia IDE 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
 
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)
-
