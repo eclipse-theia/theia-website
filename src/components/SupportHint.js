@@ -34,7 +34,7 @@ const StyledSupportHint = styled.section`
         }
 
         &__box {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+            background: #ffffff;
             border: 2px solid #2a87ca;
             border-radius: 12px;
             padding: 3rem 4rem;
@@ -44,7 +44,7 @@ const StyledSupportHint = styled.section`
             transition: transform 0.3s ease, box-shadow 0.3s ease;
 
             &:hover {
-                transform: translateY(-2px);
+                
                 box-shadow: 0 12px 24px rgba(42, 135, 202, 0.12);
             }
 
@@ -84,10 +84,10 @@ const StyledSupportHint = styled.section`
 
         &__button {
             display: inline-block;
-            background: linear-gradient(135deg, #2a87ca 0%, #1a5490 100%);
+            background: #2a87ca;
             color: white;
             padding: 1.2rem 3rem;
-            border-radius: 8px;
+            border-radius: 10rem;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.6rem;
@@ -97,7 +97,7 @@ const StyledSupportHint = styled.section`
             box-shadow: 0 4px 12px rgba(42, 135, 202, 0.3);
 
             &:hover {
-                background: linear-gradient(135deg, #1a5490 0%, #0d2d4a 100%);
+                background: #1a5490;
                 transform: translateY(-2px);
                 box-shadow: 0 6px 16px rgba(42, 135, 202, 0.4);
                 color: white;
@@ -120,7 +120,7 @@ const SupportHint = ({ variant = 'platform' }) => {
     const content = {
         ai: {
             icon: '💡',
-            title: 'Need help building AI-powered solutions with Theia AI?',
+            title: 'Need help building AI-powered solutions?',
             description: 'Get professional support from experienced Theia contributors and committers specializing in AI-native development.',
             buttonText: 'Explore Professional Support'
         },
