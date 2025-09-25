@@ -23,6 +23,7 @@ import ContributorsAndAdopters from '../components/index/ContributorsAndAdopters
 import Products from '../components/index/Products'
 import GettingStarted from '../components/index/GettingStarted'
 import IntrosToTheia from '../components/index/IntrosToTheia'
+import SupportHint from '../components/SupportHint'
 import HeadWithPlatformSchema from '../layouts/headwithPlatformschema';
 
 export const Head = HeadWithPlatformSchema
@@ -34,6 +35,7 @@ export default ({ pageContext }) => {
             <main role="main">
                 <Products />
                 <Features />
+                <SupportHint variant="platform" />
                 <ContributorsAndAdopters adopters={pageContext.adopters}/>
                 <GettingStarted/>
                 <IntrosToTheia />
