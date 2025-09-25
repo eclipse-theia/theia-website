@@ -97,7 +97,7 @@ const StyledHeader = styled.div`
     }
 `
 
-const PlatformHeader = () => (
+const TheiaAIHeader = () => (
     <StyledHeader>
         <header className='header' role="banner">
             <div className="row">
@@ -112,6 +112,7 @@ const PlatformHeader = () => (
                 <h2 style={{ fontSize: '2.1rem' }}>
                 Theia AI is an open framework, part of the <a href="/theia-platform" target="_blank">Theia Platform</a>, for building custom, AI-native Cloud & Desktop tools and IDEs. The <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> is an open, flexible and transparent AI coding tool based on Theia AI.
                 </h2>
+                
                 <div className="header__buttons">
                         <a className="btn" href="https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/" target="_blank">Read more about Theia AI</a>
                         <a className="btn" href="/docs/theia_ai" target="_blank" rel="noopener noreferrer">Theia AI Documentation</a>
@@ -123,4 +124,4 @@ const PlatformHeader = () => (
     </StyledHeader>
 )
 
-export default PlatformHeader
+export default TheiaAIHeader
