@@ -22,7 +22,21 @@ If you would like more guidance on which mechanism to use, please also refer to 
 ## VS Code Extensions
 
 VS Code extensions are the popular mechanism to extend VS Code with new language support and other features. VS Code extensions are simple to develop and they have access to a defined and restricted API. VS Code extensions can be pre-installed (built in), but also installed at runtime (e.g. by the user). Eclipse Theia provides the same extension API as VS Code, so extensions are compatible. Therefore, to develop your own extension, please refer to the [VS Code extension documentation](https://code.visualstudio.com/api). Please also refer to this [coverage report](https://eclipse-theia.github.io/vscode-theia-comparator/status.html), highlighting which API of VS Code is covered by Theia.
-Please also note that you can use existing VS Code extensions in Theia, too. A good source for installing or downloading extensions is the [Open VSX registry](https://open-vsx.org/).
+Please also note that you can use existing VS Code extensions in Theia, too. The default marketplace for installing or downloading extensions is the [Open VSX registry](https://open-vsx.org/).
+
+### Customizing the Eclipse Open VSX Extension Marketplace
+
+By default, Eclipse Theia uses [Open VSX](https://open-vsx.org/) as its marketplace for VS Code extensions.
+
+However, you can point Theia to your own registry or a proxy/cache by setting the `VSX_REGISTRY_URL` environment variable. This allows the backend to fetch extensions from a custom source, e.g., to limit external network traffic and improve reliability for your users.
+
+It is also possible to target multiple registries by using the **OVSX router**.
+
+For more details, please see:
+
+- [VSX Registry package documentation](https://github.com/eclipse-theia/theia/blob/master/packages/vsx-registry/README.md)
+- [OVSX Client documentation](https://github.com/eclipse-theia/theia/blob/master/dev-packages/ovsx-client/README.md)  
+- [OVSX Router config example](https://github.com/eclipse-theia/theia/blob/master/examples/ovsx-router-config.json)  
 
 ## Theia Extensions
 
