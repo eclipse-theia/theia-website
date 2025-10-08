@@ -42,6 +42,7 @@ Learn more about the AI-powered Theia IDE:
   - [Code Completion (Agent)](#code-completion-agent)
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
   - [App Tester (Chat Agent)](#app-tester-chat-agent)
+  - [Claude Code (Chat Agent)](#claude-code-chat-agent)
 - [Chat](#chat)
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
@@ -457,6 +458,35 @@ The App Tester is an AI-driven agent that helps you test browser-based applicati
 The following video shows the AppTester agent in action:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/E0aWe48AH6s?si=5BNEwBK6nHbjaP9H" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### Claude Code (Chat Agent)
+
+Claude Code is Anthropic's AI coding assistant natively integrated into the Theia IDE. The following video provides an in-depth demo:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Rou4eiIPrK4?si=5BNEwBK6nHbjaP9H" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+**Prerequisites:**
+
+Before using Claude Code in Theia IDE, you need to install it. Visit [https://www.claude.com/product/claude-code](https://www.claude.com/product/claude-code) for more details.
+
+**Configuration:**
+
+To enable Claude Code in Theia IDE, you need to set your Anthropic API key. You can do this in one of two ways:
+
+1. **Via Settings**: Set the preference key `ai-features.anthropic.AnthropicApiKey` in the Theia IDE settings
+2. **Via Environment Variable**: Set the environment variable `ANTHROPIC_API_KEY`
+
+The Claude Code executable should be detected automatically. If the detection fails, you can manually configure the executable path in the preferences (`ai-features.claudeCode.executablePath`).
+
+**Usage:**
+
+Once configured, Claude Code is available in the chat view via the agent `@ClaudeCode`. Simply mention `@ClaudeCode` in your chat requests to interact with it.
+
+For more information on configuring Claude Code's permissions, commands, MCP servers, hooks, and other advanced features, refer to the [Claude Code documentation](https://docs.claude.com/en/docs/claude-code/overview).
+
+**Customization:**
+
+You can customize the system message appendix that is passed to Claude Code through the Theia agent configuration in the AI Configuration view. This allows you to tailor Claude Code's behavior to your specific needs and workflows.
 
 ## Chat
 
