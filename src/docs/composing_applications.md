@@ -11,7 +11,7 @@ We provide two entry points for creating your own Theia-based application.
 - [Theia Yeoman generator](https://github.com/eclipse-theia/generator-theia-extension): Generates Theia-based applications along with example extensions.
 - [Theia IDE](/#theiaide): A tool based on the Theia Platform that can be used as a template for creating installable desktop applications based on Theia with additional features such as automatic updates, branding, etc.. [Learn how to extend and adapt the Theia IDE](/docs/blueprint_documentation/).
 
-If you are new to Theia, we recommend starting with the first option, as it is quicker and simpler to get started with. If you want to create a full product based on Theia, you can later on switch to using the Theia IDE without loosing your existing work by integrating your extensions into your custom version of the Theia IDE. In this guide, we will demonstrate how to get started with the [Yeoman Generator](https://github.com/eclipse-theia/generator-theia-extension).
+If you are new to Theia, we recommend starting with the first option, as it is quicker and simpler to get started with. If you want to create a full product based on Theia, you can later on switch to using the Theia IDE without losing your existing work by integrating your extensions into your custom version of the Theia IDE. In this guide, we will demonstrate how to get started with the [Yeoman Generator](https://github.com/eclipse-theia/generator-theia-extension).
 
 ## Requirements
 
@@ -22,7 +22,7 @@ The detailed list of prerequisites is located at the main Theia repository:
 ## Theia’s Architecture
 
 A Theia app is composed of so-called Theia extensions. Each extension resides in its own npm package.
-An extension provides a set of features, e.g. widgets, commands, handlers, etc. for a specific functionality. The Theia project itself ships a number of extensions for common features, e.g. for editors, terminals, the project view etc. You can resue these existing extensions by just adding them to you custom Theia application. Additionally, you can add arbitrary VS Code extensions to your application, again for reusing existing features already available, such as Git support. Finally, you can then extend and customize your Theia application with your own features, which you can implement as [Theia extensions or VS Code extensions](/docs/extensions).
+An extension provides a set of features, e.g. widgets, commands, handlers, etc. for a specific functionality. The Theia project itself ships a number of extensions for common features, e.g. for editors, terminals, the project view etc. You can reuse these existing extensions by just adding them to your custom Theia application. Additionally, you can add arbitrary VS Code extensions to your application, again for reusing existing features already available, such as Git support. Finally, you can then extend and customize your Theia application with your own features, which you can implement as [Theia extensions or VS Code extensions](/docs/extensions).
 
 While Theia incorporates certain components from Visual Studio Code, such as the Monaco editor, it is independently developed with a modular architecture and is **not a [fork of VS Code](https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/)**. This distinction allows adopters to innovate and fully tailor their tools without limitations. For a deeper comparison, see [Theia IDE vs VS Code](https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/) and [Eclipse Theia vs VS Code OSS](https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/).
 
@@ -80,7 +80,7 @@ Besides the root level artifacts, you will have three directories in your projec
 
 ## Executing the Browser Application
 
-Now we want to see our Theia application in action. For this purpose, the generator has created a `package.json` in the folder `browser-app`, which defines your Theia app. It defines a Theia browser application with a couple of statically included extensions, including our `hello-world`. These extensions are the features, that will be part of our Theia application. The generated project contains a minimalistic set-up, **you can add additional features by adding more existing (or custom) extensions to this list**. The example also does not contain any VS Code extensions, see [here](/docs/authoring_vscode_extensions) on how to add them.
+Now we want to see our Theia application in action. For this purpose, the generator has created a `package.json` in the folder `browser-app`, which defines your Theia app. It defines a Theia browser application with a couple of statically included extensions, including our `hello-world`. These extensions are the features that will be part of our Theia application. The generated project contains a minimalistic set-up, **you can add additional features by adding more existing (or custom) extensions to this list**. The example also does not contain any VS Code extensions, see [here](/docs/authoring_vscode_extensions) on how to add them.
 
 ```json
 {
