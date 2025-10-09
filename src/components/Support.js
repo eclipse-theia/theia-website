@@ -290,7 +290,7 @@ const supporters = [
         link: 'https://eclipsesource.com',
         support: 'https://eclipsesource.com/technology/eclipse-theia/',
         training: 'https://eclipsesource.com/technology/eclipse-theia/#training',
-        sponsored: 'https://eclipsesource.com/technology/eclipse-theia/#sponsored',
+        sponsored: 'https://eclipsesource.com/services/product-development/open-source/#pricing',
         tool: 'https://eclipsesource.com/services/tools/',
         ai: 'https://eclipsesource.com/services/ai-in-tools-and-ides/'
     },
