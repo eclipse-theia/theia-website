@@ -59,12 +59,17 @@ const DocContainer = styled.div`
     }
 
     h1 {
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
     }
 
     h2 {
-        margin: 2.5rem 0;
-        font-size: 2.6rem;
+        margin: 2rem 0;
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        margin: 1.5rem 0;
+        font-size: 2rem;
     }
 
     p {
