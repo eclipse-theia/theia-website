@@ -56,6 +56,8 @@
  import MVTecHDevelopEVOMin from '../resources/screenshots/thumbnails/mvtec-hdevelopevo-min.png'
  import CodingParkWebIDE from '../resources/screenshots/codingpark-web-ide.png'
  import CodingParkWebIDEMin from '../resources/screenshots/thumbnails/codingpark-web-ide-min.png'  
+ import ZStudio from '../resources/screenshots/zstudio.gif';
+ import ZStudioMin from '../resources/screenshots/thumbnails/zstudio-min.gif';
 
  export const contributorsAndAdopters = [
      {
@@ -181,6 +183,12 @@
         src: CodingParkWebIDE,
         thumb: CodingParkWebIDEMin,
         alt: "Coding Park Web IDE"
+    },
+    {
+        href: "https://www.terapines.com/en/products/zcc/",
+        src: ZStudio,
+        thumb: ZStudioMin,
+        alt: "ZStudio"
     }
  ]
 
