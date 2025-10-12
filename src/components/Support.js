@@ -44,10 +44,10 @@ const StyledSupport = styled.div`
     position: relative;
     background-image: url(${Background});
     background-size: cover;
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
     border-bottom: 10px solid #f8f8f8;
     @media(max-width: ${breakpoints.xmd}) {
-        padding-top: 15rem;
+        padding-top: 12rem;
     }
     &__logo-box {
         margin-bottom: 3rem;
@@ -323,16 +323,23 @@ const Support = () => (
             <div className="row">
                 <Nav shouldRenderLogo={true} />
                 <div className="header__text-box">
-                    <h1 className="heading-primary">
-                    Professional Support
+                    <h1 className="heading-primary" style={{ lineHeight: '1.2', marginBottom: '1rem' }}>
+                        Support (for) Eclipse Theia
                     </h1>
-                    <h2 style={{ fontSize: '2.2rem' }}>
-                    The following contributing companies provide professional support and services for Eclipse Theia:
-                    </h2>
+                    <div style={{ fontSize: '1.8rem', textAlign: 'left', lineHeight: '1.6' }}>
+                        <p>👉 <a href="#support-services" style={{ color: '#2a87ca', textDecoration: 'underline', fontWeight: '500' }}>Support & Development Services</a></p>
+                        <p>👉 <a href="#sponsoring" style={{ color: '#2a87ca', textDecoration: 'underline', fontWeight: '500' }}>Project Sponsoring</a></p>
+                    </div>
                 </div>
             </div>
         </header>
-        <section className="support row" id="support">
+        <section className="support row" id="support-services">
+            <h2 style={{ fontSize: '2.8rem', textAlign: 'center', marginBottom: '2rem' }}>
+                Professional Support and Development Services
+            </h2>
+            <p style={{ fontSize: '1.6rem', textAlign: 'center', marginBottom: '3rem', maxWidth: '80rem', margin: '0 auto 3rem auto' }}>
+                The following contributing companies provide professional support and services for Eclipse Theia, including adopting Theia and building custom tools and IDEs:
+            </p>
             <div className="support__container">
                 {
                     supporters.map(
@@ -378,6 +385,66 @@ const Support = () => (
                         }
                     )
                 }
+            </div>
+        </section>
+        
+        <section className="support row" id="sponsoring">
+            <h2 style={{ fontSize: '2.8rem', textAlign: 'center', marginBottom: '2rem' }}>
+                Sponsoring
+            </h2>
+            <div style={{ maxWidth: '120rem', margin: '0 auto' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem', padding: '0 2rem' }}>
+                    <p style={{ fontSize: '1.8rem', marginBottom: '2rem', color: '#2a87ca', fontWeight: '500', lineHeight: '1.4' }}>
+                        Support the Theia Platform, Theia AI, and the Theia IDE — empowering open innovation, sustainability, and community-driven development.
+                    </p>
+                    <p style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#666', lineHeight: '1.5' }}>
+                        Strategic sponsoring ensures sustainable development and priority support for organizations building long-term products on Theia. Your investment directly funds core development resources, accelerating innovation and maintaining platform stability for mission-critical applications.
+                    </p>
+                    <p style={{ fontSize: '1.6rem', marginBottom: '3rem', color: '#666' }}>
+                        To sponsor the open source project, there are two options:
+                    </p>
+                </div>
+                <div className="support__container">
+                    <div className="supporter" style={{ flex: '1', margin: '1.5rem' }}>
+                        <div>
+                            <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', color: '#2a87ca' }}>Sponsored Development</h3>
+                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
+                                Service providers above provide sponsored development for directed and general contributions with individual contracts, conditions, and benefits:
+                            </p>
+                            {supporters.map(({ title, link, img, sponsored }, i) => {
+                                if (sponsored) {
+                                    return (
+                                        <div key={`sponsor_${i}_${title}`} style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                                            <a href={link} style={{ display: 'inline-block', marginBottom: '0.5rem' }}>
+                                                <img src={img} alt={`${title} Logo`} style={{ height: '3rem', maxWidth: '100%' }} />
+                                            </a>
+                                            <p style={{ fontSize: '1.3rem', margin: '0.5rem 0', color: '#666' }}>
+                                                <a href={sponsored} style={{ color: '#2a87ca', textDecoration: 'none', fontWeight: '500' }}>
+                                                    Sponsored development by {title}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                    </div>
+                    <div className="supporter" style={{ flex: '1', margin: '1.5rem' }}>
+                        <div>
+                            <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', color: '#2a87ca' }}>Collective Sponsoring</h3>
+                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
+                                Collective sponsoring allows you to support the entire Theia ecosystem, please check out our Open Collective:
+                            </p>
+                            <a href="https://opencollective.com/eclipse-theia" className="btn btn--cta" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginBottom: '1.5rem' , transform: 'none' }}>
+                                Visit Open Collective
+                            </a>
+                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
+                                Collective Sponsorships are shared among the core contributing companies based on meritocracy (i.e., their share of contributions)
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </StyledSupport>
