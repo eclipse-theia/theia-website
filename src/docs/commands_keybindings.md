@@ -62,7 +62,7 @@ export default new ContainerModule(bind => {
 });
 ```
 
-The `CommandRegistry` used to register our contributed command above, also provides an API to interact with commands. As an example, you can programmatically execute commands, you can browse through all registered commands or you can access a list of recently executed commands. Please refer to the [TypeDoc for the CommandRegistry](https://eclipse-theia.github.io/theia/docs/next/classes/core.commandregistry-1.html) for more details. To use the `CommandRegistry` outside of a contribution, you can access it via dependency injection.
+The `CommandRegistry` used to register our contributed command above, also provides an API to interact with commands. As an example, you can programmatically execute commands, you can browse through all registered commands or you can access a list of recently executed commands. Please refer to the [TypeDoc for the CommandRegistry](https://eclipse-theia.github.io/theia/docs/next/classes/_theia_core.common_command.CommandRegistry.html) for more details. To use the `CommandRegistry` outside of a contribution, you can access it via dependency injection.
 
 In the following sections, we describe how to bind commands to menu items and keybindings.
 
@@ -74,7 +74,7 @@ All the following code examples are from the [Theia extension generator](https:/
 
 All menu items of a Theia application are managed in the `MenuModelRegistry`. To contribute menu items to the registry, modules must implement the ´MenuContribution´ interface (see code example below).
 
-The registration of the command can be done in the function `registerMenus`, which will be called by the Theia framework. The function provides the `MenuModelRegistry` as a parameter. On this registry we can call `registerMenuAction`. It expects a `MenuPath` and a `MenuAction`. The `MenuPath` specifies the menu (and submenu) to place the menu item into. Please see [here for the paths of some common menus](https://eclipse-theia.github.io/theia/docs/next/modules/core.CommonMenus-1.html).
+The registration of the command can be done in the function `registerMenus`, which will be called by the Theia framework. The function provides the `MenuModelRegistry` as a parameter. On this registry we can call `registerMenuAction`. It expects a `MenuPath` and a `MenuAction`. The `MenuPath` specifies the menu (and submenu) to place the menu item into. Please see [here for the paths of some common menus](https://eclipse-theia.github.io/theia/docs/next/modules/_theia_core.browser_common-frontend-contribution.CommonMenus.html).
 
 The `MenuAction` consists of a command id, specifying which command to trigger, and an optional label, specifying the label of the menu item.
 
@@ -133,7 +133,7 @@ export class HelloworldKeybindingContribution implements KeybindingContribution 
 }
 ```
 
-The syntax for the “when” clause follows the [VS Code terminology](https://code.visualstudio.com/docs/getstarted/keybindings#_when-clause-contexts). Modifiers are platform independent, so [`Modifier.M1`](https://eclipse-theia.github.io/theia/docs/next/enums/core.keymodifier-2.html#ctrlcmd) is Command on OS X and CTRL on Windows/Linux. Key string constants can be viewed in [`Key` documentation](https://eclipse-theia.github.io/theia/docs/next/enums/core.KeyModifier-4.html).
+The syntax for the “when” clause follows the [VS Code terminology](https://code.visualstudio.com/docs/getstarted/keybindings#_when-clause-contexts). Modifiers are platform independent, so [`Modifier.M1`](https://eclipse-theia.github.io/theia/docs/next/enums/_theia_core.common_keys.KeyModifier.html#ctrlcmd) is Command on OS X and CTRL on Windows/Linux. Key string constants can be viewed in [`Key` documentation](https://eclipse-theia.github.io/theia/docs/next/enums/_theia_core.common_keys.KeyModifier.html).
 
 Just as you needed to bind the contributions before, keybinding contributions also need to be bound to the symbol `KeybindingContribution` to make them accessible for Theia.
 
