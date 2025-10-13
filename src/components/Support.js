@@ -390,15 +390,15 @@ const Support = () => (
         
         <section className="support row" id="sponsoring">
             <h2 style={{ fontSize: '2.8rem', textAlign: 'center', marginBottom: '2rem' }}>
-                Sponsoring
+               Theia Project Sponsoring
             </h2>
             <div style={{ maxWidth: '120rem', margin: '0 auto' }}>
                 <div style={{ textAlign: 'center', marginBottom: '3rem', padding: '0 2rem' }}>
 
-                    <p style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#666'}}>
+                    <p style={{ fontSize: '1.6rem', marginBottom: '2rem'}}>
                         Strategic sponsoring ensures sustainable development and priority support for organizations building long-term products on Theia. Your investment directly funds core development resources, accelerating innovation and maintaining platform stability for mission-critical applications.
                     </p>
-                    <p style={{ fontSize: '1.6rem', marginBottom: '3rem', color: '#666' }}>
+                    <p style={{ fontSize: '1.6rem', marginBottom: '2rem' }}>
                         There are two complementary ways to support the Theia ecosystem — through individual sponsored development, which lets your organization directly fund Theia through tailored agreements with a service provider of your choice, or through collective sponsoring, which sustains the broader ecosystem by funding community-wide priorities.
                     </p>
                 </div>
