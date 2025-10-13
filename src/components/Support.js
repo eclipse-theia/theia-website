@@ -409,7 +409,7 @@ const Support = () => (
                             <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '1.5rem', color: '#555' }}>
                             Choose this option if your organization wants to directly influence what gets built and fund tailored improvements as well as general project maintenance aligned with your needs. You'll work closely with one of the following core Theia service providers to plan and steer specific developments while contributing back to the open-source ecosystem.
                             </p>
-                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#666', fontStyle: 'italic' }}>
+                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555', fontStyle: 'italic' }}>
                             Service provider specific benefits may include priority releases, additional support levels, and direct access to core development teams. Check out the individual offerings below.
                             </p>
                             {supporters.map(({ title, link, img, sponsored }, i) => {
