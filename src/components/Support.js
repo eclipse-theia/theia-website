@@ -392,9 +392,6 @@ const Support = () => (
             <h2 style={{ fontSize: '2.8rem', textAlign: 'center', marginBottom: '2rem' }}>
                 Sponsoring
             </h2>
-            <p style={{ fontSize: '1.6rem', textAlign: 'center', marginBottom: '3rem', maxWidth: '80rem', margin: '0 auto 3rem auto', color: '#333', lineHeight: '1.6' }}>
-                There are two complementary ways to support the Theia ecosystem — through individual sponsored development, which lets your organization directly fund Theia through tailored agreements with a service provider of your choice, or through collective sponsoring, which sustains the broader ecosystem.
-            </p>
             <div style={{ maxWidth: '120rem', margin: '0 auto' }}>
                 <div style={{ textAlign: 'center', marginBottom: '3rem', padding: '0 2rem' }}>
 
@@ -402,28 +399,26 @@ const Support = () => (
                         Strategic sponsoring ensures sustainable development and priority support for organizations building long-term products on Theia. Your investment directly funds core development resources, accelerating innovation and maintaining platform stability for mission-critical applications.
                     </p>
                     <p style={{ fontSize: '1.6rem', marginBottom: '3rem', color: '#666' }}>
-                        To sponsor the open source project, there are two options:
+                        There are two complementary ways to support the Theia ecosystem — through individual sponsored development, which lets your organization directly fund Theia through tailored agreements with a service provider of your choice, or through collective sponsoring, which sustains the broader ecosystem by funding community-wide priorities.
                     </p>
                 </div>
                 <div className="support__container">
                     <div className="supporter" style={{ flex: '1', margin: '1.5rem' }}>
                         <div>
                             <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', color: '#2a87ca' }}>Sponsored Development</h3>
-                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
-                                Service providers above provide sponsored development for directed and general contributions with individual contracts, conditions, and benefits:
+                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '1.5rem', color: '#555' }}>
+                            Choose this option if your organization wants to directly influence what gets built and fund tailored improvements as well as general project maintenance aligned with your needs. You'll work closely with one of the following core Theia service providers to plan and steer specific developments while contributing back to the open-source ecosystem.
+                            </p>
+                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#666', fontStyle: 'italic' }}>
+                            Service provider specific benefits may include priority releases, additional support levels, and direct access to core development teams. Check out the individual offerings below.
                             </p>
                             {supporters.map(({ title, link, img, sponsored }, i) => {
                                 if (sponsored) {
                                     return (
                                         <div key={`sponsor_${i}_${title}`} style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-                                            <a href={link} style={{ display: 'inline-block', marginBottom: '0.5rem' }}>
-                                                <img src={img} alt={`${title} Logo`} style={{ height: '3rem', maxWidth: '100%' }} />
+                                            <a href={sponsored} style={{ display: 'inline-block', marginBottom: '0.5rem' }}>
+                                                <img src={img} alt={`Sponsored development by ${title}`} style={{ height: '3.5rem', maxWidth: '100%' }} />
                                             </a>
-                                            <p style={{ fontSize: '1.3rem', margin: '0.5rem 0', color: '#666' }}>
-                                                <a href={sponsored} style={{ color: '#2a87ca', textDecoration: 'none', fontWeight: '500' }}>
-                                                    Sponsored development by {title}
-                                                </a>
-                                            </p>
                                         </div>
                                     );
                                 }
@@ -435,14 +430,11 @@ const Support = () => (
                         <div>
                             <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', color: '#2a87ca' }}>Collective Sponsoring</h3>
                             <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
-                                Collective sponsoring allows you to support the entire Theia ecosystem, please check out our Open Collective:
+                            Choose this option if you want to support the sustainability of Theia without managing individual contracts. Your contribution directly funds core development resources, with funds distributed among contributors based on meritocracy (i.e., their share of contributions) and guided by community-wide priorities.
                             </p>
                             <a href="https://opencollective.com/eclipse-theia" className="btn btn--cta" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginBottom: '1.5rem' , transform: 'none' }}>
                                 Visit Open Collective
                             </a>
-                            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
-                                Collective Sponsorships are shared among the core contributing companies based on meritocracy (i.e., their share of contributions)
-                            </p>
                         </div>
                     </div>
                 </div>
