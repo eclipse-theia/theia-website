@@ -395,7 +395,7 @@ const Support = () => (
             <div style={{ maxWidth: '120rem', margin: '0 auto' }}>
                 <div style={{ textAlign: 'center', marginBottom: '3rem', padding: '0 2rem' }}>
 
-                    <p style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#666', lineHeight: '1.5' }}>
+                    <p style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#666'}}>
                         Strategic sponsoring ensures sustainable development and priority support for organizations building long-term products on Theia. Your investment directly funds core development resources, accelerating innovation and maintaining platform stability for mission-critical applications.
                     </p>
                     <p style={{ fontSize: '1.6rem', marginBottom: '3rem', color: '#666' }}>
