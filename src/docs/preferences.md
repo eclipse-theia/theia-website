@@ -50,9 +50,11 @@ The Theia preferences system consists of several key components:
 Preferences in Theia are organized into scopes from most general to most specific:
 
 1. **Default** - Built-in default values defined by extensions
-2. **User** - Global user preferences stored in `~/.theia/settings.json`
-3. **Workspace** - Workspace-specific preferences stored in `<workspace>/.theia/settings.json`
+2. **User** - Global user preferences
+3. **Workspace** - Workspace-specific preferences
 4. **Folder** - Folder-specific preferences for multi-root workspaces
+
+
 
 When resolving a preference value, Theia searches from the most specific scope to the most general, returning the first value found.
 
@@ -63,6 +65,8 @@ Preferences are stored as JSON files in the following locations:
 - **User preferences**: `$HOME/.theia/settings.json` (Linux/macOS) or `%USERPROFILE%/.theia/settings.json` (Windows)
 - **Workspace preferences**: `<workspace-root>/.theia/settings.json`
 - **Folder preferences**: `<folder>/.theia/settings.json` (for multi-root workspaces)
+
+For multi-folder workspaces, preferences can also be stored in workspace description files.
 
 ### Example settings.json
 
@@ -193,9 +197,8 @@ export function bindMyExtensionPreferences(bind: interfaces.Bind): void {
     
     // Optional: Only if using preference proxy (from step 3)
     bind(MyExtensionPreferences).toDynamicValue(ctx => {
-        const preferences = ctx.container.get<PreferenceService>(PreferenceService);
-        const contribution = ctx.container.get<PreferenceContribution>(MyExtensionPreferenceContribution);
-        return createMyExtensionPreferences(preferences, contribution.schema);
+        const factory = ctx.container.get<PreferenceProxyFactory>(PreferenceProxyFactory);
+        return factory(myExtensionPreferenceSchema);
     }).inSingletonScope();
 }
 ```
@@ -207,13 +210,16 @@ export function bindMyExtensionPreferences(bind: interfaces.Bind): void {
 If you only registered the schema (step 1 + 4 minimal), you can access preferences directly:
 
 ```typescript
-import { inject, injectable } from '@theia/core/shared/inversify';
+import { inject, injectable, postConstruct } from '@theia/core/shared/inversify';
 import { PreferenceService } from '@theia/core/lib/common/preferences';
+import { DisposableCollection } from '@theia/core/lib/common/disposable';
 
 @injectable()
 export class MyService {
     @inject(PreferenceService)
     protected readonly preferenceService: PreferenceService;
+
+    private readonly toDispose = new DisposableCollection();
 
     getTimeout(): number {
         return this.preferenceService.get('myExtension.timeout', 5000);
@@ -226,11 +232,18 @@ export class MyService {
     // Listen for changes
     @postConstruct()
     protected init(): void {
-        this.preferenceService.onPreferenceChanged(event => {
-            if (event.preferenceName === 'myExtension.timeout') {
-                console.log('Timeout changed:', event.oldValue, '->', event.newValue);
-            }
-        });
+        this.toDispose.push(
+            this.preferenceService.onPreferenceChanged(event => {
+                if (event.preferenceName === 'myExtension.timeout') {
+                    console.log('Timeout changed:', event.oldValue, '->', event.newValue);
+                }
+            })
+        );
+    }
+
+    // Dispose the collection when the service is disposed or reinitialized
+    dispose(): void {
+        this.toDispose.dispose();
     }
 }
 ```
@@ -238,10 +251,15 @@ export class MyService {
 ### Type-Safe Access via Preference Proxy
 
 ```typescript
+import { postConstruct } from '@theia/core/shared/inversify';
+import { DisposableCollection } from '@theia/core/lib/common/disposable';
+
 @injectable()
 export class MyService {
     @inject(MyExtensionPreferences)
     protected readonly preferences: MyExtensionPreferences;
+
+    private readonly toDispose = new DisposableCollection();
 
     getTimeout(): number {
         return this.preferences['myExtension.timeout'];
@@ -250,12 +268,19 @@ export class MyService {
     // Listen for changes
     @postConstruct()
     protected init(): void {
-        this.preferences.onPreferenceChanged(event => {
-            if (event.preferenceName === 'myExtension.timeout') {
-                console.log('Timeout changed:', event.oldValue, '->', event.newValue);
-                this.updateTimeout(event.newValue);
-            }
-        });
+        this.toDispose.push(
+            this.preferences.onPreferenceChanged(event => {
+                if (event.preferenceName === 'myExtension.timeout') {
+                    console.log('Timeout changed:', event.oldValue, '->', event.newValue);
+                    this.updateTimeout(event.newValue);
+                }
+            })
+        );
+    }
+
+    // Dispose the collection when the service is disposed or reinitialized
+    dispose(): void {
+        this.toDispose.dispose();
     }
 }
 ```
@@ -394,10 +419,16 @@ export default new ContainerModule(bind => {
 
 ```typescript
 // Backend service
+import { inject, injectable, postConstruct } from '@theia/core/shared/inversify';
+import { PreferenceService } from '@theia/core/lib/common/preferences';
+import { DisposableCollection } from '@theia/core/lib/common/disposable';
+
 @injectable()
 export class MyBackendService {
     @inject(PreferenceService)
     protected readonly preferenceService: PreferenceService;
+
+    private readonly toDispose = new DisposableCollection();
 
     async getConfiguration(): Promise<any> {
         const timeout = this.preferenceService.get('myExtension.timeout');
@@ -408,70 +439,25 @@ export class MyBackendService {
 
     @postConstruct()
     protected init(): void {
-        this.preferenceService.onPreferenceChanged(event => {
-            console.log('Backend preference changed:', event.preferenceName);
-        });
+        this.toDispose.push(
+            this.preferenceService.onPreferenceChanged(event => {
+                console.log('Backend preference changed:', event.preferenceName);
+            })
+        );
+    }
+
+    // Dispose the collection when the service is disposed or reinitialized
+    dispose(): void {
+        this.toDispose.dispose();
     }
 }
 ```
 
 ### Creating a Backend Preference Service
 
-The main use case for backend preference services is **providing a service interface to access preferences from the backend** when you need to expose preference values to the frontend via RPC calls, or when you want to centralize preference access logic.
+**Note**: This is an advanced, specialized use case. Most backend services can use the `PreferenceService` directly as shown in the previous example.
 
-If you need to expose preferences to the frontend from the backend:
-
-```typescript
-// Common protocol
-export interface MyBackendPreferenceService {
-    getPreference(key: string, overrideIdentifier?: string): Promise<any>;
-    inspectPreference(key: string, overrideIdentifier?: string): Promise<PreferenceInspection | undefined>;
-    setPreference(key: string, overrideIdentifier: string | undefined, value: any): Promise<void>;
-}
-
-// Backend implementation
-@injectable()
-export class MyBackendPreferenceServiceImpl implements MyBackendPreferenceService {
-    @inject(PreferenceService)
-    protected readonly preferenceService: PreferenceService;
-
-    @inject(PreferenceLanguageOverrideService)
-    protected readonly languageOverrideService: PreferenceLanguageOverrideService;
-
-    async getPreference(key: string, overrideIdentifier?: string): Promise<any> {
-        let preferenceName = key;
-        if (overrideIdentifier) {
-            preferenceName = this.languageOverrideService.overridePreferenceName({ 
-                preferenceName: key, 
-                overrideIdentifier 
-            });
-        }
-        return this.preferenceService.get(preferenceName);
-    }
-
-    async inspectPreference(key: string, overrideIdentifier?: string): Promise<PreferenceInspection | undefined> {
-        let preferenceName = key;
-        if (overrideIdentifier) {
-            preferenceName = this.languageOverrideService.overridePreferenceName({ 
-                preferenceName: key, 
-                overrideIdentifier 
-            });
-        }
-        return this.preferenceService.inspect(preferenceName);
-    }
-
-    async setPreference(key: string, overrideIdentifier: string | undefined, value: any): Promise<void> {
-        let preferenceName = key;
-        if (overrideIdentifier) {
-            preferenceName = this.languageOverrideService.overridePreferenceName({ 
-                preferenceName: key, 
-                overrideIdentifier 
-            });
-        }
-        await this.preferenceService.set(preferenceName, value, PreferenceScope.User);
-    }
-}
-```
+If you need to expose preferences to the frontend via RPC calls or centralize preference access logic, you can create a dedicated backend preference service. See `examples/api-samples/src/node/sample-backend-preferences-service.ts` for a complete implementation example.
 
 ## Architecture Notes
 
