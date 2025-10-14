@@ -80,6 +80,11 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'It\'s Released: Your Native Claude Code IDE Integration in Theia',
+                url: 'https://eclipsesource.com/blogs/2025/10/14/its-released-your-native-claude-code-ide-integration-in-theia/',
+                type: 'video'
+            },
+            {
                 title: 'Introducing the AI-powered Theia IDE: AI-driven coding with full Control',
                 url: 'https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/',
                 type: 'article'
@@ -317,6 +322,11 @@ const categories = [
             {
                 title: 'AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action',
                 url: 'https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj',
+                type: 'video'
+            },
+            {
+                title: 'It\'s Released: Your Native Claude Code IDE Integration in Theia',
+                url: 'https://eclipsesource.com/blogs/2025/10/14/its-released-your-native-claude-code-ide-integration-in-theia/',
                 type: 'video'
             },
             {
