@@ -33,7 +33,7 @@ export const MENU = [
         'Project Goals',
         'project_goals'
     ),
-        M(
+    M(
         'Theia FAQ',
         'faq'
     ),
@@ -94,6 +94,10 @@ export const MENU = [
     M(
         'Consuming Theia fixes without upgrading',
         'consume_theia_fixes_master'
+    ),
+    M(
+        'Theia API Documentation',
+        'theia_api_documentation'
     ),
     {
         title: 'Platform Concepts & APIs'

@@ -4,7 +4,7 @@ title: Label Provider
 
 # Label Provider
 
-A label provider in Eclipse Theia is responsible for the way elements/nodes are presented in the UI. The label provider determines the icon and the text for elements displayed in trees, lists or other locations such as view headers. A good example is the file explorer: file and directory nodes retrieve their icon and text from the label provider. Another example for the usage of a label provider is the header of an open editor. Please also see the [LabelProvider TypeDoc](https://eclipse-theia.github.io/theia/docs/next/classes/core.labelprovider-1.html).
+A label provider in Eclipse Theia is responsible for the way elements/nodes are presented in the UI. The label provider determines the icon and the text for elements displayed in trees, lists or other locations such as view headers. A good example is the file explorer: file and directory nodes retrieve their icon and text from the label provider. Another example for the usage of a label provider is the header of an open editor. Please also see the [LabelProvider TypeDoc](https://eclipse-theia.github.io/theia/docs/next/classes/_theia_core.browser_label-provider.LabelProvider.html).
 
 The default label provider in Theia browses registered label provider contributions to determine the best fitting one for an element/node. The label provider will delegate the calls for a specific node to the contribution which can best handle the element. Eclipse Theia provides default label provider contributions for common types, e.g. for files. By providing your own label provider contributions, you can extend or adapt the look of specific nodes, based on specific criteria.
 
@@ -45,7 +45,7 @@ canHandle(element: object): number {
 }
 ```
 
-Once the label provider contribution is registered for your custom file extension, you can optionally implement `getName`, `getIcon` and `getLongName`. These receive a URI as a parameter and return a custom icon and a custom name for the respective file. Icon and name are used in the file view of Theia. The long name (not customized in the example) is shown as a tooltip when you hover over the file in an opened editor tab. For more details, see the [`LabelProviderContribution` TypeDoc](https://eclipse-theia.github.io/theia/docs/next/interfaces/core.labelprovidercontribution-1.html)
+Once the label provider contribution is registered for your custom file extension, you can optionally implement `getName`, `getIcon` and `getLongName`. These receive a URI as a parameter and return a custom icon and a custom name for the respective file. Icon and name are used in the file view of Theia. The long name (not customized in the example) is shown as a tooltip when you hover over the file in an opened editor tab. For more details, see the [`LabelProviderContribution` TypeDoc](https://eclipse-theia.github.io/theia/docs/next/interfaces/_theia_core.browser_label-provider.LabelProviderContribution.html)
 
 **labelprovider-contribution.ts**
 

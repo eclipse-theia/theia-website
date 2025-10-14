@@ -56,7 +56,7 @@ When the user selects “Say Hello again”, another toast notification will be 
 
 ## Progress Reporting
 
-The message service also allows you to report progress on an ongoing operation. You can incrementally update a progress bar and the message while the toast notification remains visible until the operation is done. The following example opens a progress bar and updates the status three times before it is completed. Please see the [TypeDoc of `MessageService`](https://eclipse-theia.github.io/theia/docs/next/classes/core.messageservice-1.html#showprogress) for more detailed information.
+The message service also allows you to report progress on an ongoing operation. You can incrementally update a progress bar and the message while the toast notification remains visible until the operation is done. The following example opens a progress bar and updates the status three times before it is completed. Please see the [TypeDoc of `MessageService`](https://eclipse-theia.github.io/theia/docs/next/classes/_theia_core.common_message-service.MessageService.html#showprogress) for more detailed information.
 
 ```typescript
 this.messageService
