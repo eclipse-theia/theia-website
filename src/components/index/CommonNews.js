@@ -29,16 +29,12 @@ const PlatformHeader = () => (
                         <img className="banner__image" src={TheiaConLogo}></img>
                     </a>
                     <h1 style={{ fontSize: '2.2rem' }}>
-                        The Call for Presentations is now OPEN for the <a href="https://www.eclipse.org/events/2025/theiacon/">2025 TheiaCon</a>!<br/>
-                        (Virtual Event | 29 - 30 October, 2025)<br/>
-                        <a href="https://forms.gle/jGfU7mscY9k7xCop8">Submit your proposal</a> today to be a speaker and <a href="https://eclipse.zoom.us/webinar/register/WN_tSNF38qYR6OPdtIUCnnSHA">get registered</a>!
+                        TheiaCon is almost here! Join the <a href="https://www.eclipse.org/events/2025/theiacon/">2025 TheiaCon</a> — a free, virtual event on 29 - 30 October.<br/>
+                        Secure your spot today:
                     </h1>
                     <div className="header__buttons">
-                        <a className="btn btn--cta" href="https://forms.gle/jGfU7mscY9k7xCop8" rel="noopener">
-                            Submit Proposal
-                        </a>
                         <a className="btn btn--cta" href="https://eclipse.zoom.us/webinar/register/WN_tSNF38qYR6OPdtIUCnnSHA" rel="noopener">
-                            Get registered
+                            Register now
                         </a>
                     </div>
     </div>
