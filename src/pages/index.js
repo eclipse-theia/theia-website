@@ -10,6 +10,7 @@ import TheiaIDEExtensible from '../components/index/TheiaIDEExtensible';
 import Footer from '../components/Footer';
 import HeadWithIDESchema from '../layouts/headwithIDEschema';
 import YouTubeVideosThumbnails from '../components/index/YouTubeVideosThumbnails';
+import SponsoringHint from '../components/SponsoringHint';
 
 export const Head = () => (
     <HeadWithIDESchema
@@ -29,6 +30,7 @@ export default ({ pageContext }) => {
                 <VSCodeExtensions />
                 <TheiaIDEFeatures adopters={pageContext.adopters}/>
                 <TheiaIDEExtensible />
+                <SponsoringHint />
                 <TheiaIDEDownloads />
             </main>
             <Footer background={true} />

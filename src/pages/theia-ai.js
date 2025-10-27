@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import TheiaAIFeatures from '../components/index/TheiaAIFeatures';
 import TheiaAIVideosThumbnails from '../components/index/TheiaAIVideosThumbnails';
 import SupportHint from '../components/SupportHint';
+import SponsoringHint from '../components/SponsoringHint';
 import HeadWithTheiaAI from '../layouts/headwithTheiaAI';
 
 export const Head = () => (
@@ -27,6 +28,7 @@ export default ({ pageContext }) => {
                 <TheiaAIVideosThumbnails />
                 <SupportHint variant="ai" />
                 <TheiaAIFeatures adopters={pageContext.adopters} />
+                <SponsoringHint />
                 <TheiaAIOutro />
             </main>
             <Footer background={true} />

@@ -24,6 +24,7 @@ import Products from '../components/index/Products'
 import GettingStarted from '../components/index/GettingStarted'
 import IntrosToTheia from '../components/index/IntrosToTheia'
 import SupportHint from '../components/SupportHint'
+import SponsoringHint from '../components/SponsoringHint'
 import HeadWithPlatformSchema from '../layouts/headwithPlatformschema';
 
 export const Head = HeadWithPlatformSchema
@@ -37,6 +38,7 @@ export default ({ pageContext }) => {
                 <Features />
                 <SupportHint variant="platform" />
                 <ContributorsAndAdopters adopters={pageContext.adopters}/>
+                <SponsoringHint />
                 <GettingStarted/>
                 <IntrosToTheia />
             </main>
