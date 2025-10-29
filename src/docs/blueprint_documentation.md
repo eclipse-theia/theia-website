@@ -92,16 +92,86 @@ Like any other dependency, it will be installed via yarn.
 Similarly, removing an extension works by removing it from `dependencies`.
 For extensions already published on npm (or your private npm registry) this is all you need to do.
 
-An alternative approach is developing your extension inside Theia IDE’s mono repo.
-The advantage of doing this is that you don’t need to publish the extension and can build the product with the local version of the extension.
-This is facilitated by the lerna build already configured in the Theia IDEs’s repository.
+An alternative approach is developing your extension inside Theia IDE's mono repo.
+The advantage of doing this is that you don't need to publish the extension and can build the product with the local version of the extension.
+This is facilitated by the lerna build already configured in the Theia IDEs's repository.
 It links the product and all extensions in the repository together during the build.
 
-The easiest way to create a new extension is to use the [official yeoman generator](https://www.npmjs.com/package/generator-theia-extension) for Theia extensions.
-Assuming you have [yeoman](https://yeoman.io/) globally installed on your system, simply create a new extension in the repository root with `yo theia-extension --standalone`.
-The `--standalone` flag is used to only create an extension but not a whole Theia application frame because it is already provided by the Theia IDE.
-After successfully generating the extension, add its folder name to the Theia IDEs’s root `package.json` in the workspaces property.
-After adding the extension to the dependencies in `applications/electron/package.json` as described above, the new extension will be part of the built product.
+### Adding Yeoman-Generated Extensions to Theia IDE
+
+Many users start with the [Yeoman generator](https://www.npmjs.com/package/generator-theia-extension) as described in [Build your own IDE/Tool](/docs/composing_applications), and later want to integrate their extensions into the Theia IDE. This section explains how to add an existing Yeoman-generated extension to your custom Theia IDE.
+
+#### Prerequisites
+
+- You have a Yeoman-generated Theia extension (created with `yo theia-extension --standalone`)
+- You have cloned the [Theia IDE repository](https://github.com/eclipse-theia/theia-blueprint)
+
+#### Step-by-Step Integration
+
+1. **Move your extension into the Theia IDE repository**
+
+   Copy your extension folder into the `theia-extensions` directory of the Theia IDE repository. For example, if your extension is called `hello-world`, copy it so it becomes `theia-extensions/hello-world`.
+
+2. **Verify workspace configuration**
+
+   The Theia IDE's root `package.json` already includes `theia-extensions/*` in its workspaces configuration, so your extension is automatically recognized. No manual editing of the workspaces array is needed.
+
+3. **Find your extension's name and version**
+
+   Open your extension's `package.json` file (e.g., `theia-extensions/hello-world/package.json`) and look for the `name` and `version` fields:
+
+   ```json
+   {
+     "name": "hello-world",
+     "version": "0.0.0",
+     ...
+   }
+   ```
+
+   You will need these values in the next step.
+
+4. **Add your extension as a dependency**
+
+   Open `applications/electron/package.json` (for the desktop application) or `applications/browser/package.json` (for the browser application), or both if you want your extension in both versions.
+
+   Add your extension to the `dependencies` section using the name and version from the previous step:
+
+   ```json
+   "dependencies": {
+     ...
+     "theia-ide-launcher-ext": "1.65.100",
+     "theia-ide-product-ext": "1.65.100",
+     "theia-ide-updater-ext": "1.65.100",
+     "hello-world": "0.0.0"
+   }
+   ```
+
+5. **Install dependencies and build**
+
+   From the repository root, run:
+
+   ```bash
+   yarn && yarn build
+   ```
+
+   This will install all dependencies, link your extension with the Theia IDE, and build the application with your extension included.
+
+6. **Run and test**
+
+   Start the Theia IDE to test your extension:
+
+   ```bash
+   yarn (browser|electron) start
+   ```
+
+   Your extension's features should now be available in the Theia IDE.
+
+#### Important Notes
+
+- **Version Compatibility**: Check that your extension's `@theia/core` dependency version (in your extension's `package.json`) is compatible with the Theia version used by the Theia IDE. You may need to update the version if they differ significantly.
+- **Browser and Electron**: Remember to add your extension to both `applications/browser/package.json` and `applications/electron/package.json` if you want it available in both versions.
+- **Always Build**: Always run `yarn && yarn build` after adding new extensions before starting the application.
+- **Monorepo Structure**: Once your extension is in the `theia-extensions` folder, it becomes part of the monorepo and will be built alongside other extensions.
 
 ## Branding
 
