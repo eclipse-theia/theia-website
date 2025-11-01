@@ -20,6 +20,7 @@ import React from 'react'
 import CommonNews from './CommonNews'
 import { breakpoints } from '../../utils/variables'
 import styled from '@emotion/styled'
+import CodieAward from '../../../static/2025-Winner-CODiE.svg'
 
 const StyledHeader = styled.div`
      .header {
@@ -79,6 +80,29 @@ const StyledHeader = styled.div`
             top: 10rem;
             right: 2rem;
         }
+        &__codie-award {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0 1rem 0;
+            a {
+                display: block;
+                transition: transform 0.3s ease;
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+            img {
+                height: 6rem;
+                width: auto;
+                @media(max-width: 800px) {
+                    height: 5rem;
+                }
+                @media(max-width: 500px) {
+                    height: 4rem;
+                }
+            }
+        }
         &__buttons {
             display:flex;
             justify-content: space-evenly;
@@ -118,6 +142,11 @@ const TheiaAIHeader = () => (
                         <a className="btn" href="/docs/theia_ai" target="_blank" rel="noopener noreferrer">Theia AI Documentation</a>
                         <a style ={{backgroundColor: "#0B5394", borderColor: "#0B5394"}} className="btn btn--cta" href="/#theiaide" rel="noopener">Try Theia AI in the Theia IDE</a>
                  </div>
+                <div className="header__codie-award">
+                    <a href="https://codieawards.com/winners" target="_blank" rel="noopener noreferrer">
+                        <img src={CodieAward} alt="CODiE Awards 2025 Winner" />
+                    </a>
+                </div>
                 </div>
                 <CommonNews/>
         </header>

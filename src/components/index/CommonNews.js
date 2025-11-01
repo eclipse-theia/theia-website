@@ -24,19 +24,6 @@ const PlatformHeader = () => (
             <br />
             
         </h2>
-        <br />
-         <a href="https://www.eclipse.org/events/2025/theiacon/">
-                        <img className="banner__image" src={TheiaConLogo}></img>
-                    </a>
-                    <h1 style={{ fontSize: '2.2rem' }}>
-                        TheiaCon is almost here! Join the <a href="https://www.eclipse.org/events/2025/theiacon/">2025 TheiaCon</a> — a free, virtual event on 29 - 30 October.<br/>
-                        Secure your spot today:
-                    </h1>
-                    <div className="header__buttons">
-                        <a className="btn btn--cta" href="https://eclipse.zoom.us/webinar/register/WN_tSNF38qYR6OPdtIUCnnSHA" rel="noopener">
-                            Register now
-                        </a>
-                    </div>
     </div>
 )
 
