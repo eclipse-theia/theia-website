@@ -471,10 +471,12 @@ Before using Claude Code in Theia IDE, you need to install it. Visit [https://ww
 
 **Configuration:**
 
-To enable Claude Code in Theia IDE, you need to set your Anthropic API key. You can do this in one of two ways:
+If you want to use a specific Anthropic API key for Claude Code in Theia IDE, you can set it in one of two ways:
 
 1. **Via Settings**: Set the preference key `ai-features.anthropic.AnthropicApiKey` in the Theia IDE settings
 2. **Via Environment Variable**: Set the environment variable `ANTHROPIC_API_KEY`
+
+Otherwise, Theia will fall back to the active authentication currently configured directly in Claude Code.
 
 The Claude Code executable should be detected automatically. If the detection fails, you can manually configure the executable path in the preferences (`ai-features.claudeCode.executablePath`).
 
