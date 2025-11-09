@@ -44,6 +44,7 @@ Learn more about the AI-powered Theia IDE:
   - [App Tester (Chat Agent)](#app-tester-chat-agent)
   - [Claude Code (Chat Agent)](#claude-code-chat-agent)
 - [Chat](#chat)
+  - [Chat Session History](#chat-session-history)
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
   - [Image Support](#image-support)
@@ -496,7 +497,25 @@ The Theia IDE provides a global chat interface where users can interact with all
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
-Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted. 
+Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted.
+
+### Chat Session History
+
+The Theia IDE automatically preserves your chat sessions, allowing you to access your conversation history even after restarting the application.
+
+To access your chat history, click the **"Show Chats..."** button in the chat view toolbar (located in the top area of the chat view). This opens a dialog displaying all available chat sessions, including both your currently active sessions and previously archived sessions.
+
+<video src="../../chat-persistence.webm" controls style="max-width: 100%;"></video>
+
+Chat sessions are automatically saved to disk as you interact with AI agents. The system stores up to 25 chat sessions by default. When this limit is reached, the oldest sessions are automatically deleted to make room for new ones. You can also manually delete sessions from the "Show Chats..." dialog if you no longer need them.
+
+The persistence system preserves the complete state of your chat sessions, including:
+- All messages and responses from different agents
+- Message alternatives created through [editing chat requests](#editing-chat-requests)
+- File changesets with functional apply, revert, and open operations
+- The full conversation tree when you've edited messages to create different conversation branches
+
+Chat sessions are stored in the `.theia/chatSessions/` directory within your user home directory.
 
 ### Starting Chat from the Editor
 
