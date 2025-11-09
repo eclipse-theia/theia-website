@@ -43,6 +43,8 @@ Learn more about the AI-powered Theia IDE:
   - [Terminal Assistance (Agent)](#terminal-assistance-agent)
   - [App Tester (Chat Agent)](#app-tester-chat-agent)
   - [Claude Code (Chat Agent)](#claude-code-chat-agent)
+  - [Project Info (Chat Agent)](#project-info-chat-agent)
+  - [GitHub (Chat Agent)](#github-chat-agent)
 - [Chat](#chat)
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
@@ -489,6 +491,56 @@ For more information on configuring Claude Code's permissions, commands, MCP ser
 **Customization:**
 
 You can customize the system message appendix that is passed to Claude Code through the Theia agent configuration in the AI Configuration view. This allows you to tailor Claude Code's behavior to your specific needs and workflows.
+
+### Project Info (Chat Agent)
+
+**Note: This agent is currently in alpha state and marked as such in the agent list.**
+
+The Project Info agent helps you create and maintain a project information file (`.prompts/project-info.prompttemplate`) that provides context about your workspace to other AI agents. This file serve as a knowledge base that helps AI assistants understand your project's architecture, conventions, and specific requirements. The project info file is used by default by Theia Coder.
+
+**How to Use:**
+
+When you first interact with the Project Info agent, it will ask you to choose your preferred working mode:
+
+1. **Auto-exploration mode**: The agent explores your workspace automatically and creates an initial project information file based on what it discovers.
+2. **Manual mode**: The agent guides you through each section, asking for your input and offering to answer questions for you.
+
+**Project Info Structure:**
+
+The applied structure and content for the generated project file can be reviewed in the prompt template `project-info-template`accessible in the agent settings under the ProjectInfo agent.
+
+The default storage location for project info files is `.prompts/`. You can configure this location in the settings under `ai-features.promptTemplates.WorkspaceTemplateDirectories`.
+
+**Example Usage:**
+
+Simply mention `@ProjectInfo` in the chat and describe what you want to do:
+- "Create project info for my workspace"
+- "Update the project info with new testing guidelines"
+- "Complete the missing sections in my project info"
+
+### GitHub (Chat Agent)
+
+The GitHub agent enables you to interact with GitHub repositories, issues, pull requests, and other GitHub features directly from the Theia IDE. This agent uses the GitHub MCP (Model Context Protocol) server to provide comprehensive access to GitHub's functionality through natural language commands.
+The GitHub agent automatically detects the current GitHub repository you're working with (if your workspace is a GitHub repository).
+
+**Setup:**
+
+When you first interact with the GitHub agent, it will check whether the GitHub MCP server is properly configured. If the server is not yet set up, the agent will guide you through the configuration process
+
+**Example Usage:**
+
+Simply mention `@GitHub` in the chat and describe what you want to do:
+- "Create a new issue for the bug I found"
+- "Show me the latest pull requests"
+- "List all open issues with the 'bug' label"
+- "Create a new branch for feature development"
+- "Search for code containing authentication logic"
+
+**Note:** The GitHub agent requires a valid GitHub Personal Access Token with appropriate permissions for the operations you want to perform. Make sure to follow GitHub's security best practices when creating and storing your access token.
+
+The video below demonstrates the GitHub agent in action, embedded into a full workflow:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wX24lrQLS8Q?si=Xrha9b7wr1QEcenj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Chat
 
