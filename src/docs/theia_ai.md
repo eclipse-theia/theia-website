@@ -25,6 +25,7 @@ Learn more about Theia AI:
 - [Creating Agents with Theia AI](#creating-agents-with-theia-ai)
   - [Creating an Agent](#creating-an-agent)
   - [Creating a Chat Agent](#creating-a-chat-agent)
+  - [Agent Modes](#agent-modes)
 - [Variables and Tool Functions](#variables-and-tool-functions)
   - [Variables](#variables)
     - [Agent-specific Variables](#agent-specific-variables)
@@ -122,6 +123,51 @@ Getting such agent implementations right typically requires a bit of prompt eval
 
 Also, if the underlying LLM supports it, structured output is a huge time saver, as this usually guarantees that the output follows a specific format and avoids coping with variations in your agent’s parsing logic.
 This guide is focussed on Theia AI and not about developing specific agents per se. If you need support building your own custom AI assistance, please get in contact with a service provider and browse our [resource section](/resources/#theia-ai).
+
+### Agent Modes
+
+Chat agents can define multiple operational modes that allow users to control how the agent responds. Modes enable agents to adjust their behavior based on user preferences, such as providing concise versus detailed responses or switching between different operational styles like "explain" versus "fix".
+
+#### Defining Modes
+
+To add mode support to your chat agent, define a `modes` array with mode definitions:
+
+```ts
+export class MyChatAgent extends AbstractStreamParsingChatAgent {
+    readonly id = 'MyAgent';
+    readonly name = 'MyAgent';
+    
+    modes = [
+        { id: 'concise', name: 'Concise' },
+        { id: 'detailed', name: 'Detailed' }
+    ];
+}
+```
+
+When an agent defines multiple modes, a mode selector appears in the chat input UI, allowing users to select their preferred mode through a dropdown or cycle through modes using `Shift+Tab`.
+
+<video controls style="max-width: 650px">
+  <source src="../../agent-modes.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+#### Using Modes in Agent Implementation
+
+The selected mode is passed with the chat request via `request.request.modeId`. Your agent can then adapt its behavior accordingly:
+
+```ts
+override async invoke(request: MutableChatRequestModel): Promise<void> {
+    const modeId = request.request.modeId || 'concise';
+    
+    if (modeId === 'concise') {
+        // Provide brief response
+    } else {
+        // Provide detailed response
+    }
+}
+```
+
+See the [ModeChatAgent](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/mode-chat-agent-contribution.ts) in the Theia codebase for a complete example implementation demonstrating how to use modes to adjust response verbosity.
 
 ## Variables and Tool Functions
 
