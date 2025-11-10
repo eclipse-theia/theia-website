@@ -507,7 +507,7 @@ When you first interact with the Project Info agent, it will ask you to choose y
 
 **Project Info Structure:**
 
-The applied structure and content for the generated project file can be reviewed in the prompt template `project-info-template`accessible in the agent settings under the ProjectInfo agent.
+The applied structure and content for the generated project file can be reviewed in the prompt template `project-info-template` accessible in the agent settings under the ProjectInfo agent.
 
 The default storage location for project info files is `.prompts/`. You can configure this location in the settings under `ai-features.promptTemplates.WorkspaceTemplateDirectories`.
 
