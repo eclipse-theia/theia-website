@@ -32,6 +32,7 @@ Learn more about Theia AI:
     - [Global Variables](#global-variables)
     - [Chat Context Variables](#chat-context-variables)
   - [Tool Functions](#tool-functions)
+  - [Slash Commands](#slash-commands)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
@@ -539,6 +540,98 @@ Finally, register your ‘ToolProvider’ like this:
 ```typescript
 bind(ToolProvider).to(FileContentFunction);
 ```
+
+### Slash Commands
+
+Slash commands provide a user-friendly way to invoke prompt templates in the chat interface. They allow users to type `/commandname arguments` instead of the more technical `#prompt:fragmentid` syntax. For details on how end users use slash commands, see the [user documentation on slash commands](/docs/user_ai/#slash-commands).
+
+Slash commands are registered as prompt templates with command-specific metadata using the `PromptService`. Theia AI automatically provides autocomplete support, argument substitution, and agent-specific filtering.
+
+#### Command Metadata Interface
+
+Slash commands use the `CommandPromptFragmentMetadata` interface to define their properties:
+
+```typescript
+interface CommandPromptFragmentMetadata {
+    isCommand: true;                    // Marks this as a slash command
+    commandName: string;                // The command name (e.g., "explain" for /explain)
+    commandDescription: string;         // Description shown in autocomplete
+    commandArgumentHint?: string;       // Optional hint about expected arguments
+    commandAgents?: string[];           // Optional array of agent IDs that can use this command
+}
+```
+
+#### Programmatic Registration Example
+
+The following example shows how to programmatically register slash commands for an agent. This is adapted from the [Claude Code integration](https://github.com/eclipse-theia/theia/pull/16541), which registers static commands on startup:
+
+```typescript
+import { PromptService } from '@theia/ai-core';
+import { inject, injectable } from '@theia/core/shared/inversify';
+
+const MY_AGENT_ID = 'MyAgent';
+
+interface StaticSlashCommand {
+    name: string;
+    description: string;
+    template?: string; // Optional template, defaults to `/${name}`
+}
+
+@injectable()
+export class MySlashCommandsContribution {
+    @inject(PromptService)
+    protected readonly promptService: PromptService;
+
+    protected staticCommands: StaticSlashCommand[] = [
+        { name: 'clear', description: 'Clear the current session' },
+        { name: 'config', description: 'Open configuration' },
+        { name: 'help', description: 'Show help information', template: 'Provide help on: $ARGUMENTS' }
+    ];
+
+    onStart(): void {
+        this.registerStaticCommands();
+    }
+
+    protected registerStaticCommands(): void {
+        for (const command of this.staticCommands) {
+            this.promptService.addBuiltInPromptFragment({
+                id: `my-agent-slash-${command.name}`,
+                template: command.template || `/${command.name}`,
+                isCommand: true,
+                commandName: command.name,
+                commandDescription: command.description,
+                commandAgents: [MY_AGENT_ID]
+            });
+        }
+    }
+}
+```
+
+#### Argument Substitution
+
+Commands support flexible argument substitution in their templates:
+
+- **`$ARGUMENTS`**: All arguments as a single string
+- **`$1`, `$2`, `$3`, ...**: Individual positional arguments
+- **Quoted arguments**: `/hello "John Doe"` treats "John Doe" as `$1`
+
+**Example:**
+
+```typescript
+this.promptService.addBuiltInPromptFragment({
+    id: 'compare-command',
+    template: 'Compare and contrast $1 and $2 in detail.',
+    isCommand: true,
+    commandName: 'compare',
+    commandDescription: 'Compare two technologies',
+    commandArgumentHint: 'technology1 technology2',
+    commandAgents: [MY_AGENT_ID]
+});
+```
+
+When a user types `/compare React Vue`, this resolves to: "Compare and contrast React and Vue in detail."
+
+For a complete implementation including dynamic command loading from files, see the [Claude Code slash commands contribution](https://github.com/eclipse-theia/theia/pull/16541/files#diff-00607ac44abbafca2c82b97a2748c2707d53d68eR66).
 
 ## Custom Response Part Rendering
 
