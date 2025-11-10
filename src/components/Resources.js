@@ -125,6 +125,11 @@ const categories = [
         title: 'TheiaCon Talk Recordings',
         resources: [
             {
+                title: 'TheiaCon 2025',
+                url: 'https://www.youtube.com/playlist?list=PLy7t4z5SYNaQyTt3QT9nddDLIuEiUKPoX',
+                type: 'video'
+            },
+            {
                 title: 'TheiaCon 2024',
                 url: 'https://www.youtube.com/playlist?list=PLy7t4z5SYNaQAGs0tr_ZSv3h2GKH2G50X',
                 type: 'video'
