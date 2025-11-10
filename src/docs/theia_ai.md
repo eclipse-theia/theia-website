@@ -543,124 +543,95 @@ bind(ToolProvider).to(FileContentFunction);
 
 ### Slash Commands
 
-Slash commands provide a user-friendly way to invoke prompt templates in the chat interface. They allow users to type `/commandname arguments` instead of the more technical `#prompt:fragmentid` syntax. Slash commands are internally converted to prompt variable references, maintaining compatibility with the existing Theia AI architecture.
+Slash commands provide a user-friendly way to invoke prompt templates in the chat interface. They allow users to type `/commandname arguments` instead of the more technical `#prompt:fragmentid` syntax. For details on how end users use slash commands, see the [user documentation on slash commands](/docs/user_ai/#slash-commands).
 
-<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../slash-commands.webm" width="100%" autoplay loop controls class="rounded-2"></video>
-<p style="font-style: italic; margin-top: 0.5rem;">Creating and using a simple slash command example.</p>
-</div>
+Slash commands are registered as prompt templates with command-specific metadata using the `PromptService`. Theia AI automatically provides autocomplete support, argument substitution, and agent-specific filtering.
 
-#### Registering Slash Commands as Prompt Templates
+#### Command Metadata Interface
 
-To create slash commands in your custom tool, define prompt templates with command metadata. Commands are registered as standard prompt fragments with additional metadata that marks them as executable commands:
+Slash commands use the `CommandPromptFragmentMetadata` interface to define their properties:
 
-```yaml
----
-isCommand: true
-commandName: mycommand
-commandDescription: Description of what this command does
-commandArgumentHint: [optional hint about expected arguments]
-commandAgents:
-  - AgentId1
-  - AgentId2
----
-Your prompt template content here.
-You can use $ARGUMENTS for all arguments, or $1, $2, etc. for individual arguments.
+```typescript
+interface CommandPromptFragmentMetadata {
+    isCommand: true;                    // Marks this as a slash command
+    commandName: string;                // The command name (e.g., "explain" for /explain)
+    commandDescription: string;         // Description shown in autocomplete
+    commandArgumentHint?: string;       // Optional hint about expected arguments
+    commandAgents?: string[];           // Optional array of agent IDs that can use this command
+}
 ```
 
-**Required metadata:**
+#### Programmatic Registration Example
 
-- **`isCommand: true`**: Marks the prompt template as a slash command
-- **`commandName`**: The command name used in the chat (e.g., for `/mycommand`)
-- **`commandDescription`**: Description shown in autocomplete
+The following example shows how to programmatically register slash commands for an agent. This is adapted from the [Claude Code integration](https://github.com/eclipse-theia/theia/pull/16541), which registers static commands on startup:
 
-**Optional metadata:**
+```typescript
+import { PromptService } from '@theia/ai-core';
+import { inject, injectable } from '@theia/core/shared/inversify';
 
-- **`commandArgumentHint`**: Hint text about expected arguments shown in autocomplete
-- **`commandAgents`**: Array of agent IDs that can use this command. If omitted, the command is available globally to all agents
+const MY_AGENT_ID = 'MyAgent';
+
+interface StaticSlashCommand {
+    name: string;
+    description: string;
+    template?: string; // Optional template, defaults to `/${name}`
+}
+
+@injectable()
+export class MySlashCommandsContribution {
+    @inject(PromptService)
+    protected readonly promptService: PromptService;
+
+    protected staticCommands: StaticSlashCommand[] = [
+        { name: 'clear', description: 'Clear the current session' },
+        { name: 'config', description: 'Open configuration' },
+        { name: 'help', description: 'Show help information', template: 'Provide help on: $ARGUMENTS' }
+    ];
+
+    onStart(): void {
+        this.registerStaticCommands();
+    }
+
+    protected registerStaticCommands(): void {
+        for (const command of this.staticCommands) {
+            this.promptService.addBuiltInPromptFragment({
+                id: `my-agent-slash-${command.name}`,
+                template: command.template || `/${command.name}`,
+                isCommand: true,
+                commandName: command.name,
+                commandDescription: command.description,
+                commandAgents: [MY_AGENT_ID]
+            });
+        }
+    }
+}
+```
 
 #### Argument Substitution
 
-Slash commands support flexible argument substitution in prompt templates:
+Commands support flexible argument substitution in their templates:
 
-- **`$ARGUMENTS`**: Replaced with all arguments as a single string
+- **`$ARGUMENTS`**: All arguments as a single string
 - **`$1`, `$2`, `$3`, ...**: Individual positional arguments
-- **Quoted arguments**: Arguments containing spaces can be quoted: `/hello "John Doe"` treats "John Doe" as a single $1
+- **Quoted arguments**: `/hello "John Doe"` treats "John Doe" as `$1`
 
-**Example implementation:**
-
-```yaml
----
-isCommand: true
-commandName: compare
-commandDescription: Compare two technologies or concepts
-commandArgumentHint: technology1 technology2
-commandAgents:
-  - Universal
----
-Compare and contrast $1 and $2.
-Provide a detailed analysis of their strengths, weaknesses, and use cases.
-```
-
-Usage: `/compare React Vue`
-- `$1` resolves to "React"
-- `$2` resolves to "Vue"
-- `$ARGUMENTS` resolves to "React Vue"
-
-#### Programmatic Command Registration
-
-While file-based command registration via prompt templates is the recommended approach for most use cases, you can also register commands programmatically by providing prompt templates with the `CommandPromptFragmentMetadata` interface:
+**Example:**
 
 ```typescript
-import { CommandPromptFragmentMetadata } from '@theia/ai-core';
-
-const commandTemplate = {
-    id: 'my-command',
-    template: 'Process the following: $ARGUMENTS',
-    metadata: {
-        isCommand: true,
-        commandName: 'process',
-        commandDescription: 'Process input data',
-        commandArgumentHint: 'data to process',
-        commandAgents: ['MyAgent']
-    } as CommandPromptFragmentMetadata
-};
-
-// Register via PromptService or as part of an agent's prompt fragments
+this.promptService.addBuiltInPromptFragment({
+    id: 'compare-command',
+    template: 'Compare and contrast $1 and $2 in detail.',
+    isCommand: true,
+    commandName: 'compare',
+    commandDescription: 'Compare two technologies',
+    commandArgumentHint: 'technology1 technology2',
+    commandAgents: [MY_AGENT_ID]
+});
 ```
 
-#### Chat Input Integration
+When a user types `/compare React Vue`, this resolves to: "Compare and contrast React and Vue in detail."
 
-Theia AI automatically provides autocomplete support for slash commands in the chat input. The autocomplete:
-
-- Triggers when users type `/` in the chat
-- Filters commands based on the currently pinned or mentioned agent
-- Shows command descriptions and argument hints
-- Updates dynamically as users type
-
-No additional implementation is required to enable autocomplete for your commands.
-
-#### Technical Implementation
-
-Under the hood, slash commands are processed by the `ChatRequestParser`, which:
-
-1. Recognizes `/command [args]` syntax in chat input
-2. Converts it to the internal `#prompt:commandName|args` format
-3. Passes it through the standard prompt variable resolution system
-4. The `PromptVariableContribution` handles argument substitution with quote parsing
-
-This design ensures that slash commands integrate seamlessly with existing prompt templates, variables, and agent workflows without requiring separate handling logic.
-
-#### Example Use Cases
-
-Slash commands are particularly useful for:
-
-- **Common workflows**: Pre-defined actions like `/explain`, `/refactor`, or `/document`
-- **Domain-specific operations**: Custom commands for your tool's domain (e.g., `/deploy`, `/analyze-performance`)
-- **Multi-step processes**: Commands that trigger complex agent interactions with consistent parameters
-- **User convenience**: Replacing repetitive prompt text with simple, memorable commands
-
-For a complete example implementation, see the [sample command contribution in the Theia repository](https://github.com/eclipse-theia/theia/tree/master/examples/api-samples/src/browser/chat/).
+For a complete implementation including dynamic command loading from files, see the [Claude Code slash commands contribution](https://github.com/eclipse-theia/theia/pull/16541/files#diff-00607ac44abbafca2c82b97a2748c2707d53d68eR66).
 
 ## Custom Response Part Rendering
 
