@@ -58,6 +58,7 @@ Learn more about the AI-powered Theia IDE:
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
 - [Prompt Fragments](#prompt-fragments)
+- [Slash Commands](#slash-commands)
 - [Custom Agents](#custom-agents)
 - [Agent-to-Agent Delegation](#agent-to-agent-delegation)
 - [MCP Integration](#mcp-integration)
@@ -670,6 +671,83 @@ To support this functionality, Theia includes a special variable `#prompt:prompt
 <video controls src="../../prompttemplates.webm" alt="Creating and using reusable prompt fragments for common workflows" style="max-width: 100%"></video>
 
 Prompt fragments can recursively reference other fragments, variables, and tool functions, which is particularly useful for reusable additions to standard prompts, such as adding access to MCP servers.
+
+## Slash Commands
+
+Slash commands provide an intuitive way to execute pre-defined prompt templates directly in the AI chat interface. Instead of using the technical `#prompt:fragmentid` syntax, you can simply type `/commandname arguments` to invoke a command with a familiar, user-friendly interface.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../slash-commands.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Creating and using a simple slash command example.</p>
+</div>
+
+When you type a slash command, it inserts the corresponding pre-defined prompt fragment into your chat. Commands support argument substitution, allowing you to customize the prompt with specific values. The system includes autocomplete support directly in the chat input, making it easy to discover and use available commands.
+
+### Using Slash Commands
+
+To use a slash command:
+
+1. Type `/` in the chat input to trigger autocomplete and see all available commands
+2. Select a command from the list or continue typing its name
+3. Add any required arguments after the command name (e.g., `/explain TypeScript generics`)
+4. Press Enter to execute the command
+
+Commands can be scoped to specific agents, ensuring that only relevant commands appear based on your current context. If you have an agent pinned or mention a specific agent (e.g., `@Universal`), only commands available for that agent will be shown in the autocomplete.
+
+### Creating Custom Slash Commands
+
+You can create your own custom slash commands by adding prompt templates with command metadata. Create a new file in your prompt templates directory (see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)) with the following structure:
+
+```yaml
+---
+isCommand: true
+commandName: mycommand
+commandDescription: Description of what this command does
+commandArgumentHint: [optional hint about expected arguments]
+commandAgents:
+  - Universal
+  - Coder
+---
+Your prompt template content here.
+You can use $ARGUMENTS for all arguments, or $1, $2, etc. for individual arguments.
+```
+
+**Metadata fields:**
+
+- **`isCommand`**: Set to `true` to register this prompt template as a slash command
+- **`commandName`**: The name users type after the slash (e.g., `mycommand` for `/mycommand`)
+- **`commandDescription`**: A brief description shown in the autocomplete list
+- **`commandArgumentHint`** (optional): Hint text shown to users about expected arguments
+- **`commandAgents`** (optional): List of agent IDs that can use this command. If omitted, the command is available to all agents
+
+**Argument placeholders:**
+
+In your prompt template, you can use the following placeholders to access command arguments:
+
+- **`$ARGUMENTS`**: Replaced with all arguments as a single string
+- **`$1`, `$2`, `$3`, etc.**: Replaced with individual arguments by position
+- Arguments containing spaces can be quoted: `/hello "John Doe"` treats "John Doe" as a single argument
+
+**Example command:**
+
+```yaml
+---
+isCommand: true
+commandName: explain
+commandDescription: Explain a programming concept
+commandArgumentHint: concept to explain
+commandAgents:
+  - Universal
+---
+Please provide a clear and concise explanation of $ARGUMENTS.
+Include examples where appropriate.
+```
+
+This creates a `/explain` command that can be used like `/explain TypeScript generics` or `/explain async/await`.
+
+### Technical Note
+
+Slash commands are syntactic sugar for prompt variable references. When you use a slash command, it is internally converted to the `#prompt:commandName|args` format, maintaining compatibility with the broader Theia AI architecture.
 
 ## Custom Agents
 
