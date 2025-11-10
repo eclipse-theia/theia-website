@@ -496,7 +496,7 @@ You can customize the system message appendix that is passed to Claude Code thro
 
 **Note: This agent is currently in alpha state and marked as such in the agent list.**
 
-The Project Info agent helps you create and maintain a project information file (`.prompts/project-info.prompttemplate`) that provides context about your workspace to other AI agents. This file serve as a knowledge base that helps AI assistants understand your project's architecture, conventions, and specific requirements. The project info file is used by default by Theia Coder.
+The Project Info agent helps you create and maintain a project information file (`.prompts/project-info.prompttemplate`) that provides context about your workspace to other AI agents. This file serves as a knowledge base that helps AI assistants understand your project's architecture, conventions, and specific requirements. The project info file is used by default by Theia Coder.
 
 **How to Use:**
 
