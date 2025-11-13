@@ -18,7 +18,7 @@ import TheiaConLogo from '../../resources/theiacon-logo.svg'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
-            <a href="https://eclipsesource.com/blogs/2025/10/16/eclipse-theia-1-65-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.65 Release</a> and <a href="https://eclipsesource.com/blogs/2025/09/11/the-eclipse-theia-community-release-2025-08/">the latest Community Release (2025-08)</a>.
+            <a href="https://eclipsesource.com/blogs/2025/11/13/eclipse-theia-1-66-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.66 Release</a> and <a href="https://eclipsesource.com/blogs/2025/09/11/the-eclipse-theia-community-release-2025-08/">the latest Community Release (2025-08)</a>.
             <br />
             In case you missed TheiaCon 2025, all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaQyTt3QT9nddDLIuEiUKPoX">here</a>!
             <br />
