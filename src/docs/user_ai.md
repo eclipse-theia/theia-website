@@ -513,7 +513,6 @@ The persistence system preserves the complete state of your chat sessions, inclu
 - All messages and responses from different agents
 - Message alternatives created through [editing chat requests](#editing-chat-requests)
 - File changesets with functional apply, revert, and open operations
-- The full conversation tree when you've edited messages to create different conversation branches
 
 Chat sessions are stored in the `.theia/chatSessions/` directory within your user home directory.
 
