@@ -80,6 +80,11 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'TheiaCon 2025: The Eclipse Theia Project Update',
+                url: 'https://eclipsesource.com/blogs/2025/11/18/theiacon-2025-eclipse-theia-project-update/',
+                type: 'video'
+            },
+            {
                 title: 'It\'s Released: Your Native Claude Code IDE Integration in Theia',
                 url: 'https://eclipsesource.com/blogs/2025/10/14/its-released-your-native-claude-code-ide-integration-in-theia/',
                 type: 'video'
@@ -210,6 +215,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'The Active Ecosystem of Eclipse Theia Adopters',
+                url: 'https://eclipsesource.com/blogs/2025/11/04/theia-adopters/',
+                type: 'article'
+            },
+            {
                 title: 'How Lonti Created a Unified IDE for APIs, Automation, and Application Development With Eclipse Theia',
                 url: 'https://www.eclipse.org/topics/ide/articles/how-lonti-created-a-unified-ide-for-apis-automation-and-application-development-with-eclipse-theia/',
                 type: 'article'
@@ -327,6 +337,11 @@ const categories = [
             {
                 title: 'AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action',
                 url: 'https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj',
+                type: 'video'
+            },
+            {
+                title: 'On-Demand AI Agent Delegation in Theia AI',
+                url: 'https://eclipsesource.com/blogs/2025/10/21/on-demand-ai-agent-delegation/',
                 type: 'video'
             },
             {
