@@ -102,7 +102,7 @@ const TheiaIDEDownloads = () => (
                  <center>
                  <i>¹ The Mac x86 version might run slow and unstable on recent ARM systems. Please try our new dedicated ARM build.</i>
                  <br></br>
-                 <i>² Community-maintained build. Updates from within the IDE do work, but only via Snap.</i>
+                 <i>² Updates managed by Snap.</i>
                  <br></br>
                  <br></br>
                  You can also <a href="https://try.theia-cloud.io/">try the latest version of the Theia IDE online</a>. The online test version is limited to 30 minutes per session and hosted via <a href="https://github.com/eclipsesource/theia-cloud">Theia.cloud</a>.<br></br>
