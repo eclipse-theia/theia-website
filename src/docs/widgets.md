@@ -71,7 +71,11 @@ static readonly ID = 'my:widget';
 static readonly LABEL = 'My Widget';
 
 @postConstruct()
-protected async init(): Promise < void> {
+protected init(): void {
+    this.doInit();
+}
+
+protected async doInit(): Promise<void> {
     this.id = MyWidget.ID;
     this.title.label = MyWidget.LABEL;
     this.title.caption = MyWidget.LABEL;
