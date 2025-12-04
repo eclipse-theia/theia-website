@@ -17,9 +17,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Background from '../resources/background-image.png'
-import TwitterLogo from '../resources/twitter.svg'
 import GithubLogo from '../resources/github.svg'
-import DiscourseLogo from '../resources/discourse.svg'
 
 const StyledFooter = styled.div`
     .footer {
@@ -53,16 +51,16 @@ const StyledFooter = styled.div`
     }
 `
 
-const Footer = ({background}) => (
+const Footer = ({ background }) => (
     <StyledFooter>
-        <footer className="footer" role="contentinfo" style={{background: background ? `url(${Background})` : null}}>
+        <footer className="footer" role="contentinfo" style={{ background: background ? `url(${Background})` : null }}>
             <p>Join the community!</p>
             <div className="footer__icons">
-                <a href="https://twitter.com/theia_ide" target="_blank" rel="noopener noreferrer" className="footer__link">
-                    <img src={TwitterLogo} alt="Twitter Logo" className="footer__icon" />
-                </a>
                 <a href="https://github.com/eclipse-theia/theia" target="_blank" rel="noopener noreferrer" className="footer__link">
                     <img src={GithubLogo} alt="Github Logo" className="footer__icon" />
+                </a>
+                <a href="https://x.com/theia_ide" target="_blank" rel="noopener noreferrer" className="footer__link">
+                    <img src="https://cdn.simpleicons.org/x" alt="X logo" className="footer__icon" />
                 </a>
             </div>
             <p className="footer__copyright"><a target="_blank" rel="noopener noreferrer" href="https://projects.eclipse.org/projects/ecd.theia/">About</a> | <a href="/support#sponsoring">Sponsoring</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/privacy.php">Privacy Policy</a> | <a target="_blank" rel="noopener noreferrer" href=" http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a> | <a target="_blank" rel="noopener noreferrer" href="http://www.eclipse.org/legal/copyright.php">Copyright Agent</a></p>
