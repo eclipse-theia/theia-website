@@ -31,12 +31,11 @@ The [Theia IDE](/) comes with extensive AI coding support built on Theia AI, off
 
 If you are unsure what Theia is, how it compares to other technologies or how to migrate Eclipse-based tools to it, please have a look at [Theia FAQ](/docs/faq/).
 
-
 ## Need Help?
 
 Theia is an open community, and we are glad to help you. You can ask questions using our [public community forum](https://github.com/eclipse-theia/theia/discussions), you can [report bugs and feature requests](https://github.com/eclipse-theia/theia/issues/new/choose), and you can get [professional support, consulting and implementation services](/support/) for building products based on Theia.
 
-Also follow Theia on [Twitter](https://twitter.com/theia_ide) to stay up-to-date!
+Also follow Theia on [X](https://x.com/theia_ide) to stay up-to-date!
 
 ## Contributing
 
