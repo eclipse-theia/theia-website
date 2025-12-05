@@ -33,7 +33,7 @@ yo code # generate an extension
 vsce package # package your VS Code extension
 ```
 
-As a result, a `vsix` file is generated, which can be used directly in VS Code and Theia (see below).
+As a result, a `vsix` file is generated, which can be used directly in VS Code. For Theia, the extension can be installed at runtime by users (see [Installing VS Code Extensions at Runtime](#installing-vs-code-extensions-at-runtime)), downloaded automatically at build time from a registry (see [Pre-installing VS Code Extensions](#pre-installing-vs-code-extensions)), or manually unpacked for pre-installation.
 Please note that you can also create so-called extension packs with the VS Code extension generator that defines a collection of extensions.
 
 ## Prerequisites for Running VS Code Extensions in Theia
@@ -98,8 +98,10 @@ In the following, we'll provide more details on each of those options.
 
 ### Pre-installing VS Code Extensions
 
-For pre-installing a certain set of VS Code extensions in your Theia application, all you need to do is to drop them, either as a `vsix` file or directly as a folder into the *plugins location* (see [prerequisites](#prerequisites-for-running-vs-code-extensions-in-theia)).
+For pre-installing a certain set of VS Code extensions in your Theia application, you need to place them as **unpacked folders** into the *plugins location* (see [prerequisites](#prerequisites-for-running-vs-code-extensions-in-theia)).
 On start-up of a user session, Theia will load all VS Code extensions from that location automatically.
+
+**Note:** `.vsix` files placed in the plugins location will **not** be automatically unpacked and loaded. If you have a `.vsix` file, you must manually unpack it first before placing it in the plugins location. Attempting to use `.vsix` files directly will result in a warning message: `"Only user plugins will be handled by file handlers, please unpack the plugin manually."`
 
 A more systematic approach, however, is to publish VS Code extensions, to [OpenVSX](https://open-vsx.org), GitHub Releases, or any other accessible location, and download them automatically at build time of the Theia application with the Theia CLI.
 See [publishing extensions to OpenVSX](https://github.com/eclipse/openvsx/wiki/Publishing-Extensions) for more details.
@@ -128,7 +130,7 @@ Therefore, you need to extend your `package.json` to
 }
 ```
 
-As a result, running `yarn` will download any listed extensions and place them into the folder specified in `theiaPluginsDir` automatically.
+As a result, running `yarn` will download any listed extensions (including `.vsix` files from URLs) and automatically unpack them into the folder specified in `theiaPluginsDir`.
 For more details, see also the documentation on [composing Theia applications](/docs/composing_applications/#consuming-vs-code-extensions).
 
 ### Installing VS Code Extensions at Runtime
