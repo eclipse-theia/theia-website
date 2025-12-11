@@ -73,12 +73,65 @@ heading-primary {
 
 const communityReleases = [
     {
+        name: 'Theia 1.68.x (2026-02) - planned',
+        releasedate: 'February 26th, 2026',
+        releasecandidatedate: 'January 29th, 2026',
+        technologiesin: 'March 5th, 2026',
+        releaseanouncement: 'March 12th, 2026',
+        announcementurl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: [
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration' }
+                ]
+            },
+            {
+                title: 'Eclipse EMF cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view' }
+                ]
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: [
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter' }
+                ]
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer Extension for Theia Applications',
+                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
         name: 'Theia 1.66.x (2025-11) - published',
         releasedate: 'November 27th, 2025',
         releasecandidatedate: 'October 30th, 2025',
         technologiesin: 'December 4th, 2025',
         releaseanouncement: 'December 11th, 2025',
-        announcementurl: '',
+        announcementurl: 'https://eclipsesource.com/blogs/2025/12/11/the-eclipse-theia-community-release-2025-11/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
