@@ -520,6 +520,22 @@ Simply mention `@ProjectInfo` in the chat and describe what you want to do:
 - "Update the project info with new testing guidelines"
 - "Complete the missing sections in my project info"
 
+#### The /remember Command
+
+The `/remember` slash command provides a convenient way to capture important context from your conversation and add it to the project info file. This command is available when using the Architect or Coder agents.
+
+During a conversation, you may correct the AI agent about project-specific details or provide clarifications about your codebase. The `/remember` command analyzes your conversation history and extracts these corrections and clarifications, then delegates to the ProjectInfo agent to update the project information file.
+
+The command focuses specifically on information where you corrected the AI's assumptions or provided context it couldn't discover on its own. This helps prevent future AI interactions from making the same mistakes.
+
+To use the command, simply type `/remember` after a conversation where you provided corrections or clarifications:
+> @Coder /remember
+
+You can also provide an optional topic hint to focus the extraction on a specific area:
+> @Architect /remember testing conventions
+
+The extracted information is then added to your `.prompts/project-info.prompttemplate` file, making it available for future AI interactions.
+
 ### GitHub (Chat Agent)
 
 The GitHub agent enables you to interact with GitHub repositories, issues, pull requests, and other GitHub features directly from the Theia IDE. This agent uses the GitHub MCP (Model Context Protocol) server to provide comprehensive access to GitHub's functionality through natural language commands.
@@ -543,6 +559,33 @@ Simply mention `@GitHub` in the chat and describe what you want to do:
 The video below demonstrates the GitHub agent in action, embedded into a full workflow:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wX24lrQLS8Q?si=Xrha9b7wr1QEcenj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+#### GitHub Slash Commands
+
+Theia IDE provides dedicated slash commands for working with GitHub issues and pull requests directly from the chat. These commands are available for the Architect and Coder agents and allow them to delegate to the GitHub agent to retrieve comprehensive information about issues and pull requests before analyzing or implementing solutions.
+
+**`/analyze-gh-ticket <ticket-number>`** (Architect agent)
+
+This command retrieves all details about a GitHub issue, including the description, comments, and any referenced issues. The Architect agent then assesses whether the ticket can be solved by AI and either creates a detailed implementation plan or asks clarifying questions if the requirements are unclear.
+
+To use it, mention the Architect agent and type the command:
+> @Architect /analyze-gh-ticket 1234
+
+**`/fix-gh-ticket <ticket-number>`** (Coder agent)
+
+Similar to `/analyze-gh-ticket`, this command retrieves all issue details via the GitHub agent. Instead of creating a plan, the Coder agent directly implements the solution if the ticket is deemed implementable. If the requirements are ambiguous or information is missing, it will ask for clarification first.
+
+To use it, mention the Coder agent and type the command:
+> @Coder /fix-gh-ticket 1234
+
+**`/address-gh-review <pr-number>`** (Coder agent)
+
+This command retrieves all review comments from a pull request and categorizes them by type (code changes, style fixes, clarification questions, etc.). The Coder agent then either implements all safely addressable changes or asks for clarification on ambiguous comments before proceeding.
+
+To use it, mention the Coder agent and type the command:
+> @Coder /address-gh-review 5678
+
+These commands require the GitHub MCP server to be configured with a valid access token. If the server is not yet set up, the GitHub agent will guide you through the configuration process.
 
 ## Chat
 
