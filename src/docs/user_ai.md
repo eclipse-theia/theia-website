@@ -90,9 +90,11 @@ If you do not have access to an LLM, yet, here is an easy way to try it out:
 
 Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models). 
+Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models).
 
 **To use a specific model in your IDE, configure it on a per-agent basis in the [AI Configuration view](#ai-configuration).**
+
+Once you have configured at least one LLM, you can also select a default agent in the settings under "AI Features" => "Chat: Default Agent". This agent will handle your chat requests when you do not explicitly mention an agent using the `@` symbol.
 
 See also:
 
@@ -411,7 +413,7 @@ This agent helps developers by providing concise and accurate answers to general
 
 ### Orchestrator (Chat Agent)
 
-This agent analyzes user requests against the descriptions of all available chat agents and selects the best-fitting agent to respond (using AI). The user's request is delegated to the selected agent without further confirmation. The Orchestrator is currently the default agent in the Theia IDE for all chat requests. You can deactivate it in the AI Configuration View.
+This agent analyzes user requests against the descriptions of all available chat agents and selects the best-fitting agent to respond (using AI). The user's request is delegated to the selected agent without further confirmation. The Orchestrator is not activated by default, but you can select it as your default agent in the settings (see [Chat](#chat)).
 
 ### Command (Chat Agent)
 
@@ -589,7 +591,7 @@ These commands require the GitHub MCP server to be configured with a valid acces
 
 ## Chat
 
-The Theia IDE provides a global chat interface where users can interact with all chat agents. The Orchestrator automatically delegates user requests to the most appropriate agent. **To get more reliable results, it is preferred to talk to a specific agent directly. Use the '@' symbol in the beginning of your message to specify an agent, for example, '@Coder'.** Press '@' in the chat to see a list of available chat agents.
+The Theia IDE provides a global chat interface where users can interact with all chat agents. If you do not explicitly mention an agent using the `@` symbol (e.g., `@Coder`), your request will be sent to the configured default agent. You can configure your preferred default agent in the settings under "AI Features" => "Chat: Default Agent". Press `@` in the chat to see a list of available chat agents and to talk to a specific agent directly.
 
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
