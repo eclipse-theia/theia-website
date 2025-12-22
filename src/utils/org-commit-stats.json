@@ -2,34 +2,34 @@
   {
     "name": "EclipseSource",
     "type": "company",
-    "totalCommits": 863,
-    "totalInteractions": 4662,
+    "totalCommits": 894,
+    "totalInteractions": 4444,
     "interactions": {
-      "discussions": 304,
-      "issues": 1462,
-      "pullRequests": 2896
+      "discussions": 289,
+      "issues": 1339,
+      "pullRequests": 2816
     }
   },
   {
     "name": "TypeFox",
     "type": "company",
-    "totalCommits": 79,
-    "totalInteractions": 769,
+    "totalCommits": 61,
+    "totalInteractions": 678,
     "interactions": {
-      "discussions": 211,
-      "issues": 271,
-      "pullRequests": 287
+      "discussions": 203,
+      "issues": 250,
+      "pullRequests": 225
     }
   },
   {
     "name": "tsmaeder",
     "type": "individual",
-    "totalCommits": 61,
-    "totalInteractions": 802,
+    "totalCommits": 56,
+    "totalInteractions": 727,
     "interactions": {
-      "discussions": 33,
-      "issues": 476,
-      "pullRequests": 293
+      "discussions": 28,
+      "issues": 437,
+      "pullRequests": 262
     }
   }
 ]
