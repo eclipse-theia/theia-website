@@ -23,14 +23,14 @@ Learn more about the AI-powered Theia IDE:
   - [LLM Providers Overview](#llm-providers-overview)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
-  - [Azure](#azure)
   - [Mistral](#mistral-models)
-  - [Vercel AI](#vercel-ai)
+  - [Azure](#azure)
   - [Anthropic](#anthropic)
   - [Google AI](#google-ai)
+  - [Ollama](#ollama)
+  - [Vercel AI](#vercel-ai)
   - [Hugging Face](#hugging-face)
   - [LlamaFile Models](#llamafile-models)
-  - [Ollama](#ollama)
   - [Custom Request Settings](#custom-request-settings)
   - [Thinking Mode](#thinking-mode)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
@@ -112,14 +112,14 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 | --- | :---: | :---: | :---: | --- |
 | [OpenAI Official](#openai-hosted-by-openai) | ✅ | ✅ | ✅ | Public |
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) | ✅ | ✅ | ✅ | Public |
-| [Azure](#azure) | ✅ | ✅ | ✅ | Public |
 | Mistral (via OpenAI Compatible) | ✅ | ✅ | ✅ | Public |
+| [Azure](#azure) | ✅ | ✅ | ✅ | Public |
+| [Anthropic](#anthropic) | ✅ | ✅ | ❌ | Public |
+| [Google AI](#google-ai) | ✅ | ✅ | ❌ | Beta |
+| [Ollama](#ollama) | ✅ | ✅ | ✅ | Alpha |
 | [Vercel AI](#vercel-ai) | ✅ | ✅ | ✅ | Experimental |
-| [Anthropic](#anthropic) | ✅ | ✅ | ❌ | Beta |
-| [Google AI](#google-ai) | ✅ | ✅ | ❌ | Experimental |
 | [Hugging Face](#hugging-face) | ✅ | ❌ | ❌ | Experimental |
 | [LlamaFile](#llamafile-models) | ✅ | ❌ | ❌ | Experimental |
-| [Ollama](#ollama) | ✅ | ✅ | ✅ | Alpha |
 
 </br>
 </br>
@@ -153,10 +153,6 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
 }
 ```
 
-### Azure
-
-All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
-
 ### Mistral Models
 
 Mistral models (including on "La Platforme") can be used via the OpenAI API and support the same feature set. Here is an example configuration:
@@ -180,9 +176,54 @@ Mistral models (including on "La Platforme") can be used via the OpenAI API and 
 ]
 ```
 
+### Azure
+
+All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
+
+### Anthropic
+
+To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics API account (https://console.anthropic.com/) and
+enter it in the Theia IDE settings under AI-features => Anthropics.
+
+**Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
+
+Configure available models in the settings under AI-features => AnthropicsModels.
+Default supported models include choices like claude-3-5-sonnet-latest.
+
+### Google AI
+
+**Note: The Google AI provider is currently in beta state. We welcome feedback and contributions to help stabilize this integration.**
+
+To enable Google AI models in the Theia IDE, create an API key in your Google AI account (https://aistudio.google.com/) and enter it in the Theia IDE settings under AI-features => Google AI.
+
+**Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
+
+Configure available models in the settings under AI-features => Google AI Models.
+
+<img src="../../google-ai-models.png" alt="Google AI configuration in the Theia IDE" style="max-width: 525px">
+
+### Ollama
+
+To connect to models hosted via [Ollama](https://ollama.com/), enter the corresponding URL, along with the available models, in the settings (as shown below).
+
+<img src="../../ollama-setting.png" alt="Ollama configuration in the Theia IDE" style="max-width: 525px">
+
+When using Ollama, it is advisable to check for the optimal settings and prompts for the specific model
+to be used. For example, the default context size for all Ollama models is 2048 tokens. Depending on
+available VRAM, this parameter (`num_ctx`) should be raised, especially for more complex scenarios
+involving the various Chat agents. See [below](#custom-request-settings) for details on this.
+
+**Note: The Ollama connector is still in Alpha state. If you experience problems while using it, you can
+alternatively take advantage of the fact that some Ollama models support using an OpenAI compatible API. In
+this case, you can alternatively use the
+[Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). But note that the
+context window size `num_ctx` (default: 2048)
+cannot be configured this way. If you need a different context window size, you should create your own
+derived model in Ollama, in which you set the `num_ctx` parameter to the desired value via the Modelfile.**
+
 ### Vercel AI
 
-**Note: The Vercel AI provider is currently experimental. We are evaluating replacing some existing providers to reduce maintenance effort. Please try this provider and provide feedback to help us stabilize it.**
+**Note: The Vercel AI provider is currently experimental and may undergo changes. We are evaluating replacing some existing providers to reduce maintenance effort. Please try this provider and provide feedback to help us stabilize it.**
 
 The Vercel AI provider offers a unified way of communicating with LLMs through the Vercel AI SDK framework. It serves as an alternative to other providers and currently supports OpenAI and Anthropic APIs with both official and custom endpoints.
 
@@ -248,29 +289,9 @@ The Vercel provider supports custom models compatible with the Vercel AI SDK. Co
 - **`supportsStructuredOutput`** (optional): Set to `false` to disable structured output. Default: `true`
 - **`enableStreaming`** (optional): Set to `false` to disable streaming. Default: `true`
 
-### Anthropic
-
-To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics API account (https://console.anthropic.com/) and
-enter it in the Theia IDE settings under AI-features => Anthropics.
-
-**Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
-
-Configure available models in the settings under AI-features => AnthropicsModels.
-Default supported models include choices like claude-3-5-sonnet-latest.
-
-### Google AI
-
-To enable Google AI models in the Theia IDE, create an API key in your Google AI account (https://aistudio.google.com/) and enter it in the Theia IDE settings under AI-features => Google AI.
-
-**Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
-
-Configure available models in the settings under AI-features => Google AI Models.
-
-<img src="../../google-ai-models.png" alt="Google AI configuration in the Theia IDE" style="max-width: 525px">
-
 ### Hugging Face
 
-**Many hosting options and models on Hugging Face support using an OpenAI compatible API. In this case, we recommend using the [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). The Hugging face provider only supports text generation at the moment for models not compatible with the OpenAI API.**
+**Note: The Hugging Face provider is currently experimental. Many hosting options and models on Hugging Face support using an OpenAI compatible API. In this case, we recommend using the [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). The Hugging face provider only supports text generation at the moment for models not compatible with the OpenAI API.**
 
 To enable Hugging Face as an AI provider, you need to create an API key in your Hugging Face account and enter it in the Theia IDE settings: AI-features => Hugging Face
 **Please note:** By using this preference the Hugging Face API key will be stored in clear text on the machine running Theia. Use the environment variable `HUGGINGFACE_API_KEY` to set the key securely.
@@ -280,6 +301,8 @@ Add or remove the desired Hugging Face models from the list of available models 
 <img src="../../huggingface-models.png" alt="Hugging Face configuration in the Theia IDE" style="max-width: 525px">
 
 ### LlamaFile Models
+
+**Note: The LlamaFile provider is currently experimental. Not all LlamaFile models may work out of the box, and some may require specific configurations.**
 
 To configure a LlamaFile LLM in the Theia IDE, add the necessary settings to your configuration (see example below)
 
@@ -303,25 +326,6 @@ The Theia IDE also offers convenience commands to start and stop your LlamaFiles
 
 Please make sure that your LlamaFiles are executable.
 For more details on LlamaFiles, including a quickstart, see the official [Mozilla LlamaFile documentation](https://github.com/Mozilla-Ocho/llamafile).
-
-### Ollama
-
-To connect to models hosted via [Ollama](https://ollama.com/), enter the corresponding URL, along with the available models, in the settings (as shown below).
-
-<img src="../../ollama-setting.png" alt="Ollama configuration in the Theia IDE" style="max-width: 525px">
-
-When using Ollama, it is advisable to check for the optimal settings and prompts for the specific model
-to be used. For example, the default context size for all Ollama models is 2048 tokens. Depending on
-available VRAM, this parameter (`num_ctx`) should be raised, especially for more complex scenarios
-involving the various Chat agents. See [below](#custom-request-settings) for details on this.
-
-**Note: The Ollama connector is still in Alpha state. If you experience problems while using it, you can
-alternatively take advantage of the fact that some Ollama models support using an OpenAI compatible API. In
-this case, you can alternatively use the
-[Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). But note that the
-context window size `num_ctx` (default: 2048)
-cannot be configured this way. If you need a different context window size, you should create your own
-derived model in Ollama, in which you set the `num_ctx` parameter to the desired value via the Modelfile.**
 
 ### Custom Request Settings
 
