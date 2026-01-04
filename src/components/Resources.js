@@ -80,6 +80,11 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'Investing in Eclipse Theia: Collective Sponsoring and Strategic Partner Options',
+                url: 'https://eclipsesource.com/blogs/2025/11/27/investing-in-eclipse-theia-collective-sponsoring-and-strategic-partner-options/',
+                type: 'article'
+            },
+            {
                 title: 'TheiaCon 2025: The Eclipse Theia Project Update',
                 url: 'https://eclipsesource.com/blogs/2025/11/18/theiacon-2025-eclipse-theia-project-update/',
                 type: 'video'
@@ -337,6 +342,11 @@ const categories = [
             {
                 title: 'AI-Native Tools with Full Control: Theia AI & The AI-Powered Theia IDE In Action',
                 url: 'https://youtu.be/qqvzB10QNtU?si=71qovlCqx3L0IfBj',
+                type: 'video'
+            },
+            {
+                title: 'Mastering Project Context Files for AI Coding Agents',
+                url: 'https://eclipsesource.com/blogs/2025/11/20/mastering-project-context-files-for-ai-coding-agents/',
                 type: 'video'
             },
             {
