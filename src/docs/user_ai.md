@@ -868,6 +868,12 @@ This creates a `/explain` command that can be used like `/explain TypeScript gen
 
 Slash commands are syntactic sugar for prompt variable references. When you use a slash command, it is internally converted to the `#prompt:commandName|args` format, maintaining compatibility with the broader Theia AI architecture.
 
+### Demonstration
+
+The following video demonstrates the use and creation of slash commands.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wEZ3p4R-SfU?si=FBpYYDKMc-S2yVBJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Custom Agents
 
 Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat. For simpler workflows, you might also consider using [Prompt Fragments](#prompt-fragments) instead.
