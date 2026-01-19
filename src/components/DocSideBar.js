@@ -50,7 +50,34 @@ const Styled = styled.div`
     .logo {
         display: block;
         height: 2.8rem;
-        margin: 0 auto 13rem auto;
+        margin: 0 auto 3rem auto;
+    }
+
+    .support-callout {
+        background: #f0f7ff;
+        border-radius: 6px;
+        padding: 12px 16px;
+        margin: 0 auto 2.6rem auto;
+        width: 50%;
+        min-width: 21rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        a {
+            color: ${colors.lightBlue};
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.2s;
+
+            &:hover,
+            &:focus {
+                color: ${colors.blue};
+                text-decoration: underline;
+                padding: 0;
+                border-bottom: none;
+            }
+        }
     }
 
     .links {
@@ -109,6 +136,10 @@ const DocSideBar = () => {
         <Styled>
             <div className="container">
                 <Link to='/'><img className="logo" src={TheiaLogoDark} alt="theia logo" /></Link>
+                <div className="support-callout">
+                    <Link to="/support">Professional Support →</Link>
+                    <Link to="/support#sponsoring">Become a Sponsor →</Link>
+                </div>
                 <ul className="links">
                     {
                         MENU.map((m,i) => (

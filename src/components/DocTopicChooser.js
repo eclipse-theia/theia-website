@@ -20,6 +20,7 @@ import styled from '@emotion/styled'
 import { breakpoints } from '../utils/variables'
 import DropDownArrow from '../resources/drop-down-arrow.svg';
 import { MENU } from '../docs/menu'
+import { Link } from 'gatsby'
 
 const Styled = styled.div`
     position: absolute;
@@ -27,6 +28,10 @@ const Styled = styled.div`
     left: 50%;
     transform: translate(-50%, -2rem);
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 
     @media(max-width: 360px) {
         top: 9rem;
@@ -34,6 +39,29 @@ const Styled = styled.div`
 
     @media(min-width: ${breakpoints.xmd}) {
         display: none;
+    }
+
+    .support-callout {
+        background: #f0f7ff;
+        border-radius: 6px;
+        padding: 10px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+
+        a {
+            color: #0074D9;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.2s;
+
+            &:hover,
+            &:focus {
+                color: #0000f8;
+                text-decoration: underline;
+            }
+        }
     }
 
     select {
@@ -66,6 +94,10 @@ const onSelectTopic = (e) => {
 
 const DocTopicChooser = () => (
     <Styled>
+        <div className="support-callout">
+            <Link to="/support">Professional Support →</Link>
+            <Link to="/support#sponsoring">Become a Sponsor →</Link>
+        </div>
         <select onChange={onSelectTopic} defaultValue="Select A Topic">
              <option value='#' selected={true}>Select A Topic</option>
             {MENU.map((m, i) => (
