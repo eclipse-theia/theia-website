@@ -1,0 +1,45 @@
+name: Build PR preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+# No secrets needed - this runs in the PR's context safely
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af #v4
+        with:
+          node-version: '20.x'
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4
+      - name: Build website
+        run: |
+          npm install
+          PATH_PREFIX="theia-website-previews/pr-previews/pr-${{ github.event.number }}" npm run build -- --prefix-paths
+      - name: Save PR metadata
+        run: |
+          mkdir -p ./pr-metadata
+          echo "${{ github.event.number }}" > ./pr-metadata/pr-number
+      - name: Upload artifact
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 #v4
+        with:
+          name: "site"
+          path: ./public
+      - name: Upload PR metadata
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 #v4
+        with:
+          name: "pr-metadata"
+          path: ./pr-metadata

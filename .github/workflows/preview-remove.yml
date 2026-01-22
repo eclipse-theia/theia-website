@@ -1,0 +1,35 @@
+name: Remove PR preview
+
+on:
+  pull_request_target:
+    types:
+      - closed
+
+# This workflow is safe to use pull_request_target because:
+# 1. It only triggers on PR close (not open/sync)
+# 2. It only checks out the base branch (not PR code)
+# 3. It never executes any PR-controlled scripts
+
+permissions:
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  remove-preview:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout required for pr-preview-action to succeed,
+      # checks out base branch only - never PR code
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4
+      - uses: rossjrw/pr-preview-action@f31d5aa7b364955ea86228b9dcd346dc3f29c408 #v1
+        id: deployment
+        with:
+          preview-branch: previews
+          umbrella-dir: pr-previews
+          deploy-repository: eclipse-theia/theia-website-previews
+          token: ${{ secrets.DEPLOY_PREVIEW_TOKEN }}
+          action: remove
