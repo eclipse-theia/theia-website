@@ -30,7 +30,7 @@ jobs:
       # checks out base branch only - never PR code
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4
-      - uses: rossjrw/pr-preview-action@f31d5aa7b364955ea86228b9dcd346dc3f29c408 #v1
+      - uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 #v1.8.1
         id: deployment
         with:
           preview-branch: previews
