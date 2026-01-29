@@ -220,6 +220,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'Textual, Graphical, and Form-Based Data Modeling with Eclipse Theia (AI)',
+                url: 'https://eclipsesource.com/blogs/2025/11/25/crossmodel-unified-modeling-perspectives-theiacon/',
+                type: 'video'
+            },
+            {
                 title: 'The Active Ecosystem of Eclipse Theia Adopters',
                 url: 'https://eclipsesource.com/blogs/2025/11/04/theia-adopters/',
                 type: 'article'
@@ -329,6 +334,16 @@ const categories = [
     {
         title: 'Theia AI and AI-powered Theia IDE',
         resources: [
+            {
+                title: 'Slash Commands: Automating AI Workflows in Theia AI',
+                url: 'https://eclipsesource.com/blogs/2026/01/08/slash-commands-theia-ai/',
+                type: 'video'
+            },
+            {
+                title: 'A Native IDE for Claude Code - Deeply Integrating AI Agents with Theia',
+                url: 'https://eclipsesource.com/blogs/2025/12/02/theiacon-2025-native-claude-code-ide-integration/',
+                type: 'video'
+            },
             {
                 title: 'Introducing the AI-powered Theia IDE: AI-driven coding with full Control',
                 url: 'https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/',
@@ -468,7 +483,7 @@ const categories = [
                 title: 'Building AI-Powered Tools and IDEs: Practical Techniques',
                 url: 'https://eclipsesource.com/blogs/2024/10/28/building-ai-powered-tools-and-ides/',
                 type: 'article'
-            },    
+            },
             {
                 title: 'The Vision of Theia AI: Empowering Tool Builders with Full Control over AI Solutions',
                 url: 'https://eclipsesource.com/blogs/2024/09/16/theia-ai-vision/',
@@ -508,12 +523,62 @@ const categories = [
                 title: 'Theia AI Sneak Preview: Powerful AI integration paired with the most flexible tool platform',
                 url: 'https://eclipsesource.com/blogs/2024/10/02/theia-ai-flexible-platform/',
                 type: 'article'
-            },            
+            },
             {
                 title: 'The Rise of Closed Source AI Tool Integrations',
                 url: 'https://eclipsesource.com/blogs/2024/07/10/the-rise-of-closed-source-ai-tool-integrations/',
                 type: 'article'
-            }   
+            }
+        ]
+    },
+    {
+        title: 'AI Coding',
+        resources: [
+            {
+                title: 'Invisible Blockers for AI Coding: Why Developers Feel Useless',
+                url: 'https://eclipsesource.com/blogs/2026/01/27/invisible-blockers-ai-coding-human-layer/',
+                type: 'video'
+            },
+            {
+                title: 'MCP and Context Overload: Why More Tools Make Your AI Agent Worse',
+                url: 'https://eclipsesource.com/blogs/2026/01/22/mcp-context-overload/',
+                type: 'video'
+            },
+            {
+                title: 'Invisible Blockers for AI Coding: When Good Leadership Blocks Progress',
+                url: 'https://eclipsesource.com/blogs/2026/01/20/invisible-blockers-ai-coding-leadership/',
+                type: 'video'
+            },
+            {
+                title: 'Invisible Blockers for AI Coding: When Your Setup Blocks Progress',
+                url: 'https://eclipsesource.com/blogs/2026/01/13/invisible-blockers-ai-coding-setup/',
+                type: 'video'
+            },
+            {
+                title: 'Mastering Project Context Files for AI Coding Agents',
+                url: 'https://eclipsesource.com/blogs/2025/11/20/mastering-project-context-files-for-ai-coding-agents/',
+                type: 'video'
+            },
+            {
+                title: 'Why AI Coding Fails - and How to Fix It',
+                url: 'https://eclipsesource.com/blogs/2025/10/28/why-ai-coding-fails/',
+                type: 'video'
+            },
+            {
+                title: 'Task Engineering in AI Coding: How to Break Problems Into AI-Ready Pieces',
+                url: 'https://eclipsesource.com/blogs/2025/09/09/task-engineering-ai-coding/',
+                type: 'article'
+            },
+            {
+                title: 'GPT-5 vs Sonnet-4: Side-by-Side on Real Coding Tasks',
+                url: 'https://eclipsesource.com/blogs/2025/08/19/gpt5-vs-sonnet4/',
+                type: 'video'
+            },
+            {
+                title: 'AI Coding at Scale: Structure Your Workflow with Dibe Coding',
+                url: 'https://eclipsesource.com/blogs/2025/07/24/ai-native-coding-process-dibe-coding/',
+                type: 'article'
+            }
         ]
     },
 ]
