@@ -89,7 +89,7 @@ const communityReleases = [
                 ]
             },
             {
-                title: 'Eclipse EMF cloud',
+                title: 'Eclipse EMF cloud - TEST',
                 url: 'https://www.eclipse.dev/emfcloud/',
                 version: 'TBD',
                 modules: [
