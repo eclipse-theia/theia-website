@@ -57,3 +57,14 @@ jobs:
           token: ${{ secrets.DEPLOY_PREVIEW_TOKEN }}
           pr-number: ${{ steps.pr.outputs.number }}
           action: deploy
+          # TODO
+          # Temporarily disable built-in comment since it doesn't support workflow_run
+          # Workaround until upstream fix is merged: https://github.com/rossjrw/pr-preview-action/pull/131
+          comment: false
+      - name: Leave a comment on the PR
+        uses: marocchino/sticky-pull-request-comment@67d0dec7b07ed060a405f9b2a64b8ab319fdd7db # v2.9.2
+        with:
+          header: pr-preview
+          number: ${{ steps.pr.outputs.number }}
+          message: |
+            :rocket: Deployed preview to ${{ steps.deployment.outputs.deployment-url }}
