@@ -21,6 +21,7 @@ Learn more about the AI-powered Theia IDE:
 ## Table of Contents
 - [Set-Up](#set-up)
   - [LLM Providers Overview](#llm-providers-overview)
+  - [GitHub Copilot](#github-copilot)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
   - [Mistral](#mistral-models)
@@ -110,6 +111,7 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 | Provider | Streaming | Tool Calls | Structured Output | State |
 | --- | :---: | :---: | :---: | --- |
+| [GitHub Copilot](#github-copilot) | ✅ | ✅ | ✅ | Public |
 | [OpenAI Official](#openai-hosted-by-openai) | ✅ | ✅ | ✅ | Public |
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) | ✅ | ✅ | ✅ | Public |
 | Mistral (via OpenAI Compatible) | ✅ | ✅ | ✅ | Public |
@@ -123,6 +125,55 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 </br>
 </br>
+
+### GitHub Copilot
+
+If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and models such as GPT 5.2 and Claude Opus 4.5 become available for all AI features.
+
+#### Signing In
+
+To authenticate with GitHub Copilot:
+
+1. Click the **Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign In"**
+2. A dialog appears with a device code—click the link to open GitHub's device authorization page
+3. Enter the code and authorize the application
+4. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state
+
+<img src="../../copilot-in-theia.png" alt="Copilot authentication dialog with device code" style="max-width: 525px">
+
+Once authenticated, Copilot models become available in the [AI Configuration view](#ai-configuration) and can be assigned to any AI agent.
+
+**Please note:** Using GitHub Copilot requires an active Copilot subscription on your GitHub account and the [Github Terms of Services](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) apply.
+
+#### Configuring Available Models
+
+The available Copilot models can be configured in the settings under **AI-features** => **Copilot** => **Models**. The default configuration includes commonly available models. You can add or remove models based on what your Copilot subscription provides.
+
+```json
+{
+    "ai-features.copilot.models": [
+        "gpt-5.2",
+        "claude-opus-4.5"
+    ]
+}
+```
+
+#### GitHub Enterprise
+
+For users with GitHub Enterprise, configure the enterprise URL in the settings under **AI-features** => **Copilot** => **Enterprise URL**:
+
+```json
+{
+    "ai-features.copilot.enterpriseUrl": "github.mycompany.com"
+}
+```
+
+#### Commands
+
+The following commands are available for managing Copilot authentication:
+
+- **Copilot: Sign In** — Initiates the OAuth device flow authentication
+- **Copilot: Sign Out** — Signs out and clears stored credentials
 
 ### OpenAI (Hosted by OpenAI)
 
