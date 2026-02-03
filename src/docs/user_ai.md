@@ -139,7 +139,7 @@ To authenticate with GitHub Copilot:
 3. Enter the code and authorize the application
 4. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state
 
-<video src="../../copilot-in-theia.mp4" controls style="max-width: 100%;"></video>
+<img src="../../copilot-in-theia.png" alt="Copilot authentication dialog with device code" style="max-width: 525px">
 
 Once authenticated, Copilot models become available in the [AI Configuration view](#ai-configuration) and can be assigned to any AI agent.
 
