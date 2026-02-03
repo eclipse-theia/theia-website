@@ -143,7 +143,7 @@ To authenticate with GitHub Copilot:
 
 Once authenticated, Copilot models become available in the [AI Configuration view](#ai-configuration) and can be assigned to any AI agent.
 
-**Please note:** Using GitHub Copilot requires an active Copilot subscription on your GitHub account.
+**Please note:** Using GitHub Copilot requires an active Copilot subscription on your GitHub account and the [Github Terms of Services](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) apply.
 
 #### Configuring Available Models
 
