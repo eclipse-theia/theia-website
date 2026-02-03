@@ -128,7 +128,7 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 ### GitHub Copilot
 
-If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and models such as GPT-4o and Claude Sonnet become available for all AI features.
+If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and models such as GPT 5.2 and Claude Opus 4.5 become available for all AI features.
 
 #### Signing In
 
