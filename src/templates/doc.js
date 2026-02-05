@@ -19,6 +19,7 @@ import DocsLayout from '../layouts/docs-layout'
 import { graphql } from 'gatsby'
 import { getMenuContext } from '../docs/menu'
 import BaseHead from '../layouts/basehead'
+import LastUpdated from '../components/LastUpdated'
 
 export const query = graphql`
   query($slug: String) {
@@ -30,6 +31,7 @@ export const query = graphql`
         html
         fields {
             slug
+            lastModified
         }
     }
   }
@@ -44,7 +46,7 @@ const DocTemplate = ({ data }) => {
     const slug = data.markdownRemark.fields.slug
     const canonical = data.markdownRemark.frontmatter.canonical
     let context = getMenuContext(slug)
-    if(slug === 'architecture') {
+    if (slug === 'architecture') {
         context.prev = '/docs/'
         context.prevTitle = 'Introduction'
     }
@@ -52,6 +54,7 @@ const DocTemplate = ({ data }) => {
     return (
         <DocsLayout canonical={canonical || `/docs/${data.markdownRemark.fields.slug}/`} context={context}>
             <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
+            <LastUpdated date={data.markdownRemark.fields.lastModified} />
         </DocsLayout>
     )
 }

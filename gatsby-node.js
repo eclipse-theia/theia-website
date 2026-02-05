@@ -1,4 +1,5 @@
 const path = require('path')
+const { execSync } = require('child_process')
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 exports.onCreateNode = ({ node, actions }) => {
@@ -12,33 +13,54 @@ exports.onCreateNode = ({ node, actions }) => {
             name: 'slug',
             value: slug
         })
+
+        // Get last modified date from Git
+        let lastModified = null
+        try {
+            const gitLog = execSync(
+                `git log -1 --format=%cI -- "${node.fileAbsolutePath}"`,
+                { encoding: 'utf-8' }
+            ).trim()
+            if (gitLog) {
+                lastModified = gitLog
+            }
+        } catch (error) {
+            // If git command fails, fall back to file mtime or null
+            console.warn(`Could not get git date for ${node.fileAbsolutePath}:`, error.message)
+        }
+
+        createNodeField({
+            node,
+            name: 'lastModified',
+            value: lastModified
+        })
     }
 }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
     actions.setWebpackConfig({
-      resolve: {
-        fallback: {
-            stream: require.resolve("stream-browserify"),
-            http: require.resolve("stream-http"),
-            https: require.resolve("https-browserify"),
-            timers: require.resolve("timers-browserify"),
-            url: require.resolve("url/"),
+        resolve: {
+            fallback: {
+                stream: require.resolve("stream-browserify"),
+                http: require.resolve("stream-http"),
+                https: require.resolve("https-browserify"),
+                timers: require.resolve("timers-browserify"),
+                url: require.resolve("url/"),
+            },
         },
-      },
     });
-  };
+};
 
 exports.onCreatePage = async ({ page, reporter, actions }) => {
-    if (page.path === '/' || page.path === '/theia-platform/' || page.path ==='/theia-ai/') {
+    if (page.path === '/' || page.path === '/theia-platform/' || page.path === '/theia-ai/') {
         try {
             const response = await fetch(
                 'https://api.eclipse.org/adopters/projects/ecd.theia', {
-                    method: 'GET',
-                    headers: {
-                        accept: 'application/json',
-                    }
-                })
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                }
+            })
             const responseJson = await response.json()
             const adopters = responseJson[0].adopters
             actions.deletePage(page)
@@ -76,7 +98,7 @@ exports.createPages = async ({ graphql, reporter, actions }) => {
         }
     `)
 
-    if(result.errors) {
+    if (result.errors) {
         reporter.panic("Failed to create Docs.", result.errors)
     }
 

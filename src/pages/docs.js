@@ -18,6 +18,7 @@ import React from 'react'
 import DocsLayout from '../layouts/docs-layout'
 import { graphql } from 'gatsby'
 import BaseHead from '../layouts/basehead'
+import LastUpdated from '../components/LastUpdated'
 
 export const query = graphql`
     query {
@@ -28,6 +29,7 @@ export const query = graphql`
             html
             fields {
                 slug
+                lastModified
             }
         }
     }
@@ -35,11 +37,12 @@ export const query = graphql`
 export const Head = BaseHead
 
 const Docs = ({ data }) => {
-    const context =  { next: "/docs/architecture/", nextTitle: "Architecture Overview" }
+    const context = { next: "/docs/architecture/", nextTitle: "Architecture Overview" }
 
     return (
         <DocsLayout canonical={`/docs/`} context={context}>
-            <div dangerouslySetInnerHTML={{__html: data.markdownRemark.html}}/>
+            <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
+            <LastUpdated date={data.markdownRemark.fields.lastModified} />
         </DocsLayout>
     )
 }
