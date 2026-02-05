@@ -25,6 +25,8 @@ jobs:
           node-version: '20.x'
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4
+        with:
+          fetch-depth: 0  # Full history needed for git log last modified dates
       - name: Build website
         run: |
           npm install
