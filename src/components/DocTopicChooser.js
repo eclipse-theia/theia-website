@@ -21,6 +21,7 @@ import { breakpoints } from '../utils/variables'
 import DropDownArrow from '../resources/drop-down-arrow.svg';
 import { MENU } from '../docs/menu'
 import { Link } from 'gatsby'
+import DocSearch from './DocSearch'
 
 const Styled = styled.div`
     position: absolute;
@@ -64,6 +65,12 @@ const Styled = styled.div`
         }
     }
 
+    .mobile-search {
+        width: 100%;
+        min-width: 250px;
+        margin-bottom: 0;
+    }
+
     select {
         font: inherit;
         color: inherit;
@@ -89,7 +96,7 @@ const Styled = styled.div`
 `
 
 const onSelectTopic = (e) => {
-     navigate(e.currentTarget.value)
+    navigate(e.currentTarget.value)
 }
 
 const DocTopicChooser = () => (
@@ -98,8 +105,9 @@ const DocTopicChooser = () => (
             <Link to="/support">Professional Support →</Link>
             <Link to="/support#sponsoring">Become a Sponsor →</Link>
         </div>
+        <DocSearch className="mobile-search" isMobile />
         <select onChange={onSelectTopic} defaultValue="Select A Topic">
-             <option value='#' selected={true}>Select A Topic</option>
+            <option value='#' selected={true}>Select A Topic</option>
             {MENU.map((m, i) => (
                 <option key={i} value={m.path} disabled={!m.path}>
                     {m.title}

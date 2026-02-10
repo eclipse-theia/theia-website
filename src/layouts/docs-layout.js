@@ -31,7 +31,7 @@ const DocContainer = styled.div`
         position: relative;
         overflow-x: hidden;
         @media(max-width: ${breakpoints.xmd}) {
-            padding: 15rem 3rem ;
+            padding: 31rem 3rem ;
         }
 
         @media(min-width: ${breakpoints.xmd}) {
@@ -117,7 +117,7 @@ const DocContainer = styled.div`
     }
 `
 
-const DocsLayout = ({children, canonical, context}) => (
+const DocsLayout = ({ children, canonical, context, showArrows = true }) => (
     <Layout canonical={canonical}>
         <DocContainer>
             <DocSideBar />
@@ -127,7 +127,7 @@ const DocsLayout = ({children, canonical, context}) => (
                     <div className="docs-row">
                         <Nav />
                         {children}
-                        <DocArrowNavigators {...context} />
+                        {showArrows && <DocArrowNavigators {...context} />}
                     </div>
                     <Footer />
                 </div>

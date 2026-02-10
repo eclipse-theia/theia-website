@@ -209,12 +209,12 @@ class Nav extends React.Component {
         const { shouldRenderLogo } = this.props
         return (
             <StyledNav>
-                <nav className="nav" style={ this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {} }>
+                <nav className="nav" style={this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {}}>
                     <div className="nav__header">
-                        { shouldRenderLogo ?        
+                        {shouldRenderLogo ?
                             <Link to="/" className="logo-container">
                                 <img className="logo" src={TheiaLogoDark} alt="theia logo" />
-                            </Link>: <span aria-hidden={true}>&nbsp;</span>
+                            </Link> : <span aria-hidden={true}>&nbsp;</span>
                         }
                         <div className="nav__button-container">
                             <button
