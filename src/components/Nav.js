@@ -28,6 +28,7 @@ const StyledNav = styled.div`
         top: 0;
         left: 0;
         right: 0;
+        z-index: 1000;
     }
 
     .nav {
@@ -243,7 +244,7 @@ class Nav extends React.Component {
                             <Link to="/docs/faq/" className="nav__link" activeClassName="active">FAQ</Link>
                         </li>
                         <li className="nav__item">
-                            <a href="https://github.com/eclipse-theia/theia/discussions" target="_blank" rel="noopener" className="nav__link">Community</a>
+                            <a href="https://github.com/eclipse-theia/theia/discussions" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
                         </li>
                         <li className="nav__item">
                             <Link to="/support/" className="nav__link">Support</Link>
