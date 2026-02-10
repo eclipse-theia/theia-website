@@ -17,7 +17,6 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
-import { breakpoints } from '../utils/variables'
 import DropDownArrow from '../resources/drop-down-arrow.svg';
 import { MENU } from '../docs/menu'
 import { Link } from 'gatsby'
@@ -25,7 +24,7 @@ import DocSearch from './DocSearch'
 
 const Styled = styled.div`
     position: absolute;
-    top: 4rem;
+    top: 12rem;
     left: 50%;
     transform: translate(-50%, -2rem);
     z-index: 100;
@@ -36,10 +35,6 @@ const Styled = styled.div`
 
     @media(max-width: 360px) {
         top: 9rem;
-    }
-
-    @media(min-width: ${breakpoints.xmd}) {
-        display: none;
     }
 
     .support-callout {
