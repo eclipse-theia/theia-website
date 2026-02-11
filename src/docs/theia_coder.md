@@ -32,7 +32,7 @@ In the following example video, we provide a simple task to Coder to demonstrate
 
 ## Theia Coder Modes: Edit Mode and Agent Mode
 
-Theia Coder operates in two distinct modes that offer different levels of autonomy:
+Theia Coder operates in distinct modes that offer different levels of autonomy. You can quickly switch between modes using the mode selector dropdown in the chat input area, or by pressing `Shift+Tab` while focused on the chat input. See the [Mode Selection documentation](/docs/user_ai/#mode-selection) for more details on this feature.
 
 ### Edit Mode
 
@@ -62,20 +62,35 @@ Watch Agent Mode in action:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1XcsPPedIXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+### "Next" Mode Variants
+
+Both Edit Mode and Agent Mode offer "Next" variants — improved versions that contain the latest enhancements being validated in practice. These versions often include refinements to the agent's behavior, better error handling, or improved prompts that have not yet been promoted to the default modes.
+
+If you want to use the latest and greatest version of Theia Coder, we recommend selecting "Edit Mode (Next)" or "Agent Mode (Next)" from the mode selector. Once these improvements have been sufficiently validated through real-world usage, they will be incorporated into the standard modes.
+
 ### Activating Agent Mode
 
-To switch to Agent Mode:
+You can activate Agent Mode in two ways:
 
+**Using the Mode Selector (recommended):**
+1. In the chat input area, click the mode dropdown and select "Agent Mode" or "Agent Mode (Next)"
+2. Alternatively, press `Shift+Tab` to cycle through available modes
+
+**Using the AI Configuration View:**
 1. Navigate to the AI Configuration View and select Theia Coder as the active agent
-2. Choose the `agent-mode` prompt
-3. Optionally switch to a more powerful LLM like Sonnet-4, GPT-4.1 or Gemini-Pro for better results
-4. Enable notifications to get updates when long-running tasks complete
+2. Choose the `agent-mode` prompt variant
+
+For best results with Agent Mode:
+- Consider switching to a more powerful LLM like Sonnet-4, GPT-4.1 or Gemini-Pro
+- Enable notifications to get updates when long-running tasks complete
 
 Once active, the agent operates differently: it directly writes to the workspace, executes code, and even starts the application when complete.
 
 **Tips for Agent Mode:**
 - Provide clear, detailed prompts since the agent will run independently for 10-30 minutes
 - Consider using [Task Context](/docs/user_ai/#task-context) to better structure your requests
+- Use the `/test-with-app-tester` slash command to automatically verify your implementation with the [AppTester agent](/docs/user_ai/#app-tester-chat-agent) after Coder completes the changes. If tests fail, Coder will iterate to fix issues automatically.
+- For workflows requiring shell commands (builds, tests, scripts), you can enable the [Shell Execution Tool (alpha)](/docs/user_ai/#shell-execution-tool-alpha) by adding `~shellExecute` to your request or `~{shellExecute}` to the agent's prompt
 - Agent Mode preserves traceability of all changes via Theia AI's changeset feature
 
 ### Describing Programming Tasks
