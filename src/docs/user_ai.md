@@ -45,7 +45,7 @@ Learn more about the AI-powered Theia IDE:
   - [App Tester (Chat Agent)](#app-tester-chat-agent)
   - [Claude Code (Chat Agent)](#claude-code-chat-agent)
   - [Project Info (Chat Agent)](#project-info-chat-agent)
-  - [CreateSkill (Chat Agent)](#createskill-chat-agent)
+  - [CreateSkill (Chat Agent)](#createskill-agent)
   - [GitHub (Chat Agent)](#github-chat-agent)
 - [Chat](#chat)
   - [Chat Session History](#chat-session-history)
@@ -827,7 +827,7 @@ Plan Mode is an enhanced planning workflow where the Architect directly creates 
 6. When satisfied, use the "Execute with Coder" action that appears in the UI to implement the plan
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-{{< video src="images/plan-mode.webm" width="100%" autoplay="true" loop="true" controls="true" class="rounded-2" >}}
+<video src="../../plan-mode.webm" width="100%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">Switching to Plan Mode, creating an implementation plan with the Architect agent, and executing it with Theia Coder.</p>
 </div>
 
@@ -1085,7 +1085,7 @@ The easiest way to use a skill is via a slash command. Simply type `/skillName` 
 The skill's instructions will be injected into the request, guiding the agent's response.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-{{< video src="images/skill-example.webm" width="100%" autoplay="true" loop="true" controls="true" class="rounded-2" >}}
+<video src="../../skill-example.webm" width="100%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">Using a skill via slash command to perform a customized code review.</p>
 </div>
 
@@ -1171,7 +1171,7 @@ For example:
 ```
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-{{< video src="images/create-skill.webm" width="100%" autoplay="true" loop="true" controls="true" class="rounded-2" >}}
+<video src="../../create-skill.webm" width="100%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">Using the CreateSkill agent to create a new skill from a chat conversation.</p>
 </div>
 
