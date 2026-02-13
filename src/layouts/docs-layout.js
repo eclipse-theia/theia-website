@@ -23,6 +23,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { breakpoints } from '../utils/variables'
 import DocArrowNavigators from '../components/DocArrowNavigators'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const DocContainer = styled.div`
     display: flex;
@@ -31,7 +32,7 @@ const DocContainer = styled.div`
         position: relative;
         overflow-x: hidden;
         @media(max-width: ${breakpoints.xmd}) {
-            padding: 15rem 3rem ;
+            padding: 32rem 3rem ;
         }
 
         @media(min-width: ${breakpoints.xmd}) {
@@ -117,23 +118,25 @@ const DocContainer = styled.div`
     }
 `
 
-const DocsLayout = ({children, canonical, context}) => (
-    <Layout canonical={canonical}>
-        <DocContainer>
-            <DocSideBar />
-            <DocTopicChooser />
-            <div className="main">
-                <div>
-                    <div className="docs-row">
-                        <Nav />
-                        {children}
-                        <DocArrowNavigators {...context} />
+const DocsLayout = ({ children, canonical, context, showArrows = true }) => {
+    const isMobile = useIsMobile()
+    return (
+        <Layout canonical={canonical}>
+            <DocContainer>
+                {isMobile ? <DocTopicChooser /> : <DocSideBar />}
+                <div className="main">
+                    <div>
+                        <div className="docs-row">
+                            <Nav shouldRenderLogo={isMobile} />
+                            {children}
+                            {showArrows && <DocArrowNavigators {...context} />}
+                        </div>
+                        <Footer />
                     </div>
-                    <Footer />
                 </div>
-            </div>
-        </DocContainer>
-    </Layout>
-)
+            </DocContainer>
+        </Layout>
+    )
+}
 
 export default DocsLayout

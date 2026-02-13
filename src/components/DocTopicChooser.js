@@ -17,14 +17,14 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
-import { breakpoints } from '../utils/variables'
 import DropDownArrow from '../resources/drop-down-arrow.svg';
 import { MENU } from '../docs/menu'
 import { Link } from 'gatsby'
+import DocSearch from './DocSearch'
 
 const Styled = styled.div`
     position: absolute;
-    top: 4rem;
+    top: 12rem;
     left: 50%;
     transform: translate(-50%, -2rem);
     z-index: 100;
@@ -35,10 +35,6 @@ const Styled = styled.div`
 
     @media(max-width: 360px) {
         top: 9rem;
-    }
-
-    @media(min-width: ${breakpoints.xmd}) {
-        display: none;
     }
 
     .support-callout {
@@ -62,6 +58,12 @@ const Styled = styled.div`
                 text-decoration: underline;
             }
         }
+    }
+
+    .mobile-search {
+        width: 100%;
+        min-width: 250px;
+        margin-bottom: 0;
     }
 
     select {
@@ -89,7 +91,7 @@ const Styled = styled.div`
 `
 
 const onSelectTopic = (e) => {
-     navigate(e.currentTarget.value)
+    navigate(e.currentTarget.value)
 }
 
 const DocTopicChooser = () => (
@@ -98,8 +100,9 @@ const DocTopicChooser = () => (
             <Link to="/support">Professional Support →</Link>
             <Link to="/support#sponsoring">Become a Sponsor →</Link>
         </div>
+        <DocSearch className="mobile-search" isMobile />
         <select onChange={onSelectTopic} defaultValue="Select A Topic">
-             <option value='#' selected={true}>Select A Topic</option>
+            <option value='#' selected={true}>Select A Topic</option>
             {MENU.map((m, i) => (
                 <option key={i} value={m.path} disabled={!m.path}>
                     {m.title}

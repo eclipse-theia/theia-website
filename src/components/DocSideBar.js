@@ -21,6 +21,7 @@ import { Link } from 'gatsby'
 import Background from '../resources/background-image.png'
 import TheiaLogoDark from '../resources/theia-logo-dark.svg'
 import { MENU } from '../docs/menu'
+import DocSearch from './DocSearch'
 
 const Styled = styled.div`
     width: 30%;
@@ -57,7 +58,7 @@ const Styled = styled.div`
         background: #f0f7ff;
         border-radius: 6px;
         padding: 12px 16px;
-        margin: 0 auto 2.6rem auto;
+        margin: 0 auto 2rem auto;
         width: 50%;
         min-width: 21rem;
         display: flex;
@@ -129,7 +130,13 @@ const Styled = styled.div`
         padding: .2rem 0 .4rem;
         border-bottom: 1px dashed #9dc7d9;
     }
-`
+
+    .sidebar-search {
+        width: 50%;
+        min-width: 21rem;
+        margin: 0 auto 2rem auto;
+    }
+    `
 
 const DocSideBar = () => {
     return (
@@ -140,22 +147,23 @@ const DocSideBar = () => {
                     <Link to="/support">Professional Support →</Link>
                     <Link to="/support#sponsoring">Become a Sponsor →</Link>
                 </div>
+                <DocSearch className="sidebar-search" />
                 <ul className="links">
                     {
-                        MENU.map((m,i) => (
-                            <li 
-                                key={`${m.title}+${i}`} 
+                        MENU.map((m, i) => (
+                            <li
+                                key={`${m.title}+${i}`}
                                 className={m.path ? '' : 'caption'}
-                                style={ m.indented ? { marginLeft: '3rem', marginTop: '1rem', listStyle: 'circle', listStylePosition: 'inside' } : {} }
+                                style={m.indented ? { marginLeft: '3rem', marginTop: '1rem', listStyle: 'circle', listStylePosition: 'inside' } : {}}
 
                             >
                                 {
-                                    m.path ? <Link 
-                                    to={m.path}
-                                    activeClassName="active"
+                                    m.path ? <Link
+                                        to={m.path}
+                                        activeClassName="active"
                                     >
-                                    {m.title}
-                                </Link> : m.title
+                                        {m.title}
+                                    </Link> : m.title
                                 }
                             </li>
                         ))
