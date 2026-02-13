@@ -45,11 +45,13 @@ Learn more about the AI-powered Theia IDE:
   - [App Tester (Chat Agent)](#app-tester-chat-agent)
   - [Claude Code (Chat Agent)](#claude-code-chat-agent)
   - [Project Info (Chat Agent)](#project-info-chat-agent)
+  - [CreateSkill (Chat Agent)](#createskill-agent)
   - [GitHub (Chat Agent)](#github-chat-agent)
 - [Chat](#chat)
   - [Chat Session History](#chat-session-history)
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
+  - [Mode Selection](#mode-selection)
   - [Image Support](#image-support)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
@@ -65,12 +67,19 @@ Learn more about the AI-powered Theia IDE:
 - [Slash Commands](#slash-commands)
 - [Custom Agents](#custom-agents)
 - [Agent-to-Agent Delegation](#agent-to-agent-delegation)
+- [Agent Skills (Alpha)](#agent-skills-alpha)
+  - [What are Skills?](#what-are-skills)
+  - [Using Skills](#using-skills)
+  - [Creating Skills](#creating-skills)
+  - [Skill Directories](#skill-directories)
+  - [CreateSkill Agent](#createskill-agent)
 - [MCP Integration](#mcp-integration)
   - [Configuring MCP Servers](#configuring-mcp-servers)
   - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
   - [Using MCP Server Functions](#using-mcp-server-functions)
   - [MCP Configuration View](#mcp-configuration-view)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
+- [Shell Execution Tool (Alpha)](#shell-execution-tool-alpha)
 - [SCANOSS](#scanoss)
   - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
   - [Manual Scanning](#manual-scanning)
@@ -476,7 +485,15 @@ This agent is aware of all commands available in the Theia IDE and the current t
 
 ### Architect (Chat Agent)
 
-An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files. It can therefore answer questions about the current project, project files and source code in the workspace, such as how to build the project, where to put source code, where to find specific code or configurations, etc.
+An AI assistant designed to assist software developers with planning and analysis tasks. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files directly, but can create and manage implementation plans (task contexts). The Architect is ideal for answering questions about your project, planning new features, analyzing code architecture, and creating structured implementation plans that can be executed by the Coder agent.
+
+The Architect agent supports multiple modes (see [Mode Selection](#mode-selection)):
+
+- **Default Mode**: Standard conversational mode for answering questions and general analysis
+- **Simple Mode**: A streamlined mode for quicker responses
+- **Plan Mode**: An enhanced planning mode where the Architect follows a structured workflow (Understand → Explore → Design → Refine) and can directly create and manage task context files as implementation plans
+
+Plan Mode is particularly powerful for complex development tasks. In this mode, the Architect explores your codebase, creates detailed implementation plans, and stores them as task context files that can be executed with the Coder agent. See the [Task Context](#task-context) section for more details on this workflow.
 
 ### Code Completion (Agent)
 
@@ -501,7 +518,7 @@ This agent assists with writing and executing terminal commands. Based on the us
 
 ### App Tester (Chat Agent)
 
-The App Tester is an AI-driven agent that helps you test browser-based applications using Playwright (using a Playwright MCP server). It performs end-to-end (E2E) testing by interacting directly with your running application in a browser, focusing on testing the application through its UI rather than generating unit tests for business logic.
+The App Tester is an AI-driven agent that helps you test browser-based applications. It performs end-to-end (E2E) testing by interacting directly with your running application in a browser, focusing on testing the application through its UI rather than generating unit tests for business logic.
 
 **How to Use the App Tester:**
 
@@ -512,9 +529,25 @@ The App Tester is an AI-driven agent that helps you test browser-based applicati
 5. **Reviewing Test Results:** Once testing is complete, the App Tester provides detailed test results describing what it found, including issues and discrepancies.
 6. **Integrating with Code Fixing:** The detailed test results can be fed back to a coding agent (like "Theia Coder") to help automatically fix detected issues, creating a seamless workflow from testing to bug resolution.
 
-**Installation Notes:**
+**AppTester Modes:**
 
-* If you use the App Tester for the first time and the Playwright MCP server is not yet installed, the agent will help you install it!
+The App Tester offers two mode variants that use different underlying technologies for browser interaction:
+
+- **Default Mode (Playwright)**: Uses the Playwright MCP server for browser automation. If you use the App Tester for the first time and the Playwright MCP server is not yet installed, the agent will help you install it.
+- **Next Mode (DevTools)**: Uses the DevTools MCP server instead of Playwright for testing interactions. This variant provides more robust and flexible testing capabilities directly within the IDE environment.
+
+To switch to the "Next" variant, use the mode selector in the chat input area or change the prompt variant to `app-tester-system-next` in the [AI Configuration view](#ai-configuration). We recommend trying the new AppTester mode and providing feedback to help us improve it further.
+
+**Automated Testing with the `/test-with-app-tester` Command:**
+
+The `/test-with-app-tester` slash command enables an automated implement-and-test workflow when using Theia Coder in Agent Mode. After implementing your requested changes, Coder automatically delegates to the AppTester to verify the implementation. If tests don't pass, the agents can iterate to fix issues—creating a complete automated development loop.
+
+To use this workflow:
+1. Make sure Coder is in Agent Mode (see [Theia Coder Modes](/docs/theia_coder/#theia-coder-modes-edit-mode-and-agent-mode))
+2. Include the slash command in your request, for example:
+   > @Coder Add a reset button to my calculator app /test-with-app-tester
+3. Coder will implement the changes and then automatically invoke AppTester to verify the implementation
+4. If issues are found, Coder will attempt to fix them and re-test until the implementation passes
 
 The following video shows the AppTester agent in action:
 
@@ -681,15 +714,37 @@ The video above demonstrates how Theia Coder can be used to generate a test case
 
 ### Agent Pinning
 
-The *Agent Pinning* feature, reduces the need for repeated agent references.  
-  
-- When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.  
+The *Agent Pinning* feature, reduces the need for repeated agent references.
+
+- When you mention an agent in a prompt and no agent is pinned, the mentioned agent is automatically pinned.
 - If an agent is already pinned, mentioning a different agent will **update** the pinned agent.
 - You can manually unpin an agent through the chat interface if needed.
 
 <video src="../../agent-pinning.webm" controls style="max-width: 100%;"></video>
 
 </br>
+
+### Mode Selection
+
+Some agents offer multiple operational modes that change how they respond to requests. Mode selection provides quick access to switch between these modes directly in the chat input UI, without navigating to the settings or AI Configuration view.
+
+When an agent supports modes, a mode selector dropdown appears in the chat input area. In the Theia IDE, the following agents provide mode selection:
+
+- **Coder Agent**: Edit Mode, Agent Mode, and Agent Mode (Next)
+- **Architect Agent**: Default Mode, Simple Mode, and Plan Mode (see [Architect agent](#architect-chat-agent))
+
+For details on what each mode does for these agents, see the [Theia Coder Documentation](/docs/theia_coder) and the Architect agent section.
+
+**About "Next" Modes:** Some agents offer a "Next" variant of their modes (e.g., "Agent Mode (Next)" for the Coder agent). These variants contain the latest improvements that are still being validated in practice before becoming the default. If you want to use the most recent enhancements, we recommend trying the "Next" version. Once the improvements have been sufficiently validated, they will be promoted to the standard mode.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../mode-switching.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Mode selector dropdown in the chat input area allowing users to switch between agent modes.</p>
+</div>
+
+The mode selector initializes to reflect the current default prompt variant configured in the [AI Configuration view](#ai-configuration). When you select a different mode, it overrides the configured prompt variant for that session. You can also cycle through available modes using the `Shift+Tab` keyboard shortcut while focused on the chat input.
+
+Mode selection is a convenience feature built on top of the existing [prompt variant](#view-and-modify-prompts) system. Agents can choose to expose certain prompt variants as easily accessible modes, making it more intuitive to switch between different behaviors during a conversation.
 
 ### Image Support
 
@@ -758,19 +813,43 @@ This approach makes your prompt reproducible and allows you to refine it before 
 
 ### Planning with the Architect Agent
 
-For complex tasks, it's highly beneficial to use a planning agent before a coding agent:
+For complex tasks, it's highly beneficial to use a planning agent before a coding agent. The Architect agent offers two approaches for creating implementation plans:
+
+#### Plan Mode (Recommended)
+
+Plan Mode is an enhanced planning workflow where the Architect directly creates and manages implementation plans as task context files. To use Plan Mode:
+
+1. Switch to Plan Mode using the mode selector in the chat input area (or press `Shift+Tab` to cycle through modes)
+2. Describe your task to the Architect (e.g., "Plan adding a dark mode toggle to the application")
+3. The Architect follows a structured workflow: **Understand** your requirements, **Explore** the codebase, **Design** a solution, and **Refine** the plan based on your feedback
+4. The Architect creates a task context file directly, which opens in the editor for your review
+5. You can ask the Architect to refine the plan, and it will update the task context file accordingly
+6. When satisfied, use the "Execute with Coder" action that appears in the UI to implement the plan
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../plan-mode.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Switching to Plan Mode, creating an implementation plan with the Architect agent, and executing it with Theia Coder.</p>
+</div>
+
+Plan Mode supports multiple plans per session. Each plan you create gets its own "Execute with Coder" action in the UI, allowing you to work on several related plans and execute them independently.
+
+**Tip:** Plan Mode also works well with the `/analyze-gh-ticket` slash command (e.g., `@Architect /analyze-gh-ticket 1234`) to analyze a GitHub issue and create an implementation plan for it.
+
+#### Default Mode with Summarization
+
+Alternatively, you can use the Architect in Default Mode and manually trigger plan creation:
 
 1. Select the "Architect" agent when initiating your chat session and describe your task
 2. The Architect will analyze your workspace and create a detailed plan of what should be coded
-3. Use the "Summarize this session as a task for coder" button in the chat. 
+3. Use the "Summarize this session as a task for coder" button in the chat
 
-The system will send the plan to an underlying LLM, which summarizes it into a structured format and create a task context file. This structured task context includes comprehensive details such as:
+The system will send the plan to an underlying LLM, which summarizes it into a structured format and creates a task context file. This structured task context includes comprehensive details such as:
    - Problem description and scope
    - Detailed design and implementation steps with specific files
    - Testing strategy (both automated and manual)
    - Deliverables and PR description
 
-Please note that you adapt this template via modifying the prompt `architect-tasksummary`.
+Please note that you can adapt this template by modifying the prompt `architect-tasksummary`.
 
 ### Implementing with the Coder Agent
 
@@ -977,6 +1056,131 @@ The following demonstrations shows an example on how to use the delegate functio
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FSxw3VGw8T4?si=Nu1iFAXGOFxycPsp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+## Agent Skills (Alpha)
+
+Agent Skills provide a way to extend AI agents with reusable instructions and domain knowledge. Skills are defined in `SKILL.md` files that contain specialized guidance, workflows, or domain-specific knowledge that agents can leverage when responding to requests.
+
+### What are Skills?
+
+A skill is a directory containing a `SKILL.md` file with YAML frontmatter (defining name and description) and markdown content that provides instructions or knowledge for agents. For example, you might create a "code-review" skill that defines how code reviews should be performed in your project, or a "testing" skill that specifies your testing conventions and requirements.
+
+Skills allow you to:
+- Capture specific conventions and guidelines in a reusable format
+- Provide domain-specific knowledge to AI agents
+- Create consistent workflows that agents can follow
+- Share specialized instructions across your team
+
+### Using Skills
+
+There are two ways to use skills in your AI chat requests:
+
+**1. Slash Commands**
+
+The easiest way to use a skill is via a slash command. Simply type `/skillName` in the chat input. For example, if you have a skill named `code-review`, type:
+
+```
+/code-review Please review the changes in my current file
+```
+
+The skill's instructions will be injected into the request, guiding the agent's response.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../skill-example.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Using a skill via slash command to perform a customized code review.</p>
+</div>
+
+**2. On-Demand Loading by Agents**
+
+Agents can also load skills dynamically. When the `{{skills}}` variable is included in an agent's prompt, the agent receives a list of all available skills with their names and descriptions. The agent can then use the `getSkillFileContent` function to load the full content of any skill it determines would be helpful for the current request.
+
+This approach is useful for agents that need to select the most appropriate skill based on the user's request, rather than requiring the user to specify a skill explicitly.
+
+### Creating Skills
+
+To create a skill manually:
+
+1. Create a directory for your skill in one of the skill directories (see [Skill Directories](#skill-directories))
+2. The directory name must be lowercase kebab-case (e.g., `code-review`, `test-generation`)
+3. Create a `SKILL.md` file inside the directory with the following structure:
+
+```markdown
+---
+name: code-review
+description: Provides guidelines for performing thorough code reviews focusing on quality, maintainability, and best practices.
+---
+
+# Code Review Skill
+
+## Overview
+This skill provides instructions for performing comprehensive code reviews.
+
+## Review Checklist
+1. **Code Quality**: Check for clean, readable, and maintainable code
+2. **Error Handling**: Ensure proper error handling and edge cases
+3. **Performance**: Look for potential performance issues
+4. **Security**: Check for security vulnerabilities
+5. **Testing**: Verify adequate test coverage
+
+## Guidelines
+- Be constructive and respectful in feedback
+- Explain the reasoning behind suggestions
+- Prioritize issues by severity
+- Suggest improvements, not just point out problems
+```
+
+The YAML frontmatter (between the `---` markers) must include:
+- **name**: Must be lowercase kebab-case and match the directory name exactly
+- **description**: A brief description of the skill (max 1024 characters)
+
+The markdown content after the frontmatter contains the actual instructions that will be provided to the agent.
+
+### Skill Directories
+
+Skills are discovered from multiple locations in the following priority order (first directory wins on duplicates):
+
+1. **Workspace**: `.prompts/skills/` in your workspace root (project-specific skills)
+2. **User-configured**: Directories listed in the `ai-features.skills.skillDirectories` preference
+3. **Global**: `~/.theia/skills/` (user-wide defaults)
+
+To add additional skill directories, configure the `ai-features.skills.skillDirectories` setting in your preferences. You can use `~` to reference your home directory:
+
+```json
+{
+  "ai-features.skills.skillDirectories": [
+    "~/my-skills",
+    "/shared/team-skills"
+  ]
+}
+```
+
+You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration).
+
+### CreateSkill Agent
+
+The CreateSkill agent helps you create new project-specific skills through the AI chat interface. Instead of manually creating the directory structure and `SKILL.md` file, you can describe the skill you want and the agent will generate it for you.
+
+To use the CreateSkill agent:
+
+1. Mention the agent in the chat: `@CreateSkill`
+2. Describe the skill you want to create
+3. The agent will generate a properly structured `SKILL.md` file with appropriate frontmatter and content
+
+For example:
+```
+@CreateSkill Create a skill for documenting TypeScript functions that includes JSDoc conventions and example formats
+```
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../create-skill.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Using the CreateSkill agent to create a new skill from a chat conversation.</p>
+</div>
+
+The CreateSkill agent supports two modes:
+- **Default Mode**: Proposes the skill file as a changeset for you to review before applying
+- **Agent Mode**: Writes the skill file directly to disk
+
+**Note**: To use the CreateSkill agent, you need to add `.prompts/skills` to the list of skill directories in your configuration. This allows the agent to save newly created skills to your project's local skills directory.
+
 ## MCP Integration
 
 The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
@@ -1147,6 +1351,55 @@ The Theia IDE provides a flexible and user-configurable tool call confirmation s
 The following video demonstrates how to set a GitHub MCP server function to "confirm" mode, which then prompts the user for permission when an agent attempts to use it:
 
 <video controls src="../../tool-functions-access-control.webm" alt="Tool Call Confirmation UI Demonstration" style="max-width: 100%"></video>
+
+## Shell Execution Tool (Alpha)
+
+The Shell Execution Tool (`shellExecute`) enables AI agents to run shell commands on the host system. This capability is particularly useful for autonomous agent workflows, such as running build commands, executing tests, or performing file system operations that go beyond simple file reading and writing.
+
+**Note:** This feature is currently in alpha and must be explicitly enabled. It is not added to any agent by default.
+
+### Enabling the Shell Execution Tool
+
+To use the shell execution tool, you need to add it to an agent's available tools. You can do this in two ways:
+
+1. **Per-request**: Include `~shellExecute` directly in your chat message to make it available for that specific request.
+2. **Per-agent**: Modify the agent's prompt template to include `~{shellExecute}`, making it permanently available for that agent.
+
+### How It Works
+
+When an agent requests to execute a shell command, you see a confirmation dialog showing the command details. You can then choose to:
+
+- **Allow once**: Execute the command this time only
+- **Allow for session**: Allow this specific command pattern for the current session
+- **Always allow**: Permanently allow this command (shows a security warning)
+- **Deny**: Reject the command, optionally providing a reason that gets passed back to the agent
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../shell-tool.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">The shell execution tool in action, converting video files via a terminal command.</p>
+</div>
+
+### Features and Safeguards
+
+The shell execution tool includes several safeguards to maintain user control:
+
+- **Confirmation by default**: Even if your global tool confirmation setting is "Always Allow", the shell execution tool defaults to requiring confirmation. A warning dialog appears when you choose to auto-approve shell commands.
+- **Configurable timeout**: Commands have a default timeout of 2 minutes, with a maximum of 10 minutes, preventing runaway processes.
+- **Working directory support**: Commands can be executed in a specific directory, either absolute or relative to the workspace.
+- **Output truncation**: Large outputs are automatically truncated to prevent context overflow, showing the first and last portions of the output with a note about omitted lines.
+- **Cancellation support**: You can cancel running commands at any time, and commands are automatically terminated if you cancel the chat request.
+
+### Use Cases
+
+The shell execution tool is especially valuable in Agent Mode scenarios where the AI needs to:
+
+- Run build commands and interpret compilation errors
+- Execute test suites and analyze results
+- Perform git operations
+- Run linters or formatters
+- Execute scripts as part of a development workflow
+
+For more information about Agent Mode and autonomous workflows, see the [Theia Coder documentation](/docs/theia_coder/#agent-mode).
 
 ## SCANOSS
 
