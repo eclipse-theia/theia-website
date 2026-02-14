@@ -15,12 +15,13 @@
  ********************************************************************************/
 
 import React, { useState, useEffect, useRef } from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql, Link, navigate } from 'gatsby'
 import { useFlexSearch } from 'react-use-flexsearch'
 import styled from '@emotion/styled'
 import DocsLayout from '../../layouts/docs-layout'
 import BaseHead from '../../layouts/basehead'
 import { colors } from '../../utils/variables'
+import { findMatchAnchor, stripTocSection } from '../../utils/search-utils'
 
 const StyledSearchResults = styled.div`
     .search-header {
@@ -158,7 +159,7 @@ const cleanMarkdownBody = (body) => {
 const getMatchSnippet = (body, query, snippetLength = 200) => {
     if (!body || !query) return ''
 
-    const cleanBody = cleanMarkdownBody(body)
+    const cleanBody = cleanMarkdownBody(stripTocSection(body))
     const lowerBody = cleanBody.toLowerCase()
     const lowerQuery = query.toLowerCase()
     const matchIndex = lowerBody.indexOf(lowerQuery)
@@ -198,57 +199,6 @@ const highlightMatch = (text, query) => {
     return parts.map((part, i) =>
         regex.test(part) ? <mark key={i}>{part}</mark> : part
     )
-}
-
-const headingToAnchor = (heading) => {
-    return heading
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '')
-}
-
-const findMatchAnchor = (body, query, title) => {
-    if (!body || !query) return null
-
-    // If the query matches the title, don't jump to a section
-    if (title && title.toLowerCase().includes(query.toLowerCase())) {
-        return null
-    }
-
-    const bodyWithoutFrontmatter = body.replace(/^---[\s\S]*?---/m, '')
-    const lowerBody = bodyWithoutFrontmatter.toLowerCase()
-    const lowerQuery = query.toLowerCase()
-    const matchIndex = lowerBody.indexOf(lowerQuery)
-
-    if (matchIndex === -1) return null
-
-    const headingRegex = /^#{1,6}\s+(.+)$/gm
-    const headings = []
-    let match
-
-    while ((match = headingRegex.exec(bodyWithoutFrontmatter)) !== null) {
-        headings.push({
-            text: match[1].trim(),
-            index: match.index
-        })
-    }
-
-    if (headings.length === 0) return null
-
-    let closestHeading = null
-    for (const heading of headings) {
-        if (heading.index <= matchIndex) {
-            closestHeading = heading
-        } else {
-            break
-        }
-    }
-
-    if (!closestHeading) return null
-
-    return headingToAnchor(closestHeading.text)
 }
 
 const getResultUrl = (slug, body, title, query) => {
@@ -297,13 +247,10 @@ const SearchPage = ({ location }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setSearchQuery(inputValue)
-        if (typeof window !== 'undefined') {
-            const newUrl = inputValue
-                ? `/docs/search/?q=${encodeURIComponent(inputValue)}`
-                : '/docs/search/'
-            window.history.pushState({}, '', newUrl)
-        }
+        const newUrl = inputValue
+            ? `/docs/search/?q=${encodeURIComponent(inputValue)}`
+            : '/docs/search/'
+        navigate(newUrl)
     }
 
     return (
@@ -332,18 +279,40 @@ const SearchPage = ({ location }) => {
                 {searchQuery ? (
                     results.length > 0 ? (
                         <ul className="results-list">
-                            {results.map((result) => (
-                                <li key={result.id} className="result-item">
-                                    <Link to={getResultUrl(result.slug, result.body, result.title, searchQuery)}>
-                                        <div className="result-title">
-                                            {highlightMatch(result.title, searchQuery)}
-                                        </div>
-                                        <div className="result-snippet">
-                                            {highlightMatch(getMatchSnippet(result.body, searchQuery), searchQuery)}
-                                        </div>
-                                    </Link>
-                                </li>
-                            ))}
+                            {results.map((result) => {
+                                const url = getResultUrl(result.slug, result.body, result.title, searchQuery)
+                                const hasAnchor = url.includes('#')
+                                return (
+                                    <li key={result.id} className="result-item">
+                                        {hasAnchor ? (
+                                            // Use onClick with window.location.href for anchor links
+                                            // to force a full page load. gatsby-plugin-catch-links
+                                            // intercepts <a> clicks for SPA navigation, which causes
+                                            // wrong scroll positions on image-heavy pages.
+                                            <a href={url} onClick={(e) => {
+                                                e.preventDefault()
+                                                window.location.href = url
+                                            }}>
+                                                <div className="result-title">
+                                                    {highlightMatch(result.title, searchQuery)}
+                                                </div>
+                                                <div className="result-snippet">
+                                                    {highlightMatch(getMatchSnippet(result.body, searchQuery), searchQuery)}
+                                                </div>
+                                            </a>
+                                        ) : (
+                                            <Link to={url}>
+                                                <div className="result-title">
+                                                    {highlightMatch(result.title, searchQuery)}
+                                                </div>
+                                                <div className="result-snippet">
+                                                    {highlightMatch(getMatchSnippet(result.body, searchQuery), searchQuery)}
+                                                </div>
+                                            </Link>
+                                        )}
+                                    </li>
+                                )
+                            })}
                         </ul>
                     ) : (
                         <div className="no-results">

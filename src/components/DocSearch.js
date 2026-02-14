@@ -19,6 +19,7 @@ import { useStaticQuery, graphql, navigate } from 'gatsby'
 import { useFlexSearch } from 'react-use-flexsearch'
 import styled from '@emotion/styled'
 import { colors } from '../utils/variables'
+import { findMatchAnchor, stripTocSection } from '../utils/search-utils'
 import SearchIcon from '../resources/search.svg'
 
 const StyledSearch = styled.div`
@@ -189,7 +190,7 @@ const cleanMarkdownBody = (body) => {
 const getMatchSnippet = (body, query, snippetLength = 120) => {
     if (!body || !query) return ''
 
-    const cleanBody = cleanMarkdownBody(body).replace(/#/g, '')
+    const cleanBody = cleanMarkdownBody(stripTocSection(body)).replace(/#/g, '')
     const lowerBody = cleanBody.toLowerCase()
     const lowerQuery = query.toLowerCase()
     const matchIndex = lowerBody.indexOf(lowerQuery)
@@ -220,57 +221,6 @@ const getMatchSnippet = (body, query, snippetLength = 120) => {
     if (end < cleanBody.length) snippet = snippet + '...'
 
     return snippet
-}
-
-const headingToAnchor = (heading) => {
-    return heading
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '')
-}
-
-const findMatchAnchor = (body, query, title) => {
-    if (!body || !query) return null
-
-    // If the query matches the title, don't jump to a section
-    if (title && title.toLowerCase().includes(query.toLowerCase())) {
-        return null
-    }
-
-    const bodyWithoutFrontmatter = body.replace(/^---[\s\S]*?---/m, '')
-    const lowerBody = bodyWithoutFrontmatter.toLowerCase()
-    const lowerQuery = query.toLowerCase()
-    const matchIndex = lowerBody.indexOf(lowerQuery)
-
-    if (matchIndex === -1) return null
-
-    const headingRegex = /^#{1,6}\s+(.+)$/gm
-    const headings = []
-    let match
-
-    while ((match = headingRegex.exec(bodyWithoutFrontmatter)) !== null) {
-        headings.push({
-            text: match[1].trim(),
-            index: match.index
-        })
-    }
-
-    if (headings.length === 0) return null
-
-    let closestHeading = null
-    for (const heading of headings) {
-        if (heading.index <= matchIndex) {
-            closestHeading = heading
-        } else {
-            break
-        }
-    }
-
-    if (!closestHeading) return null
-
-    return headingToAnchor(closestHeading.text)
 }
 
 const DocSearch = ({ className, inputRef: externalInputRef, isMobile = false }) => {
@@ -339,7 +289,13 @@ const DocSearch = ({ className, inputRef: externalInputRef, isMobile = false }) 
         setQuery('')
         const anchor = findMatchAnchor(body, searchQuery, title)
         const url = anchor ? `${slug}#${anchor}` : slug
-        navigate(url)
+        if (anchor) {
+            // Use full page load for anchor links so the browser handles
+            // scroll positioning correctly after images load
+            window.location.href = url
+        } else {
+            navigate(url)
+        }
     }, [])
 
     const navigateToSearchPage = useCallback((searchQuery) => {
