@@ -20,6 +20,7 @@ Learn more about the AI-powered Theia IDE:
 
 ## Table of Contents
 - [Set-Up](#set-up)
+  - [Setting API Keys](#setting-api-keys)
   - [LLM Providers Overview](#llm-providers-overview)
   - [GitHub Copilot](#github-copilot)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
@@ -111,6 +112,18 @@ Once you have configured at least one LLM, you can also select a default agent i
 See also:
 
 👉 [Why Theia supports any LLM!](https://eclipsesource.com/blogs/2025/02/27/why-theia-supports-any-llm/)
+
+### Setting API Keys
+
+There are two ways to provide API keys for LLM providers:
+
+1. **Via Preferences (Settings UI):** Enter the key directly in the Theia IDE settings under the respective AI provider section. Note that keys stored this way are saved in clear text in your settings file.
+
+2. **Via Environment Variables:** Set the appropriate environment variable for your provider (e.g. `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `HUGGINGFACE_API_KEY`). The Theia IDE will automatically pick up these variables from its process environment.
+
+See the individual provider sections below for the specific environment variable names and preference keys.
+
+**Important:** If you launch the Theia IDE from a desktop launcher (rather than a terminal), environment variables from your shell profile may not be available. See [Environment Variables in the Theia IDE](/docs/user_environment_variables/) for platform-specific instructions on how to correctly set environment variables.
 
 ### LLM Providers Overview
 
