@@ -205,6 +205,8 @@ export function bindMyExtensionPreferences(bind: interfaces.Bind): void {
 
 ## Using Preferences
 
+> **Note:** Since Theia 1.68, the `oldValue` and `newValue` fields have been removed from the `PreferenceChange` and `PreferenceChangeEvent` interfaces ([#16846](https://github.com/eclipse-theia/theia/pull/16846)). The `newValue` field was unreliable, as it represented the value in the changed scope rather than the effective value. Use `PreferenceService.get` or index on a `PreferenceProxy` to retrieve the current value instead.
+
 ### Minimal Approach: Direct Access via Preference Service
 
 If you only registered the schema (step 1 + 4 minimal), you can access preferences directly:
@@ -235,7 +237,8 @@ export class MyService {
         this.toDispose.push(
             this.preferenceService.onPreferenceChanged(event => {
                 if (event.preferenceName === 'myExtension.timeout') {
-                    console.log('Timeout changed:', event.oldValue, '->', event.newValue);
+                    const newValue = this.preferenceService.get('myExtension.timeout', 5000);
+                    console.log('Timeout changed to:', newValue);
                 }
             })
         );
@@ -271,8 +274,9 @@ export class MyService {
         this.toDispose.push(
             this.preferences.onPreferenceChanged(event => {
                 if (event.preferenceName === 'myExtension.timeout') {
-                    console.log('Timeout changed:', event.oldValue, '->', event.newValue);
-                    this.updateTimeout(event.newValue);
+                    const newValue = this.preferences['myExtension.timeout'];
+                    console.log('Timeout changed to:', newValue);
+                    this.updateTimeout(newValue);
                 }
             })
         );
