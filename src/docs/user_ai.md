@@ -1180,7 +1180,7 @@ To add additional skill directories, configure the `ai-features.skills.skillDire
 }
 ```
 
-You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration).
+You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration). This tab also shows all registered [slash commands](#slash-commands) and the agents they are scoped to — see the [Skills and Slash Commands view](#skills-and-slash-commands-view) section for details.
 
 ### CreateSkill Agent
 
@@ -1207,6 +1207,14 @@ The CreateSkill agent supports two modes:
 - **Agent Mode**: Writes the skill file directly to disk
 
 **Note**: To use the CreateSkill agent, you need to add `.prompts/skills` to the list of skill directories in your configuration. This allows the agent to save newly created skills to your project's local skills directory.
+
+## Skills and Slash Commands View
+
+The **Skills** tab in the [AI Configuration View](#ai-configuration) provides an overview of two related concepts in a single place.
+
+The upper **Skills** section lists all discovered skills with their name, description, and file location. Clicking **Open** opens the corresponding `SKILL.md` file directly in the editor so you can inspect or modify its content.
+
+The lower **Slash Commands** section lists all registered slash commands available in the chat. Each row shows the command name (prefixed with `/`), its description, and the agents it is scoped to. Commands scoped to specific agents display the agent names as small chips; commands available to all agents are labelled *All agents*. This makes it easy to see at a glance which commands exist and where they can be used, without having to search through prompt template files.
 
 ## MCP Integration
 
@@ -1346,7 +1354,16 @@ This allows you to seamlessly integrate external services into your AI workflows
 
 ### MCP Configuration View
 
-In the AI Configuration view, you can access a dedicated tab for Model Control Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. The view provides the capability to start or stop any MCP server directly from the configuration interface.
+In the AI Configuration view, you can access a dedicated tab for Model Context Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. You can start or stop any MCP server directly from the configuration interface.
+
+The MCP configuration tab also lets you manage your servers without editing the settings file manually. Use the **Add MCP Server** button at the top of the tab to open a dialog where you can configure a new server. Each existing server has an **edit** (pencil) and a **delete** (trash) button next to its start/stop controls. Editing a server opens the same dialog pre-populated with the existing values; deleting prompts for confirmation before removing the entry from your preferences.
+
+The dialog supports both server types:
+
+- **Local (Command)**: Provide the executable command (e.g. `npx` or `uvx`), space-separated arguments, and optional environment variables in `KEY=value` format (one per line).
+- **Remote (URL)**: Provide the server URL and, if required, an authentication token and a custom header name. Additional headers can be specified in `Header-Name=value` format (one per line).
+
+Both types share an **Autostart** checkbox that controls whether the server starts automatically the next time the IDE launches.
 
 Additionally, you can view all tools associated with each server. These tools can be easily copied for integration into chat-based interfaces or prompt templates. Options for copying tools include obtaining a consolidated prompt fragment representing all available tools, listing available tools to review or restrict used tools, or selecting individual tools for specific inclusion.
 
