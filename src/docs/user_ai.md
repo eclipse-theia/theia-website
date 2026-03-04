@@ -826,9 +826,7 @@ Below is a screenshot depicting the edit button and options to switch between co
 
 ## Task Context
 
-Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish. Watch the video below for a introduction.
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Wy9epGszWz0?si=y6CoPDZg3LS6EP9l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish. 
 
 ### Set-up for Task Context
 
