@@ -91,9 +91,9 @@ const communityReleases = [
             {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
+                version: '0.8.4',
                 modules: [
-                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view' }
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.4' }
                 ]
             },
             {
