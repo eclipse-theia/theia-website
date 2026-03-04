@@ -90,8 +90,23 @@ Once active, the agent operates differently: it directly writes to the workspace
 - Provide clear, detailed prompts since the agent will run independently for 10-30 minutes
 - Consider using [Task Context](/docs/user_ai/#task-context) to better structure your requests
 - Use the `/test-with-app-tester` slash command to automatically verify your implementation with the [AppTester agent](/docs/user_ai/#app-tester-chat-agent) after Coder completes the changes. If tests fail, Coder will iterate to fix issues automatically.
-- For workflows requiring shell commands (builds, tests, scripts), you can enable the [Shell Execution Tool (alpha)](/docs/user_ai/#shell-execution-tool-alpha) by adding `~shellExecute` to your request or `~{shellExecute}` to the agent's prompt
+- For workflows requiring shell commands (builds, tests, scripts), you can enable the Shell Execution capability (see below) or the [Shell Execution Tool (alpha)](/docs/user_ai/#shell-execution-tool-alpha)
 - Agent Mode preserves traceability of all changes via Theia AI's changeset feature
+
+### Agent Capabilities in Agent Mode
+
+When using Theia Coder in Agent Mode, three optional capabilities are available directly in the chat input as toggle chips. All three are off by default — you enable them for a specific request by clicking the corresponding chip. See the [Agent Capabilities documentation](/docs/user_ai/#agent-capabilities) for details on how capabilities work in general.
+
+**Shell Execution** grants Coder access to the `shellExecute` tool, allowing it to run shell commands on the host system. When enabled, Coder still prefers workspace tasks and dedicated file tools, and only falls back to shell execution when no better option is available. Long-running processes should be started via launch configurations instead.
+
+**GitHub** enables GitHub interactions by delegating to the GitHub agent. With this capability active, Coder can read issues, create pull requests, query repositories, and perform other GitHub operations as part of its implementation workflow.
+
+**AppTester** activates post-implementation UI testing. After completing an implementation task, Coder automatically delegates to the AppTester agent to verify the result — creating a seamless implement-and-test loop without any extra prompting from you.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../capabilities-coder-demo.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Toggling Coder agent capabilities — Shell Execution, GitHub, and AppTester — directly in the chat input.</p>
+</div>
 
 ### Describing Programming Tasks
 To use Theia Coder effectively, describe your programming task in clear natural language. Coder will search your workspace for relevant code, but you can improve efficiency by specifying key locations, such as:

@@ -52,6 +52,7 @@ Learn more about the AI-powered Theia IDE:
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
   - [Mode Selection](#mode-selection)
+  - [Agent Capabilities](#agent-capabilities)
   - [Image Support](#image-support)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
@@ -746,6 +747,42 @@ The mode selector initializes to reflect the current default prompt variant conf
 
 Mode selection is a convenience feature built on top of the existing [prompt variant](#view-and-modify-prompts) system. Agents can choose to expose certain prompt variants as easily accessible modes, making it more intuitive to switch between different behaviors during a conversation.
 
+### Agent Capabilities
+
+Capabilities provide a way to extend what an agent can do for a specific request, without permanently changing its configuration. Rather than requiring you to understand the underlying mechanics — tool functions, MCP servers, prompt fragments, or delegation targets — Capabilities surface these building blocks as simple toggles you can switch on or off per request.
+
+#### Capability Chips
+
+Some agents advertise a set of optional capabilities directly in the chat input. When such an agent is selected or pinned, compact toggle chips appear in the input area. Each chip represents a named capability that is off by default; clicking it enables it for your next request. Clicking again disables it. The chip shows a brief description in a tooltip on hover.
+
+For example, when using Theia Coder in Agent Mode, three capability chips are available:
+
+- **Shell Execution** — grants the agent access to shell commands. Coder will still prefer workspace tasks and dedicated file tools, and only fall back to shell execution when no better option exists.
+- **GitHub** — enables GitHub interactions by delegating to the GitHub agent. With this active, Coder can read issues, create pull requests, query repositories, and more.
+- **AppTester** — activates post-implementation UI testing by delegating to the AppTester agent. After completing an implementation, Coder will automatically hand off to AppTester to verify the result.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../capabilities-coder-demo.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Toggling Coder agent capabilities — Shell Execution, GitHub, and AppTester — directly in the chat input.</p>
+</div>
+
+Capability selections are remembered for the session: if you switch to a different chat and return, your last-used selections are restored. The tools icon in the chat toolbar shows a small blue dot whenever capabilities are actively selected, even when the chip row is hidden.
+
+#### Generic Capabilities Panel
+
+For advanced users who want full control over a request, the Generic Capabilities Panel provides a searchable overview of everything available: Skills, MCP server tools (grouped by server), built-in tool functions (grouped by provider), Prompt Fragments, Agent Delegation targets, and Variables.
+
+Open the panel by clicking the tools icon in the chat input toolbar, or by pressing `Ctrl+Shift+.` (`Cmd+Shift+.` on Mac) while the chat input is focused.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../generic-capability-demo.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">The Generic Capabilities Panel lets advanced users browse and select from all available Skills, MCP tools, functions, prompt fragments, and more.</p>
+</div>
+
+The tree supports keyboard navigation (arrow keys to move, `Enter` or `Space` to toggle, `Home`/`End` to jump). Items that the current agent already references in its prompt template are shown as disabled to prevent duplication. MCP server tools appear live as servers start and stop. Selected items are resolved at request time and appended to the agent's system message, so the LLM receives the enriched context without any permanent change to the agent configuration.
+
+The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored.
+
 ### Image Support
 
 Theia IDE (and Theia AI) supports adding images to chat sessions, which is especially useful when visual context is needed to solve problems or explain issues.
@@ -914,6 +951,18 @@ In future releases, we may include pre-configured defaults, such as adding `#pro
 ## Prompt Fragments
 
 Prompt fragments enable users to define reusable parts of prompts for recurring instructions given to an AI. These fragments can be referenced both in the chat interface (for one-time usage) and within the prompt templates of agents (to customize agents with reusable fragments). For example, users can define a prompt fragment that specifies a task, provides workspace context or coding guidelines, and then reuse it across multiple AI requests without having to repeat the full text.
+
+Prompt fragment files (`.prompttemplate`) can optionally carry a human-readable `name` and `description` via YAML frontmatter at the top of the file:
+
+```yaml
+---
+name: My Fragment
+description: A short description shown as a tooltip
+---
+Your template content here...
+```
+
+When present and a prompt fragment is embedded as a capability, the `name` is shown as the label in capability chips and in the agent configuration table instead of the raw fragment ID. The `description` appears as a tooltip on hover. The frontmatter is stripped before the content is sent to the LLM.
 
 To support this functionality, Theia includes a special variable `#prompt:promptFragmentID` that takes the ID of a prompt fragment as an argument. In the following video, we demonstrate the usage of a prompt fragment to create a reusable workflow (documenting a file). We add a new directory to our workspace with a prompt template in it. We then make sure that the directory is configured as a location for prompt templates (also see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)). Now we can use the prompt fragment in the chat. We could also add it to the prompt template of an agent instead. Please note that for more complex workflows, Theia AI also makes it very easy to create custom agents from scratch (see [Custom Agents](#custom-agents)).
 
