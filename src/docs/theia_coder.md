@@ -62,18 +62,18 @@ Watch Agent Mode in action:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1XcsPPedIXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-### "Next" Mode Variants
+### "Next" Mode Variant
 
-Both Edit Mode and Agent Mode offer "Next" variants — improved versions that contain the latest enhancements being validated in practice. These versions often include refinements to the agent's behavior, better error handling, or improved prompts that have not yet been promoted to the default modes.
+Agent Mode offers a "Next" variant — an improved version that contains the latest enhancements being validated in practice. These versions often include refinements to the agent's behavior, better error handling, or improved prompts that have not yet been promoted to the default mode.
 
-If you want to use the latest and greatest version of Theia Coder, we recommend selecting "Edit Mode (Next)" or "Agent Mode (Next)" from the mode selector. Once these improvements have been sufficiently validated through real-world usage, they will be incorporated into the standard modes.
+If you want to use the latest and greatest version of Theia Coder in Agent Mode, we recommend selecting "Agent Mode (Next)" from the mode selector. Once these improvements have been sufficiently validated through real-world usage, they will be incorporated into the standard mode.
 
 ### Activating Agent Mode
 
 You can activate Agent Mode in two ways:
 
 **Using the Mode Selector (recommended):**
-1. In the chat input area, click the mode dropdown and select "Agent Mode" or "Agent Mode (Next)"
+1. In the chat input area, click the mode dropdown and select "Agent Mode" or "Agent Mode (Next)" for the latest improvements
 2. Alternatively, press `Shift+Tab` to cycle through available modes
 
 **Using the AI Configuration View:**
@@ -89,15 +89,16 @@ Once active, the agent operates differently: it directly writes to the workspace
 **Tips for Agent Mode:**
 - Provide clear, detailed prompts since the agent will run independently for 10-30 minutes
 - Consider using [Task Context](/docs/user_ai/#task-context) to better structure your requests
-- Use the `/test-with-app-tester` slash command to automatically verify your implementation with the [AppTester agent](/docs/user_ai/#app-tester-chat-agent) after Coder completes the changes. If tests fail, Coder will iterate to fix issues automatically.
-- For workflows requiring shell commands (builds, tests, scripts), you can enable the Shell Execution capability (see below) or the [Shell Execution Tool (alpha)](/docs/user_ai/#shell-execution-tool-alpha)
+- Use the `/test-with-app-tester` slash command or the **AppTester** capability (see below) to automatically verify your implementation with the [AppTester agent](/docs/user_ai/#app-tester-chat-agent) after Coder completes the changes. If tests fail, Coder will iterate to fix issues automatically.
+- For workflows requiring shell commands (builds, tests, scripts), you can enable the **Shell Execution** capability (see below) or the [Shell Execution Tool (alpha)](/docs/user_ai/#shell-execution-tool-alpha)
+- For starting and managing long-running processes such as a development server, Coder has access to launch configuration tools (`listLaunchConfigurations`, `runLaunchConfiguration`, `stopLaunchConfiguration`) and will prefer these over blocking shell commands
 - Agent Mode preserves traceability of all changes via Theia AI's changeset feature
 
 ### Agent Capabilities in Agent Mode
 
 When using Theia Coder in Agent Mode, three optional capabilities are available directly in the chat input as toggle chips. All three are off by default — you enable them for a specific request by clicking the corresponding chip. See the [Agent Capabilities documentation](/docs/user_ai/#agent-capabilities) for details on how capabilities work in general.
 
-**Shell Execution** grants Coder access to the `shellExecute` tool, allowing it to run shell commands on the host system. When enabled, Coder still prefers workspace tasks and dedicated file tools, and only falls back to shell execution when no better option is available. Long-running processes should be started via launch configurations instead.
+**Shell Execution** grants Coder access to the `shellExecute` tool, allowing it to run shell commands on the host system. When enabled, Coder still prefers workspace tasks and dedicated file tools, and only falls back to shell execution when no better option is available. Long-running processes are started via launch configurations (`listLaunchConfigurations`, `runLaunchConfiguration`, `stopLaunchConfiguration`) rather than shell commands.
 
 **GitHub** enables GitHub interactions by delegating to the GitHub agent. With this capability active, Coder can read issues, create pull requests, query repositories, and perform other GitHub operations as part of its implementation workflow.
 

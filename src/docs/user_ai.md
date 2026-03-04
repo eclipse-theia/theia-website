@@ -61,6 +61,7 @@ Learn more about the AI-powered Theia IDE:
   - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
   - [Planning with the Architect Agent](#planning-with-the-architect-agent)
   - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
+
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
@@ -488,13 +489,12 @@ This agent is aware of all commands available in the Theia IDE and the current t
 
 An AI assistant designed to assist software developers with planning and analysis tasks. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files directly, but can create and manage implementation plans (task contexts). The Architect is ideal for answering questions about your project, planning new features, analyzing code architecture, and creating structured implementation plans that can be executed by the Coder agent.
 
-The Architect agent supports multiple modes (see [Mode Selection](#mode-selection)):
+The Architect agent supports two modes (see [Mode Selection](#mode-selection)):
 
-- **Default Mode**: Standard conversational mode for answering questions and general analysis
+- **Plan Mode** (default): An enhanced planning mode where the Architect follows a structured workflow (Understand → Explore → Design → Refine) and can directly create and manage task context files as implementation plans
 - **Simple Mode**: A streamlined mode for quicker responses
-- **Plan Mode**: An enhanced planning mode where the Architect follows a structured workflow (Understand → Explore → Design → Refine) and can directly create and manage task context files as implementation plans
 
-Plan Mode is particularly powerful for complex development tasks. In this mode, the Architect explores your codebase, creates detailed implementation plans, and stores them as task context files that can be executed with the Coder agent. See the [Task Context](#task-context) section for more details on this workflow.
+Plan Mode is the default experience and is particularly powerful for complex development tasks. In this mode, the Architect explores your codebase, creates detailed implementation plans, and stores them as task context files that can be executed with the Coder agent. See the [Task Context](#task-context) section for more details on this workflow.
 
 ### Code Completion (Agent)
 
@@ -532,12 +532,10 @@ The App Tester is an AI-driven agent that helps you test browser-based applicati
 
 **AppTester Modes:**
 
-The App Tester offers two mode variants that use different underlying technologies for browser interaction:
+The App Tester offers mode variants that use different underlying technologies for browser interaction:
 
-- **Default Mode (Playwright)**: Uses the Playwright MCP server for browser automation. If you use the App Tester for the first time and the Playwright MCP server is not yet installed, the agent will help you install it.
-- **Next Mode (DevTools)**: Uses the DevTools MCP server instead of Playwright for testing interactions. This variant provides more robust and flexible testing capabilities directly within the IDE environment.
-
-To switch to the "Next" variant, use the mode selector in the chat input area or change the prompt variant to `app-tester-system-next` in the [AI Configuration view](#ai-configuration). We recommend trying the new AppTester mode and providing feedback to help us improve it further.
+- **Default Mode (Chrome DevTools)**: Uses the Chrome DevTools MCP server for autonomous browser interaction. This is the recommended approach, providing robust and flexible testing capabilities directly within the IDE environment.
+- **Playwright Variant**: Uses the Playwright MCP server for browser automation instead. If you use the App Tester for the first time in this mode and the Playwright MCP server is not yet installed, the agent will help you install it. To switch to this variant, change the prompt variant to `app-tester-system-playwright` in the [AI Configuration view](#ai-configuration).
 
 **Automated Testing with the `/test-with-app-tester` Command:**
 
@@ -732,7 +730,7 @@ Some agents offer multiple operational modes that change how they respond to req
 When an agent supports modes, a mode selector dropdown appears in the chat input area. In the Theia IDE, the following agents provide mode selection:
 
 - **Coder Agent**: Edit Mode, Agent Mode, and Agent Mode (Next)
-- **Architect Agent**: Default Mode, Simple Mode, and Plan Mode (see [Architect agent](#architect-chat-agent))
+- **Architect Agent**: Plan Mode (default) and Simple Mode (see [Architect agent](#architect-chat-agent))
 
 For details on what each mode does for these agents, see the [Theia Coder Documentation](/docs/theia_coder) and the Architect agent section.
 
@@ -850,14 +848,12 @@ This approach makes your prompt reproducible and allows you to refine it before 
 
 ### Planning with the Architect Agent
 
-For complex tasks, it's highly beneficial to use a planning agent before a coding agent. The Architect agent offers two approaches for creating implementation plans:
+For complex tasks, it's highly beneficial to use a planning agent before a coding agent. The Architect agent uses Plan Mode by default to create structured implementation plans.
 
-#### Plan Mode (Recommended)
+Plan Mode is an enhanced planning workflow where the Architect directly creates and manages implementation plans as task context files. To use it:
 
-Plan Mode is an enhanced planning workflow where the Architect directly creates and manages implementation plans as task context files. To use Plan Mode:
-
-1. Switch to Plan Mode using the mode selector in the chat input area (or press `Shift+Tab` to cycle through modes)
-2. Describe your task to the Architect (e.g., "Plan adding a dark mode toggle to the application")
+1. Start a chat with the `@Architect` agent — it opens in Plan Mode by default
+2. Describe your task (e.g., "Plan adding a dark mode toggle to the application")
 3. The Architect follows a structured workflow: **Understand** your requirements, **Explore** the codebase, **Design** a solution, and **Refine** the plan based on your feedback
 4. The Architect creates a task context file directly, which opens in the editor for your review
 5. You can ask the Architect to refine the plan, and it will update the task context file accordingly
@@ -865,28 +861,12 @@ Plan Mode is an enhanced planning workflow where the Architect directly creates 
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
 <video src="../../plan-mode.webm" width="100%" autoplay loop controls class="rounded-2"></video>
-<p style="font-style: italic; margin-top: 0.5rem;">Switching to Plan Mode, creating an implementation plan with the Architect agent, and executing it with Theia Coder.</p>
+<p style="font-style: italic; margin-top: 0.5rem;">Creating an implementation plan with the Architect agent and executing it with Theia Coder.</p>
 </div>
 
 Plan Mode supports multiple plans per session. Each plan you create gets its own "Execute with Coder" action in the UI, allowing you to work on several related plans and execute them independently.
 
 **Tip:** Plan Mode also works well with the `/analyze-gh-ticket` slash command (e.g., `@Architect /analyze-gh-ticket 1234`) to analyze a GitHub issue and create an implementation plan for it.
-
-#### Default Mode with Summarization
-
-Alternatively, you can use the Architect in Default Mode and manually trigger plan creation:
-
-1. Select the "Architect" agent when initiating your chat session and describe your task
-2. The Architect will analyze your workspace and create a detailed plan of what should be coded
-3. Use the "Summarize this session as a task for coder" button in the chat
-
-The system will send the plan to an underlying LLM, which summarizes it into a structured format and creates a task context file. This structured task context includes comprehensive details such as:
-   - Problem description and scope
-   - Detailed design and implementation steps with specific files
-   - Testing strategy (both automated and manual)
-   - Deliverables and PR description
-
-Please note that you can adapt this template by modifying the prompt `architect-tasksummary`.
 
 ### Implementing with the Coder Agent
 
