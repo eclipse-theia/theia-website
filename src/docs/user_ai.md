@@ -739,7 +739,7 @@ For details on what each mode does for these agents, see the [Theia Coder Docume
 **About "Next" Modes:** Some agents offer a "Next" variant of their modes (e.g., "Agent Mode (Next)" for the Coder agent). These variants contain the latest improvements that are still being validated in practice before becoming the default. If you want to use the most recent enhancements, we recommend trying the "Next" version. Once the improvements have been sufficiently validated, they will be promoted to the standard mode.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../mode-switching.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<video src="../../mode-switching.webm" width="75%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">Mode selector dropdown in the chat input area allowing users to switch between agent modes.</p>
 </div>
 
@@ -762,7 +762,7 @@ For example, when using Theia Coder in Agent Mode, three capability chips are av
 - **AppTester** — activates post-implementation UI testing by delegating to the AppTester agent. After completing an implementation, Coder will automatically hand off to AppTester to verify the result.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../capabilities-coder-demo.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<video src="../../capabilities-coder-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">Toggling Coder agent capabilities — Shell Execution, GitHub, and AppTester — directly in the chat input.</p>
 </div>
 
@@ -775,7 +775,7 @@ For advanced users who want full control over a request, the Generic Capabilitie
 Open the panel by clicking the tools icon in the chat input toolbar, or by pressing `Ctrl+Shift+.` (`Cmd+Shift+.` on Mac) while the chat input is focused.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../generic-capability-demo.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<video src="../../generic-capability-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">The Generic Capabilities Panel lets advanced users browse and select from all available Skills, MCP tools, functions, prompt fragments, and more.</p>
 </div>
 
@@ -1416,17 +1416,20 @@ To use the shell execution tool, you need to add it to an agent's available tool
 
 ### How It Works
 
-When an agent requests to execute a shell command, you see a confirmation dialog showing the command details. You can then choose to:
+When an agent proposes a shell command, a confirmation dialog appears showing the command. In addition to generic allow/deny buttons, the UI also presents smart **split buttons** with pattern-based suggestions derived from the actual command being executed.
 
-- **Allow once**: Execute the command this time only
-- **Allow for session**: Allow this specific command pattern for the current session
-- **Always allow**: Permanently allow this command (shows a security warning)
-- **Deny**: Reject the command, optionally providing a reason that gets passed back to the agent
+The **Allow** split button offers a dropdown with options such as "Always allow `git *`" or "Always allow `git commit *`", ordered from broadest to most specific. Selecting a pattern adds it to the allowlist in your preferences, so future commands matching that pattern are approved automatically. Two additional options are available at the bottom of the dropdown: "Allow all shell commands for this chat…" (session-scoped) and "Always allow all shell commands…" (permanent). Both trigger a warning confirmation dialog before taking effect, since they grant broad permissions.
+
+The **Deny** split button similarly offers pattern-based deny options, plus a **"Deny with reason…"** action. Choosing this reveals an inline text input directly in the confirmation dialog, where you can type a short explanation that is passed back to the agent as context.
+
+A **"Configure shell command permissions"** link below the buttons opens the AI Tools configuration tab directly, keeping your full permission management one click away.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../shell-tool.webm" width="100%" autoplay loop controls class="rounded-2"></video>
-<p style="font-style: italic; margin-top: 0.5rem;">The shell execution tool in action, converting video files via a terminal command.</p>
+<video src="../../shell-permission-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">The split buttons offer pattern-based suggestions like "Always allow git status *" alongside "Deny with reason" for direct agent feedback.</p>
 </div>
+
+Under the hood, the pattern analyzer parses compound shell commands and correctly handles quoted strings, pipe operators, and redirects, so suggestions are generated from the actual sub-commands rather than the raw command text.
 
 ### Features and Safeguards
 
