@@ -1389,6 +1389,25 @@ The shell execution tool includes several safeguards to maintain user control:
 - **Output truncation**: Large outputs are automatically truncated to prevent context overflow, showing the first and last portions of the output with a note about omitted lines.
 - **Cancellation support**: You can cancel running commands at any time, and commands are automatically terminated if you cancel the chat request.
 
+### Command Allowlist and Denylist
+
+Instead of auto-approving all shell commands globally, you can define an allowlist and a denylist of command patterns. Commands matching the allowlist are auto-approved, while all others still require confirmation. Commands matching the denylist are always denied without prompting.
+
+To configure the lists:
+
+1. Open the **AI Configuration** view and switch to the **Tools** tab.
+2. In the shell command section, add patterns to the allowlist (e.g. `git log *`, `npm test`) or the denylist.
+
+Patterns use `*` as a wildcard: `git log` matches only the exact command, `git log *` matches `git log` with any arguments (e.g. `git log --oneline`), and `* --version` matches any command ending with `--version`.
+
+The denylist ships with default patterns for dangerous commands such as `sudo`, `eval`, `rm -rf /`, `ssh`, and shell re-invocation (`bash -c`, `python -c`, etc.). The denylist takes precedence over the allowlist.
+
+The following additional safety rules apply:
+
+- Commands containing dangerous patterns such as command substitution (`` `...` ``, `$(...)`) or process substitution (`<(...)`, `>(...)`) are **never** auto-approved, even if they match an allowlist entry.
+- For concatenated commands (using `&&`, `||`, `;`, or `|`), **all** sub-commands must match the allowlist for the overall command to be auto-approved. Conversely, if **any** sub-command matches the denylist, the entire command is denied.
+- Empty or whitespace-only patterns are rejected to prevent accidental match-all configurations.
+
 ### Use Cases
 
 The shell execution tool is especially valuable in Agent Mode scenarios where the AI needs to:
