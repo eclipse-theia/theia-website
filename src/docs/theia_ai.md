@@ -210,7 +210,7 @@ Your prompt fragment content here...
 
 The `name` field is shown as the chip label and in the agent configuration table. The `description` is shown as a tooltip when hovering over the chip. The frontmatter is stripped before the content is sent to the LLM, so it does not affect the prompt itself.
 
-Built-in prompt fragments can embed frontmatter directly as part of their `template` string in TypeScript. When a user customizes such a fragment, the localized `name` and `description` from the current locale are automatically baked into the frontmatter of the user's copy.
+Built-in prompt fragments can embed frontmatter directly as part of their `template` string in TypeScript. When a user customizes such a fragment, the localized `name` and `description` from the current locale are automatically included in the frontmatter of the user's copy.
 
 #### What Goes Inside a Capability Fragment
 
