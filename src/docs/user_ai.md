@@ -52,6 +52,7 @@ Learn more about the AI-powered Theia IDE:
   - [Starting Chat from the Editor](#starting-chat-from-the-editor)
   - [Agent Pinning](#agent-pinning)
   - [Mode Selection](#mode-selection)
+  - [Agent Capabilities](#agent-capabilities)
   - [Image Support](#image-support)
   - [Context Variables](#context-variables)
   - [Editing Chat Requests](#editing-chat-requests)
@@ -60,6 +61,7 @@ Learn more about the AI-powered Theia IDE:
   - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
   - [Planning with the Architect Agent](#planning-with-the-architect-agent)
   - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
+
 - [AI Configuration](#ai-configuration)
   - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
@@ -487,13 +489,12 @@ This agent is aware of all commands available in the Theia IDE and the current t
 
 An AI assistant designed to assist software developers with planning and analysis tasks. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. It cannot modify files directly, but can create and manage implementation plans (task contexts). The Architect is ideal for answering questions about your project, planning new features, analyzing code architecture, and creating structured implementation plans that can be executed by the Coder agent.
 
-The Architect agent supports multiple modes (see [Mode Selection](#mode-selection)):
+The Architect agent supports two modes (see [Mode Selection](#mode-selection)):
 
-- **Default Mode**: Standard conversational mode for answering questions and general analysis
+- **Plan Mode** (default): An enhanced planning mode where the Architect follows a structured workflow (Understand → Explore → Design → Refine) and can directly create and manage task context files as implementation plans
 - **Simple Mode**: A streamlined mode for quicker responses
-- **Plan Mode**: An enhanced planning mode where the Architect follows a structured workflow (Understand → Explore → Design → Refine) and can directly create and manage task context files as implementation plans
 
-Plan Mode is particularly powerful for complex development tasks. In this mode, the Architect explores your codebase, creates detailed implementation plans, and stores them as task context files that can be executed with the Coder agent. See the [Task Context](#task-context) section for more details on this workflow.
+Plan Mode is the default experience and is particularly powerful for complex development tasks. In this mode, the Architect explores your codebase, creates detailed implementation plans, and stores them as task context files that can be executed with the Coder agent. See the [Task Context](#task-context) section for more details on this workflow.
 
 ### Code Completion (Agent)
 
@@ -531,12 +532,10 @@ The App Tester is an AI-driven agent that helps you test browser-based applicati
 
 **AppTester Modes:**
 
-The App Tester offers two mode variants that use different underlying technologies for browser interaction:
+The App Tester offers mode variants that use different underlying technologies for browser interaction:
 
-- **Default Mode (Playwright)**: Uses the Playwright MCP server for browser automation. If you use the App Tester for the first time and the Playwright MCP server is not yet installed, the agent will help you install it.
-- **Next Mode (DevTools)**: Uses the DevTools MCP server instead of Playwright for testing interactions. This variant provides more robust and flexible testing capabilities directly within the IDE environment.
-
-To switch to the "Next" variant, use the mode selector in the chat input area or change the prompt variant to `app-tester-system-next` in the [AI Configuration view](#ai-configuration). We recommend trying the new AppTester mode and providing feedback to help us improve it further.
+- **Default Mode (Chrome DevTools)**: Uses the Chrome DevTools MCP server for autonomous browser interaction. This is the recommended approach, providing robust and flexible testing capabilities directly within the IDE environment.
+- **Playwright Variant**: Uses the Playwright MCP server for browser automation instead. If you use the App Tester for the first time in this mode and the Playwright MCP server is not yet installed, the agent will help you install it. To switch to this variant, change the prompt variant to `app-tester-system-playwright` in the [AI Configuration view](#ai-configuration).
 
 **Automated Testing with the `/test-with-app-tester` Command:**
 
@@ -731,20 +730,56 @@ Some agents offer multiple operational modes that change how they respond to req
 When an agent supports modes, a mode selector dropdown appears in the chat input area. In the Theia IDE, the following agents provide mode selection:
 
 - **Coder Agent**: Edit Mode, Agent Mode, and Agent Mode (Next)
-- **Architect Agent**: Default Mode, Simple Mode, and Plan Mode (see [Architect agent](#architect-chat-agent))
+- **Architect Agent**: Plan Mode (default) and Simple Mode (see [Architect agent](#architect-chat-agent))
 
 For details on what each mode does for these agents, see the [Theia Coder Documentation](/docs/theia_coder) and the Architect agent section.
 
 **About "Next" Modes:** Some agents offer a "Next" variant of their modes (e.g., "Agent Mode (Next)" for the Coder agent). These variants contain the latest improvements that are still being validated in practice before becoming the default. If you want to use the most recent enhancements, we recommend trying the "Next" version. Once the improvements have been sufficiently validated, they will be promoted to the standard mode.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../mode-switching.webm" width="100%" autoplay loop controls class="rounded-2"></video>
+<video src="../../mode-switching.webm" width="75%" autoplay loop controls class="rounded-2"></video>
 <p style="font-style: italic; margin-top: 0.5rem;">Mode selector dropdown in the chat input area allowing users to switch between agent modes.</p>
 </div>
 
 The mode selector initializes to reflect the current default prompt variant configured in the [AI Configuration view](#ai-configuration). When you select a different mode, it overrides the configured prompt variant for that session. You can also cycle through available modes using the `Shift+Tab` keyboard shortcut while focused on the chat input.
 
 Mode selection is a convenience feature built on top of the existing [prompt variant](#view-and-modify-prompts) system. Agents can choose to expose certain prompt variants as easily accessible modes, making it more intuitive to switch between different behaviors during a conversation.
+
+### Agent Capabilities
+
+Capabilities provide a way to extend what an agent can do for a specific request, without permanently changing its configuration. Rather than requiring you to understand the underlying mechanics — tool functions, MCP servers, prompt fragments, or delegation targets — Capabilities surface these building blocks as simple toggles you can switch on or off per request.
+
+#### Capability Chips
+
+Some agents advertise a set of optional capabilities directly in the chat input. When such an agent is selected or pinned, compact toggle chips appear in the input area. Each chip represents a named capability that is off by default; clicking it enables it for your next request. Clicking again disables it. The chip shows a brief description in a tooltip on hover.
+
+For example, when using Theia Coder in Agent Mode, three capability chips are available:
+
+- **Shell Execution** — grants the agent access to shell commands. Coder will still prefer workspace tasks and dedicated file tools, and only fall back to shell execution when no better option exists.
+- **GitHub** — enables GitHub interactions by delegating to the GitHub agent. With this active, Coder can read issues, create pull requests, query repositories, and more.
+- **AppTester** — activates post-implementation UI testing by delegating to the AppTester agent. After completing an implementation, Coder will automatically hand off to AppTester to verify the result.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../capabilities-coder-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">Toggling Coder agent capabilities — Shell Execution, GitHub, and AppTester — directly in the chat input.</p>
+</div>
+
+Capability selections are remembered for the session: if you switch to a different chat and return, your last-used selections are restored. The tools icon in the chat toolbar shows a small blue dot whenever capabilities are actively selected, even when the chip row is hidden.
+
+#### Generic Capabilities Panel
+
+For advanced users who want full control over a request, the Generic Capabilities Panel provides a searchable overview of everything available: Skills, MCP server tools (grouped by server), built-in tool functions (grouped by provider), Prompt Fragments, Agent Delegation targets, and Variables.
+
+Open the panel by clicking the tools icon in the chat input toolbar, or by pressing `Ctrl+Shift+.` (`Cmd+Shift+.` on Mac) while the chat input is focused.
+
+<div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
+<video src="../../generic-capability-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">The Generic Capabilities Panel lets advanced users browse and select from all available Skills, MCP tools, functions, prompt fragments, and more.</p>
+</div>
+
+The tree supports keyboard navigation (arrow keys to move, `Enter` or `Space` to toggle, `Home`/`End` to jump). Items that the current agent already references in its prompt template are shown as disabled to prevent duplication. MCP server tools appear live as servers start and stop. Selected items are resolved at request time and appended to the agent's system message, so the LLM receives the enriched context without any permanent change to the agent configuration.
+
+The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored.
 
 ### Image Support
 
@@ -791,9 +826,7 @@ Below is a screenshot depicting the edit button and options to switch between co
 
 ## Task Context
 
-Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish. Watch the video below for a introduction.
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Wy9epGszWz0?si=y6CoPDZg3LS6EP9l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish. 
 
 ### Set-up for Task Context
 
@@ -813,14 +846,12 @@ This approach makes your prompt reproducible and allows you to refine it before 
 
 ### Planning with the Architect Agent
 
-For complex tasks, it's highly beneficial to use a planning agent before a coding agent. The Architect agent offers two approaches for creating implementation plans:
+For complex tasks, it's highly beneficial to use a planning agent before a coding agent. The Architect agent uses Plan Mode by default to create structured implementation plans.
 
-#### Plan Mode (Recommended)
+Plan Mode is an enhanced planning workflow where the Architect directly creates and manages implementation plans as task context files. To use it:
 
-Plan Mode is an enhanced planning workflow where the Architect directly creates and manages implementation plans as task context files. To use Plan Mode:
-
-1. Switch to Plan Mode using the mode selector in the chat input area (or press `Shift+Tab` to cycle through modes)
-2. Describe your task to the Architect (e.g., "Plan adding a dark mode toggle to the application")
+1. Start a chat with the `@Architect` agent — it opens in Plan Mode by default
+2. Describe your task (e.g., "Plan adding a dark mode toggle to the application")
 3. The Architect follows a structured workflow: **Understand** your requirements, **Explore** the codebase, **Design** a solution, and **Refine** the plan based on your feedback
 4. The Architect creates a task context file directly, which opens in the editor for your review
 5. You can ask the Architect to refine the plan, and it will update the task context file accordingly
@@ -828,28 +859,12 @@ Plan Mode is an enhanced planning workflow where the Architect directly creates 
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
 <video src="../../plan-mode.webm" width="100%" autoplay loop controls class="rounded-2"></video>
-<p style="font-style: italic; margin-top: 0.5rem;">Switching to Plan Mode, creating an implementation plan with the Architect agent, and executing it with Theia Coder.</p>
+<p style="font-style: italic; margin-top: 0.5rem;">Creating an implementation plan with the Architect agent and executing it with Theia Coder.</p>
 </div>
 
 Plan Mode supports multiple plans per session. Each plan you create gets its own "Execute with Coder" action in the UI, allowing you to work on several related plans and execute them independently.
 
 **Tip:** Plan Mode also works well with the `/analyze-gh-ticket` slash command (e.g., `@Architect /analyze-gh-ticket 1234`) to analyze a GitHub issue and create an implementation plan for it.
-
-#### Default Mode with Summarization
-
-Alternatively, you can use the Architect in Default Mode and manually trigger plan creation:
-
-1. Select the "Architect" agent when initiating your chat session and describe your task
-2. The Architect will analyze your workspace and create a detailed plan of what should be coded
-3. Use the "Summarize this session as a task for coder" button in the chat
-
-The system will send the plan to an underlying LLM, which summarizes it into a structured format and creates a task context file. This structured task context includes comprehensive details such as:
-   - Problem description and scope
-   - Detailed design and implementation steps with specific files
-   - Testing strategy (both automated and manual)
-   - Deliverables and PR description
-
-Please note that you can adapt this template by modifying the prompt `architect-tasksummary`.
 
 ### Implementing with the Coder Agent
 
@@ -914,6 +929,18 @@ In future releases, we may include pre-configured defaults, such as adding `#pro
 ## Prompt Fragments
 
 Prompt fragments enable users to define reusable parts of prompts for recurring instructions given to an AI. These fragments can be referenced both in the chat interface (for one-time usage) and within the prompt templates of agents (to customize agents with reusable fragments). For example, users can define a prompt fragment that specifies a task, provides workspace context or coding guidelines, and then reuse it across multiple AI requests without having to repeat the full text.
+
+Prompt fragment files (`.prompttemplate`) can optionally carry a human-readable `name` and `description` via YAML frontmatter at the top of the file:
+
+```yaml
+---
+name: My Fragment
+description: A short description shown as a tooltip
+---
+Your template content here...
+```
+
+When present in a prompt fragment used as a capability, the `name` is shown as the label in capability chips and in the agent configuration table instead of the raw fragment ID. The `description` appears as a tooltip on hover. The frontmatter is stripped before the content is sent to the LLM.
 
 To support this functionality, Theia includes a special variable `#prompt:promptFragmentID` that takes the ID of a prompt fragment as an argument. In the following video, we demonstrate the usage of a prompt fragment to create a reusable workflow (documenting a file). We add a new directory to our workspace with a prompt template in it. We then make sure that the directory is configured as a location for prompt templates (also see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)). Now we can use the prompt fragment in the chat. We could also add it to the prompt template of an agent instead. Please note that for more complex workflows, Theia AI also makes it very easy to create custom agents from scratch (see [Custom Agents](#custom-agents)).
 
@@ -1153,7 +1180,7 @@ To add additional skill directories, configure the `ai-features.skills.skillDire
 }
 ```
 
-You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration).
+You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration). This tab also shows all registered [slash commands](#slash-commands) and the agents they are scoped to — see the [Skills and Slash Commands view](#skills-and-slash-commands-view) section for details.
 
 ### CreateSkill Agent
 
@@ -1180,6 +1207,14 @@ The CreateSkill agent supports two modes:
 - **Agent Mode**: Writes the skill file directly to disk
 
 **Note**: To use the CreateSkill agent, you need to add `.prompts/skills` to the list of skill directories in your configuration. This allows the agent to save newly created skills to your project's local skills directory.
+
+## Skills and Slash Commands View
+
+The **Skills** tab in the [AI Configuration View](#ai-configuration) provides an overview of two related concepts in a single place.
+
+The upper **Skills** section lists all discovered skills with their name, description, and file location. Clicking **Open** opens the corresponding `SKILL.md` file directly in the editor so you can inspect or modify its content.
+
+The lower **Slash Commands** section lists all registered slash commands available in the chat. Each row shows the command name (prefixed with `/`), its description, and the agents it is scoped to. Commands scoped to specific agents display the agent names as small chips; commands available to all agents are labelled *All agents*. This makes it easy to see at a glance which commands exist and where they can be used, without having to search through prompt template files.
 
 ## MCP Integration
 
@@ -1319,7 +1354,16 @@ This allows you to seamlessly integrate external services into your AI workflows
 
 ### MCP Configuration View
 
-In the AI Configuration view, you can access a dedicated tab for Model Control Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. The view provides the capability to start or stop any MCP server directly from the configuration interface.
+In the AI Configuration view, you can access a dedicated tab for Model Context Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. You can start or stop any MCP server directly from the configuration interface.
+
+The MCP configuration tab also lets you manage your servers without editing the settings file manually. Use the **Add MCP Server** button at the top of the tab to open a dialog where you can configure a new server. Each existing server has an **edit** (pencil) and a **delete** (trash) button next to its start/stop controls. Editing a server opens the same dialog pre-populated with the existing values; deleting prompts for confirmation before removing the entry from your preferences.
+
+The dialog supports both server types:
+
+- **Local (Command)**: Provide the executable command (e.g. `npx` or `uvx`), space-separated arguments, and optional environment variables in `KEY=value` format (one per line).
+- **Remote (URL)**: Provide the server URL and, if required, an authentication token and a custom header name. Additional headers can be specified in `Header-Name=value` format (one per line).
+
+Both types share an **Autostart** checkbox that controls whether the server starts automatically the next time the IDE launches.
 
 Additionally, you can view all tools associated with each server. These tools can be easily copied for integration into chat-based interfaces or prompt templates. Options for copying tools include obtaining a consolidated prompt fragment representing all available tools, listing available tools to review or restrict used tools, or selecting individual tools for specific inclusion.
 
@@ -1367,17 +1411,20 @@ To use the shell execution tool, you need to add it to an agent's available tool
 
 ### How It Works
 
-When an agent requests to execute a shell command, you see a confirmation dialog showing the command details. You can then choose to:
+The confirmation dialog presents smart split buttons for both Allow and Deny actions, each with pattern-based suggestions derived from the actual command.
 
-- **Allow once**: Execute the command this time only
-- **Allow for session**: Allow this specific command pattern for the current session
-- **Always allow**: Permanently allow this command (shows a security warning)
-- **Deny**: Reject the command, optionally providing a reason that gets passed back to the agent
+The **Allow** split button offers a dropdown with options such as "Always allow `git *`" or "Always allow `git commit *`", ordered from broadest to most specific. Selecting a pattern adds it to the allowlist in your preferences, so future commands matching that pattern are approved automatically. Two additional options are available at the bottom of the dropdown: "Allow all shell commands for this chat…" (session-scoped) and "Always allow all shell commands…" (permanent). Both trigger a warning confirmation dialog before taking effect, since they grant broad permissions.
+
+The **Deny** split button similarly offers pattern-based deny options, plus a **"Deny with reason…"** action. Choosing this reveals an inline text input directly in the confirmation dialog, where you can type a short explanation that is passed back to the agent as context.
+
+A **"Configure shell command permissions"** link below the buttons opens the AI Tools configuration tab directly, keeping your full permission management one click away.
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
-<video src="../../shell-tool.webm" width="100%" autoplay loop controls class="rounded-2"></video>
-<p style="font-style: italic; margin-top: 0.5rem;">The shell execution tool in action, converting video files via a terminal command.</p>
+<video src="../../shell-permission-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
+<p style="font-style: italic; margin-top: 0.5rem;">The split buttons offer pattern-based suggestions like "Always allow git status *" alongside "Deny with reason" for direct agent feedback.</p>
 </div>
+
+Under the hood, the pattern analyzer parses compound shell commands and correctly handles quoted strings, pipe operators, and redirects, so suggestions are generated from the actual sub-commands rather than the raw command text.
 
 ### Features and Safeguards
 

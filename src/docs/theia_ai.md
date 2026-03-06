@@ -26,6 +26,7 @@ Learn more about Theia AI:
   - [Creating an Agent](#creating-an-agent)
   - [Creating a Chat Agent](#creating-a-chat-agent)
   - [Agent Modes](#agent-modes)
+  - [Agent Capabilities](#agent-capabilities)
 - [Variables and Tool Functions](#variables-and-tool-functions)
   - [Variables](#variables)
     - [Agent-specific Variables](#agent-specific-variables)
@@ -169,6 +170,57 @@ override async invoke(request: MutableChatRequestModel): Promise<void> {
 ```
 
 See the [ModeChatAgent](https://github.com/eclipse-theia/theia/blob/master/examples/api-samples/src/browser/chat/mode-chat-agent-contribution.ts) in the Theia codebase for a complete example implementation demonstrating how to use modes to adjust response verbosity.
+
+### Agent Capabilities
+
+Capabilities provide a mechanism for agent builders to expose optional, toggleable behaviors to users in a user-friendly way. Instead of requiring users to understand and manually wire up tool functions, MCP servers, or prompt fragments, an agent can declare which capabilities it supports and let users simply toggle them on or off per request via compact chips in the chat input.
+
+For end users, the experience is described in the [user documentation on Agent Capabilities](/docs/user_ai/#agent-capabilities). This section explains how to define capabilities in your own agents.
+
+#### Defining Capabilities in a Prompt Template
+
+Capabilities are declared using the `{{capability:fragment-id [default on|off]}}` syntax inside a prompt template. Each such variable registers a toggleable capability backed by the prompt fragment with the given ID.
+
+- `default on` means the capability is active unless the user explicitly turns it off.
+- `default off` means the capability is inactive by default and must be opted into.
+- If the `default` keyword is omitted, the capability defaults to `off`.
+
+When the capability is enabled for a request, the referenced prompt fragment is resolved and its content is included in the agent's system message. When disabled, it resolves to nothing.
+
+For example, an agent prompt template that offers two opt-in capabilities would include lines like:
+
+```text
+{{capability:my-shell-feature default off}}
+{{capability:my-reporting-feature default off}}
+```
+
+Each line appears as a chip in the chat input when this agent is active. Chip selections are persisted per session and restored when the user returns to a session.
+
+#### Adding Name and Description via Frontmatter
+
+By default, a capability chip displays the raw fragment ID as its label. To provide a human-readable name and a tooltip description, add YAML frontmatter to the `.prompttemplate` file for the backing prompt fragment:
+
+```yaml
+---
+name: Shell Execution
+description: Allows the agent to run shell commands on the host system.
+---
+Your prompt fragment content here...
+```
+
+The `name` field is shown as the chip label and in the agent configuration table. The `description` is shown as a tooltip when hovering over the chip. The frontmatter is stripped before the content is sent to the LLM, so it does not affect the prompt itself.
+
+Built-in prompt fragments can embed frontmatter directly as part of their `template` string in TypeScript. When a user customizes such a fragment, the localized `name` and `description` from the current locale are automatically included in the frontmatter of the user's copy.
+
+#### What Goes Inside a Capability Fragment
+
+A capability fragment can contain anything a regular prompt fragment can: plain instructions, variable references, tool function references (`~{functionId}`), delegation instructions to other agents, or even combinations of all of these. This means a single capability chip can encapsulate arbitrarily rich behavior. For example:
+
+- A **tool-based capability** might include a `~{shellExecute}` tool function reference together with instructions on when and how to use it.
+- A **delegation-based capability** might include instructions for delegating to a sub-agent via `~{agentDelegation}`, complete with example delegation prompts.
+- A **context-injection capability** might add domain-specific knowledge or guidelines into the system message when enabled.
+
+The agent configuration view in the Theia IDE shows all declared capabilities for an agent, including their fragment ID, default state, and description, giving users an overview without requiring them to read the raw prompt.
 
 ## Variables and Tool Functions
 
