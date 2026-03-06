@@ -940,7 +940,7 @@ description: A short description shown as a tooltip
 Your template content here...
 ```
 
-When present and a prompt fragment is embedded as a capability, the `name` is shown as the label in capability chips and in the agent configuration table instead of the raw fragment ID. The `description` appears as a tooltip on hover. The frontmatter is stripped before the content is sent to the LLM.
+When present in a prompt fragment used as a capability, the `name` is shown as the label in capability chips and in the agent configuration table instead of the raw fragment ID. The `description` appears as a tooltip on hover. The frontmatter is stripped before the content is sent to the LLM.
 
 To support this functionality, Theia includes a special variable `#prompt:promptFragmentID` that takes the ID of a prompt fragment as an argument. In the following video, we demonstrate the usage of a prompt fragment to create a reusable workflow (documenting a file). We add a new directory to our workspace with a prompt template in it. We then make sure that the directory is configured as a location for prompt templates (also see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)). Now we can use the prompt fragment in the chat. We could also add it to the prompt template of an agent instead. Please note that for more complex workflows, Theia AI also makes it very easy to create custom agents from scratch (see [Custom Agents](#custom-agents)).
 
