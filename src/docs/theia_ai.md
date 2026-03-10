@@ -372,7 +372,7 @@ Once attached, the context elements are displayed in the chat input to the user.
 
 #### Thinking Mode for Claude
 
-Theia AI provides support for Claude's "thinking mode" when using Sonnet-3.7. By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+Theia AI provides support for Claude's "thinking mode" (extended thinking). By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
 
 The corresponding request settings looks like this:
 
@@ -383,7 +383,7 @@ The corresponding request settings looks like this:
 }
 ```
 
-As shown in the following video, we first ask Sonnet-3.7 a fairly difficult question without thinking mode enabled. It responds quickly but with an incorrect answer. We then switch to a new chat session and enable thinking mode via a chat-specific setting. This time, the model takes noticeably longer to respond. To keep the video short, we switch to a previously completed session with the same setting, and it arrives at the correct solution.
+As shown in the following video, we first ask the model a fairly difficult question without thinking mode enabled. It responds quickly but with an incorrect answer. We then switch to a new chat session and enable thinking mode via a chat-specific setting. This time, the model takes noticeably longer to respond. To keep the video short, we switch to a previously completed session with the same setting, and it arrives at the correct solution.
 
 <video controls>
   <source src="../../thinking-mode-example.webm" type="video/webm">

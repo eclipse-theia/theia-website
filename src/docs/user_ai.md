@@ -250,7 +250,7 @@ enter it in the Theia IDE settings under AI-features => Anthropics.
 **Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
 
 Configure available models in the settings under AI-features => AnthropicsModels.
-Default supported models include choices like claude-3-5-sonnet-latest.
+Default supported models include the latest Claude models available from Anthropic.
 
 ### Google AI
 
@@ -450,7 +450,7 @@ This feature also unlocks the ability to use provider-specific parameters, such 
 
 ### Thinking Mode
 
-Theia AI provides support for Claude's "thinking mode" when using Sonnet-3.7. By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+Theia AI provides support for Claude's "thinking mode" (extended thinking). By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
 
 <video src="../../thinking-mode-example.webm" controls style="max-width: 100%;"></video>
 
@@ -786,7 +786,7 @@ The panel state resets when you switch sessions. When you return to a session, t
 Theia IDE (and Theia AI) supports adding images to chat sessions, which is especially useful when visual context is needed to solve problems or explain issues.
 
 You can add images to chat sessions in several ways:
-- Click the "+" icon in the chat input area
+- Click the paperclip icon in the chat input area
 - Drag and drop images directly into the chat
 - Copy and paste images from your clipboard
 
