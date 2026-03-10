@@ -81,7 +81,7 @@ You can activate Agent Mode in two ways:
 2. Choose the `agent-mode` prompt variant
 
 For best results with Agent Mode:
-- Consider switching to a more powerful LLM like Sonnet-4, GPT-4.1 or Gemini-Pro
+- Consider switching to a more powerful LLM (check your provider for the latest flagship models)
 - Enable notifications to get updates when long-running tasks complete
 
 Once active, the agent operates differently: it directly writes to the workspace, executes code, and even starts the application when complete.
@@ -150,7 +150,7 @@ All files added to the context via variables will also appear in the context ove
 <br></br>
 
 #### 2. Adding Files directly to the Context
-You can drag and drop files from the file explorer, or use the `+` button below the chat input field to directly add files to the context of a conversation. In contrast to using variables, you cannot describe the meaning of these files, though.
+You can drag and drop files from the file explorer, or use the paperclip button below the chat input field to directly add files to the context of a conversation. In contrast to using variables, you cannot describe the meaning of these files, though.
 
 #### 3. Natural Language
 You can describe the location in plain text, such as:
@@ -207,7 +207,7 @@ For complex tasks, consider using [Task Context](/docs/user_ai/#task-context) to
 
 As a general benchmark, try to describe the task in a way that a peer developer would understand without any additional information and without asking any additional questions. If you have conceptional issues, please see the next section.
 
-**About 3.:** The LLM used in Theia Coder can be easily configured in the general Theia AI settings. Different models might provide varying levels of performance, so it might be worthwhile to experiment with different options to see which one yields the best results for your specific use case. In general, we recommend to use the "best" and "latest" model available to you. In most scenarios, the better results will compensate for the increased computational costs. Claude Sonnet 3.7 is a very popular option at the time of writing.
+**About 3.:** The LLM used in Theia Coder can be easily configured in the general Theia AI settings. Different models might provide varying levels of performance, so it might be worthwhile to experiment with different options to see which one yields the best results for your specific use case. In general, we recommend to use the "best" and "latest" model available to you. In most scenarios, the better results will compensate for the increased computational costs.
 
 ### Adapting and Refining Theia Coder
 If you are interested in the inner workings of Theia Coder or would like to customize its behavior, you can do so by examining and optimizing the prompt template it uses in your Theia IDE. Please refer to our [documentation about prompt editing](/docs/user_ai/#view-and-modify-prompts). You can also create [custom agents](/docs/user_ai/#custom-agents) with a similar feature set, e.g. for specialized tasks such as testing, documentations, etc.
