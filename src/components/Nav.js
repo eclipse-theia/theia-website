@@ -28,6 +28,7 @@ const StyledNav = styled.div`
         top: 0;
         left: 0;
         right: 0;
+        z-index: 1000;
     }
 
     .nav {
@@ -209,12 +210,12 @@ class Nav extends React.Component {
         const { shouldRenderLogo } = this.props
         return (
             <StyledNav>
-                <nav className="nav" style={ this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {} }>
+                <nav className="nav" style={this.state.isNavRendered ? { background: '#fff', height: '100vh' } : {}}>
                     <div className="nav__header">
-                        { shouldRenderLogo ?        
+                        {shouldRenderLogo ?
                             <Link to="/" className="logo-container">
                                 <img className="logo" src={TheiaLogoDark} alt="theia logo" />
-                            </Link>: <span aria-hidden={true}>&nbsp;</span>
+                            </Link> : <span aria-hidden={true}>&nbsp;</span>
                         }
                         <div className="nav__button-container">
                             <button
@@ -243,7 +244,7 @@ class Nav extends React.Component {
                             <Link to="/docs/faq/" className="nav__link" activeClassName="active">FAQ</Link>
                         </li>
                         <li className="nav__item">
-                            <a href="https://github.com/eclipse-theia/theia/discussions" target="_blank" rel="noopener" className="nav__link">Community</a>
+                            <a href="https://github.com/eclipse-theia/theia/discussions" target="_blank" rel="noopener noreferrer" className="nav__link">Community</a>
                         </li>
                         <li className="nav__item">
                             <Link to="/support/" className="nav__link">Support</Link>
