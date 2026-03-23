@@ -37,6 +37,7 @@ Learn more about Theia AI:
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
+- [GitHub Copilot Integration](#github-copilot-integration)
 - [Change Sets](#change-sets)
 - [Chat Suggestions](chat-suggestions)
 - [Learn more](#learn-more)
@@ -889,6 +890,26 @@ For further details, we recommend reviewing the available LLM provider in Theia 
 * [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
+
+## GitHub Copilot Integration
+
+The GitHub Copilot Integration is provided by the `@theia/ai-copilot` package and is available to any product built on the Theia platform. If you are building a downstream product that includes this package, be aware of the following configuration requirements.
+
+### Default OAuth App Configuration
+
+The default OAuth App configuration (including the client ID and OAuth endpoints) shipped with the Theia IDE is intended for the Theia IDE only. Downstream products **should not** rely on this default configuration. It may be changed, rotated, or revoked at any time without notice, and the Theia project is not responsible for any resulting breakage in downstream products.
+
+### Custom Authentication Setup
+
+To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom implementation of the Copilot authentication service with your own client ID. The default client ID is not configurable via preferences — it requires rebinding the authentication service in your backend dependency injection module.
+
+### GitHub Enterprise Configuration
+
+Alternatively, you can configure a GitHub Enterprise URL via the `ai-features.copilot.enterpriseUrl` preference to route authentication through your organization's GitHub Enterprise instance. Note that this changes the OAuth endpoints but does not change the client ID unless the authentication service is also customized.
+
+### Disabling the Copilot Integration
+
+The `ai-features.copilot.enabled` preference (default: `true`) can be set to `false` to disable the Copilot integration entirely in products that do not wish to expose it.
 
 ## Change Sets
 

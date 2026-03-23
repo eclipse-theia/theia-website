@@ -139,35 +139,40 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 ### GitHub Copilot
 
-If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and models such as GPT 5.2 and Claude Opus 4.5 become available for all AI features.
+If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and Theia automatically discovers and registers all models available through your Copilot subscription for use with any AI feature.
 
 #### Signing In
 
 To authenticate with GitHub Copilot:
 
-1. Click the **Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign In"**
-2. A dialog appears with a device code—click the link to open GitHub's device authorization page
+1. Click the **Sign in to GitHub Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign in to GitHub Copilot"**
+2. A dialog appears with a device code. Click the link to open GitHub's device authorization page
 3. Enter the code and authorize the application
-4. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state
+4. Switch back and select **I have authorized**. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state by showing your linked GitHub username.
 
 <img src="../../copilot-in-theia.png" alt="Copilot authentication dialog with device code" style="max-width: 525px">
 
-Once authenticated, Copilot models become available in the [AI Configuration view](#ai-configuration) and can be assigned to any AI agent.
+Once authenticated, Copilot models become automatically available for use with all AI features (see [Model Discovery and Configuration](#model-discovery-and-configuration) below).
 
 **Please note:** Using GitHub Copilot requires an active Copilot subscription on your GitHub account and the [Github Terms of Services](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) apply.
 
-#### Configuring Available Models
+#### Model Discovery and Configuration
 
-The available Copilot models can be configured in the settings under **AI-features** => **Copilot** => **Models**. The default configuration includes commonly available models. You can add or remove models based on what your Copilot subscription provides.
+When you sign in with your GitHub account, Theia automatically fetches all available models from the Copilot API. These models appear in the [AI Configuration view](#ai-configuration) with a `copilot/` prefix and can be assigned to any agent.
+
+If you need to override the auto-discovered models, e.g., to pin a specific set of model IDs, you can use the `ai-features.copilot.modelOverrides` preference.
+When this preference is set, only the specified models will be registered instead of the auto-discovered ones. By default, it is empty, meaning auto-discovery is used.
 
 ```json
 {
-    "ai-features.copilot.models": [
-        "gpt-5.2",
-        "claude-opus-4.5"
+    "ai-features.copilot.modelOverrides": [
+        "model-id-1",
+        "model-id-2"
     ]
 }
 ```
+
+To disable the Copilot integration entirely, set the `ai-features.copilot.enabled` preference to `false`.
 
 #### GitHub Enterprise
 
@@ -185,6 +190,10 @@ The following commands are available for managing Copilot authentication:
 
 - **Copilot: Sign In** — Initiates the OAuth device flow authentication
 - **Copilot: Sign Out** — Signs out and clears stored credentials
+
+#### For Adopters and Downstream Projects
+
+If you are building a downstream product on the Theia platform and want to include the Copilot integration, please refer to the [Adopting the Copilot Integration](/docs/theia_ai/#github-copilot-integration) section in the Theia AI documentation for important configuration requirements.
 
 ### OpenAI (Hosted by OpenAI)
 
