@@ -20,6 +20,8 @@
  import VUEngineStudioScreenshotMin from '../resources/screenshots/thumbnails/vuengine-studio-min.png'
  import RecordEvolutionScreenshot from '../resources/screenshots/record-evolution-screenshot.png'
  import RecordEvolutionScreenshotMin from '../resources/screenshots/thumbnails/record-evolution-screenshot-min.png'
+ import STM32CubeMX2 from '../resources/screenshots/stm32cubemx2.png'
+ import STM32CubeMX2Min from '../resources/screenshots/thumbnails/stm32cubemx2-min.png'
  import MbedStudio from '../resources/screenshots/arm_mbedstudio-ss.png'
  import MbedStudioMin from '../resources/screenshots/thumbnails/arm_mbedstudio-ss-min.png'
  import CodeReady from '../resources/screenshots/redhat-crw-ss.png'
@@ -100,6 +102,12 @@
  ]
  
  export const products = [
+     {
+         href: "https://www.st.com/en/development-tools/stm32cubemx.html",
+         src: STM32CubeMX2,
+         thumb: STM32CubeMX2Min,
+         alt: "STM32CubeMX2 by STMicroelectronics"
+     },
      {
          href: "https://os.mbed.com/studio/",
          src: MbedStudio,
