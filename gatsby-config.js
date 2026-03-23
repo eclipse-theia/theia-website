@@ -23,6 +23,42 @@ module.exports = {
                     "gatsby-plugin-catch-links"
                 ]
             }
+        },
+        {
+            resolve: 'gatsby-plugin-local-search',
+            options: {
+                name: 'docs',
+                engine: 'flexsearch',
+                engineOptions: {
+                    tokenize: 'forward'
+                },
+                query: `
+                    {
+                        allMarkdownRemark {
+                            nodes {
+                                id
+                                frontmatter {
+                                    title
+                                }
+                                fields {
+                                    slug
+                                }
+                                rawMarkdownBody
+                            }
+                        }
+                    }
+                `,
+                ref: 'id',
+                index: ['title', 'body'],
+                store: ['id', 'slug', 'title', 'body'],
+                normalizer: ({ data }) =>
+                    data.allMarkdownRemark.nodes.map((node) => ({
+                        id: node.id,
+                        slug: `/docs/${node.fields.slug}/`,
+                        title: node.frontmatter.title,
+                        body: node.rawMarkdownBody,
+                    })),
+            },
         }
     ]
 }
