@@ -473,6 +473,10 @@ This section provides an overview of the currently available agents in the Theia
 ### Theia Coder (Chat Agent)
 An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. Furthermore, it can suggest modifications of files to the user. It can therefore assist the user with coding tasks or other tasks involving file changes. See the dedicated [Theia Coder Documentation](/docs/theia_coder) for more details.
 
+The following video shows Theia Coder in action, including agent mode, plan mode with the Architect, task context, model aliases, and capabilities:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Universal (Chat Agent)
 
 This agent helps developers by providing concise and accurate answers to general programming and software development questions. It also serves as a fallback for generic user questions. By default, this agent does not have access to the current user context or workspace. However, you can add variables, such as `#selectedText`, to your requests to provide additional context.
@@ -495,6 +499,10 @@ The Architect agent supports two modes (see [Mode Selection](#mode-selection)):
 - **Simple Mode**: A streamlined mode for quicker responses
 
 Plan Mode is the default experience and is particularly powerful for complex development tasks. In this mode, the Architect explores your codebase, creates detailed implementation plans, and stores them as task context files that can be executed with the Coder agent. See the [Task Context](#task-context) section for more details on this workflow.
+
+The following video shows the Architect's Plan Mode in action, along with agent mode, task context, model aliases, and capabilities:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Code Completion (Agent)
 
@@ -745,6 +753,10 @@ The mode selector initializes to reflect the current default prompt variant conf
 
 Mode selection is a convenience feature built on top of the existing [prompt variant](#view-and-modify-prompts) system. Agents can choose to expose certain prompt variants as easily accessible modes, making it more intuitive to switch between different behaviors during a conversation.
 
+The following video demonstrates mode selection as part of a real workflow, including switching between agent mode, plan mode, and using capabilities:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Agent Capabilities
 
 Capabilities provide a way to extend what an agent can do for a specific request, without permanently changing its configuration. Rather than requiring you to understand the underlying mechanics — tool functions, MCP servers, prompt fragments, or delegation targets — Capabilities surface these building blocks as simple toggles you can switch on or off per request.
@@ -765,6 +777,10 @@ For example, when using Theia Coder in Agent Mode, three capability chips are av
 </div>
 
 Capability selections are remembered for the session: if you switch to a different chat and return, your last-used selections are restored. The tools icon in the chat toolbar shows a small blue dot whenever capabilities are actively selected, even when the chip row is hidden.
+
+See capabilities used in a real workflow in the following video:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 #### Generic Capabilities Panel
 
@@ -878,6 +894,10 @@ After reviewing and refining the task context:
 Because the Coder agent is now working from a detailed and verified plan, it produces much higher quality results.
 
 For more details about Task Context, visit [Structure AI Coding with Task Context](https://eclipsesource.com/blogs/2025/07/01/structure-ai-coding-with-task-context/).
+
+The following video demonstrates the full Task Context workflow, including planning with the Architect agent and implementing with Theia Coder:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## AI Configuration
 
