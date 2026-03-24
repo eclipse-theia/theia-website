@@ -13,7 +13,7 @@ Learn more about Theia Coder and see it in action:
 
 🎥 Check out the video below to see how easy it is to get started with Theia Coder. We’ll walk through a simple example task.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/J1FECv6emEg?si=XydEDk5lXrFRWFFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Using Theia Coder
 Theia Coder is a chat agent within Theia AI Chat. **To interact with it, simply type `@Coder` followed by your request in the chat**. This will also pin `@Coder` for the ongoing chat session, so in the following messages, you don't need to mention `@Coder` again.
@@ -60,7 +60,7 @@ This autonomous workflow is particularly valuable for:
 
 Watch Agent Mode in action:
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1XcsPPedIXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### "Next" Mode Variant
 

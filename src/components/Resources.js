@@ -335,6 +335,11 @@ const categories = [
         title: 'Theia AI and AI-powered Theia IDE',
         resources: [
             {
+                title: 'Theia Coder in Action',
+                url: 'https://eclipsesource.com/blogs/2026/03/24/theia-coder-in-action/',
+                type: 'video'
+            },
+            {
                 title: 'Slash Commands: Automating AI Workflows in Theia AI',
                 url: 'https://eclipsesource.com/blogs/2026/01/08/slash-commands-theia-ai/',
                 type: 'video'
