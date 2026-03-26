@@ -6,7 +6,7 @@ title: Using the AI Features in the Theia IDE as an End User
 
 This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistants in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
 
-**Please note that these features are in beta state. They may still undergo changes and improvements. In particular, using your own LLM might incur costs that you need to monitor closely. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
+**Please note that using your own LLM might incur costs that you need to monitor closely. We welcome any feedback, suggestions, and contributions!**
 
 Theia AI features within the Theia IDE are currently disabled by default. See the next section on how to enable them.
 
@@ -19,6 +19,7 @@ Learn more about the AI-powered Theia IDE:
 👉 [Download the AI-powered Theia IDE](/#theiaide)
 
 ## Table of Contents
+
 - [Set-Up](#set-up)
   - [LLM Providers Overview](#llm-providers-overview)
   - [GitHub Copilot](#github-copilot)
@@ -120,19 +121,19 @@ See also:
 
 Below is an overview of various Large Language Model (LLM) providers supported within the Theia IDE, highlighting their key features and current state.
 
-| Provider | Streaming | Tool Calls | Structured Output | State |
-| --- | :---: | :---: | :---: | --- |
-| [GitHub Copilot](#github-copilot) | ✅ | ✅ | ✅ | Public |
-| [OpenAI Official](#openai-hosted-by-openai) | ✅ | ✅ | ✅ | Public |
-| [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) | ✅ | ✅ | ✅ | Public |
-| Mistral (via OpenAI Compatible) | ✅ | ✅ | ✅ | Public |
-| [Azure](#azure) | ✅ | ✅ | ✅ | Public |
-| [Anthropic](#anthropic) | ✅ | ✅ | ❌ | Public |
-| [Google AI](#google-ai) | ✅ | ✅ | ❌ | Beta |
-| [Ollama](#ollama) | ✅ | ✅ | ✅ | Alpha |
-| [Vercel AI](#vercel-ai) | ✅ | ✅ | ✅ | Experimental |
-| [Hugging Face](#hugging-face) | ✅ | ❌ | ❌ | Experimental |
-| [LlamaFile](#llamafile-models) | ✅ | ❌ | ❌ | Experimental |
+| Provider                                                   | Streaming  | Tool Calls  | Structured Output  | State        |
+|------------------------------------------------------------|:----- ----:|:-----------:|:------------------:|--------------|
+| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
+| [OpenAI Official](#openai-hosted-by-openai)                |     ✅     |     ✅      |         ✅         | Public       |
+| [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
+| Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
+| [Azure](#azure)                                            |     ✅     |     ✅      |         ✅         | Public       |
+| [Anthropic](#anthropic)                                    |     ✅     |     ✅      |         ❌         | Public       |
+| [Google AI](#google-ai)                                    |     ✅     |     ✅      |         ❌         | Public       |
+| [Ollama](#ollama)                                          |     ✅     |     ✅      |         ✅         | Public       |
+| [Vercel AI](#vercel-ai)                                    |     ✅     |     ✅      |         ✅         | Experimental |
+| [Hugging Face](#hugging-face)                              |     ✅     |     ❌      |         ❌         | Experimental |
+| [LlamaFile](#llamafile-models)                             |     ✅     |     ❌      |         ❌         | Experimental |
 
 </br>
 </br>
@@ -263,9 +264,7 @@ Default supported models include the latest Claude models available from Anthrop
 
 ### Google AI
 
-**Note: The Google AI provider is currently in beta state. We welcome feedback and contributions to help stabilize this integration.**
-
-To enable Google AI models in the Theia IDE, create an API key in your Google AI account (https://aistudio.google.com/) and enter it in the Theia IDE settings under AI-features => Google AI.
+To enable Google AI models in the Theia IDE, create an API key in your Google AI account (<https://aistudio.google.com/>) and enter it in the Theia IDE settings under AI-features => Google AI.
 
 **Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
 

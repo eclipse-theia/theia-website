@@ -5,7 +5,7 @@ title: Theia Coder, AI-Powered Development in the Theia IDE
 # Theia Coder: AI-Powered Development in the Theia IDE
 
 This page provides details about the Theia Coder agent in the Theia IDE, please also refer to [the general introduction to the AI features in the Theia IDE](/docs/user_ai). Theia Coder is an AI-powered coding agent designed to assist developers with structured code modifications directly within the Theia IDE. Theia Coder can browse the workspace, retrieve relevant context, and propose code changes that users can review and apply seamlessly.
-Theia Coder is currently released as a **beta version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
+To improve and refine Theia Coder, please [provide feedback](https://github.com/eclipse-theia/theia).
 
 Learn more about Theia Coder and see it in action:
 
@@ -184,8 +184,6 @@ Theia Coder enhances AI-driven development by:
 - Browsing workspace context
 - Generating structured code modifications
 - Providing an intuitive interface for reviewing and applying changes
-
-Please remember that Theia Coder is currently released as a **beta version**. To improve and refine it, please [provide feedback](https://github.com/eclipse-theia/theia).
 
 Learn more about Theia Coder and see it in action:
 
