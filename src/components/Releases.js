@@ -118,8 +118,8 @@ const communityReleases = [
                 modules: []
             },
             {
-                title: 'Trace Viewer Extension for Theia Applications',
-                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
+                title: 'Trace Viewer for VSCode',
+                url: 'https://open-vsx.org/extension/eclipse-cdt/vscode-trace-extension',
                 version: 'TBD',
                 modules: []
             }
@@ -171,12 +171,10 @@ const communityReleases = [
                 modules: []
             },
             {
-                title: 'Trace Viewer Extension for Theia Applications',
-                url: 'https://github.com/eclipse-cdt-cloud/theia-trace-extension',
-                version: '0.9.1',
-                modules: [
-                    { modulename: 'theia-traceviewer', url: 'https://www.npmjs.com/package/theia-traceviewer/v/0.9.1' }
-                ]
+                title: 'Trace Viewer for VSCode',
+                url: 'https://open-vsx.org/extension/eclipse-cdt/vscode-trace-extension',
+                version: '0.8.0',
+                modules: []
             }
         ]
     },
