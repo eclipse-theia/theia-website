@@ -131,7 +131,7 @@ const communityReleases = [
         releasecandidatedate: 'January 29th, 2026',
         technologiesin: 'March 5th, 2026',
         releaseanouncement: 'March 12th, 2026',
-        announcementurl: '',
+        announcementurl: 'https://eclipsesource.com/blogs/2026/03/26/the-eclipse-theia-community-release-2026-02/',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
