@@ -80,6 +80,11 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'Eclipse Theia: The Eclipse Foundation tool platform in production',
+                url: 'https://newsroom.eclipse.org/eclipse-newsletter/2026/march/eclipse-theia-eclipse-foundation-tool-platform-production',
+                type: 'article'
+            },
+            {
                 title: 'Investing in Eclipse Theia: Collective Sponsoring and Strategic Partner Options',
                 url: 'https://eclipsesource.com/blogs/2025/11/27/investing-in-eclipse-theia-collective-sponsoring-and-strategic-partner-options/',
                 type: 'article'
