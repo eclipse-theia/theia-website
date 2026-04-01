@@ -14,13 +14,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import React from 'react'
-import TheiaConLogo from '../../resources/theiacon-logo.svg'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
             <a href="https://eclipsesource.com/blogs/2026/03/10/eclipse-theia-1-69-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.69 Release</a> and <a href="https://eclipsesource.com/blogs/2026/03/26/the-eclipse-theia-community-release-2026-02/">the latest Community Release (2026-02)</a>.
             <br />
-            In case you missed TheiaCon 2025, all talk recordings are available now, see <a href="https://www.youtube.com/playlist?list=PLy7t4z5SYNaQyTt3QT9nddDLIuEiUKPoX">here</a>!
+            Read about <a href="https://newsroom.eclipse.org/eclipse-newsletter/2026/march/eclipse-theia-eclipse-foundation-tool-platform-production">Eclipse Theia: The Eclipse tool platform in production</a>.
             <br />
             Stay up-to-date: <a href="https://accounts.eclipse.org/mailing-list/friends-of-theia">register to the "Friends of Theia" mailing list</a> and <a href="https://x.com/theia_ide">follow us on X</a>.
             <br />
