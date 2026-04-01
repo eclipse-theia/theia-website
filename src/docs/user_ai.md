@@ -568,7 +568,15 @@ Claude Code is Anthropic's AI coding assistant natively integrated into the Thei
 
 **Prerequisites:**
 
-Before using Claude Code in Theia IDE, you need to install it. Visit [https://www.claude.com/product/claude-code](https://www.claude.com/product/claude-code) for more details.
+Before using Claude Code in Theia IDE, you need to install the `@anthropic-ai/claude-agent-sdk` npm package:
+
+```bash
+npm install -g @anthropic-ai/claude-agent-sdk
+```
+
+This is the SDK that Theia uses to integrate with Claude Code. It bundles its own CLI internally and is independent of any standalone Claude Code CLI installation you may have (e.g. via `brew` or `apt`). Even if you already have the Claude Code CLI installed separately, you still need to install this package for the Theia integration to work.
+
+Visit [https://www.claude.com/product/claude-code](https://www.claude.com/product/claude-code) for more details about Claude Code and the [Claude Agent SDK documentation](https://platform.claude.com/docs/en/agent-sdk/overview) for more information on the SDK.
 
 **Configuration:**
 
