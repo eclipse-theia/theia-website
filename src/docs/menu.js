@@ -119,6 +119,10 @@ export const MENU = [
         'widgets'
     ),
     M(
+        'Custom Editors',
+        'custom_editors'
+    ),
+    M(
         'Preferences',
         'preferences'
     ),
