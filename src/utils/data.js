@@ -60,6 +60,8 @@
  import CodingParkWebIDEMin from '../resources/screenshots/thumbnails/codingpark-web-ide-min.png'  
  import ZStudio from '../resources/screenshots/zstudio.gif';
  import ZStudioMin from '../resources/screenshots/thumbnails/zstudio-min.gif';
+ import ScreenshotSokatoa from '../resources/screenshots/sokatoa.png'
+ import ScreenshotSokatoaMin from '../resources/screenshots/thumbnails/sokatoa-min.jpg'
 
  export const contributorsAndAdopters = [
      {
@@ -114,6 +116,12 @@
          thumb: MbedStudioMin,
          alt: "Mbed Studio by Arm"
      },
+     {
+         href: "https://github.com/sarc-acl/sokatoa",
+         src: ScreenshotSokatoa,
+         thumb: ScreenshotSokatoaMin,
+         alt: "Sokatoa by Samsung SARC/ACL"
+     },
      {
          href: "https://eclipse.dev/cdt-cloud/",
          src: CDTCloud,
