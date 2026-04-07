@@ -61,7 +61,7 @@
  import ZStudio from '../resources/screenshots/zstudio.gif';
  import ZStudioMin from '../resources/screenshots/thumbnails/zstudio-min.gif';
  import ScreenshotSokatoa from '../resources/screenshots/sokatoa.png'
- import ScreenshotSokatoaMin from '../resources/screenshots/thumbnails/sokatoa-min.png'
+ import ScreenshotSokatoaMin from '../resources/screenshots/thumbnails/sokatoa-min.jpg'
 
  export const contributorsAndAdopters = [
      {
