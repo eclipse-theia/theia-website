@@ -4,8 +4,7 @@ title: Creating Custom Editors
 
 # Creating Custom Editors in Theia
 
-
-A custom editor is a widget that opens automatically when the user opens a file with a specific extension, instead of the default text editor. It consists of three parts:
+A custom editor is a widget that opens automatically when the user opens a file with a specific extension, instead of the default text editor. It usually consists of three parts:
 
 <ul>
 <li>The <b>widget</b>, which extends <code>ReactWidget</code> and implements <code>Navigatable</code> to associate itself with a file URI</li>
@@ -13,12 +12,13 @@ A custom editor is a widget that opens automatically when the user opens a file 
 <li>A <b>widget contribution</b>, which registers the widget and its commands with the workbench</li>
 </ul>
 
-<img src="../../custom-editor.gif" alt="Custom Editor Example" style="max-width: 525px">
+There are also other ways to create custom editors, but this approach generally provides the best user experience and integration with Theia's features.
 
+<img src="../../custom-editor.gif" alt="Custom Editor Example" style="max-width: 525px">
 
 ### Implementing the Widget
 
-A custom editor widget extends `ReactWidget` (see [Contributing a Widget](#contributing-a-widget-a-view)) and additionally implements the `Navigatable` interface. This links the widget's tab to its file URI, enabling features like "close others" and dirty state tracking.
+A custom editor can extend the `ReactWidget` (see [Contributing a Widget](#contributing-a-widget-a-view)) and needs to implement the `Navigatable` interface. This links the widget's tab to its file URI, enabling features like "close others" and dirty state tracking.
 
 The widget receives its file path via an options object injected by the widget factory. A dedicated `Symbol` is used as the InversifyJS token for the options.
 
