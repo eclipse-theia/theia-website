@@ -22,6 +22,7 @@ Learn more about the AI-powered Theia IDE:
 
 - [Set-Up](#set-up)
   - [LLM Providers Overview](#llm-providers-overview)
+  - [Proxy Configuration](#proxy-configuration)
   - [GitHub Copilot](#github-copilot)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
@@ -137,6 +138,15 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 </br>
 </br>
+
+#### Proxy Configuration
+
+All AI providers in the Theia IDE support HTTP proxy configuration. This is particularly useful in corporate environments where internet access is routed through a proxy. The proxy is resolved in the following order:
+
+1. The `http.proxy` preference in the Theia IDE settings
+2. Standard environment variables: `https_proxy` / `HTTPS_PROXY`, `http_proxy` / `HTTP_PROXY`
+
+The `no_proxy` / `NO_PROXY` environment variable is also respected, supporting exact hostname matching, domain suffix matching (e.g., `.example.com`), wildcard (`*`), IP addresses, and port-specific rules. Hosts matching the no-proxy list bypass the proxy and connect directly.
 
 ### GitHub Copilot
 
