@@ -795,6 +795,8 @@ For example, when using Theia Coder in Agent Mode, three capability chips are av
 
 Capability selections are remembered for the session: if you switch to a different chat and return, your last-used selections are restored. The tools icon in the chat toolbar shows a small blue dot whenever capabilities are actively selected, even when the chip row is hidden.
 
+To persist your capability selections across sessions, click the save button in the expanded capabilities panel. This writes the current capability overrides and generic capability selections by default to your user `settings.json`, but also supports folder, and workspace scopes. You can also configure capability defaults directly in the [AI Configuration view](#ai-configuration), where overridden values are indicated with a blue bar (matching the style of the settings editor). A "Reset All to Defaults" button lets you clear all overrides at once.
+
 See capabilities used in a real workflow in the following video:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -812,7 +814,7 @@ Open the panel by clicking the tools icon in the chat input toolbar, or by press
 
 The tree supports keyboard navigation (arrow keys to move, `Enter` or `Space` to toggle, `Home`/`End` to jump). Items that the current agent already references in its prompt template are shown as disabled to prevent duplication. MCP server tools appear live as servers start and stop. Selected items are resolved at request time and appended to the agent's system message, so the LLM receives the enriched context without any permanent change to the agent configuration.
 
-The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored.
+The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored. To make your selections permanent, use the save icon to persist them to your settings.
 
 ### Image Support
 
