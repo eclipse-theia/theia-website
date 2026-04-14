@@ -116,57 +116,57 @@ const Logo = styled.img`
 
 
 const TheiaIDEFeatures = ({ adopters }) => (
-        
+
     <div className="row">
-    <StyledPromo className="promo">
-        <div className="promo__text">
-           <h3 className="heading-tertiary">AI-Native IDE (Beta)</h3>
-            <p>Experience the future of development with <a href="/docs/user_ai/">the AI-native Theia IDE</a>, the open alternative to Github Copilot, Cursor etc. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, our AI-first approach offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
-        </div>
-        <div className="promo__media">
-            <video autoPlay loop muted playsInline className="promo__video">
-                <source src={TheiaIDEAI} type="video/mp4" />
-            </video>
-        </div>
-    </StyledPromo>
-    <StyledPromo className="promo">
-        <div className="promo__text">
-            <h3 className="heading-tertiary">Language Support</h3>
-            <p>Experience world-class code editing support in Theia IDE, integrated with the Language Server Protocol (LSP). Develop in almost any programming language, including Python, Java, JavaScript, C++, and more—all within one environment.</p>
-        </div>
-        <div className="promo__media">
-            <video autoPlay loop muted playsInline className="promo__video">
-                <source src={CodeEditing} type="video/mp4" />
-            </video>
-        </div>
-    </StyledPromo>
-    <StyledPromo className="promo">
-        <div className="promo__text">
-            <h3 className="heading-tertiary">Open Source and Vendor Neutral</h3>
-            <p>The Theia IDE is backed by a diverse and healthy open source ecosystem and is an open alternative to VS Code (not a fork). Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
-        </div>
-        <div className="promo__media">
-    <LogoContainer>
-        {adopters.map((item, i) => (
-                                <Logo key={i} src={'https://api.eclipse.org/adopters/assets/images/adopters/' + item.logo} alt={item.name}/>
-                                ))
-        }
-    </LogoContainer>
+        <StyledPromo className="promo">
+            <div className="promo__text">
+                <h3 className="heading-tertiary">AI-Native IDE</h3>
+                <p>Experience the future of development with <a href="/docs/user_ai/">the AI-native Theia IDE</a>, the open alternative to Github Copilot, Cursor etc. Built on <a href="https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/">Theia AI</a>, our AI-first approach offers unmatched transparency and control, allowing you to customize AI interactions, choose your preferred models—whether cloud-based, self-hosted, or local—tailor prompts to your workflow, and even create your own custom agents to automate individual workflows, all while maintaining full ownership of your data.</p>
+            </div>
+            <div className="promo__media">
+                <video autoPlay loop muted playsInline className="promo__video">
+                    <source src={TheiaIDEAI} type="video/mp4" />
+                </video>
+            </div>
+        </StyledPromo>
+        <StyledPromo className="promo">
+            <div className="promo__text">
+                <h3 className="heading-tertiary">Language Support</h3>
+                <p>Experience world-class code editing support in Theia IDE, integrated with the Language Server Protocol (LSP). Develop in almost any programming language, including Python, Java, JavaScript, C++, and more—all within one environment.</p>
+            </div>
+            <div className="promo__media">
+                <video autoPlay loop muted playsInline className="promo__video">
+                    <source src={CodeEditing} type="video/mp4" />
+                </video>
+            </div>
+        </StyledPromo>
+        <StyledPromo className="promo">
+            <div className="promo__text">
+                <h3 className="heading-tertiary">Open Source and Vendor Neutral</h3>
+                <p>The Theia IDE is backed by a diverse and healthy open source ecosystem and is an open alternative to VS Code (not a fork). Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
+            </div>
+            <div className="promo__media">
+                <LogoContainer>
+                    {adopters.map((item, i) => (
+                        <Logo key={i} src={'https://api.eclipse.org/adopters/assets/images/adopters/' + item.logo} alt={item.name} />
+                    ))
+                    }
+                </LogoContainer>
+            </div>
+        </StyledPromo>
+        <StyledPromo className="promo">
+            <div className="promo__text">
+                <h3 className="heading-tertiary">Modern UX</h3>
+                <p>Elevate your development workflow with Theia IDE's flexible workbench layout and user experience. Featuring theming support, a dynamic toolbar, detachable views, and efficient tab management, our web-based interface is designed to adapt to your needs, streamlining your projects for optimal productivity.</p>
+            </div>
+            <div className="promo__media">
+                <video autoPlay loop muted playsInline className="promo__video">
+                    <source src={ModernUX} type="video/mp4" />
+                </video>
+            </div>
+        </StyledPromo>
     </div>
-    </StyledPromo>
-    <StyledPromo className="promo">
-        <div className="promo__text">
-            <h3 className="heading-tertiary">Modern UX</h3>
-            <p>Elevate your development workflow with Theia IDE's flexible workbench layout and user experience. Featuring theming support, a dynamic toolbar, detachable views, and efficient tab management, our web-based interface is designed to adapt to your needs, streamlining your projects for optimal productivity.</p>
-        </div>
-        <div className="promo__media">
-            <video autoPlay loop muted playsInline className="promo__video">
-                <source src={ModernUX} type="video/mp4" />
-            </video>
-        </div>
-    </StyledPromo>
-    </div>
-        
+
 )
 
 export default TheiaIDEFeatures

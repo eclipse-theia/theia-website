@@ -6,7 +6,7 @@ title: Using the AI Features in the Theia IDE as an End User
 
 This section documents how to use AI features in the Theia IDE (available since version 1.54, see also [this introduction](https://eclipsesource.com/blogs/2024/10/08/introducting-ai-theia-ide/)). These features are based on Theia AI, a framework for building AI assistants in tools and IDEs. Theia AI is part of the Theia platform. If you're interested in building your own custom tool or IDE with Theia AI, please refer to [the corresponding documentation](/docs/theia_ai).
 
-**Please note that these features are in beta state. They may still undergo changes and improvements. In particular, using your own LLM might incur costs that you need to monitor closely. Use these features at your own risk, and we welcome any feedback, suggestions, and contributions!**
+**Please note that using your own LLM might incur costs that you need to monitor closely. We welcome any feedback, suggestions, and contributions!**
 
 Theia AI features within the Theia IDE are currently disabled by default. See the next section on how to enable them.
 
@@ -19,9 +19,11 @@ Learn more about the AI-powered Theia IDE:
 👉 [Download the AI-powered Theia IDE](/#theiaide)
 
 ## Table of Contents
+
 - [Set-Up](#set-up)
   - [Setting API Keys](#setting-api-keys)
   - [LLM Providers Overview](#llm-providers-overview)
+  - [Proxy Configuration](#proxy-configuration)
   - [GitHub Copilot](#github-copilot)
   - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
   - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
@@ -133,54 +135,68 @@ See the individual provider sections below for the specific environment variable
 
 Below is an overview of various Large Language Model (LLM) providers supported within the Theia IDE, highlighting their key features and current state.
 
-| Provider | Streaming | Tool Calls | Structured Output | State |
-| --- | :---: | :---: | :---: | --- |
-| [GitHub Copilot](#github-copilot) | ✅ | ✅ | ✅ | Public |
-| [OpenAI Official](#openai-hosted-by-openai) | ✅ | ✅ | ✅ | Public |
-| [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) | ✅ | ✅ | ✅ | Public |
-| Mistral (via OpenAI Compatible) | ✅ | ✅ | ✅ | Public |
-| [Azure](#azure) | ✅ | ✅ | ✅ | Public |
-| [Anthropic](#anthropic) | ✅ | ✅ | ❌ | Public |
-| [Google AI](#google-ai) | ✅ | ✅ | ❌ | Beta |
-| [Ollama](#ollama) | ✅ | ✅ | ✅ | Alpha |
-| [Vercel AI](#vercel-ai) | ✅ | ✅ | ✅ | Experimental |
-| [Hugging Face](#hugging-face) | ✅ | ❌ | ❌ | Experimental |
-| [LlamaFile](#llamafile-models) | ✅ | ❌ | ❌ | Experimental |
+| Provider                                                   | Streaming  | Tool Calls  | Structured Output  | State        |
+|------------------------------------------------------------|:----- ----:|:-----------:|:------------------:|--------------|
+| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
+| [OpenAI Official](#openai-hosted-by-openai)                |     ✅     |     ✅      |         ✅         | Public       |
+| [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
+| Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
+| [Azure](#azure)                                            |     ✅     |     ✅      |         ✅         | Public       |
+| [Anthropic](#anthropic)                                    |     ✅     |     ✅      |         ❌         | Public       |
+| [Google AI](#google-ai)                                    |     ✅     |     ✅      |         ❌         | Public       |
+| [Ollama](#ollama)                                          |     ✅     |     ✅      |         ✅         | Public       |
+| [Vercel AI](#vercel-ai)                                    |     ✅     |     ✅      |         ✅         | Experimental |
+| [Hugging Face](#hugging-face)                              |     ✅     |     ❌      |         ❌         | Experimental |
+| [LlamaFile](#llamafile-models)                             |     ✅     |     ❌      |         ❌         | Experimental |
 
 </br>
 </br>
+
+#### Proxy Configuration
+
+All AI providers in the Theia IDE support HTTP proxy configuration. This is particularly useful in corporate environments where internet access is routed through a proxy. The proxy is resolved in the following order:
+
+1. The `http.proxy` preference in the Theia IDE settings
+2. Standard environment variables: `https_proxy` / `HTTPS_PROXY`, `http_proxy` / `HTTP_PROXY`
+
+The `no_proxy` / `NO_PROXY` environment variable is also respected, supporting exact hostname matching, domain suffix matching (e.g., `.example.com`), wildcard (`*`), IP addresses, and port-specific rules. Hosts matching the no-proxy list bypass the proxy and connect directly.
 
 ### GitHub Copilot
 
-If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and models such as GPT 5.2 and Claude Opus 4.5 become available for all AI features.
+If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and Theia automatically discovers and registers all models available through your Copilot subscription for use with any AI feature.
 
 #### Signing In
 
 To authenticate with GitHub Copilot:
 
-1. Click the **Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign In"**
-2. A dialog appears with a device code—click the link to open GitHub's device authorization page
+1. Click the **Sign in to GitHub Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign in to GitHub Copilot"**
+2. A dialog appears with a device code. Click the link to open GitHub's device authorization page
 3. Enter the code and authorize the application
-4. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state
+4. Switch back and select **I have authorized**. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state by showing your linked GitHub username.
 
 <img src="../../copilot-in-theia.png" alt="Copilot authentication dialog with device code" style="max-width: 525px">
 
-Once authenticated, Copilot models become available in the [AI Configuration view](#ai-configuration) and can be assigned to any AI agent.
+Once authenticated, Copilot models become automatically available for use with all AI features (see [Model Discovery and Configuration](#model-discovery-and-configuration) below).
 
 **Please note:** Using GitHub Copilot requires an active Copilot subscription on your GitHub account and the [Github Terms of Services](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) apply.
 
-#### Configuring Available Models
+#### Model Discovery and Configuration
 
-The available Copilot models can be configured in the settings under **AI-features** => **Copilot** => **Models**. The default configuration includes commonly available models. You can add or remove models based on what your Copilot subscription provides.
+When you sign in with your GitHub account, Theia automatically fetches all available models from the Copilot API. These models appear in the [AI Configuration view](#ai-configuration) with a `copilot/` prefix and can be assigned to any agent.
+
+If you need to override the auto-discovered models, e.g., to pin a specific set of model IDs, you can use the `ai-features.copilot.modelOverrides` preference.
+When this preference is set, only the specified models will be registered instead of the auto-discovered ones. By default, it is empty, meaning auto-discovery is used.
 
 ```json
 {
-    "ai-features.copilot.models": [
-        "gpt-5.2",
-        "claude-opus-4.5"
+    "ai-features.copilot.modelOverrides": [
+        "model-id-1",
+        "model-id-2"
     ]
 }
 ```
+
+To disable the Copilot integration entirely, set the `ai-features.copilot.enabled` preference to `false`.
 
 #### GitHub Enterprise
 
@@ -199,9 +215,13 @@ The following commands are available for managing Copilot authentication:
 - **Copilot: Sign In** — Initiates the OAuth device flow authentication
 - **Copilot: Sign Out** — Signs out and clears stored credentials
 
+#### For Adopters and Downstream Projects
+
+If you are building a downstream product on the Theia platform and want to include the Copilot integration, please refer to the [Adopting the Copilot Integration](/docs/theia_ai/#github-copilot-integration) section in the Theia AI documentation for important configuration requirements.
+
 ### OpenAI (Hosted by OpenAI)
 
-To enable the use of OpenAI, you need to create an API key in your OpenAI API account (https://platform.openai.com/) and enter it in the settings AI-features => OpenAiOfficial (see the screenshot below).
+To enable the use of OpenAI, you need to create an API key in your OpenAI API account (<https://platform.openai.com/>) and enter it in the settings AI-features => OpenAiOfficial (see the screenshot below).
 **Please note:** By using this preference the Open AI API key will be stored in clear text on the machine running Theia. Use the environment variable `OPENAI_API_KEY` to set the key securely.
 Please also note that creating an API key requires a paid subscription, and using these models may incur additional costs. Be sure to monitor your usage carefully to avoid unexpected charges. We have not yet optimized the AI assistants in the Theia IDE for token usage.
 
@@ -257,7 +277,7 @@ All models hosted on Azure that are compatible with the OpenAI API are accessibl
 
 ### Anthropic
 
-To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics API account (https://console.anthropic.com/) and
+To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics API account (<https://console.anthropic.com/>) and
 enter it in the Theia IDE settings under AI-features => Anthropics.
 
 **Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
@@ -267,9 +287,7 @@ Default supported models include the latest Claude models available from Anthrop
 
 ### Google AI
 
-**Note: The Google AI provider is currently in beta state. We welcome feedback and contributions to help stabilize this integration.**
-
-To enable Google AI models in the Theia IDE, create an API key in your Google AI account (https://aistudio.google.com/) and enter it in the Theia IDE settings under AI-features => Google AI.
+To enable Google AI models in the Theia IDE, create an API key in your Google AI account (<https://aistudio.google.com/>) and enter it in the Theia IDE settings under AI-features => Google AI.
 
 **Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
 
@@ -307,6 +325,7 @@ The Vercel AI provider offers a unified way of communicating with LLMs through t
 If you already have your OpenAI or Anthropic API keys set as environment variables (`OPENAI_API_KEY` or `ANTHROPIC_API_KEY`), no additional configuration is required for the Vercel provider.
 
 If you configure your API keys through the settings, you need to explicitly set the API keys for the Vercel provider:
+
 1. Go to **Preferences** => **AI features** => **Vercel AI**
 2. Set your OpenAI and/or Anthropic API keys
 
@@ -356,6 +375,7 @@ The Vercel provider supports custom models compatible with the Vercel AI SDK. Co
 ```
 
 **Configuration Options:**
+
 - **`model`** (required): The model identifier
 - **`url`** (required): The API endpoint URL
 - **`id`** (optional): Unique identifier for the UI. If not provided, `model` will be used
@@ -396,6 +416,7 @@ To configure a LlamaFile LLM in the Theia IDE, add the necessary settings to you
 Replace "name", "uri", and "port" with your specific LlamaFile details.
 
 The Theia IDE also offers convenience commands to start and stop your LlamaFiles:
+
 - Start a LlamaFile: Use the command "Start Llamafile", then select the model you want to start.
 - Stop a LlamaFile: Use the "Stop Llamafile" command, then select the running Llamafile which you want to terminate.
 
@@ -474,6 +495,7 @@ To enable thinking mode, you need to add the following custom request setting:
 ```
 
 You can configure this setting either:
+
 - Globally through the model settings (as described in the [Custom Request Settings](#custom-request-settings) section)
 - For a specific chat session using the chat-specific settings icon in the chat window
 
@@ -484,6 +506,7 @@ As mentioned in the previous section, the UI for chat-specific settings is curre
 This section provides an overview of the currently available agents in the Theia IDE. Agents marked as "Chat Agents" are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
 
 ### Theia Coder (Chat Agent)
+
 An AI assistant designed to assist software developers. This agent can access the users workspace, it can get a list of all available files and folders and retrieve their content. Furthermore, it can suggest modifications of files to the user. It can therefore assist the user with coding tasks or other tasks involving file changes. See the dedicated [Theia Coder Documentation](/docs/theia_coder) for more details.
 
 The following video shows Theia Coder in action, including agent mode, plan mode with the Architect, task context, model aliases, and capabilities:
@@ -522,7 +545,7 @@ The following video shows the Architect's Plan Mode in action, along with agent 
 This agent provides inline code completion within the Theia IDE's code editor. The agent supports both manual and automatic modes for code completion. When 'Automatic Code Completion' is enabled (which is the default), the agent makes continuous requests to the underlying LLM while coding, providing suggestions as you type.
 In manual mode (triggered via Ctrl+Alt+Space by default), users have greater control over when AI suggestions appear. Requests are canceled when moving the cursor.
 
-Users can switch between modes in the settings ('AIFeatures'=>'CodeCompletion'). 
+Users can switch between modes in the settings ('AIFeatures'=>'CodeCompletion').
 
 Please note that there are two prompt variants available for the code completion agent, you can select them in the 'AI Configuration view' => 'Code Completion' => 'Prompt Templates'.
 
@@ -563,6 +586,7 @@ The App Tester offers mode variants that use different underlying technologies f
 The `/test-with-app-tester` slash command enables an automated implement-and-test workflow when using Theia Coder in Agent Mode. After implementing your requested changes, Coder automatically delegates to the AppTester to verify the implementation. If tests don't pass, the agents can iterate to fix issues—creating a complete automated development loop.
 
 To use this workflow:
+
 1. Make sure Coder is in Agent Mode (see [Theia Coder Modes](/docs/theia_coder/#theia-coder-modes-edit-mode-and-agent-mode))
 2. Include the slash command in your request, for example:
    > @Coder Add a reset button to my calculator app /test-with-app-tester
@@ -634,6 +658,7 @@ The default storage location for project info files is `.prompts/`. You can conf
 **Example Usage:**
 
 Simply mention `@ProjectInfo` in the chat and describe what you want to do:
+
 - "Create project info for my workspace"
 - "Update the project info with new testing guidelines"
 - "Complete the missing sections in my project info"
@@ -666,6 +691,7 @@ When you first interact with the GitHub agent, it will check whether the GitHub 
 **Example Usage:**
 
 Simply mention `@GitHub` in the chat and describe what you want to do:
+
 - "Create a new issue for the bug I found"
 - "Show me the latest pull requests"
 - "List all open issues with the 'bug' label"
@@ -724,6 +750,7 @@ To access your chat history, click the **"Show Chats..."** button in the chat vi
 Chat sessions are automatically saved to disk as you interact with AI agents. The system stores up to 25 chat sessions by default. When this limit is reached, the oldest sessions are automatically deleted to make room for new ones. You can also manually delete sessions from the "Show Chats..." dialog if you no longer need them.
 
 The persistence system preserves the complete state of your chat sessions, including:
+
 - All messages and responses from different agents
 - Message alternatives created through [editing chat requests](#editing-chat-requests)
 - File changesets with functional apply, revert, and open operations
@@ -758,7 +785,7 @@ Some agents offer multiple operational modes that change how they respond to req
 
 When an agent supports modes, a mode selector dropdown appears in the chat input area. In the Theia IDE, the following agents provide mode selection:
 
-- **Coder Agent**: Edit Mode, Agent Mode, and Agent Mode (Next)
+- **Coder Agent**: Agent Mode (default since 1.70), Edit Mode, and Agent Mode (Next)
 - **Architect Agent**: Plan Mode (default) and Simple Mode (see [Architect agent](#architect-chat-agent))
 
 For details on what each mode does for these agents, see the [Theia Coder Documentation](/docs/theia_coder) and the Architect agent section.
@@ -799,6 +826,8 @@ For example, when using Theia Coder in Agent Mode, three capability chips are av
 
 Capability selections are remembered for the session: if you switch to a different chat and return, your last-used selections are restored. The tools icon in the chat toolbar shows a small blue dot whenever capabilities are actively selected, even when the chip row is hidden.
 
+To persist your capability selections across sessions, click the save button in the expanded capabilities panel. This writes the current capability overrides and generic capability selections by default to your user `settings.json`, but also supports folder, and workspace scopes. You can also configure capability defaults directly in the [AI Configuration view](#ai-configuration), where overridden values are indicated with a blue bar (matching the style of the settings editor). A "Reset All to Defaults" button lets you clear all overrides at once.
+
 See capabilities used in a real workflow in the following video:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -816,13 +845,14 @@ Open the panel by clicking the tools icon in the chat input toolbar, or by press
 
 The tree supports keyboard navigation (arrow keys to move, `Enter` or `Space` to toggle, `Home`/`End` to jump). Items that the current agent already references in its prompt template are shown as disabled to prevent duplication. MCP server tools appear live as servers start and stop. Selected items are resolved at request time and appended to the agent's system message, so the LLM receives the enriched context without any permanent change to the agent configuration.
 
-The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored.
+The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored. To make your selections permanent, use the save icon to persist them to your settings.
 
 ### Image Support
 
 Theia IDE (and Theia AI) supports adding images to chat sessions, which is especially useful when visual context is needed to solve problems or explain issues.
 
 You can add images to chat sessions in several ways:
+
 - Click the paperclip icon in the chat input area
 - Drag and drop images directly into the chat
 - Copy and paste images from your clipboard
@@ -832,9 +862,10 @@ When an image is included in your request, it will be sent to the LLM along with
 <video src="../../image-support.webm" controls style="max-width: 100%;"></video>
 
 ### Context Variables
-You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request. 
 
-You can also pass context files into the chat to further specify the scope of your request. To do this, drag and drop a file into the chat view, or use the auto-completion feature by typing `#file` or directly typing `#<file-name>`. 
+You can augment your requests in the chat with context by using variables. For example, to refer to the currently selected text, use `#selectedText` in your request.
+
+You can also pass context files into the chat to further specify the scope of your request. To do this, drag and drop a file into the chat view, or use the auto-completion feature by typing `#file` or directly typing `#<file-name>`.
 Note that `#file:src/my-code.ts` in the user message is replaced to the workspace-relative path, alongside attaching the file to the context. This allows adding the file content to the context and then referring to the file in the chat input text efficiently in one go.
 
 <img src="../../context-variables.png" alt="Attach Files to the Context" style="max-width: 525px">
@@ -863,7 +894,7 @@ Below is a screenshot depicting the edit button and options to switch between co
 
 ## Task Context
 
-Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish. 
+Task Context is a powerful approach for structured, reproducible AI-assisted development in the Theia IDE. This feature transforms how you work with AI agents by externalizing your intent into dedicated files that serve as persistent, editable records of what you want the AI to accomplish.
 
 ### Set-up for Task Context
 
@@ -942,12 +973,14 @@ Note that some agents come with several prompt variants, you can choose the acti
 Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the "Variables" tab of the AI Configuration View and agent-specific variables in the agent's configuration.
 
 Variables are used with the following syntax:
-``` 
+
+```
 {{variableName}}
 ```
 
 Tool functions are used with the following syntax:
-``` 
+
+```
 ~{functionName}
 ```
 
@@ -1113,6 +1146,7 @@ Agent-to-agent delegation is a powerful feature in Theia AI that enables one AI 
 ### How Agent-to-Agent Delegation Works
 
 The delegation system allows agents to:
+
 - **Delegate specialized tasks**: One agent can hand off specific work to another agent that's better suited for the task
 - **Chain workflows**: Create complex, multi-step processes by connecting different agents
 - **Maintain context**: The delegating agent can pass along necessary context and continue its work after delegation
@@ -1133,6 +1167,7 @@ Agent Skills provide a way to extend AI agents with reusable instructions and do
 A skill is a directory containing a `SKILL.md` file with YAML frontmatter (defining name and description) and markdown content that provides instructions or knowledge for agents. For example, you might create a "code-review" skill that defines how code reviews should be performed in your project, or a "testing" skill that specifies your testing conventions and requirements.
 
 Skills allow you to:
+
 - Capture specific conventions and guidelines in a reusable format
 - Provide domain-specific knowledge to AI agents
 - Create consistent workflows that agents can follow
@@ -1197,6 +1232,7 @@ This skill provides instructions for performing comprehensive code reviews.
 ```
 
 The YAML frontmatter (between the `---` markers) must include:
+
 - **name**: Must be lowercase kebab-case and match the directory name exactly
 - **description**: A brief description of the skill (max 1024 characters)
 
@@ -1234,6 +1270,7 @@ To use the CreateSkill agent:
 3. The agent will generate a properly structured `SKILL.md` file with appropriate frontmatter and content
 
 For example:
+
 ```
 @CreateSkill Create a skill for documenting TypeScript functions that includes JSDoc conventions and example formats
 ```
@@ -1244,6 +1281,7 @@ For example:
 </div>
 
 The CreateSkill agent supports two modes:
+
 - **Default Mode**: Proposes the skill file as a changeset for you to review before applying
 - **Agent Mode**: Writes the skill file directly to disk
 
@@ -1259,7 +1297,7 @@ The lower **Slash Commands** section lists all registered slash commands availab
 
 ## MCP Integration
 
-The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows. 
+The Theia IDE integrates the Model Context Protocol (MCP), enabling users to configure and utilize external services in their AI workflows.
 *Please note: While this integration does not yet include MCP servers in any standard prompts, it already allows end users to explore the MCP ecosystem and discover interesting new use cases. In the future, we plan to provide ready-to-use prompts using MCP servers and support auto-starting configured servers.*
 
 See also this comprehensive example on how to MCP in Theia:
@@ -1424,8 +1462,8 @@ The Theia IDE provides a flexible and user-configurable tool call confirmation s
 
 1. Open the AI configuration view and switch to the "Tools" tab
 2. You can set the global default on top
-4. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow).
-5. When a tool requires confirmation in the chat, you can choose to:
+3. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow).
+4. When a tool requires confirmation in the chat, you can choose to:
    - Allow once
    - Allow for the current session
    - Always allow (persists across sessions)
