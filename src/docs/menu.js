@@ -57,6 +57,10 @@ export const MENU = [
         'theia_coder'
     ),
     M(
+        'Environment Variables',
+        'user_environment_variables'
+    ),
+    M(
         'Using the dynamic Toolbar',
         'user_toolbar'
     ),
