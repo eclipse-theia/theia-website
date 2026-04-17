@@ -18,7 +18,7 @@ There are also other ways to create custom editors, but this approach generally 
 
 ### Implementing the Widget
 
-A custom editor can extend the `BaseWidget` using the `ReactWidget` (see [Contributing a Widget](#contributing-a-widget-a-view)) and needs to implement the `Navigatable` interface. This links the widget's tab to its file URI, enabling features like "close others" and dirty state tracking.
+A custom editor most extend the `BaseWidget`, for example by using the `ReactWidget` (see [Contributing a Widget](#contributing-a-widget-a-view)) and needs to implement the `Navigatable` interface. This links the widget's tab to its file URI, enabling features like "close others" and dirty state tracking.
 
 The widget receives its file path via an options object injected by the widget factory. A dedicated `Symbol` is used as the InversifyJS token for the options.
 
