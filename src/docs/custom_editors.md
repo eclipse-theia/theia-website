@@ -115,9 +115,15 @@ export class MyWidgetContribution extends AbstractViewContribution<MyWidget> {
 }
 ```
 
+Even though `AbstractViewContribution` can register a default toggle command, custom editors typically define their own command so execution consistently opens and focuses the editor. For a simpler use case, it is possible to simply call:
+
+```typescript
+super.registerCommands(commands);
+```
+
 ### Wiring in the Frontend Module
 
-The widget factory must create a **child** InversifyJS container so that `MyWidgetOptions` can be bound as a per-instance constant without polluting the global container. The open handler is bound to the `OpenHandler` contribution point.
+The widget factory can return any object that satisfies the widget interface — in the simplest case you could construct it directly with `new`. However, the recommended approach is to create a **child** InversifyJS container: this lets you bind `MyWidgetOptions` as a per-instance constant without polluting the global container, and more importantly allows other services to be injected into the widget automatically. The open handler is bound to the `OpenHandler` contribution point.
 
 **my-frontend-module.ts**
 
@@ -134,7 +140,6 @@ export default new ContainerModule(bind => {
     }));
 
     bindViewContribution(bind, MyWidgetContribution);
-    bind(FrontendApplicationContribution).toService(MyWidgetContribution);
 
     bind(MyOpenHandler).toSelf().inSingletonScope();
     bind(OpenHandler).toService(MyOpenHandler);
