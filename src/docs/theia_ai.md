@@ -147,7 +147,7 @@ export class MyChatAgent extends AbstractStreamParsingChatAgent {
 }
 ```
 
-When an agent defines multiple modes, a mode selector appears in the chat input UI, allowing users to select their preferred mode through a dropdown or cycle through modes using `Shift+Tab`.
+When an agent defines multiple modes, a mode selector appears in the chat input UI, allowing users to select their preferred mode through a dropdown or cycle through modes using `Ctrl+M`.
 
 <video controls style="max-width: 650px">
   <source src="../../agent-modes.mp4" type="video/mp4">
