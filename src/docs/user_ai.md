@@ -797,7 +797,7 @@ For details on what each mode does for these agents, see the [Theia Coder Docume
 <p style="font-style: italic; margin-top: 0.5rem;">Mode selector dropdown in the chat input area allowing users to switch between agent modes.</p>
 </div>
 
-The mode selector initializes to reflect the current default prompt variant configured in the [AI Configuration view](#ai-configuration). When you select a different mode, it overrides the configured prompt variant for that session. You can also cycle through available modes using the `Shift+Tab` keyboard shortcut while focused on the chat input.
+The mode selector initializes to reflect the current default prompt variant configured in the [AI Configuration view](#ai-configuration). When you select a different mode, it overrides the configured prompt variant for that session. You can also cycle through available modes using the `Ctrl+M` keyboard shortcut while focused on the chat input.
 
 Mode selection is a convenience feature built on top of the existing [prompt variant](#view-and-modify-prompts) system. Agents can choose to expose certain prompt variants as easily accessible modes, making it more intuitive to switch between different behaviors during a conversation.
 
