@@ -50,7 +50,8 @@ Learn more about the AI-powered Theia IDE:
     - [Project Info (Chat Agent)](#project-info-chat-agent)
     - [CreateSkill (Chat Agent)](#createskill-agent)
     - [GitHub (Chat Agent)](#github-chat-agent)
-- [Chat](#chat)
+    - [PR Reviewer (Chat Agent)](#pr-reviewer-chat-agent)
+    - [Chat](#chat)
     - [Chat Session History](#chat-session-history)
     - [Starting Chat from the Editor](#starting-chat-from-the-editor)
     - [Agent Pinning](#agent-pinning)
@@ -733,6 +734,45 @@ To use it, mention the Coder agent and type the command:
 > @Coder /address-gh-review 5678
 
 These commands require the GitHub MCP server to be configured with a valid access token. If the server is not yet set up, the GitHub agent will guide you through the configuration process.
+
+### PR Reviewer (Chat Agent)
+
+**Note: This agent is currently in alpha state and marked as such in the agent list.**
+
+The PR Reviewer agent (`@pr-reviewer`) walks through a complete pull request review for you: it fetches the PR from GitHub, checks out the branch locally, builds the project, explores the relevant parts of the codebase, performs a structured review of the changes, and then guides you through the findings step by step. At the end, it can create a pending review on GitHub for you to inspect and submit manually.
+
+The agent orchestrates several other agents and tools to do this. It delegates GitHub interactions to the [GitHub agent](#github-chat-agent), codebase exploration to a dedicated Explore agent, and uses the workspace tools to read files, check diagnostics and search the code. It does **not** submit the review on its own — the final submit step is always left to you.
+
+**Prerequisites:**
+
+- The [GitHub agent](#github-chat-agent) must be configured and the GitHub MCP server must be running, since the PR Reviewer delegates all GitHub operations to it.
+- The `gh` CLI is recommended for the local checkout step, but a raw `git` fallback is used if it is not available.
+- Because the agent checks out the PR branch and builds the project locally, it will switch branches and may stash uncommitted changes. It always asks for confirmation before doing so and restores your original branch (and stashed changes) at the end.
+
+**Usage:**
+
+Mention the agent in the chat and reference the PR you want reviewed, for example:
+
+> @pr-reviewer Review PR 1234
+
+If you do not provide a PR number, the agent tries to detect the PR associated with the current branch via `gh pr view`, otherwise it asks you for the number.
+
+The agent then walks through the review in clearly labelled phases (fetching PR information, local setup and build, codebase exploration, performing the review). It tracks its progress in a task context file (the "review plan") that opens in the editor and is updated as the review progresses, so you can follow along and intervene at any time.
+
+**Interactive walkthrough:**
+
+Once the review is prepared, the agent presents its findings in a multi-step wizard inside the chat. For each finding you can:
+
+- Open the corresponding diff or file directly from the wizard step
+- **Confirm** the finding (it is a real issue) or **Reject** it (the code is fine as-is)
+- Add free-text comments that are passed back to the agent
+- Skip findings or navigate back and forth between steps
+
+<!-- TODO-MEDIA: screencast - PR Reviewer agent walking through a PR: fetching info, opening the review plan, stepping through findings in the wizard with diffs, and creating a pending review on GitHub. -->
+
+After the walkthrough, the agent asks whether you want to create a pending review on GitHub. If you accept, it adds the confirmed findings as inline comments on a pending review which you can then inspect, edit, and submit through the GitHub UI. If you decline, the review plan stays in your workspace as a record of the analysis.
+
+Finally, the agent restores your original branch and any stashed changes so your workspace is left in the same state as before the review.
 
 ## Chat
 
