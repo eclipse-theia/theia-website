@@ -1229,6 +1229,7 @@ The delegation system allows agents to:
 - **Delegate specialized tasks**: One agent can hand off specific work to another agent that's better suited for the task
 - **Chain workflows**: Create complex, multi-step processes by connecting different agents
 - **Maintain context**: The delegating agent can pass along necessary context and continue its work after delegation
+- **Pass along a [Task Context](#task-context)**: When delegating, the delegating agent can hand over a specific task context so the receiving agent works against the same plan. This is what powers the "Execute with Coder" handoff from the Architect's Plan Mode — the Coder receives the implementation plan as part of its session.
 - **Automate repetitive tasks**: Set up workflows where routine tasks are automatically handled by specialized agents
 
 ### Using the Delegation Function
