@@ -55,7 +55,7 @@ const TheiaIDEExtensible = () => (
                     The Theia IDE is built upon the highly modular <a href="./">Theia platform</a>, enabling the integration of custom extensions and the creation of fully tailored tools (see examples below). <a href="./">Explore the Theia Platform</a> and learn how to create custom tool offerings with ease!
                 </p>
                 <p>
-                    While Theia incorporates certain components from Visual Studio Code, such as the Monaco editor, it is <a href="https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/">independently developed</a> with a unique, modular architecture, <b>Theia is not a <a href="https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/">fork of VS Code</a></b>.
+                    While Theia incorporates certain components from Visual Studio Code, such as the Monaco editor, it is <a href="https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/">independently developed</a> with a unique, modular architecture and is <b>NOT a fork of VS Code</b> (<a href="https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/">learn why</a>).
                 </p>
                 <br></br>
                 <Swiper
@@ -88,14 +88,14 @@ const TheiaIDEExtensible = () => (
                                     </div>
                                 } modal>
                                 {close => (
-                                <>
-                                    <button className="close" onClick={close}>
-                                        &times;
-                                    </button>
-                                    <h2>{item.alt}</h2>
-                                    <img style={{ width: '100%', margin: '2rem' }} src={item.src} alt={item.alt} />
-                                    <a className="btn" href={item.href} target="_blank" rel="noopener noreferrer">More information</a>
-                                </>
+                                    <>
+                                        <button className="close" onClick={close}>
+                                            &times;
+                                        </button>
+                                        <h2>{item.alt}</h2>
+                                        <img style={{ width: '100%', margin: '2rem' }} src={item.src} alt={item.alt} />
+                                        <a className="btn" href={item.href} target="_blank" rel="noopener noreferrer">More information</a>
+                                    </>
                                 )}
                             </Popup>
                         </SwiperSlide>

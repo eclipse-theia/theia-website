@@ -48,15 +48,15 @@ const features = [
     {
         img: <img src={IconExtension} alt="Icon Extension" />,
         title: "Extensible",
-        paragraphs: ['Theia is designed in a modular way to allow extenders and adopters to customize and extend every aspect.', 
-        <>
-            This goes way beyond “just adding extensions”, because Eclipse Theia  lets you build fully customized or white-labeled products!
-        </>]
+        paragraphs: ['Theia is designed in a modular way to allow extenders and adopters to customize and extend every aspect.',
+            <>
+                This goes way beyond “just adding extensions”, because Eclipse Theia  lets you build fully customized or white-labeled products!
+            </>]
     },
     {
         img: <img src={IconOpenSource} alt="Vendor Neutral Open Source" />,
         title: "Vendor Neutral",
-        paragraphs: [ <>
+        paragraphs: [<>
             Theia is truly vendor-neutral and developed by a diverse community. Unlike other “open source” projects, Theia is actually hosted at an Open-Source Foundation, protecting it against single-vendor decisions.
             Learn more <a href="https://www.eclipse.org/projects/dev_process/">here</a>. This vendor neutrality also means <a href="/support">multiple companies offer professional support</a>.
         </>]
@@ -66,7 +66,7 @@ const features = [
         title: "Modern Tech",
         paragraphs: [
             'Theia is built on a modern web technology stack, offering language support via LSP and DAP, hosting VS Code extensions, and providing full terminal access.',
-            'While it reuses components from VS Code, such as the Monaco editor, Theia is an independent platform with a modular architecture—not a fork of VS Code.'
+            'While it reuses components from VS Code, such as the Monaco editor, Theia is an independent platform with a modular architecture - NOT a fork of VS Code.'
         ]
     }
 ]

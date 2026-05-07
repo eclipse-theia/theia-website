@@ -54,11 +54,13 @@ Theia is a *platform* for building specialized IDEs and tools, with deeper custo
 <summary>Longer answer</summary>
 
 Eclipse Theia and Microsoft's VS Code share technologies (Monaco, LSP, DAP) but are entirely different code bases and differ in purpose and philosophy:  
+
 - Theia is a framework designed for building custom IDEs and tools, with full flexibility to change any part of the UI or backend.  
 - VS Code is a powerful general-purpose editor with limited deep customization outside its extension API.  
 - Theia IDE is a fully-featured development environment built on the Theia Platform that functions as an open variant to VS Code, offering similar features and compatibility with VS Code extensions.
 
 Key differences include:
+
 - Theia is fully open source with no proprietary components, while VS Code includes some proprietary elements
 - Theia has zero telemetry by default, prioritizing user privacy
 - Theia is governed by the vendor-neutral Eclipse Foundation with diverse community input
@@ -81,6 +83,7 @@ Yes, Theia's EPL-2.0 license allows commercial products without royalties.
 <summary>Longer answer</summary>
 
 Theia is open-source under the Eclipse Public License 2.0, a commercially friendly license. You can use and distribute Theia in your own products, including closed-source commercial offerings. Many companies already do this — for example:  
+
 - Arduino IDE 2.0  
 - Arm Mbed Studio  
 - Texas Instruments Code Composer Studio  
@@ -108,7 +111,7 @@ Theia lets you modify the entire application; VS Code extensions cannot.
 
 ## Is Theia just another VS Code fork?
 
-No — Theia is not a fork of VS Code, but a separate, independently developed platform that shares a few technologies, such as Monaco, LSP, or DAP.
+No — Theia is NOT a fork of VS Code, but a separate, independently developed platform that shares a few technologies, such as Monaco, LSP, or DAP.
 
 <details> <summary>Longer answer</summary>
 While Theia and VS Code both use common open technologies like Monaco, the Language Server Protocol (LSP), the Debug Adapter Protocol (DAP), or the VS Code extension API for compatibility, Theia is not a fork and is also not based on the VS Code code base. Instead, it is:
@@ -135,11 +138,13 @@ Forking VS Code is high-maintenance and loses Marketplace access; Theia offers f
 <summary>Longer answer</summary>
 
 Forking VS Code:  
+
 - Cuts you off from the Microsoft Marketplace (and some extensions like Live Share).  
 - Creates a heavy maintenance burden to keep up with upstream changes.  
 - Exposes your project to significant future risks, as VS Code's strategies and conditions may change. Remember, VS Code is developed to serve the needs of VS Code itself, not your product.
 
 Theia:  
+
 - Gives you deep customization without forking.  
 - Maintains compatibility with VS Code extensions.
 - Is actively maintained by a vendor-neutral community with the shared goal of providing a stable, extensible platform that supports and evolves with multiple independent products built on top of Theia.
@@ -147,7 +152,7 @@ Theia:
 [Is Forking VS Code a Good Idea? →](https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/)
 </details>
 
-## I need support for my Theia-based tool project.
+## I need support for my Theia-based tool project
 
 Use community resources or [professional support](/support/).
 
@@ -168,6 +173,7 @@ Contribute, sponsor, or fund Theia's development.
 <summary>Longer answer</summary>
 
 Ways to support Theia:  
+
 - Contribute code, documentation, or feedback.  
 - Sponsor development and maintanance.  
 - Fund features to be added to the core.
@@ -184,6 +190,7 @@ Yes, most extensions work; some Microsoft-proprietary ones don't (same as for al
 <summary>Longer answer</summary>
 
 Theia supports most VS Code extensions, they can be installed from the Open VSX registry or any custom source.
+
 - Works: Language servers, debuggers, themes, most tools.  
 - Not available: Proprietary Microsoft extensions (e.g., Live Share, Remote Development). The same applies for all VS Code forks.
 
@@ -206,6 +213,7 @@ This vendor-neutral governance ensures long-term stability.
 </details>
 
 ## Should I migrate my Eclipse Platform/RCP application to Theia?
+
 Yes — if you want to modernize your tool or IDE, extend it to the web, or refresh its UX, Theia is definitely a platform to consider.
 However, Theia is not the right choice for every general purpose RCP application, and each project should be evaluated individually based on its requirements and user needs.
 
@@ -231,7 +239,6 @@ Eclipse Theia is the next-generation Eclipse platform for IDEs and tools:
 If you have an existing Eclipse-based tool, migrating does not always mean starting from scratch — you can reuse your domain logic, adapt your existing architecture, and incrementally replace the UI. The [Migrating Eclipse RCP Tools to Web guide](https://eclipsesource.com/blogs/2025/07/30/migrating-eclipse-rcp-tools-to-web/) explains common migration paths, strategies, and best practices. For more background on why Theia can be the successor to Eclipse RCP for certain applications — and why it’s not suited for all — see:
 
 [Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools →](https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/)
-
 
 [Eclipse Theia is the Next Generation Eclipse RCP →](https://eclipsesource.com/blogs/2022/03/16/eclipse-theia-is-the-next-generation-eclipse-rcp/)
 
