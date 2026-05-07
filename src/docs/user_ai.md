@@ -1570,6 +1570,10 @@ To use the shell execution tool, you need to add it to an agent's available tool
 
 ### How It Works
 
+When the agent calls the shell execution tool, the confirmation dialog shows the command together with a short, agent-supplied **description** explaining what the command does. This makes approve/deny decisions easier and gives you a clearer audit trail of what the agent intended. Models occasionally omit the description; the dialog falls back to just the command in that case.
+
+<!-- TODO-MEDIA: screenshot - shell execution confirmation dialog with the description text shown above the command block. -->
+
 The confirmation dialog presents smart split buttons for both Allow and Deny actions, each with pattern-based suggestions derived from the actual command.
 
 The **Allow** split button offers a dropdown with options such as "Always allow `git *`" or "Always allow `git commit *`", ordered from broadest to most specific. Selecting a pattern adds it to the allowlist in your preferences, so future commands matching that pattern are approved automatically. Two additional options are available at the bottom of the dropdown: "Allow all shell commands for this chat…" (session-scoped) and "Always allow all shell commands…" (permanent). Both trigger a warning confirmation dialog before taking effect, since they grant broad permissions.
