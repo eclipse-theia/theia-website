@@ -892,7 +892,19 @@ The default OAuth App configuration (including the client ID and OAuth endpoints
 
 ### Custom Authentication Setup
 
-To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom implementation of the Copilot authentication service with your own client ID. The default client ID is not configurable via preferences — it requires rebinding the authentication service in your backend dependency injection module.
+To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom OAuth configuration so the integration uses your client ID and endpoints instead of the Theia IDE defaults. This is not exposed as a preference because the client ID must be controlled by the product, not the user.
+
+In your backend module, rebind `CopilotOAuthConfig` to a constant value with your own configuration:
+
+```ts
+rebind(CopilotOAuthConfig).toConstantValue({
+    clientId: 'your-github-oauth-app-client-id',
+    // optional: override the OAuth endpoints if needed
+    // deviceCodeUrl, accessTokenUrl, scopes, ...
+});
+```
+
+The Copilot sign-in dialog also exposes its user-facing strings via the `CopilotAuthDialogMessages` binding. Rebind it in your frontend module if you want to use your own product name or copy in the dialog instead of the Theia defaults.
 
 ### GitHub Enterprise Configuration
 
