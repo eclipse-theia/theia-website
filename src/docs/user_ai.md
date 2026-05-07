@@ -21,75 +21,75 @@ Learn more about the AI-powered Theia IDE:
 ## Table of Contents
 
 - [Set-Up](#set-up)
-  - [Setting API Keys](#setting-api-keys)
-  - [LLM Providers Overview](#llm-providers-overview)
-  - [Proxy Configuration](#proxy-configuration)
-  - [GitHub Copilot](#github-copilot)
-  - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
-  - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
-  - [Mistral](#mistral-models)
-  - [Azure](#azure)
-  - [Anthropic](#anthropic)
-  - [Google AI](#google-ai)
-  - [Ollama](#ollama)
-  - [Vercel AI](#vercel-ai)
-  - [Hugging Face](#hugging-face)
-  - [LlamaFile Models](#llamafile-models)
-  - [Custom Request Settings](#custom-request-settings)
-  - [Thinking Mode](#thinking-mode)
+    - [Setting API Keys](#setting-api-keys)
+    - [LLM Providers Overview](#llm-providers-overview)
+    - [Proxy Configuration](#proxy-configuration)
+    - [GitHub Copilot](#github-copilot)
+    - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
+    - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+    - [Mistral](#mistral-models)
+    - [Azure](#azure)
+    - [Anthropic](#anthropic)
+    - [Google AI](#google-ai)
+    - [Ollama](#ollama)
+    - [Vercel AI](#vercel-ai)
+    - [Hugging Face](#hugging-face)
+    - [LlamaFile Models](#llamafile-models)
+    - [Custom Request Settings](#custom-request-settings)
+    - [Reasoning](#reasoning)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
-  - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
-  - [Universal (Chat Agent)](#universal-chat-agent)
-  - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
-  - [Command (Chat Agent)](#command-chat-agent)
-  - [Architect (Chat Agent)](#architect-chat-agent)
-  - [Code Completion (Agent)](#code-completion-agent)
-  - [Terminal Assistance (Agent)](#terminal-assistance-agent)
-  - [App Tester (Chat Agent)](#app-tester-chat-agent)
-  - [Claude Code (Chat Agent)](#claude-code-chat-agent)
-  - [Project Info (Chat Agent)](#project-info-chat-agent)
-  - [CreateSkill (Chat Agent)](#createskill-agent)
-  - [GitHub (Chat Agent)](#github-chat-agent)
+    - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
+    - [Universal (Chat Agent)](#universal-chat-agent)
+    - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
+    - [Command (Chat Agent)](#command-chat-agent)
+    - [Architect (Chat Agent)](#architect-chat-agent)
+    - [Code Completion (Agent)](#code-completion-agent)
+    - [Terminal Assistance (Agent)](#terminal-assistance-agent)
+    - [App Tester (Chat Agent)](#app-tester-chat-agent)
+    - [Claude Code (Chat Agent)](#claude-code-chat-agent)
+    - [Project Info (Chat Agent)](#project-info-chat-agent)
+    - [CreateSkill (Chat Agent)](#createskill-agent)
+    - [GitHub (Chat Agent)](#github-chat-agent)
 - [Chat](#chat)
-  - [Chat Session History](#chat-session-history)
-  - [Starting Chat from the Editor](#starting-chat-from-the-editor)
-  - [Agent Pinning](#agent-pinning)
-  - [Mode Selection](#mode-selection)
-  - [Agent Capabilities](#agent-capabilities)
-  - [Image Support](#image-support)
-  - [Context Variables](#context-variables)
-  - [Editing Chat Requests](#editing-chat-requests)
+    - [Chat Session History](#chat-session-history)
+    - [Starting Chat from the Editor](#starting-chat-from-the-editor)
+    - [Agent Pinning](#agent-pinning)
+    - [Mode Selection](#mode-selection)
+    - [Agent Capabilities](#agent-capabilities)
+    - [Image Support](#image-support)
+    - [Context Variables](#context-variables)
+    - [Editing Chat Requests](#editing-chat-requests)
 - [Task Context](#task-context)
-  - [Set-up for Task Context](#set-up-for-task-context)
-  - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
-  - [Planning with the Architect Agent](#planning-with-the-architect-agent)
-  - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
+    - [Set-up for Task Context](#set-up-for-task-context)
+    - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
+    - [Planning with the Architect Agent](#planning-with-the-architect-agent)
+    - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
 
 - [AI Configuration](#ai-configuration)
-  - [View and Modify Prompts](#view-and-modify-prompts)
+    - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
 - [Prompt Fragments](#prompt-fragments)
 - [Slash Commands](#slash-commands)
 - [Custom Agents](#custom-agents)
 - [Agent-to-Agent Delegation](#agent-to-agent-delegation)
 - [Agent Skills (Alpha)](#agent-skills-alpha)
-  - [What are Skills?](#what-are-skills)
-  - [Using Skills](#using-skills)
-  - [Creating Skills](#creating-skills)
-  - [Skill Directories](#skill-directories)
-  - [CreateSkill Agent](#createskill-agent)
+    - [What are Skills?](#what-are-skills)
+    - [Using Skills](#using-skills)
+    - [Creating Skills](#creating-skills)
+    - [Skill Directories](#skill-directories)
+    - [CreateSkill Agent](#createskill-agent)
 - [MCP Integration](#mcp-integration)
-  - [Configuring MCP Servers](#configuring-mcp-servers)
-  - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
-  - [Using MCP Server Functions](#using-mcp-server-functions)
-  - [MCP Configuration View](#mcp-configuration-view)
+    - [Configuring MCP Servers](#configuring-mcp-servers)
+    - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
+    - [Using MCP Server Functions](#using-mcp-server-functions)
+    - [MCP Configuration View](#mcp-configuration-view)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
 - [Shell Execution Tool (Alpha)](#shell-execution-tool-alpha)
 - [SCANOSS](#scanoss)
-  - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
-  - [Manual Scanning](#manual-scanning)
-  - [Automatic Scanning](#automatic-scanning)
-  - [Understanding SCANOSS Results](#understanding-scanoss-results)
+    - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
+    - [Manual Scanning](#manual-scanning)
+    - [Automatic Scanning](#automatic-scanning)
+    - [Understanding SCANOSS Results](#understanding-scanoss-results)
 - [AI History](#ai-history)
 - [Learn more](#learn-more)
 
@@ -480,26 +480,29 @@ The video below demonstrates how adjusting the temperature parameter for the The
 
 <video src="../../effect-of-temperature.webm" controls style="max-width: 100%;"></video>
 
-This feature also unlocks the ability to use provider-specific parameters, such as Claude's new "thinking mode," which is discussed in the following section. Future updates are expected to improve the default user interface, especially for commonly used settings.
+This feature also unlocks the ability to use provider-specific parameters that are not yet exposed through dedicated UI controls. Future updates are expected to improve the default user interface, especially for commonly used settings.
 
-### Thinking Mode
+### Reasoning
 
-Theia AI provides support for Claude's "thinking mode" (extended thinking). By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+Many modern LLMs can be instructed to spend more or less effort "thinking" about a request before answering. The Theia IDE exposes this through a **reasoning selector** that appears in the chat input next to the chat mode selector — but only when the model assigned to the receiving agent supports reasoning. The selector is shown as a small lightbulb icon whose appearance reflects the currently selected level.
 
-<video src="../../thinking-mode-example.webm" controls style="max-width: 100%;"></video>
+<!-- TODO: add screenshot of the chat input area with the reasoning selector (lightbulb icon) next to the chat mode selector, with the dropdown opened to show the available levels. -->
 
-To enable thinking mode, you need to add the following custom request setting:
+Six levels are available, ordered from no reasoning to maximum effort: **Off**, **Minimal**, **Low**, **Medium**, **High**, and **Auto** (let the model decide). Higher levels typically produce better answers on complex problems but increase latency and token usage. The levels are provider-agnostic — each provider translates the chosen value to its native API at request time (for example Anthropic's adaptive or extended thinking, OpenAI's `reasoning.effort`, or Gemini's `thinkingConfig`). Not every provider supports every level; for instance OpenAI's GPT-5 family supports `Minimal`, while the o-series does not.
+
+When you change the level via the selector, the choice is automatically remembered for the receiving agent and restored the next time you open a session with that agent. To configure a default for a specific provider, model, or agent without touching the UI, add an entry to the `ai-features.reasoning.defaults` preference:
 
 ```json
-"thinking": { "type": "enabled", "budget_tokens": 8192 }
+"ai-features.reasoning.defaults": [
+    { "scope": { "providerId": "anthropic" }, "reasoning": { "level": "medium" } },
+    { "scope": { "modelId": "openai/gpt-5" }, "reasoning": { "level": "high" } },
+    { "scope": { "agentId": "Coder" }, "reasoning": { "level": "off" } }
+]
 ```
 
-You can configure this setting either:
+Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent.
 
-- Globally through the model settings (as described in the [Custom Request Settings](#custom-request-settings) section)
-- For a specific chat session using the chat-specific settings icon in the chat window
-
-As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
+The level-based translation takes precedence over raw values supplied via [Custom Request Settings](#custom-request-settings) for the same fields. If you need to set a provider-specific reasoning parameter manually through `ai-features.modelSettings.requestSettings`, set the corresponding reasoning level to `off` first so that the level-based translation does not overwrite your value.
 
 ## Current Agents in the Theia IDE
 
