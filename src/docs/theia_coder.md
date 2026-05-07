@@ -34,7 +34,7 @@ In the following example video, we provide a simple task to Coder to demonstrate
 
 ## Theia Coder Modes: Edit Mode and Agent Mode
 
-Theia Coder operates in distinct modes that offer different levels of autonomy. You can quickly switch between modes using the mode selector dropdown in the chat input area, or by pressing `Shift+Tab` while focused on the chat input. See the [Mode Selection documentation](/docs/user_ai/#mode-selection) for more details on this feature.
+Theia Coder operates in distinct modes that offer different levels of autonomy. You can quickly switch between modes using the mode selector dropdown in the chat input area, or by pressing `Ctrl+M` while focused on the chat input. See the [Mode Selection documentation](/docs/user_ai/#mode-selection) for more details on this feature.
 
 ### Edit Mode
 
@@ -78,7 +78,7 @@ Since version 1.70.0, Agent Mode is the default for Theia Coder. When you first 
 <img src="../../static/ai-agent-mode-confirmation.png" alt="Screenshot of the confirmation dialog when the Agent mode is first used" style="max-width: 400px">
 <br></br>
 
-You can switch between modes using the mode selector dropdown in the chat input area or by pressing `Shift+Tab`. To switch back to Edit Mode, select it from the dropdown. You can also change the default via the AI Configuration View by selecting the corresponding prompt variant.
+You can switch between modes using the mode selector dropdown in the chat input area or by pressing `Ctrl+M`. To switch back to Edit Mode, select it from the dropdown. You can also change the default via the AI Configuration View by selecting the corresponding prompt variant.
 
 For best results with Agent Mode:
 
