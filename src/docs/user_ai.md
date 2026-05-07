@@ -59,12 +59,12 @@ Learn more about the AI-powered Theia IDE:
     - [Image Support](#image-support)
     - [Context Variables](#context-variables)
     - [Editing Chat Requests](#editing-chat-requests)
+    - [Token Usage (Experimental)](#token-usage-experimental)
 - [Task Context](#task-context)
     - [Set-up for Task Context](#set-up-for-task-context)
     - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
     - [Planning with the Architect Agent](#planning-with-the-architect-agent)
     - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
-
 - [AI Configuration](#ai-configuration)
     - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
@@ -894,6 +894,41 @@ To use this feature, click the edit icon located next to each message you send i
 Below is a screenshot depicting the edit button and options to switch between conversation branches:
 
 <img src="../../edit-request.png" alt="Edit Chat Request in the Theia IDE" style="max-width: 525px" />
+
+### Token Usage (Experimental)
+
+**Note:** The features described in this section are experimental. They currently assume a fixed 200k token context window for every model; once the real per-model context size is available, the calculations will switch over automatically. Both features also depend on the language model provider reporting token counts, so they will not display anything for providers that do not.
+
+The Theia IDE can visualize and warn about a session's token usage right in the chat input.
+
+#### Token Usage Indicator
+
+When enabled, a compact circular progress ring appears next to the send button and fills proportionally to the session's current token usage. Hovering it shows a tooltip with a breakdown by input, output, and cached tokens. The chat input border tints yellow once usage crosses the configured warning threshold and red once usage reaches the assumed context window.
+
+<!-- TODO: add screenshot of the chat input with the token usage ring next to the send button, including a hover state showing the token breakdown tooltip. -->
+
+To turn the indicator on, enable the preference:
+
+```json
+{
+    "ai-features.chat.tokenUsageIndicator.enabled": true
+}
+```
+
+#### Token Usage Warning
+
+A dismissable notification can be shown when a session's usage crosses the warning threshold, offering quick actions to compact the current session (summarize-and-continue) or start a new chat. The warning fires once per threshold crossing and re-arms after usage drops below the threshold and crosses it again, for example after compacting.
+
+To enable the warning and adjust the threshold:
+
+```json
+{
+    "ai-features.chat.tokenUsageWarning.enabled": true,
+    "ai-features.chat.tokenUsageWarning.defaultThresholdPercentage": 80
+}
+```
+
+The threshold is a percentage (`1`–`100`, default `80`) of the assumed context window. The same percentage drives the indicator's yellow color band, so the visual cue and the notification stay aligned.
 
 ## Task Context
 
