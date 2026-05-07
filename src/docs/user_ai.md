@@ -1162,7 +1162,7 @@ Next, a YAML file will be opened where all available custom agents in a specific
   name: Obfuscator
   description: This is an example agent. Please adapt the properties to fit your needs.
   prompt: Obfuscate the following code so that no human can understand it anymore. Preserve the functionality.
-  defaultLLM: openai/gpt-4o
+  defaultLLM: default/universal
 ```
 
 - id: A unique identifier for the agent.
