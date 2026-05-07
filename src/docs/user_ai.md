@@ -469,7 +469,7 @@ Add the settings in `settings.json`:
 
 In addition to global custom request settings, Theia AI also supports an experimental feature that allows you to define custom request settings per individual chat session. This adds flexibility by enabling on-the-fly adjustments within a single conversation.
 
-You can click an icon in the top-right corner of a chat window to access this functionality. Settings must currently be entered manually as JSON text. For example, you can adjust the temperature parameter for a particular session to make the language model more or less creative:
+Open the chat view's overflow menu (the **…** button in the top-right of the chat view toolbar) and choose **Set Session Settings…** to open the dialog. Settings must currently be entered manually as JSON text. For example, you can adjust the temperature parameter for a particular session to make the language model more or less creative:
 
 ```json
 {
