@@ -334,6 +334,10 @@ bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 
 It can now be used in any prompt fragment, as well as in user requests.
 
+#### Product Name Variable for White-Labeled Products
+
+Theia AI ships with a global `productName` variable that resolves to the `applicationName` configured for your Theia application. The built-in agent prompts (Coder, Architect, Universal, Command, GitHub, App Tester, Claude Code) use `{{productName}}` so that when you white-label Theia under a different name, those agents automatically refer to your product. Adopters who write their own agent prompts can use `{{productName}}` the same way to keep their prompts product-name-agnostic.
+
 ### Chat Context Variables
 
 Theia AI supports attaching rich contextual information to chat requests via **context variables**. Unlike standard variables discussed above, which simply inject a value into the prompt, context variables provide both a `value` and a `contextValue`. The `value` is inserted at the position of the variable usage, while the `contextValue` is added to the `ChatRequestModel.context`—supplying additional data that the chat agent and underlying LLM can leverage for more informed responses.

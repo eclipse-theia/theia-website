@@ -920,6 +920,7 @@ Here are some example of the most frequently used variable, you can see the full
 - `#currentRelativeFilePath` – The relative path of the currently selected file (in the editor or explorer)
 - `#currentRelativeDirPath` – The directory path of the currently selected file
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
+- `#productName` – The name of the product/application you are working in. Resolves to the IDE's configured application name, which is useful when adopters white-label Theia under a different product name. The built-in agent prompts also use this variable so they refer to the actual product.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
