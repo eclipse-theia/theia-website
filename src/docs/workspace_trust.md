@@ -34,7 +34,7 @@ The first time you open a folder that is not on your list of trusted folders, th
 
 The dialog summarizes the trade-off: if you trust the authors, code in the folder may be executed; if you don't, some features will be disabled. The folder paths covered by the decision are listed so you can confirm what you are granting trust to.
 
-<!-- TODO-MEDIA: screenshot - workspace trust dialog when opening an unknown folder, showing the shield icon, the question, the explanation, the listed folder path, and the "Yes, I trust the authors" / "No, I don't trust the authors" buttons. -->
+<img src="../../workspace-trust-dialog.png" alt="Workspace Trust Warning in the Theia IDE" style="max-width: 525px" />
 
 You have two choices:
 
@@ -47,7 +47,7 @@ You can change your mind at any time later via the [Manage Workspace Trust](#man
 
 Whenever the current workspace is not trusted, a **Restricted Mode** indicator appears on the left side of the status bar:
 
-<!-- TODO-MEDIA: screenshot - the "Restricted Mode" status bar item with the shield icon, in its prominent (yellow) styling. -->
+<img src="../../workspace-trust-restricted-mode.png" alt="Workspace Trust Restricted Mode Indicator in the Theia IDE" style="max-width: 525px" />
 
 - The item uses the prominent status bar styling so it stays visible.
 - Hovering it opens a tooltip that explains why some features are disabled and lists the active restrictions (for example, which extensions were skipped or that AI features are off). Different parts of the IDE plug into this tooltip, so the tooltip reflects what is actually being held back in your current setup.

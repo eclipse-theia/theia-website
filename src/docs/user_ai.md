@@ -487,7 +487,7 @@ This feature also unlocks the ability to use provider-specific parameters that a
 
 Many modern LLMs can be instructed to spend more or less effort "thinking" about a request before answering. The Theia IDE exposes this through a **reasoning selector** that appears in the chat input next to the chat mode selector — but only when the model assigned to the receiving agent supports reasoning. The selector is shown as a small lightbulb icon whose appearance reflects the currently selected level.
 
-<!-- TODO: add screenshot of the chat input area with the reasoning selector (lightbulb icon) next to the chat mode selector, with the dropdown opened to show the available levels. -->
+<img src="../../reasoning-selector.png" alt="Reasoning selector in the AI Chat input in the Theia IDE" style="max-width: 525px">
 
 Six levels are available, ordered from no reasoning to maximum effort: **Off**, **Minimal**, **Low**, **Medium**, **High**, and **Auto** (let the model decide). Higher levels typically produce better answers on complex problems but increase latency and token usage. The levels are provider-agnostic — each provider translates the chosen value to its native API at request time (for example Anthropic's adaptive or extended thinking, OpenAI's `reasoning.effort`, or Gemini's `thinkingConfig`). Not every provider supports every level; for instance OpenAI's GPT-5 family supports `Minimal`, while the o-series does not.
 
@@ -772,8 +772,6 @@ Once the review is prepared, the agent presents its findings in a multi-step wiz
 - Add free-text comments that are passed back to the agent
 - Skip findings or navigate back and forth between steps
 
-<!-- TODO-MEDIA: screencast - PR Reviewer agent walking through a PR: fetching info, opening the review plan, stepping through findings in the wizard with diffs, and creating a pending review on GitHub. -->
-
 After the walkthrough, the agent asks whether you want to create a pending review on GitHub. If you accept, it adds the confirmed findings as inline comments on a pending review which you can then inspect, edit, and submit through the GitHub UI. If you decline, the review plan stays in your workspace as a record of the analysis.
 
 Finally, the agent restores your original branch and any stashed changes so your workspace is left in the same state as before the review.
@@ -950,7 +948,7 @@ The Theia IDE can visualize and warn about a session's token usage right in the 
 
 When enabled, a compact circular progress ring appears next to the send button and fills proportionally to the session's current token usage. Hovering it shows a tooltip with a breakdown by input, output, and cached tokens. The chat input border tints yellow once usage crosses the configured warning threshold and red once usage reaches the assumed context window.
 
-<!-- TODO: add screenshot of the chat input with the token usage ring next to the send button, including a hover state showing the token breakdown tooltip. -->
+<img src="../../tokenusage-indicator.png" alt="Token Usage Indicator in the AI Chat input in the Theia IDE" style="max-width: 525px" />
 
 To turn the indicator on, enable the preference:
 
@@ -974,6 +972,8 @@ To enable the warning and adjust the threshold:
 ```
 
 The threshold is a percentage (`1`–`100`, default `80`) of the assumed context window. The same percentage drives the indicator's yellow color band, so the visual cue and the notification stay aligned.
+
+<img src="../../tokenusage-warning.png" alt="Token Usage Warning in the Theia IDE" style="max-width: 525px" />
 
 ## Task Context
 
@@ -1576,7 +1576,7 @@ To use the shell execution tool, you need to add it to an agent's available tool
 
 When the agent calls the shell execution tool, the confirmation dialog shows the command together with a short, agent-supplied **description** explaining what the command does. This makes approve/deny decisions easier and gives you a clearer audit trail of what the agent intended. Models occasionally omit the description; the dialog falls back to just the command in that case.
 
-<!-- TODO-MEDIA: screenshot - shell execution confirmation dialog with the description text shown above the command block. -->
+<img src="../../shellexecution-confirmation.png" alt="Shell execution confirmation dialog in the AI Chat in the Theia IDE" style="max-width: 525px">
 
 The confirmation dialog presents smart split buttons for both Allow and Deny actions, each with pattern-based suggestions derived from the actual command.
 
