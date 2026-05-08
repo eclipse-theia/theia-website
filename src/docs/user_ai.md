@@ -505,6 +505,10 @@ Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 poi
 
 The level-based translation takes precedence over raw values supplied via [Custom Request Settings](#custom-request-settings) for the same fields. If you need to set a provider-specific reasoning parameter manually through `ai-features.modelSettings.requestSettings`, set the corresponding reasoning level to `off` first so that the level-based translation does not overwrite your value.
 
+### A Note on Workspace Trust
+
+All AI features are gated by [Workspace Trust](/docs/workspace_trust/). In an untrusted workspace, the chat input, inline completion, and AI commands are disabled, workspace prompt templates are not loaded, and workspace-scoped AI preferences are ignored. The chat view shows an **AI Features are Restricted** message with a button that takes you to the trust dialog. See the dedicated [Workspace Trust](/docs/workspace_trust/#ai-features) page for the full list of AI restrictions and how to manage trust.
+
 ## Current Agents in the Theia IDE
 
 This section provides an overview of the currently available agents in the Theia IDE. Agents marked as "Chat Agents" are available in the global chat, while others are directly integrated into UI elements, such as code completion. You can configure and deactivate agents in the AI Configuration view.
