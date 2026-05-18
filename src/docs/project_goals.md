@@ -36,8 +36,7 @@ Theia is an extensible and adaptable framework. Extensibility in this context me
 
 Theia provides the ability to host VS Code extensions. This allows adopters to benefit from features that are provided as VS Code extensions and make them part of their tool offering. It also allows end users of Theia-based tools to install additional features, if the adopter providing a tool allows users to do so. When applicable, the default Theia UX aligns with the VS Code UI, although adopters can deviate from this.
 
-While Theia incorporates certain components from Visual Studio Code, such as the Monaco editor, it is independently developed with a unique, modular architecture, and is **not a fork of VS Code**. This distinction ensures that Theia remains a fully adaptable and customizable framework, offering adopters freedom to innovate. For a deeper comparison, see [Theia IDE vs VS Code](https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/) and [Eclipse Theia vs VS Code OSS](https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/).
-
+While Theia incorporates certain components from Visual Studio Code, such as the Monaco editor, it is independently developed with a unique, modular architecture, and is **NOT a fork of VS Code**. This distinction ensures that Theia remains a fully adaptable and customizable framework, offering adopters freedom to innovate. For a deeper comparison, see [Theia IDE vs VS Code](https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/) and [Eclipse Theia vs VS Code OSS](https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/).
 
 ## Use Standards And Don’t Reinvent The Wheel
 

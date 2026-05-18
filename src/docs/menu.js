@@ -65,6 +65,10 @@ export const MENU = [
         'user_toolbar'
     ),
     M(
+        'Workspace Trust',
+        'workspace_trust'
+    ),
+    M(
         'Data Usage & Telemetry',
         'data_usage_telemetry'
     ),

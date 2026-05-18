@@ -6,8 +6,8 @@ title: Building Custom AI assistants and AI support with Theia AI
 
 > **Note for end users**: This documentation is for **tool builders** who want to create AI capabilities in their own tools. If you're looking for the AI-powered Theia IDE as an **end user**, please see the [user documentation](/docs/user_ai/) or go to the [download page](/#theiaide) to get Theia IDE.
 
-This section explains how to build custom AI assistants and integrate AI support into custom tools and IDEs using Theia AI. Theia AI, part of the Theia Platform, is a powerful framework designed to help tool builders integrate tailored AI capabilities into their tools and IDEs with ease (see also [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/)). It provides reusable components, prompt management, LLM integration, and flexible user interfaces, allowing you to focus on delivering domain-specific AI features. This section is targeted at tool builders using Theia and Theia AI as a platform to build custom tools and IDEs. 
-For detailed information on how to use the experimental AI features in the Theia IDE as an end user, refer to the [user documentation](/docs/user_ai/). 
+This section explains how to build custom AI assistants and integrate AI support into custom tools and IDEs using Theia AI. Theia AI, part of the Theia Platform, is a powerful framework designed to help tool builders integrate tailored AI capabilities into their tools and IDEs with ease (see also [this Theia AI introduction](https://eclipsesource.com/blogs/2024/10/07/introducing-theia-ai/)). It provides reusable components, prompt management, LLM integration, and flexible user interfaces, allowing you to focus on delivering domain-specific AI features. This section is targeted at tool builders using Theia and Theia AI as a platform to build custom tools and IDEs.
+For detailed information on how to use the experimental AI features in the Theia IDE as an end user, refer to the [user documentation](/docs/user_ai/).
 To learn how to generally extend Theia by creating Theia extensions, including AI ones, visit the [extension authoring guide](/docs/authoring_extensions/).
 
 <img src="../../theia-ai-architecture.png" alt="High Level Architecture of Theia AI" style="max-width: 650px">
@@ -23,17 +23,17 @@ Learn more about Theia AI:
 ## Table of Contents
 
 - [Creating Agents with Theia AI](#creating-agents-with-theia-ai)
-  - [Creating an Agent](#creating-an-agent)
-  - [Creating a Chat Agent](#creating-a-chat-agent)
-  - [Agent Modes](#agent-modes)
-  - [Agent Capabilities](#agent-capabilities)
+    - [Creating an Agent](#creating-an-agent)
+    - [Creating a Chat Agent](#creating-a-chat-agent)
+    - [Agent Modes](#agent-modes)
+    - [Agent Capabilities](#agent-capabilities)
 - [Variables and Tool Functions](#variables-and-tool-functions)
-  - [Variables](#variables)
-    - [Agent-specific Variables](#agent-specific-variables)
-    - [Global Variables](#global-variables)
-    - [Chat Context Variables](#chat-context-variables)
-  - [Tool Functions](#tool-functions)
-  - [Slash Commands](#slash-commands)
+    - [Variables](#variables)
+        - [Agent-specific Variables](#agent-specific-variables)
+        - [Global Variables](#global-variables)
+        - [Chat Context Variables](#chat-context-variables)
+    - [Tool Functions](#tool-functions)
+    - [Slash Commands](#slash-commands)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
@@ -266,12 +266,11 @@ Begin List:
 End List
 ```
 
-If an agent uses agent-specific variables, it can decide to explicitly declare them. This enables one to keep track of used variables and optionally even show this information to the user (see example screenshot below). 
+If an agent uses agent-specific variables, it can decide to explicitly declare them. This enables one to keep track of used variables and optionally even show this information to the user (see example screenshot below).
 
 <img src="../../used-variables-command-agent.png" alt="Used variables in Theia AI" style="max-width: 525px">
 
 To declare an agent-specific variable, simply add it like this in the constructor of your agents, along with an optional description and whether it is used in the prompt fragment or not.
-
 
 ```ts
 this.agentSpecificVariables = [{
@@ -335,6 +334,10 @@ bind(AIVariableContribution).to(TodayVariableContribution).inSingletonScope();
 
 It can now be used in any prompt fragment, as well as in user requests.
 
+#### Product Name Variable for White-Labeled Products
+
+Theia AI ships with a global `productName` variable that resolves to the `applicationName` configured for your Theia application. The built-in agent prompts (Coder, Architect, Universal, Command, GitHub, App Tester, Claude Code) use `{{productName}}` so that when you white-label Theia under a different name, those agents automatically refer to your product. Adopters who write their own agent prompts can use `{{productName}}` the same way to keep their prompts product-name-agnostic.
+
 ### Chat Context Variables
 
 Theia AI supports attaching rich contextual information to chat requests via **context variables**. Unlike standard variables discussed above, which simply inject a value into the prompt, context variables provide both a `value` and a `contextValue`. The `value` is inserted at the position of the variable usage, while the `contextValue` is added to the `ChatRequestModel.context`—supplying additional data that the chat agent and underlying LLM can leverage for more informed responses.
@@ -371,27 +374,15 @@ Users can attach context elements to chat requests in several ways:
 
 Once attached, the context elements are displayed in the chat input to the user.
 
-#### Thinking Mode for Claude
+#### Reasoning
 
-Theia AI provides support for Claude's "thinking mode" (extended thinking). By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+Theia AI offers a provider-agnostic way to expose a model's reasoning capabilities to the user. Each language model description can declare a `reasoningSupport` property listing the supported levels (`off`, `minimal`, `low`, `medium`, `high`, `auto`) and an optional default. When a model declares support, the chat input automatically renders a reasoning selector next to the mode selector; otherwise the selector stays hidden. The selected level is carried on requests via the `reasoning` field of `UserRequest` / `CommonChatSessionSettings`, and it is the responsibility of each provider to translate the level into its native request shape (e.g. Anthropic adaptive thinking, OpenAI `reasoning.effort`, Gemini `thinkingConfig`).
 
-The corresponding request settings looks like this:
+Defaults can be configured via the `ai-features.reasoning.defaults` preference (scoped by provider, model, or agent). At request time the resolution order is: session override → persisted per-agent selection → most specific matching preference entry → model default.
 
-```json
-"thinking": {
-    "type": "enabled",
-    "budget_tokens": 8192
-}
-```
+The end-user view of this feature, including the available levels and provider-specific notes, is documented in [Reasoning](/docs/user_ai/#reasoning) in the user documentation. Adopters building their own tool on top of Theia AI may decide to expose the selector as-is, customize its rendering, or hide it entirely.
 
-As shown in the following video, we first ask the model a fairly difficult question without thinking mode enabled. It responds quickly but with an incorrect answer. We then switch to a new chat session and enable thinking mode via a chat-specific setting. This time, the model takes noticeably longer to respond. To keep the video short, we switch to a previously completed session with the same setting, and it arrives at the correct solution.
-
-<video controls>
-  <source src="../../thinking-mode-example.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
-
-As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
+> **Note for downstream adopters:** This replaces the previous thinking-mode toggle that was supported across providers. The `ThinkingModeSettings` type and the `thinkingMode` field on `UserRequest` and `CommonChatSessionSettings` have been removed in favor of `ReasoningSettings { level }` and the `reasoning` field. Custom language model providers should add a `reasoningSupport` and (where applicable) a `reasoningApi` property to their model descriptions and translate `request.reasoning?.level` to their native API in `getSettings()`.
 
 ##### Implementation Example: File Context Variable
 
@@ -818,7 +809,7 @@ Finally, the custom response renderer needs to be registered:
 bind(ChatResponsePartRenderer).to(CommandPartRenderer).inSingletonScope();
 ```
 
-By following the steps outlined, you can transform an LLM response into custom and optionally actionable UI controls within Theia AI. See [the Theia IDE documentation](https://theia-ide.org/docs/user_ai/#command-chat-agent) on how the example looks integrated in a tool. 
+By following the steps outlined, you can transform an LLM response into custom and optionally actionable UI controls within Theia AI. See [the Theia IDE documentation](https://theia-ide.org/docs/user_ai/#command-chat-agent) on how the example looks integrated in a tool.
 This approach enables users to interact with the AI-powered Chat UI more efficiently, e.g. allowing executing commands directly from the suggestions provided.
 
 ## Managing the State of a Chat Response
@@ -886,8 +877,8 @@ If you want to allow the user to configure the LLM provider, e.g. change the URL
 
 For further details, we recommend reviewing the available LLM provider in Theia AI:
 
-* [OpenAI LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai)
-* [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
+- [OpenAI LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai)
+- [Ollama LLM Provider](https://github.com/eclipse-theia/theia/tree/master/packages/ai-ollama)
 
 Please note that Theia AI currently does not provide a fixed contribution point for Language Models, yet. This is due to the fact that we are working on supporting more models and also capabilities of new LLMs are emerging at the moment, such as function calling and structured output. We plan to consolidate the LLM Provider interfaces within the next months while adding more LLM Providers to the core framework. We are happy for feedback and contributions in this area.
 
@@ -901,7 +892,19 @@ The default OAuth App configuration (including the client ID and OAuth endpoints
 
 ### Custom Authentication Setup
 
-To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom implementation of the Copilot authentication service with your own client ID. The default client ID is not configurable via preferences — it requires rebinding the authentication service in your backend dependency injection module.
+To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom OAuth configuration so the integration uses your client ID and endpoints instead of the Theia IDE defaults. This is not exposed as a preference because the client ID must be controlled by the product, not the user.
+
+In your backend module, rebind `CopilotOAuthConfig` to a constant value with your own configuration:
+
+```ts
+rebind(CopilotOAuthConfig).toConstantValue({
+    clientId: 'your-github-oauth-app-client-id',
+    // optional: override the OAuth endpoints if needed
+    // deviceCodeUrl, accessTokenUrl, scopes, ...
+});
+```
+
+The Copilot sign-in dialog also exposes its user-facing strings via the `CopilotAuthDialogMessages` binding. Rebind it in your frontend module if you want to use your own product name or copy in the dialog instead of the Theia defaults.
 
 ### GitHub Enterprise Configuration
 
@@ -974,6 +977,7 @@ override async invoke(request: ChatRequestModelImpl): Promise<void> {
 ```
 
 This example demonstrates how:
+
 - A change set is created
 - An example file element of all available types (add, modify, or delete) is added.
 - A proposed change is added to the change set for user review.
@@ -981,6 +985,7 @@ This example demonstrates how:
 Another example to look at is the [Theia Coder agent](/docs/theia_coder) which proposes file modifications using a change set. In this use case, the change set creation is embedded in a tool function that Coder provides to the LLM (see also the [full code](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/file-changeset-functions.ts)). So in this workflow, the LLM can directly create and augment change sets.
 
 ### Custom Change Set Elements
+
 Adopters can implement their own version of 'ChangeSetElement' to manage domain-specific changes while leveraging the existing review and approval workflow. This will still allow to use the generic change set and the default Chat UI provided by Theia AI. To provide custom type of 'ChangeSetElement', implement the respective interface and add your custom elements to the default change set.
 
 Custom change set element implementations are identified by a `uri`, have full control over their presentation (label, icon, additional information), and can specify whether and how actions, such as open, open change, accept and discard are implemented. See [`ChangeSetElement` interface](https://github.com/eclipse-theia/theia/blob/451464e6ea3d4aaf9cdbffd3d17dbb117787fc4e/packages/ai-chat/src/common/chat-model.ts#L100) for more details.

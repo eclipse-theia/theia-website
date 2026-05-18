@@ -1,0 +1,40 @@
+// If one would like to add/remove/modify user preferences without modifying the content of the
+// workspace settings file, then one would need to modify the `settings.json` under here:
+// - Windows: %APPDATA%\Code\User\settings.json
+// - Linux: $HOME/.config/Code/User/settings.json
+// - Mac: $HOME/Library/Application Support/Code/User/settings.json
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "search.exclude": {
+        "**/node_modules": true
+    },
+    "[json]": {
+        "editor.tabSize": 2
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "davidanson.vscode-markdownlint"
+    },
+    "markdownlint.config": {
+        "no-inline-html": {
+            "allowed_elements": [
+                "br",
+                "details",
+                "kbd",
+                "summary"
+            ]
+        },
+        "MD007": {
+            "indent": 4
+        },
+        "MD029": false,
+        "MD030": {
+            "ul_single": 1,
+            "ul_multi": 1
+        },
+        "MD046": false,
+        "MD025": false
+    }
+}

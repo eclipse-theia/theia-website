@@ -21,75 +21,76 @@ Learn more about the AI-powered Theia IDE:
 ## Table of Contents
 
 - [Set-Up](#set-up)
-  - [Setting API Keys](#setting-api-keys)
-  - [LLM Providers Overview](#llm-providers-overview)
-  - [Proxy Configuration](#proxy-configuration)
-  - [GitHub Copilot](#github-copilot)
-  - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
-  - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
-  - [Mistral](#mistral-models)
-  - [Azure](#azure)
-  - [Anthropic](#anthropic)
-  - [Google AI](#google-ai)
-  - [Ollama](#ollama)
-  - [Vercel AI](#vercel-ai)
-  - [Hugging Face](#hugging-face)
-  - [LlamaFile Models](#llamafile-models)
-  - [Custom Request Settings](#custom-request-settings)
-  - [Thinking Mode](#thinking-mode)
+    - [Setting API Keys](#setting-api-keys)
+    - [LLM Providers Overview](#llm-providers-overview)
+    - [Proxy Configuration](#proxy-configuration)
+    - [GitHub Copilot](#github-copilot)
+    - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
+    - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
+    - [Mistral](#mistral-models)
+    - [Azure](#azure)
+    - [Anthropic](#anthropic)
+    - [Google AI](#google-ai)
+    - [Ollama](#ollama)
+    - [Vercel AI](#vercel-ai)
+    - [Hugging Face](#hugging-face)
+    - [LlamaFile Models](#llamafile-models)
+    - [Custom Request Settings](#custom-request-settings)
+    - [Reasoning](#reasoning)
 - [Current Agents in the Theia IDE](#current-agents-in-the-theia-ide)
-  - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
-  - [Universal (Chat Agent)](#universal-chat-agent)
-  - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
-  - [Command (Chat Agent)](#command-chat-agent)
-  - [Architect (Chat Agent)](#architect-chat-agent)
-  - [Code Completion (Agent)](#code-completion-agent)
-  - [Terminal Assistance (Agent)](#terminal-assistance-agent)
-  - [App Tester (Chat Agent)](#app-tester-chat-agent)
-  - [Claude Code (Chat Agent)](#claude-code-chat-agent)
-  - [Project Info (Chat Agent)](#project-info-chat-agent)
-  - [CreateSkill (Chat Agent)](#createskill-agent)
-  - [GitHub (Chat Agent)](#github-chat-agent)
-- [Chat](#chat)
-  - [Chat Session History](#chat-session-history)
-  - [Starting Chat from the Editor](#starting-chat-from-the-editor)
-  - [Agent Pinning](#agent-pinning)
-  - [Mode Selection](#mode-selection)
-  - [Agent Capabilities](#agent-capabilities)
-  - [Image Support](#image-support)
-  - [Context Variables](#context-variables)
-  - [Editing Chat Requests](#editing-chat-requests)
+    - [Theia Coder (Chat Agent)](#theia-coder-chat-agent)
+    - [Universal (Chat Agent)](#universal-chat-agent)
+    - [Orchestrator (Chat Agent)](#orchestrator-chat-agent)
+    - [Command (Chat Agent)](#command-chat-agent)
+    - [Architect (Chat Agent)](#architect-chat-agent)
+    - [Code Completion (Agent)](#code-completion-agent)
+    - [Terminal Assistance (Agent)](#terminal-assistance-agent)
+    - [App Tester (Chat Agent)](#app-tester-chat-agent)
+    - [Claude Code (Chat Agent)](#claude-code-chat-agent)
+    - [Project Info (Chat Agent)](#project-info-chat-agent)
+    - [CreateSkill (Chat Agent)](#createskill-agent)
+    - [GitHub (Chat Agent)](#github-chat-agent)
+    - [PR Reviewer (Chat Agent)](#pr-reviewer-chat-agent)
+    - [Chat](#chat)
+    - [Chat Session History](#chat-session-history)
+    - [Starting Chat from the Editor](#starting-chat-from-the-editor)
+    - [Agent Pinning](#agent-pinning)
+    - [Mode Selection](#mode-selection)
+    - [Agent Capabilities](#agent-capabilities)
+    - [Image Support](#image-support)
+    - [Context Variables](#context-variables)
+    - [Editing Chat Requests](#editing-chat-requests)
+    - [Token Usage (Experimental)](#token-usage-experimental)
 - [Task Context](#task-context)
-  - [Set-up for Task Context](#set-up-for-task-context)
-  - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
-  - [Planning with the Architect Agent](#planning-with-the-architect-agent)
-  - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
-
+    - [Set-up for Task Context](#set-up-for-task-context)
+    - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
+    - [Planning with the Architect Agent](#planning-with-the-architect-agent)
+    - [Implementing with the Coder Agent](#implementing-with-the-coder-agent)
 - [AI Configuration](#ai-configuration)
-  - [View and Modify Prompts](#view-and-modify-prompts)
+    - [View and Modify Prompts](#view-and-modify-prompts)
 - [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)
 - [Prompt Fragments](#prompt-fragments)
 - [Slash Commands](#slash-commands)
 - [Custom Agents](#custom-agents)
 - [Agent-to-Agent Delegation](#agent-to-agent-delegation)
 - [Agent Skills (Alpha)](#agent-skills-alpha)
-  - [What are Skills?](#what-are-skills)
-  - [Using Skills](#using-skills)
-  - [Creating Skills](#creating-skills)
-  - [Skill Directories](#skill-directories)
-  - [CreateSkill Agent](#createskill-agent)
+    - [What are Skills?](#what-are-skills)
+    - [Using Skills](#using-skills)
+    - [Creating Skills](#creating-skills)
+    - [Skill Directories](#skill-directories)
+    - [CreateSkill Agent](#createskill-agent)
 - [MCP Integration](#mcp-integration)
-  - [Configuring MCP Servers](#configuring-mcp-servers)
-  - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
-  - [Using MCP Server Functions](#using-mcp-server-functions)
-  - [MCP Configuration View](#mcp-configuration-view)
+    - [Configuring MCP Servers](#configuring-mcp-servers)
+    - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
+    - [Using MCP Server Functions](#using-mcp-server-functions)
+    - [MCP Configuration View](#mcp-configuration-view)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
 - [Shell Execution Tool (Alpha)](#shell-execution-tool-alpha)
 - [SCANOSS](#scanoss)
-  - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
-  - [Manual Scanning](#manual-scanning)
-  - [Automatic Scanning](#automatic-scanning)
-  - [Understanding SCANOSS Results](#understanding-scanoss-results)
+    - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
+    - [Manual Scanning](#manual-scanning)
+    - [Automatic Scanning](#automatic-scanning)
+    - [Understanding SCANOSS Results](#understanding-scanoss-results)
 - [AI History](#ai-history)
 - [Learn more](#learn-more)
 
@@ -468,7 +469,7 @@ Add the settings in `settings.json`:
 
 In addition to global custom request settings, Theia AI also supports an experimental feature that allows you to define custom request settings per individual chat session. This adds flexibility by enabling on-the-fly adjustments within a single conversation.
 
-You can click an icon in the top-right corner of a chat window to access this functionality. Settings must currently be entered manually as JSON text. For example, you can adjust the temperature parameter for a particular session to make the language model more or less creative:
+Open the chat view's overflow menu (the **…** button in the top-right of the chat view toolbar) and choose **Set Session Settings…** to open the dialog. Settings must currently be entered manually as JSON text. For example, you can adjust the temperature parameter for a particular session to make the language model more or less creative:
 
 ```json
 {
@@ -480,26 +481,33 @@ The video below demonstrates how adjusting the temperature parameter for the The
 
 <video src="../../effect-of-temperature.webm" controls style="max-width: 100%;"></video>
 
-This feature also unlocks the ability to use provider-specific parameters, such as Claude's new "thinking mode," which is discussed in the following section. Future updates are expected to improve the default user interface, especially for commonly used settings.
+This feature also unlocks the ability to use provider-specific parameters that are not yet exposed through dedicated UI controls. Future updates are expected to improve the default user interface, especially for commonly used settings.
 
-### Thinking Mode
+### Reasoning
 
-Theia AI provides support for Claude's "thinking mode" (extended thinking). By setting a custom request parameter—either globally or for a specific chat session—you can instruct the model to "think more." This is particularly useful for more difficult questions and shows its strengths when using agents like the Architect or Theia Coder on complex coding tasks.
+Many modern LLMs can be instructed to spend more or less effort "thinking" about a request before answering. The Theia IDE exposes this through a **reasoning selector** that appears in the chat input next to the chat mode selector — but only when the model assigned to the receiving agent supports reasoning. The selector is shown as a small lightbulb icon whose appearance reflects the currently selected level.
 
-<video src="../../thinking-mode-example.webm" controls style="max-width: 100%;"></video>
+<img src="../../reasoning-selector.png" alt="Reasoning selector in the AI Chat input in the Theia IDE" style="max-width: 525px">
 
-To enable thinking mode, you need to add the following custom request setting:
+Six levels are available, ordered from no reasoning to maximum effort: **Off**, **Minimal**, **Low**, **Medium**, **High**, and **Auto** (let the model decide). Higher levels typically produce better answers on complex problems but increase latency and token usage. The levels are provider-agnostic — each provider translates the chosen value to its native API at request time (for example Anthropic's adaptive or extended thinking, OpenAI's `reasoning.effort`, or Gemini's `thinkingConfig`). Not every provider supports every level; for instance OpenAI's GPT-5 family supports `Minimal`, while the o-series does not.
+
+When you change the level via the selector, the choice is automatically remembered for the receiving agent and restored the next time you open a session with that agent. To configure a default for a specific provider, model, or agent without touching the UI, add an entry to the `ai-features.reasoning.defaults` preference:
 
 ```json
-"thinking": { "type": "enabled", "budget_tokens": 8192 }
+"ai-features.reasoning.defaults": [
+    { "scope": { "providerId": "anthropic" }, "reasoning": { "level": "medium" } },
+    { "scope": { "modelId": "openai/gpt-5" }, "reasoning": { "level": "high" } },
+    { "scope": { "agentId": "Coder" }, "reasoning": { "level": "off" } }
+]
 ```
 
-You can configure this setting either:
+Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent.
 
-- Globally through the model settings (as described in the [Custom Request Settings](#custom-request-settings) section)
-- For a specific chat session using the chat-specific settings icon in the chat window
+The level-based translation takes precedence over raw values supplied via [Custom Request Settings](#custom-request-settings) for the same fields. If you need to set a provider-specific reasoning parameter manually through `ai-features.modelSettings.requestSettings`, set the corresponding reasoning level to `off` first so that the level-based translation does not overwrite your value.
 
-As mentioned in the previous section, the UI for chat-specific settings is currently experimental. We aim to improve its usability in the future, including making options like enabling thinking mode more accessible. If you build a custom tool based on Theia AI, you might want to introduce your own specific way of exposing thinking mode to your users anyways or not expose it at all.
+### A Note on Workspace Trust
+
+All AI features are gated by [Workspace Trust](/docs/workspace_trust/). In an untrusted workspace, the chat input, inline completion, and AI commands are disabled, workspace prompt templates are not loaded, and workspace-scoped AI preferences are ignored. The chat view shows an **AI Features are Restricted** message with a button that takes you to the trust dialog. See the dedicated [Workspace Trust](/docs/workspace_trust/#ai-features) page for the full list of AI restrictions and how to manage trust.
 
 ## Current Agents in the Theia IDE
 
@@ -731,6 +739,43 @@ To use it, mention the Coder agent and type the command:
 
 These commands require the GitHub MCP server to be configured with a valid access token. If the server is not yet set up, the GitHub agent will guide you through the configuration process.
 
+### PR Reviewer (Chat Agent)
+
+**Note: This agent is currently in alpha state and marked as such in the agent list.**
+
+The PR Reviewer agent (`@pr-reviewer`) walks through a complete pull request review for you: it fetches the PR from GitHub, checks out the branch locally, builds the project, explores the relevant parts of the codebase, performs a structured review of the changes, and then guides you through the findings step by step. At the end, it can create a pending review on GitHub for you to inspect and submit manually.
+
+The agent orchestrates several other agents and tools to do this. It delegates GitHub interactions to the [GitHub agent](#github-chat-agent), codebase exploration to a dedicated Explore agent, and uses the workspace tools to read files, check diagnostics and search the code. It does **not** submit the review on its own — the final submit step is always left to you.
+
+**Prerequisites:**
+
+- The [GitHub agent](#github-chat-agent) must be configured and the GitHub MCP server must be running, since the PR Reviewer delegates all GitHub operations to it.
+- The `gh` CLI is recommended for the local checkout step, but a raw `git` fallback is used if it is not available.
+- Because the agent checks out the PR branch and builds the project locally, it will switch branches and may stash uncommitted changes. It always asks for confirmation before doing so and restores your original branch (and stashed changes) at the end.
+
+**Usage:**
+
+Mention the agent in the chat and reference the PR you want reviewed, for example:
+
+> @pr-reviewer Review PR 1234
+
+If you do not provide a PR number, the agent tries to detect the PR associated with the current branch via `gh pr view`, otherwise it asks you for the number.
+
+The agent then walks through the review in clearly labelled phases (fetching PR information, local setup and build, codebase exploration, performing the review). It tracks its progress in a task context file (the "review plan") that opens in the editor and is updated as the review progresses, so you can follow along and intervene at any time.
+
+**Interactive walkthrough:**
+
+Once the review is prepared, the agent presents its findings in a multi-step wizard inside the chat. For each finding you can:
+
+- Open the corresponding diff or file directly from the wizard step
+- **Confirm** the finding (it is a real issue) or **Reject** it (the code is fine as-is)
+- Add free-text comments that are passed back to the agent
+- Skip findings or navigate back and forth between steps
+
+After the walkthrough, the agent asks whether you want to create a pending review on GitHub. If you accept, it adds the confirmed findings as inline comments on a pending review which you can then inspect, edit, and submit through the GitHub UI. If you decline, the review plan stays in your workspace as a record of the analysis.
+
+Finally, the agent restores your original branch and any stashed changes so your workspace is left in the same state as before the review.
+
 ## Chat
 
 The Theia IDE provides a global chat interface where users can interact with all chat agents. If you do not explicitly mention an agent using the `@` symbol (e.g., `@Coder`), your request will be sent to the configured default agent. You can configure your preferred default agent in the settings under "AI Features" => "Chat: Default Agent". Press `@` in the chat to see a list of available chat agents and to talk to a specific agent directly.
@@ -877,6 +922,7 @@ Here are some example of the most frequently used variable, you can see the full
 - `#currentRelativeFilePath` – The relative path of the currently selected file (in the editor or explorer)
 - `#currentRelativeDirPath` – The directory path of the currently selected file
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
+- `#productName` – The name of the product/application you are working in. Resolves to the IDE's configured application name, which is useful when adopters white-label Theia under a different product name. The built-in agent prompts also use this variable so they refer to the actual product.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
@@ -891,6 +937,43 @@ To use this feature, click the edit icon located next to each message you send i
 Below is a screenshot depicting the edit button and options to switch between conversation branches:
 
 <img src="../../edit-request.png" alt="Edit Chat Request in the Theia IDE" style="max-width: 525px" />
+
+### Token Usage (Experimental)
+
+**Note:** The features described in this section are experimental. They currently assume a fixed 200k token context window for every model; once the real per-model context size is available, the calculations will switch over automatically. Both features also depend on the language model provider reporting token counts, so they will not display anything for providers that do not.
+
+The Theia IDE can visualize and warn about a session's token usage right in the chat input.
+
+#### Token Usage Indicator
+
+When enabled, a compact circular progress ring appears next to the send button and fills proportionally to the session's current token usage. Hovering it shows a tooltip with a breakdown by input, output, and cached tokens. The chat input border tints yellow once usage crosses the configured warning threshold and red once usage reaches the assumed context window.
+
+<img src="../../tokenusage-indicator.png" alt="Token Usage Indicator in the AI Chat input in the Theia IDE" style="max-width: 525px" />
+
+To turn the indicator on, enable the preference:
+
+```json
+{
+    "ai-features.chat.tokenUsageIndicator.enabled": true
+}
+```
+
+#### Token Usage Warning
+
+A dismissable notification can be shown when a session's usage crosses the warning threshold, offering quick actions to compact the current session (summarize-and-continue) or start a new chat. The warning fires once per threshold crossing and re-arms after usage drops below the threshold and crosses it again, for example after compacting.
+
+To enable the warning and adjust the threshold:
+
+```json
+{
+    "ai-features.chat.tokenUsageWarning.enabled": true,
+    "ai-features.chat.tokenUsageWarning.defaultThresholdPercentage": 80
+}
+```
+
+The threshold is a percentage (`1`–`100`, default `80`) of the assumed context window. The same percentage drives the indicator's yellow color band, so the visual cue and the notification stay aligned.
+
+<img src="../../tokenusage-warning.png" alt="Token Usage Warning in the Theia IDE" style="max-width: 525px" />
 
 ## Task Context
 
@@ -1124,7 +1207,7 @@ Next, a YAML file will be opened where all available custom agents in a specific
   name: Obfuscator
   description: This is an example agent. Please adapt the properties to fit your needs.
   prompt: Obfuscate the following code so that no human can understand it anymore. Preserve the functionality.
-  defaultLLM: openai/gpt-4o
+  defaultLLM: default/universal
 ```
 
 - id: A unique identifier for the agent.
@@ -1150,6 +1233,7 @@ The delegation system allows agents to:
 - **Delegate specialized tasks**: One agent can hand off specific work to another agent that's better suited for the task
 - **Chain workflows**: Create complex, multi-step processes by connecting different agents
 - **Maintain context**: The delegating agent can pass along necessary context and continue its work after delegation
+- **Pass along a [Task Context](#task-context)**: When delegating, the delegating agent can hand over a specific task context so the receiving agent works against the same plan. This is what powers the "Execute with Coder" handoff from the Architect's Plan Mode — the Coder receives the implementation plan as part of its session.
 - **Automate repetitive tasks**: Set up workflows where routine tasks are automatically handled by specialized agents
 
 ### Using the Delegation Function
@@ -1489,6 +1573,10 @@ To use the shell execution tool, you need to add it to an agent's available tool
 2. **Per-agent**: Modify the agent's prompt template to include `~{shellExecute}`, making it permanently available for that agent.
 
 ### How It Works
+
+When the agent calls the shell execution tool, the confirmation dialog shows the command together with a short, agent-supplied **description** explaining what the command does. This makes approve/deny decisions easier and gives you a clearer audit trail of what the agent intended. Models occasionally omit the description; the dialog falls back to just the command in that case.
+
+<img src="../../shellexecution-confirmation.png" alt="Shell execution confirmation dialog in the AI Chat in the Theia IDE" style="max-width: 525px">
 
 The confirmation dialog presents smart split buttons for both Allow and Deny actions, each with pattern-based suggestions derived from the actual command.
 
