@@ -747,6 +747,10 @@ The PR Reviewer agent (`@pr-reviewer`) walks through a complete pull request rev
 
 The agent orchestrates several other agents and tools to do this. It delegates GitHub interactions to the [GitHub agent](#github-chat-agent), codebase exploration to a dedicated Explore agent, and uses the workspace tools to read files, check diagnostics and search the code. It does **not** submit the review on its own — the final submit step is always left to you.
 
+The following video shows the PR Reviewer in action, more details below:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/OeMimaDYzD8?si=sNH0apLRHZ_fe7fO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 **Prerequisites:**
 
 - The [GitHub agent](#github-chat-agent) must be configured and the GitHub MCP server must be running, since the PR Reviewer delegates all GitHub operations to it.
@@ -775,6 +779,7 @@ Once the review is prepared, the agent presents its findings in a multi-step wiz
 After the walkthrough, the agent asks whether you want to create a pending review on GitHub. If you accept, it adds the confirmed findings as inline comments on a pending review which you can then inspect, edit, and submit through the GitHub UI. If you decline, the review plan stays in your workspace as a record of the analysis.
 
 Finally, the agent restores your original branch and any stashed changes so your workspace is left in the same state as before the review.
+
 
 ## Chat
 
