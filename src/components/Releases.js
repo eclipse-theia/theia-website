@@ -79,6 +79,8 @@ const communityReleases = [
         technologiesin: 'June 4th, 2026',
         releaseanouncement: 'June 11th, 2026',
         announcementurl: '',
+        npmVersion: '1.71.2',
+        npmUrl: 'https://www.npmjs.com/package/@theia/core/v/1.71.2',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
@@ -1117,13 +1119,14 @@ const Releases = () => (
         <div className='row'>
             <h1 className='heading-primary'>Community Releases</h1>
         </div>
-        {communityReleases.map(({ name, frameworks, releasedate, releasecandidatedate, technologiesin, releaseanouncement, announcementurl }, i) => {
+        {communityReleases.map(({ name, frameworks, releasedate, releasecandidatedate, technologiesin, releaseanouncement, announcementurl, npmVersion, npmUrl }, i) => {
             return (
                 <section key={i} className="category row" id="frameworks">
                     <h2 className="heading-secondary">{name}</h2>
                     <p>Community Release Candidate: <b>{releasecandidatedate}</b></p>
                     <p>Community Release Available: <b>{releasedate}</b></p>
                     <p>Compatible Technologies Listed: <b>{technologiesin}</b></p>
+                    {npmVersion && <p>Latest npm version: <b>{npmUrl ? <a href={npmUrl}>{npmVersion}</a> : npmVersion}</b></p>}
                     <p><a href={announcementurl}>Community Release Announcement</a>: <b>{releaseanouncement}</b></p>
                     <br></br>
                     <p><h3 className="heading-tertiary"><b>Compatible Technologies:</b></h3></p>
