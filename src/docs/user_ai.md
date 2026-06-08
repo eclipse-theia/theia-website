@@ -85,6 +85,9 @@ Learn more about the AI-powered Theia IDE:
     - [Using MCP Server Functions](#using-mcp-server-functions)
     - [MCP Configuration View](#mcp-configuration-view)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
+- [Workspace Handling](#workspace-handling)
+    - [Multi-Root Workspaces and AI Agents](#multi-root-workspaces-and-ai-agents)
+    - [Allowing AI Tools to Read Files Outside the Workspace](#allowing-ai-tools-to-read-files-outside-the-workspace)
 - [Shell Execution Tool (Alpha)](#shell-execution-tool-alpha)
 - [SCANOSS](#scanoss)
     - [Configure SCANOSS in the Theia IDE](#configure-scanoss-in-the-theia-ide)
@@ -780,7 +783,6 @@ After the walkthrough, the agent asks whether you want to create a pending revie
 
 Finally, the agent restores your original branch and any stashed changes so your workspace is left in the same state as before the review.
 
-
 ## Chat
 
 The Theia IDE provides a global chat interface where users can interact with all chat agents. If you do not explicitly mention an agent using the `@` symbol (e.g., `@Coder`), your request will be sent to the configured default agent. You can configure your preferred default agent in the settings under "AI Features" => "Chat: Default Agent". Press `@` in the chat to see a list of available chat agents and to talk to a specific agent directly.
@@ -928,6 +930,7 @@ Here are some example of the most frequently used variable, you can see the full
 - `#currentRelativeDirPath` – The directory path of the currently selected file
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 - `#productName` – The name of the product/application you are working in. Resolves to the IDE's configured application name, which is useful when adopters white-label Theia under a different product name. The built-in agent prompts also use this variable so they refer to the actual product.
+- `#terminalCommand` – A command that was executed in the terminal together with its output. Without an argument it resolves to the last command in the most recently used terminal. With an integer argument (e.g. `#terminalCommand:2`) it resolves to the corresponding entry from the terminal's command history. When you type `#terminalCommand` and trigger the argument picker, the IDE shows a searchable list of recent commands so you can attach a specific one. This variable depends on the experimental command history of the integrated terminal. Enable `Terminal › Integrated: Enable Command History` for the best results; otherwise the variable falls back to the last 50 lines of the terminal buffer.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
@@ -945,7 +948,7 @@ Below is a screenshot depicting the edit button and options to switch between co
 
 ### Token Usage (Experimental)
 
-**Note:** The features described in this section are experimental. They currently assume a fixed 200k token context window for every model; once the real per-model context size is available, the calculations will switch over automatically. Both features also depend on the language model provider reporting token counts, so they will not display anything for providers that do not.
+**Note:** The features described in this section are experimental. They depend on the language model provider reporting token counts, so they will not display anything for providers that do not. Both the indicator and the warning scale to the actual context window of the model assigned to the receiving agent (for example the real `maxInputTokens` reported by Anthropic and Google for their models, or the value declared in `openai-model-defaults.ts` for OpenAI models).
 
 The Theia IDE can visualize and warn about a session's token usage right in the chat input.
 
@@ -976,7 +979,7 @@ To enable the warning and adjust the threshold:
 }
 ```
 
-The threshold is a percentage (`1`–`100`, default `80`) of the assumed context window. The same percentage drives the indicator's yellow color band, so the visual cue and the notification stay aligned.
+The threshold is a percentage (`1`–`100`, default `80`) of the active model's context window. The same percentage drives the indicator's yellow color band, so the visual cue and the notification stay aligned.
 
 <img src="../../tokenusage-warning.png" alt="Token Usage Warning in the Theia IDE" style="max-width: 525px" />
 
@@ -1047,6 +1050,16 @@ The AI Configuration View allows you to review and adapt agent-specific settings
 - **Edit Prompts**: Click "Edit" to open the prompt template editor, where you can customize the agent's prompts (see the section below). "Reset" will revert the prompt to its default.
 - **Language Model**: Select which language model the agent sends its requests to. Some agents have multiple "purposes," allowing you to select a model for each purpose.
 - **Variables and Functions**: Review the variables and functions used by an agent. Global variables are shared across agents, and they are listed in the second tab of the AI Configuration View. Agent-specific variables are declared and used exclusively by one agent.
+
+Many agents are bound to a **model alias** instead of a concrete model ID, which lets you point several agents at the same backing model from one place. The IDE ships with the following aliases:
+
+- `default/universal`: conversational chat, default for the Universal agent and most general-purpose interactions.
+- `default/code`: coding-focused tasks, default for the Coder agent.
+- `default/code-completion`: inline code completion (kept separate so you can pin a smaller, latency-optimized model here).
+- `default/summarize`: chat summarization, used for example when compacting a session.
+- `default/fast`: cheaper or faster models for sub-tasks that do not require deep reasoning, such as exploration, basic tool calling, command lookup, project-info maintenance and chat-session naming. It defaults to Claude Haiku 4.5, GPT-5.4 mini and Gemini 3 Flash.
+
+You can configure which concrete model each alias resolves to in the **Models** tab of the AI Configuration view. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
 
 <img src="../../ai-configuration-view.png" alt="AI Configuration View in the Theia IDE" style="max-width: 800px">
 
@@ -1498,6 +1511,8 @@ When a server starts, a notification is displayed confirming the operation, and 
 You can also set a MCP server to 'autostart' in the settings (true by default), this will take effect on the next restart of your IDE.
 Please note that in a browser deployment MCP servers are scoped per connection, i.e. if you manually start them, you need to start them once per browser tab.
 
+When you remove a server from `ai-features.mcp.mcpServers`, the IDE now stops it cleanly and unregisters its tools and prompt fragments from the active session, so agent capabilities that referenced that server no longer show stale entries. The selections under `ai-features.agentSettings` are kept untouched on purpose: if you add the server back, agents that referenced its tools pick them up again automatically.
+
 ### Using MCP Server Functions
 
 Once a server is running, its functions can be invoked in prompts using the following syntax:
@@ -1545,13 +1560,15 @@ The Theia IDE provides a flexible and user-configurable tool call confirmation s
 
 - **Disabled**: The tool cannot be executed.
 - **Confirm**: You are prompted for approval each time the tool is called.
-- **Always Allow (Default)**: The tool is executed immediately without confirmation.
+- **Always Allow**: The tool is executed immediately without confirmation.
+
+The global default for tools that do not have their own entry is **Confirm**. This is the safer default for agent workflows; you can flip it to *Always Allow* once you trust the agents and tools you work with.
 
 ### Configuration
 
-1. Open the AI configuration view and switch to the "Tools" tab
-2. You can set the global default on top
-3. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow).
+1. Open the AI configuration view and switch to the "Tools" tab.
+2. Set the global default on top. The selection is persisted in the dedicated preference `ai-features.chat.defaultToolConfirmation` and is also editable from the standard settings UI.
+3. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow). Per-tool entries are stored under `ai-features.chat.toolConfirmation` keyed by tool ID.
 4. When a tool requires confirmation in the chat, you can choose to:
    - Allow once
    - Allow for the current session
@@ -1560,9 +1577,50 @@ The Theia IDE provides a flexible and user-configurable tool call confirmation s
    - Deny for the session
    - Always deny (disables the tool)
 
+The confirmation dialog also shows the tool's description (when the tool provides one) and a collapsible **arguments** block. The summary line gives you a one-line preview of the arguments; expanding it reveals the formatted parameters, which is useful for tools like "create pull request" where the body and target really matter for the approve/deny decision.
+
+> **Migration note:** The previous magic key `"*"` inside `ai-features.chat.toolConfirmation` is not honored. Migrate any global override to the new `ai-features.chat.defaultToolConfirmation` preference. Tools that explicitly require confirmation before being auto-approved (for example shell execution) still default to *Confirm* regardless of the global default, so you have to opt them in individually.
+
 The following video demonstrates how to set a GitHub MCP server function to "confirm" mode, which then prompts the user for permission when an agent attempts to use it:
 
 <video controls src="../../tool-functions-access-control.webm" alt="Tool Call Confirmation UI Demonstration" style="max-width: 100%"></video>
+
+## Workspace Handling
+
+This section covers how AI agents interact with your workspace, including multi-root workspaces and access to locations outside the workspace.
+
+### Multi-Root Workspaces and AI Agents
+
+The AI agents that ship with the IDE understand multi-root workspaces. The agents see all workspace roots, and paths in their tool calls and results use the convention `<rootName>/<relativePath>` (for example `client/src/index.ts`). In a single-root workspace, plain relative paths continue to work and you do not need to change anything.
+
+A few user-visible consequences of the convention:
+
+- File paths that the agent shows you, asks about, or writes back into changesets are prefixed with the workspace-root name. The Coder's change set entries and the Architect's task context files use the same convention, so plans created against a multi-root workspace stay unambiguous.
+- When the same task or launch configuration name exists in more than one root, the agent asks you which root to use before executing it. You can also pass a `workspaceRoot` parameter yourself when invoking a task or launch via the agent.
+- The shell-execution tool (`~shellExecute`) requires a `cwd` value. The agent resolves the working directory against the workspace roots, so providing the root name (e.g. `cwd: "server"`) or an absolute path always works.
+
+### Allowing AI Tools to Read Files Outside the Workspace
+
+By default, the read-only AI tools (`getFileContent`, `getWorkspaceFileList`, `getWorkspaceDirectoryStructure`, and `findFilesByPattern`) are restricted to your workspace roots. You can opt in to letting these tools read additional locations on your machine by listing them in the preference `ai-features.workspaceFunctions.allowedExternalPaths`. The list is empty by default, so without an explicit entry the tools stay workspace-only.
+
+The preference accepts absolute paths or `file://` URIs. `~` is expanded to your home directory.
+
+```json
+{
+    "ai-features.workspaceFunctions.allowedExternalPaths": [
+        "~/reference-docs",
+        "/shared/architecture-notes"
+    ]
+}
+```
+
+Once a directory is on the list, agents can pass an absolute path or `file://` URI to `getFileContent` and `getWorkspaceFileList`, or supply a `root` / `searchRoot` argument to `getWorkspaceDirectoryStructure` and `findFilesByPattern` to scope the call to that directory.
+
+The scope check rejects path traversal (`/external/configs/../secrets`) and sibling-prefix matches (`/external/configs-other` is not covered by `/external/configs`). It does not canonicalize symbolic links, so only allow-list directories whose contents you trust.
+
+Write tools (`writeFileContent`, `suggestFileContent`) and `getFileDiagnostics` remain strictly workspace-scoped regardless of this preference. The setting itself is also gated by [Workspace Trust](/docs/workspace_trust/): a workspace-scoped override is ignored while the workspace is untrusted, so an untrusted folder cannot widen the AI's reach beyond your user settings.
+
+If you build your own agents on top of Theia AI, see the [Theia AI documentation](/docs/theia_ai/) for the developer-facing implications.
 
 ## Shell Execution Tool (Alpha)
 
