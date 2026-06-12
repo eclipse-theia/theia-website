@@ -36,6 +36,8 @@ The dialog summarizes the trade-off: if you trust the authors, code in the folde
 
 <img src="../../workspace-trust-dialog.png" alt="Workspace Trust Warning in the Theia IDE" style="max-width: 525px" />
 
+The dialog lays out what trusting or not trusting the folder means in concrete terms (tasks, debugging, extensions, AI features) and links to this page via a *Learn more* link for the full list of restrictions.
+
 You have two choices:
 
 - **Yes, I trust the authors** &mdash; the folder is added to your list of trusted folders. All features are enabled and the decision is remembered for future sessions.
@@ -50,7 +52,7 @@ Whenever the current workspace is not trusted, a **Restricted Mode** indicator a
 <img src="../../workspace-trust-restricted-mode.png" alt="Workspace Trust Restricted Mode Indicator in the Theia IDE" style="max-width: 525px" />
 
 - The item uses the prominent status bar styling so it stays visible.
-- Hovering it opens a tooltip that explains why some features are disabled and lists the active restrictions (for example, which extensions were skipped or that AI features are off). Different parts of the IDE plug into this tooltip, so the tooltip reflects what is actually being held back in your current setup.
+- Hovering it opens a tooltip that explains why some features are disabled and lists the active restrictions (for example, which extensions were skipped or that AI features are off). Different parts of the IDE plug into this tooltip, so it reflects what is actually being held back in your current setup. Links inside the tooltip (for example to this documentation page or to the **Manage Workspace Trust** command) are clickable.
 - Clicking the item opens the **Manage Workspace Trust** quick pick (see below), so you can review and change the decision in one click.
 
 When the workspace is trusted, the indicator is hidden. There is no separate "Workspace Trust" page in Theia today &mdash; the status bar item, its tooltip, and the management command are the central entry points.

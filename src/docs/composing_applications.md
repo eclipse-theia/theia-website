@@ -148,6 +148,14 @@ yarn build:electron
 yarn start:electron
 ```
 
+## Choosing a Bundler: webpack or esbuild
+
+`@theia/cli` supports two bundlers for `theia build`. The webpack pipeline is the default. As an alternative, `@theia/cli` also ships an [esbuild](https://esbuild.github.io/)-based pipeline that is roughly ten times faster. The webpack option will be deprecated and eventually removed, so adopters are encouraged to migrate.
+
+To opt into esbuild for an application, delete its `webpack.config.js`; the next build will generate an `esbuild.mjs` automatically. If you had customizations in `webpack.config.js`, port them to the generated `esbuild.mjs`. Note that as part of this change, the `@theia/native-webpack-plugin` dependency was renamed to `@theia/bundle-plugin`.
+
+For the full migration steps, see the [ESBuild section in the Theia Migration Guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md#general) and the introducing pull request [eclipse-theia/theia#14414](https://github.com/eclipse-theia/theia/pull/14414).
+
 ## Conclusion
 
 In this guide, we have demonstrated how to set-up your own custom Theia application. The next typical steps are:

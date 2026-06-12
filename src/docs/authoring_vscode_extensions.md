@@ -20,6 +20,8 @@ The steps for deploying VS Code extensions apply not only to VS Code extensions 
 As VS Code extensions can be used in Theia without further modification, you can refer to the [documentation on extending VS Code](https://code.visualstudio.com/api) to learn more about creating extensions for VS Code as well as for Theia.
 The easiest way to get started is to use the [VS Code Extension Generator](https://www.npmjs.com/package/generator-code) and follow the [Getting Started Guide](https://code.visualstudio.com/api/get-started/your-first-extension).
 
+Since Theia 1.72, VS Code extensions delivered as **ECMAScript Modules** (ESM) are supported. Extensions whose entry point ends in `.mjs`, or whose `package.json` declares `"type": "module"`, are loaded via dynamic `import()`. The `import 'vscode'` resolution is wired up by an internal Node loader hook, so both CommonJS and named ESM imports (`import { commands, window } from 'vscode'`) work without any changes on the extension side. ESM-based built-ins such as the GitHub authentication extension load correctly out of the box.
+
 As an example, let's generate the hello world extension.
 
 ```bash
@@ -35,6 +37,35 @@ vsce package # package your VS Code extension
 
 As a result, a `vsix` file is generated, which can be used directly in VS Code. For Theia, the extension can be installed at runtime by users (see [Installing VS Code Extensions at Runtime](#installing-vs-code-extensions-at-runtime)), downloaded automatically at build time from a registry (see [Pre-installing VS Code Extensions](#pre-installing-vs-code-extensions)), or manually unpacked for pre-installation.
 Please note that you can also create so-called extension packs with the VS Code extension generator that defines a collection of extensions.
+
+### Conditional View Containers via `when` Clauses
+
+VS Code's `contributes.viewsContainers` entries support an optional `when` clause that controls visibility based on context keys. Theia honors this field: a container with a `when` clause that evaluates to `false` is not attached, does not appear in the View menu or the *Open View* quick pick, and is automatically created or disposed as the underlying context keys change. This is useful for extensions that contribute mutually exclusive containers (for example one for the primary sidebar and one for the secondary sidebar guarded by negated context keys), so that only the active one is shown.
+
+```jsonc
+{
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "my-sidebar",
+                    "title": "My View",
+                    "icon": "resources/icon.svg",
+                    "when": "!myExtension.useSecondarySidebar"
+                }
+            ],
+            "panel": [
+                {
+                    "id": "my-sidebar-secondary",
+                    "title": "My View",
+                    "icon": "resources/icon.svg",
+                    "when": "myExtension.useSecondarySidebar"
+                }
+            ]
+        }
+    }
+}
+```
 
 ## Prerequisites for Running VS Code Extensions in Theia
 
