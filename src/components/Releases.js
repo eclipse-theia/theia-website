@@ -73,6 +73,61 @@ heading-primary {
 
 const communityReleases = [
     {
+        name: 'Theia 1.74.x (2026-08) - planned',
+        releasedate: 'August 27th, 2026',
+        releasecandidatedate: 'July 30th, 2026',
+        technologiesin: 'September 7th, 2026',
+        releaseanouncement: 'September 14th, 2026',
+        announcementurl: '',
+        npmVersion: '',
+        npmUrl: '',
+        frameworks: [
+            {
+                title: 'Eclipse GLSP',
+                url: 'https://www.eclipse.dev/glsp/',
+                version: 'TBD',
+                modules: [
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration' }
+                ]
+            },
+            {
+                title: 'Eclipse EMF cloud',
+                url: 'https://www.eclipse.dev/emfcloud/',
+                version: 'TBD',
+                modules: [
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view' }
+                ]
+            },
+            {
+                title: 'Eclipse Sprotty',
+                url: 'https://www.eclipse.dev/sprotty/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Eclipse CDT Cloud Debug Adapter',
+                url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
+                version: 'TBD',
+                modules: [
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter' }
+                ]
+            },
+            {
+                title: 'Langium',
+                url: 'https://langium.org/',
+                version: 'TBD',
+                modules: []
+            },
+            {
+                title: 'Trace Viewer for VSCode',
+                url: 'https://open-vsx.org/extension/eclipse-cdt/vscode-trace-extension',
+                version: 'TBD',
+                modules: []
+            }
+        ]
+    },
+    {
         name: 'Theia 1.71.x (2026-05) - planned',
         releasedate: 'May 28th, 2026',
         releasecandidatedate: 'April 30th, 2026',
