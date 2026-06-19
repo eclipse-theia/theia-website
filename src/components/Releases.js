@@ -128,12 +128,12 @@ const communityReleases = [
         ]
     },
     {
-        name: 'Theia 1.71.x (2026-05) - planned',
+        name: 'Theia 1.71.x (2026-05) - published',
         releasedate: 'May 28th, 2026',
         releasecandidatedate: 'April 30th, 2026',
         technologiesin: 'June 4th, 2026',
-        releaseanouncement: 'June 11th, 2026',
-        announcementurl: '',
+        releaseanouncement: 'June 19th, 2026',
+        announcementurl: 'https://eclipsesource.com/blogs/2026/06/19/the-eclipse-theia-community-release-2026-05/',
         npmVersion: '1.71.2',
         npmUrl: 'https://www.npmjs.com/package/@theia/core/v/1.71.2',
         frameworks: [
