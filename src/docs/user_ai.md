@@ -140,7 +140,7 @@ See the individual provider sections below for the specific environment variable
 Below is an overview of various Large Language Model (LLM) providers supported within the Theia IDE, highlighting their key features and current state.
 
 | Provider                                                   | Streaming  | Tool Calls  | Structured Output  | State        |
-|------------------------------------------------------------|:----- ----:|:-----------:|:------------------:|--------------|
+|------------------------------------------------------------|:----------:|:-----------:|:------------------:|--------------|
 | [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
 | [OpenAI Official](#openai-hosted-by-openai)                |     ✅     |     ✅      |         ✅         | Public       |
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
