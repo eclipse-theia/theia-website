@@ -80,6 +80,16 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'Eclipse Theia in Practice: Getting Started and Lessons from the Field',
+                url: 'https://eclipsesource.com/blogs/2026/07/02/eclipse-theia-in-practice-getting-started-lessons-from-the-field/',
+                type: 'video'
+            },
+            {
+                title: 'Eclipse Theia: News from the Next-Gen Tools Platform',
+                url: 'https://eclipsesource.com/blogs/2026/06/25/eclipse-theia-news-from-the-next-gen-tools-platform/',
+                type: 'video'
+            },
+            {
                 title: 'Eclipse Theia: The Eclipse Foundation tool platform in production',
                 url: 'https://newsroom.eclipse.org/eclipse-newsletter/2026/march/eclipse-theia-eclipse-foundation-tool-platform-production',
                 type: 'article'

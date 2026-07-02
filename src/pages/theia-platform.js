@@ -23,6 +23,7 @@ import ContributorsAndAdopters from '../components/index/ContributorsAndAdopters
 import Products from '../components/index/Products'
 import GettingStarted from '../components/index/GettingStarted'
 import IntrosToTheia from '../components/index/IntrosToTheia'
+import TheiaPlatformVideosThumbnails from '../components/index/TheiaPlatformVideosThumbnails'
 import SupportHint from '../components/SupportHint'
 import SponsoringHint from '../components/SponsoringHint'
 import HeadWithPlatformSchema from '../layouts/headwithPlatformschema';
@@ -35,11 +36,12 @@ export default ({ pageContext }) => {
             <PlatformHeader />
             <main role="main">
                 <Products />
+                <TheiaPlatformVideosThumbnails />
                 <Features />
                 <SupportHint variant="platform" />
-                <ContributorsAndAdopters adopters={pageContext.adopters}/>
+                <ContributorsAndAdopters adopters={pageContext.adopters} />
                 <SponsoringHint />
-                <GettingStarted/>
+                <GettingStarted />
                 <IntrosToTheia />
             </main>
             <Footer background={true} />
