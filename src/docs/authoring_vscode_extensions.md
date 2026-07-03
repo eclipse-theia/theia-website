@@ -67,6 +67,12 @@ VS Code's `contributes.viewsContainers` entries support an optional `when` claus
 }
 ```
 
+### Language Model Tools
+
+VS Code extensions can contribute tools for AI agents through the language model tools API (`vscode.lm.registerTool` and `vscode.lm.invokeTool`). Theia supports this API and integrates the registered tools with Theia AI: a tool registered by an extension can be referenced in a user or system prompt via the `~{toolId}` syntax and is then invoked by the language model like any built-in tool. The tool id is also offered in the chat input auto-completion.
+
+This lets VS Code extensions extend the AI features of a Theia-based product with custom tools, without depending on Theia-specific APIs.
+
 ## Prerequisites for Running VS Code Extensions in Theia
 
 To enable Theia's support for VS Code extensions in order to use your own extensions or third-party VS Code extensions in your Theia application, you'll need to add `@theia/plugin-ext-vscode` as a dependency.
