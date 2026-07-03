@@ -18,6 +18,10 @@ The Extension View also presents recommendations to be installed, if any, as wel
 
 The last section, “Built-In”, shows VS Code extensions that are a fixed part of your Theia-based product. These are pre-installed by the creator of your tool and cannot be uninstalled.
 
+In Theia products that enable the [AI Registry](/docs/user_ai/#ai-registry), the Extensions view can additionally list MCP servers and skills alongside VS Code extensions. Each entry carries a type badge, and a filter menu at the top of the view lets you narrow results by type.
+
+<img src="../../extension-view-search-filter.png" alt="Extensions view filter menu allowing results to be narrowed by type" style="max-width: 350px" />
+
 ## Compatibility
 
 Every Theia version supports a specific VS Code extension API version, i.e. the extension API is fully provided by Theia until and including this VS Code version. In the Theia IDE, you can find the supported version in the about dialog (Menu "Help" => "About"). The [Open VSX Registry](https://open-vsx.org/) will automatically show compatible VS Code extensions only.

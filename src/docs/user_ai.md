@@ -53,6 +53,7 @@ Learn more about the AI-powered Theia IDE:
     - [PR Reviewer (Chat Agent)](#pr-reviewer-chat-agent)
     - [Chat](#chat)
     - [Chat Session History](#chat-session-history)
+    - [Agent Notifications](#agent-notifications)
     - [Starting Chat from the Editor](#starting-chat-from-the-editor)
     - [Agent Pinning](#agent-pinning)
     - [Mode Selection](#mode-selection)
@@ -61,6 +62,7 @@ Learn more about the AI-powered Theia IDE:
     - [Context Variables](#context-variables)
     - [Editing Chat Requests](#editing-chat-requests)
     - [Token Usage (Experimental)](#token-usage-experimental)
+    - [Mermaid Diagrams](#mermaid-diagrams)
 - [Task Context](#task-context)
     - [Set-up for Task Context](#set-up-for-task-context)
     - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
@@ -84,6 +86,7 @@ Learn more about the AI-powered Theia IDE:
     - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
     - [Using MCP Server Functions](#using-mcp-server-functions)
     - [MCP Configuration View](#mcp-configuration-view)
+- [AI Registry](#ai-registry)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
 - [Workspace Handling](#workspace-handling)
     - [Multi-Root Workspaces and AI Agents](#multi-root-workspaces-and-ai-agents)
@@ -809,6 +812,14 @@ The persistence system preserves the complete state of your chat sessions, inclu
 
 Chat sessions are stored in the `.theia/chatSessions/` directory within your user home directory.
 
+### Agent Notifications
+
+Agents can notify you about two kinds of events: when they finish a task and when they need your input, for example a pending tool-call confirmation or a question an agent asked. This is useful for longer-running, autonomous workflows where you are not actively watching the chat.
+
+You can configure how you are notified globally via the `ai-features.notifications.default` preference and per agent in the [AI Configuration view](#ai-configuration). Available notification styles include showing a message, raising an OS notification, and blinking, and you can also turn notifications off. Activating an OS notification focuses the relevant chat session. Notifications are suppressed while the chat that triggered them is already open and focused.
+
+Independently of the notification style, the chat overview highlights any session that is waiting for your input with a bell icon, an attention-colored dot, a bold title, and a "Waiting for your input" tooltip. This takes precedence over the running indicator, so you can quickly spot which session is blocked on you.
+
 ### Starting Chat from the Editor
 
 You can initiate AI chat sessions directly from the editor context. To start a session, right-click anywhere in a file - either at the cursor position or with a selection—and choose the "Ask AI" option. Alternatively, use the shortcut Ctrl+I to trigger the same action.
@@ -899,6 +910,14 @@ The tree supports keyboard navigation (arrow keys to move, `Enter` or `Space` to
 
 The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored. To make your selections permanent, use the save icon to persist them to your settings.
 
+#### Server Tools
+
+Some providers can run certain tools on their own infrastructure rather than in the IDE. When the model assigned to an agent offers such tools, they appear in the [Generic Capabilities Panel](#generic-capabilities-panel) under a provider category with a **Server Tools** sub-group, and you can enable them per request like any other capability.
+
+Currently available server tools include Anthropic's `web_fetch` and `web_search` and Gemini's `url_context` and `google_search`, which let the model fetch URLs or search the web without round-tripping to the IDE. Because they are executed by the provider, server tools are marked with a warning icon and are auto-approved, so there is no per-call confirmation. Their invocation and result are rendered distinctly from regular (client-side) tool calls.
+
+Server-tool selections are remembered per provider: enabling a tool for one provider does not send it to another, and switching the agent's model to a different vendor keeps the selections separate.
+
 ### Image Support
 
 Theia IDE (and Theia AI) supports adding images to chat sessions, which is especially useful when visual context is needed to solve problems or explain issues.
@@ -982,6 +1001,12 @@ To enable the warning and adjust the threshold:
 The threshold is a percentage (`1`–`100`, default `80`) of the active model's context window. The same percentage drives the indicator's yellow color band, so the visual cue and the notification stay aligned.
 
 <img src="../../tokenusage-warning.png" alt="Token Usage Warning in the Theia IDE" style="max-width: 525px" />
+
+### Mermaid Diagrams
+
+Fenced ` ```mermaid ` code blocks in chat responses (and in the user-interaction tool) are rendered as diagrams that match the workbench theme. A title bar above each diagram lets you collapse it to a thumbnail, switch between the rendered diagram and its source, and zoom, pan and resize it. Because rendering is a general chat feature, any agent's response can include Mermaid diagrams. Some built-in agents, such as the Architect, Coder, and PR Reviewer, are additionally instructed to use them where they help illustrate architecture, implementations, or flows.
+
+<img src="../../mermaid-diagram.png" alt="A rendered Mermaid diagram in an AI chat response in the Theia IDE" style="max-width: 525px" />
 
 ## Task Context
 
@@ -1084,6 +1109,17 @@ Tool functions are used with the following syntax:
 ```
 ~{functionName}
 ```
+
+#### Deferred Tool Loading
+
+When an agent has access to many tools, sending all of their definitions in the system prompt can consume a lot of tokens. To keep the prompt small, a tool can be marked for *deferred loading*: its definition is not sent upfront, and the model loads it on demand through the provider's built-in tool-search tool.
+
+Mark a tool as deferred by prefixing its id with `?`:
+
+- In the chat input: `~?toolId`
+- In a prompt template: `~{?toolId}`
+
+For MCP servers, setting `"deferLoading": true` on the server entry in `ai-features.mcp.mcpServers` defers all of that server's tools at once. Deferred loading takes effect with providers that offer a server-side tool-search tool (such as Anthropic and the OpenAI Responses API); other providers simply load the tools normally.
 
 ## Prompt Template and Fragment Locations
 
@@ -1210,29 +1246,34 @@ The following video demonstrates the use and creation of slash commands.
 
 Custom agents enable users to define new chat agents with custom prompts on the fly, allowing the creation of custom workflows and extending the Theia IDE with new capabilities. These agents are immediately available in the default chat. For simpler workflows, you might also consider using [Prompt Fragments](#prompt-fragments) instead.
 
-Custom agents can either be global (stored in the global prompt directory) or workspace-specific (stored in a workspace-specific directory). Workspace-specific custom agents take precedence in case the same id is used.
+Custom agents can either be global (stored in your global prompt directory) or workspace-specific. In a workspace, custom agents are discovered from the `.agents/` and `.prompts/` folders of each workspace root, independent of the `ai-features.promptTemplates.WorkspaceTemplateDirectories` preference. Workspace-specific custom agents take precedence when the same id is used.
 
 To define a new custom agent, navigate to the AI Configuration View and click on "Add Custom Agent".
 
 <img src="../../add-custom-agents.png" alt="Add a custom Agents in the Theia IDE" style="max-width: 400px">
 
-If workspace-specific prompt directories are configured in settings (see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)), you can decide next where to add the custom agent.
+New agents are created under `.agents/agents/<id>/agent.md` by default. If more than one suitable location exists (for example `.agents` and `.prompts`, or additional directories configured in settings, see [Prompt Template and Fragment Locations](#prompt-template-and-fragment-locations)), you can choose where to add the custom agent.
 
-Next, a YAML file will be opened where all available custom agents in a specific directory are defined. Below is an example configuration:
+Next, an `agent.md` file is created for the new agent and opened in the editor. Each custom agent lives in its own folder named after the agent id, with the metadata defined in YAML frontmatter at the top of `agent.md`, followed by the prompt body:
 
-```yaml
-- id: obfuscator
-  name: Obfuscator
-  description: This is an example agent. Please adapt the properties to fit your needs.
-  prompt: Obfuscate the following code so that no human can understand it anymore. Preserve the functionality.
-  defaultLLM: default/universal
+```markdown
+---
+name: Obfuscator
+description: This is an example agent. Please adapt the properties to fit your needs.
+defaultLLM: default/universal
+---
+Obfuscate the following code so that no human can understand it anymore. Preserve the functionality.
 ```
 
-- id: A unique identifier for the agent.
-- name: The display name of the agent.
-- description: A brief explanation of what the agent does.
-- prompt: The default prompt that the agent will use for processing requests.
-- defaultLLM: The language model used by default.
+- The **folder name** is the agent id (the single source of truth for the id).
+- **name**: The display name of the agent.
+- **description**: A brief explanation of what the agent does.
+- **defaultLLM**: The language model used by default.
+- The text after the frontmatter is the agent's default prompt. Additional prompt variants can be placed as `.prompttemplate` files in the same folder.
+
+Editing or resetting a custom agent's prompt from the AI Configuration view targets the files inside this agent folder.
+
+> **Migration:** Earlier versions stored custom agents in a shared `customAgents.yml` file. When such a file is found, the IDE offers to migrate it into the per-agent folder layout through a notification; no files are changed until you confirm with **Migrate**. After migrating, the original file is kept as `customAgents.yml.bak`. You can dismiss the prompt with **Don't Show Again**, or run the migration yourself at any time with the command **AI: Re-run custom-agent migration**.
 
 Custom agents can be configured in the AI Configuration View just like other chat agents. You can enable/disable them, modify their prompt templates, and integrate variables and functions within these templates to enhance functionality.
 
@@ -1344,9 +1385,11 @@ The markdown content after the frontmatter contains the actual instructions that
 
 Skills are discovered from multiple locations in the following priority order (first directory wins on duplicates):
 
-1. **Workspace**: `.prompts/skills/` in your workspace root (project-specific skills)
+1. **Workspace**: `.prompts/skills/` and `.agents/skills/` in your workspace root (project-specific skills)
 2. **User-configured**: Directories listed in the `ai-features.skills.skillDirectories` preference
-3. **Global**: `~/.theia/skills/` (user-wide defaults)
+3. **Global**: `~/.theia/skills/` and `~/.agents/skills/` (user-wide defaults)
+
+The `.agents/skills/` and `~/.agents/skills/` locations align with the `.agents` convention also used for [custom agents](#custom-agents). The CreateSkill agent defaults to creating new skills under `.agents/skills/`.
 
 To add additional skill directories, configure the `ai-features.skills.skillDirectories` setting in your preferences. You can use `~` to reference your home directory:
 
@@ -1498,7 +1541,23 @@ Both configurations support the `autostart` option (true by default), which auto
 - **`serverUrl`**: The URL of the remote MCP server to connect to.
 - **`serverAuthToken`**: Authentication token for the server (if required).
 - **`serverAuthTokenHeader`**: The header name to use for authentication (if not provided, "Authorization" with "Bearer" will be used).
+- **`oauth`**: Configuration for remote servers that require OAuth 2.1 authorization (see [OAuth for Remote MCP Servers](#oauth-for-remote-mcp-servers)).
 - **`autostart`**: Whether to automatically start the connection to the remote server when the IDE starts (default: true).
+
+### OAuth for Remote MCP Servers
+
+Remote MCP servers that require OAuth 2.1 can be authorized directly from the IDE. Theia acts as a public client using PKCE and, when no static client ID is configured, registers dynamically with the authorization server. Enable it by adding an `oauth` block to the server entry in `ai-features.mcp.mcpServers`:
+
+```json
+"asana": {
+  "serverUrl": "https://mcp.asana.com/sse",
+  "oauth": {
+    "enabled": true
+  }
+}
+```
+
+The `oauth` block supports `enabled` and, for servers that need them, the optional fields `clientId`, `scopes`, `authorizationServer` and `resource`. When you start such a server, the IDE opens your system browser to complete the sign-in, and the obtained tokens are stored in a credential store. The [MCP Configuration View](#mcp-configuration-view) shows each server's authentication status and provides **Sign in** and **Sign out** actions.
 
 ### Starting and Stopping MCP Servers
 
@@ -1554,6 +1613,42 @@ For more details, refer to the video demonstration below. In the video, the tool
 
 <video controls src="../../mcp-configuration.webm" alt="MCP Configuration View Demonstration" style="max-width: 100%"></video>
 
+## AI Registry
+
+The Theia IDE can surface curated AI artifacts from an **AI Registry**, a vendor-neutral registry for AI artifacts hosted at the Eclipse Foundation. These artifacts appear directly in the **Extensions** view, alongside Open VSX extensions, so you can discover and install approved MCP servers without editing your settings by hand.
+
+**Note:** The AI Registry is an opt-in feature that adopters enable and point at a specific registry. It is available in the Theia IDE; custom Theia-based products may not include it or may configure it against a different registry.
+
+Registry entries are identified by their type badges, and the Extensions view provides a new filter menu that lets you narrow results by type.
+
+<span style="display: inline-flex; gap: 12px; flex-wrap: wrap;">
+    <img src="../../extension-view-installed-types.png" alt="Extensions view showing AI Registry MCP Server and Skill entries with type badges alongside Open VSX extensions" style="max-width: 350px" />
+    <img src="../../extension-view-search-filter.png" alt="Extensions view filter menu allowing results to be narrowed by type" style="max-width: 350px" />
+</span>
+
+### Installing MCP Servers from the Registry
+
+1. Open the **Extensions** view.
+2. Registry entries appear with an **MCP Servers** type badge, interleaved with regular extension results. Search by keyword (e.g. `github`) to narrow the list.
+3. Click **Install** on an entry. An install dialog opens, pre-populated from the registry, where you can confirm the server id, toggle autostart, and enter an authentication token if the entry requires one.
+4. After confirming, the server is written to your `ai-features.mcp.mcpServers` preference, ready to be started like any other MCP server (see [MCP Integration](#mcp-integration)).
+
+Installed registry servers keep a link back to their registry entry. The Extensions view reflects the current state of each entry through per-entry actions such as **Update** (the registry version changed), **Fix config** (your local configuration drifted from the approved one), **Link** / **Unlink** and **Uninstall**.
+
+You can also add a local MCP server that is not part of the registry directly from the Extensions view toolbar via **Add local MCP config…**. Such manually added servers are managed in the [MCP Configuration View](#mcp-configuration-view) and are not shown as registry entries.
+
+Registry entries can additionally be installed through `theia://install-mcp?id=<id>` deep links, which open the same install dialog. The URL scheme follows the product's configured scheme.
+
+When a registry MCP entry advertises an OAuth configuration, the install dialog additionally prompts for the confidential-client **Client ID** and **Client Secret** and shows a read-only **Redirect URL** to register with the provider. **Install** stays disabled until both credentials are filled in; the remaining OAuth parameters (scopes, authorization server, resource) come from the registry entry and are not shown.
+
+### Installing Skills from the Registry
+
+The registry can also offer **Skills** (see [Agent Skills](#agent-skills-alpha)). Skill entries appear in the Extensions view with a mortar-board icon and a **Skills** type badge.
+
+Installing a skill downloads its content into `~/.agents/skills/` on the machine running the backend and records a small sidecar file so the IDE can later detect updates and local changes. As with MCP servers, each skill entry shows context-aware actions: **Install**, **Update** (the registry content changed), **Fix Skill** (your local files drifted from the approved content), **Link** / **Unlink**, and **Uninstall**. Skills installed this way are immediately available like any other skill, for example via their slash command in the chat.
+
+If skill downloads start hitting GitHub rate limits, set a GitHub token via the `ai-features.registry.githubToken` preference or the `GITHUB_TOKEN` environment variable to raise the limit. Skill entries can also be installed through `theia://install-skill?id=<id>` deep links.
+
 ## Tool Call Confirmation UI
 
 The Theia IDE provides a flexible and user-configurable tool call confirmation system for agent interactions. This feature allows you to control, on a per-tool basis, whether a tool call should be:
@@ -1578,6 +1673,15 @@ The global default for tools that do not have their own entry is **Confirm**. Th
    - Always deny (disables the tool)
 
 The confirmation dialog also shows the tool's description (when the tool provides one) and a collapsible **arguments** block. The summary line gives you a one-line preview of the arguments; expanding it reveals the formatted parameters, which is useful for tools like "create pull request" where the body and target really matter for the approve/deny decision.
+
+### Keyboard Shortcuts and Bulk Approval
+
+To reduce friction when working with the default *Confirm* mode:
+
+- When a confirmation is pending, press `Ctrl+Enter` to approve or `Ctrl+Shift+Backspace` to deny the latest pending confirmation. The Allow button is focused automatically when a confirmation appears, and the shortcuts do nothing while no confirmation is waiting.
+- The **Tools** tab offers an **Allow Default Tools** action that bulk-approves the built-in tools in a single step (setting them to *Always Allow*). It deliberately skips MCP tools, disabled tools, and tools that always require confirmation (such as shell execution), and it leaves the global default unchanged.
+
+A one-time explanatory snippet is shown above the first confirmation in a chat, and the chat welcome page shows an info box about tool confirmation until you configure it (by changing the default or setting any per-tool mode).
 
 > **Migration note:** The previous magic key `"*"` inside `ai-features.chat.toolConfirmation` is not honored. Migrate any global override to the new `ai-features.chat.defaultToolConfirmation` preference. Tools that explicitly require confirmation before being auto-approved (for example shell execution) still default to *Confirm* regardless of the global default, so you have to opt them in individually.
 
