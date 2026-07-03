@@ -30,8 +30,8 @@ import CoffeeEditor from '../resources/screenshots/coffeeditor.gif'
 import CoffeeEditorMin from '../resources/screenshots/thumbnails/coffeeditor-min.gif'
 import NeuronSmartEngineer from '../resources/screenshots/neuron-smart-engineer.png'
 import NeuronSmartEngineerMin from '../resources/screenshots/thumbnails/neuron-smart-engineer-min.png'
-import BluePrint from '../resources/screenshots/blueprint.png'
-import BluePrintMin from '../resources/screenshots/thumbnails/blueprint-min.png'
+import TheiaIDE from '../resources/screenshots/theia-ide.png'
+import TheiaIDEMin from '../resources/screenshots/thumbnails/theia-ide-min.png'
 import JonasHelming from '../resources/intros/jonas-helming.jpg'
 import MarcDumais from '../resources/intros/marc-dumais.jpg'
 import ThomasMader from '../resources/intros/thomas-mader.jpg'
@@ -142,8 +142,8 @@ export const products = [
     },
     {
         href: "https://theia-ide.org/#theiaide",
-        src: BluePrint,
-        thumb: BluePrintMin,
+        src: TheiaIDE,
+        thumb: TheiaIDEMin,
         alt: "Theia IDE"
     },
     {
@@ -172,7 +172,7 @@ export const products = [
     },
     {
         href: "https://www.renesas.com/qcstudio",
-        src:   QuickConnectStudio,
+        src: QuickConnectStudio,
         thumb: QuickConnectStudioMin,
         alt: "QuickConnect Studio"
     },
