@@ -90,16 +90,16 @@ export const introsToTheia = [
         src: JonasHelming,
     },
     {
-        title: "How to be an Eclipse Theia Adopter",
-        href: "https://youtu.be/SPO8pudgJak",
-        speaker: "Jonas Helming, Theia project lead and Principal Software Architect at EclipseSource",
-        src: JonasHelming,
-    },
-    {
         title: "The Eclipse Theia Architecture",
         href: "https://youtu.be/KN2JUsFuEhU",
         speaker: "Thomas Mäder, Theia project lead and Principal Software Developer at Red Hat",
         src: ThomasMader,
+    },
+    {
+        title: "How to be an Eclipse Theia Adopter",
+        href: "https://youtu.be/SPO8pudgJak",
+        speaker: "Jonas Helming, Theia project lead and Principal Software Architect at EclipseSource",
+        src: JonasHelming,
     }
 ]
 
