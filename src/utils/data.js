@@ -33,8 +33,8 @@ import NeuronSmartEngineerMin from '../resources/screenshots/thumbnails/neuron-s
 import TheiaIDE from '../resources/screenshots/theia-ide.png'
 import TheiaIDEMin from '../resources/screenshots/thumbnails/theia-ide-min.png'
 import JonasHelming from '../resources/intros/jonas-helming.jpg'
-import MarcDumais from '../resources/intros/marc-dumais.jpg'
 import ThomasMader from '../resources/intros/thomas-mader.jpg'
+import StefanDirix from '../resources/intros/stefan-dirix.jpg'
 import Smartface from '../resources/screenshots/smartface.gif'
 import SmartfaceMin from '../resources/screenshots/thumbnails/smartface-min.gif'
 import CDTCloud from '../resources/screenshots/cdtcloudblueprint.gif'
@@ -78,16 +78,16 @@ export const contributorsAndAdopters = [
 
 export const introsToTheia = [
     {
+        title: "Eclipse Theia in Practice",
+        href: "https://youtu.be/fwrbpibfum8",
+        speaker: "Stefan Dirix, Theia Project Committer and Lead Software Architect at EclipseSource",
+        src: StefanDirix,
+    },
+    {
         title: "Getting started with Eclipse Theia",
         href: "https://youtu.be/xhSOdAJyess",
         speaker: "Jonas Helming, Theia project lead and Principal Software Architect at EclipseSource",
         src: JonasHelming,
-    },
-    {
-        title: "Why Eclipse Theia",
-        href: "https://youtu.be/xs0haWTulrY",
-        speaker: "Marc Dumais, Theia project lead and Software Developer at Ericsson AB",
-        src: MarcDumais,
     },
     {
         title: "How to be an Eclipse Theia Adopter",
