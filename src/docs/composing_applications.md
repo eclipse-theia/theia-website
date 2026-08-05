@@ -148,9 +148,35 @@ yarn build:electron
 yarn start:electron
 ```
 
+### Recent Workspaces in the Windows Jump List
+
+On Windows, Electron-based applications list the recently opened workspaces in the jump list of their task bar entry, so users can reopen a workspace without going through the application first.
+
+The feature is contributed by an Electron frontend module of `@theia/workspace`. If your application derives its module list from the `theiaExtensions` declarations of its dependencies, as the Yeoman generator and the Theia IDE do, it is picked up automatically. Otherwise add `@theia/workspace/lib/electron-browser/electron-workspace-module` to the module list of your Electron frontend.
+
+For the jump list to also appear in the Windows menu, set `appUserModelId` in the Electron section of your frontend configuration to the same value as the `appId` used when packaging the application:
+
+```json
+{
+  "theia": {
+    "frontend": {
+      "config": {
+        "electron": {
+          "appUserModelId": "eclipse.theia"
+        }
+      }
+    }
+  }
+}
+```
+
+If the two values differ, the jump list is only available on the task bar entry.
+
 ## Choosing a Bundler: webpack or esbuild
 
 `@theia/cli` supports two bundlers for `theia build`. The webpack pipeline is the default. As an alternative, `@theia/cli` also ships an [esbuild](https://esbuild.github.io/)-based pipeline that is roughly ten times faster. The webpack option will be deprecated and eventually removed, so adopters are encouraged to migrate.
+
+If you stay with webpack for now, note that the webpack version used since Theia 1.74.0 no longer bundles the Terser minifier. Add `terser-webpack-plugin` to the `devDependencies` of your application's `package.json`, otherwise the generated webpack configuration cannot resolve the minifier.
 
 To opt into esbuild for an application, delete its `webpack.config.js`; the next build will generate an `esbuild.mjs` automatically. If you had customizations in `webpack.config.js`, port them to the generated `esbuild.mjs`. Note that as part of this change, the `@theia/native-webpack-plugin` dependency was renamed to `@theia/bundle-plugin`.
 

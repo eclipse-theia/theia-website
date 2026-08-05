@@ -53,16 +53,21 @@ Learn more about the AI-powered Theia IDE:
     - [PR Reviewer (Chat Agent)](#pr-reviewer-chat-agent)
     - [Chat](#chat)
     - [Chat Session History](#chat-session-history)
+    - [Sessions View](#sessions-view)
+    - [AI First Perspective](#ai-first-perspective)
     - [Agent Notifications](#agent-notifications)
     - [Starting Chat from the Editor](#starting-chat-from-the-editor)
     - [Agent Pinning](#agent-pinning)
     - [Mode Selection](#mode-selection)
+    - [Model Selection](#model-selection)
     - [Agent Capabilities](#agent-capabilities)
     - [Image Support](#image-support)
     - [Context Variables](#context-variables)
     - [Editing Chat Requests](#editing-chat-requests)
     - [Token Usage (Experimental)](#token-usage-experimental)
     - [Mermaid Diagrams](#mermaid-diagrams)
+    - [External Content in Chat Responses](#external-content-in-chat-responses)
+    - [Warning Banner for Session Overrides](#warning-banner-for-session-overrides)
 - [Task Context](#task-context)
     - [Set-up for Task Context](#set-up-for-task-context)
     - [Manually creating a Task Context File](#manually-creating-a-task-context-file)
@@ -144,15 +149,15 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 | Provider                                                   | Streaming  | Tool Calls  | Structured Output  | State        |
 |------------------------------------------------------------|:----------:|:-----------:|:------------------:|--------------|
-| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
+| [Anthropic](#anthropic)                                    |     ✅     |     ✅      |         ✅         | Public       |
+| [Google AI](#google-ai)                                    |     ✅     |     ✅      |         ✅         | Public       |
 | [OpenAI Official](#openai-hosted-by-openai)                |     ✅     |     ✅      |         ✅         | Public       |
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
 | Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
 | [Azure](#azure)                                            |     ✅     |     ✅      |         ✅         | Public       |
-| [Anthropic](#anthropic)                                    |     ✅     |     ✅      |         ❌         | Public       |
-| [Google AI](#google-ai)                                    |     ✅     |     ✅      |         ❌         | Public       |
+| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
 | [Ollama](#ollama)                                          |     ✅     |     ✅      |         ✅         | Public       |
-| [Vercel AI](#vercel-ai)                                    |     ✅     |     ✅      |         ✅         | Experimental |
+| [Vercel AI](#vercel-ai)                                    |     -      |     -       |         -          | Deprecated   |
 | [Hugging Face](#hugging-face)                              |     ✅     |     ❌      |         ❌         | Experimental |
 | [LlamaFile](#llamafile-models)                             |     ✅     |     ❌      |         ❌         | Experimental |
 
@@ -812,6 +817,20 @@ The persistence system preserves the complete state of your chat sessions, inclu
 
 Chat sessions are stored in the `.theia/chatSessions/` directory within your user home directory.
 
+#### Sessions View
+
+Besides the "Show Chats..." dialog, the Theia IDE offers a dedicated **AI Sessions** view that gives you a persistent overview of your work with the AI. Instead of a flat history, it presents your sessions as a tree: every chat session appears as a collapsible node, and the individual chats that belong to a session are nested underneath it. This mirrors how a session can span several related conversations, so everything that belongs together stays together and remains easy to find later.
+
+Expand a session to see its chats and collapse it again to keep the overview compact. Selecting a chat reopens it in the chat view, which makes the Sessions view a convenient way to move between parallel lines of work without losing track of any of them. The view is part of the [AI First perspective](#ai-first-perspective), where it sits alongside the chat, but you can open it in any layout from the *View* menu.
+
+<img src="../../ai-session-view.png" alt="AI Sessions View in a Theia application" style="max-width: 525px" />
+
+### AI First Perspective
+
+The Theia IDE ships an *AI First* perspective that arranges the workbench around working with the AI. It places the AI Chat in the main area, the [Sessions view](#sessions-view) on the left, and the Explorer together with the Source Control view on the right, while collapsing the bottom area. The result is a layout in which the conversation with the agent is central and the views you most often need while collaborating with it are within reach.
+
+Switch to it with the *Switch Perspective (Experimental)* command and return to your usual layout the same way. Perspectives are still experimental, so the command is only available from the command palette, see [Perspectives](/docs/perspectives) for details. As with any perspective, layout changes you make while the AI First perspective is active are remembered the next time you switch to it.
+
 ### Agent Notifications
 
 Agents can notify you about two kinds of events: when they finish a task and when they need your input, for example a pending tool-call confirmation or a question an agent asked. This is useful for longer-running, autonomous workflows where you are not actively watching the chat.
@@ -867,6 +886,14 @@ Mode selection is a convenience feature built on top of the existing [prompt var
 The following video demonstrates mode selection as part of a real workflow, including switching between agent mode, plan mode, and using capabilities:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### Model Selection
+
+Next to the mode and [reasoning](#reasoning) selectors in the chat input, a model selector lets you pick which language model handles the current chat. The selection applies only to that chat and does not change the agent's configured default or affect future conversations. The first entry, labelled *Default*, shows the resolved default model and switches back to it.
+
+Your choice is remembered across workbench reloads, and each response carries a small badge recording which model produced it, next to the prompt-variant badge and matching the one shown in the [AI History](#ai-history) view. This makes it easy to see at a glance which model answered a given message, which is useful when you switch models within a conversation.
+
+If a selected model becomes unavailable, for example because its provider API key was removed, it is shown in red with a strike-through and requests automatically fall back to the agent's configured model.
 
 ### Agent Capabilities
 
@@ -1007,6 +1034,25 @@ The threshold is a percentage (`1`–`100`, default `80`) of the active model's 
 Fenced ` ```mermaid ` code blocks in chat responses (and in the user-interaction tool) are rendered as diagrams that match the workbench theme. A title bar above each diagram lets you collapse it to a thumbnail, switch between the rendered diagram and its source, and zoom, pan and resize it. Because rendering is a general chat feature, any agent's response can include Mermaid diagrams. Some built-in agents, such as the Architect, Coder, and PR Reviewer, are additionally instructed to use them where they help illustrate architecture, implementations, or flows.
 
 <img src="../../mermaid-diagram.png" alt="A rendered Mermaid diagram in an AI chat response in the Theia IDE" style="max-width: 525px" />
+
+### External Content in Chat Responses
+
+Model responses can reference resources on the internet, such as images or embedded pages. The Theia IDE does not load these automatically, because fetching them would contact the referenced server and could reveal that you opened the response, or expose your IP address, to a third party you did not choose to talk to.
+
+Instead of loading the resource, the chat shows a placeholder that tells you which URL would be contacted. If you trust the source, you can allow the content, and the chat then loads and displays it. This keeps you in control of every outgoing request that a response would otherwise trigger on your behalf.
+
+### Warning Banner for Session Overrides
+
+The [tool call confirmation](#tool-call-confirmation-ui) settings that normally protect you can be overridden for a single session, typically when a tool starts the Theia IDE with `--session-preference` flags (see [Session Preference Overrides](/docs/preferences/#session-preference-overrides)). Because such an override silently loosens the guardrails without touching your saved settings, the chat surfaces it with a persistent banner above the conversation, so you always know when a session is running in a relaxed configuration.
+
+The banner itself is deliberately compact, showing only a short title that appears in one of two forms depending on what was overridden:
+
+- **Theia AI Allow-All Mode** (shown in red): all tool calls are auto-approved and run without confirmation in this session.
+- **AI Tool Confirmation Overrides** (shown in yellow): only specific tools are auto-approved.
+
+Hover over the banner to see the details in its tooltip: a short explanation, a bullet list of every active override (for example *Default tool confirmation: always_allow*), and a note that the setting was applied via `--session-preference` and that restarting without the flag restores your saved settings. You can dismiss the banner with *Hide for this session*; if the set of active overrides changes afterwards, it reappears so a newly added or escalated override cannot go unnoticed.
+
+<img src="../../ai-chat-banner.png" alt="The Theia AI Allow-All Mode warning banner shown above the AI chat" style="max-width: 525px">
 
 ## Task Context
 

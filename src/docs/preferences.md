@@ -12,28 +12,29 @@ Theia provides a comprehensive preferences system that allows extensions to cont
 - [Preference Scopes](#preference-scopes)
 - [Preference Files](#preference-files)
 - [Contributing Preferences](#contributing-preferences)
-  - [1. Define a Preference Schema](#1-define-a-preference-schema)
-  - [2. Create a Configuration Interface (Optional but Recommended)](#2-create-a-configuration-interface-optional-but-recommended)
-  - [3. Create a Preference Proxy (Optional)](#3-create-a-preference-proxy-optional)
-  - [4. Register Your Preferences](#4-register-your-preferences)
-  - [Understanding the `scope` Property](#understanding-the-scope-property)
+    - [1. Define a Preference Schema](#1-define-a-preference-schema)
+    - [2. Create a Configuration Interface (Optional but Recommended)](#2-create-a-configuration-interface-optional-but-recommended)
+    - [3. Create a Preference Proxy (Optional)](#3-create-a-preference-proxy-optional)
+    - [4. Register Your Preferences](#4-register-your-preferences)
+    - [Understanding the `scope` Property](#understanding-the-scope-property)
 - [Using Preferences](#using-preferences)
-  - [Minimal Approach: Direct Access via Preference Service](#minimal-approach-direct-access-via-preference-service)
-  - [Type-Safe Access via Preference Proxy](#type-safe-access-via-preference-proxy)
+    - [Minimal Approach: Direct Access via Preference Service](#minimal-approach-direct-access-via-preference-service)
+    - [Type-Safe Access via Preference Proxy](#type-safe-access-via-preference-proxy)
 - [Advanced Features](#advanced-features)
-  - [Language-Specific Preferences](#language-specific-preferences)
-  - [Preference Inspection](#preference-inspection)
-  - [Resource-Specific Preferences](#resource-specific-preferences)
-  - [Preference Overrides and Defaults](#preference-overrides-and-defaults)
-- [Backend Preferences](#backend-preferences)
-  - [Key Points for Backend Usage](#key-points-for-backend-usage)
-  - [Backend Usage Example](#backend-usage-example)
-  - [Creating a Backend Preference Service](#creating-a-backend-preference-service)
+    - [Language-Specific Preferences](#language-specific-preferences)
+    - [Preference Inspection](#preference-inspection)
+    - [Resource-Specific Preferences](#resource-specific-preferences)
+    - [Preference Overrides and Defaults](#preference-overrides-and-defaults)
+    - [Session Preference Overrides](#session-preference-overrides)
+    - [Backend Preferences](#backend-preferences)
+    - [Key Points for Backend Usage](#key-points-for-backend-usage)
+    - [Backend Usage Example](#backend-usage-example)
+    - [Creating a Backend Preference Service](#creating-a-backend-preference-service)
 - [Architecture Notes](#architecture-notes)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
-  - [Common Issues](#common-issues)
-  - [Debugging](#debugging)
+    - [Common Issues](#common-issues)
+    - [Debugging](#debugging)
 - [Examples](#examples)
 
 ## Overview
@@ -53,8 +54,7 @@ Preferences in Theia are organized into scopes from most general to most specifi
 2. **User** - Global user preferences
 3. **Workspace** - Workspace-specific preferences
 4. **Folder** - Folder-specific preferences for multi-root workspaces
-
-
+5. **Session** - Temporary, in-memory overrides for the running application, see [Session Preference Overrides](#session-preference-overrides)
 
 When resolving a preference value, Theia searches from the most specific scope to the most general, returning the first value found.
 
@@ -367,6 +367,40 @@ export class MyPreferenceContribution implements PreferenceContribution {
 
 **Important**: Schema properties must be added before overrides are registered. The preference schema service separates between adding a schema and registering default overrides.
 
+### Session Preference Overrides
+
+Since Theia 1.74.0 there is an additional scope, `PreferenceScope.Session`, which sits above all persisted scopes. Session values only live in memory: they take precedence over folder, workspace, user and default values, they are never written to any `settings.json`, and they are gone as soon as the application is closed.
+
+Session overrides are intended for tooling that starts Theia in a particular configuration, for example CI jobs, demos or automated tests. They are passed when the application starts, using the `--session-preference` command line argument:
+
+```bash
+theia start --session-preference editor.fontSize=16 --session-preference 'files.autoSave="off"'
+```
+
+The value has to be valid JSON, which is why the plain string above is quoted twice: the shell strips the outer quotes and Theia parses `"off"`. Because quoting rules differ between shells, values may alternatively be passed base64-encoded:
+
+```bash
+theia start --session-preference 'files.exclude=base64:eyIqKi8ubm9kZV9tb2R1bGVzIjp0cnVlfQ=='
+```
+
+The argument can be repeated for as many preferences as needed. Entries that cannot be parsed are reported as a warning and skipped, so a typo does not keep the application from starting. Only the names of the overridden preferences are logged, never their values. When connecting to a remote backend or attaching to a dev container, the session overrides of the local instance are forwarded to the remote side.
+
+Session values can also be set programmatically through the regular `PreferenceService` API, and they map to Monaco's `MEMORY` configuration target:
+
+```typescript
+await this.preferenceService.set('editor.fontSize', 16, PreferenceScope.Session);
+```
+
+The session scope does not support resource-specific or language-specific values, and it is not offered when the user picks the scope to edit in the settings UI. Session overrides are applied regardless of workspace trust.
+
+#### How Users See Session Overrides
+
+Because a session override silently wins over everything the user has configured, Theia makes it visible in two places. In the settings UI, an affected entry is marked with a subtle *Overridden by session* hint, in every scope tab. In addition, a status bar entry labelled *Session Preferences* shows how many overrides are currently active; its tooltip lists them, and each entry links to the corresponding preference in the settings UI.
+
+Changing the value of an overridden preference in the settings UI drops the session override, so that the persisted value becomes effective again. The same happens when a value is written programmatically to one of the persisted scopes. Editing `settings.json` directly does not lift the override.
+
+<img src="../../session-preferences.png" alt="A screenshot of the Theia IDE with overriden session preferences" style="max-width: 800px">
+
 ## Backend Preferences
 
 Starting with Theia v1.65.0, preferences are available in the backend with some important limitations:
@@ -493,7 +527,6 @@ The preference system architecture includes several important design considerati
 3. **Type errors**: Verify that your TypeScript interface matches your JSON schema
 4. **Backend limitations**: Remember that workspace and folder scopes are not available in backend services
 
-
 ### Debugging
 
 Enable preference debugging by setting the log level:
@@ -509,7 +542,8 @@ This will show detailed information about preference resolution and changes in t
 ## Examples
 
 For complete examples of preference usage, see:
+
 - Core preferences: `packages/core/src/common/core-preferences.ts`
-- Filesystem preferences: `packages/filesystem/src/common/filesystem-preferences.ts` 
+- Filesystem preferences: `packages/filesystem/src/common/filesystem-preferences.ts`
 - Workspace preferences: `packages/workspace/src/common/workspace-preferences.ts`
 - Backend preference service: `examples/api-samples/src/node/sample-backend-preferences-service.ts`

@@ -33,6 +33,7 @@ Learn more about Theia AI:
         - [Global Variables](#global-variables)
         - [Chat Context Variables](#chat-context-variables)
     - [Tool Functions](#tool-functions)
+    - [Prototyping Tool Functions with the Tool Sketchpad](#prototyping-tool-functions-with-the-tool-sketchpad)
     - [Slash Commands](#slash-commands)
 - [Custom Response Part Rendering](#custom-response-part-rendering)
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
@@ -40,6 +41,8 @@ Learn more about Theia AI:
 - [GitHub Copilot Integration](#github-copilot-integration)
 - [Change Sets](#change-sets)
 - [Chat Suggestions](chat-suggestions)
+- [Chat Banners](#chat-banners)
+- [Accessing AI Preferences](#accessing-ai-preferences)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -585,6 +588,16 @@ Finally, register your ‘ToolProvider’ like this:
 bind(ToolProvider).to(FileContentFunction);
 ```
 
+### Prototyping Tool Functions with the Tool Sketchpad
+
+The optional extension `@theia/ai-tool-sketchpad` lets you prototype tool functions without writing code. It contributes an **AI Tool Sketchpad** view in which you declare *sketched tools*: a name, a description, the input parameters and what the tool returns. A sketched tool either returns a fixed string or, in the *Ask At Runtime* mode, prompts you for the answer while the agent is running, so you can simulate arbitrary tool responses and see how an agent reacts before implementing anything.
+
+<img src="../../ai-tool-sketchpad.png" alt="A screenshot of the AI Tool Sketchpad in the Theia example application" style="max-width: 800px">
+
+Sketched tools are registered like tools contributed in code, so you reference them in prompts with the usual `~{toolName}` syntax and changes apply without a restart. The definitions are persisted as YAML in `sketchedTools.yml` in the `prompt-templates` folder of the Theia configuration directory and can also be edited there directly.
+
+The extension is not part of the Theia IDE, but it is included in the Theia framework example applications. To make the view available in your own application, add `@theia/ai-tool-sketchpad` to the dependencies of your application package.
+
 ### Slash Commands
 
 Slash commands provide a user-friendly way to invoke prompt templates in the chat interface. They allow users to type `/commandname arguments` instead of the more technical `#prompt:fragmentid` syntax. For details on how end users use slash commands, see the [user documentation on slash commands](/docs/user_ai/#slash-commands).
@@ -1030,6 +1043,36 @@ model.setSuggestions([
 ```
 
 For comprehensive example, also see the Coder agent in the AI-powered Theia IDE (see [coder-agent.ts](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/coder-agent.ts)) providing different suggestions based on the context of the conversation.
+
+## Chat Banners
+
+While suggestions belong to a single conversation, a banner is a persistent strip rendered above the chat content, independent of the current session. Banners are meant for information that the user should not miss, for example a warning that the environment has been configured in an unusual way. Theia itself uses this to warn about tool confirmation being overridden for the session (see [Warning Banner for Session Overrides](/docs/user_ai/#warning-banner-for-session-overrides)).
+
+To add your own banner, implement `ChatBannerProvider` from `@theia/ai-chat-ui` and bind it as a contribution. The provider decides whether the banner is shown and returns the widget or React node to render, so you can react to preferences, connection state or any other condition. Keep banners rare and dismissible: they take vertical space away from the conversation, and users should be able to get rid of them once they have taken note.
+
+For an example, see [`AiAllowAllModeChatBanner`](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/ai-allow-all-mode-chat-banner.tsx) in `@theia/ai-ide`.
+
+<img src="../../ai-chat-banner.png" alt="A screenshot of the THeia  AI Allow-All Mode Banner in the AI Chat" style="max-width: 525px">
+
+## Accessing AI Preferences
+
+AI-related preferences all live under the `ai-features.` prefix. To read and write them, use `AiConfigurationService` from `@theia/ai-core` instead of talking to the `PreferenceService` directly. It is the intended extension point for AI configuration and keeps consumers insulated from future changes in how AI preferences are stored.
+
+```typescript
+@inject(AiConfigurationService)
+protected readonly aiConfiguration: AiConfigurationService;
+
+protected async isEnabled(): Promise<boolean> {
+    await this.aiConfiguration.ready;
+    return this.aiConfiguration.get<boolean>('ai-features.myFeature.enabled', false) ?? false;
+}
+```
+
+The service mirrors the familiar preference API with `get`, `inspect`, `set` and `update`, plus an `onDidChange` event and a `ready` promise you should await before the first read. The important difference is that reads are aware of [workspace trust](/docs/workspace_trust/): while the workspace is untrusted — and while the trust state is still being resolved — workspace- and folder-scoped values are suppressed and the user or default value is used instead. This prevents an untrusted workspace from loosening AI guardrails such as tool confirmation or the shell command allow-list. Writes are never trust-gated, so a deliberate user action can still store a value in the workspace scope.
+
+`onDidChange` also fires when the trust state changes, in which case no specific preference name is reported. Use `affectsPreference(key)` rather than comparing the name yourself, so your listener does not miss trust transitions. `inspect` additionally reports the `sourceScope` that produced the effective value, which is useful for showing users where a value comes from.
+
+Routing your own AI preferences through this service means they inherit this behavior automatically. If a preference genuinely has to be honored regardless of trust, read it via the `PreferenceService` and document why.
 
 ## Learn more
 
