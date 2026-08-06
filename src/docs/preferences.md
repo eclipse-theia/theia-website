@@ -26,7 +26,7 @@ Theia provides a comprehensive preferences system that allows extensions to cont
     - [Resource-Specific Preferences](#resource-specific-preferences)
     - [Preference Overrides and Defaults](#preference-overrides-and-defaults)
     - [Session Preference Overrides](#session-preference-overrides)
-    - [Backend Preferences](#backend-preferences)
+- [Backend Preferences](#backend-preferences)
     - [Key Points for Backend Usage](#key-points-for-backend-usage)
     - [Backend Usage Example](#backend-usage-example)
     - [Creating a Backend Preference Service](#creating-a-backend-preference-service)
@@ -399,7 +399,7 @@ Because a session override silently wins over everything the user has configured
 
 Changing the value of an overridden preference in the settings UI drops the session override, so that the persisted value becomes effective again. The same happens when a value is written programmatically to one of the persisted scopes. Editing `settings.json` directly does not lift the override.
 
-<img src="../../session-preferences.png" alt="A screenshot of the Theia IDE with overriden session preferences" style="max-width: 800px">
+<img src="../../session-preferences.png" alt="A screenshot of the Theia IDE with overridden session preferences" style="max-width: 800px">
 
 ## Backend Preferences
 

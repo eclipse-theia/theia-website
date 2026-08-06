@@ -149,8 +149,8 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 
 | Provider                                                   | Streaming  | Tool Calls  | Structured Output  | State        |
 |------------------------------------------------------------|:----------:|:-----------:|:------------------:|--------------|
-| [Anthropic](#anthropic)                                    |     ✅     |     ✅      |         ✅         | Public       |
-| [Google AI](#google-ai)                                    |     ✅     |     ✅      |         ✅         | Public       |
+| [Anthropic](#anthropic)                                    |     ✅     |     ✅      |         ❌         | Public       |
+| [Google AI](#google-ai)                                    |     ✅     |     ✅      |         ❌         | Public       |
 | [OpenAI Official](#openai-hosted-by-openai)                |     ✅     |     ✅      |         ✅         | Public       |
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
 | Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
@@ -328,73 +328,7 @@ derived model in Ollama, in which you set the `num_ctx` parameter to the desired
 
 ### Vercel AI
 
-**Note: The Vercel AI provider is currently experimental and may undergo changes. We are evaluating replacing some existing providers to reduce maintenance effort. Please try this provider and provide feedback to help us stabilize it.**
-
-The Vercel AI provider offers a unified way of communicating with LLMs through the Vercel AI SDK framework. It serves as an alternative to other providers and currently supports OpenAI and Anthropic APIs with both official and custom endpoints.
-
-#### API Key Configuration
-
-If you already have your OpenAI or Anthropic API keys set as environment variables (`OPENAI_API_KEY` or `ANTHROPIC_API_KEY`), no additional configuration is required for the Vercel provider.
-
-If you configure your API keys through the settings, you need to explicitly set the API keys for the Vercel provider:
-
-1. Go to **Preferences** => **AI features** => **Vercel AI**
-2. Set your OpenAI and/or Anthropic API keys
-
-#### Vercel AI: Official Models Configuration
-
-The Vercel provider includes the most common OpenAI and Anthropic models by default. To add new official models, configure them in your `settings.json`:
-
-```json
-{
-  "ai-features.vercelAi.officialModels": [
-    {
-      "id": "vercel/openai/new-gpt",
-      "model": "new-gpt",
-      "provider": "openai"
-    }
-  ]
-}
-```
-
-#### Vercel AI: Custom Models Configuration
-
-The Vercel provider supports custom models compatible with the Vercel AI SDK. Configure custom endpoints in your `settings.json`:
-
-```json
-{
-  "ai-features.vercelAi.customModels": [
-    {
-      "model": "custom-model-name",
-      "url": "https://api.example.com/v1",
-      "id": "my-custom-model",
-      "apiKey": "your-api-key",
-      "provider": "openai",
-      "supportsStructuredOutput": true,
-      "enableStreaming": true
-    },
-    {
-      "model": "local-llama",
-      "url": "http://localhost:8000",
-      "id": "local-llama-model",
-      "apiKey": true,
-      "provider": "openai",
-      "supportsStructuredOutput": false,
-      "enableStreaming": false
-    }
-  ]
-}
-```
-
-**Configuration Options:**
-
-- **`model`** (required): The model identifier
-- **`url`** (required): The API endpoint URL
-- **`id`** (optional): Unique identifier for the UI. If not provided, `model` will be used
-- **`apiKey`** (optional): API key for the endpoint. Use `true` to use the global API key
-- **`provider`** (optional): Specify the provider type (`openai`, `anthropic`)
-- **`supportsStructuredOutput`** (optional): Set to `false` to disable structured output. Default: `true`
-- **`enableStreaming`** (optional): Set to `false` to disable streaming. Default: `true`
+**Note: The `@theia/ai-vercel-ai` package is deprecated and is no longer published on npm. It will eventually be removed from the Theia codebase. As it only wrapped OpenAI and Anthropic models, which are covered by dedicated providers with better support, please migrate to those. See the [1.74 section of the Theia Migration guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md#deprecation-of-theiaai-vercel-ai-package) for the migration steps.**
 
 ### Hugging Face
 
@@ -819,9 +753,9 @@ Chat sessions are stored in the `.theia/chatSessions/` directory within your use
 
 #### Sessions View
 
-Besides the "Show Chats..." dialog, the Theia IDE offers a dedicated **AI Sessions** view that gives you a persistent overview of your work with the AI. Instead of a flat history, it presents your sessions as a tree: every chat session appears as a collapsible node, and the individual chats that belong to a session are nested underneath it. This mirrors how a session can span several related conversations, so everything that belongs together stays together and remains easy to find later.
+Besides the "Show Chats..." dialog, the Theia IDE offers a dedicated **AI Sessions** view that gives you a persistent overview of your work with the AI. Instead of a flat history, it presents your sessions as a tree, split into an **Active** section for your current sessions and a **Restored** section for sessions brought back from a previous run. Sessions that spawned further sessions through delegation appear as collapsible nodes, with the sub-sessions they started nested underneath their parent, so a whole line of delegated work stays together and remains easy to follow later.
 
-Expand a session to see its chats and collapse it again to keep the overview compact. Selecting a chat reopens it in the chat view, which makes the Sessions view a convenient way to move between parallel lines of work without losing track of any of them. The view is part of the [AI First perspective](#ai-first-perspective), where it sits alongside the chat, but you can open it in any layout from the *View* menu.
+Expand a session to see the sub-sessions it delegated and collapse it again to keep the overview compact. Selecting a session reopens it in the chat view, which makes the Sessions view a convenient way to move between parallel lines of work without losing track of any of them. The view is part of the [AI First perspective](#ai-first-perspective), where it sits alongside the chat, but you can open it in any layout from the *View* menu.
 
 <img src="../../ai-session-view.png" alt="AI Sessions View in a Theia application" style="max-width: 525px" />
 
@@ -1040,6 +974,8 @@ Fenced ` ```mermaid ` code blocks in chat responses (and in the user-interaction
 Model responses can reference resources on the internet, such as images or embedded pages. The Theia IDE does not load these automatically, because fetching them would contact the referenced server and could reveal that you opened the response, or expose your IP address, to a third party you did not choose to talk to.
 
 Instead of loading the resource, the chat shows a placeholder that tells you which URL would be contacted. If you trust the source, you can allow the content, and the chat then loads and displays it. This keeps you in control of every outgoing request that a response would otherwise trigger on your behalf.
+
+If you regularly trust content from certain hosts, you can pre-allow them permanently through the `ai-features.chat.allowedResourceUrls` preference, which takes a list of URL prefixes. Content whose URL starts with one of these prefixes is loaded right away, without asking for approval on every response.
 
 ### Warning Banner for Session Overrides
 

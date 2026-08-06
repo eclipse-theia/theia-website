@@ -21,7 +21,7 @@ protected readonly telemetry: TelemetryService;
 // ...
 this.telemetry.report('example/build/completed', {
     duration: 120,
-    successful: true,
+    successful: false,
     targets: ['frontend', 'backend']
 }, {
     kind: 'error',

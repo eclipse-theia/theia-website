@@ -215,7 +215,7 @@ export const MENU = [
 export function getMenuContext(slug, menu = MENU, context = {}) {
     const indexOfCurrent = menu.findIndex(({ path }) => {
         if (path) {
-            return path.includes(slug)
+            return path === '/docs/' + slug + '/'
         }
         return false
     })

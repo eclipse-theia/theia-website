@@ -62,14 +62,14 @@ export class MyContribution implements SomeContributionInterface
 When your extension provides a service that others may want to replace, which is the case for most public services, declare an interface together with a symbol of the same name, and export a default implementation:
 
 ```typescript
-export const TaskDefinitionRegistry = Symbol('TaskDefinitionRegistry');
-export interface TaskDefinitionRegistry {
-    register(definition: TaskDefinition): void;
+export const GreetingRegistry = Symbol('GreetingRegistry');
+export interface GreetingRegistry {
+    register(greeting: Greeting): void;
 }
 
 @injectable()
-export class TaskDefinitionRegistryImpl implements TaskDefinitionRegistry {
-    register(definition: TaskDefinition): void {
+export class GreetingRegistryImpl implements GreetingRegistry {
+    register(greeting: Greeting): void {
     }
 }
 ```
@@ -77,15 +77,15 @@ export class TaskDefinitionRegistryImpl implements TaskDefinitionRegistry {
 In the container module, bind the implementation to itself and the symbol to that implementation:
 
 ```typescript
-bind(TaskDefinitionRegistryImpl).toSelf().inSingletonScope();
-bind(TaskDefinitionRegistry).toService(TaskDefinitionRegistryImpl);
+bind(GreetingRegistryImpl).toSelf().inSingletonScope();
+bind(GreetingRegistry).toService(GreetingRegistryImpl);
 ```
 
 The additional symbol is worth the boilerplate because it leaves adopters a choice. They can either subclass your default implementation or provide an entirely independent one:
 
 ```typescript
-rebind(TaskDefinitionRegistry).to(MyRegistryExtendingTheDefault);
-rebind(TaskDefinitionRegistry).to(MyRegistryFromScratch);
+rebind(GreetingRegistry).to(MyRegistryExtendingTheDefault);
+rebind(GreetingRegistry).to(MyRegistryFromScratch);
 ```
 
 If you use a class as both the injection token and the type, only the first option remains. A class with any `private` or `protected` member is typed nominally in TypeScript, so a structurally identical but unrelated class is not assignable to it and can therefore not be rebound. The same applies to tests, where a test double then has to extend the real implementation and pull in all of its dependencies.

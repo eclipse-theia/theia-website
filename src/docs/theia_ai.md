@@ -1048,11 +1048,11 @@ For comprehensive example, also see the Coder agent in the AI-powered Theia IDE 
 
 While suggestions belong to a single conversation, a banner is a persistent strip rendered above the chat content, independent of the current session. Banners are meant for information that the user should not miss, for example a warning that the environment has been configured in an unusual way. Theia itself uses this to warn about tool confirmation being overridden for the session (see [Warning Banner for Session Overrides](/docs/user_ai/#warning-banner-for-session-overrides)).
 
-To add your own banner, implement `ChatBannerProvider` from `@theia/ai-chat-ui` and bind it as a contribution. The provider decides whether the banner is shown and returns the widget or React node to render, so you can react to preferences, connection state or any other condition. Keep banners rare and dismissible: they take vertical space away from the conversation, and users should be able to get rid of them once they have taken note.
+To add your own banner, implement `ChatBannerProvider` from `@theia/ai-chat-ui` and bind it as a contribution. The provider decides whether the banner is shown and returns the React node to render, so you can react to preferences, connection state or any other condition. Keep banners rare and dismissible: they take vertical space away from the conversation, and users should be able to get rid of them once they have taken note.
 
 For an example, see [`AiAllowAllModeChatBanner`](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/ai-allow-all-mode-chat-banner.tsx) in `@theia/ai-ide`.
 
-<img src="../../ai-chat-banner.png" alt="A screenshot of the THeia  AI Allow-All Mode Banner in the AI Chat" style="max-width: 525px">
+<img src="../../ai-chat-banner.png" alt="A screenshot of the Theia AI Allow-All Mode Banner in the AI Chat" style="max-width: 525px">
 
 ## Accessing AI Preferences
 
@@ -1068,7 +1068,7 @@ protected async isEnabled(): Promise<boolean> {
 }
 ```
 
-The service mirrors the familiar preference API with `get`, `inspect`, `set` and `update`, plus an `onDidChange` event and a `ready` promise you should await before the first read. The important difference is that reads are aware of [workspace trust](/docs/workspace_trust/): while the workspace is untrusted — and while the trust state is still being resolved — workspace- and folder-scoped values are suppressed and the user or default value is used instead. This prevents an untrusted workspace from loosening AI guardrails such as tool confirmation or the shell command allow-list. Writes are never trust-gated, so a deliberate user action can still store a value in the workspace scope.
+The service mirrors the familiar preference API with `get`, `inspect`, `set` and `update`, plus an `onDidChange` event and a `ready` promise you should await before the first read. The important difference is that reads are aware of [workspace trust](/docs/workspace_trust/): while the workspace is untrusted, and while the trust state is still being resolved, workspace- and folder-scoped values are suppressed and the user or default value is used instead. This prevents an untrusted workspace from loosening AI guardrails such as tool confirmation or the shell command allow-list. Writes are never trust-gated, so a deliberate user action can still store a value in the workspace scope.
 
 `onDidChange` also fires when the trust state changes, in which case no specific preference name is reported. Use `affectsPreference(key)` rather than comparing the name yourself, so your listener does not miss trust transitions. `inspect` additionally reports the `sourceScope` that produced the effective value, which is useful for showing users where a value comes from.
 
