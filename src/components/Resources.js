@@ -235,6 +235,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'Theia Adopter Story: STMicroelectronics STM32CubeMX2 - Microcontroller Configuration and Code Generation',
+                url: 'https://www.eclipse.org/topics/ide/articles/theia-adopter-story-stmicroelectronics/',
+                type: 'article'
+            },
+            {
                 title: 'Textual, Graphical, and Form-Based Data Modeling with Eclipse Theia (AI)',
                 url: 'https://eclipsesource.com/blogs/2025/11/25/crossmodel-unified-modeling-perspectives-theiacon/',
                 type: 'video'
