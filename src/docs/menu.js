@@ -127,6 +127,10 @@ export const MENU = [
         'widgets'
     ),
     M(
+        'Perspectives',
+        'perspectives'
+    ),
+    M(
         'Custom Editors',
         'custom_editors'
     ),
@@ -171,6 +175,10 @@ export const MENU = [
         'json_rpc'
     ),
     M(
+        'Telemetry',
+        'telemetry'
+    ),
+    M(
         'Tasks',
         'tasks'
     ),
@@ -205,13 +213,13 @@ export const MENU = [
 ]
 
 export function getMenuContext(slug, menu = MENU, context = {}) {
-    const indexOfCurrent = menu.findIndex(({path}) => {
+    const indexOfCurrent = menu.findIndex(({ path }) => {
         if (path) {
-            return path.includes(slug)
+            return path === '/docs/' + slug + '/'
         }
         return false
     })
-    const prev =  menu[indexOfCurrent - 1] && menu[indexOfCurrent - 1].path ?
+    const prev = menu[indexOfCurrent - 1] && menu[indexOfCurrent - 1].path ?
         menu[indexOfCurrent - 1].path : menu[indexOfCurrent - 2] &&
         menu[indexOfCurrent - 2].path && menu[indexOfCurrent - 2].path
 
