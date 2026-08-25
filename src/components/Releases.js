@@ -79,50 +79,50 @@ const communityReleases = [
         technologiesin: 'September 7th, 2026',
         releaseanouncement: 'September 14th, 2026',
         announcementurl: '',
-        npmVersion: '',
-        npmUrl: '',
+        npmVersion: '1.74.1',
+        npmUrl: 'https://www.npmjs.com/package/@theia/core/v/1.74.1',
         frameworks: [
             {
                 title: 'Eclipse GLSP',
                 url: 'https://www.eclipse.dev/glsp/',
-                version: 'TBD',
+                version: '2.8.0',
                 modules: [
-                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration' }
+                    { modulename: '@eclipse-glsp/theia-integration', url: 'https://www.npmjs.com/package/@eclipse-glsp/theia-integration/v/2.8.0' }
                 ]
             },
             {
                 title: 'Eclipse EMF cloud',
                 url: 'https://www.eclipse.dev/emfcloud/',
-                version: 'TBD',
+                version: '0.8.6',
                 modules: [
-                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view' }
+                    { modulename: '@eclipse-emfcloud/jsonforms-property-view', url: 'https://www.npmjs.com/package/@eclipse-emfcloud/jsonforms-property-view/v/0.8.6' }
                 ]
             },
             {
                 title: 'Eclipse Sprotty',
                 url: 'https://www.eclipse.dev/sprotty/',
-                version: 'TBD',
+                version: '1.4.0',
                 modules: []
             },
             {
                 title: 'Eclipse CDT Cloud Debug Adapter',
                 url: 'https://projects.eclipse.org/projects/ecd.cdt-cloud',
-                version: 'TBD',
+                version: '2.9.1',
                 modules: [
-                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode' },
-                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter' }
+                    { modulename: 'cdt-gdb-vscode', url: 'https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode/2.9.1' },
+                    { modulename: 'cdt-gdb-adapter', url: 'https://www.npmjs.com/package/cdt-gdb-adapter/v/1.10.0' }
                 ]
             },
             {
                 title: 'Langium',
                 url: 'https://langium.org/',
-                version: 'TBD',
+                version: '4.3.1',
                 modules: []
             },
             {
                 title: 'Trace Viewer for VSCode',
                 url: 'https://open-vsx.org/extension/eclipse-cdt/vscode-trace-extension',
-                version: 'TBD',
+                version: '0.8.0',
                 modules: []
             }
         ]
