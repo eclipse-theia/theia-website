@@ -1668,6 +1668,20 @@ Installing a skill downloads its content into `~/.agents/skills/` on the machine
 
 If skill downloads start hitting GitHub rate limits, set a GitHub token via the `ai-features.registry.githubToken` preference or the `GITHUB_TOKEN` environment variable to raise the limit. Skill entries can also be installed through `theia://install-skill?id=<id>` deep links.
 
+### Installing Agent Plugins from the Registry
+
+An **Agent Plugin** bundles several skills and MCP servers into a single artifact that an organization endorses as a unit. Instead of installing a handful of related skills and servers one by one, you install the plugin once and get everything it contains. The registry only points at the plugin's source; the content itself is fetched from that source.
+
+Agent Plugins have their own section in the Extensions view and can be found by searching for `@agent-plugins`. Hovering a plugin card shows which skills it brings. Clicking **Install** opens a dialog that names the source, the endorsing organization and the contained skills, and warns you that a plugin's MCP servers can run arbitrary commands on your machine — so only install plugins from sources you trust.
+
+When you confirm, the plugin is downloaded and verified against the content hash endorsed in the registry before it is installed into `~/.agents/plugins/`. If the content does not match, the installation is refused with a dialog rather than silently proceeding.
+
+A plugin's skills become available under a qualified name, for example `bigquery-data-analytics:query-builder`, so they cannot collide with your own skills. Its MCP servers are added to your `ai-features.mcp.mcpServers` preference and keep a back-pointer to the plugin they came from. In the [AI Configuration view](#ai-configuration), skills and MCP servers that originate from a plugin show a *via ‹plugin›* link that reveals the plugin in the Extensions view.
+
+Plugin cards offer the same context-aware actions as other registry entries — **Install**, **Update**, **Fix**, **Link** / **Unlink** and **Uninstall** — and participate in [automatic updates](#keeping-registry-entries-up-to-date) on the same terms. Editing files inside an installed plugin makes it *drifted*, which you can reset with **Fix**. Uninstalling removes the plugin, its data directory and its skills. Plugins can also be installed through `theia://install-plugin?id=<id>` deep links; the link carries only the plugin id, everything else is taken from your configured registry.
+
+<!-- TODO-MEDIA: screenshot - the Extensions view filtered with @agent-plugins, showing Agent Plugin cards, and the install dialog listing source, endorsing organization and contained skills -->
+
 ## Tool Call Confirmation UI
 
 The Theia IDE provides a flexible and user-configurable tool call confirmation system for agent interactions. This feature allows you to control, on a per-tool basis, whether a tool call should be:
