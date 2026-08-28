@@ -924,6 +924,13 @@ Here are some example of the most frequently used variable, you can see the full
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 - `#productName` – The name of the product/application you are working in. Resolves to the IDE's configured application name, which is useful when adopters white-label Theia under a different product name. The built-in agent prompts also use this variable so they refer to the actual product.
 - `#terminalCommand` – A command that was executed in the terminal together with its output. Without an argument it resolves to the last command in the most recently used terminal. With an integer argument (e.g. `#terminalCommand:2`) it resolves to the corresponding entry from the terminal's command history. When you type `#terminalCommand` and trigger the argument picker, the IDE shows a searchable list of recent commands so you can attach a specific one. This variable depends on the experimental command history of the integrated terminal. Enable `Terminal › Integrated: Enable Command History` for the best results; otherwise the variable falls back to the last 50 lines of the terminal buffer.
+- `#openEditors` – The list of files currently open in the editor. Useful to point an agent at what you are working on without attaching each file individually.
+
+#### Open Editors in Agent Prompts
+
+The Universal, Architect and Coder agents know about your open editors out of the box. Their prompts include a built-in prompt fragment (`open-editors-hint`) that resolves the `openEditors` variable, so you can ask questions like "which files do I have open?" or refer to "the file I am looking at" without attaching anything manually. The fragment explicitly tells the agent that these files are contextual information only and may or may not be relevant, so the agent does not assume they relate to your request unless you say so.
+
+Because this is a regular prompt fragment, you can add it to other agents — or remove it from the ones that have it — through [prompt customization](#view-and-modify-prompts) by editing the agent's prompt and adding or deleting `{{prompt:open-editors-hint}}`.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
