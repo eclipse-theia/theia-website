@@ -111,7 +111,7 @@ Progress is persisted per user, so a partially completed walkthrough is picked u
 
 Walkthroughs that are not yet completed are listed on the welcome page, each as a card showing the title, the contributing extension, and how many steps are still open. Selecting a card opens the walkthrough in place of the welcome page content; use the *More...* link if more walkthroughs are available than fit on the page. Within a walkthrough, clicking the icon of a step toggles it between done and open, and *Mark Done* completes the current step and moves on.
 
-Walkthroughs can also be opened explicitly with the *Open Walkthrough* command (`workbench.action.openWalkthrough`); if no walkthrough is specified, a quick pick offers the available ones. *Reset Walkthrough Progress* (`walkthrough.resetProgress`) clears the recorded progress, again with a picker if no walkthrough is given.
+Walkthroughs can also be opened explicitly from *Help ▸ Open Walkthrough* or with the *Open Walkthrough* command (`workbench.action.openWalkthrough`); if no walkthrough is specified, a quick pick offers the available ones. *Reset Walkthrough Progress* (`walkthrough.resetProgress`) clears the recorded progress, again with a picker if no walkthrough is given.
 
 Whether a newly installed extension may open its walkthrough automatically is controlled by the preference `workbench.welcomePage.walkthroughs.openOnInstall`.
 
