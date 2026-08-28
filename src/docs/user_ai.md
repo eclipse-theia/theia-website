@@ -837,11 +837,12 @@ Capabilities provide a way to extend what an agent can do for a specific request
 
 Some agents advertise a set of optional capabilities directly in the chat input. When such an agent is selected or pinned, compact toggle chips appear in the input area. Each chip represents a named capability that is off by default; clicking it enables it for your next request. Clicking again disables it. The chip shows a brief description in a tooltip on hover.
 
-For example, when using Theia Coder in Agent Mode, three capability chips are available:
+For example, when using Theia Coder in Agent Mode, the following capability chips are available:
 
 - **Shell Execution** — grants the agent access to shell commands. Coder will still prefer workspace tasks and dedicated file tools, and only fall back to shell execution when no better option exists.
 - **GitHub** — enables GitHub interactions by delegating to the GitHub agent. With this active, Coder can read issues, create pull requests, query repositories, and more.
 - **AppTester** — activates post-implementation UI testing by delegating to the AppTester agent. After completing an implementation, Coder will automatically hand off to AppTester to verify the result.
+- **Memory** — lets the agent build up and consult a persistent knowledge base for the current workspace, so later sessions can build on earlier findings (see [Memory](#memory) below).
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
 <video src="../../capabilities-coder-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
@@ -855,6 +856,18 @@ To persist your capability selections across sessions, click the save button in 
 See capabilities used in a real workflow in the following video:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+#### Memory
+
+By default, every chat session starts from scratch: whatever an agent figured out about your project in one session is gone in the next. The **Memory** capability changes that. When enabled, the agent maintains a persistent, wiki-style knowledge base for the current workspace — short, single-concept articles about project facts, conventions, environment quirks and standing decisions — and consults it at the start of a task instead of rediscovering the same details every time.
+
+The knowledge base is kept per workspace in Theia's workspace metadata store, so it does not clutter your project and is not accidentally committed. Prompts can refer to its location through the `{{memoryDirectory}}` variable, which resolves to the absolute path of the memory directory for the current workspace. This makes it possible to reference the knowledge base from your own [prompt fragments](#prompt-fragments) or [custom agents](#custom-agents) as well.
+
+Memory is **opt-in** and off by default. Enable it per request via the Memory capability chip in the chat input, or turn it on permanently for an agent in the [AI Configuration view](#ai-configuration).
+
+Keep in mind that the agent decides what is worth remembering. Reviewing the knowledge base occasionally is worthwhile, since an incorrect note will otherwise be carried into future sessions.
+
+<!-- TODO-MEDIA: screencast - enabling the Memory capability for Coder, running a task so the agent records findings, then starting a follow-up task where it consults the knowledge base instead of re-exploring the project -->
 
 #### Generic Capabilities Panel
 
