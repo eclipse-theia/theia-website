@@ -90,6 +90,7 @@ Learn more about the AI-powered Theia IDE:
     - [Configuring MCP Servers](#configuring-mcp-servers)
     - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
     - [Using MCP Server Functions](#using-mcp-server-functions)
+    - [MCP Apps](#mcp-apps)
     - [MCP Configuration View](#mcp-configuration-view)
 - [AI Registry](#ai-registry)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
@@ -1601,6 +1602,16 @@ To use the `brave_web_search` function of the `brave-search` server, you can wri
 ```
 
 This allows you to seamlessly integrate external services into your AI workflows within the Theia IDE.
+
+### MCP Apps
+
+Besides text and images, an MCP tool can return a small self-contained HTML document as its result — an *MCP app*. Theia renders such results directly in the chat, so a server can answer with an interactive chart, a table or a compact dashboard instead of a wall of text. If the server provides a title for the app, it is shown above the rendered content.
+
+MCP apps are displayed in a sandboxed iframe with a restrictive content security policy. Scripts and inline styles are allowed so the app can be interactive, images may only come from data or blob URLs, and network access is blocked entirely: an app cannot call back to a server, load remote resources or exfiltrate anything from your session. The frame grows with its content up to a maximum height, after which it scrolls.
+
+The language model itself does not receive the HTML. It only sees a short placeholder noting that an interactive app was displayed to you, along with its title. This keeps large app payloads from consuming the model's context window, but it also means the model cannot reason about what the app shows — if you want to discuss its content, describe or paste the relevant parts into the chat.
+
+<!-- TODO-MEDIA: screenshot - a chat response where an MCP tool call returned an MCP app, showing the titled, interactive HTML app rendered inline in the chat -->
 
 ### MCP Configuration View
 
