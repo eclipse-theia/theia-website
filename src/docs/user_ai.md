@@ -1682,6 +1682,22 @@ Plugin cards offer the same context-aware actions as other registry entries — 
 
 <!-- TODO-MEDIA: screenshot - the Extensions view filtered with @agent-plugins, showing Agent Plugin cards, and the install dialog listing source, endorsing organization and contained skills -->
 
+### Keeping Registry Entries Up to Date
+
+Skills, MCP servers and agent plugins installed from the registry can be kept current automatically. The IDE checks the registry once per window load — there is no background polling — and then acts according to the `ai-features.registry.autoUpdate` preference, which offers three modes:
+
+- **Off** — nothing happens automatically. You can still update any entry manually from its card in the Extensions view.
+- **Ask** — you get a notification when updates are available, with actions to apply the update right away or to reveal the affected entries in the Extensions view. If several entries have updates, they are summarized in one notification with an **Update All** action.
+- **On** — available updates are applied silently and reported in a single message.
+
+The first time updates are found, the IDE asks once how you would like to handle them in the future, so you do not have to find the preference yourself. Your answer is stored and the question does not come back. The setting is user-scoped, so it applies to all your workspaces.
+
+If you want a different policy for an individual entry, open the gear menu on its card in the Extensions view and choose an **Auto Update** mode there. The menu marks which mode is currently in effect and whether it is inherited from your default or set specifically for that entry; picking the default again removes the override rather than pinning the value. Overrides are stored in `ai-features.registry.autoUpdateOverrides` and are cleaned up when you uninstall the entry.
+
+Local edits always take precedence: if you changed an installed skill or the configuration of an installed MCP server, the entry counts as *drifted* and is never updated automatically, even in **On** mode. Such entries offer **Fix** instead of **Update**, so your changes are never silently overwritten.
+
+<!-- TODO-MEDIA: screenshot - the gear context menu on a registry entry card in the Extensions view showing the Auto Update submenu with Off, Ask (Default) and On -->
+
 ## Tool Call Confirmation UI
 
 The Theia IDE provides a flexible and user-configurable tool call confirmation system for agent interactions. This feature allows you to control, on a per-tool basis, whether a tool call should be:
