@@ -1051,12 +1051,18 @@ The following video demonstrates the full Task Context workflow, including plann
 
 ## AI Configuration
 
-The AI Configuration View allows you to review and adapt agent-specific settings. Select an agent on the left side and review its properties on the right:
+All AI-related settings live in a single **AI Configuration view**. It is organized as a master–detail view: a tree of categories on the left and a detail page for the selected entry on the right. The available categories are **General**, **Providers & Models**, **Model Aliases**, **Agents**, **Prompts & Skills**, **Variables**, **Tools**, **Token Usage** and **MCP Servers**. Theia extensions can also contribute their own categories, so adopters can surface custom AI settings in the same place.
+
+You can open the view via the `Alt+A` keybinding, from the "Manage" (gear) menu in the bottom-left corner, or through the AI settings entry points in the chat and toolbars. AI preferences are no longer shown in the regular Settings UI; links and deep-links to `ai-features.*` settings route into this view instead, and the current category and item are reflected as breadcrumbs at the top.
+
+The view behaves much like the Settings UI: individual settings are shown as rows with the appropriate control (toggle, select, number, list), and each row has a gear context menu to **Copy Setting ID** or **Reset Setting** back to its default. Structured settings that have no dedicated editor yet defer to `settings.json`.
+
+The **Agents** category lets you review and adapt agent-specific settings. Select an agent to review its properties:
 
 - **Enable Agent**: Disabled agents will no longer be available in the chat or UI elements. Disabled agents also won't make any requests to LLMs.
 - **Edit Prompts**: Click "Edit" to open the prompt template editor, where you can customize the agent's prompts (see the section below). "Reset" will revert the prompt to its default.
 - **Language Model**: Select which language model the agent sends its requests to. Some agents have multiple "purposes," allowing you to select a model for each purpose.
-- **Variables and Functions**: Review the variables and functions used by an agent. Global variables are shared across agents, and they are listed in the second tab of the AI Configuration View. Agent-specific variables are declared and used exclusively by one agent.
+- **Variables and Functions**: Review the variables and functions used by an agent. Global variables are shared across agents and are listed in the **Variables** category. Agent-specific variables are declared and used exclusively by one agent.
 
 Many agents are bound to a **model alias** instead of a concrete model ID, which lets you point several agents at the same backing model from one place. The IDE ships with the following aliases:
 
@@ -1066,9 +1072,9 @@ Many agents are bound to a **model alias** instead of a concrete model ID, which
 - `default/summarize`: chat summarization, used for example when compacting a session.
 - `default/fast`: cheaper or faster models for sub-tasks that do not require deep reasoning, such as exploration, basic tool calling, command lookup, project-info maintenance and chat-session naming. It defaults to Claude Haiku 4.5, GPT-5.4 mini and Gemini 3 Flash.
 
-You can configure which concrete model each alias resolves to in the **Models** tab of the AI Configuration view. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
+You can configure which concrete model each alias resolves to in the **Model Aliases** category. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
 
-<img src="../../ai-configuration-view.png" alt="AI Configuration View in the Theia IDE" style="max-width: 800px">
+<!-- TODO-MEDIA: screenshot - the reworked AI Configuration view showing the category tree on the left (General, Providers & Models, Model Aliases, Agents, Prompts & Skills, Variables, Tools, Token Usage, MCP Servers) and an agent detail page on the right -->
 
 ### View and Modify Prompts
 
@@ -1078,7 +1084,7 @@ In the Theia IDE, you can open and edit prompts for all agents from the AI Confi
 
 Note that some agents come with several prompt variants, you can choose the active variant in the drop down box. To create user-defined variants, browse to the prompt templates directory and create/copy a new file starting with the same id as the default prompt of an agent.
 
-Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the "Variables" tab of the AI Configuration View and agent-specific variables in the agent's configuration.
+Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the **Variables** category of the AI Configuration view and agent-specific variables in the agent's configuration.
 
 Variables are used with the following syntax:
 
@@ -1384,7 +1390,7 @@ To add additional skill directories, configure the `ai-features.skills.skillDire
 }
 ```
 
-You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration). This tab also shows all registered [slash commands](#slash-commands) and the agents they are scoped to — see the [Skills and Slash Commands view](#skills-and-slash-commands-view) section for details.
+You can view all discovered skills in the **Prompts & Skills** category of the [AI Configuration view](#ai-configuration). This category also shows all registered [slash commands](#slash-commands) and the agents they are scoped to — see the [Skills and Slash Commands view](#skills-and-slash-commands-view) section for details.
 
 ### CreateSkill Agent
 
@@ -1416,7 +1422,7 @@ The CreateSkill agent supports two modes:
 
 ## Skills and Slash Commands View
 
-The **Skills** tab in the [AI Configuration View](#ai-configuration) provides an overview of two related concepts in a single place.
+The **Prompts & Skills** category in the [AI Configuration view](#ai-configuration) provides an overview of two related concepts in a single place.
 
 The upper **Skills** section lists all discovered skills with their name, description, and file location. Clicking **Open** opens the corresponding `SKILL.md` file directly in the editor so you can inspect or modify its content.
 
@@ -1578,9 +1584,9 @@ This allows you to seamlessly integrate external services into your AI workflows
 
 ### MCP Configuration View
 
-In the AI Configuration view, you can access a dedicated tab for Model Context Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. You can start or stop any MCP server directly from the configuration interface.
+In the AI Configuration view, the **MCP Servers** category provides an overview of all configured Model Context Protocol (MCP) server settings and their states: Running, Starting, Errored, and Not Running. You can start or stop any MCP server directly from the configuration interface.
 
-The MCP configuration tab also lets you manage your servers without editing the settings file manually. Use the **Add MCP Server** button at the top of the tab to open a dialog where you can configure a new server. Each existing server has an **edit** (pencil) and a **delete** (trash) button next to its start/stop controls. Editing a server opens the same dialog pre-populated with the existing values; deleting prompts for confirmation before removing the entry from your preferences.
+The MCP Servers category also lets you manage your servers without editing the settings file manually. Use the **Add MCP Server** button at the top of the page to open a dialog where you can configure a new server. Each existing server has an **edit** (pencil) and a **delete** (trash) button next to its start/stop controls. Editing a server opens the same dialog pre-populated with the existing values; deleting prompts for confirmation before removing the entry from your preferences.
 
 The dialog supports both server types:
 
@@ -1643,8 +1649,8 @@ The global default for tools that do not have their own entry is **Confirm**. Th
 
 ### Configuration
 
-1. Open the AI configuration view and switch to the "Tools" tab.
-2. Set the global default on top. The selection is persisted in the dedicated preference `ai-features.chat.defaultToolConfirmation` and is also editable from the standard settings UI.
+1. Open the AI Configuration view and select the **Tools** category.
+2. Set the global default on top. The selection is persisted in the dedicated preference `ai-features.chat.defaultToolConfirmation`.
 3. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow). Per-tool entries are stored under `ai-features.chat.toolConfirmation` keyed by tool ID.
 4. When a tool requires confirmation in the chat, you can choose to:
    - Allow once

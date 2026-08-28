@@ -1074,6 +1074,14 @@ The service mirrors the familiar preference API with `get`, `inspect`, `set` and
 
 Routing your own AI preferences through this service means they inherit this behavior automatically. If a preference genuinely has to be honored regardless of trust, read it via the `PreferenceService` and document why.
 
+## Contributing AI Configuration Categories
+
+The [AI Configuration view](/docs/user_ai/#ai-configuration) is a master–detail view whose categories are contributed rather than hard-coded. The built-in categories (General, Providers & Models, Model Aliases, Agents, Prompts & Skills, Variables, Tools, Token Usage, MCP Servers) are contributed by `@theia/ai-core` and `@theia/ai-core-ui`, and your own extension can add categories in the same way.
+
+To add a category, implement `AiConfigurationCategory` and bind it as a contribution. Each category has an id, a label and an ordering hint that controls where it appears in the tree, and it provides the detail page rendered when the user selects it. AI preferences shown on the page should be read and written through `AiConfigurationService` (see above) so they stay workspace-trust-aware. The shared page primitives (sections, list rows, settings rows with toggle/select/number/array controls, the row gear menu with *Copy Setting ID* / *Reset Setting*, and status badges) let contributed pages look and behave like the built-in ones.
+
+This replaces the previous approach of registering separate configuration widgets via `WidgetFactory`: the per-tab config widgets and their registrations have been removed, and `@theia/ai-ide` and `@theia/ai-mcp` now depend on `@theia/ai-core-ui`. Custom AI-config tabs from earlier versions must be re-implemented as `AiConfigurationCategory` contributions. The stable entry points (`aiConfiguration:open`, `aiConfiguration:openTools`, and the chat toolbar button) are unchanged.
+
 ## Learn more
 
 👉 [Introducing Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs](https://eclipsesource.com/blogs/2025/03/13/introducing-theia-ai/)
