@@ -868,8 +868,6 @@ Memory is **opt-in** and off by default. Enable it per request via the Memory ca
 
 Keep in mind that the agent decides what is worth remembering. Reviewing the knowledge base occasionally is worthwhile, since an incorrect note will otherwise be carried into future sessions.
 
-<!-- TODO-MEDIA: screencast - enabling the Memory capability for Coder, running a task so the agent records findings, then starting a follow-up task where it consults the knowledge base instead of re-exploring the project -->
-
 #### Generic Capabilities Panel
 
 For advanced users who want full control over a request, the Generic Capabilities Panel provides a searchable overview of everything available: Skills, MCP server tools (grouped by server), built-in tool functions (grouped by provider), Prompt Fragments, Agent Delegation targets, and Variables.
@@ -1074,7 +1072,17 @@ The following video demonstrates the full Task Context workflow, including plann
 
 All AI-related settings live in a single **AI Configuration view**. It is organized as a master–detail view: a tree of categories on the left and a detail page for the selected entry on the right. The available categories are **General**, **Providers & Models**, **Model Aliases**, **Agents**, **Prompts & Skills**, **Variables**, **Tools**, **Token Usage** and **MCP Servers**. Theia extensions can also contribute their own categories, so adopters can surface custom AI settings in the same place.
 
-You can open the view via the `Alt+A` keybinding, from the "Manage" (gear) menu in the bottom-left corner, or through the AI settings entry points in the chat and toolbars. AI preferences are no longer shown in the regular Settings UI; links and deep-links to `ai-features.*` settings route into this view instead, and the current category and item are reflected as breadcrumbs at the top.
+There are several ways to open the AI Configuration view:
+
+- press `Alt+A`
+- choose **AI Configuration** from the **Manage** (gear) menu in the bottom-left corner, right below *Settings*
+- click **Open AI Configuration** in the toolbar of the AI Chat view
+- follow the **Open AI Configuration** link on the Welcome page
+- run *Open AI Configuration* from the Command Palette
+
+Since the AI configuration now sits with the rest of the application configuration rather than among the other views, it is intentionally no longer listed in the *View* menu.
+
+AI preferences are no longer shown in the regular Settings UI; links and deep-links to `ai-features.*` settings route into this view instead, and the current category and item are reflected as breadcrumbs at the top.
 
 The view behaves much like the Settings UI: individual settings are shown as rows with the appropriate control (toggle, select, number, list), and each row has a gear context menu to **Copy Setting ID** or **Reset Setting** back to its default. Structured settings that have no dedicated editor yet defer to `settings.json`.
 
@@ -1095,7 +1103,7 @@ Many agents are bound to a **model alias** instead of a concrete model ID, which
 
 You can configure which concrete model each alias resolves to in the **Model Aliases** category. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
 
-<!-- TODO-MEDIA: screenshot - the reworked AI Configuration view showing the category tree on the left (General, Providers & Models, Model Aliases, Agents, Prompts & Skills, Variables, Tools, Token Usage, MCP Servers) and an agent detail page on the right -->
+<img src="../../ai-configuration-view.png" alt="AI Configuration View in the Theia IDE" style="max-width: 800px">
 
 ### View and Modify Prompts
 
@@ -1611,7 +1619,7 @@ MCP apps are displayed in a sandboxed iframe with a restrictive content security
 
 The language model itself does not receive the HTML. It only sees a short placeholder noting that an interactive app was displayed to you, along with its title. This keeps large app payloads from consuming the model's context window, but it also means the model cannot reason about what the app shows — if you want to discuss its content, describe or paste the relevant parts into the chat.
 
-<!-- TODO-MEDIA: screenshot - a chat response where an MCP tool call returned an MCP app, showing the titled, interactive HTML app rendered inline in the chat -->
+<img src="../../mcp-apps.png" alt="An MCP app rendered inline in an AI chat response in the Theia IDE" style="max-width: 525px">
 
 ### MCP Configuration View
 
@@ -1680,7 +1688,7 @@ A plugin's skills become available under a qualified name, for example `bigquery
 
 Plugin cards offer the same context-aware actions as other registry entries — **Install**, **Update**, **Fix**, **Link** / **Unlink** and **Uninstall** — and participate in [automatic updates](#keeping-registry-entries-up-to-date) on the same terms. Editing files inside an installed plugin makes it *drifted*, which you can reset with **Fix**. Uninstalling removes the plugin, its data directory and its skills. Plugins can also be installed through `theia://install-plugin?id=<id>` deep links; the link carries only the plugin id, everything else is taken from your configured registry.
 
-<!-- TODO-MEDIA: screenshot - the Extensions view filtered with @agent-plugins, showing Agent Plugin cards, and the install dialog listing source, endorsing organization and contained skills -->
+<img src="../../ai-registry-agent-plugins.png" alt="Agent Plugin entries in the Extensions view of the Theia IDE" style="max-width: 496px">
 
 ### Keeping Registry Entries Up to Date
 
@@ -1696,7 +1704,7 @@ If you want a different policy for an individual entry, open the gear menu on it
 
 Local edits always take precedence: if you changed an installed skill or the configuration of an installed MCP server, the entry counts as *drifted* and is never updated automatically, even in **On** mode. Such entries offer **Fix** instead of **Update**, so your changes are never silently overwritten.
 
-<!-- TODO-MEDIA: screenshot - the gear context menu on a registry entry card in the Extensions view showing the Auto Update submenu with Off, Ask (Default) and On -->
+<img src="../../ai-registry-auto-update.png" alt="Auto Update submenu on a registry entry in the Extensions view" style="max-width: 525px">
 
 ## Tool Call Confirmation UI
 
