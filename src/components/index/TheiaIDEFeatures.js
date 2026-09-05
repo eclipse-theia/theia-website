@@ -19,6 +19,7 @@ import React from 'react'
 import CodeEditing from '../../resources/codeediting.mp4'
 import ModernUX from '../../resources/modernux.mp4'
 import TheiaIDEAI from '../../resources/theia-ide-ai-demo.mp4'
+import TheiaIDEPrivacy from '../../resources/theia-ide-privacy.png'
 import styled from '@emotion/styled'
 import { breakpoints } from '../../utils/variables'
 
@@ -127,6 +128,15 @@ const TheiaIDEFeatures = ({ adopters }) => (
                 <video autoPlay loop muted playsInline className="promo__video">
                     <source src={TheiaIDEAI} type="video/mp4" />
                 </video>
+            </div>
+        </StyledPromo>
+        <StyledPromo className="promo">
+            <div className="promo__text">
+                <h3 className="heading-tertiary">Full Freedom of Choice — Your Keys, Your Data, Your Rules</h3>
+                <p>Theia IDE sends <a href="https://theia-ide.org/docs/data_usage_telemetry/">no telemetry</a> on your code, prompts, or AI usage. Bring your own API key or subscription and connect to any AI provider—OpenAI, Anthropic, Google, or a fully self-hosted/local model—with no vendor lock-in and no proxy routing your requests through a third party. Your source code, prompts, and credentials stay under your control, making Theia IDE a strong fit for privacy-conscious teams and organizations with strict data sovereignty requirements.</p>
+            </div>
+            <div className="promo__media">
+                <img src={TheiaIDEPrivacy} alt="Theia IDE data privacy and API key freedom" className="promo__video" />
             </div>
         </StyledPromo>
         <StyledPromo className="promo">
