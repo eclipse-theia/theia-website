@@ -138,15 +138,14 @@ git add src/docs/getting-started.md src/docs/composition.md
 git commit -m "Document new dialog API (eclipse-theia/theia#15234)"
 ```
 
+## Capabilities
+
+{{capability:github default on}}
+{{capability:shell-execution default on}}
+
 ## Current Context
 
 Some files and other pieces of data may have been added by the user to the
 context of the chat. If any have, the details can be found below.
 
 {{contextDetails}}
-
-## Github
-
-With the following functions, you can access Github, the repo for the pull requests is "/eclipse-theia/theia/"
-
-{{prompt:mcp_github-theia_tools}}
