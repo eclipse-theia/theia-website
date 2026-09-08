@@ -108,6 +108,14 @@ protected displayMessage(): void {
 
 Please note, that you can override functions of `BaseWidget` or `ReactWidget` to hook into specific life cycle events of a widget, e.g. `onUpdateRequest` or `onResize`. These events are defined by [Phosphor.js](https://phosphorjs.github.io/), the underlying window management framework, see [this documentation](http://phosphorjs.github.io/phosphor/api/widgets/classes/widget.html) about the `Widget` class.
 
+### React Version and JSX Runtime
+
+Since Theia 1.75.0, **React 19 is the only supported React version**. React is a peer dependency of `@theia/core`, so your application has to provide `react` and `react-dom` in version 19; React 18 is no longer supported.
+
+Always import React through the re-exports in `@theia/core/shared/react` and `@theia/core/shared/react-dom` rather than depending on `react` directly. This guarantees that your widgets use the very same React instance as the rest of the application, which is required for hooks and context to work. Alongside `react-dom/client`, a `@theia/core/shared/react-dom/server` re-export is available for server-side rendering of markup.
+
+Theia itself now compiles with React's automatic JSX runtime (`jsx: "react-jsx"` together with `jsxImportSource: "@theia/core/shared/react"`), which means JSX files no longer need React to be in scope just for the JSX. You can adopt the same setting in your own extensions by pointing `jsxImportSource` at `@theia/core/shared/react`, and drop imports that only existed to satisfy JSX. This is optional, though: extensions that keep the classic `jsx: "react"` setting continue to compile.
+
 Besides implementing the actual widget, you need to wire it with the Eclipse Theia workbench, which is described in the next two sections.
 
 ### Implementing a Widget Factory

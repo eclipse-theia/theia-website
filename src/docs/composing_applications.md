@@ -172,15 +172,17 @@ For the jump list to also appear in the Windows menu, set `appUserModelId` in th
 
 If the two values differ, the jump list is only available on the task bar entry.
 
-## Choosing a Bundler: webpack or esbuild
+## Bundling with esbuild
 
-`@theia/cli` supports two bundlers for `theia build`. The webpack pipeline is the default. As an alternative, `@theia/cli` also ships an [esbuild](https://esbuild.github.io/)-based pipeline that is roughly ten times faster. The webpack option will be deprecated and eventually removed, so adopters are encouraged to migrate.
+`theia build` always bundles with [esbuild](https://esbuild.github.io/). esbuild had been the default since Theia 1.72.0 for applications without a `webpack.config.js`; as of Theia 1.75.0 the webpack pipeline has been removed entirely, so there is no bundler choice left to make. On first build, `@theia/cli` generates an `esbuild.mjs` for your application, which you can then customize.
 
-If you stay with webpack for now, note that the webpack version used since Theia 1.74.0 no longer bundles the Terser minifier. Add `terser-webpack-plugin` to the `devDependencies` of your application's `package.json`, otherwise the generated webpack configuration cannot resolve the minifier.
+If your application still contains a `webpack.config.js`, it is no longer used. The build now warns about the leftover file and points you at the migration guide, and `theia clean` still removes the previously generated webpack files. Port any customizations you had in `webpack.config.js` over to `esbuild.mjs`.
 
-To opt into esbuild for an application, delete its `webpack.config.js`; the next build will generate an `esbuild.mjs` automatically. If you had customizations in `webpack.config.js`, port them to the generated `esbuild.mjs`. Note that as part of this change, the `@theia/native-webpack-plugin` dependency was renamed to `@theia/bundle-plugin`.
+A few related renames come with this change. On the command line, `theia build [webpack-args...]` is now `theia build [bundler-args...]`, and `--webpack-help` remains as a deprecated alias of `--bundler-help`. In `@theia/bundle-plugin` (formerly `@theia/native-webpack-plugin`), the `NativeWebpackPlugin` and `MonacoWebpackPlugin` have been replaced by `nativeDependenciesPlugin`, `monacoNlsPlugin` and `exposeModulePlugin`.
 
-For the full migration steps, see the [ESBuild section in the Theia Migration Guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md#general) and the introducing pull request [eclipse-theia/theia#14414](https://github.com/eclipse-theia/theia/pull/14414).
+Production builds now also pre-compress their assets. The new `compressAssetsPlugin` writes a `.gz` file next to each bundled asset so the backend can serve the compressed variant directly, which noticeably reduces the amount of data sent to the browser. It runs for production builds only, so watch rebuilds stay fast, and it removes stale `.gz` files from earlier builds to make sure the backend never serves outdated content.
+
+If you depend on the webpack setup and cannot migrate yet, the migration guide describes how to vendor it into your own repository. For the full migration steps, see the [Theia Migration Guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md#general).
 
 ## Conclusion
 

@@ -73,6 +73,54 @@ VS Code extensions can contribute tools for AI agents through the language model
 
 This lets VS Code extensions extend the AI features of a Theia-based product with custom tools, without depending on Theia-specific APIs.
 
+### Walkthroughs
+
+Since Theia 1.75, VS Code extensions can contribute guided tours to the welcome page via `contributes.walkthroughs`. A walkthrough is a titled list of steps, each with a description, an optional media element (image, SVG, or markdown) and a completion event that tells Theia when the step has been fulfilled.
+
+```jsonc
+{
+    "contributes": {
+        "walkthroughs": [
+            {
+                "id": "myExtension.setup",
+                "title": "Get Started with My Extension",
+                "description": "Set up your project in three steps.",
+                "when": "workspaceFolderCount > 0",
+                "steps": [
+                    {
+                        "id": "createConfig",
+                        "title": "Create a configuration file",
+                        "description": "Run the command to generate a config file.\n[Create Config](command:myExtension.createConfig)",
+                        "media": { "image": "resources/create-config.png", "altText": "The generated configuration file" },
+                        "completionEvents": ["onCommand:myExtension.createConfig"]
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+Both walkthroughs and individual steps support a `when` clause. Entries whose clause evaluates to `false` are hidden and are also excluded from the progress calculation, so a tour can adapt to the current context without ever showing an unreachable step. Walkthroughs contributed by a plugin that is uninstalled, disabled, or not trusted in the current workspace are removed again.
+
+A step is marked as done when one of its `completionEvents` fires. Theia supports `onCommand`, `onContext`, `onSettingChanged`, `onView`, `onLink`, and `extensionInstalled`. Because a Theia application often implements the same functionality under its own command id, commands can be registered with an alias (`CommandRegistry.registerAlias`) so that executing the Theia command also satisfies a completion event that refers to the VS Code command id.
+
+Progress is persisted per user, so a partially completed walkthrough is picked up where it was left off.
+
+#### Using Walkthroughs
+
+Walkthroughs that are not yet completed are listed on the welcome page, each as a card showing the title, the contributing extension, and how many steps are still open. Use the *More...* link if more walkthroughs are available than fit on the page.
+
+<img src="../../welcome-page.png" alt="Welcome page listing available walkthroughs" style="max-width: 700px">
+
+Selecting a card opens the walkthrough in place of the welcome page content. Clicking the icon of a step toggles it between done and open, and *Mark Done* completes the current step and moves on.
+
+<img src="../../welcome-page-walkthrough.png" alt="An opened walkthrough showing its steps and the progress indicator" style="max-width: 700px">
+
+Walkthroughs can also be opened explicitly from *Help ▸ Open Walkthrough* or with the *Open Walkthrough* command (`workbench.action.openWalkthrough`); if no walkthrough is specified, a quick pick offers the available ones. *Reset Walkthrough Progress* (`walkthrough.resetProgress`) clears the recorded progress, again with a picker if no walkthrough is given.
+
+Whether a newly installed extension may open its walkthrough automatically is controlled by the preference `workbench.welcomePage.walkthroughs.openOnInstall`.
+
 ## Prerequisites for Running VS Code Extensions in Theia
 
 To enable Theia's support for VS Code extensions in order to use your own extensions or third-party VS Code extensions in your Theia application, you'll need to add `@theia/plugin-ext-vscode` as a dependency.

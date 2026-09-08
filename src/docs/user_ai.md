@@ -90,6 +90,7 @@ Learn more about the AI-powered Theia IDE:
     - [Configuring MCP Servers](#configuring-mcp-servers)
     - [Starting and Stopping MCP Servers](#starting-and-stopping-mcp-servers)
     - [Using MCP Server Functions](#using-mcp-server-functions)
+    - [MCP Apps](#mcp-apps)
     - [MCP Configuration View](#mcp-configuration-view)
 - [AI Registry](#ai-registry)
 - [Tool Call Confirmation UI](#tool-call-confirmation-ui)
@@ -837,11 +838,12 @@ Capabilities provide a way to extend what an agent can do for a specific request
 
 Some agents advertise a set of optional capabilities directly in the chat input. When such an agent is selected or pinned, compact toggle chips appear in the input area. Each chip represents a named capability that is off by default; clicking it enables it for your next request. Clicking again disables it. The chip shows a brief description in a tooltip on hover.
 
-For example, when using Theia Coder in Agent Mode, three capability chips are available:
+For example, when using Theia Coder in Agent Mode, the following capability chips are available:
 
 - **Shell Execution** — grants the agent access to shell commands. Coder will still prefer workspace tasks and dedicated file tools, and only fall back to shell execution when no better option exists.
 - **GitHub** — enables GitHub interactions by delegating to the GitHub agent. With this active, Coder can read issues, create pull requests, query repositories, and more.
 - **AppTester** — activates post-implementation UI testing by delegating to the AppTester agent. After completing an implementation, Coder will automatically hand off to AppTester to verify the result.
+- **Memory** — lets the agent build up and consult a persistent knowledge base for the current workspace, so later sessions can build on earlier findings (see [Memory](#memory) below).
 
 <div style="text-align:center; margin-top: 1rem; margin-bottom: 1rem;">
 <video src="../../capabilities-coder-demo.webm" width="75%" autoplay loop controls class="rounded-2"></video>
@@ -855,6 +857,16 @@ To persist your capability selections across sessions, click the save button in 
 See capabilities used in a real workflow in the following video:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lxwe5l5dQqk?si=8ewufrRGOyqZWfM8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+#### Memory
+
+By default, every chat session starts from scratch: whatever an agent figured out about your project in one session is gone in the next. The **Memory** capability changes that. When enabled, the agent maintains a persistent, wiki-style knowledge base for the current workspace — short, single-concept articles about project facts, conventions, environment quirks and standing decisions — and consults it at the start of a task instead of rediscovering the same details every time.
+
+The knowledge base is kept per workspace in Theia's workspace metadata store, so it does not clutter your project and is not accidentally committed. Prompts can refer to its location through the `{{memoryDirectory}}` variable, which resolves to the absolute path of the memory directory for the current workspace. This makes it possible to reference the knowledge base from your own [prompt fragments](#prompt-fragments) or [custom agents](#custom-agents) as well.
+
+Memory is **opt-in** and off by default. Enable it per request via the Memory capability chip in the chat input, or turn it on permanently for an agent in the [AI Configuration view](#ai-configuration).
+
+Keep in mind that the agent decides what is worth remembering. Reviewing the knowledge base occasionally is worthwhile, since an incorrect note will otherwise be carried into future sessions.
 
 #### Generic Capabilities Panel
 
@@ -911,6 +923,13 @@ Here are some example of the most frequently used variable, you can see the full
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 - `#productName` – The name of the product/application you are working in. Resolves to the IDE's configured application name, which is useful when adopters white-label Theia under a different product name. The built-in agent prompts also use this variable so they refer to the actual product.
 - `#terminalCommand` – A command that was executed in the terminal together with its output. Without an argument it resolves to the last command in the most recently used terminal. With an integer argument (e.g. `#terminalCommand:2`) it resolves to the corresponding entry from the terminal's command history. When you type `#terminalCommand` and trigger the argument picker, the IDE shows a searchable list of recent commands so you can attach a specific one. This variable depends on the experimental command history of the integrated terminal. Enable `Terminal › Integrated: Enable Command History` for the best results; otherwise the variable falls back to the last 50 lines of the terminal buffer.
+- `#openEditors` – The list of files currently open in the editor. Useful to point an agent at what you are working on without attaching each file individually.
+
+#### Open Editors in Agent Prompts
+
+The Universal, Architect and Coder agents know about your open editors out of the box. Their prompts include a built-in prompt fragment (`open-editors-hint`) that resolves the `openEditors` variable, so you can ask questions like "which files do I have open?" or refer to "the file I am looking at" without attaching anything manually. The fragment explicitly tells the agent that these files are contextual information only and may or may not be relevant, so the agent does not assume they relate to your request unless you say so.
+
+Because this is a regular prompt fragment, you can add it to other agents — or remove it from the ones that have it — through [prompt customization](#view-and-modify-prompts) by editing the agent's prompt and adding or deleting `{{prompt:open-editors-hint}}`.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
@@ -1051,12 +1070,28 @@ The following video demonstrates the full Task Context workflow, including plann
 
 ## AI Configuration
 
-The AI Configuration View allows you to review and adapt agent-specific settings. Select an agent on the left side and review its properties on the right:
+All AI-related settings live in a single **AI Configuration view**. It is organized as a master–detail view: a tree of categories on the left and a detail page for the selected entry on the right. The available categories are **General**, **Providers & Models**, **Model Aliases**, **Agents**, **Prompts & Skills**, **Variables**, **Tools**, **Token Usage** and **MCP Servers**. Theia extensions can also contribute their own categories, so adopters can surface custom AI settings in the same place.
+
+There are several ways to open the AI Configuration view:
+
+- press `Alt+A`
+- choose **AI Configuration** from the **Manage** (gear) menu in the bottom-left corner, right below *Settings*
+- click **Open AI Configuration** in the toolbar of the AI Chat view
+- follow the **Open AI Configuration** link on the Welcome page
+- run *Open AI Configuration* from the Command Palette
+
+Since the AI configuration now sits with the rest of the application configuration rather than among the other views, it is intentionally no longer listed in the *View* menu.
+
+AI preferences are no longer shown in the regular Settings UI; links and deep-links to `ai-features.*` settings route into this view instead, and the current category and item are reflected as breadcrumbs at the top.
+
+The view behaves much like the Settings UI: individual settings are shown as rows with the appropriate control (toggle, select, number, list), and each row has a gear context menu to **Copy Setting ID** or **Reset Setting** back to its default. Structured settings that have no dedicated editor yet defer to `settings.json`.
+
+The **Agents** category lets you review and adapt agent-specific settings. Select an agent to review its properties:
 
 - **Enable Agent**: Disabled agents will no longer be available in the chat or UI elements. Disabled agents also won't make any requests to LLMs.
 - **Edit Prompts**: Click "Edit" to open the prompt template editor, where you can customize the agent's prompts (see the section below). "Reset" will revert the prompt to its default.
 - **Language Model**: Select which language model the agent sends its requests to. Some agents have multiple "purposes," allowing you to select a model for each purpose.
-- **Variables and Functions**: Review the variables and functions used by an agent. Global variables are shared across agents, and they are listed in the second tab of the AI Configuration View. Agent-specific variables are declared and used exclusively by one agent.
+- **Variables and Functions**: Review the variables and functions used by an agent. Global variables are shared across agents and are listed in the **Variables** category. Agent-specific variables are declared and used exclusively by one agent.
 
 Many agents are bound to a **model alias** instead of a concrete model ID, which lets you point several agents at the same backing model from one place. The IDE ships with the following aliases:
 
@@ -1066,7 +1101,7 @@ Many agents are bound to a **model alias** instead of a concrete model ID, which
 - `default/summarize`: chat summarization, used for example when compacting a session.
 - `default/fast`: cheaper or faster models for sub-tasks that do not require deep reasoning, such as exploration, basic tool calling, command lookup, project-info maintenance and chat-session naming. It defaults to Claude Haiku 4.5, GPT-5.4 mini and Gemini 3 Flash.
 
-You can configure which concrete model each alias resolves to in the **Models** tab of the AI Configuration view. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
+You can configure which concrete model each alias resolves to in the **Model Aliases** category. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
 
 <img src="../../ai-configuration-view.png" alt="AI Configuration View in the Theia IDE" style="max-width: 800px">
 
@@ -1078,7 +1113,7 @@ In the Theia IDE, you can open and edit prompts for all agents from the AI Confi
 
 Note that some agents come with several prompt variants, you can choose the active variant in the drop down box. To create user-defined variants, browse to the prompt templates directory and create/copy a new file starting with the same id as the default prompt of an agent.
 
-Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the "Variables" tab of the AI Configuration View and agent-specific variables in the agent's configuration.
+Variables and functions can be used in prompts. Variables are replaced with context-specific information at the time of the request (e.g., the currently selected text), while functions can trigger actions or retrieve additional information. You can find an overview of all global variables in the **Variables** category of the AI Configuration view and agent-specific variables in the agent's configuration.
 
 Variables are used with the following syntax:
 
@@ -1384,7 +1419,7 @@ To add additional skill directories, configure the `ai-features.skills.skillDire
 }
 ```
 
-You can view all discovered skills in the **Skills** tab of the [AI Configuration View](#ai-configuration). This tab also shows all registered [slash commands](#slash-commands) and the agents they are scoped to — see the [Skills and Slash Commands view](#skills-and-slash-commands-view) section for details.
+You can view all discovered skills in the **Prompts & Skills** category of the [AI Configuration view](#ai-configuration). This category also shows all registered [slash commands](#slash-commands) and the agents they are scoped to — see the [Skills and Slash Commands view](#skills-and-slash-commands-view) section for details.
 
 ### CreateSkill Agent
 
@@ -1416,7 +1451,7 @@ The CreateSkill agent supports two modes:
 
 ## Skills and Slash Commands View
 
-The **Skills** tab in the [AI Configuration View](#ai-configuration) provides an overview of two related concepts in a single place.
+The **Prompts & Skills** category in the [AI Configuration view](#ai-configuration) provides an overview of two related concepts in a single place.
 
 The upper **Skills** section lists all discovered skills with their name, description, and file location. Clicking **Open** opens the corresponding `SKILL.md` file directly in the editor so you can inspect or modify its content.
 
@@ -1576,11 +1611,21 @@ To use the `brave_web_search` function of the `brave-search` server, you can wri
 
 This allows you to seamlessly integrate external services into your AI workflows within the Theia IDE.
 
+### MCP Apps
+
+Besides text and images, an MCP tool can return a small self-contained HTML document as its result — an *MCP app*. Theia renders such results directly in the chat, so a server can answer with an interactive chart, a table or a compact dashboard instead of a wall of text. If the server provides a title for the app, it is shown above the rendered content.
+
+MCP apps are displayed in a sandboxed iframe with a restrictive content security policy. Scripts and inline styles are allowed so the app can be interactive, images may only come from data or blob URLs, and network access is blocked entirely: an app cannot call back to a server, load remote resources or exfiltrate anything from your session. The frame grows with its content up to a maximum height, after which it scrolls.
+
+The language model itself does not receive the HTML. It only sees a short placeholder noting that an interactive app was displayed to you, along with its title. This keeps large app payloads from consuming the model's context window, but it also means the model cannot reason about what the app shows — if you want to discuss its content, describe or paste the relevant parts into the chat.
+
+<img src="../../mcp-apps.png" alt="An MCP app rendered inline in an AI chat response in the Theia IDE" style="max-width: 525px">
+
 ### MCP Configuration View
 
-In the AI Configuration view, you can access a dedicated tab for Model Context Protocol (MCP) servers. This view provides an overview of all configured MCP server settings and their states: Running, Starting, Errored, and Not Running. You can start or stop any MCP server directly from the configuration interface.
+In the AI Configuration view, the **MCP Servers** category provides an overview of all configured Model Context Protocol (MCP) server settings and their states: Running, Starting, Errored, and Not Running. You can start or stop any MCP server directly from the configuration interface.
 
-The MCP configuration tab also lets you manage your servers without editing the settings file manually. Use the **Add MCP Server** button at the top of the tab to open a dialog where you can configure a new server. Each existing server has an **edit** (pencil) and a **delete** (trash) button next to its start/stop controls. Editing a server opens the same dialog pre-populated with the existing values; deleting prompts for confirmation before removing the entry from your preferences.
+The MCP Servers category also lets you manage your servers without editing the settings file manually. Use the **Add MCP Server** button at the top of the page to open a dialog where you can configure a new server. Each existing server has an **edit** (pencil) and a **delete** (trash) button next to its start/stop controls. Editing a server opens the same dialog pre-populated with the existing values; deleting prompts for confirmation before removing the entry from your preferences.
 
 The dialog supports both server types:
 
@@ -1631,6 +1676,36 @@ Installing a skill downloads its content into `~/.agents/skills/` on the machine
 
 If skill downloads start hitting GitHub rate limits, set a GitHub token via the `ai-features.registry.githubToken` preference or the `GITHUB_TOKEN` environment variable to raise the limit. Skill entries can also be installed through `theia://install-skill?id=<id>` deep links.
 
+### Installing Agent Plugins from the Registry
+
+An **Agent Plugin** bundles several skills and MCP servers into a single artifact that an organization endorses as a unit. Instead of installing a handful of related skills and servers one by one, you install the plugin once and get everything it contains. The registry only points at the plugin's source; the content itself is fetched from that source.
+
+Agent Plugins have their own section in the Extensions view and can be found by searching for `@agent-plugins`. Hovering a plugin card shows which skills it brings. Clicking **Install** opens a dialog that names the source, the endorsing organization and the contained skills, and warns you that a plugin's MCP servers can run arbitrary commands on your machine — so only install plugins from sources you trust.
+
+When you confirm, the plugin is downloaded and verified against the content hash endorsed in the registry before it is installed into `~/.agents/plugins/`. If the content does not match, the installation is refused with a dialog rather than silently proceeding.
+
+A plugin's skills become available under a qualified name, for example `bigquery-data-analytics:query-builder`, so they cannot collide with your own skills. Its MCP servers are added to your `ai-features.mcp.mcpServers` preference and keep a back-pointer to the plugin they came from. In the [AI Configuration view](#ai-configuration), skills and MCP servers that originate from a plugin show a *via ‹plugin›* link that reveals the plugin in the Extensions view.
+
+Plugin cards offer the same context-aware actions as other registry entries — **Install**, **Update**, **Fix**, **Link** / **Unlink** and **Uninstall** — and participate in [automatic updates](#keeping-registry-entries-up-to-date) on the same terms. Editing files inside an installed plugin makes it *drifted*, which you can reset with **Fix**. Uninstalling removes the plugin, its data directory and its skills. Plugins can also be installed through `theia://install-plugin?id=<id>` deep links; the link carries only the plugin id, everything else is taken from your configured registry.
+
+<img src="../../ai-registry-agent-plugins.png" alt="Agent Plugin entries in the Extensions view of the Theia IDE" style="max-width: 496px">
+
+### Keeping Registry Entries Up to Date
+
+Skills, MCP servers and agent plugins installed from the registry can be kept current automatically. The IDE checks the registry once per window load — there is no background polling — and then acts according to the `ai-features.registry.autoUpdate` preference, which offers three modes:
+
+- **Off** — nothing happens automatically. You can still update any entry manually from its card in the Extensions view.
+- **Ask** — you get a notification when updates are available, with actions to apply the update right away or to reveal the affected entries in the Extensions view. If several entries have updates, they are summarized in one notification with an **Update All** action.
+- **On** — available updates are applied silently and reported in a single message.
+
+The first time updates are found, the IDE asks once how you would like to handle them in the future, so you do not have to find the preference yourself. Your answer is stored and the question does not come back. The setting is user-scoped, so it applies to all your workspaces.
+
+If you want a different policy for an individual entry, open the gear menu on its card in the Extensions view and choose an **Auto Update** mode there. The menu marks which mode is currently in effect and whether it is inherited from your default or set specifically for that entry; picking the default again removes the override rather than pinning the value. Overrides are stored in `ai-features.registry.autoUpdateOverrides` and are cleaned up when you uninstall the entry.
+
+Local edits always take precedence: if you changed an installed skill or the configuration of an installed MCP server, the entry counts as *drifted* and is never updated automatically, even in **On** mode. Such entries offer **Fix** instead of **Update**, so your changes are never silently overwritten.
+
+<img src="../../ai-registry-auto-update.png" alt="Auto Update submenu on a registry entry in the Extensions view" style="max-width: 525px">
+
 ## Tool Call Confirmation UI
 
 The Theia IDE provides a flexible and user-configurable tool call confirmation system for agent interactions. This feature allows you to control, on a per-tool basis, whether a tool call should be:
@@ -1643,8 +1718,8 @@ The global default for tools that do not have their own entry is **Confirm**. Th
 
 ### Configuration
 
-1. Open the AI configuration view and switch to the "Tools" tab.
-2. Set the global default on top. The selection is persisted in the dedicated preference `ai-features.chat.defaultToolConfirmation` and is also editable from the standard settings UI.
+1. Open the AI Configuration view and select the **Tools** category.
+2. Set the global default on top. The selection is persisted in the dedicated preference `ai-features.chat.defaultToolConfirmation`.
 3. For each tool, use the dropdown to set its mode (Disabled, Confirm, Always Allow). Per-tool entries are stored under `ai-features.chat.toolConfirmation` keyed by tool ID.
 4. When a tool requires confirmation in the chat, you can choose to:
    - Allow once
