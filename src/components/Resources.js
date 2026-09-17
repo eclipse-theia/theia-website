@@ -355,6 +355,11 @@ const categories = [
         title: 'Theia AI and AI-powered Theia IDE',
         resources: [
             {
+                title: 'ReviewGuard MCP: Keeping AI-Augmented Code Review Under Control',
+                url: 'https://eclipsesource.com/blogs/2026/08/06/review-guard-mcp-controlled-ai-code-review/',
+                type: 'article'
+            },
+            {
                 title: 'AI in Action: The Ultimate Live Demo with Theia AI',
                 url: 'https://eclipsesource.com/blogs/2026/06/02/02/',
                 type: 'video'
@@ -569,6 +574,11 @@ const categories = [
     {
         title: 'AI Coding',
         resources: [
+            {
+                title: 'Eclipse Enclave: An Open Source Sandbox for AI Coding Agents',
+                url: 'https://eclipsesource.com/blogs/2026/09/08/eclipse-enclave-sandbox-for-ai-coding-agents/',
+                type: 'article'
+            },
             {
                 title: 'Invisible Blockers for AI Coding: Why Developers Feel Useless',
                 url: 'https://eclipsesource.com/blogs/2026/01/27/invisible-blockers-ai-coding-human-layer/',
