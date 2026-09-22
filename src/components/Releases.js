@@ -128,12 +128,12 @@ const communityReleases = [
         ]
     },
     {
-        name: 'Theia 1.74.x (2026-08) - planned',
+        name: 'Theia 1.74.x (2026-08) - published',
         releasedate: 'August 27th, 2026',
         releasecandidatedate: 'July 30th, 2026',
         technologiesin: 'September 7th, 2026',
-        releaseanouncement: 'September 14th, 2026',
-        announcementurl: '',
+        releaseanouncement: 'September 15th, 2026',
+        announcementurl: 'https://eclipsesource.com/blogs/2026/09/15/the-eclipse-theia-community-release-2026-08/',
         npmVersion: '1.74.1',
         npmUrl: 'https://www.npmjs.com/package/@theia/core/v/1.74.1',
         frameworks: [
@@ -1001,6 +1001,10 @@ const communityReleases = [
 ]
 
 const monthlyReleases = [
+    {
+        title: 'Eclipse Theia 1.75 Release: News and Noteworthy',
+        url: 'https://eclipsesource.com/blogs/2026/09/10/eclipse-theia-1-75-release-news-and-noteworthy/',
+    },
     {
         title: 'Eclipse Theia 1.74 Release: News and Noteworthy',
         url: 'https://eclipsesource.com/blogs/2026/08/11/eclipse-theia-1-74-release-news-and-noteworthy/',
