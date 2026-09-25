@@ -101,6 +101,8 @@ Since Theia 1.75, VS Code extensions can contribute guided tours to the welcome 
 }
 ```
 
+A step's media can be an image, a markdown file or an SVG. An SVG is rendered inline rather than as an image, so it scales with the width of the panel and can act as a clickable diagram: `<a>` elements with an `href` or `xlink:href` of the form `command:my.command.id` execute that command when clicked, and satisfy an `onLink` completion event just like a link in the step description. The markup is sanitized before it is rendered, which keeps `<use>`, `<a>` and `xlink:href` but drops anything else that is not part of the SVG vocabulary. Theme-adaptive SVGs should provide fallback colors, as `var(--vscode-*)` references are not resolved yet.
+
 Both walkthroughs and individual steps support a `when` clause. Entries whose clause evaluates to `false` are hidden and are also excluded from the progress calculation, so a tour can adapt to the current context without ever showing an unreachable step. Walkthroughs contributed by a plugin that is uninstalled, disabled, or not trusted in the current workspace are removed again.
 
 A step is marked as done when one of its `completionEvents` fires. Theia supports `onCommand`, `onContext`, `onSettingChanged`, `onView`, `onLink`, and `extensionInstalled`. Because a Theia application often implements the same functionality under its own command id, commands can be registered with an alias (`CommandRegistry.registerAlias`) so that executing the Theia command also satisfies a completion event that refers to the VS Code command id.
