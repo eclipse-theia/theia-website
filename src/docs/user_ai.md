@@ -1430,6 +1430,8 @@ The delegation system allows agents to:
 - **Pass along a [Task Context](#task-context)**: When delegating, the delegating agent can hand over a specific task context so the receiving agent works against the same plan. This is what powers the "Execute with Coder" handoff from the Architect's Plan Mode — the Coder receives the implementation plan as part of its session.
 - **Automate repetitive tasks**: Set up workflows where routine tasks are automatically handled by specialized agents
 
+By default every delegation starts a fresh session, so the receiving agent has to be given all the context it needs in the request. A delegating agent can instead continue an earlier delegation: each result reports the id of the session it was produced in, and passing that id back with a follow-up request sends it into the same session. The receiving agent then still has its previous conversation and does not have to re-read files or re-derive context it already had, which is what makes review-and-fix loops between two agents efficient. Only sessions the delegating agent started itself can be resumed, and the request has to address the same agent. Since a resumed session keeps growing with every round, unrelated tasks should still start a new one.
+
 ### Using the Delegation Function
 
 The following demonstrations shows an example on how to use the delegate function with a custom agent:
