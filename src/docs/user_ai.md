@@ -46,6 +46,7 @@ Learn more about the AI-powered Theia IDE:
     - [Architect (Chat Agent)](#architect-chat-agent)
     - [Code Completion (Agent)](#code-completion-agent)
     - [Terminal Assistance (Agent)](#terminal-assistance-agent)
+    - [Commit Message (Agent)](#commit-message-agent)
     - [App Tester (Chat Agent)](#app-tester-chat-agent)
     - [Claude Code (Chat Agent)](#claude-code-chat-agent)
     - [Project Info (Chat Agent)](#project-info-chat-agent)
@@ -604,6 +605,16 @@ Finally, the setting 'Max Context Lines' allows you to configure the maximum num
 ### Terminal Assistance (Agent)
 
 This agent assists with writing and executing terminal commands. Based on the user's request, it suggests commands and allows them to be directly pasted and executed in the terminal. It can access the current directory, environment, and recent terminal output to provide context-aware assistance. You can open the terminal assistance agent via Ctrl+I in the terminal view.
+
+### Commit Message (Agent)
+
+This agent writes a git commit message from the staged changes of the selected repository. It is integrated into the Source Control view rather than the chat: as soon as there is something staged in a git repository, a sparkle button appears in the top-right corner of the commit message input. Clicking it reads the staged diff, generates a message and writes it into the input; clicking the now spinning button again cancels the run. If the input already contains text, you are asked whether to replace it. The same run can be started from the command palette with **AI: Generate Commit Message from Staged Changes**.
+
+<!-- TODO-MEDIA: screencast - staging a change in the Source Control view, clicking the sparkle button in the commit input and the generated commit message appearing -->
+
+The diff is read by the `getGitChanges` tool, which runs `git diff --cached` in the selected repository. On the first use the tool is still in its default *Confirm* mode, so a dialog asks whether to allow it; accepting sets it to *Always allow* so that subsequent runs start right away. See [Tool Call Confirmation UI](#tool-call-confirmation-ui) for how to change that later.
+
+The agent is not a chat agent: it does not appear in the `@` mention list and cannot be addressed from the chat view. You can still configure it like any other agent in the [AI Configuration view](#ai-configuration) — assign a different model or adapt its prompt. Disabling it there keeps the button visible but disabled, with a tooltip pointing back to the configuration. With AI features turned off entirely, the commit input looks exactly as it does without the AI packages.
 
 ### App Tester (Chat Agent)
 

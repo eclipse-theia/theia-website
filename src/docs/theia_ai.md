@@ -588,6 +588,14 @@ Finally, register your ‘ToolProvider’ like this:
 bind(ToolProvider).to(FileContentFunction);
 ```
 
+#### Tools Running a Fixed Shell Command
+
+For tools that always run the same shell command, `@theia/ai-terminal` provides the abstract `PredefinedShellTool`. A subclass declares a typed parameter schema and a `buildCommand(args)` method that assembles the command, so the command itself is controlled by the code rather than by the model, which only supplies the arguments. Unlike the generic `shellExecute` tool, such tools do not consult `ShellCommandPermissionService` and do not need an entry on the user's allow or deny list — the safety boundary is `buildCommand`, which must not be exploitable. They still participate in the regular tool confirmation flow. The `getGitChanges` tool behind the [commit message generation](/docs/user_ai/#commit-message-agent) is built this way.
+
+#### AI in the Source Control View
+
+`@theia/ai-ide` rebinds `ScmCommitWidget` to `AiAwareScmCommitWidget`, which renders the stock SCM commit input plus the commit-message overlay. If your application rebinds `ScmCommitWidget` itself, your binding wins and the commit-message button disappears. Extend `AiAwareScmCommitWidget` instead of `ScmCommitWidget` to keep it.
+
 ### Prototyping Tool Functions with the Tool Sketchpad
 
 The optional extension `@theia/ai-tool-sketchpad` lets you prototype tool functions without writing code. It contributes an **AI Tool Sketchpad** view in which you declare *sketched tools*: a name, a description, the input parameters and what the tool returns. A sketched tool either returns a fixed string or, in the *Ask At Runtime* mode, prompts you for the answer while the agent is running, so you can simulate arbitrary tool responses and see how an agent reacts before implementing anything.
