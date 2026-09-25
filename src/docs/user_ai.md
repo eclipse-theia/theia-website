@@ -973,7 +973,7 @@ You can add images to chat sessions in several ways:
 - Drag and drop images directly into the chat
 - Copy and paste images from your clipboard
 
-When an image is included in your request, it will be sent to the LLM along with your text (if the selected model supports image inputs). This enables you to provide visual context that can help the AI understand and address your questions more effectively (see example screenshot below).
+When an image is included in your request, it will be sent to the LLM along with your text (if the selected model supports image inputs). This enables you to provide visual context that can help the AI understand and address your questions more effectively (see example screenshot below). [GitHub Copilot](#github-copilot) models accept images as well; note that only images embedded in the request are forwarded, images referenced by URL are omitted.
 
 <video src="../../image-support.webm" controls style="max-width: 100%;"></video>
 
