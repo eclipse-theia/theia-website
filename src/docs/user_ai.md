@@ -327,10 +327,30 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
            "apiKey": "your-api-key", // Optional: use 'true' to apply the global OpenAI API key
            "developerMessageSettings": "system" //Optional: Controls the handling of system messages: user, system, and developer will be used as a role, mergeWithFollowingUserMessage will prefix the following user message with the system message or convert the system message to user message if the next message is not a user message. skip will just remove the system message. Defaulting to developer.
 
-       }
-   ]
-}
-```
+           }
+           ]
+           }
+           ```
+
+           #### Custom HTTP Headers
+
+           Deployments that route LLM traffic through a gateway in front of the vendor API often require additional HTTP headers, for example for audit, attribution or routing, and reject requests that omit them. Custom model entries therefore accept an optional `headers` map whose entries are sent with every request to that endpoint, including the model metadata lookup:
+
+           ```json
+           "ai-features.anthropicCustom.customAnthropicModels": [
+           {
+           "model": "claude-sonnet-5",
+           "url": "https://llm-gateway.internal/v1",
+           "apiKey": "your-api-key",
+           "headers": {
+            "X-Audit-User-Type": "service",
+            "X-Audit-User-Name": "theia"
+           }
+           }
+           ]
+           ```
+
+           The same field is available for `ai-features.openAiCustom.customOpenAiModels`. Changing a header value takes effect with the next request, no reload is needed. Only static values per model are supported; entries whose value is not a string are ignored.
 
 ### Mistral Models
 
