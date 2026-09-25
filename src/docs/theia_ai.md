@@ -43,6 +43,7 @@ Learn more about Theia AI:
 - [Chat Suggestions](chat-suggestions)
 - [Chat Banners](#chat-banners)
 - [Accessing AI Preferences](#accessing-ai-preferences)
+- [Observing Chat Sessions from Outside](#observing-chat-sessions-from-outside)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -1089,6 +1090,10 @@ The [AI Configuration view](/docs/user_ai/#ai-configuration) is a master–detai
 To add a category, implement `AiConfigurationCategory` and bind it as a contribution. Each category has an id, a label and an ordering hint that controls where it appears in the tree, and it provides the detail page rendered when the user selects it. AI preferences shown on the page should be read and written through `AiConfigurationService` (see above) so they stay workspace-trust-aware. The shared page primitives (sections, list rows, settings rows with toggle/select/number/array controls, the row gear menu with *Copy Setting ID* / *Reset Setting*, and status badges) let contributed pages look and behave like the built-in ones.
 
 This replaces the previous approach of registering separate configuration widgets via `WidgetFactory`: the per-tab config widgets and their registrations have been removed, and `@theia/ai-ide` and `@theia/ai-mcp` now depend on `@theia/ai-core-ui`. Custom AI-config tabs from earlier versions must be re-implemented as `AiConfigurationCategory` contributions. The stable entry points (`aiConfiguration:open`, `aiConfiguration:openTools`, and the chat toolbar button) are unchanged.
+
+## Observing Chat Sessions from Outside
+
+External tooling such as a control plane or a CLI can observe and drive AI chat sessions over HTTP. The `@theia/ai-external-api` extension exposes the sessions of all connected frontends under `/api/ai/sessions`, including listing them, reading a conversation, streaming changes as server-sent events, and creating a session or sending it a prompt. It builds on the contributable HTTP surface of `@theia/external-api`, which is off by default and enabled through preferences. See [External API](/docs/external_api) for the configuration and for how to contribute endpoints of your own.
 
 ## Learn more
 
