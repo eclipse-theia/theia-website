@@ -541,6 +541,8 @@ When you change the level via the selector, the choice is automatically remember
 
 Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent. A level a model does not support is mapped to the nearest one it does, so a request is not rejected because of it.
 
+How much of the reasoning you get to see depends on the provider. OpenAI does not return the raw chain of thought, so on the Responses API the Theia IDE asks for reasoning summaries instead and streams those, giving you a condensed account of what the model considered.
+
 While a model is reasoning, the chat shows a spinner labelled *Thinking* together with a live preview of the last few lines of the reasoning, so you can follow what the model is working on. As soon as the answer starts, the preview is replaced by the familiar collapsed *Thinking* block that you can expand to read the full reasoning. The same happens when you cancel a request while it is still thinking.
 
 <!-- TODO-MEDIA: screencast - a reasoning model answering in the chat: the live thinking preview scrolling by, then collapsing into the Thinking block once the answer starts -->
