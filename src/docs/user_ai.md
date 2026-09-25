@@ -539,7 +539,11 @@ When you change the level via the selector, the choice is automatically remember
 ]
 ```
 
-Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent.
+Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent. A level a model does not support is mapped to the nearest one it does, so a request is not rejected because of it.
+
+While a model is reasoning, the chat shows a spinner labelled *Thinking* together with a live preview of the last few lines of the reasoning, so you can follow what the model is working on. As soon as the answer starts, the preview is replaced by the familiar collapsed *Thinking* block that you can expand to read the full reasoning. The same happens when you cancel a request while it is still thinking.
+
+<!-- TODO-MEDIA: screencast - a reasoning model answering in the chat: the live thinking preview scrolling by, then collapsing into the Thinking block once the answer starts -->
 
 The level-based translation takes precedence over raw values supplied via [Custom Request Settings](#custom-request-settings) for the same fields. If you need to set a provider-specific reasoning parameter manually through `ai-features.modelSettings.requestSettings`, set the corresponding reasoning level to `off` first so that the level-based translation does not overwrite your value.
 
@@ -835,6 +839,8 @@ The Theia IDE provides a global chat interface where users can interact with all
 <img src="../../general-chat.png" alt="General AI Chat in the Theia IDE" style="max-width: 525px">
 
 Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted.
+
+Each response is introduced by a header naming the agent, the model that answered and the current status. While you scroll through a long response, that header stays pinned at the top of the chat, so you always see which agent and model the text you are reading belongs to.
 
 ### Chat Session History
 
