@@ -193,7 +193,7 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
 | Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
 | [Azure](#azure)                                            |     ✅     |     ✅      |         ✅         | Public       |
-| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
+| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ❌         | Experimental |
 | [Ollama](#ollama)                                          |     ✅     |     ✅      |         ✅         | Public       |
 | [Vercel AI](#vercel-ai)                                    |     -      |     -       |         -          | Deprecated   |
 | [Hugging Face](#hugging-face)                              |     ✅     |     ❌      |         ❌         | Experimental |
@@ -215,16 +215,44 @@ The `no_proxy` / `NO_PROXY` environment variable is also respected, supporting e
 
 If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and Theia automatically discovers and registers all models available through your Copilot subscription for use with any AI feature.
 
+**Note:** The Copilot integration is experimental. Its preferences are marked accordingly in the settings and may still change.
+
+#### Installing the Copilot CLI
+
+Copilot requests are served by the official GitHub Copilot CLI, which runs as a background process on the machine hosting the Theia backend. GitHub grants access to the Copilot models per OAuth application, and only an entitled application such as the Copilot CLI is offered the current model lineup, which is why the CLI is used rather than a direct connection.
+
+The CLI is not shipped with the Theia IDE and has to be installed separately on the machine running the backend:
+
+```sh
+npm install -g @github/copilot
+```
+
+It is looked up in the installation of the application, on the `PATH` of the backend process and in the global `npm` directory. If you installed it elsewhere, point at the executable:
+
+```json
+{
+    "ai-features.copilot.executablePath": "/opt/copilot/copilot"
+}
+```
+
+The `COPILOT_CLI_PATH` environment variable of the backend process does the same, for deployments that configure this centrally rather than per user.
+
+Since the CLI runs on the backend host with one process per frontend connection, the Copilot integration is not suitable for multi-user backend deployments, where every connected frontend would share a single identity.
+
 #### Signing In
 
 To authenticate with GitHub Copilot:
 
 1. Click the **Sign in to GitHub Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign in to GitHub Copilot"**
-2. A dialog appears with a device code. Click the link to open GitHub's device authorization page
+2. A dialog appears with a device code. Click the link to open GitHub's device authorization page. The page asks you to authorize *GitHub Copilot CLI*
 3. Enter the code and authorize the application
 4. Switch back and select **I have authorized**. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state by showing your linked GitHub username.
 
 <img src="../../copilot-in-theia.png" alt="Copilot authentication dialog with device code" style="max-width: 525px">
+
+The sign-in is performed by the Copilot CLI on your behalf, but the credentials belong to the Theia IDE: the resulting token is kept in Theia's credential store, and only that token is handed to the CLI. A token in the environment or an existing sign-in of the GitHub CLI is never used, and signing out removes Theia's credentials without touching either.
+
+If you used Copilot in an earlier version of the Theia IDE, your previous sign-in cannot be carried over, because it belongs to an OAuth application that is no longer used. It is removed from the credential store on first start and a notification asks you to sign in again.
 
 Once authenticated, Copilot models become automatically available for use with all AI features (see [Model Discovery and Configuration](#model-discovery-and-configuration) below).
 
@@ -248,9 +276,11 @@ When this preference is set, only the specified models will be registered instea
 
 To disable the Copilot integration entirely, set the `ai-features.copilot.enabled` preference to `false`.
 
-#### GitHub Enterprise
+#### Copilot Business and Enterprise
 
-For users with GitHub Enterprise, configure the enterprise URL in the settings under **AI-features** => **Copilot** => **Enterprise URL**:
+Copilot Business and Enterprise seats are served by their own API host, but nothing has to be configured for them: the endpoint belonging to your subscription is resolved from the credentials of the sign-in.
+
+For GitHub Enterprise deployments, configure the domain in the settings under **AI-features** => **Copilot** => **Enterprise URL** before signing in. It is used for the sign-in and remembered with the credentials, so that requests go to the same deployment:
 
 ```json
 {
@@ -262,8 +292,12 @@ For users with GitHub Enterprise, configure the enterprise URL in the settings u
 
 The following commands are available for managing Copilot authentication:
 
-- **Copilot: Sign In** — Initiates the OAuth device flow authentication
-- **Copilot: Sign Out** — Signs out and clears stored credentials
+- **Copilot: Sign in to GitHub Copilot** — Starts the device code sign-in
+- **Copilot: Sign out of GitHub Copilot** — Signs out and removes the stored credentials
+
+#### Known Limitations
+
+Because the CLI is an agent that takes a single prompt per turn rather than a message history, requests are mapped onto it with some loss of fidelity. A longer conversation is flattened into one role-labelled transcript, and tool calls and tool results from the history appear in it as text rather than as structured entries. Images are sent as inline attachments when they are base64-encoded; images referenced by URL are dropped and only noted as omitted. Structured output is not available on this path.
 
 #### For Adopters and Downstream Projects
 

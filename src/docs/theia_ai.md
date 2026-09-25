@@ -897,31 +897,31 @@ Please note that Theia AI currently does not provide a fixed contribution point 
 
 ## GitHub Copilot Integration
 
-The GitHub Copilot Integration is provided by the `@theia/ai-copilot` package and is available to any product built on the Theia platform. If you are building a downstream product that includes this package, be aware of the following configuration requirements.
+The GitHub Copilot Integration is provided by the `@theia/ai-copilot` package and is available to any product built on the Theia platform. Requests are served by the official GitHub Copilot CLI, which runs as a background process on the machine hosting the backend. The integration is experimental: its API and preferences are subject to change.
 
-### Default OAuth App Configuration
+### Shipping the Copilot CLI
 
-The default OAuth App configuration (including the client ID and OAuth endpoints) shipped with the Theia IDE is intended for the Theia IDE only. Downstream products **should not** rely on this default configuration. It may be changed, rotated, or revoked at any time without notice, and the Theia project is not responsible for any resulting breakage in downstream products.
+The CLI is a prerequisite on the backend host rather than something the application ships, because it is a large platform-specific binary that a packaged application cannot execute from inside its own archive. A distribution that includes `@theia/ai-copilot` therefore has to either install the CLI next to itself and keep it extracted, or tell its users to run `npm install -g @github/copilot`. Users can point at a non-standard location with the `ai-features.copilot.executablePath` preference or the `COPILOT_CLI_PATH` environment variable of the backend; the lookup itself is `CopilotCliLocator` and can be rebound.
 
-### Custom Authentication Setup
+`@github/copilot-sdk` is deliberately not a dependency of the extension. The CLI carries its own copy of the SDK, and `CopilotSdkLoader` loads it from the CLI that serves the requests, falling back to an installed `@github/copilot-sdk` when the CLI does not carry one.
 
-To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom OAuth configuration so the integration uses your client ID and endpoints instead of the Theia IDE defaults. This is not exposed as a preference because the client ID must be controlled by the product, not the user.
+Because the CLI runs on the backend host with one process per frontend connection, the integration is not suitable for multi-user backend deployments, where every connected frontend would share a single identity.
 
-In your backend module, rebind `CopilotOAuthConfig` to a constant value with your own configuration:
+### Authentication
 
-```ts
-rebind(CopilotOAuthConfig).toConstantValue({
-    clientId: 'your-github-oauth-app-client-id',
-    // optional: override the OAuth endpoints if needed
-    // deviceCodeUrl, accessTokenUrl, scopes, ...
-});
-```
+There is no OAuth application to configure any more: the sign-in is a device code flow performed by the Copilot CLI and driven from the existing dialog. Access to the Copilot models is granted per OAuth application, and the CLI is an entitled first-party application, which is why routing through it exposes the current model lineup. Adopters that previously rebound `CopilotOAuthConfig` to their own OAuth App should remove that rebinding; the symbol, its default value and the `CopilotLanguageModel` REST transport have been removed. See the [migration guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md) for the full list of removed API.
 
-The Copilot sign-in dialog also exposes its user-facing strings via the `CopilotAuthDialogMessages` binding. Rebind it in your frontend module if you want to use your own product name or copy in the dialog instead of the Theia defaults.
+The credentials belong to the application: the sign-in runs against a private Copilot home so that the token is not written into the credential store of the machine, and it is then kept in Theia's own credential store. A token in the environment or a sign-in of the GitHub CLI is never used.
+
+The Copilot sign-in dialog exposes its user-facing strings via the `CopilotAuthDialogMessages` binding. Rebind it in your frontend module if you want to use your own product name or copy in the dialog instead of the Theia defaults.
+
+### Behavioral Details
+
+The system prompt of a Theia agent becomes the system message of the Copilot session, replacing the agent instructions the CLI would use. The runtime is pointed at a Copilot home below Theia's configuration directory, so requests sent from Theia do not appear among the conversations a user started with their own CLI, and the session of a request is deleted once it has been answered. The ambient behavior of the CLI is switched off: only the tools of the request are available, and host instructions, skills, memory and session stores, git operations and plugins are disabled, since Theia drives the conversation itself. Structured output is not available on this path.
 
 ### GitHub Enterprise Configuration
 
-Alternatively, you can configure a GitHub Enterprise URL via the `ai-features.copilot.enterpriseUrl` preference to route authentication through your organization's GitHub Enterprise instance. Note that this changes the OAuth endpoints but does not change the client ID unless the authentication service is also customized.
+Configure a GitHub Enterprise domain via the `ai-features.copilot.enterpriseUrl` preference to authenticate and send requests against your organization's deployment. It is used for the sign-in and remembered with the credentials.
 
 ### Disabling the Copilot Integration
 
