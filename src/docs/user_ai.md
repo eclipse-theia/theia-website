@@ -22,6 +22,7 @@ Learn more about the AI-powered Theia IDE:
 
 - [Set-Up](#set-up)
     - [Setting API Keys](#setting-api-keys)
+    - [Model Discovery](#model-discovery)
     - [LLM Providers Overview](#llm-providers-overview)
     - [Proxy Configuration](#proxy-configuration)
     - [GitHub Copilot](#github-copilot)
@@ -118,7 +119,7 @@ If you do not have access to an LLM, yet, here is an easy way to try it out:
 
 Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models).
+For the major providers, the list of available models is determined automatically, see [Model Discovery](#model-discovery). Providers such as Ollama, Hugging Face or LlamaFile keep a configurable list of models in the settings.
 
 **To use a specific model in your IDE, configure it on a per-agent basis in the [AI Configuration view](#ai-configuration).**
 
@@ -136,9 +137,45 @@ There are two ways to provide API keys for LLM providers:
 
 2. **Via Environment Variables:** Set the appropriate environment variable for your provider (e.g. `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `HUGGINGFACE_API_KEY`). The Theia IDE will automatically pick up these variables from its process environment.
 
+For Anthropic, Google AI and OpenAI, a key found in the environment is not used right away. The Theia IDE asks you once whether it may use it, and only contacts the provider after you confirm. Confirming sets `ai-features.<provider>.allowEnvironmentApiKey` to `true`; setting that preference back to `false` withdraws the consent, which takes effect everywhere the key would otherwise be read.
+
 See the individual provider sections below for the specific environment variable names and preference keys.
 
 **Important:** If you launch the Theia IDE from a desktop launcher (rather than a terminal), environment variables from your shell profile may not be available. See [Environment Variables in the Theia IDE](/docs/user_environment_variables/) for platform-specific instructions on how to correctly set environment variables.
+
+### Model Discovery
+
+For Anthropic, Google AI, OpenAI and GitHub Copilot, the Theia IDE does not ship a curated list of model IDs. Instead it asks each provider which models it currently offers — on start-up, whenever the API key changes, and on demand. Newly released models therefore become available without an update of the IDE, and retired ones disappear on their own.
+
+You can review the result in the **Providers & Models** category of the [AI Configuration view](#ai-configuration). Every provider page has a *Model Discovery* section showing the current state (fetching, updated, cached, error, no API key, or manually configured), a refresh button, and the discovered models with the release date the provider reported, newest first. Each discovery is cached to `<configDir>/model-snapshots/<provider>-models.json` and reused when a later fetch fails, so your models stay usable offline.
+
+<!-- TODO-MEDIA: screenshot - the Model Discovery section on a provider page in the AI Configuration view, showing the state badge, the refresh button and a list of discovered models with release dates -->
+
+Anthropic and OpenAI report one entry per release, such as `claude-opus-5-20260401`. All of them are registered, and in addition the undated ID (`claude-opus-5`) that these providers accept as an alias for the newest release. Referencing the undated ID in an agent or model alias keeps your configuration on the current model when the provider ships an update. Gemini IDs carry no release date, so Google's models are listed alphabetically.
+
+Because the OpenAI and Google endpoints list every kind of model without capability information, non-chat models (audio, image, embedding, moderation, and similar) are filtered out heuristically.
+
+#### Favorite Models
+
+A provider can offer dozens of models, most of which are not relevant for daily work. The [model selector](#model-selection) in the chat input therefore only lists your **favorites**: up to five automatically featured models per provider — essentially the most recent ones — plus every model you marked on the provider's page in the AI Configuration view. The last entry of the selector, *Manage models…*, opens exactly that page.
+
+Nothing else is restricted. An agent's model dropdown and the model aliases still offer every discovered model, grouped per provider. Only your deviations are stored: checking a model that is not featured adds it to `ai-features.modelSettings.favoriteModels`, unchecking a featured one adds it to `ai-features.modelSettings.hiddenModels`. Models that a successful discovery no longer reports are dropped from both lists.
+
+#### Pinning an Explicit Model List
+
+If you need a fixed catalogue — for instance because the provider's model endpoint is not reachable in your environment, or because you want to shield your setup from provider changes — you can replace discovery with an explicit list per provider. When the list is non-empty, exactly those models are registered and discovery is skipped entirely:
+
+```json
+{
+    "ai-features.anthropic.modelOverrides": ["claude-opus-5"],
+    "ai-features.google.modelOverrides": [],
+    "ai-features.openAiOfficial.modelOverrides": ["gpt-5.5"]
+}
+```
+
+The equivalent preference for GitHub Copilot, `ai-features.copilot.modelOverrides`, works the same way.
+
+The former preferences `ai-features.anthropic.AnthropicModels`, `ai-features.google.models` and `ai-features.openAiOfficial.officialOpenAiModels` have been removed. Custom endpoint configurations such as `ai-features.anthropicCustom.customAnthropicModels` and `ai-features.openAiCustom.customOpenAiModels` are unaffected and keep their manual entries, as they do not necessarily point at the official provider.
 
 ### LLM Providers Overview
 
@@ -195,7 +232,7 @@ Once authenticated, Copilot models become automatically available for use with a
 
 #### Model Discovery and Configuration
 
-When you sign in with your GitHub account, Theia automatically fetches all available models from the Copilot API. These models appear in the [AI Configuration view](#ai-configuration) with a `copilot/` prefix and can be assigned to any agent.
+When you sign in with your GitHub account, Theia automatically fetches all available models from the Copilot API. These models appear in the [AI Configuration view](#ai-configuration) with a `copilot/` prefix and can be assigned to any agent. Copilot reports through the same surface as the other providers, so its provider page shows the discovery state and the models offered in the chat input, see [Model Discovery](#model-discovery). Since signing in is Copilot's equivalent of setting an API key, a missing sign-in is reported as *Not signed in*, with a button that starts the sign-in instead of a refresh.
 
 If you need to override the auto-discovered models, e.g., to pin a specific set of model IDs, you can use the `ai-features.copilot.modelOverrides` preference.
 When this preference is set, only the specified models will be registered instead of the auto-discovered ones. By default, it is empty, meaning auto-discovery is used.
@@ -240,7 +277,7 @@ Please also note that creating an API key requires a paid subscription, and usin
 
 <img src="../../enter-openai-key.png" alt="Open AI configuration in the Theia IDE" style="max-width: 525px">
 
-The OpenAI provider is preconfigured with a list of available models. You can easily add new models to this list, for example, if new options are released.
+Once a key is configured, the available models are discovered from OpenAI, so newly released models can be used without further configuration. See [Model Discovery](#model-discovery) for the discovery status, the favorites shown in the chat input, and how to pin an explicit list instead.
 
 ### OpenAI Compatible Models (e.g. via VLLM)
 
@@ -295,8 +332,7 @@ enter it in the Theia IDE settings under AI-features => Anthropics.
 
 **Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
 
-Configure available models in the settings under AI-features => AnthropicsModels.
-Default supported models include the latest Claude models available from Anthropic.
+Once a key is configured, the available Claude models are discovered from Anthropic; the preference `ai-features.anthropic.AnthropicModels` no longer exists. See [Model Discovery](#model-discovery) for the discovery status and how to pin an explicit list instead.
 
 ### Google AI
 
@@ -304,9 +340,9 @@ To enable Google AI models in the Theia IDE, create an API key in your Google AI
 
 **Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
 
-Configure available models in the settings under AI-features => Google AI Models.
+Once a key is configured, the available Gemini models are discovered from Google AI; the preference `ai-features.google.models` no longer exists. See [Model Discovery](#model-discovery) for the discovery status and how to pin an explicit list instead.
 
-<img src="../../google-ai-models.png" alt="Google AI configuration in the Theia IDE" style="max-width: 525px">
+<!-- TODO-MEDIA: screenshot - replaces the outdated google-ai-models.png: the Google AI provider page in the AI Configuration view with the discovered Gemini models -->
 
 ### Ollama
 
@@ -825,6 +861,8 @@ The following video demonstrates mode selection as part of a real workflow, incl
 ### Model Selection
 
 Next to the mode and [reasoning](#reasoning) selectors in the chat input, a model selector lets you pick which language model handles the current chat. The selection applies only to that chat and does not change the agent's configured default or affect future conversations. The first entry, labelled *Default*, shows the resolved default model and switches back to it.
+
+The selector lists your [favorite models](#favorite-models) rather than everything a provider offers, and ends with a *Manage models…* entry that opens the page where you decide which models appear here.
 
 Your choice is remembered across workbench reloads, and each response carries a small badge recording which model produced it, next to the prompt-variant badge and matching the one shown in the [AI History](#ai-history) view. This makes it easy to see at a glance which model answered a given message, which is useful when you switch models within a conversation.
 
