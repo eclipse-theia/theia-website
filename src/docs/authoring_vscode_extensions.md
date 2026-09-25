@@ -107,6 +107,8 @@ A step is marked as done when one of its `completionEvents` fires. Theia support
 
 Progress is persisted per user, so a partially completed walkthrough is picked up where it was left off.
 
+Since Theia 1.76, walkthroughs are no longer restricted to VS Code extensions. A Theia extension can contribute them as well by binding a `WalkthroughProvider` from `@theia/getting-started`, which returns the same walkthrough definitions in code instead of in `package.json`. Both sources are treated equally, so a plugin and an extension can contribute walkthroughs side by side. The AI onboarding of the Theia IDE is built this way. See the [`@theia/getting-started` README](https://github.com/eclipse-theia/theia/tree/master/packages/getting-started) for the interface and an example.
+
 #### Using Walkthroughs
 
 Walkthroughs that are not yet completed are listed on the welcome page, each as a card showing the title, the contributing extension, and how many steps are still open. Use the *More...* link if more walkthroughs are available than fit on the page.

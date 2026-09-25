@@ -111,6 +111,12 @@ Learn more about the AI-powered Theia IDE:
 
 ## Set-Up
 
+The quickest way through the set-up is the **Get started with AI** walkthrough. It is listed on the welcome page, can be started from the chat view or with the *Get Started with AI* command, and takes you through the seven things that have to be in place: what the AI features are and what using them costs, turning them on, connecting a language model, choosing a default agent, sending a first request, deciding how much agents may do on their own, and where to go from there. Each step ticks itself off once you have actually done it, so if you configured something earlier, you will find it already completed. The walkthrough disappears from the welcome page once you are through it and stays reachable via *Help: Open Walkthrough*.
+
+<!-- TODO-MEDIA: screenshot - the welcome page with the "Get started with AI" walkthrough card in the right-hand column showing the step progress -->
+
+The rest of this section describes the same set-up in detail.
+
 To activate AI support in the Theia IDE, go to Preferences and enable the setting “AI-features => AI Enable.”
 
 To use Theia AI within the Theia IDE, **you need to provide access to at least one LLM**. Theia IDE comes with preinstalled support for several LLM providers (including OpenAI API-compatible models and Anthropic). Additionally, Theia IDE supports connecting to models via Ollama. See the the [LLM Provider Overview](#llm-providers-overview) and the corresponding sections below on how to configure these providers.
