@@ -66,6 +66,7 @@ Learn more about the AI-powered Theia IDE:
     - [Image Support](#image-support)
     - [Context Variables](#context-variables)
     - [Editing Chat Requests](#editing-chat-requests)
+    - [Searching in a Chat Session](#searching-in-a-chat-session)
     - [Token Usage (Experimental)](#token-usage-experimental)
     - [Mermaid Diagrams](#mermaid-diagrams)
     - [External Content in Chat Responses](#external-content-in-chat-responses)
@@ -1047,6 +1048,14 @@ To use this feature, click the edit icon located next to each message you send i
 Below is a screenshot depicting the edit button and options to switch between conversation branches:
 
 <img src="../../edit-request.png" alt="Edit Chat Request in the Theia IDE" style="max-width: 525px" />
+
+### Searching in a Chat Session
+
+Long conversations are easier to navigate with the find bar. Focus the chat responses and press `Ctrl+F` (`Cmd+F` on macOS) to open it — in the chat input, `Ctrl+F` keeps its usual meaning. The bar shows how many matches were found and which one you are on, `Enter` and `Shift+Enter` walk through them and wrap around, and `Esc` closes the bar and returns the focus. As in the editor, you can restrict the search with the *Match Case*, *Whole Word* and *Regular Expression* toggles.
+
+<!-- TODO-MEDIA: screenshot - the find bar over the AI chat responses with a search term entered, showing the match count, the navigation buttons and the three option toggles -->
+
+Matches are determined from the session itself rather than from what is currently rendered, so turns that are scrolled out of view are found as well and revealing a match scrolls its turn into view. Matches inside code blocks are highlighted in their editor. The search covers your requests and the text, markdown, code and error output of the responses; tool calls, reasoning, delegated sub-chats and Mermaid diagrams are not searched.
 
 ### Token Usage (Experimental)
 
