@@ -30,8 +30,6 @@ A typical setup for a local tool therefore looks like this:
 
 Requests that carry an `Origin` header are rejected with `403`. This keeps a web page that a user happens to have open from driving the API in the background; external tools do not send that header and are unaffected.
 
-<!-- TODO-MEDIA: screenshot - the External API section in the Settings UI showing the delivery, port, hostname and token preferences -->
-
 ## Discovering What Is Available
 
 The API describes itself. `GET /api/openapi.json` returns an OpenAPI 3.1 document listing every route, its parameters, its request and response schemas and its documentation. The document can be imported into API clients such as Bruno or Postman to explore the API interactively, and it is a reasonable starting point for generated clients or for MCP tool definitions.

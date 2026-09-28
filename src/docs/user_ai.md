@@ -113,7 +113,9 @@ Learn more about the AI-powered Theia IDE:
 
 The quickest way through the set-up is the **Get started with AI** walkthrough. It is listed on the welcome page, can be started from the chat view or with the *Get Started with AI* command, and takes you through the seven things that have to be in place: what the AI features are and what using them costs, turning them on, connecting a language model, choosing a default agent, sending a first request, deciding how much agents may do on their own, and where to go from there. Each step ticks itself off once you have actually done it, so if you configured something earlier, you will find it already completed. The walkthrough disappears from the welcome page once you are through it and stays reachable via *Help: Open Walkthrough*.
 
-<!-- TODO-MEDIA: screenshot - the welcome page with the "Get started with AI" walkthrough card in the right-hand column showing the step progress -->
+<img src="../../ai-walkthrough-welcome-page.png" alt="Get started with AI walkthrough card on the welcome page of the Theia IDE" style="max-width: 525px">
+
+<img src="../../ai-walkthrough-detail.png" alt="Get started with AI walkthrough in the Theia IDE showing the progress of its steps" style="max-width: 800px">
 
 The rest of this section describes the same set-up in detail.
 
@@ -157,7 +159,7 @@ For Anthropic, Google AI, OpenAI and GitHub Copilot, the Theia IDE does not ship
 
 You can review the result in the **Providers & Models** category of the [AI Configuration view](#ai-configuration). Every provider page has a *Model Discovery* section showing the current state (fetching, updated, cached, error, no API key, or manually configured), a refresh button, and the discovered models with the release date the provider reported, newest first. Each discovery is cached to `<configDir>/model-snapshots/<provider>-models.json` and reused when a later fetch fails, so your models stay usable offline.
 
-<!-- TODO-MEDIA: screenshot - the Model Discovery section on a provider page in the AI Configuration view, showing the state badge, the refresh button and a list of discovered models with release dates -->
+<img src="../../model-discovery.png" alt="Model Discovery section on a provider page in the AI Configuration view of the Theia IDE" style="max-width: 525px">
 
 Anthropic and OpenAI report one entry per release, such as `claude-opus-5-20260401`. All of them are registered, and in addition the undated ID (`claude-opus-5`) that these providers accept as an alias for the newest release. Referencing the undated ID in an agent or model alias keeps your configuration on the current model when the provider ships an update. Gemini IDs carry no release date, so Google's models are listed alphabetically.
 
@@ -335,30 +337,32 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
            "apiKey": "your-api-key", // Optional: use 'true' to apply the global OpenAI API key
            "developerMessageSettings": "system" //Optional: Controls the handling of system messages: user, system, and developer will be used as a role, mergeWithFollowingUserMessage will prefix the following user message with the system message or convert the system message to user message if the next message is not a user message. skip will just remove the system message. Defaulting to developer.
 
-           }
-           ]
-           }
-           ```
+        }
+    ]
+}
+```
 
-           #### Custom HTTP Headers
+#### Custom HTTP Headers
 
-           Deployments that route LLM traffic through a gateway in front of the vendor API often require additional HTTP headers, for example for audit, attribution or routing, and reject requests that omit them. Custom model entries therefore accept an optional `headers` map whose entries are sent with every request to that endpoint, including the model metadata lookup:
+Deployments that route LLM traffic through a gateway in front of the vendor API often require additional HTTP headers, for example for audit, attribution or routing, and reject requests that omit them. Custom model entries therefore accept an optional `headers` map whose entries are sent with every request to that endpoint, including the model metadata lookup:
 
-           ```json
-           "ai-features.anthropicCustom.customAnthropicModels": [
-           {
-           "model": "claude-sonnet-5",
-           "url": "https://llm-gateway.internal/v1",
-           "apiKey": "your-api-key",
-           "headers": {
-            "X-Audit-User-Type": "service",
-            "X-Audit-User-Name": "theia"
-           }
-           }
-           ]
-           ```
+```json
+{
+    "ai-features.anthropicCustom.customAnthropicModels": [
+        {
+            "model": "claude-sonnet-5",
+            "url": "https://llm-gateway.internal/v1",
+            "apiKey": "your-api-key",
+            "headers": {
+                "X-Audit-User-Type": "service",
+                "X-Audit-User-Name": "theia"
+            }
+        }
+    ]
+}
+```
 
-           The same field is available for `ai-features.openAiCustom.customOpenAiModels`. Changing a header value takes effect with the next request, no reload is needed. Only static values per model are supported; entries whose value is not a string are ignored.
+The same field is available for `ai-features.openAiCustom.customOpenAiModels`. Changing a header value takes effect with the next request, no reload is needed. Only static values per model are supported; entries whose value is not a string are ignored.
 
 ### Mistral Models
 
@@ -404,7 +408,7 @@ To enable Google AI models in the Theia IDE, create an API key in your Google AI
 
 Once a key is configured, the available Gemini models are discovered from Google AI; the preference `ai-features.google.models` no longer exists. See [Model Discovery](#model-discovery) for the discovery status and how to pin an explicit list instead.
 
-<!-- TODO-MEDIA: screenshot - replaces the outdated google-ai-models.png: the Google AI provider page in the AI Configuration view with the discovered Gemini models -->
+<img src="../../google-model-list.png" alt="Discovered Model List for Google provider in the AI configuration in the Theia IDE" style="max-width: 525px">
 
 ### Ollama
 
@@ -551,7 +555,7 @@ How much of the reasoning you get to see depends on the provider. OpenAI does no
 
 While a model is reasoning, the chat shows a spinner labelled *Thinking* together with a live preview of the last few lines of the reasoning, so you can follow what the model is working on. As soon as the answer starts, the preview is replaced by the familiar collapsed *Thinking* block that you can expand to read the full reasoning. The same happens when you cancel a request while it is still thinking.
 
-<!-- TODO-MEDIA: screencast - a reasoning model answering in the chat: the live thinking preview scrolling by, then collapsing into the Thinking block once the answer starts -->
+<img src="../../ai-thinking-ui.png" alt="Live preview of a reasoning model's thinking in the AI Chat of the Theia IDE" style="max-width: 525px">
 
 The level-based translation takes precedence over raw values supplied via [Custom Request Settings](#custom-request-settings) for the same fields. If you need to set a provider-specific reasoning parameter manually through `ai-features.modelSettings.requestSettings`, set the corresponding reasoning level to `off` first so that the level-based translation does not overwrite your value.
 
@@ -623,7 +627,10 @@ This agent assists with writing and executing terminal commands. Based on the us
 
 This agent writes a git commit message from the staged changes of the selected repository. It is integrated into the Source Control view rather than the chat: as soon as there is something staged in a git repository, a sparkle button appears in the top-right corner of the commit message input. Clicking it reads the staged diff, generates a message and writes it into the input; clicking the now spinning button again cancels the run. If the input already contains text, you are asked whether to replace it. The same run can be started from the command palette with **AI: Generate Commit Message from Staged Changes**.
 
-<!-- TODO-MEDIA: screencast - staging a change in the Source Control view, clicking the sparkle button in the commit input and the generated commit message appearing -->
+<video controls style="max-width: 650px">
+  <source src="../../ai-generate-commit-msg.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 The diff is read by the `getGitChanges` tool, which runs `git diff --cached` in the selected repository. On the first use the tool is still in its default *Confirm* mode, so a dialog asks whether to allow it; accepting sets it to *Always allow* so that subsequent runs start right away. See [Tool Call Confirmation UI](#tool-call-confirmation-ui) for how to change that later.
 
@@ -1067,7 +1074,7 @@ Below is a screenshot depicting the edit button and options to switch between co
 
 Long conversations are easier to navigate with the find bar. Focus the chat responses and press `Ctrl+F` (`Cmd+F` on macOS) to open it — in the chat input, `Ctrl+F` keeps its usual meaning. The bar shows how many matches were found and which one you are on, `Enter` and `Shift+Enter` walk through them and wrap around, and `Esc` closes the bar and returns the focus. As in the editor, you can restrict the search with the *Match Case*, *Whole Word* and *Regular Expression* toggles.
 
-<!-- TODO-MEDIA: screenshot - the find bar over the AI chat responses with a search term entered, showing the match count, the navigation buttons and the three option toggles -->
+<img src="../../chat-find-bar.png" alt="Find bar over the AI chat responses in the Theia IDE" style="max-width: 525px">
 
 Matches are determined from the session itself rather than from what is currently rendered, so turns that are scrolled out of view are found as well and revealing a match scrolls its turn into view. Matches inside code blocks are highlighted in their editor. The search covers your requests and the text, markdown, code and error output of the responses; tool calls, reasoning, delegated sub-chats and Mermaid diagrams are not searched.
 

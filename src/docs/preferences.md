@@ -77,7 +77,7 @@ Inside a nested category, the headers of its ancestors stay pinned at the top â€
 
 Typing into the search box clears the category filter and searches across all settings as before. Clearing the search returns you to *Commonly Used*.
 
-<!-- TODO-MEDIA: screenshot - the Settings UI with a nested category selected, showing the filtered right-hand side and the stacked sticky ancestor headers -->
+<img src="../../settings-category-filter.png" alt="Settings UI with a nested category selected in the Theia IDE" style="max-width: 800px">
 
 ### Example settings.json
 
