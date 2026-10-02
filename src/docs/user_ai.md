@@ -22,6 +22,7 @@ Learn more about the AI-powered Theia IDE:
 
 - [Set-Up](#set-up)
     - [Setting API Keys](#setting-api-keys)
+    - [Model Discovery](#model-discovery)
     - [LLM Providers Overview](#llm-providers-overview)
     - [Proxy Configuration](#proxy-configuration)
     - [GitHub Copilot](#github-copilot)
@@ -45,6 +46,7 @@ Learn more about the AI-powered Theia IDE:
     - [Architect (Chat Agent)](#architect-chat-agent)
     - [Code Completion (Agent)](#code-completion-agent)
     - [Terminal Assistance (Agent)](#terminal-assistance-agent)
+    - [Commit Message (Agent)](#commit-message-agent)
     - [App Tester (Chat Agent)](#app-tester-chat-agent)
     - [Claude Code (Chat Agent)](#claude-code-chat-agent)
     - [Project Info (Chat Agent)](#project-info-chat-agent)
@@ -64,6 +66,7 @@ Learn more about the AI-powered Theia IDE:
     - [Image Support](#image-support)
     - [Context Variables](#context-variables)
     - [Editing Chat Requests](#editing-chat-requests)
+    - [Searching in a Chat Session](#searching-in-a-chat-session)
     - [Token Usage (Experimental)](#token-usage-experimental)
     - [Mermaid Diagrams](#mermaid-diagrams)
     - [External Content in Chat Responses](#external-content-in-chat-responses)
@@ -108,6 +111,14 @@ Learn more about the AI-powered Theia IDE:
 
 ## Set-Up
 
+The quickest way through the set-up is the **Get started with AI** walkthrough. It is listed on the welcome page, can be started from the chat view or with the *Get Started with AI* command, and takes you through the seven things that have to be in place: what the AI features are and what using them costs, turning them on, connecting a language model, choosing a default agent, sending a first request, deciding how much agents may do on their own, and where to go from there. Each step ticks itself off once you have actually done it, so if you configured something earlier, you will find it already completed. The walkthrough disappears from the welcome page once you are through it and stays reachable via *Help: Open Walkthrough*.
+
+<img src="../../ai-walkthrough-welcome-page.png" alt="Get started with AI walkthrough card on the welcome page of the Theia IDE" style="max-width: 525px">
+
+<img src="../../ai-walkthrough-detail.png" alt="Get started with AI walkthrough in the Theia IDE showing the progress of its steps" style="max-width: 800px">
+
+The rest of this section describes the same set-up in detail.
+
 To activate AI support in the Theia IDE, go to Preferences and enable the setting “AI-features => AI Enable.”
 
 To use Theia AI within the Theia IDE, **you need to provide access to at least one LLM**. Theia IDE comes with preinstalled support for several LLM providers (including OpenAI API-compatible models and Anthropic). Additionally, Theia IDE supports connecting to models via Ollama. See the the [LLM Provider Overview](#llm-providers-overview) and the corresponding sections below on how to configure these providers.
@@ -118,7 +129,7 @@ If you do not have access to an LLM, yet, here is an easy way to try it out:
 
 Other LLM providers, including local models, can be added easily. If you would like to see support for a specific LLM, please provide feedback or consider contributing.
 
-Each LLM provider offers a configurable list of available models (see the screenshot below for Hugging Face Models models).
+For the major providers, the list of available models is determined automatically, see [Model Discovery](#model-discovery). Providers such as Ollama, Hugging Face or LlamaFile keep a configurable list of models in the settings.
 
 **To use a specific model in your IDE, configure it on a per-agent basis in the [AI Configuration view](#ai-configuration).**
 
@@ -136,9 +147,45 @@ There are two ways to provide API keys for LLM providers:
 
 2. **Via Environment Variables:** Set the appropriate environment variable for your provider (e.g. `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `HUGGINGFACE_API_KEY`). The Theia IDE will automatically pick up these variables from its process environment.
 
+For Anthropic, Google AI and OpenAI, a key found in the environment is not used right away. The Theia IDE asks you once whether it may use it, and only contacts the provider after you confirm. Confirming sets `ai-features.<provider>.allowEnvironmentApiKey` to `true`; setting that preference back to `false` withdraws the consent, which takes effect everywhere the key would otherwise be read.
+
 See the individual provider sections below for the specific environment variable names and preference keys.
 
 **Important:** If you launch the Theia IDE from a desktop launcher (rather than a terminal), environment variables from your shell profile may not be available. See [Environment Variables in the Theia IDE](/docs/user_environment_variables/) for platform-specific instructions on how to correctly set environment variables.
+
+### Model Discovery
+
+For Anthropic, Google AI, OpenAI and GitHub Copilot, the Theia IDE does not ship a curated list of model IDs. Instead it asks each provider which models it currently offers — on start-up, whenever the API key changes, and on demand. Newly released models therefore become available without an update of the IDE, and retired ones disappear on their own.
+
+You can review the result in the **Providers & Models** category of the [AI Configuration view](#ai-configuration). Every provider page has a *Model Discovery* section showing the current state (fetching, updated, cached, error, no API key, or manually configured), a refresh button, and the discovered models with the release date the provider reported, newest first. Each discovery is cached to `<configDir>/model-snapshots/<provider>-models.json` and reused when a later fetch fails, so your models stay usable offline.
+
+<img src="../../model-discovery.png" alt="Model Discovery section on a provider page in the AI Configuration view of the Theia IDE" style="max-width: 525px">
+
+Anthropic and OpenAI report one entry per release, such as `claude-opus-5-20260401`. All of them are registered, and in addition the undated ID (`claude-opus-5`) that these providers accept as an alias for the newest release. Referencing the undated ID in an agent or model alias keeps your configuration on the current model when the provider ships an update. Gemini IDs carry no release date, so Google's models are listed alphabetically.
+
+Because the OpenAI and Google endpoints list every kind of model without capability information, non-chat models (audio, image, embedding, moderation, and similar) are filtered out heuristically.
+
+#### Favorite Models
+
+A provider can offer dozens of models, most of which are not relevant for daily work. The [model selector](#model-selection) in the chat input therefore only lists your **favorites**: up to five automatically featured models per provider — essentially the most recent ones — plus every model you marked on the provider's page in the AI Configuration view. The last entry of the selector, *Manage models…*, opens exactly that page.
+
+Nothing else is restricted. An agent's model dropdown and the model aliases still offer every discovered model, grouped per provider. Only your deviations are stored: checking a model that is not featured adds it to `ai-features.modelSettings.favoriteModels`, unchecking a featured one adds it to `ai-features.modelSettings.hiddenModels`. Models that a successful discovery no longer reports are dropped from both lists.
+
+#### Pinning an Explicit Model List
+
+If you need a fixed catalogue — for instance because the provider's model endpoint is not reachable in your environment, or because you want to shield your setup from provider changes — you can replace discovery with an explicit list per provider. When the list is non-empty, exactly those models are registered and discovery is skipped entirely:
+
+```json
+{
+    "ai-features.anthropic.modelOverrides": ["claude-opus-5"],
+    "ai-features.google.modelOverrides": [],
+    "ai-features.openAiOfficial.modelOverrides": ["gpt-5.5"]
+}
+```
+
+The equivalent preference for GitHub Copilot, `ai-features.copilot.modelOverrides`, works the same way.
+
+The former preferences `ai-features.anthropic.AnthropicModels`, `ai-features.google.models` and `ai-features.openAiOfficial.officialOpenAiModels` have been removed. Custom endpoint configurations such as `ai-features.anthropicCustom.customAnthropicModels` and `ai-features.openAiCustom.customOpenAiModels` are unaffected and keep their manual entries, as they do not necessarily point at the official provider.
 
 ### LLM Providers Overview
 
@@ -156,7 +203,7 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 | [OpenAI Compatible](#openai-compatible-models-eg-via-vllm) |     ✅     |     ✅      |         ✅         | Public       |
 | Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
 | [Azure](#azure)                                            |     ✅     |     ✅      |         ✅         | Public       |
-| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ✅         | Public       |
+| [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ❌         | Experimental |
 | [Ollama](#ollama)                                          |     ✅     |     ✅      |         ✅         | Public       |
 | [Vercel AI](#vercel-ai)                                    |     -      |     -       |         -          | Deprecated   |
 | [Hugging Face](#hugging-face)                              |     ✅     |     ❌      |         ❌         | Experimental |
@@ -178,16 +225,44 @@ The `no_proxy` / `NO_PROXY` environment variable is also respected, supporting e
 
 If you have an existing GitHub Copilot subscription, you can use the Copilot models directly within the Theia IDE without requiring additional API keys or subscriptions. Simply authenticate with your GitHub account, and Theia automatically discovers and registers all models available through your Copilot subscription for use with any AI feature.
 
+**Note:** The Copilot integration is experimental. Its preferences are marked accordingly in the settings and may still change.
+
+#### Installing the Copilot CLI
+
+Copilot requests are served by the official GitHub Copilot CLI, which runs as a background process on the machine hosting the Theia backend. GitHub grants access to the Copilot models per OAuth application, and only an entitled application such as the Copilot CLI is offered the current model lineup, which is why the CLI is used rather than a direct connection.
+
+The CLI is not shipped with the Theia IDE and has to be installed separately on the machine running the backend:
+
+```sh
+npm install -g @github/copilot
+```
+
+It is looked up in the installation of the application, on the `PATH` of the backend process and in the global `npm` directory. If you installed it elsewhere, point at the executable:
+
+```json
+{
+    "ai-features.copilot.executablePath": "/opt/copilot/copilot"
+}
+```
+
+The `COPILOT_CLI_PATH` environment variable of the backend process does the same, for deployments that configure this centrally rather than per user.
+
+Since the CLI runs on the backend host with one process per frontend connection, the Copilot integration is not suitable for multi-user backend deployments, where every connected frontend would share a single identity.
+
 #### Signing In
 
 To authenticate with GitHub Copilot:
 
 1. Click the **Sign in to GitHub Copilot** status bar item (bottom of the window) or run the command **"Copilot: Sign in to GitHub Copilot"**
-2. A dialog appears with a device code. Click the link to open GitHub's device authorization page
+2. A dialog appears with a device code. Click the link to open GitHub's device authorization page. The page asks you to authorize *GitHub Copilot CLI*
 3. Enter the code and authorize the application
 4. Switch back and select **I have authorized**. The dialog updates to show "Authenticated" and the status bar reflects your signed-in state by showing your linked GitHub username.
 
 <img src="../../copilot-in-theia.png" alt="Copilot authentication dialog with device code" style="max-width: 525px">
+
+The sign-in is performed by the Copilot CLI on your behalf, but the credentials belong to the Theia IDE: the resulting token is kept in Theia's credential store, and only that token is handed to the CLI. A token in the environment or an existing sign-in of the GitHub CLI is never used, and signing out removes Theia's credentials without touching either.
+
+If you used Copilot in an earlier version of the Theia IDE, your previous sign-in cannot be carried over, because it belongs to an OAuth application that is no longer used. It is removed from the credential store on first start and a notification asks you to sign in again.
 
 Once authenticated, Copilot models become automatically available for use with all AI features (see [Model Discovery and Configuration](#model-discovery-and-configuration) below).
 
@@ -195,7 +270,7 @@ Once authenticated, Copilot models become automatically available for use with a
 
 #### Model Discovery and Configuration
 
-When you sign in with your GitHub account, Theia automatically fetches all available models from the Copilot API. These models appear in the [AI Configuration view](#ai-configuration) with a `copilot/` prefix and can be assigned to any agent.
+When you sign in with your GitHub account, Theia automatically fetches all available models from the Copilot API. These models appear in the [AI Configuration view](#ai-configuration) with a `copilot/` prefix and can be assigned to any agent. Copilot reports through the same surface as the other providers, so its provider page shows the discovery state and the models offered in the chat input, see [Model Discovery](#model-discovery). Since signing in is Copilot's equivalent of setting an API key, a missing sign-in is reported as *Not signed in*, with a button that starts the sign-in instead of a refresh.
 
 If you need to override the auto-discovered models, e.g., to pin a specific set of model IDs, you can use the `ai-features.copilot.modelOverrides` preference.
 When this preference is set, only the specified models will be registered instead of the auto-discovered ones. By default, it is empty, meaning auto-discovery is used.
@@ -211,9 +286,11 @@ When this preference is set, only the specified models will be registered instea
 
 To disable the Copilot integration entirely, set the `ai-features.copilot.enabled` preference to `false`.
 
-#### GitHub Enterprise
+#### Copilot Business and Enterprise
 
-For users with GitHub Enterprise, configure the enterprise URL in the settings under **AI-features** => **Copilot** => **Enterprise URL**:
+Copilot Business and Enterprise seats are served by their own API host, but nothing has to be configured for them: the endpoint belonging to your subscription is resolved from the credentials of the sign-in.
+
+For GitHub Enterprise deployments, configure the domain in the settings under **AI-features** => **Copilot** => **Enterprise URL** before signing in. It is used for the sign-in and remembered with the credentials, so that requests go to the same deployment:
 
 ```json
 {
@@ -225,8 +302,12 @@ For users with GitHub Enterprise, configure the enterprise URL in the settings u
 
 The following commands are available for managing Copilot authentication:
 
-- **Copilot: Sign In** — Initiates the OAuth device flow authentication
-- **Copilot: Sign Out** — Signs out and clears stored credentials
+- **Copilot: Sign in to GitHub Copilot** — Starts the device code sign-in
+- **Copilot: Sign out of GitHub Copilot** — Signs out and removes the stored credentials
+
+#### Known Limitations
+
+Because the CLI is an agent that takes a single prompt per turn rather than a message history, requests are mapped onto it with some loss of fidelity. A longer conversation is flattened into one role-labelled transcript, and tool calls and tool results from the history appear in it as text rather than as structured entries. Images are sent as inline attachments when they are base64-encoded; images referenced by URL are dropped and only noted as omitted. Structured output is not available on this path.
 
 #### For Adopters and Downstream Projects
 
@@ -240,7 +321,7 @@ Please also note that creating an API key requires a paid subscription, and usin
 
 <img src="../../enter-openai-key.png" alt="Open AI configuration in the Theia IDE" style="max-width: 525px">
 
-The OpenAI provider is preconfigured with a list of available models. You can easily add new models to this list, for example, if new options are released.
+Once a key is configured, the available models are discovered from OpenAI, so newly released models can be used without further configuration. See [Model Discovery](#model-discovery) for the discovery status, the favorites shown in the chat input, and how to pin an explicit list instead.
 
 ### OpenAI Compatible Models (e.g. via VLLM)
 
@@ -256,10 +337,32 @@ As an alternative to using an official OpenAI account, Theia IDE also supports a
            "apiKey": "your-api-key", // Optional: use 'true' to apply the global OpenAI API key
            "developerMessageSettings": "system" //Optional: Controls the handling of system messages: user, system, and developer will be used as a role, mergeWithFollowingUserMessage will prefix the following user message with the system message or convert the system message to user message if the next message is not a user message. skip will just remove the system message. Defaulting to developer.
 
-       }
-   ]
+        }
+    ]
 }
 ```
+
+#### Custom HTTP Headers
+
+Deployments that route LLM traffic through a gateway in front of the vendor API often require additional HTTP headers, for example for audit, attribution or routing, and reject requests that omit them. Custom model entries therefore accept an optional `headers` map whose entries are sent with every request to that endpoint, including the model metadata lookup:
+
+```json
+{
+    "ai-features.anthropicCustom.customAnthropicModels": [
+        {
+            "model": "claude-sonnet-5",
+            "url": "https://llm-gateway.internal/v1",
+            "apiKey": "your-api-key",
+            "headers": {
+                "X-Audit-User-Type": "service",
+                "X-Audit-User-Name": "theia"
+            }
+        }
+    ]
+}
+```
+
+The same field is available for `ai-features.openAiCustom.customOpenAiModels`. Changing a header value takes effect with the next request, no reload is needed. Only static values per model are supported; entries whose value is not a string are ignored.
 
 ### Mistral Models
 
@@ -295,8 +398,7 @@ enter it in the Theia IDE settings under AI-features => Anthropics.
 
 **Please note:** The Anthropics API key will be stored in clear text. Use the environment variable `ANTHROPIC_API_KEY` to set the key securely.
 
-Configure available models in the settings under AI-features => AnthropicsModels.
-Default supported models include the latest Claude models available from Anthropic.
+Once a key is configured, the available Claude models are discovered from Anthropic; the preference `ai-features.anthropic.AnthropicModels` no longer exists. See [Model Discovery](#model-discovery) for the discovery status and how to pin an explicit list instead.
 
 ### Google AI
 
@@ -304,9 +406,9 @@ To enable Google AI models in the Theia IDE, create an API key in your Google AI
 
 **Please note:** The Google AI API key will be stored in clear text. Use the environment variable `GOOGLE_API_KEY` to set the key securely.
 
-Configure available models in the settings under AI-features => Google AI Models.
+Once a key is configured, the available Gemini models are discovered from Google AI; the preference `ai-features.google.models` no longer exists. See [Model Discovery](#model-discovery) for the discovery status and how to pin an explicit list instead.
 
-<img src="../../google-ai-models.png" alt="Google AI configuration in the Theia IDE" style="max-width: 525px">
+<img src="../../google-model-list.png" alt="Discovered Model List for Google provider in the AI configuration in the Theia IDE" style="max-width: 525px">
 
 ### Ollama
 
@@ -447,7 +549,13 @@ When you change the level via the selector, the choice is automatically remember
 ]
 ```
 
-Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent.
+Entries are matched by scope specificity (agent: 100, model: 10, provider: 1 points). At request time the effective level is resolved as: a session override via the selector → a persisted per-agent selection → the most specific matching entry from `ai-features.reasoning.defaults` → the model's declared default. Whichever level the selector displays is what gets sent. A level a model does not support is mapped to the nearest one it does, so a request is not rejected because of it.
+
+How much of the reasoning you get to see depends on the provider. OpenAI does not return the raw chain of thought, so on the Responses API the Theia IDE asks for reasoning summaries instead and streams those, giving you a condensed account of what the model considered.
+
+While a model is reasoning, the chat shows a spinner labelled *Thinking* together with a live preview of the last few lines of the reasoning, so you can follow what the model is working on. As soon as the answer starts, the preview is replaced by the familiar collapsed *Thinking* block that you can expand to read the full reasoning. The same happens when you cancel a request while it is still thinking.
+
+<img src="../../ai-thinking-ui.png" alt="Live preview of a reasoning model's thinking in the AI Chat of the Theia IDE" style="max-width: 525px">
 
 The level-based translation takes precedence over raw values supplied via [Custom Request Settings](#custom-request-settings) for the same fields. If you need to set a provider-specific reasoning parameter manually through `ai-features.modelSettings.requestSettings`, set the corresponding reasoning level to `off` first so that the level-based translation does not overwrite your value.
 
@@ -514,6 +622,19 @@ Finally, the setting 'Max Context Lines' allows you to configure the maximum num
 ### Terminal Assistance (Agent)
 
 This agent assists with writing and executing terminal commands. Based on the user's request, it suggests commands and allows them to be directly pasted and executed in the terminal. It can access the current directory, environment, and recent terminal output to provide context-aware assistance. You can open the terminal assistance agent via Ctrl+I in the terminal view.
+
+### Commit Message (Agent)
+
+This agent writes a git commit message from the staged changes of the selected repository. It is integrated into the Source Control view rather than the chat: as soon as there is something staged in a git repository, a sparkle button appears in the top-right corner of the commit message input. Clicking it reads the staged diff, generates a message and writes it into the input; clicking the now spinning button again cancels the run. If the input already contains text, you are asked whether to replace it. The same run can be started from the command palette with **AI: Generate Commit Message from Staged Changes**.
+
+<video controls style="max-width: 650px">
+  <source src="../../ai-generate-commit-msg.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+The diff is read by the `getGitChanges` tool, which runs `git diff --cached` in the selected repository. On the first use the tool is still in its default *Confirm* mode, so a dialog asks whether to allow it; accepting sets it to *Always allow* so that subsequent runs start right away. See [Tool Call Confirmation UI](#tool-call-confirmation-ui) for how to change that later.
+
+The agent is not a chat agent: it does not appear in the `@` mention list and cannot be addressed from the chat view. You can still configure it like any other agent in the [AI Configuration view](#ai-configuration) — assign a different model or adapt its prompt. Disabling it there keeps the button visible but disabled, with a tooltip pointing back to the configuration. With AI features turned off entirely, the commit input looks exactly as it does without the AI packages.
 
 ### App Tester (Chat Agent)
 
@@ -734,6 +855,8 @@ The Theia IDE provides a global chat interface where users can interact with all
 
 Some agents produce special results, such as buttons (shown in the screenshot above) or code that can be directly inserted.
 
+Each response is introduced by a header naming the agent, the model that answered and the current status. While you scroll through a long response, that header stays pinned at the top of the chat, so you always see which agent and model the text you are reading belongs to.
+
 ### Chat Session History
 
 The Theia IDE automatically preserves your chat sessions, allowing you to access your conversation history even after restarting the application.
@@ -826,6 +949,8 @@ The following video demonstrates mode selection as part of a real workflow, incl
 
 Next to the mode and [reasoning](#reasoning) selectors in the chat input, a model selector lets you pick which language model handles the current chat. The selection applies only to that chat and does not change the agent's configured default or affect future conversations. The first entry, labelled *Default*, shows the resolved default model and switches back to it.
 
+The selector lists your [favorite models](#favorite-models) rather than everything a provider offers, and ends with a *Manage models…* entry that opens the page where you decide which models appear here.
+
 Your choice is remembered across workbench reloads, and each response carries a small badge recording which model produced it, next to the prompt-variant badge and matching the one shown in the [AI History](#ai-history) view. This makes it easy to see at a glance which model answered a given message, which is useful when you switch models within a conversation.
 
 If a selected model becomes unavailable, for example because its provider API key was removed, it is shown in red with a strike-through and requests automatically fall back to the agent's configured model.
@@ -901,7 +1026,7 @@ You can add images to chat sessions in several ways:
 - Drag and drop images directly into the chat
 - Copy and paste images from your clipboard
 
-When an image is included in your request, it will be sent to the LLM along with your text (if the selected model supports image inputs). This enables you to provide visual context that can help the AI understand and address your questions more effectively (see example screenshot below).
+When an image is included in your request, it will be sent to the LLM along with your text (if the selected model supports image inputs). This enables you to provide visual context that can help the AI understand and address your questions more effectively (see example screenshot below). [GitHub Copilot](#github-copilot) models accept images as well; note that only images embedded in the request are forwarded, images referenced by URL are omitted.
 
 <video src="../../image-support.webm" controls style="max-width: 100%;"></video>
 
@@ -944,6 +1069,14 @@ To use this feature, click the edit icon located next to each message you send i
 Below is a screenshot depicting the edit button and options to switch between conversation branches:
 
 <img src="../../edit-request.png" alt="Edit Chat Request in the Theia IDE" style="max-width: 525px" />
+
+### Searching in a Chat Session
+
+Long conversations are easier to navigate with the find bar. Focus the chat responses and press `Ctrl+F` (`Cmd+F` on macOS) to open it — in the chat input, `Ctrl+F` keeps its usual meaning. The bar shows how many matches were found and which one you are on, `Enter` and `Shift+Enter` walk through them and wrap around, and `Esc` closes the bar and returns the focus. As in the editor, you can restrict the search with the *Match Case*, *Whole Word* and *Regular Expression* toggles.
+
+<img src="../../chat-find-bar.png" alt="Find bar over the AI chat responses in the Theia IDE" style="max-width: 525px">
+
+Matches are determined from the session itself rather than from what is currently rendered, so turns that are scrolled out of view are found as well and revealing a match scrolls its turn into view. Matches inside code blocks are highlighted in their editor. The search covers your requests and the text, markdown, code and error output of the responses; tool calls, reasoning, delegated sub-chats and Mermaid diagrams are not searched.
 
 ### Token Usage (Experimental)
 
@@ -1311,6 +1444,8 @@ The delegation system allows agents to:
 - **Maintain context**: The delegating agent can pass along necessary context and continue its work after delegation
 - **Pass along a [Task Context](#task-context)**: When delegating, the delegating agent can hand over a specific task context so the receiving agent works against the same plan. This is what powers the "Execute with Coder" handoff from the Architect's Plan Mode — the Coder receives the implementation plan as part of its session.
 - **Automate repetitive tasks**: Set up workflows where routine tasks are automatically handled by specialized agents
+
+By default every delegation starts a fresh session, so the receiving agent has to be given all the context it needs in the request. A delegating agent can instead continue an earlier delegation: each result reports the id of the session it was produced in, and passing that id back with a follow-up request sends it into the same session. The receiving agent then still has its previous conversation and does not have to re-read files or re-derive context it already had, which is what makes review-and-fix loops between two agents efficient. Only sessions the delegating agent started itself can be resumed, and the request has to address the same agent. Since a resumed session keeps growing with every round, unrelated tasks should still start a new one.
 
 ### Using the Delegation Function
 

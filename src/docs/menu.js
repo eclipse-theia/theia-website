@@ -175,6 +175,10 @@ export const MENU = [
         'json_rpc'
     ),
     M(
+        'External API',
+        'external_api'
+    ),
+    M(
         'Telemetry',
         'telemetry'
     ),
