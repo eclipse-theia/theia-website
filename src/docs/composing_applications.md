@@ -172,6 +172,26 @@ For the jump list to also appear in the Windows menu, set `appUserModelId` in th
 
 If the two values differ, the jump list is only available on the task bar entry.
 
+## Browser-Only Applications
+
+A browser-only application runs entirely in the browser, without a Theia backend. Everything that would normally happen on a server either runs in the frontend or is unavailable, and the file system is backed by the browser's Origin Private File System instead of a disk.
+
+Since Theia 1.76.0 such applications can also run VS Code extensions, as long as those extensions are bundled into the application at build time. Installing extensions from Open VSX at runtime is not possible without a backend, so the Extensions view stays read-only and lists the bundled extensions as built-in.
+
+The extensions are prepared during the build: they are downloaded like in any other Theia application, unpacked into `lib/frontend/hostedPlugin/` and described in a generated `list.json` that the frontend loads at startup. From there they are served over a read-only `theia-plugin:` URI scheme, which is what makes color themes, icon themes, icon fonts, webview resources and `workspace.fs` reads on `extensionUri` resolve relative to the extension root. Extensions that only contribute declaratively, such as grammars or themes, are deployed to the frontend host; extensions with an entry point run in the web worker as usual. If your application wants to determine the set of extensions itself rather than relying on the generated list, bind `BrowserOnlyPluginOptions` and supply the metadata.
+
+A few things behave differently than with a backend. Extension `globalState` and `workspaceState` are kept in the browser's local storage, which is shared with other application state and limited to a few megabytes in total; writes are serialized across tabs using the Web Locks API where available. Terminals are not supported at all, and an extension calling `window.createTerminal` gets a rejected promise while the user sees a notification explaining why.
+
+### Config Directory Change in 1.76.0
+
+Browser-only applications previously wrote their configuration to the root of the Origin Private File System, because the stubbed `EnvVariablesServer` returned an empty config directory URI. As of Theia 1.76.0 it returns `file:///.theia`, which matches what a backend-based application does and confines the UTF-8 encoding override to that folder instead of applying it to the whole file tree.
+
+Existing deployments are *not* migrated automatically. After the upgrade the application looks below `/.theia`, finds nothing, and behaves like a fresh installation: settings, keymaps, the recent workspaces list, workspace metadata and the AI stores such as chat sessions and prompt customizations all appear empty. The old data is still present at the root and remains readable, so if your users' state matters, move it into `/.theia` once on first start after the upgrade.
+
+### Moved Constant
+
+`PluginPaths` now lives in `@theia/plugin-ext/lib/main/common/paths/const`, as it is shared between the backend and the browser-only frontend. The previous location `@theia/plugin-ext/lib/main/node/paths/const` still re-exports it but is deprecated, so deep imports should be updated.
+
 ## Bundling with esbuild
 
 `theia build` always bundles with [esbuild](https://esbuild.github.io/). esbuild had been the default since Theia 1.72.0 for applications without a `webpack.config.js`; as of Theia 1.75.0 the webpack pipeline has been removed entirely, so there is no bundler choice left to make. On first build, `@theia/cli` generates an `esbuild.mjs` for your application, which you can then customize.

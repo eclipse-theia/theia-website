@@ -10,6 +10,8 @@ Eclipse Theia and Theia IDE are fully open-source projects. This means you can r
 
 The Theia IDE does not collect or transmit user activity, project details, or code. This is a deliberate decision: the IDE contains no component that reports such data, and there is no setting or hidden switch that could activate any collection.
 
+VS Code extensions that you install yourself are a separate matter, because they may report to their own vendors. The `telemetry.telemetryLevel` preference described below now also governs them, and with its default value `off` they are told that telemetry is disabled.
+
 ## Telemetry in Theia-Based Products
 
 Theia 1.74 introduced a telemetry framework in the Theia platform, the framework that the Theia IDE and other tools are built on. The framework only provides the plumbing for reporting events within an application. It deliberately contains no destination to which data would be sent, and the Theia IDE does not add one.
@@ -23,7 +25,9 @@ Tool builders who create their own product based on the Theia platform can add t
 - **`error`**: Crash reports and error events.
 - **`all`**: Crash reports, error events, and usage events.
 
-`telemetry.filters` allows switching off individual reporting destinations or restricting them to certain event topics. Products document which destinations they contribute and what they are called.
+The same preference is what installed VS Code extensions see when they ask whether they may collect telemetry. Only at `all` are they told that telemetry is enabled, and at `error` they may still report errors. Extensions send such data through their own channel to their own vendor, so the preference communicates your decision to them but the application can neither inspect nor restrict what they transmit.
+
+`telemetry.filters` allows switching off individual reporting destinations or restricting them to certain event topics. Products document which destinations they contribute and what they are called. It applies to destinations contributed by the product itself, not to extension telemetry.
 
 Adopters looking for the technical details of the framework, including how to contribute a destination, find them in [Telemetry](/docs/telemetry).
 
