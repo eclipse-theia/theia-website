@@ -320,6 +320,16 @@ const categories = [
         title: 'Topics related to Eclipse Theia',
         resources: [
             {
+                title: 'Modernizing Eclipse RCP Applications and Tools in 2026',
+                url: 'https://eclipsesource.com/blogs/2026/10/06/migrating-eclipse-rcp-applications-and-tools-in-2026/',
+                type: 'article'
+            },
+            {
+                title: 'How to Build Tools and IDEs in 2026',
+                url: 'https://eclipsesource.com/blogs/2026/09/23/how-to-build-tools-and-ides-in-2026/',
+                type: 'article'
+            },
+            {
                 title: 'Is Forking VS Code a Good Idea?',
                 url: 'https://eclipsesource.com/blogs/2024/12/17/is-it-a-good-idea-to-fork-vs-code/',
                 type: 'article'
