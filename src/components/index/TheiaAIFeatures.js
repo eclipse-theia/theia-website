@@ -271,8 +271,8 @@ const TheiaAIFeatures = ({ adopters }) => {
 
             <StyledPromo className="promo">
                 <div className="promo__text">
-                    <h3 className="heading-tertiary">Model Context Protocol Support</h3>
-                    <p>Enhance your AI-powered tool with Anthropic's MCP, enabling seamless integration with external tools and context sources.</p>
+                    <h3 className="heading-tertiary">MCP, Agent Skills and Agent Plugins</h3>
+                    <p>Enhance your AI-powered tool with Anthropic's MCP, enabling seamless integration with external tools and context sources. Extend your agents with <a href="/docs/user_ai/#agent-skills-alpha">Agent Skills</a> for reusable instructions and domain knowledge, and distribute curated bundles of skills and MCP servers as <a href="/docs/user_ai/#installing-agent-plugins-from-the-registry">Agent Plugins</a>. Theia AI tracks the agent ecosystem as it evolves, so your tool picks up emerging agent standards without you having to build them yourself.</p>
                     <p><a href="https://eclipsesource.com/blogs/2024/12/19/theia-ide-and-theia-ai-support-mcp/" className="text-indigo-600 hover:text-indigo-800 font-medium">Learn more about MCP support →</a></p>
                     <p><a href="https://eclipsesource.com/blogs/2025/03/05/theia-ai-git-and-mcp/" className="text-indigo-600 hover:text-indigo-800 font-medium">Example for integraing Theia AI, Git and MCP →</a></p>
                 </div>

@@ -29,14 +29,14 @@ If you dislike the traditional Eclipse IDE, that experience does not apply to Th
 
 ## Theia Platform vs Theia IDE vs Theia AI vs AI-powered Theia IDE
 
-Theia Platform is the framework; Theia IDE is the ready-to-use IDE product built on it; Theia AI is the AI framework part of the Theia platform; AI-powered Theia IDE is Theia IDE with AI coding features.
+Theia Platform is the framework; Theia IDE is the ready-to-use IDE product built on it; Theia AI is the AI harness platform part of the Theia Platform; AI-powered Theia IDE is Theia IDE with AI coding features.
 
 <details>
 <summary>Longer answer</summary>
 
 - **Theia Platform** – The core *framework* for building custom cloud and desktop IDEs. It provides the extensible foundation (APIs, architecture) on which any domain-specific tool or IDE can be built.  
 - **Theia IDE** – A ready-to-use *IDE application* built on the Theia Platform. It's the general-purpose IDE that you can download or run in the browser, serving as a showcase for Theia-based tools.  
-- **Theia AI** – A framework (part of the Theia Platform) for adding AI capabilities to tools and IDEs. It provides building blocks for AI assistants, AI features, and model integration.  
+- **Theia AI** – An open-source, vendor-neutral *AI harness platform* (part of the Theia Platform) for adding AI capabilities to tools and IDEs. It provides a ready-to-use default harness, customizable agents, flexible LLM integration, and support for MCP, Agent Skills, Agent Plugins and other emerging agent standards.  
 - **AI-powered Theia IDE** – The Theia IDE bundled with AI capabilities from Theia AI (e.g. AI code completion, chat agents), giving users control and openness.
 
 [Explore the Theia Platform →](https://theia-ide.org/theia-platform/)
