@@ -131,10 +131,10 @@ const TheiaAIHeader = () => (
                     <iframe title="Github Fork Count" className="header__github-button" src="https://ghbtns.com/github-btn.html?user=eclipse-theia&repo=theia&type=fork&count=true" frameBorder={0} scrolling={0} />
                 </div>
                 <h1 className="heading-primary">
-                    Theia AI: Building Custom AI-native Tools and IDEs
+                    Theia AI: The Open AI Harness Platform for AI-Native Tools and IDEs
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                Theia AI is an open framework, part of the <a href="/theia-platform" target="_blank">Theia Platform</a>, for building custom, AI-native Cloud & Desktop tools and IDEs. The <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> is an open, flexible and transparent AI coding tool based on Theia AI.
+                Theia AI is an open-source, vendor-neutral AI harness platform for building AI-native Cloud & Desktop tools and IDEs, part of the <a href="/theia-platform" target="_blank">Theia Platform</a>. It provides a ready-to-use default harness — the <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> — plus customizable agents, flexible LLM integration, and support for MCP, Agent Skills, and Agent Plugins.
                 </h2>
                 
                 <div className="header__buttons">
