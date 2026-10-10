@@ -15,7 +15,7 @@ export const Head = () => (
     <HeadWithTheiaAI
         canonical="/theia-ai/"
         title="Theia AI – Open-Source AI Harness Platform for Tools and IDEs"
-        description="Open-source, vendor-neutral AI harness platform for building AI-native tools and IDEs. Ready-to-use default harness, customizable agents, any LLM, MCP support."
+        description="Open-source, vendor-neutral AI harness platform for AI-native tools and IDEs. Ready-to-use default harness, customizable agents, any LLM, MCP and Agent Skills."
     />
 );
 

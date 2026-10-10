@@ -14,7 +14,7 @@ const HeadWithTheiaAI = ({ canonical, title, description }) => (
           "name": "Theia AI",
           "url": "https://theia-ide.org/theia-ai/",
           "image": "https://theia-ide.org/static/TheiaPlatform.png",
-          "description": "Theia AI is an open-source, vendor-neutral AI harness platform for building AI-native tools and IDEs. It provides a ready-to-use default harness, customizable agents, flexible LLM integration, and support for MCP, Agent Skills, and Agent Plugins.",
+          "description": "Theia AI is an open-source, vendor-neutral AI harness platform for building AI-native tools and IDEs. It provides a ready-to-use default harness, customizable agents, flexible LLM integration, and support for MCP, Agent Skills, Agent Plugins, and other emerging agent standards.",
           "applicationCategory": "DeveloperApplication",
           "applicationSubCategory": "AIFramework",
           "operatingSystem": "Linux, macOS, Windows",

@@ -21,7 +21,7 @@ Theia provides comprehensive, native support for AI across two key dimensions:
 
 ### 1. Theia AI Platform - Build Custom AI-Native Tools
 
-[Theia AI](/theia-ai) is an open-source, vendor-neutral AI harness platform integrated into the Theia Platform that enables you to build custom, AI-native tools and IDEs with complete control over the user experience, AI agents, language models, and data integrations. It provides a ready-to-use default harness as well as support for MCP, Agent Skills and Agent Plugins. Whether you need domain-specific AI agents, custom chat interfaces, or seamless integration with your existing tool ecosystem, Theia AI provides the flexibility to create tailored AI solutions that fit your exact requirements.
+[Theia AI](/theia-ai) is an open-source, vendor-neutral AI harness platform integrated into the Theia Platform that enables you to build custom, AI-native tools and IDEs with complete control over the user experience, AI agents, language models, and data integrations. It provides a ready-to-use default harness as well as support for MCP, Agent Skills, Agent Plugins and other emerging agent standards. Whether you need domain-specific AI agents, custom chat interfaces, or seamless integration with your existing tool ecosystem, Theia AI provides the flexibility to create tailored AI solutions that fit your exact requirements.
 
 ### 2. AI-Powered Theia IDE - Ready-to-Use AI Coding
 

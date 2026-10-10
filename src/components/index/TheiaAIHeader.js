@@ -134,7 +134,7 @@ const TheiaAIHeader = () => (
                     Theia AI: The Open AI Harness Platform for AI-Native Tools and IDEs
                 </h1>
                 <h2 style={{ fontSize: '2.1rem' }}>
-                Theia AI is an open-source, vendor-neutral AI harness platform for building AI-native Cloud & Desktop tools and IDEs, part of the <a href="/theia-platform" target="_blank">Theia Platform</a>. It provides a ready-to-use default harness — the <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> — plus customizable agents, flexible LLM integration, and support for MCP, Agent Skills, and Agent Plugins.
+                Theia AI is an open-source, vendor-neutral AI harness platform for building AI-native Cloud & Desktop tools and IDEs, part of the <a href="/theia-platform" target="_blank">Theia Platform</a>. It provides a ready-to-use default harness — the <a href="https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/" target="_blank">AI-powered Theia IDE</a> — plus customizable agents, flexible LLM integration, and support for MCP, Agent Skills, Agent Plugins, and other emerging agent standards.
                 </h2>
                 
                 <div className="header__buttons">
