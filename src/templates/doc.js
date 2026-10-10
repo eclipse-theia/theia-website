@@ -27,6 +27,8 @@ export const query = graphql`
         frontmatter {
             title
             canonical
+            description
+            faqSchema
         }
         html
         fields {
@@ -36,10 +38,65 @@ export const query = graphql`
     }
   }
 `
+
+const stripTags = html => html
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;|&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+/**
+ * Builds schema.org FAQPage entries from the rendered markdown. Each `##` heading
+ * becomes a question; the text up to the `<details>` block (the short answer that is
+ * visible without expanding) becomes the accepted answer.
+ */
+const buildFaqEntries = html => {
+    const entries = []
+    const sections = /<h2[^>]*>([\s\S]*?)<\/h2>([\s\S]*?)(?=<h2|$)/g
+    let section
+    while ((section = sections.exec(html)) !== null) {
+        const question = stripTags(section[1])
+        const answer = stripTags(section[2].split('<details')[0])
+        if (question && answer) {
+            entries.push({
+                "@type": "Question",
+                "name": question,
+                "acceptedAnswer": { "@type": "Answer", "text": answer }
+            })
+        }
+    }
+    return entries
+}
+
 export const Head = ({ data }) => {
-    const canonical = data.markdownRemark.frontmatter.canonical
-    const title = data.markdownRemark.frontmatter.title
-    return <BaseHead canonical={canonical} title={title} />
+    const { canonical, title, description, faqSchema } = data.markdownRemark.frontmatter
+    const faqEntries = faqSchema ? buildFaqEntries(data.markdownRemark.html) : []
+    return (
+        <>
+            <BaseHead
+                canonical={canonical || `/docs/${data.markdownRemark.fields.slug}/`}
+                title={title}
+                description={description}
+            />
+            {faqEntries.length > 0 && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": faqEntries
+                        })
+                    }}
+                />
+            )}
+        </>
+    )
 }
 
 const DocTemplate = ({ data }) => {

@@ -16,7 +16,7 @@ export const Head = () => (
     <HeadWithIDESchema
         canonical="/"
         title="Theia IDE – AI-Native Open-Source Cloud and Desktop IDE"
-        description="Theia IDE is an AI-native, modern, open-source development environment that runs on desktop and in the cloud. Not a VS Code fork, Theia offers transparent AI assistance with full control over your data, supports the Language Server Protocol (LSP), and is fully compatible with VS Code extensions."
+        description="Theia IDE is an AI-native, open-source development environment for desktop and cloud. Bring your own API key and connect any LLM — cloud, self-hosted, or fully local — with no vendor lock-in and no telemetry on your code. Not a VS Code fork, and fully compatible with VS Code extensions."
     />
 );
 

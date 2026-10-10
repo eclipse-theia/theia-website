@@ -1,7 +1,8 @@
 ---
 title: "Eclipse Theia – FAQ for Adopters and Users"
+description: "Answers to common questions about Eclipse Theia: how Theia IDE compares to VS Code, Cursor and GitHub Copilot, how to use your own API key and LLM, and how the Theia Platform, Theia IDE and Theia AI relate."
 originalSource: "https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/"
-canonical: "https://eclipsesource.com/blogs/2019/12/24/eclipse-theia-ide-faq/"
+faqSchema: true
 ---
 
 # Eclipse Theia – FAQ for Adopters and Users
@@ -73,6 +74,55 @@ Theia is vendor-neutral (Eclipse Foundation) and runs most VS Code extensions vi
 [Compare the VS Code (OSS) and the Theia Platform →](https://eclipsesource.com/blogs/2023/09/08/eclipse-theia-vs-code-oss/)
 
 [Compare the Theia IDE and VS Code →](https://eclipsesource.com/blogs/2024/07/12/vs-code-vs-theia-ide/)
+</details>
+
+## How does Theia IDE compare to Cursor?
+
+Both are AI-native IDEs, but Cursor is a closed-source VS Code fork tied to its vendor's model routing, while the Theia IDE is fully open source, not a fork, and lets you bring your own API key and connect any model directly.
+
+<details>
+<summary>Longer answer</summary>
+
+- **Open source, not a fork** – The Theia IDE is EPL-2.0 licensed and built on the Theia Platform rather than forked from VS Code. You can inspect, modify and redistribute it, including in commercial products.
+- **Your keys, your provider** – Bring your own API key or subscription and connect to OpenAI, Anthropic, Google, an OpenAI-compatible endpoint, a self-hosted model, or a fully local LLM. There is no proxy routing your requests through a third party and no vendor lock-in.
+- **No telemetry on your work** – The Theia IDE sends [no telemetry](/docs/data_usage_telemetry/) on your code, prompts or AI usage, which matters for teams with data sovereignty requirements.
+- **Transparent and configurable AI** – Prompts, agents and tools are visible and editable rather than hidden behind a product. See the [AI user documentation](/docs/user_ai/).
+- **Vendor-neutral governance** – Theia is hosted at the Eclipse Foundation, so its direction is not controlled by a single company.
+- **Build your own** – The same AI capabilities are available as [Theia AI](/theia-ai) if you want to build your own AI-native tool rather than use a ready-made IDE.
+
+</details>
+
+## Is there an open-source alternative to GitHub Copilot?
+
+Yes. The AI features of the Theia IDE, built on Theia AI, are a fully open-source alternative to GitHub Copilot, with AI code completion, chat and agents, and without being bound to a single model provider.
+
+<details>
+<summary>Longer answer</summary>
+
+The Theia IDE provides AI code completion, an AI chat with specialized agents, context-aware assistance and [MCP](/docs/user_ai/) support — the capabilities people typically look to Copilot for — under the EPL-2.0 license.
+
+The main differences:
+
+- Copilot requires a GitHub subscription and routes requests through GitHub's service; the Theia IDE lets you use your own provider account, including self-hosted and local models.
+- Copilot's prompts and agent behaviour are not user-visible; in the Theia IDE they are inspectable and customizable.
+- The Theia IDE sends [no telemetry](/docs/data_usage_telemetry/) on your code, prompts or AI usage.
+- If you do want to use Copilot, the Theia IDE can [integrate with it](/docs/theia_ai/#github-copilot-integration) as one model provider among others.
+
+</details>
+
+## Can I use the Theia IDE with my own API key or a local model?
+
+Yes. The Theia IDE is bring-your-own-key: you configure your own provider credentials, and requests go directly from your machine to the provider you choose.
+
+<details>
+<summary>Longer answer</summary>
+
+Supported options include OpenAI, Anthropic, Google, Hugging Face, Ollama, any OpenAI-compatible endpoint (for example via vLLM), and fully local models. You can configure several providers at once and assign different models to different agents to balance capability, latency and cost.
+
+Because there is no intermediary service, your source code, prompts and credentials stay under your control. Combined with zero telemetry on AI usage, this makes the Theia IDE suitable for organizations with strict data sovereignty or air-gapped requirements.
+
+See the [AI user documentation](/docs/user_ai/) for provider setup, and [Why Theia supports any LLM →](https://eclipsesource.com/blogs/2025/02/27/why-theia-supports-any-llm/)
+
 </details>
 
 ## Can I build my own tool product based on Theia and sell it?
