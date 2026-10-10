@@ -78,7 +78,7 @@ Theia is vendor-neutral (Eclipse Foundation) and runs most VS Code extensions vi
 
 ## How does Theia IDE compare to Cursor?
 
-Both are AI-native IDEs, but Cursor is a closed-source VS Code fork tied to its vendor's model routing, while the Theia IDE is fully open source, not a fork, and lets you bring your own API key and connect any model directly.
+Both are AI-native IDEs, but Cursor is a closed-source VS Code fork tied to its vendor's model routing, while the Theia IDE is fully open source, not a fork, and lets you bring your own API key and connect any model directly. The same comparison applies to other closed-source VS Code forks such as Windsurf, Trae, Kiro and Antigravity.
 
 <details>
 <summary>Longer answer</summary>
@@ -89,6 +89,8 @@ Both are AI-native IDEs, but Cursor is a closed-source VS Code fork tied to its 
 - **Transparent and configurable AI** – Prompts, agents and tools are visible and editable rather than hidden behind a product. See the [AI user documentation](/docs/user_ai/).
 - **Vendor-neutral governance** – Theia is hosted at the Eclipse Foundation, so its direction is not controlled by a single company.
 - **Build your own** – The same AI capabilities are available as [Theia AI](/theia-ai) if you want to build your own AI-native tool rather than use a ready-made IDE.
+
+Note that some AI editors and assistants are open source but are still VS Code forks or extensions, and therefore inherit the limits of that code base. Theia is an independent platform, which is what makes deep customization, white-labeling and browser deployment possible.
 
 </details>
 
@@ -107,6 +109,44 @@ The main differences:
 - Copilot's prompts and agent behaviour are not user-visible; in the Theia IDE they are inspectable and customizable.
 - The Theia IDE sends [no telemetry](/docs/data_usage_telemetry/) on your code, prompts or AI usage.
 - If you do want to use Copilot, the Theia IDE can [integrate with it](/docs/theia_ai/#github-copilot-integration) as one model provider among others.
+
+</details>
+
+## Is there an open-source alternative to Claude Code?
+
+Yes. Theia Coder, the Theia IDE's native coding agent, is a fully open-source agentic coding assistant — and unlike Claude Code, it is not bound to one vendor's models: you choose the provider, including self-hosted and local ones.
+
+<details>
+<summary>Longer answer</summary>
+
+Theia Coder (`@Coder`) plans, writes, tests and iterates on code autonomously in Agent Mode, browses your workspace for context, and proposes reviewable change sets. It runs inside the Theia IDE under the EPL-2.0 license.
+
+The decisive difference is model freedom. Claude Code only runs on Anthropic's models, so your agent and your model provider are the same commercial decision. Theia Coder separates them — point it at OpenAI, Anthropic, Google, an OpenAI-compatible endpoint, or a model running entirely on your own hardware, and swap later without changing tools.
+
+Beyond that:
+
+- Theia Coder's prompts, tools and agent configuration are visible and editable in the AI Configuration view, rather than fixed by the vendor.
+- The Theia IDE sends [no telemetry](/docs/data_usage_telemetry/) on your code, prompts or AI usage.
+- You get a full IDE rather than a terminal-based workflow, with change sets you review before they are applied.
+
+You do not have to choose up front: the Theia IDE also [runs Claude Code directly](#can-i-use-claude-code-in-the-theia-ide), so you can start with it and move to the native agents later without switching tools.
+
+[Introducing Theia Coder — the open AI coding agent with full control →](https://eclipsesource.com/blogs/2025/03/06/introducing-theia-coder-open-coding-agent-with-full-control/)
+
+</details>
+
+## Can I use Claude Code in the Theia IDE?
+
+Yes. Claude Code is natively integrated as the `@ClaudeCode` chat agent, so you can keep using your existing Claude subscription or Anthropic API key inside a fully open-source IDE.
+
+<details>
+<summary>Longer answer</summary>
+
+Install the `@anthropic-ai/claude-agent-sdk` package, then mention `@ClaudeCode` in the AI chat. Theia uses your own credentials — either the `ai-features.anthropic.AnthropicApiKey` preference, the `ANTHROPIC_API_KEY` environment variable, or the authentication already configured in Claude Code. You can also customize the system message appendix passed to it from the AI Configuration view.
+
+This matters for the vendor lock-in question in both directions. Adopting the Theia IDE does not mean abandoning an assistant you already pay for: Claude Code runs alongside [Theia Coder](/docs/theia_coder/) and the other agents rather than replacing them. And because the native agents work with [any model provider](#can-i-use-the-theia-ide-with-my-own-api-key-or-a-local-model), moving off Claude Code later is a change of agent, not a change of IDE.
+
+See the [Claude Code section of the AI user documentation](/docs/user_ai/) for setup details.
 
 </details>
 
