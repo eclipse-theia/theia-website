@@ -28,7 +28,13 @@ import SupportHint from '../components/SupportHint'
 import SponsoringHint from '../components/SponsoringHint'
 import HeadWithPlatformSchema from '../layouts/headwithPlatformschema';
 
-export const Head = HeadWithPlatformSchema
+export const Head = () => (
+    <HeadWithPlatformSchema
+        canonical="/theia-platform/"
+        title="Theia Platform – Open Framework for Building Custom IDEs and Tools"
+        description="Open-source, vendor-neutral framework for building custom cloud and desktop IDEs and tools. Fully extensible, white-labelable, and not a VS Code fork."
+    />
+)
 
 export default ({ pageContext }) => {
     return (

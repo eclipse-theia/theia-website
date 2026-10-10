@@ -20,7 +20,13 @@ import Releases from '../components/Releases'
 import Footer from '../components/Footer'
 import BaseHead from '../layouts/basehead'
 
-export const Head = BaseHead
+export const Head = () => (
+    <BaseHead
+        canonical="/releases/"
+        title="Theia Releases – Release Notes for Eclipse Theia"
+        description="Release notes for every Eclipse Theia version, with news and noteworthy changes across the Theia Platform, Theia AI and the Theia IDE."
+    />
+)
 
 export default () => {
     return (

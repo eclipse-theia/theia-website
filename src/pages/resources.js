@@ -20,7 +20,13 @@ import Resources from '../components/Resources'
 import Footer from '../components/Footer'
 import BaseHead from '../layouts/basehead'
 
-export const Head = BaseHead
+export const Head = () => (
+    <BaseHead
+        canonical="/resources/"
+        title="Theia Resources – Videos, Articles and Talks on Eclipse Theia"
+        description="Curated videos, articles, talks and tutorials about Eclipse Theia: the Theia Platform, Theia AI and the AI-powered Theia IDE."
+    />
+)
 
 export default () => {
     return (
