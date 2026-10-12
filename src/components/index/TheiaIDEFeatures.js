@@ -153,7 +153,7 @@ const TheiaIDEFeatures = ({ adopters }) => (
         <StyledPromo className="promo">
             <div className="promo__text">
                 <h3 className="heading-tertiary">Open Source and Vendor Neutral</h3>
-                <p>The Theia IDE is backed by a diverse and healthy open source ecosystem and is an open alternative to VS Code (not a fork). Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms.</p>
+                <p>The Theia IDE is backed by a diverse and healthy open source ecosystem and is an open alternative to VS Code (not a fork), as well as the open alternative to closed AI coding assistants. Enjoy the added confidence of a fully open-source platform governed by a vendor-neutral community. Deploy and enrich your toolset on your own terms. See how Theia IDE <a href="/docs/faq/#how-does-theia-ide-compare-to-cursor">compares to other AI coding tools</a>.</p>
             </div>
             <div className="promo__media">
                 <LogoContainer>

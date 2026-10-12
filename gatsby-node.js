@@ -2,6 +2,23 @@ const path = require('path')
 const { execSync } = require('child_process')
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
+// Declared explicitly so optional frontmatter fields stay queryable even when no
+// markdown file currently uses them, which inference alone does not guarantee.
+exports.createSchemaCustomization = ({ actions }) => {
+    actions.createTypes(`
+        type MarkdownRemarkFrontmatter {
+            title: String
+            canonical: String
+            description: String
+            originalSource: String
+            faqSchema: Boolean
+        }
+        type MarkdownRemark implements Node {
+            frontmatter: MarkdownRemarkFrontmatter
+        }
+    `)
+}
+
 exports.onCreateNode = ({ node, actions }) => {
     const { createNodeField } = actions
 

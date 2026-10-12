@@ -141,7 +141,7 @@ const TheiaIDEHeader = () => (
                 <h1>The AI-Native Theia IDE</h1>
                 <img className="wrap" src={TheiaIDEScreenshot} alt="Theia IDE" />
                 <h2>
-                    The AI-native, modern and open IDE for cloud and desktop. Built on the Theia Platform with transparency, control, and your data ownership in mind.
+                    The AI-native, open-source IDE for cloud and desktop. Bring your own API key or subscription and connect any model — cloud, self-hosted, or fully local — with no vendor lock-in and no telemetry on your code or prompts.
                 </h2>
 
                 <div className="header__buttons">
