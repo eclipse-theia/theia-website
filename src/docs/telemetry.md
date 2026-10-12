@@ -74,12 +74,25 @@ Features and sinks never read this preference themselves. Instead, the framework
 export interface TelemetryConsentProvider {
     readonly level: TelemetryLevel;
     readonly onDidChangeTelemetryLevel: Event<TelemetryLevel>;
+    readonly ready: Promise<void>;
 }
 ```
 
 Applications that obtain consent elsewhere, for example from their installer or from a corporate policy, can rebind `TelemetryConsentProvider` in the frontend and backend modules. Its `onDidChangeTelemetryLevel` event is the hook for reacting to consent changes; the framework itself does not notify sinks about opt-outs.
 
+The `ready` promise signals that the initial level has been determined. Consumers that must not act on a preliminary value — plugin telemetry is one of them — wait for it before they start. A custom implementation therefore has to settle `ready` in every case, including the one where consent cannot be determined at all; leaving it pending blocks those consumers indefinitely.
+
 The backend evaluates the policy before invoking a sink and remains authoritative. The frontend applies the same check merely to avoid unnecessary RPC calls.
+
+The helpers `isKindAllowedByLevel`, `TelemetryEventKind` and `isTelemetryEventKind` now live in `@theia/telemetry/lib/common/telemetry-types` instead of `telemetry-consent-provider`. Code importing them from the package entry point is unaffected; deep imports need to be adjusted.
+
+## VS Code Extension Telemetry
+
+Installed VS Code extensions report their own telemetry through `vscode.env.isTelemetryEnabled` and `vscode.env.createTelemetryLogger`. These APIs are now answered from `telemetry.telemetryLevel` as well, so a single preference governs what the application and its extensions collect. Previously extension telemetry was unconditionally reported as disabled.
+
+The mapping follows VS Code: at `off` and `crash` an extension sees telemetry as disabled and neither usage nor error logging enabled, at `error` it may log errors, and only at `all` is `isTelemetryEnabled` true and usage logging permitted. The `onDidChangeTelemetryEnabled` event fires when that boolean flips, so moving from `crash` to `error` changes what a logger accepts without raising the event. The level is known before extensions are activated, which means events logged during activation are already evaluated against the user's choice.
+
+It is worth being precise about what this does and does not cover. A telemetry logger delivers to the `TelemetrySender` the extension itself supplies, which is the extension's own channel to its own backend. Such events never pass through `TelemetryService`, are never offered to a `TelemetrySink`, and are not matched against `telemetry.filters`. The application's role here is consent only: it tells extensions what the user agreed to, but it does not filter, inspect or route their data.
 
 ## Changing the Defaults
 

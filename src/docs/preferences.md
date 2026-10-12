@@ -11,6 +11,7 @@ Theia provides a comprehensive preferences system that allows extensions to cont
 - [Overview](#overview)
 - [Preference Scopes](#preference-scopes)
 - [Preference Files](#preference-files)
+- [The Settings UI](#the-settings-ui)
 - [Contributing Preferences](#contributing-preferences)
     - [1. Define a Preference Schema](#1-define-a-preference-schema)
     - [2. Create a Configuration Interface (Optional but Recommended)](#2-create-a-configuration-interface-optional-but-recommended)
@@ -67,6 +68,16 @@ Preferences are stored as JSON files in the following locations:
 - **Folder preferences**: `<folder>/.theia/settings.json` (for multi-root workspaces)
 
 For multi-folder workspaces, preferences can also be stored in workspace description files.
+
+## The Settings UI
+
+The Settings UI shows a tree of categories on the left and the settings themselves on the right. Selecting a category narrows the right-hand side to that category and everything below it, rather than scrolling to it within the full list. The tree on the left always stays complete, so you can move to another category at any time. When you open the Settings UI, it starts on *Commonly Used*.
+
+Inside a nested category, the headers of its ancestors stay pinned at the top — for example *Extensions › CSS Language Features › CSS* — so only the settings scroll underneath them and you keep track of where you are.
+
+Typing into the search box clears the category filter and searches across all settings as before. Clearing the search returns you to *Commonly Used*.
+
+<img src="../../settings-category-filter.png" alt="Settings UI with a nested category selected in the Theia IDE" style="max-width: 800px">
 
 ### Example settings.json
 

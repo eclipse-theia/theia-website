@@ -43,6 +43,7 @@ Learn more about Theia AI:
 - [Chat Suggestions](chat-suggestions)
 - [Chat Banners](#chat-banners)
 - [Accessing AI Preferences](#accessing-ai-preferences)
+- [Observing Chat Sessions from Outside](#observing-chat-sessions-from-outside)
 - [Learn more](#learn-more)
 
 ## Creating Agents with Theia AI
@@ -588,6 +589,14 @@ Finally, register your ‘ToolProvider’ like this:
 bind(ToolProvider).to(FileContentFunction);
 ```
 
+#### Tools Running a Fixed Shell Command
+
+For tools that always run the same shell command, `@theia/ai-terminal` provides the abstract `PredefinedShellTool`. A subclass declares a typed parameter schema and a `buildCommand(args)` method that assembles the command, so the command itself is controlled by the code rather than by the model, which only supplies the arguments. Unlike the generic `shellExecute` tool, such tools do not consult `ShellCommandPermissionService` and do not need an entry on the user's allow or deny list — the safety boundary is `buildCommand`, which must not be exploitable. They still participate in the regular tool confirmation flow. The `getGitChanges` tool behind the [commit message generation](/docs/user_ai/#commit-message-agent) is built this way.
+
+#### AI in the Source Control View
+
+`@theia/ai-ide` rebinds `ScmCommitWidget` to `AiAwareScmCommitWidget`, which renders the stock SCM commit input plus the commit-message overlay. If your application rebinds `ScmCommitWidget` itself, your binding wins and the commit-message button disappears. Extend `AiAwareScmCommitWidget` instead of `ScmCommitWidget` to keep it.
+
 ### Prototyping Tool Functions with the Tool Sketchpad
 
 The optional extension `@theia/ai-tool-sketchpad` lets you prototype tool functions without writing code. It contributes an **AI Tool Sketchpad** view in which you declare *sketched tools*: a name, a description, the input parameters and what the tool returns. A sketched tool either returns a fixed string or, in the *Ask At Runtime* mode, prompts you for the answer while the agent is running, so you can simulate arbitrary tool responses and see how an agent reacts before implementing anything.
@@ -897,31 +906,31 @@ Please note that Theia AI currently does not provide a fixed contribution point 
 
 ## GitHub Copilot Integration
 
-The GitHub Copilot Integration is provided by the `@theia/ai-copilot` package and is available to any product built on the Theia platform. If you are building a downstream product that includes this package, be aware of the following configuration requirements.
+The GitHub Copilot Integration is provided by the `@theia/ai-copilot` package and is available to any product built on the Theia platform. Requests are served by the official GitHub Copilot CLI, which runs as a background process on the machine hosting the backend. The integration is experimental: its API and preferences are subject to change.
 
-### Default OAuth App Configuration
+### Shipping the Copilot CLI
 
-The default OAuth App configuration (including the client ID and OAuth endpoints) shipped with the Theia IDE is intended for the Theia IDE only. Downstream products **should not** rely on this default configuration. It may be changed, rotated, or revoked at any time without notice, and the Theia project is not responsible for any resulting breakage in downstream products.
+The CLI is a prerequisite on the backend host rather than something the application ships, because it is a large platform-specific binary that a packaged application cannot execute from inside its own archive. A distribution that includes `@theia/ai-copilot` therefore has to either install the CLI next to itself and keep it extracted, or tell its users to run `npm install -g @github/copilot`. Users can point at a non-standard location with the `ai-features.copilot.executablePath` preference or the `COPILOT_CLI_PATH` environment variable of the backend; the lookup itself is `CopilotCliLocator` and can be rebound.
 
-### Custom Authentication Setup
+`@github/copilot-sdk` is deliberately not a dependency of the extension. The CLI carries its own copy of the SDK, and `CopilotSdkLoader` loads it from the CLI that serves the requests, falling back to an installed `@github/copilot-sdk` when the CLI does not carry one.
 
-To use the GitHub Copilot Integration in your own product, register your own [GitHub OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) and provide a custom OAuth configuration so the integration uses your client ID and endpoints instead of the Theia IDE defaults. This is not exposed as a preference because the client ID must be controlled by the product, not the user.
+Because the CLI runs on the backend host with one process per frontend connection, the integration is not suitable for multi-user backend deployments, where every connected frontend would share a single identity.
 
-In your backend module, rebind `CopilotOAuthConfig` to a constant value with your own configuration:
+### Authentication
 
-```ts
-rebind(CopilotOAuthConfig).toConstantValue({
-    clientId: 'your-github-oauth-app-client-id',
-    // optional: override the OAuth endpoints if needed
-    // deviceCodeUrl, accessTokenUrl, scopes, ...
-});
-```
+There is no OAuth application to configure any more: the sign-in is a device code flow performed by the Copilot CLI and driven from the existing dialog. Access to the Copilot models is granted per OAuth application, and the CLI is an entitled first-party application, which is why routing through it exposes the current model lineup. Adopters that previously rebound `CopilotOAuthConfig` to their own OAuth App should remove that rebinding; the symbol, its default value and the `CopilotLanguageModel` REST transport have been removed. See the [migration guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md) for the full list of removed API.
 
-The Copilot sign-in dialog also exposes its user-facing strings via the `CopilotAuthDialogMessages` binding. Rebind it in your frontend module if you want to use your own product name or copy in the dialog instead of the Theia defaults.
+The credentials belong to the application: the sign-in runs against a private Copilot home so that the token is not written into the credential store of the machine, and it is then kept in Theia's own credential store. A token in the environment or a sign-in of the GitHub CLI is never used.
+
+The Copilot sign-in dialog exposes its user-facing strings via the `CopilotAuthDialogMessages` binding. Rebind it in your frontend module if you want to use your own product name or copy in the dialog instead of the Theia defaults.
+
+### Behavioral Details
+
+The system prompt of a Theia agent becomes the system message of the Copilot session, replacing the agent instructions the CLI would use. The runtime is pointed at a Copilot home below Theia's configuration directory, so requests sent from Theia do not appear among the conversations a user started with their own CLI, and the session of a request is deleted once it has been answered. The ambient behavior of the CLI is switched off: only the tools of the request are available, and host instructions, skills, memory and session stores, git operations and plugins are disabled, since Theia drives the conversation itself. Structured output is not available on this path.
 
 ### GitHub Enterprise Configuration
 
-Alternatively, you can configure a GitHub Enterprise URL via the `ai-features.copilot.enterpriseUrl` preference to route authentication through your organization's GitHub Enterprise instance. Note that this changes the OAuth endpoints but does not change the client ID unless the authentication service is also customized.
+Configure a GitHub Enterprise domain via the `ai-features.copilot.enterpriseUrl` preference to authenticate and send requests against your organization's deployment. It is used for the sign-in and remembered with the credentials.
 
 ### Disabling the Copilot Integration
 
@@ -1081,6 +1090,10 @@ The [AI Configuration view](/docs/user_ai/#ai-configuration) is a master–detai
 To add a category, implement `AiConfigurationCategory` and bind it as a contribution. Each category has an id, a label and an ordering hint that controls where it appears in the tree, and it provides the detail page rendered when the user selects it. AI preferences shown on the page should be read and written through `AiConfigurationService` (see above) so they stay workspace-trust-aware. The shared page primitives (sections, list rows, settings rows with toggle/select/number/array controls, the row gear menu with *Copy Setting ID* / *Reset Setting*, and status badges) let contributed pages look and behave like the built-in ones.
 
 This replaces the previous approach of registering separate configuration widgets via `WidgetFactory`: the per-tab config widgets and their registrations have been removed, and `@theia/ai-ide` and `@theia/ai-mcp` now depend on `@theia/ai-core-ui`. Custom AI-config tabs from earlier versions must be re-implemented as `AiConfigurationCategory` contributions. The stable entry points (`aiConfiguration:open`, `aiConfiguration:openTools`, and the chat toolbar button) are unchanged.
+
+## Observing Chat Sessions from Outside
+
+External tooling such as a control plane or a CLI can observe and drive AI chat sessions over HTTP. The `@theia/ai-external-api` extension exposes the sessions of all connected frontends under `/api/ai/sessions`, including listing them, reading a conversation, streaming changes as server-sent events, and creating a session or sending it a prompt. It builds on the contributable HTTP surface of `@theia/external-api`, which is off by default and enabled through preferences. See [External API](/docs/external_api) for the configuration and for how to contribute endpoints of your own.
 
 ## Learn more
 
