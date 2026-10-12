@@ -13,9 +13,9 @@ import HeadWithTheiaAI from '../layouts/headwithTheiaAI';
 
 export const Head = () => (
     <HeadWithTheiaAI
-        canonical="/"
-        title="Theia AI: The Open Framework for Building AI-native Custom Tools and IDEs"
-        description="Transform your domain-specific tools and specialized IDEs with seamlessly integrated AI capabilities while maintaining complete control over your implementation."
+        canonical="/theia-ai/"
+        title="Theia AI – Open-Source AI Harness Platform for Tools and IDEs"
+        description="Open-source, vendor-neutral AI harness platform for AI-native tools and IDEs. Ready-to-use default harness, customizable agents, any LLM, MCP and Agent Skills."
     />
 );
 
