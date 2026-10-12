@@ -21,7 +21,13 @@ import Footer from '../components/Footer'
 import BaseHead from '../layouts/basehead'
 
 
-export const Head = BaseHead
+export const Head = () => (
+    <BaseHead
+        canonical="/support/"
+        title="Theia Support – Community and Professional Support"
+        description="Get help with Eclipse Theia: community support via GitHub Discussions, plus professional support, consulting and development services for Theia-based products."
+    />
+)
 
 export default () => {
     return (

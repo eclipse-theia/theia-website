@@ -1,8 +1,11 @@
 module.exports = {
     pathPrefix: process.env.PATH_PREFIX,
     siteMetadata: {
-        title: 'Theia Platform – Open, Flexible, and Extensible Framework for Building Cloud & Desktop IDEs and Tools',
-        description: "Discover the Theia Platform, an open-source framework for building custom and tailored cloud and desktop IDEs and tools using modern web technologies without forking. Fully extensible and vendor-neutral, Theia enables the development of tailored, white-labeled, and domain-specific tools, supporting Language Server Protocol (LSP), VS Code extensions, and AI integration."
+        // Site-level fallback only. Pages set their own title and description via their
+        // Head export; keeping this neutral stops new pages from silently inheriting the
+        // Theia Platform page's copy.
+        title: 'Eclipse Theia – Open-Source IDEs, Tools and AI for Cloud & Desktop',
+        description: "Eclipse Theia is an open-source, vendor-neutral project for building custom cloud and desktop IDEs and tools, including Theia AI and the ready-to-use Theia IDE."
     },
     plugins: [
         'gatsby-plugin-emotion',

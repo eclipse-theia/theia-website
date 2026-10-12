@@ -34,7 +34,13 @@ export const query = graphql`
         }
     }
 `
-export const Head = BaseHead
+export const Head = () => (
+    <BaseHead
+        canonical="/docs/"
+        title="Theia Documentation – Build Custom IDEs and Tools"
+        description="Documentation for Eclipse Theia: getting started, building custom cloud and desktop IDEs and tools, developing with Theia AI, and the AI-powered Theia IDE."
+    />
+)
 
 const Docs = ({ data }) => {
     const context = { next: "/docs/architecture/", nextTitle: "Architecture Overview" }
