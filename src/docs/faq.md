@@ -29,7 +29,7 @@ If you dislike the traditional Eclipse IDE, that experience does not apply to Th
 
 ## Theia Platform vs Theia IDE vs Theia AI vs AI-powered Theia IDE
 
-Theia Platform is the framework; Theia IDE is the ready-to-use IDE product built on it; Theia AI is the AI harness platform part of the Theia Platform; AI-powered Theia IDE is Theia IDE with AI coding features.
+**Theia Platform** is the framework; **Theia IDE** is the ready-to-use IDE product built on it; **Theia AI** is the framework's AI harness platform; **AI-powered Theia IDE** is Theia IDE with AI coding features.
 
 <details>
 <summary>Longer answer</summary>
