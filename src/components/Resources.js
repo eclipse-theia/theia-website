@@ -365,6 +365,11 @@ const categories = [
         title: 'Theia AI and AI-powered Theia IDE',
         resources: [
             {
+                title: 'AI for AUTOSAR Modeling: Our OCX Demo',
+                url: 'https://eclipsesource.com/blogs/2026/10/13/ai-for-autosar-modeling-our-ocx-demo/',
+                type: 'video'
+            },
+            {
                 title: 'ReviewGuard MCP: Keeping AI-Augmented Code Review Under Control',
                 url: 'https://eclipsesource.com/blogs/2026/08/06/review-guard-mcp-controlled-ai-code-review/',
                 type: 'article'
