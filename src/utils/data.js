@@ -62,6 +62,8 @@ import ZStudio from '../resources/screenshots/zstudio.gif';
 import ZStudioMin from '../resources/screenshots/thumbnails/zstudio-min.gif';
 import ScreenshotSokatoa from '../resources/screenshots/sokatoa.png'
 import ScreenshotSokatoaMin from '../resources/screenshots/thumbnails/sokatoa-min.jpg'
+import ScreenshotPlayWeld from '../resources/screenshots/playweld.png'
+import ScreenshotPlayWeldMin from '../resources/screenshots/thumbnails/playweld-min.jpg'
 
 export const contributorsAndAdopters = [
     {
@@ -121,6 +123,12 @@ export const products = [
         src: ScreenshotSokatoa,
         thumb: ScreenshotSokatoaMin,
         alt: "Sokatoa by Samsung SARC/ACL"
+    },
+    {
+        href: "https://playweld.com",
+        src: ScreenshotPlayWeld,
+        thumb: ScreenshotPlayWeldMin,
+        alt: "PlayWeld"
     },
     {
         href: "https://eclipse.dev/cdt-cloud/",
