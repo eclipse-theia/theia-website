@@ -14,6 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import React from 'react'
+import TheiaConLogo from '../../resources/theiacon-logo.svg'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
@@ -25,6 +26,19 @@ const PlatformHeader = () => (
             <br />
 
         </h2>
+        <br />
+        <a href="https://www.eclipse.org/events/2026/theiacon/">
+            <img className="banner__image" src={TheiaConLogo} alt="TheiaCon 2026"></img>
+        </a>
+        <h1 style={{ fontSize: '2.2rem' }}>
+            TheiaCon is almost here! Join <a href="https://www.eclipse.org/events/2026/theiacon/">TheiaCon 2026</a>, a free, virtual event on 28 - 29 October.<br/>
+            Secure your spot today:
+        </h1>
+        <div className="header__buttons">
+            <a className="btn btn--cta" href="https://luma.com/theiacon2026" rel="noopener">
+                Register now
+            </a>
+        </div>
     </div>
 )
 
