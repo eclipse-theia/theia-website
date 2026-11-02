@@ -64,6 +64,8 @@ import ScreenshotSokatoa from '../resources/screenshots/sokatoa.png'
 import ScreenshotSokatoaMin from '../resources/screenshots/thumbnails/sokatoa-min.jpg'
 import ScreenshotPlayWeld from '../resources/screenshots/playweld.png'
 import ScreenshotPlayWeldMin from '../resources/screenshots/thumbnails/playweld-min.jpg'
+import UndisclosedScreenshot from '../resources/screenshots/undisclosed.png'
+import UndisclosedScreenshotMin from '../resources/screenshots/thumbnails/undisclosed-min.jpg'
 
 export const contributorsAndAdopters = [
     {
@@ -213,6 +215,12 @@ export const products = [
         src: ZStudio,
         thumb: ZStudioMin,
         alt: "ZStudio"
+    },
+    {
+        href: "https://octagon-simon.github.io/undisclosed/",
+        src: UndisclosedScreenshot,
+        thumb: UndisclosedScreenshotMin,
+        alt: "Undisclosed"
     }
 ]
 
