@@ -421,9 +421,7 @@ to be used. For example, the default context size for all Ollama models is 2048 
 available VRAM, this parameter (`num_ctx`) should be raised, especially for more complex scenarios
 involving the various Chat agents. See [below](#custom-request-settings) for details on this.
 
-**Note: The Ollama connector is still in Alpha state. If you experience problems while using it, you can
-alternatively take advantage of the fact that some Ollama models support using an OpenAI compatible API. In
-this case, you can alternatively use the
+**Note: Some Ollama models also support an OpenAI compatible API. In this case, you can alternatively use the
 [Theia AI provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm). But note that the
 context window size `num_ctx` (default: 2048)
 cannot be configured this way. If you need a different context window size, you should create your own
