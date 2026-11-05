@@ -180,6 +180,11 @@ const categories = [
         title: 'Introductions to Eclipse Theia',
         resources: [
             {
+                title: 'What Is Eclipse Theia (AI)? The Platform, the AI Harness Platform, and the IDE',
+                url: 'https://eclipsesource.com/blogs/2026/11/05/what-is-eclipse-theia-ai/',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Theia is the Next Generation Eclipse Platform for IDEs and Tools!',
                 url: 'https://eclipsesource.com/blogs/2022/03/09/eclipse-theia-is-the-next-generation-eclipse-platform-for-ides-and-tools/',
                 type: 'article'
@@ -320,6 +325,11 @@ const categories = [
         title: 'Topics related to Eclipse Theia',
         resources: [
             {
+                title: 'EclipseSource Is Not About the Eclipse IDE',
+                url: 'https://eclipsesource.com/blogs/2026/10/29/eclipsesource-is-not-about-the-eclipse-ide/',
+                type: 'article'
+            },
+            {
                 title: 'Modernizing Eclipse RCP Applications and Tools in 2026',
                 url: 'https://eclipsesource.com/blogs/2026/10/06/migrating-eclipse-rcp-applications-and-tools-in-2026/',
                 type: 'article'
@@ -364,6 +374,11 @@ const categories = [
     {
         title: 'Theia AI and AI-powered Theia IDE',
         resources: [
+            {
+                title: 'What Is Eclipse Theia (AI)? The Platform, the AI Harness Platform, and the IDE',
+                url: 'https://eclipsesource.com/blogs/2026/11/05/what-is-eclipse-theia-ai/',
+                type: 'article'
+            },
             {
                 title: 'AI for AUTOSAR Modeling: Our OCX Demo',
                 url: 'https://eclipsesource.com/blogs/2026/10/13/ai-for-autosar-modeling-our-ocx-demo/',
