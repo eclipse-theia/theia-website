@@ -80,6 +80,16 @@ const categories = [
         title: 'News around Eclipse Theia',
         resources: [
             {
+                title: 'TheiaCon 2026: The Eclipse Theia Project Update',
+                url: 'https://youtu.be/aOYgfq5Kkbk',
+                type: 'video'
+            },
+            {
+                title: 'Beyond the Code: Lessons from GSoC 2026 at Eclipse Theia',
+                url: 'https://youtu.be/lZEw5_4uFjE',
+                type: 'video'
+            },
+            {
                 title: 'Eclipse Theia in Practice: Getting Started and Lessons from the Field',
                 url: 'https://eclipsesource.com/blogs/2026/07/02/eclipse-theia-in-practice-getting-started-lessons-from-the-field/',
                 type: 'video'
@@ -149,6 +159,11 @@ const categories = [
     {
         title: 'TheiaCon Talk Recordings',
         resources: [
+            {
+                title: 'TheiaCon 2026',
+                url: 'https://www.youtube.com/playlist?list=PLP0T2qiTrjGU',
+                type: 'video'
+            },
             {
                 title: 'TheiaCon 2025',
                 url: 'https://www.youtube.com/playlist?list=PLy7t4z5SYNaQyTt3QT9nddDLIuEiUKPoX',
@@ -240,6 +255,31 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'Sokatoa: A Theia Tool Story (Samsung, TheiaCon 2026)',
+                url: 'https://youtu.be/dUDwby2Kbq8',
+                type: 'video'
+            },
+            {
+                title: 'STM32CubeMX2 x Theia (STMicroelectronics, TheiaCon 2026)',
+                url: 'https://youtu.be/afL1kR6uk4Q',
+                type: 'video'
+            },
+            {
+                title: 'Using Theia in the Cloud for Embedded C/C++ Development (Renesas 365, TheiaCon 2026)',
+                url: 'https://youtu.be/HeODE2GL6Ws',
+                type: 'video'
+            },
+            {
+                title: 'From Eclipse RCP to Theia: Bringing a 20-Year File-Comparison Product to the Browser (DeltaWalker, TheiaCon 2026)',
+                url: 'https://youtu.be/oGnNo0Ugrb0',
+                type: 'video'
+            },
+            {
+                title: 'Theia as an Extension, Vibe Coding as a DSL (Operate, TheiaCon 2026)',
+                url: 'https://youtu.be/oqYvDCc_fvM',
+                type: 'video'
+            },
+            {
                 title: 'Theia Adopter Story: STMicroelectronics STM32CubeMX2 - Microcontroller Configuration and Code Generation',
                 url: 'https://www.eclipse.org/topics/ide/articles/theia-adopter-story-stmicroelectronics/',
                 type: 'article'
@@ -300,6 +340,11 @@ const categories = [
         title: 'Technical topics about Eclipse Theia',
         resources: [
             {
+                title: 'Baukasten: A Modern UI Toolkit for Theia, VS Code and Web Applications',
+                url: 'https://youtu.be/BmlFQmpSrUU',
+                type: 'video'
+            },
+            {
                 title: 'VS Code extensions vs. Theia extensions',
                 url: 'https://eclipsesource.com/blogs/2021/03/24/vs-code-extensions-vs-theia-extensions/',
                 type: 'article'
@@ -324,6 +369,21 @@ const categories = [
     {
         title: 'Topics related to Eclipse Theia',
         resources: [
+            {
+                title: 'Hydranium: Growing Your Language Server into a Modeling Server',
+                url: 'https://youtu.be/I7E0FDjkGMA',
+                type: 'video'
+            },
+            {
+                title: 'IDE Architecture Then and Now',
+                url: 'https://youtu.be/kSVJO_6A2d4',
+                type: 'video'
+            },
+            {
+                title: 'Turning a Software Project into a Control System for AI Agents',
+                url: 'https://youtu.be/oOI9dM3TM8E',
+                type: 'video'
+            },
             {
                 title: 'EclipseSource Is Not About the Eclipse IDE',
                 url: 'https://eclipsesource.com/blogs/2026/10/29/eclipsesource-is-not-about-the-eclipse-ide/',
@@ -374,6 +434,26 @@ const categories = [
     {
         title: 'Theia AI and AI-powered Theia IDE',
         resources: [
+            {
+                title: 'Building Agent-Native Engineering Tools with Theia',
+                url: 'https://youtu.be/9PWbFo9PkLQ',
+                type: 'video'
+            },
+            {
+                title: 'Your GPU, Your Rules: Running Local AI Coding Assistants in Eclipse Theia',
+                url: 'https://youtu.be/9Bs-jlHtf9c',
+                type: 'video'
+            },
+            {
+                title: 'Eclipse Enclave: Frictionless and Safe AI Agents on Your Dev Machine',
+                url: 'https://youtu.be/WTpSEhJTNsw',
+                type: 'video'
+            },
+            {
+                title: 'AI Registry: A Vendor-Neutral Home for AI Agent Extensions',
+                url: 'https://youtu.be/rO3D1MVCcUY',
+                type: 'video'
+            },
             {
                 title: 'What Is Eclipse Theia (AI)? The Platform, the AI Harness Platform, and the IDE',
                 url: 'https://eclipsesource.com/blogs/2026/11/05/what-is-eclipse-theia-ai/',

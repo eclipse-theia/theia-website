@@ -16,6 +16,38 @@
 
 export const youtubeVideos = [
     {
+        id: 'aOYgfq5Kkbk',
+        tags: ['theia-ide', 'theia-ai', 'theia-platform']
+    },
+    {
+        id: 'dUDwby2Kbq8',
+        tags: ['theia-ai', 'theia-platform']
+    },
+    {
+        id: 'afL1kR6uk4Q',
+        tags: ['theia-platform']
+    },
+    {
+        id: '9PWbFo9PkLQ',
+        tags: ['theia-ai', 'theia-platform']
+    },
+    {
+        id: 'HeODE2GL6Ws',
+        tags: ['theia-platform']
+    },
+    {
+        id: 'WTpSEhJTNsw',
+        tags: ['theia-ide', 'theia-ai']
+    },
+    {
+        id: 'rO3D1MVCcUY',
+        tags: ['theia-ai']
+    },
+    {
+        id: '9Bs-jlHtf9c',
+        tags: ['theia-ide', 'theia-ai']
+    },
+    {
         id: 'fwrbpibfum8',
         tags: ['theia-platform']
     },
