@@ -27,16 +27,16 @@ const PlatformHeader = () => (
 
         </h2>
         <br />
-        <a href="https://www.eclipse.org/events/2026/theiacon/">
+        <a href="https://www.youtube.com/playlist?list=PLP0T2qiTrjGU">
             <img className="banner__image" src={TheiaConLogo} alt="TheiaCon 2026"></img>
         </a>
         <h1 style={{ fontSize: '2.2rem' }}>
-            TheiaCon is almost here! Join <a href="https://www.eclipse.org/events/2026/theiacon/">TheiaCon 2026</a>, a free, virtual event on 28 - 29 October.<br/>
-            Secure your spot today:
+            Missed <a href="https://www.eclipse.org/events/2026/theiacon/">TheiaCon 2026</a>? All talk recordings are online now,<br/>
+            including adopter stories from Samsung, STMicroelectronics and Renesas, and the latest on Theia AI.
         </h1>
         <div className="header__buttons">
-            <a className="btn btn--cta" href="https://luma.com/theiacon2026" rel="noopener">
-                Register now
+            <a className="btn btn--cta" href="https://www.youtube.com/playlist?list=PLP0T2qiTrjGU" rel="noopener">
+                Watch the recordings
             </a>
         </div>
     </div>
