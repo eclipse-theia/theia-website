@@ -148,6 +148,14 @@ yarn build:electron
 yarn start:electron
 ```
 
+As of Theia 1.77, Theia is based on Electron 44. Electron applications built on Theia must declare the same `electron` version in their `devDependencies` as `@theia/electron` does, so update it whenever you upgrade Theia. Electron 44 requires macOS 13 (Ventura) or later and only provides 64-bit builds (x64 and arm64). On Linux, rebuilding the native modules for Electron 44 requires GCC 13 or later, or Clang. On distributions that ship an older GCC, such as Ubuntu 22.04, build with Clang instead:
+
+```bash
+CC=clang CXX=clang++ yarn build:electron
+```
+
+With Electron 44, the clipboard is no longer accessible from the renderer process, so Theia reads it in the main process. As a consequence, the `readClipboard()` method of the Theia preload API and `ElectronClipboardService.readText()` are asynchronous and return a `Promise<string>`. If your extensions call them, adapt them accordingly. For other changes that may affect your application, see the Electron breaking changes for [43.0](https://www.electronjs.org/docs/latest/breaking-changes#planned-breaking-api-changes-430) and [44.0](https://www.electronjs.org/docs/latest/breaking-changes#planned-breaking-api-changes-440).
+
 ### Recent Workspaces in the Windows Jump List
 
 On Windows, Electron-based applications list the recently opened workspaces in the jump list of their task bar entry, so users can reopen a workspace without going through the application first.
@@ -199,6 +207,8 @@ Existing deployments are *not* migrated automatically. After the upgrade the app
 If your application still contains a `webpack.config.js`, it is no longer used. The build now warns about the leftover file and points you at the migration guide, and `theia clean` still removes the previously generated webpack files. Port any customizations you had in `webpack.config.js` over to `esbuild.mjs`.
 
 A few related renames come with this change. On the command line, `theia build [webpack-args...]` is now `theia build [bundler-args...]`, and `--webpack-help` remains as a deprecated alias of `--bundler-help`. In `@theia/bundle-plugin` (formerly `@theia/native-webpack-plugin`), the `NativeWebpackPlugin` and `MonacoWebpackPlugin` have been replaced by `nativeDependenciesPlugin`, `monacoNlsPlugin` and `exposeModulePlugin`.
+
+The entry points that Theia generates into `src-gen` are ES modules. The backend and the Electron main process are bundled as ES modules into `lib/backend`, which contains its own `package.json` declaring `"type": "module"`, while the Electron preload script and the frontend are still bundled as classic scripts. If you customized your `esbuild.mjs` in a way that relies on `require` or `module.exports` in the generated entry points, these customizations need to be adapted. See [Module Format](/docs/authoring_extensions/#module-format) for how the switch of the Theia packages to ES modules affects your extensions.
 
 Production builds now also pre-compress their assets. The new `compressAssetsPlugin` writes a `.gz` file next to each bundled asset so the backend can serve the compressed variant directly, which noticeably reduces the amount of data sent to the browser. It runs for production builds only, so watch rebuilds stay fast, and it removes stale `.gz` files from earlier builds to make sure the backend never serves outdated content.
 

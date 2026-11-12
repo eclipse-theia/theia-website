@@ -237,6 +237,8 @@ In the default prompt Coder uses two functions to suggest changes (you can also 
 - `changeSet_replaceContentInFile`: Will only replace specific segments of text within a file. This is faster but may require multiple attempts if the content to be replaced is ambiguous or if there are many similar patterns in the code.
 Coder will usually select the best of the two functions above, based on the proposed change. If you experience continous issues, specifically, if the `changeSet_replaceContentInFile` function continously fails, you can experiment with changing the default prompt or switching to the prompt variant `coder-rewrite` which will only rewrite files.
 
+Rewriting a complete file requires the model to re-emit the entire file content, which can take very long or exceed the model's output limit for large files. Therefore, the tools that write whole files (`writeFileContent` and `suggestFileContent`) reject content larger than the limit configured in `ai-features.workspaceFunctions.writeContentMaxSizeKB` (default: 256 KB). The current limit is included in the tool descriptions, so agents can switch to replacement-based edits for large files up front. If an agent still exceeds the limit, the write is rejected and the agent is advised to use the replacement-based tools instead or to reference large data by path rather than embedding it. If you regularly work with large generated files and want to allow bigger rewrites, increase the limit accordingly.
+
 ## Learn more
 
 👉 [Introducing the AI-powered Theia IDE: AI-driven coding with full Control](https://eclipsesource.com/blogs/2025/03/13/introducing-the-ai-powered-theia-ide/)

@@ -142,7 +142,7 @@ export const myExtensionPreferenceSchema: PreferenceSchema = {
             type: 'string',
             default: 'defaultValue',
             description: 'An option that can be overridden per language',
-            overridable: true  // Allows language-specific overrides like "[typescript].myExtension.overridableOption"
+            overridable: true  // Allows language-specific overrides, e.g. in a "[typescript]" section of settings.json
         }
     }
 };
@@ -262,6 +262,8 @@ export class MyService {
 }
 ```
 
+The return type of `get` is derived from the default value you pass, e.g. `number` in the example above. To read the value for a specific resource or language, pass an options object instead, which can contain a `fallback` value, a `resource` URI and an `override` identifier (see [Resource-Specific Preferences](#resource-specific-preferences) and [Language-Specific Preferences](#language-specific-preferences)). The former typed getters of `PreferenceServiceImpl`, such as `getBoolean(...)`, have been removed in favor of these overloads of `get`.
+
 ### Type-Safe Access via Preference Proxy
 
 ```typescript
@@ -328,6 +330,21 @@ Preferences can be overridden for specific languages by setting the `overridable
 }
 ```
 
+In the API, language overrides are addressed with an explicit override identifier rather than by encoding the language into the preference name (such as `[typescript].editor.tabSize`). Pass the language identifier as `override` when reading a value, and as the last argument of `set`, `updateValue` and `inspect`:
+
+```typescript
+// Read the TypeScript-specific value, falling back to the base value if none is set
+const tabSize = this.preferenceService.get('editor.tabSize', { fallback: 4, override: 'typescript' });
+
+// Write a TypeScript-specific value to the user settings
+await this.preferenceService.set('editor.tabSize', 2, PreferenceScope.User, undefined, 'typescript');
+
+// Inspect the TypeScript-specific values across all scopes
+const inspection = this.preferenceService.inspect('editor.tabSize', undefined, 'typescript');
+```
+
+Preference change events always use the base preference name, e.g. `editor.tabSize`, and a single event is fired per change rather than one event per affected language. To find out whether a change is relevant for a particular language, call `affects(resourceUri, overrideIdentifier)` on the event, or check the languages listed in `affectedOverrides` of a `PreferenceChange`.
+
 ### Preference Inspection
 
 Use the `inspect` method to see preference values across all scopes:
@@ -347,7 +364,7 @@ Some preferences can have different values based on the file or folder being acc
 
 ```typescript
 // Get preference for a specific file
-const encoding = this.preferenceService.get('files.encoding', 'utf8', fileUri);
+const encoding = this.preferenceService.get('files.encoding', { fallback: 'utf8', resource: fileUri });
 
 // Set preference for a specific folder
 await this.preferenceService.set('files.encoding', 'utf16', PreferenceScope.Folder, folderUri);

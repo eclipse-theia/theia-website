@@ -142,6 +142,7 @@ As you can see, only few lines of code are required to register a command and di
 
 First important line is the import of the API.
 The import `import * as theia from '@theia/plugin';` is making all Theia plug-in's API available into a theia object.
+Plug-ins can be delivered either as CommonJS or as ES modules; in both cases, the plug-in host resolves the import of `@theia/plugin`.
 
 In the code, there are two methods that are `start()` and `stop()`
 

@@ -26,6 +26,7 @@ Learn more about the AI-powered Theia IDE:
     - [LLM Providers Overview](#llm-providers-overview)
     - [Proxy Configuration](#proxy-configuration)
     - [GitHub Copilot](#github-copilot)
+    - [ChatGPT Subscription](#chatgpt-subscription)
     - [OpenAI (Hosted by OpenAI)](#openai-hosted-by-openai)
     - [OpenAI Compatible Models (e.g. via VLLM)](#openai-compatible-models-eg-via-vllm)
     - [Mistral](#mistral-models)
@@ -33,7 +34,6 @@ Learn more about the AI-powered Theia IDE:
     - [Anthropic](#anthropic)
     - [Google AI](#google-ai)
     - [Ollama](#ollama)
-    - [Vercel AI](#vercel-ai)
     - [Hugging Face](#hugging-face)
     - [LlamaFile Models](#llamafile-models)
     - [Custom Request Settings](#custom-request-settings)
@@ -49,7 +49,7 @@ Learn more about the AI-powered Theia IDE:
     - [Commit Message (Agent)](#commit-message-agent)
     - [App Tester (Chat Agent)](#app-tester-chat-agent)
     - [Claude Code (Chat Agent)](#claude-code-chat-agent)
-    - [Project Info (Chat Agent)](#project-info-chat-agent)
+    - [AgentsMd (Chat Agent)](#agentsmd-chat-agent)
     - [CreateSkill (Chat Agent)](#createskill-agent)
     - [GitHub (Chat Agent)](#github-chat-agent)
     - [PR Reviewer (Chat Agent)](#pr-reviewer-chat-agent)
@@ -204,8 +204,8 @@ Below is an overview of various Large Language Model (LLM) providers supported w
 | Mistral (via OpenAI Compatible)                            |     ✅     |     ✅      |         ✅         | Public       |
 | [Azure](#azure)                                            |     ✅     |     ✅      |         ✅         | Public       |
 | [GitHub Copilot](#github-copilot)                          |     ✅     |     ✅      |         ❌         | Experimental |
+| [ChatGPT Subscription](#chatgpt-subscription)              |     ✅     |     ✅      |         ✅         | Experimental |
 | [Ollama](#ollama)                                          |     ✅     |     ✅      |         ✅         | Public       |
-| [Vercel AI](#vercel-ai)                                    |     -      |     -       |         -          | Deprecated   |
 | [Hugging Face](#hugging-face)                              |     ✅     |     ❌      |         ❌         | Experimental |
 | [LlamaFile](#llamafile-models)                             |     ✅     |     ❌      |         ❌         | Experimental |
 
@@ -313,6 +313,39 @@ Because the CLI is an agent that takes a single prompt per turn rather than a me
 
 If you are building a downstream product on the Theia platform and want to include the Copilot integration, please refer to the [Adopting the Copilot Integration](/docs/theia_ai/#github-copilot-integration) section in the Theia AI documentation for important configuration requirements.
 
+### ChatGPT Subscription
+
+If you have a ChatGPT subscription, you can use the OpenAI models included in your plan without creating a separate OpenAI API key. The ChatGPT provider signs you in with your ChatGPT account and registers the models your plan grants with a `chatgpt/` prefix. They are offered alongside the API-key based `openai/` models described in the [OpenAI section](#openai-hosted-by-openai) and can be assigned to any agent in the [AI Configuration view](#ai-configuration).
+
+**Please note:** This integration is experimental. It relies on an undocumented ChatGPT endpoint that may change or stop working at any time without notice. The terms of your ChatGPT plan apply.
+
+#### Signing In to ChatGPT
+
+To sign in, click the **Sign in with ChatGPT** status bar item or run the command **ChatGPT: Sign in**. The Theia IDE opens the OpenAI authorization page in your browser. After you have authorized the access, the browser hands the authorization code back to the Theia IDE via a local callback on `http://localhost:1455/auth/callback`. If the Theia backend does not run on the same machine as your browser (for example, in a remote setup), or if this port is already in use, you can instead paste the authorization code or the full redirect URL into the input box that the Theia IDE offers. The credentials are stored in your operating system's credential store and refreshed automatically.
+
+Once signed in, the status bar shows your account, and clicking it lets you sign out again. You can also run **ChatGPT: Sign out**, which removes the stored credentials. ChatGPT models can only be used while you are signed in; while you are signed out, the **Providers & Models** category of the AI Configuration view shows the provider as not signed in and offers a **Sign in with ChatGPT** action.
+
+<img src="../../ai-provider-chatgpt.png" alt="ChatGPT provider in the Providers & Models category of the AI Configuration view in the Theia IDE" style="max-width: 525px">
+
+#### Configuring ChatGPT Models
+
+By default, the Theia IDE queries the models available for your ChatGPT plan once you are signed in. If this query fails, for example because the endpoint cannot be reached, a built-in list of models is offered instead. To offer a fixed set of models, list their IDs in the `ai-features.chatGpt.modelOverrides` preference; leave it empty to use the discovered models again. Note that manually configured models still need to be included in your plan.
+
+```json
+{
+    "ai-features.chatGpt.modelOverrides": [
+        "model-id-1",
+        "model-id-2"
+    ]
+}
+```
+
+Requests to ChatGPT models always use the streaming Responses API, and the responses are not stored by OpenAI. OpenAI's server-side web search is available as a selectable [capability](#agent-capabilities). Server-side compaction of long conversations follows the global chat setting by default; you can override it for ChatGPT models with `ai-features.chatGpt.serverSideCompaction` (`default`, `enabled`, or `disabled`) and adjust the input-token threshold with `ai-features.chatGpt.serverSideCompactionTokenThreshold`.
+
+To disable the ChatGPT provider entirely, set `ai-features.chatGpt.enabled` to `false`. This removes its models and hides the status bar item, while your configured model list is preserved.
+
+If you are building a downstream product and want to include the ChatGPT integration, please refer to the [ChatGPT Subscription Integration](/docs/theia_ai/#chatgpt-subscription-integration) section in the Theia AI documentation.
+
 ### OpenAI (Hosted by OpenAI)
 
 To enable the use of OpenAI, you need to create an API key in your OpenAI API account (<https://platform.openai.com/>) and enter it in the settings AI-features => OpenAiOfficial (see the screenshot below).
@@ -322,6 +355,8 @@ Please also note that creating an API key requires a paid subscription, and usin
 <img src="../../enter-openai-key.png" alt="Open AI configuration in the Theia IDE" style="max-width: 525px">
 
 Once a key is configured, the available models are discovered from OpenAI, so newly released models can be used without further configuration. See [Model Discovery](#model-discovery) for the discovery status, the favorites shown in the chat input, and how to pin an explicit list instead.
+
+Requests to official OpenAI models are sent via OpenAI's newer Responses API by default. If you need to fall back to the Chat Completions API, set `ai-features.openAiOfficial.useResponseApi` to `false`. This default only applies to the official OpenAI models; [OpenAI compatible models](#openai-compatible-models-eg-via-vllm) continue to use the Chat Completions API unless you set `useResponseApi` to `true` in their configuration.
 
 ### OpenAI Compatible Models (e.g. via VLLM)
 
@@ -391,6 +426,20 @@ Mistral models (including on "La Platforme") can be used via the OpenAI API and 
 
 All models hosted on Azure that are compatible with the OpenAI API are accessible via the [Provider for OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) provider. Note that some models hosted on Azure may require different settings for the system message, which are detailed in the [OpenAI Compatible Models](#openai-compatible-models-eg-via-vllm) section and the [Readme](https://github.com/eclipse-theia/theia/tree/master/packages/ai-openai#azure-openai).
 
+If your Azure endpoint or the gateway in front of it does not use an API key (for example because it authenticates with a Microsoft Entra ID token or a subscription key header), omit `apiKey` from the model configuration and provide the required credentials via `headers` instead. Without a configured `apiKey`, no `api-key` header is sent at all, so the request is not rejected because of an invalid key:
+
+```json
+"ai-features.openAiCustom.customOpenAiModels": [
+    {
+        "model": "gpt-4o",
+        "url": "https://your-gateway.example.com/openai",
+        "deployment": "your-deployment",
+        "apiVersion": "2024-10-21",
+        "headers": { "Authorization": "Bearer <your-token>" }
+    }
+]
+```
+
 ### Anthropic
 
 To enable Anthropics AI models in the Theia IDE, create an API key in your Anthropics API account (<https://console.anthropic.com/>) and
@@ -426,10 +475,6 @@ involving the various Chat agents. See [below](#custom-request-settings) for det
 context window size `num_ctx` (default: 2048)
 cannot be configured this way. If you need a different context window size, you should create your own
 derived model in Ollama, in which you set the `num_ctx` parameter to the desired value via the Modelfile.**
-
-### Vercel AI
-
-**Note: The `@theia/ai-vercel-ai` package is deprecated and is no longer published on npm. It will eventually be removed from the Theia codebase. As it only wrapped OpenAI and Anthropic models, which are covered by dedicated providers with better support, please migrate to those. See the [1.74 section of the Theia Migration guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md#deprecation-of-theiaai-vercel-ai-package) for the migration steps.**
 
 ### Hugging Face
 
@@ -535,7 +580,9 @@ Many modern LLMs can be instructed to spend more or less effort "thinking" about
 
 <img src="../../reasoning-selector.png" alt="Reasoning selector in the AI Chat input in the Theia IDE" style="max-width: 525px">
 
-Six levels are available, ordered from no reasoning to maximum effort: **Off**, **Minimal**, **Low**, **Medium**, **High**, and **Auto** (let the model decide). Higher levels typically produce better answers on complex problems but increase latency and token usage. The levels are provider-agnostic — each provider translates the chosen value to its native API at request time (for example Anthropic's adaptive or extended thinking, OpenAI's `reasoning.effort`, or Gemini's `thinkingConfig`). Not every provider supports every level; for instance OpenAI's GPT-5 family supports `Minimal`, while the o-series does not.
+The available levels, ordered from no reasoning to maximum effort, are **None**, **Minimal**, **Low**, **Medium**, **High**, **Extra High**, and **Max**. In addition, **Auto** lets the provider or model decide, and **Off** omits an explicit reasoning effort from the request altogether, so that the provider's defaults or any raw values from [Custom Request Settings](#custom-request-settings) apply (on Ollama, **Off** disables thinking). Use **None** if you want to explicitly ask the model not to reason. Higher levels typically produce better answers on complex problems but increase latency and token usage.
+
+The levels are provider-agnostic: each provider translates the chosen value to its native API at request time (for example Anthropic's adaptive or extended thinking and effort, OpenAI's `reasoning.effort`, or Gemini's `thinkingConfig`). Not every model supports every level, and the selector only offers the levels the current model actually supports. For Anthropic models, the supported efforts are derived from the model metadata reported by the provider, so **Extra High** and **Max** only appear for models that support them. For OpenAI models, the offered levels follow the capabilities of the respective model family; for instance, the GPT-5 family supports **None** and **Extra High**, while the o-series does not. Gemini 4 models always think, so neither **Off** nor **Minimal** is offered for them. If a requested level is not supported by the model (for example because it was configured as a default or remembered from a different model), it is mapped to the closest supported level at request time (e.g., **Extra High** falls back to **Max** or **High**). The configuration UI displays the effective level accordingly without changing your saved preferences.
 
 When you change the level via the selector, the choice is automatically remembered for the receiving agent and restored the next time you open a session with that agent. To configure a default for a specific provider, model, or agent without touching the UI, add an entry to the `ai-features.reasoning.defaults` preference:
 
@@ -543,7 +590,7 @@ When you change the level via the selector, the choice is automatically remember
 "ai-features.reasoning.defaults": [
     { "scope": { "providerId": "anthropic" }, "reasoning": { "level": "medium" } },
     { "scope": { "modelId": "openai/gpt-5" }, "reasoning": { "level": "high" } },
-    { "scope": { "agentId": "Coder" }, "reasoning": { "level": "off" } }
+    { "scope": { "agentId": "Coder" }, "reasoning": { "level": "low" } }
 ]
 ```
 
@@ -709,38 +756,48 @@ For more information on configuring Claude Code's permissions, commands, MCP ser
 
 You can customize the system message appendix that is passed to Claude Code through the Theia agent configuration in the AI Configuration view. This allows you to tailor Claude Code's behavior to your specific needs and workflows.
 
-### Project Info (Chat Agent)
+### AgentsMd (Chat Agent)
 
-**Note: This agent is currently in alpha state and marked as such in the agent list.**
+Project-specific context for the AI agents in the Theia IDE lives in an `AGENTS.md` file at the root of your workspace. `AGENTS.md` is an [open standard](https://agents.md/) that is also read by other agentic tools, so a project that already maintains one does not need a Theia-specific copy. The file serves as a knowledge base that helps AI assistants understand your project's architecture, conventions, build commands, and specific requirements.
 
-The Project Info agent helps you create and maintain a project information file (`.prompts/project-info.prompttemplate`) that provides context about your workspace to other AI agents. This file serves as a knowledge base that helps AI assistants understand your project's architecture, conventions, and specific requirements. The project info file is used by default by Theia Coder.
+How the file is used depends on the shape of your workspace. In a single-root workspace, the root `AGENTS.md` is always part of the context of the Coder, Architect, Explore, Code Reviewer, App Tester, and PR Review agents. Keep it concise, as its full content is sent with every request these agents make. In a multi-root workspace, nothing is loaded up front; instead, the agents are told which roots contain an `AGENTS.md` and read the relevant file on demand. Only `AGENTS.md` files directly in a workspace root are discovered; files with other names, such as `CLAUDE.md`, are not picked up automatically.
+
+`AGENTS.md` is read as plain Markdown. Prompt template syntax such as `{{variable}}` or `~{tool}` is not resolved and ends up as literal text.
+
+The AgentsMd agent (formerly called ProjectInfo) helps you create and maintain this file. When an instruction file such as `CLAUDE.md` or `.github/copilot-instructions.md` already exists in your project, the agent can consolidate its content into `AGENTS.md`.
 
 **How to Use:**
 
-When you first interact with the Project Info agent, it will ask you to choose your preferred working mode:
+When you first interact with the AgentsMd agent, it will ask you to choose your preferred working mode:
 
-1. **Auto-exploration mode**: The agent explores your workspace automatically and creates an initial project information file based on what it discovers.
+1. **Auto-exploration mode**: The agent explores your workspace automatically and creates an initial `AGENTS.md` based on what it discovers.
 2. **Manual mode**: The agent guides you through each section, asking for your input and offering to answer questions for you.
 
-**Project Info Structure:**
+**Structure:**
 
-The applied structure and content for the generated project file can be reviewed in the prompt template `project-info-template` accessible in the agent settings under the ProjectInfo agent.
-
-The default storage location for project info files is `.prompts/`. You can configure this location in the settings under `ai-features.promptTemplates.WorkspaceTemplateDirectories`.
+The suggested structure for the generated file can be reviewed in the prompt template `agents-md-template`, accessible in the agent settings under the AgentsMd agent. As `AGENTS.md` has no fixed schema, sections without project-specific content can simply be left out.
 
 **Example Usage:**
 
-Simply mention `@ProjectInfo` in the chat and describe what you want to do:
+Simply mention `@AgentsMd` in the chat and describe what you want to do:
 
-- "Create project info for my workspace"
-- "Update the project info with new testing guidelines"
-- "Complete the missing sections in my project info"
+- "Create an AGENTS.md for my workspace"
+- "Update the AGENTS.md with our new testing guidelines"
+- "Consolidate our CLAUDE.md into AGENTS.md"
+
+#### Migrating from Project Info Files
+
+Earlier versions of the Theia IDE stored project context in `.prompts/project-info.prompttemplate`. On startup, every trusted workspace root that still contains this file gets an `AGENTS.md` written from its content, and the original file is renamed to `.prompts/project-info.prompttemplate.bak`. A notification reports the result. An existing `AGENTS.md` is never overwritten, and you can repeat the migration at any time with the command **AI: Re-run AGENTS.md migration**, for example after adding a workspace root.
+
+Settings stored for the former ProjectInfo agent in your user settings are carried over to the AgentsMd agent automatically. Settings stored in workspace or folder scope, as well as customized versions of the `project-info-system` prompt, are not renamed and need to be adapted by hand. If `project-info` prompt overrides exist in other locations, for example in a shared prompt directory, a notification lists them so you can move their content into the relevant `AGENTS.md`.
+
+Prompts that still reference `{{prompt:project-info}}` keep working, as this fragment now resolves to the full content of the workspace's `AGENTS.md` files. It is deprecated, though; built-in agents use the new `agents-md` fragment instead.
 
 #### The /remember Command
 
-The `/remember` slash command provides a convenient way to capture important context from your conversation and add it to the project info file. This command is available when using the Architect or Coder agents.
+The `/remember` slash command provides a convenient way to capture important context from your conversation and add it to your `AGENTS.md`. This command is available when using the Architect or Coder agents.
 
-During a conversation, you may correct the AI agent about project-specific details or provide clarifications about your codebase. The `/remember` command analyzes your conversation history and extracts these corrections and clarifications, then delegates to the ProjectInfo agent to update the project information file.
+During a conversation, you may correct the AI agent about project-specific details or provide clarifications about your codebase. The `/remember` command analyzes your conversation history and extracts these corrections and clarifications, then delegates to the AgentsMd agent to update `AGENTS.md`.
 
 The command focuses specifically on information where you corrected the AI's assumptions or provided context it couldn't discover on its own. This helps prevent future AI interactions from making the same mistakes.
 
@@ -750,7 +807,7 @@ To use the command, simply type `/remember` after a conversation where you provi
 You can also provide an optional topic hint to focus the extraction on a specific area:
 > @Architect /remember testing conventions
 
-The extracted information is then added to your `.prompts/project-info.prompttemplate` file, making it available for future AI interactions.
+The extracted information is then proposed as a change to your `AGENTS.md`, making it available for future AI interactions.
 
 ### GitHub (Chat Agent)
 
@@ -855,6 +912,10 @@ Some agents produce special results, such as buttons (shown in the screenshot ab
 
 Each response is introduced by a header naming the agent, the model that answered and the current status. While you scroll through a long response, that header stays pinned at the top of the chat, so you always see which agent and model the text you are reading belongs to.
 
+To keep long conversations manageable, you can collapse individual requests and responses. Click the chevron at the start of a message header (or focus it and press <kbd>Enter</kbd> or <kbd>Space</kbd>) to collapse the message to its header, and click it again to expand it. Because the header stays pinned to the top of the view while you scroll through a long message, you can collapse it from there without scrolling back up. A request that is currently being edited and a response that is still in progress cannot be collapsed, so that pending interactions such as tool confirmations or questions remain visible. When you search the conversation with Find in Chat (<kbd>Ctrl/Cmd</kbd>+<kbd>F</kbd>), collapsed messages containing a match are expanded automatically. The collapsed state is kept while the chat view is open, but is not saved with the chat session.
+
+<img src="../../ai-chat-collapsible-section.png" alt="AI Chat view in the Theia IDE with collapsed and expanded messages" style="max-width: 525px">
+
 ### Chat Session History
 
 The Theia IDE automatically preserves your chat sessions, allowing you to access your conversation history even after restarting the application.
@@ -953,6 +1014,8 @@ Your choice is remembered across workbench reloads, and each response carries a 
 
 If a selected model becomes unavailable, for example because its provider API key was removed, it is shown in red with a strike-through and requests automatically fall back to the agent's configured model.
 
+The model selector is only shown for agents that actually use a language model configured in the Theia IDE. Agents that bring their own model handling, such as [Claude Code](#claude-code-chat-agent), declare no language model requirements, so no model selector is displayed while one of them is selected.
+
 ### Agent Capabilities
 
 Capabilities provide a way to extend what an agent can do for a specific request, without permanently changing its configuration. Rather than requiring you to understand the underlying mechanics — tool functions, MCP servers, prompt fragments, or delegation targets — Capabilities surface these building blocks as simple toggles you can switch on or off per request.
@@ -1004,7 +1067,7 @@ Open the panel by clicking the tools icon in the chat input toolbar, or by press
 
 The tree supports keyboard navigation (arrow keys to move, `Enter` or `Space` to toggle, `Home`/`End` to jump). Items that the current agent already references in its prompt template are shown as disabled to prevent duplication. MCP server tools appear live as servers start and stop. Selected items are resolved at request time and appended to the agent's system message, so the LLM receives the enriched context without any permanent change to the agent configuration.
 
-The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored. To make your selections permanent, use the save icon to persist them to your settings.
+The panel state resets when you switch sessions. When you return to a session, the selections from the last sent request in that session are restored. To make your selections permanent, use the save icon to persist them to your settings, or edit the default selection of an agent directly in the agent's detail page of the [AI Configuration view](#ai-configuration).
 
 #### Server Tools
 
@@ -1046,13 +1109,21 @@ Here are some example of the most frequently used variable, you can see the full
 - `#selectedText` – The currently highlighted text in the editor. Please note that this does not include the information from which file the selected text is coming from.
 - `#productName` – The name of the product/application you are working in. Resolves to the IDE's configured application name, which is useful when adopters white-label Theia under a different product name. The built-in agent prompts also use this variable so they refer to the actual product.
 - `#terminalCommand` – A command that was executed in the terminal together with its output. Without an argument it resolves to the last command in the most recently used terminal. With an integer argument (e.g. `#terminalCommand:2`) it resolves to the corresponding entry from the terminal's command history. When you type `#terminalCommand` and trigger the argument picker, the IDE shows a searchable list of recent commands so you can attach a specific one. This variable depends on the experimental command history of the integrated terminal. Enable `Terminal › Integrated: Enable Command History` for the best results; otherwise the variable falls back to the last 50 lines of the terminal buffer.
-- `#openEditors` – The list of files currently open in the editor. Useful to point an agent at what you are working on without attaching each file individually.
+- `#openEditors` – The list of files currently open in the editor area, in tab order and including notebooks and custom editors contributed by VS Code extensions. Useful to point an agent at what you are working on without attaching each file individually.
 
 #### Open Editors in Agent Prompts
 
 The Universal, Architect and Coder agents know about your open editors out of the box. Their prompts include a built-in prompt fragment (`open-editors-hint`) that resolves the `openEditors` variable, so you can ask questions like "which files do I have open?" or refer to "the file I am looking at" without attaching anything manually. The fragment explicitly tells the agent that these files are contextual information only and may or may not be relevant, so the agent does not assume they relate to your request unless you say so.
 
 Because this is a regular prompt fragment, you can add it to other agents — or remove it from the ones that have it — through [prompt customization](#view-and-modify-prompts) by editing the agent's prompt and adding or deleting `{{prompt:open-editors-hint}}`.
+
+The variable resolves to a comma-separated list of quoted, workspace-relative paths. Each entry can carry a short state suffix in parentheses, so the agent can tell, for example, which file you are currently looking at and which files have unsaved changes:
+
+```text
+'demo/analysis.ipynb' (notebook), 'demo/logo.png' (custom editor: imagePreview.previewEditor), 'demo/README.md' (active, unsaved changes), 'demo/src/index.ts' (visible)
+```
+
+The possible states are `notebook` or `custom editor: <viewType>` for non-text editors, `active` for the current editor of the main area, `visible` for the selected tab of another editor group, `unsaved changes`, `read-only`, and `preview`. A file that is open in several editor groups is listed only once. Diff editors and Git revision views are not included.
 
 **Hint:** The context file support in Theia IDE shown above is built on the generic context variable capabilities of the underlying Theia AI framework. It therefore can be customized and extended with tool-specific context variable types. See the [Theia AI documentation](/docs/theia_ai) for more details.
 
@@ -1223,6 +1294,9 @@ The **Agents** category lets you review and adapt agent-specific settings. Selec
 - **Edit Prompts**: Click "Edit" to open the prompt template editor, where you can customize the agent's prompts (see the section below). "Reset" will revert the prompt to its default.
 - **Language Model**: Select which language model the agent sends its requests to. Some agents have multiple "purposes," allowing you to select a model for each purpose.
 - **Variables and Functions**: Review the variables and functions used by an agent. Global variables are shared across agents and are listed in the **Variables** category. Agent-specific variables are declared and used exclusively by one agent.
+- **Generic Capabilities**: Review and edit the [generic capabilities](#generic-capabilities-panel) that are enabled for the agent by default. The edit button in the section header opens the same capability tree as the chat input. Each change is saved immediately and applies to new requests in the chat. Capabilities that the agent's prompt already references are shown as locked.
+
+<img src="../../ai-agent-generic-capabilities-edit.png" alt="Editing the generic capabilities of an agent in the AI Configuration view of the Theia IDE" style="max-width: 525px">
 
 Many agents are bound to a **model alias** instead of a concrete model ID, which lets you point several agents at the same backing model from one place. The IDE ships with the following aliases:
 
@@ -1230,7 +1304,9 @@ Many agents are bound to a **model alias** instead of a concrete model ID, which
 - `default/code`: coding-focused tasks, default for the Coder agent.
 - `default/code-completion`: inline code completion (kept separate so you can pin a smaller, latency-optimized model here).
 - `default/summarize`: chat summarization, used for example when compacting a session.
-- `default/fast`: cheaper or faster models for sub-tasks that do not require deep reasoning, such as exploration, basic tool calling, command lookup, project-info maintenance and chat-session naming. It defaults to Claude Haiku 4.5, GPT-5.4 mini and Gemini 3 Flash.
+- `default/fast`: cheaper or faster models for sub-tasks that do not require deep reasoning, such as exploration, basic tool calling, command lookup, `AGENTS.md` maintenance and chat-session naming.
+
+Each alias lists one default model per provider (Anthropic, OpenAI, Google) and resolves to the first one that is available. Out of the box, `default/universal`, `default/code` and `default/summarize` resolve to Claude Opus 5.5 (`anthropic/claude-opus-5-5`), GPT-6.1 Sol (`openai/gpt-6.1-sol`) or Gemini 4 Argon (`google/gemini-4-argon`). `default/code-completion` uses Claude Sonnet 5.5 (`anthropic/claude-sonnet-5-5`) instead of Opus, and `default/fast` uses Claude Haiku 5.5 (`anthropic/claude-haiku-5-5`), GPT-6 Luna (`openai/gpt-6-luna`) or Gemini 3.8 Flash (`google/gemini-3.8-flash`). These defaults are refreshed regularly as providers release new models.
 
 You can configure which concrete model each alias resolves to in the **Model Aliases** category. Any agent that names the alias in its language-model requirements will automatically pick up your selection.
 
@@ -1279,11 +1355,9 @@ Users can specify workspace-relative directories (settings "AI-Features"=>"Promp
 
 This feature supports two main use cases:
 
-1. **Augmenting prompts with project-specific information**: Developers can create a dedicated file—such as `project-info.prompttemplate`—to include domain knowledge, architectural decisions, or coding guidelines. When referenced via `#prompt:project-info`, this information can guide AI behavior and improve prompt relevance.
+1. **Augmenting prompts with project-specific information**: Developers can create dedicated prompt fragments to include domain knowledge, architectural decisions, or coding guidelines for specific tasks. When referenced via `#prompt:<fragment-id>`, this information can guide AI behavior and improve prompt relevance. For general project context that should be available to all agents, use an [`AGENTS.md` file](#agentsmd-chat-agent) instead.
 
 2. **Creating reusable project-specific prompts**: Teams can maintain a collection of shortcut prompts for common actions like "generate a test according to specifics," enabling consistent and efficient communication with AI agents within a project. See an example for this use case in the previous section. As mentioned, you can also override the prompts of the default agents with project-specific versions.
-
-In future releases, we may include pre-configured defaults, such as adding `#prompt:project-info` in the system messages of specific agents like Coder or Architect.
 
 ## Prompt Fragments
 
@@ -1445,6 +1519,14 @@ The delegation system allows agents to:
 
 By default every delegation starts a fresh session, so the receiving agent has to be given all the context it needs in the request. A delegating agent can instead continue an earlier delegation: each result reports the id of the session it was produced in, and passing that id back with a follow-up request sends it into the same session. The receiving agent then still has its previous conversation and does not have to re-read files or re-derive context it already had, which is what makes review-and-fix loops between two agents efficient. Only sessions the delegating agent started itself can be resumed, and the request has to address the same agent. Since a resumed session keeps growing with every round, unrelated tasks should still start a new one.
 
+To find a suitable delegation target, agents can use the `listAgents` tool function (add `~{listAgents}` to an agent's prompt). It lists the chat agents available for delegation with their descriptions and, like `listSkills`, accepts an optional keyword query to narrow down the result. This way, an agent can pick the right agent for a task without all agents being listed in its prompt.
+
+### Monitoring and Canceling Delegations
+
+Each delegation is shown as a collapsible entry in the response of the delegating agent. While a delegated request is still running, its entry header shows a **Cancel delegation** button. Clicking it stops only this delegation, while the delegating agent and any other delegations it started keep running. The delegating agent is informed that the delegation was canceled and can react accordingly, for example by trying a different approach or by asking you how to proceed. Canceled delegated sessions remain available, so they can still be used for follow-up requests.
+
+<img src="../../add-cancel-delegation.png" alt="Running delegation in the AI Chat view of the Theia IDE with the Cancel delegation button" style="max-width: 525px">
+
 ### Using the Delegation Function
 
 The following demonstrations shows an example on how to use the delegate function with a custom agent:
@@ -1490,6 +1572,8 @@ The skill's instructions will be injected into the request, guiding the agent's 
 Agents can also load skills dynamically. When the `{{skills}}` variable is included in an agent's prompt, the agent receives a list of all available skills with their names and descriptions. The agent can then use the `getSkillFileContent` function to load the full content of any skill it determines would be helpful for the current request.
 
 This approach is useful for agents that need to select the most appropriate skill based on the user's request, rather than requiring the user to specify a skill explicitly.
+
+If you have many skills, listing all of them in every prompt can become costly. As an alternative to the `{{skills}}` variable, you can give an agent the `listSkills` tool function by adding `~{listSkills}` to its prompt. With it, the agent looks up skills on its own when it needs them. The tool returns the available skills as `- <name>: <description>` lines and accepts an optional query of space-separated keywords, in which case only skills whose name or description contains any of the keywords are returned, with the best matches first. The agent can then load a matching skill with `getSkillFileContent`.
 
 ### Creating Skills
 
@@ -1792,6 +1876,8 @@ Registry entries are identified by their type badges, and the Extensions view pr
 2. Registry entries appear with an **MCP Servers** type badge, interleaved with regular extension results. Search by keyword (e.g. `github`) to narrow the list.
 3. Click **Install** on an entry. An install dialog opens, pre-populated from the registry, where you can confirm the server id, toggle autostart, and enter an authentication token if the entry requires one.
 4. After confirming, the server is written to your `ai-features.mcp.mcpServers` preference, ready to be started like any other MCP server (see [MCP Integration](#mcp-integration)).
+
+The version shown on an MCP server card is the version of your installed entry or, if the registry approval pins one, the approved version. If neither is available, the card shows the latest version published in the MCP registry instead; its hover then reads `MCP registry: <version>` to make clear that this is not necessarily the version you have installed.
 
 Installed registry servers keep a link back to their registry entry. The Extensions view reflects the current state of each entry through per-entry actions such as **Update** (the registry version changed), **Fix config** (your local configuration drifted from the approved one), **Link** / **Unlink** and **Uninstall**.
 
