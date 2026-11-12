@@ -685,6 +685,11 @@ const categories = [
         title: 'AI Coding',
         resources: [
             {
+                title: 'From AI Coding Training to Real AI Adoption: What We Learned Working with Engineering Teams',
+                url: 'https://eclipsesource.com/blogs/2026/11/12/from-ai-coding-training-to-real-ai-adoption/',
+                type: 'article'
+            },
+            {
                 title: 'Eclipse Enclave: An Open Source Sandbox for AI Coding Agents',
                 url: 'https://eclipsesource.com/blogs/2026/09/08/eclipse-enclave-sandbox-for-ai-coding-agents/',
                 type: 'article'
