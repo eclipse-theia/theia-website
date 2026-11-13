@@ -171,3 +171,42 @@ export class MyWidgetContribution extends AbstractViewContribution<MyWidget> {
 ```
 
 With the contribution above, the view will now be shown in the standard “view” menu of Theia and you can also use the respective “open view” command to open it.
+
+### Hiding Side Bar Items by Default
+
+Users can hide items from the left and right side bar while their views stay accessible via commands and menus. The hidden state is tracked by the `SidePanelItemVisibility` service from `@theia/core/lib/browser/shell`, keyed by widget ID, and persisted in local storage so that it applies across workspaces. An application can start selected items hidden by rebinding the default implementation `SidePanelItemVisibilityImpl` to a subclass that overrides `isHiddenByDefault(widgetId)`. Only explicit user choices are stored, so users can always show such an item again.
+
+```typescript
+@injectable()
+export class MySidePanelItemVisibility extends SidePanelItemVisibilityImpl {
+    protected override isHiddenByDefault(widgetId: string): boolean {
+        return widgetId === MyWidget.ID;
+    }
+}
+
+// in your frontend module
+rebind(SidePanelItemVisibilityImpl).to(MySidePanelItemVisibility).inSingletonScope();
+```
+
+To store the user's choices somewhere other than local storage, override `load()` and `save()` in the same subclass instead of rebinding `LocalStorageService`, which is shared by other consumers.
+
+### Widgets in Secondary Windows
+
+Widgets that implement the `ExtractableWidget` interface from `@theia/core/lib/browser/widgets` and set `isExtractable` to `true` can be moved to secondary windows by the user. Secondary windows are restored together with the shell layout on the next start, so such a widget may be created directly in a secondary window. If your widget creates DOM elements itself, use the `ownerDocument` of its node instead of the global `document`, so that the elements end up in the correct window. Dialogs accept the `targetWindow` property in their `DialogProps` to open in a secondary window instead of the main window. Styles that are added at runtime to the `<head>` of the main window are mirrored into all secondary windows automatically.
+
+When a secondary window is closed and the preference `window.secondaryWindowCloseBehavior` is set to `close`, its widgets are closed, unless a `SecondaryWindowCloseContribution` reports that a widget would lose state. Such widgets are moved back to the main window instead. Theia uses this for editors with unsaved changes and for terminals, and you can protect your own widgets in the same way:
+
+```typescript
+@injectable()
+export class MyWidgetCloseContribution implements SecondaryWindowCloseContribution {
+    shouldRestoreOnClose(widget: Widget): boolean | undefined {
+        return widget instanceof MyWidget && widget.hasPendingChanges();
+    }
+}
+
+// in your frontend module
+bind(MyWidgetCloseContribution).toSelf().inSingletonScope();
+bind(SecondaryWindowCloseContribution).toService(MyWidgetCloseContribution);
+```
+
+`SecondaryWindowCloseContribution` is located in `@theia/core/lib/browser/window/secondary-window-close-contribution`. If your application provides its own `SecondaryWindowService` that does not extend `DefaultSecondaryWindowService`, note that it has to implement the `restoreWidget` method since Theia 1.77. In the same release, tabs in the main and bottom areas switched to native HTML drag and drop, which changes the Lumino tab bar events emitted for them; see the [Theia changelog](https://github.com/eclipse-theia/theia/blob/master/CHANGELOG.md) for details.

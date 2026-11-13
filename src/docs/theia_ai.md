@@ -39,6 +39,7 @@ Learn more about Theia AI:
 - [Managing the State of a Chat Response](#managing-the-state-of-a-chat-response)
 - [Custom LLM Provider](#custom-llm-provider)
 - [GitHub Copilot Integration](#github-copilot-integration)
+- [ChatGPT Subscription Integration](#chatgpt-subscription-integration)
 - [Change Sets](#change-sets)
 - [Chat Suggestions](chat-suggestions)
 - [Chat Banners](#chat-banners)
@@ -380,7 +381,7 @@ Once attached, the context elements are displayed in the chat input to the user.
 
 #### Reasoning
 
-Theia AI offers a provider-agnostic way to expose a model's reasoning capabilities to the user. Each language model description can declare a `reasoningSupport` property listing the supported levels (`off`, `minimal`, `low`, `medium`, `high`, `auto`) and an optional default. When a model declares support, the chat input automatically renders a reasoning selector next to the mode selector; otherwise the selector stays hidden. The selected level is carried on requests via the `reasoning` field of `UserRequest` / `CommonChatSessionSettings`, and it is the responsibility of each provider to translate the level into its native request shape (e.g. Anthropic adaptive thinking, OpenAI `reasoning.effort`, Gemini `thinkingConfig`).
+Theia AI offers a provider-agnostic way to expose a model's reasoning capabilities to the user. Each language model description can declare a `reasoningSupport` property listing the supported levels (`off`, `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`, `auto`) and an optional default. Here, `none` explicitly requests no reasoning, while `off` omits an explicit reasoning effort so that provider defaults or raw request settings apply. Requested levels that a model does not support are mapped to the closest supported level via `ReasoningSupport.clampLevel()` before they reach the provider, so providers only need to handle the levels they declare. When a model declares support, the chat input automatically renders a reasoning selector next to the mode selector; otherwise the selector stays hidden. The selected level is carried on requests via the `reasoning` field of `UserRequest` / `CommonChatSessionSettings`, and it is the responsibility of each provider to translate the level into its native request shape (e.g. Anthropic adaptive thinking, OpenAI `reasoning.effort`, Gemini `thinkingConfig`).
 
 Defaults can be configured via the `ai-features.reasoning.defaults` preference (scoped by provider, model, or agent). At request time the resolution order is: session override → persisted per-agent selection → most specific matching preference entry → model default.
 
@@ -582,6 +583,19 @@ export class FileContentFunction implements ToolProvider {
 ```
 
 See [here](https://github.com/eclipse-theia/theia/blob/master/packages/ai-ide/src/browser/workspace-functions.ts) for the full example listed above. In the handler, you can call literally any available API to execute arbitrary actions or retrieve arbitrary content, including tool-specific things.
+
+The parameters are described using JSON Schema. In line with the JSON Schema specification, the `type` of a parameter property can be a single type or an array of types, which is useful for optional values that may also be `null`:
+
+```typescript
+properties: {
+    encoding: {
+        type: ['string', 'null'],
+        description: 'The encoding of the file, or null to use the default encoding',
+    }
+}
+```
+
+This also ensures that tools contributed by MCP servers whose input schemas use such union types are passed to the LLM with their complete parameter definitions.
 
 Finally, register your ‘ToolProvider’ like this:
 
@@ -892,8 +906,12 @@ As a tool provider, you can easily add support for additional LLM APIs too. Plea
 To support a specific LLM API, you basically need to provide an implementation of the interface ‘LanguageModel’, which provides an abstraction between agents and the underlying LLM. This language model implementation then needs to be registered at the ‘LanguageModelRegistry’, to make it retrievable for agents as follows:
 
 ```typescript
-this.languageModelRegistry.addLanguageModels([new OllamaModel()]);
+this.languageModelRegistry.addLanguageModels([new MyLanguageModel()]);
 ```
+
+The built-in providers follow a slightly more elaborate pattern that you can use as a blueprint. Their model classes, such as `OpenAiModel`, `AnthropicModel`, `GoogleModel` and `OllamaModel`, are injectable and receive their configuration through an injected parameter object (e.g. `OllamaModelParams`). They are not meant to be instantiated with `new`; instead, each provider binds a factory, such as `OpenAiLanguageModelFactory`, `AnthropicLanguageModelFactory`, `GoogleLanguageModelFactory` or `OllamaLanguageModelFactory`, which its model manager uses to create a model instance for the given parameters. Since these factories are bound in the dependency injection container, you can rebind them to substitute your own model implementation, for example a subclass that customizes how requests are sent, without replacing the entire provider.
+
+If the LLM API supports tool calling, a model may request several tool calls within a single response. To handle them consistently with the built-in providers, inject the `ToolCallExecutor` service from `@theia/ai-core` into your language model and pass the collected tool calls together with the tools of the request (`request.tools`) to `executeToolCalls(...)`. The executor runs all tool calls of a turn in parallel and forwards the cancellation token to the tool handlers. It never rejects: calls to unknown tools and handlers that throw are converted into error results, which can be sent back to the LLM like any other result. The results are returned in the same order as the tool calls were passed in. As `ToolCallExecutor` is a regular injectable service, adopters can also rebind it to change how tool calls are executed across all providers.
 
 If you want to allow the user to configure the LLM provider, e.g. change the URL or the available models, consider integrating your LLM provider with Theias preference system.
 
@@ -935,6 +953,37 @@ Configure a GitHub Enterprise domain via the `ai-features.copilot.enterpriseUrl`
 ### Disabling the Copilot Integration
 
 The `ai-features.copilot.enabled` preference (default: `true`) can be set to `false` to disable the Copilot integration entirely in products that do not wish to expose it.
+
+## ChatGPT Subscription Integration
+
+The `@theia/ai-chatgpt` package serves OpenAI models through the ChatGPT subscription of the signed-in user instead of an OpenAI API key. The models are registered as `chatgpt/<model>` and coexist with the API-key based `openai/<model>` models of `@theia/ai-openai`. The end-user view of the integration is described in [ChatGPT Subscription](/docs/user_ai/#chatgpt-subscription).
+
+Sign-in uses the OAuth 2.0 authorization code flow with PKCE against OpenAI. The authorization code is returned to a loopback listener that the Theia backend runs on `http://localhost:1455/auth/callback`; if that is not reachable, the user can paste the code instead. Tokens are kept in the operating system's credential store via the `KeyStoreService` and are never exposed to the frontend. Requests are sent to the ChatGPT endpoint `https://chatgpt.com/backend-api/codex`, which only supports the streaming Responses API and does not retain responses. The package reuses the Responses API implementation of `@theia/ai-openai` without modifying it.
+
+**Please note:** The integration is experimental and relies on an undocumented endpoint. OpenAI may change or remove endpoint access, authentication requirements, or supported features without notice. Adopters should evaluate these risks before including the package in their products.
+
+### Default OAuth Client Configuration
+
+The default OAuth client ID used by `@theia/ai-chatgpt` belongs to OpenAI's Codex CLI; it is not a client registered by the Theia project. Adopters must evaluate whether using this client and the subscription endpoint is suitable for their application. To use your own registered OAuth client and matching callback configuration, rebind `ChatGptAuthServiceConfig` in a backend module that is loaded after the ChatGPT extension. All fields are required, so spread `DEFAULT_CHATGPT_AUTH_SERVICE_CONFIG` to override only selected values:
+
+```ts
+import { ContainerModule } from '@theia/core/shared/inversify';
+import { ChatGptAuthServiceConfig, DEFAULT_CHATGPT_AUTH_SERVICE_CONFIG } from '@theia/ai-chatgpt/lib/node/chatgpt-auth-service';
+
+export default new ContainerModule((bind, unbind, isBound, rebind) => {
+    rebind(ChatGptAuthServiceConfig).toConstantValue({
+        ...DEFAULT_CHATGPT_AUTH_SERVICE_CONFIG,
+        clientId: 'your-registered-client-id',
+        keyStoreService: 'your-application-chatgpt'
+    });
+});
+```
+
+Besides `clientId`, the configuration contains `callbackHost` (default `localhost`), `callbackPort` (`1455`), `callbackPath` (`/auth/callback`), `keyStoreService` (`theia-chatgpt`), and `keyStoreAccount` (`default`). The redirect URI is derived as `http://<callbackHost>:<callbackPort><callbackPath>` and must match the OAuth registration of your client; changing the local values does not register a new callback. Changing the key store identifiers selects a different credential entry and does not migrate existing credentials. For a fully custom authentication implementation, backend consumers can rebind the `ChatGptBackendAuthService` symbol from the same module.
+
+### Disabling the ChatGPT Integration
+
+The `ai-features.chatGpt.enabled` preference (default: `true`) can be set to `false` to disable the provider, remove its models, and hide its status bar item. Products that do not wish to offer the integration at all can simply omit the `@theia/ai-chatgpt` package.
 
 ## Change Sets
 
