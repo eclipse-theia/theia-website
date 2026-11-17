@@ -146,3 +146,11 @@ export default new ContainerModule(bind => {
 });
 
 ```
+
+### Keybindings and Keyboard Layouts
+
+Printable keys in a keybinding, such as letters, digits and punctuation, refer to the logical character produced on the user's active keyboard layout rather than to a physical key position. For example, `ctrl+/` is triggered by the key combination that produces `/` on the current layout, e.g. Ctrl+Shift+7 on a German layout, and not by the key that is located at the position of `/` on a US layout. Latin letters that the active layout cannot produce, e.g. on a Cyrillic layout, fall back to their US key position, so that common shortcuts like `ctrl+v` keep working. Keybindings whose character is not available on the active layout remain registered and visible, but are inactive.
+
+If a keybinding should target a physical key position independent of the layout, use the scan-code syntax, e.g. `ctrl+[BracketLeft]`. Reserved characters can be written as character tokens, such as `ctrl+[char:0x2B]` for a logical `+`. Keep in mind that Windows reports AltGr as Ctrl+Alt, so a keybinding that combines `ctrl` or `alt` with a character on the AltGr layer of the active layout cannot be triggered there. The same applies on macOS to `alt` (Option) combined with a character on the Option layer. Users who prefer the positional behavior for all keybindings can set the preference `keyboard.dispatch` to `keyCode`.
+
+If your extension works with keybinding internals, such as `KeyCode`, `KeyboardLayoutService`, `KeybindingRegistry.matchKeybinding()` or `AcceleratorSource`, see the [Theia Migration Guide](https://github.com/eclipse-theia/theia/blob/master/doc/Migration.md#physical-printable-key-bindings) for the required API changes.

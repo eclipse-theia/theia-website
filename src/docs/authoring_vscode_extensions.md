@@ -125,6 +125,10 @@ Walkthroughs can also be opened explicitly from *Help ▸ Open Walkthrough* or w
 
 Whether a newly installed extension may open its walkthrough automatically is controlled by the preference `workbench.welcomePage.walkthroughs.openOnInstall`.
 
+### Theme Color CSS Variables
+
+Theia applies every registered theme color as a CSS variable on the document element under both the `--theia-` and the `--vscode-` prefix. HTML or SVG content contributed by a VS Code extension that references theme colors the VS Code way, e.g. a walkthrough illustration using `fill="var(--vscode-foreground)"` or inline styles in rendered markdown, therefore adapts to the active color theme in Theia as well. Theia extensions should continue to use the `--theia-` prefix in their own stylesheets.
+
 ## Prerequisites for Running VS Code Extensions in Theia
 
 To enable Theia's support for VS Code extensions in order to use your own extensions or third-party VS Code extensions in your Theia application, you'll need to add `@theia/plugin-ext-vscode` as a dependency.
