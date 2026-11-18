@@ -18,6 +18,9 @@ import TheiaConLogo from '../../resources/theiacon-logo.svg'
 const PlatformHeader = () => (
     <div className="header__banner">
         <h2 style={{ fontSize: '2.1rem' }}>
+            <strong>Theia AI is a finalist for the <a href="https://devopsdozen.com/">2026 DevOps Dozen Awards</a>. <a href="https://devopsdozen.com/vote.html">Vote for Theia AI</a> in "Best AI-Assisted Software Development Solution" by December 31!</strong>
+            <br />
+            <br />
             <a href="https://eclipsesource.com/blogs/2026/10/08/eclipse-theia-1-76-release-news-and-noteworthy/" rel="noopener noreferrer">Learn about the latest 1.76 Release</a> and <a href="https://eclipsesource.com/blogs/2026/09/15/the-eclipse-theia-community-release-2026-08/">the latest Community Release (2026-08)</a>.
             <br />
             Read about <a href="https://newsroom.eclipse.org/eclipse-newsletter/2026/march/eclipse-theia-eclipse-foundation-tool-platform-production">Eclipse Theia: The Eclipse tool platform in production</a>.
