@@ -1,0 +1,44 @@
+# Eclipse Theia
+
+> Eclipse Theia is an open-source project hosted by the Eclipse Foundation. It consists of the Theia Platform, a framework for building custom IDEs and tools that run in the browser and on the desktop; Theia AI, an open-source, vendor-neutral AI harness platform that is part of the Theia Platform; and the Theia IDE, an AI-native, open-source IDE for desktop and browser built on both.
+
+Key facts:
+
+- The Theia Platform is not a fork of VS Code. It is a modular framework written in TypeScript that reuses the Monaco editor and supports VS Code extensions from Open VSX.
+- Theia AI provides the building blocks for AI-native tools: a ready-to-use default harness, customizable agents, chat, tool calling, prompt management, and flexible LLM integration. It supports MCP, Agent Skills and Agent Plugins.
+- The Theia IDE works with any LLM provider or local model (bring your own key, no vendor lock-in), and integrates Claude Code and GitHub Copilot.
+- Products built on Theia include the Arduino IDE 2.x, Texas Instruments' Code Composer Studio, AMD's Vitis Unified IDE, STMicroelectronics' STM32CubeMX2 and Samsung's Sokatoa.
+- License: EPL-2.0 (Theia Platform), MIT (Theia IDE).
+
+## Overview
+
+- [Theia IDE](https://theia-ide.org/): The AI-native, open-source Theia IDE, with downloads and an online version
+- [Theia Platform](https://theia-ide.org/theia-platform/): The framework for building custom IDEs and tools, with selected adopters
+- [Theia AI](https://theia-ide.org/theia-ai/): The vendor-neutral AI harness platform for AI-native tools and IDEs
+- [FAQ](https://theia-ide.org/docs/faq/): How Theia relates to the Eclipse IDE, VS Code, Cursor, GitHub Copilot and Claude Code; licensing; adopters
+- [Project Goals](https://theia-ide.org/docs/project_goals/): Why Theia exists and how it is governed
+
+## Using the Theia IDE
+
+- [Getting Started](https://theia-ide.org/docs/user_getting_started/): Installing and using the Theia IDE
+- [Using AI Features](https://theia-ide.org/docs/user_ai/): AI chat, agents, LLM providers, local models, MCP, Agent Skills, Claude Code and GitHub Copilot in the Theia IDE
+- [Theia Coder](https://theia-ide.org/docs/theia_coder/): The AI coding agent of the Theia IDE
+- [Installing VS Code Extensions](https://theia-ide.org/docs/user_install_vscode_extensions/): Using VS Code extensions from Open VSX
+- [Download](https://theia-ide.org/docs/blueprint_download/): Desktop downloads for Windows, macOS and Linux
+
+## Building on the Theia Platform
+
+- [Build your own IDE/Tool](https://theia-ide.org/docs/composing_applications/): How to create a custom Theia-based application
+- [Architecture Overview](https://theia-ide.org/docs/architecture/): Frontend/backend architecture, browser and Electron deployment
+- [Extensions and Plugins](https://theia-ide.org/docs/extensions/): Theia extensions versus VS Code extensions
+- [Authoring Theia Extensions](https://theia-ide.org/docs/authoring_extensions/): Writing a first Theia extension
+- [Services and Contributions](https://theia-ide.org/docs/services_and_contributions/): The dependency-injection based extension model
+- [Building AI features with Theia AI](https://theia-ide.org/docs/theia_ai/): Creating custom agents, tools and AI-powered features
+- [Theia API Documentation](https://theia-ide.org/docs/theia_api_documentation/): Generated API reference
+
+## Optional
+
+- [Releases](https://theia-ide.org/releases/): Monthly releases and quarterly Community Releases
+- [Resources](https://theia-ide.org/resources/): Talks, articles and adopter stories
+- [Support](https://theia-ide.org/support/): Professional support and how to contribute
+- [Source code](https://github.com/eclipse-theia/theia): The Theia Platform and Theia AI repository
