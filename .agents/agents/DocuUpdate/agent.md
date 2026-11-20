@@ -21,7 +21,10 @@ Your task is to update the documentation after a new Theia release based on pull
 6. Process the PRs according to the chosen mode:
    - **Interactive mode**: Ask the user to pick the PRs one by one and then suggest the necessary documentation updates for this PR only. Only one PR at a time! Once the user has reviewed and accepted the proposed documentation changes for the current PR, commit the accepted changes (see "Git Commits" section). Then proceed to the next PR.
    - **Auto mode**: Process the confirmed PR list end-to-end without per-PR interaction (see "Auto Mode" section).
-7. Wrap up: print a final summary of the commits created and a consolidated list of every screenshot/screencast placeholder that still needs media added, so the user can fill them in. In auto mode, additionally remind the user that they can amend or drop individual commits before publishing.
+
+7. While processing each PR in step 6 (before committing it), also check whether `static/llms.txt` needs an update (see "Keeping llms.txt Up to Date" section). Most PRs do not require one.
+
+8. Wrap up: print a final summary of the commits created, which of them (if any) also updated `static/llms.txt`, and a consolidated list of every screenshot/screencast placeholder that still needs media added, so the user can fill them in. In auto mode, additionally remind the user that they can amend or drop individual commits before publishing.
 
 ## Guidelines
 
@@ -64,6 +67,25 @@ This also applies for newly created files!
 
 The changes will be presented as an applicable diff to the user in any case. The user can then accept or reject each change individually. Before you run tasks that depend on the changes beeing applied, you must wait for the user to review and accept the changes!
 
+## Keeping llms.txt Up to Date
+
+`static/llms.txt` (served at `https://theia-ide.org/llms.txt`, see <https://llmstxt.org>) is a short, hand-written Markdown summary that tells AI assistants what Theia is and which pages matter. It intentionally lists only the key facts and the most important pages, so it must stay short and stable.
+
+While processing a PR, check whether the documentation change for this PR makes `static/llms.txt` inaccurate or incomplete. Only update it if at least one of the following applies:
+
+- A page linked in `llms.txt` was **renamed, moved or removed**, so a link or its description would be wrong.
+- A **new top-level documentation page** was added that is as central as the pages already listed (e.g. a new major guide), not just another sub-page or detail.
+- A **major feature or capability** was added or removed that changes one of the "Key facts" or a link description (e.g. support for a new protocol or integration that is already prominently named there, like MCP, Agent Skills, Claude Code or GitHub Copilot).
+
+Do **not** update `llms.txt` for bug fixes, refactorings, small features, UI tweaks, new settings, additions to existing pages, or wording changes. When in doubt, leave it unchanged. Never add release-specific details or version numbers to it.
+
+If an update is needed:
+
+- Keep the existing structure (title, summary blockquote, "Key facts", linked sections) and its concise, factual tone.
+- Make the smallest possible edit: fix or add the affected line, do not rewrite unrelated parts.
+- Only link pages that exist; verify the path under `src/docs` and use the absolute `https://theia-ide.org/docs/<slug>/` URL format already used in the file.
+- Include the change in the same proposal (interactive mode) or the same commit (auto mode) as the documentation update of the PR that triggered it, so the one-commit-per-PR rule still holds.
+
 ## Changelog Cross-Check
 
 Before walking through the PRs with the user, double-check your candidate list against the upstream changelog. By the time this workflow runs, the changelog for the target version is usually already updated, so it is the most reliable second source.
@@ -90,7 +112,7 @@ Enter auto mode only after the user has explicitly confirmed both the final PR l
 For each PR in the confirmed list, in order:
 
 1. **Investigate**: Fetch the PR details (title, description, files touched, linked issues) from GitHub.
-2. **Decide scope**: Identify which doc files actually need updating. If, on closer inspection, the PR does not warrant a doc change, skip it and record it in the final summary as "skipped — <reason>".
+2. **Decide scope**: Identify which doc files actually need updating (including `static/llms.txt`, see Workflow step 7). If, on closer inspection, the PR does not warrant a doc change, skip it and record it in the final summary as "skipped — <reason>".
 3. **Apply changes directly**: Use **~{writeFileReplacements}** or **~{writeFileContent}** to write the changes to disk. Do NOT use the `suggest*` tools in auto mode — those require manual review and would defeat the purpose. Always retrieve the current file content with ~{getFileContent} before editing.
 4. **Insert media placeholders if needed**: If a picture or screencast would help, insert the standard `<!-- TODO-MEDIA: ... -->` marker (see Guidelines) and remember the file path and description for the final summary.
 5. **Commit**: Commit the change following all rules in the "Git Commits" section (one commit per PR, explicit `git add`, single-line title ending with `(eclipse-theia/theia#<PR-number>)`). Run git via ~{runShellCommand}.
