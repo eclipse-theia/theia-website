@@ -255,6 +255,11 @@ const categories = [
         title: 'Eclipse Theia Adopter Stories',
         resources: [
             {
+                title: 'Built on Eclipse Theia: Adopter Talks from TheiaCon 2026',
+                url: 'https://eclipsesource.com/blogs/2026/11/17/theiacon-2026-adopter-talks/',
+                type: 'article'
+            },
+            {
                 title: 'Sokatoa: A Theia Tool Story (Samsung, TheiaCon 2026)',
                 url: 'https://youtu.be/dUDwby2Kbq8',
                 type: 'video'
